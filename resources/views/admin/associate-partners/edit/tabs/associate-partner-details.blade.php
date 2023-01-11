@@ -1,6 +1,7 @@
-<form action="{{ route('admin.associate-partners.store') }}" method="post" id="associate-partner-form"
+<form action="{{ route('admin.associate-partners.update', $associate->id) }}" method="post" id="associate-partner-form"
     enctype="multipart/form-data">
     @csrf
+    @method('PUT')
     <div class="form-group row">
 
         <div class="col-md-12">
@@ -41,8 +42,8 @@
                 <input type="text" class="form-control" id="pan" name="pan" placeholder="Enter PAN no."
                     value="{{ old('pan', $associate->pan) }}">
                 <div class="input-group-append">
-                    <input type="file" name="panfile" id="upload" hidden />
-                    <label for="upload" id="upload-label"><i class="mdi mdi-upload"></i></label>
+                    <input type="file" name="panfile" hidden />
+                    <label for="upload" class="upload-label"><i class="mdi mdi-upload"></i></label>
                 </div>
             </div>
             @error('pan')
@@ -160,7 +161,8 @@
                 data-toggle="select2" onchange="setAssignedEmployeeId()">
                 <option value="">Select Assigned To Employee</option>
                 @foreach ($users as $user)
-                    <option value="{{ $user->id }}" {{ old('assigned_employee', $associate->assigned_employee) == $user->id ? 'selected' : '' }}
+                    <option value="{{ $user->id }}"
+                        {{ old('assigned_employee', $associate->assigned_employee) == $user->id ? 'selected' : '' }}
                         data-id="{{ $user->employee_code }}">{{ $user->firstname }}
                         {{ $user->lastname }} ({{ $user->employee_code }})</option>
                 @endforeach
@@ -172,7 +174,8 @@
         <div class="col-md-6 mt-3">
             <label for="assigned_employee_id">Assigned To Employee ID <span class="text-danger">*</span></label>
             <input type="text" class="form-control" id="assigned_employee_id" name="assigned_employee_id"
-                placeholder="Enter assigned to employee ID" value="{{ old('assigned_employee_id', $associate->assigned_employee_id) }}">
+                placeholder="Enter assigned to employee ID"
+                value="{{ old('assigned_employee_id', $associate->assigned_employee_id) }}">
             @error('assigned_employee_id')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
@@ -183,7 +186,8 @@
                 onchange="setLinkedWithEmployeeId()">
                 <option value="">Select Linked With Employee</option>
                 @foreach ($users as $user)
-                    <option value="{{ $user->id }}" {{ old('linked_employee', $associate->linked_employee) == $user->id ? 'selected' : '' }}
+                    <option value="{{ $user->id }}"
+                        {{ old('linked_employee', $associate->linked_employee) == $user->id ? 'selected' : '' }}
                         data-id="{{ $user->employee_code }}">{{ $user->firstname }}
                         {{ $user->lastname }} ({{ $user->employee_code }})</option>
                 @endforeach
@@ -195,8 +199,94 @@
         <div class="col-md-6 mt-3">
             <label for="linked_employee_id">Linked With Employee ID <span class="text-danger">*</span></label>
             <input type="text" class="form-control" id="linked_employee_id" name="linked_employee_id"
-                placeholder="Enter linked with employee ID" value="{{ old('linked_employee_id', $associate->linked_employee_id) }}">
+                placeholder="Enter linked with employee ID"
+                value="{{ old('linked_employee_id', $associate->linked_employee_id) }}">
             @error('linked_employee_id')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="col-md-6 mt-3">
+            <label for="mou">Associate Partner MOU <span class="text-danger">*</span></label>
+            <div class="input-group">
+                <select class="custom-select" id="mou" name="mou">
+                    <option value="">Select Status</option>
+                    <option value="yes" {{ old('mou', $associate->mou) == 'yes' ? 'selected' : '' }}>Yes
+                    </option>
+                    <option value="no" {{ old('mou', $associate->mou) == 'no' ? 'selected' : '' }}>No
+                    </option>
+                </select>
+                <div class="input-group-append">
+                    <input type="file" name="moufile" hidden />
+                    <label for="upload" class="upload-label"><i class="mdi mdi-upload"></i></label>
+                </div>
+            </div>
+            @error('mou')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+            @error('moufile')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="col-md-6 mt-3">
+            <label for="agreement_start_date">Associate Partner Agreement Start Date <span
+                    class="text-danger">*</span></label>
+            <div class="input-group">
+                <input type="date" class="form-control" id="agreement_start_date" name="agreement_start_date"
+                    placeholder="Associate partner agreement start date"
+                    value="{{ old('agreement_start_date', $associate->agreement_start_date) }}">
+                <div class="input-group-append">
+                    <input type="file" name="agreementfile" hidden />
+                    <label for="upload" class="upload-label"><i class="mdi mdi-upload"></i></label>
+                </div>
+            </div>
+            @error('agreement_start_date')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="col-md-6 mt-3">
+            <label for="agreement_end_date">Associate Partner Agreement End Date <span
+                    class="text-danger">*</span></label>
+            <input type="date" class="form-control" id="agreement_end_date" name="agreement_end_date"
+                placeholder="Associate partner agreement end date"
+                value="{{ old('agreement_end_date', $associate->agreement_end_date) }}">
+            @error('agreement_end_date')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="col-md-6 mt-3">
+            <label for="contact_person">Associate Partner Contact Person's Name <span
+                    class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="contact_person" name="contact_person"
+                placeholder="Associate partner contact person's name"
+                value="{{ old('contact_person', $associate->contact_person) }}">
+            @error('contact_person')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="col-md-6 mt-3">
+            <label for="contact_person_phone">Associate Partner Contact Person's Mobile No. <span
+                    class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="contact_person_phone" name="contact_person_phone"
+                placeholder="Associate partner contact person's mobile no."
+                value="{{ old('contact_person_phone', $associate->contact_person_phone) }}">
+            @error('contact_person_phone')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="col-md-6 mt-3">
+            <label for="contact_person_email">Associate Partner Contact Person's email ID. <span
+                    class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="contact_person_email" name="contact_person_email"
+                placeholder="Associate partner contact person's email ID."
+                value="{{ old('contact_person_email', $associate->contact_person_email) }}">
+            @error('contact_person_email')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="col-md-12 mt-3">
+            <label for="comments">Comments </label>
+            <textarea class="form-control" id="comments" name="comments" placeholder="Comments" rows="4">{{ old('comments', $associate->comments) }}</textarea>
+            @error('comments')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>

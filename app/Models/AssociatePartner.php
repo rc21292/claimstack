@@ -34,7 +34,7 @@ class AssociatePartner extends Authenticatable
         'pincode',
         'password',
         'phone',
-        'refrence',
+        'reference',
         'status',
         'linked_associate_partner',
         'linked_associate_partner_id',
@@ -42,6 +42,15 @@ class AssociatePartner extends Authenticatable
         'assigned_employee_id',
         'linked_employee',
         'linked_employee_id',
+        'mou',
+        'moufile',
+        'agreement_start_date',
+        'agreementfile',
+        'agreement_end_date',
+        'contact_person',
+        'contact_person_phone',
+        'contact_person_email',
+        'comments',
     ];
 
     /**

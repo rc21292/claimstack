@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('state')->nullable();
             $table->string('pincode')->nullable();
             $table->string('phone')->nullable();
-            $table->longText('refrence')->nullable();
+            $table->longText('reference')->nullable();
             $table->enum('status', ['Main', 'Sub AP', 'Agency'])->default('Main');
             $table->string('linked_associate_partner')->nullable();
             $table->string('linked_associate_partner_id')->nullable();
@@ -36,6 +36,15 @@ return new class extends Migration
             $table->string('assigned_employee_id')->nullable();
             $table->string('linked_employee')->nullable();
             $table->string('linked_employee_id')->nullable();
+            $table->enum('mou', ['yes', 'no'])->default('no');
+            $table->string('moufile')->nullable();
+            $table->date('agreement_start_date')->nullable();
+            $table->string('agreementfile')->nullable();
+            $table->date('agreement_end_date')->nullable();
+            $table->string('contact_person')->nullable();
+            $table->string('contact_person_phone')->nullable();
+            $table->string('contact_person_email')->nullable();
+            $table->longText('comments')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
