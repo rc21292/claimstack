@@ -42,8 +42,8 @@
                 <input type="text" class="form-control" id="pan" name="pan" placeholder="Enter PAN no."
                     value="{{ old('pan', $associate->pan) }}">
                 <div class="input-group-append">
-                    <input type="file" name="panfile" hidden />
-                    <label for="upload" class="upload-label"><i class="mdi mdi-upload"></i></label>
+                    <input type="file" name="panfile" hidden id="panfile"/>
+                    <label for="panfile" class="upload-label"><i class="mdi mdi-upload"></i></label>
                 </div>
             </div>
             @error('pan')
@@ -216,8 +216,8 @@
                     </option>
                 </select>
                 <div class="input-group-append">
-                    <input type="file" name="moufile" hidden />
-                    <label for="upload" class="upload-label"><i class="mdi mdi-upload"></i></label>
+                    <input type="file" name="moufile" hidden id="moufile"  />
+                    <label for="moufile" class="upload-label"><i class="mdi mdi-upload"></i></label>
                 </div>
             </div>
             @error('mou')
