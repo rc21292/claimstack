@@ -27,11 +27,11 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header text-right">                       
+                    <div class="card-header text-right">
                         <a href="{{ route('admin.associate-partners.create') }}" class="btn btn-warning">Create</a>
-                        <a class="btn btn-dark right-bar-toggle" href="javascript: void(0);">
+                        {{-- <a class="btn btn-dark right-bar-toggle" href="javascript: void(0);">
                             Filter
-                        </a>
+                        </a> --}}
                     </div>
                     <div class="card-body">
                         @if (count($associates) > 0)
@@ -50,7 +50,7 @@
                                     @foreach ($associates as $associate)
                                         <tr>
                                             <th scope="row">{{ $associate->associate_partner_id }}</th>
-                                            <td>{!! $associate->firstname !!} {!! $associate->lastname !!}</td>                                            
+                                            <td>{!! $associate->firstname !!} {!! $associate->lastname !!}</td>
                                             <td><span class="badge badge-outline-secondary">{{ ucfirst($associate->type) }}</span></td>
                                             <td>{{ $associate->email }}</td>
                                             <td>{{ $associate->phone }}</td>
