@@ -110,7 +110,7 @@ class AssociatePartnerController extends Controller
         ]);
 
         AssociatePartner::where('id', $associate_partner->id)->update([
-            'associate_partner_id'      => 'AP' . substr($associate_partner->pan, 0, 2) . substr($associate_partner->pan, -2)
+            'associate_partner_id'      => 'AP' . substr($associate_partner->pan, 0, 2) . substr($associate_partner->pan, -3)
         ]);
 
         if ($request->hasfile('panfile')) {
@@ -244,7 +244,7 @@ class AssociatePartnerController extends Controller
         $associate_partner             = AssociatePartner::find($id);
 
         AssociatePartner::where('id', $id)->update([
-            'associate_partner_id'      => 'AP' . substr($associate_partner->pan, 0, 2) . substr($associate_partner->pan, -2)
+            'associate_partner_id'      => 'AP' . substr($associate_partner->pan, 0, 2) . substr($associate_partner->pan, -3)
         ]);
 
         if ($request->hasfile('panfile')) {

@@ -58,7 +58,7 @@ class AssociatePartnerSeed extends Seeder
         $associate_partners = AssociatePartner::get(['id', 'pan', 'type']);
         foreach ($associate_partners as $partner) {
             AssociatePartner::where('id', $partner->id)->update([
-                'associate_partner_id' => 'AP' . substr($partner->pan, 0, 2) . substr($partner->pan, -2)
+                'associate_partner_id' => 'AP' . substr($partner->pan, 0, 2) . substr($partner->pan, -3)
             ]);
 
             if ($partner->type == 'vendor') {
