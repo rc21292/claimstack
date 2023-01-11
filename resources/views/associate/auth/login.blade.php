@@ -24,10 +24,9 @@
                         <div class="card">
 
                             <!-- Logo -->
-                            <div class="card-header pt-1 pb-1 text-center bg-warning">
+                            <div class="card-header pt-4 pb-1 text-center">
                                 <a href="{{ route('associate-partner.login') }}">
-                                    {{-- <span><img src="{{ asset('assets/images/logo.png') }}" alt="" height="18"></span> --}}
-                                    <h1 class="text-white">Claim Stack</h1>
+                                    <span><img src="{{ asset('assets/images/logos/logo-dark.png') }}" alt="" height="50px"></span>
                                 </a>
                             </div>
 
