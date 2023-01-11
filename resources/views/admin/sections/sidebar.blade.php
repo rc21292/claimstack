@@ -4,7 +4,7 @@
     <!-- LOGO -->
     <a href="{{ route('admin.dashboard') }}" class="logo text-center logo-light">
         <span class="logo-lg">
-            <img src="{{ asset('assets/images/logos/logo-dark.png') }}" alt="" height="16">
+            <img src="{{ asset('assets/images/logos/logo-dark.png') }}" alt="" height="46">
 
         </span>
         <span class="logo-sm">
@@ -15,11 +15,11 @@
     <!-- LOGO -->
     <a href="{{ route('admin.dashboard') }}" class="logo text-center logo-dark">
         <span class="logo-lg">
-            <img src="{{ asset('assets/images/logos/logo-dark.png') }}" alt="" height="16">
+            <img src="{{ asset('assets/images/logos/logo-dark.png') }}" alt="" height="46">
 
         </span>
         <span class="logo-sm">
-            <img src="{{ asset('assets/images/logos/logo-dark.png') }}" alt="" height="16">
+            <img src="{{ asset('assets/images/logos/logo-dark.png') }}" alt="" height="46">
 
         </span>
     </a>
