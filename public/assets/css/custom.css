@@ -13,11 +13,7 @@ body{
     text-decoration-line: underline !important;
     text-underline-offset: 8px !important;
 }
-.page-title-box .page-title-right {
-    float: right;
-    width: 50%;
-    margin-top: 20px;
-}
+
 .invalid-feedback {
     display: block;
     width: 100%;
