@@ -26,7 +26,7 @@
         <!-- start page content -->
         <div class="row">
             <div class="col-12">
-                <div class="card">
+                <div class="card no-shadow">
                     <div class="card-body">
                         <form action="{{ route('admin.associate-partners.store') }}" method="post"
                             id="associate-partner-form" enctype="multipart/form-data">

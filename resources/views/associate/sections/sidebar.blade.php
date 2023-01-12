@@ -2,25 +2,22 @@
 <div class="left-side-menu">
 
     <!-- LOGO -->
-    <a href="{{ route('associate-partner.dashboard') }}" class="logo text-center logo-light">
+    <a href="{{ route('associate-partner.dashboard') }}" class="logo pl-3 logo-light">
         <span class="logo-lg">
-            {{-- <img src="assets/images/logo.png" alt="" height="16"> --}}
-            <h1 class="text-white">Claim Stack</h1>
+            <img src="{{ asset('assets/images/logos/logo-dark.png') }}" alt="" height="46">
         </span>
         <span class="logo-sm">
-            <h1 class="text-white">Claim Stack</h1>
+            <img src="{{ asset('assets/images/logos/logo-dark.png') }}" alt="" height="46">
         </span>
     </a>
 
     <!-- LOGO -->
-    <a href="{{ route('associate-partner.dashboard') }}" class="logo text-center logo-dark">
+    <a href="{{ route('associate-partner.dashboard') }}" class="logo pl-3 logo-dark">
         <span class="logo-lg">
-            {{-- <img src="assets/images/logo-dark.png" alt="" height="16"> --}}
-            <h1 class="text-primary">Claim Stack</h1>
+            <img src="{{ asset('assets/images/logos/logo-dark.png') }}" alt="" height="46">
         </span>
         <span class="logo-sm">
-            {{-- <img src="assets/images/logo_sm_dark.png" alt="" height="16"> --}}
-            <h1 class="text-primary">Claim Stack</h1>
+            <img src="{{ asset('assets/images/logos/logo-dark.png') }}" alt="" height="46">
         </span>
     </a>
 

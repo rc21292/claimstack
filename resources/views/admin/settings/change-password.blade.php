@@ -27,7 +27,7 @@
 
 <div class="row">
     <div class="col-12">
-        <div class="card">
+        <div class="card no-shadow">
             <div class="card-body">
                 <form id="accountForm" method="POST" action="{{ route('admin.change-password') }}">
                     @csrf

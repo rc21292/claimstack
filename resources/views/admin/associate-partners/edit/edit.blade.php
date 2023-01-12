@@ -26,7 +26,7 @@
         <!-- start page content -->
         <div class="row">
             <div class="col-12">
-                <div class="card">
+                <div class="card no-shadow">
                     <div class="card-body">
                         <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
                             <li class="nav-item">

@@ -2,18 +2,18 @@
 <div class="left-side-menu">
 
     <!-- LOGO -->
-    <a href="{{ route('admin.dashboard') }}" class="logo text-center logo-light">
+    <a href="{{ route('admin.dashboard') }}" class="logo pl-3 logo-light">
         <span class="logo-lg">
             <img src="{{ asset('assets/images/logos/logo-dark.png') }}" alt="" height="46">
 
         </span>
         <span class="logo-sm">
-
+            <img src="{{ asset('assets/images/logos/logo-dark.png') }}" alt="" height="46">
         </span>
     </a>
 
     <!-- LOGO -->
-    <a href="{{ route('admin.dashboard') }}" class="logo text-center logo-dark">
+    <a href="{{ route('admin.dashboard') }}" class="logo pl-3 logo-dark">
         <span class="logo-lg">
             <img src="{{ asset('assets/images/logos/logo-dark.png') }}" alt="" height="46">
 

@@ -27,7 +27,7 @@
 
     <div class="row">
         <div class="col-12">
-            <div class="card">
+            <div class="card no-shadow">
                 <div class="card-body">
                     <form id="accountForm" method="POST"
                         action="{{ route('associate-partner.my-account.update', Auth::guard('associate')->id()) }}" enctype="multipart/form-data">

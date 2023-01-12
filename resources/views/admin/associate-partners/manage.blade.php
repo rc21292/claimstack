@@ -9,12 +9,7 @@
             <div class="col-12">
                 <div class="page-title-box">
                     <div class="page-title-right">
-                        <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ url('/') }}">Claim Stack</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="javascript:void(0);">Associate Partner</a></li>
-                            <li class="breadcrumb-item active">Manage</li>
-                        </ol>
+                        <input class="form-control" name="search" type="search"placeholder="Type here to Search">
                     </div>
                     <h4 class="page-title">Manage Associate Partner</h4>
                 </div>
@@ -26,17 +21,11 @@
         <!-- start page content -->
         <div class="row">
             <div class="col-12">
-                <div class="card">
-                    <div class="card-header text-right">
-                        <a href="{{ route('admin.associate-partners.create') }}" class="btn btn-warning">Create</a>
-                        {{-- <a class="btn btn-dark right-bar-toggle" href="javascript: void(0);">
-                            Filter
-                        </a> --}}
-                    </div>
+                <div class="card no-shadow">                    
                     <div class="card-body">
                         @if (count($associates) > 0)
-                            <table id="basics-datatable" class="table table-hover thead-dark">
-                                <thead class="thead-dark">
+                            <table id="basics-datatable" class="table table-hover">
+                                <thead class="thead-grey">
                                     <tr>
                                         <th scope="col">UID</th>
                                         <th scope="col">Name</th>
