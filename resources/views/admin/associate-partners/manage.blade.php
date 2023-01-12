@@ -9,7 +9,12 @@
             <div class="col-12">
                 <div class="page-title-box">
                     <div class="page-title-right">
+                        <div class="input-group">
                         <input class="form-control" name="search" type="search"placeholder="Type here to Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">Search</button>
+                        </div>
+                        </div>
                     </div>
                     <h4 class="page-title">Manage Associate Partner</h4>
                 </div>
@@ -22,7 +27,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card no-shadow">                    
-                    <div class="card-body">
+                    <div class="card-body table-responsive">
                         @if (count($associates) > 0)
                             <table id="basics-datatable" class="table table-hover">
                                 <thead class="thead-grey">

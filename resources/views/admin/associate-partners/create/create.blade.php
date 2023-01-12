@@ -72,7 +72,7 @@
                                             placeholder="Enter PAN no." value="{{ old('pan') }}">
                                         <div class="input-group-append">
                                             <input type="file" name="panfile" id="upload" hidden />
-                                            <label for="upload" id="upload-label"><i class="mdi mdi-upload"></i></label>
+                                            <label for="upload" class="upload-label"><i class="mdi mdi-upload"></i></label>
                                         </div>
                                     </div>
                                     @error('pan')
