@@ -31,21 +31,21 @@
             <div class="card-body">
                 <form id="accountForm" method="POST" action="{{ route('admin.change-password') }}">
                     @csrf
-                    <div class="form-group {{ $errors->has('current_password') ? 'has-error' : '' }}">
+                    <div class="form-group mb-2 {{ $errors->has('current_password') ? 'has-error' : '' }}">
                         <label for="current_password">Current password *</label>
                         <input type="password" id="current_password" name="current_password" class="form-control">
                         @error('current_password')
                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="form-group {{ $errors->has('new_password') ? 'has-error' : '' }}">
+                    <div class="form-group mb-2 {{ $errors->has('new_password') ? 'has-error' : '' }}">
                         <label for="new_password">New password *</label>
                         <input type="password" id="new_password" name="new_password" class="form-control">
                         @error('new_password')
                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="form-group {{ $errors->has('new_password_confirmation') ? 'has-error' : '' }}">
+                    <div class="form-group mb-2 {{ $errors->has('new_password_confirmation') ? 'has-error' : '' }}">
                         <label for="new_password_confirmation">New password confirmation *</label>
                         <input type="password" id="new_password_confirmation" name="new_password_confirmation"
                             class="form-control">
@@ -55,7 +55,7 @@
                     </div>
                 </form>
             </div>
-            <div class="card-footer text-right">
+            <div class="card-footer text-end">
                 <button type="submit" class="btn btn-success" form="accountForm">Save</button>
             </div>
         </div>

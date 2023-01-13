@@ -33,7 +33,7 @@
                         action="{{ route('associate-partner.my-account.update', Auth::guard('associate')->id()) }}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
-                        <div class="form-group">
+                        <div class="form-group  mb-2">
                             <label for="firstname">First Name</label>
                             <input type="text" class="form-control" id="firstname" name="firstname"
                                 placeholder="Enter Firstname" value="{{ old('firstname', $admin->firstname) }}">
@@ -41,7 +41,7 @@
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="form-group">
+                        <div class="form-group  mb-2">
                             <label for="lastname">Last Name</label>
                             <input type="text" class="form-control" id="lastname" name="lastname"
                                 placeholder="Enter Lastname" value="{{ old('lastname', $admin->lastname) }}">
@@ -49,7 +49,7 @@
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="form-group">
+                        <div class="form-group  mb-2">
                             <label for="email">Email Address</label>
                             <input type="email" class="form-control" id="email" name="email"
                                 placeholder="Enter Email Address" value="{{ old('email', $admin->email) }}">
@@ -57,7 +57,7 @@
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="form-group">
+                        <div class="form-group  mb-2">
                             <label for="phone">Phone Number</label>
                             <input type="text" class="form-control" id="phone" name="phone"
                                 placeholder="Enter Phone Number" value="{{ old('phone', $admin->phone) }}">
@@ -67,13 +67,8 @@
                         </div>
                         <div class="form-group mb-3">
                             <label for="avatar">Profile Picture</label>
-                            <div class="input-group">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="avatar" name="avatar"
-                                        onchange="loadPreview(this);">
-                                    <label class="custom-file-label" for="avatar">Choose Image</label>
-                                </div>
-                            </div>
+                            <input type="file" class="form-control" id="avatar" name="avatar"
+                            onchange="loadPreview(this);">
                             @if ($errors->has('avatar'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('avatar') }}</strong>
@@ -84,7 +79,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="card-footer text-right">
+                <div class="card-footer text-end">
                     <button type="submit" class="btn btn-success" form="accountForm">Save</button>
                 </div>
             </div>

@@ -39,8 +39,8 @@
                                 <form action="{{ route('associate-partner.password.update') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="token" value="{{ $token }}">
-                                    <div class="form-group">
-                                        <label for="emailaddress">Email address</label>
+                                    <div class="form-group mb-3">
+                                        <label for="emailaddress" class="form-label">Email address</label>
                                         <input class="form-control" type="email" name="email" id="emailaddress" placeholder="Enter your email" value="{{ $email ?? old('email') }}">
                                         @error('email')
                                         <div class="invalid-feedback">
@@ -49,8 +49,8 @@
                                         @enderror
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="password">Password</label>
+                                    <div class="form-group mb-3">
+                                        <label for="password" class="form-label">Password</label>
                                         <div class="input-group input-group-merge">
                                             <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password">
                                             <div class="input-group-append" data-password="false">
@@ -66,8 +66,8 @@
                                         @enderror
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="password_confirmation">Confirm Password</label>
+                                    <div class="form-group mb-3">
+                                        <label for="password_confirmation" class="form-label">Confirm Password</label>
                                         <div class="input-group input-group-merge">
                                             <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" placeholder="Confirm your password">
                                             <div class="input-group-append" data-password="false">

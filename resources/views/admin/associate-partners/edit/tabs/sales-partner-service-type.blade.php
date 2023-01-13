@@ -8,7 +8,7 @@
         </div>
 
         <div class="col-md-6 mt-1">
-            <select class="custom-select" id="consulting" name="consulting">
+            <select class="form-select" id="consulting" name="consulting">
                 <option value="">Service Offered by</option>
                 <option value="Bharat Claims"
                     {{ old('consulting', isset($associate->service) ? $associate->service->consulting : '') == 'Bharat Claims' ? 'selected' : '' }}>
@@ -42,7 +42,7 @@
         </div>
 
         <div class="col-md-6 mt-1">
-            <select class="custom-select" id="dealer_distributor" name="dealer_distributor">
+            <select class="form-select" id="dealer_distributor" name="dealer_distributor">
                 <option value="">Service Offered by</option>
                 <option value="Bharat Claims"
                     {{ old('dealer_distributor', isset($associate->service) ? $associate->service->dealer_distributor : '') == 'Bharat Claims' ? 'selected' : '' }}>
@@ -77,7 +77,7 @@
         </div>
 
         <div class="col-md-6 mt-1">
-            <select class="custom-select" id="hospital_empanelment_agent" name="hospital_empanelment_agent">
+            <select class="form-select" id="hospital_empanelment_agent" name="hospital_empanelment_agent">
                 <option value="">Service Offered by</option>
                 <option value="Bharat Claims"
                     {{ old('hospital_empanelment_agent', isset($associate->service) ? $associate->service->hospital_empanelment_agent : '') == 'Bharat Claims' ? 'selected' : '' }}>
@@ -111,7 +111,7 @@
         </div>
 
         <div class="col-md-6 mt-1">
-            <select class="custom-select" id="software_sales" name="software_sales">
+            <select class="form-select" id="software_sales" name="software_sales">
                 <option value="">Service Offered by</option>
                 <option value="Bharat Claims"
                     {{ old('software_sales', isset($associate->service) ? $associate->service->software_sales : '') == 'Bharat Claims' ? 'selected' : '' }}>
@@ -144,7 +144,7 @@
         </div>
 
         <div class="col-md-6 mt-1">
-            <select class="custom-select" id="others" name="others">
+            <select class="form-select" id="others" name="others">
                 <option value="">Service Offered by</option>
                 <option value="Bharat Claims"
                     {{ old('others', isset($associate->service) ? $associate->service->others : '') == 'Bharat Claims' ? 'selected' : '' }}>Bharat Claims
@@ -175,7 +175,7 @@
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
-        <div class="col-md-12 text-right mt-3">
+        <div class="col-md-12 text-end mt-3">
             <button type="submit" class="btn btn-success" form="sales-partner-service-form">Update</button>
         </div>
     </div>

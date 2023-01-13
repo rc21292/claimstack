@@ -16,7 +16,7 @@
                 </p>
         </div>
         <div class="col-sm-9">
-            <nav class="float-right mr-3">
+            <nav class="float-end mr-3">
                 <ul class="pagination">
                     {{-- Previous Page Link --}}
                     @if ($paginator->onFirstPage())

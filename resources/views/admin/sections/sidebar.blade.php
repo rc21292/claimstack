@@ -1,73 +1,72 @@
-<!-- ========== Left Sidebar Start ========== -->
-<div class="left-side-menu">
-
+<div class="leftside-menu">
+    
     <!-- LOGO -->
-    <a href="{{ route('admin.dashboard') }}" class="logo pl-3 logo-light">
+    <a href="{{ route('admin.dashboard') }}" class="logo text-center logo-light">
         <span class="logo-lg">
             <img src="{{ asset('assets/images/logos/logo-dark.png') }}" alt="" height="46">
-
         </span>
         <span class="logo-sm">
-            <img src="{{ asset('assets/images/logos/logo-dark.png') }}" alt="" height="46">
+            <img src="{{ asset('assets/images/logos/logo_sm.png') }}" alt="" height="46">
         </span>
     </a>
 
     <!-- LOGO -->
-    <a href="{{ route('admin.dashboard') }}" class="logo pl-3 logo-dark">
+    <a href="{{ route('admin.dashboard') }}" class="logo text-center logo-dark">
         <span class="logo-lg">
             <img src="{{ asset('assets/images/logos/logo-dark.png') }}" alt="" height="46">
-
         </span>
         <span class="logo-sm">
-            <img src="{{ asset('assets/images/logos/logo-dark.png') }}" alt="" height="46">
-
+            <img src="{{ asset('assets/images/logos/logo_sm.png') }}" alt="" height="46">
         </span>
     </a>
 
-    <div class="h-100" id="left-side-menu-container" data-simplebar>
+    <div class="h-100" id="leftside-menu-container" data-simplebar>
 
         <!--- Sidemenu -->
-        <ul class="metismenu side-nav">
+        <ul class="side-nav">
 
             <li class="side-nav-item">
                 <a href="{{ route('admin.dashboard') }}" class="side-nav-link">
-                    <i class="uil-desktop"></i>
-                    <span> Dashboard </span>
+                    <i class="uil-home-alt"></i>
+                    <span> Dashbaord </span>
                 </a>
             </li>
 
             <li class="side-nav-item">
-                <a href="javascript: void(0);" class="side-nav-link">
-                    <i class="mdi mdi-account-group"></i>
+                <a data-bs-toggle="collapse" href="#associatePartner" aria-expanded="false" aria-controls="associatePartner" class="side-nav-link">
+                    <i class="mdi mdi-account-group"></i>                   
                     <span> Associate Partner </span>
                     <span class="menu-arrow"></span>
                 </a>
-                <ul class="side-nav-second-level" aria-expanded="false">
-                    <li>
-                        <a href="{{ route('admin.associate-partners.create') }}">Create Associate Partner</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('admin.associate-partners.index') }}">Manage Associate Partner</a>
-                    </li>
-                </ul>
+                <div class="collapse" id="associatePartner">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="{{ route('admin.associate-partners.create') }}">Create Associate Partner</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.associate-partners.index') }}">Manage Associate Partner</a>
+                        </li>                       
+                    </ul>
+                </div>
             </li>
 
             <li class="side-nav-item">
-                <a href="javascript: void(0);" class="side-nav-link">
-                    <i class="mdi mdi-tools"></i>
+                <a data-bs-toggle="collapse" href="#settings" aria-expanded="false" aria-controls="settings" class="side-nav-link">
+                    <i class="dripicons-gear"></i>                   
                     <span> Settings </span>
                     <span class="menu-arrow"></span>
                 </a>
-                <ul class="side-nav-second-level" aria-expanded="false">
-                    <li>
-                        <a href="{{ route('admin.password.form') }}">Change Password</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('admin.my-account.edit', Auth::guard('admin')->id()) }}">My Profile</a>
-                    </li>
-                </ul>
-            </li>
-
+                <div class="collapse" id="settings">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="{{ route('admin.password.form') }}">Change Password</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.my-account.edit', Auth::guard('admin')->id()) }}">My Profile</a>
+                        </li>                       
+                    </ul>
+                </div>
+            </li>               
         </ul>
 
         <!-- Help Box -->
@@ -87,4 +86,3 @@
     <!-- Sidebar -left -->
 
 </div>
-<!-- Left Sidebar End -->

@@ -22,7 +22,7 @@
         </div>
         @include('admin.sections.flash-message')
         <!-- end page title -->
-
+        
         <!-- start page content -->
         <div class="row">
             <div class="col-12">
@@ -30,7 +30,7 @@
                     <div class="card-body">
                         <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
                             <li class="nav-item">
-                                <a href="#associate_partner_details" data-toggle="tab" aria-expanded="true"
+                                <a href="#associate_partner_details" data-bs-toggle="tab" aria-expanded="true"
                                     class="nav-link rounded-0 active">
                                     <i class="mdi mdi-home-variant d-md-none d-block"></i>
                                     <span class="d-none d-md-block">Associate Partner Details</span>
@@ -38,14 +38,14 @@
                             </li>
                             @if ($associate->type == 'vendor')
                                 <li class="nav-item">
-                                    <a href="#vendor_partner_service_type" data-toggle="tab" aria-expanded="false"
+                                    <a href="#vendor_partner_service_type" data-bs-toggle="tab" aria-expanded="false"
                                         class="nav-link rounded-0 ">
                                         <i class="mdi mdi-account-circle d-md-none d-block"></i>
                                         <span class="d-none d-md-block">Vendor Partner Service Type</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#vendor_partner_reports" data-toggle="tab" aria-expanded="false"
+                                    <a href="#vendor_partner_reports" data-bs-toggle="tab" aria-expanded="false"
                                         class="nav-link rounded-0">
                                         <i class="mdi mdi-settings-outline d-md-none d-block"></i>
                                         <span class="d-none d-md-block">Vendor Partner Reports</span>
@@ -53,14 +53,14 @@
                                 </li>
                             @else
                                 <li class="nav-item">
-                                    <a href="#sales_partner_service_type" data-toggle="tab" aria-expanded="false"
+                                    <a href="#sales_partner_service_type" data-bs-toggle="tab" aria-expanded="false"
                                         class="nav-link rounded-0">
                                         <i class="mdi mdi-account-circle d-md-none d-block"></i>
                                         <span class="d-none d-md-block">Sales Partner Service Type</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#sales_partner_reports" data-toggle="tab" aria-expanded="false"
+                                    <a href="#sales_partner_reports" data-bs-toggle="tab" aria-expanded="false"
                                         class="nav-link rounded-0">
                                         <i class="mdi mdi-settings-outline d-md-none d-block"></i>
                                         <span class="d-none d-md-block">Sales Partner Reports</span>

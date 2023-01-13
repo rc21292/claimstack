@@ -43,8 +43,8 @@
 
                                 <form action="{{ route('admin.password.email') }}" method="POST">
                                     @csrf
-                                    <div class="form-group">
-                                        <label for="emailaddress">Email address</label>
+                                    <div class="form-group mb-3">
+                                        <label for="emailaddress" class="form-label">Email address</label>
                                         <input class="form-control" type="email" name="email" id="emailaddress" placeholder="Enter your email" value="{{ old('email')}}">
                                         @error('email')
                                         <div class="invalid-feedback">
@@ -53,7 +53,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="form-group mb-0 text-center">
+                                    <div class="form-group  mb-3 text-center">
                                         <button class="btn btn-primary" type="submit"> Reset Password </button>
                                     </div>
 

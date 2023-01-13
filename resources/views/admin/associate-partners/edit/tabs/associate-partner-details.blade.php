@@ -25,7 +25,7 @@
         </div>
         <div class="col-md-6 mt-3">
             <label for="type">Associate Partner Type <span class="text-danger">*</span></label>
-            <select class="custom-select" id="type" name="type">
+            <select class="form-select" id="type" name="type">
                 <option value="">Select Type</option>
                 <option value="vendor" {{ old('type', $associate->type) == 'vendor' ? 'selected' : '' }}>Vendor Type
                 </option>
@@ -43,7 +43,7 @@
                     value="{{ old('pan', $associate->pan) }}">
                 <div class="input-group-append">
                     <input type="file" name="panfile" hidden id="panfile"/>
-                    <label for="panfile" class="upload-label"><i class="mdi mdi-upload"></i></label>
+                    <label for="panfile" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
                 </div>
             </div>
             @error('pan')
@@ -115,7 +115,7 @@
         </div>
         <div class="col-md-12 mt-3">
             <label for="statuses">Associate Partner Status <span class="text-danger">*</span></label>
-            <select class="custom-select" id="statuses" name="status">
+            <select class="form-select" id="statuses" name="status">
                 <option value="">Select Status</option>
                 <option value="Main" {{ old('status', $associate->status) == 'Main' ? 'selected' : '' }}>Main
                 </option>
@@ -208,7 +208,7 @@
         <div class="col-md-6 mt-3">
             <label for="mou">Associate Partner MOU <span class="text-danger">*</span></label>
             <div class="input-group">
-                <select class="custom-select" id="mou" name="mou">
+                <select class="form-select" id="mou" name="mou">
                     <option value="">Select Status</option>
                     <option value="yes" {{ old('mou', $associate->mou) == 'yes' ? 'selected' : '' }}>Yes
                     </option>
@@ -217,7 +217,7 @@
                 </select>
                 <div class="input-group-append">
                     <input type="file" name="moufile" hidden id="moufile"  />
-                    <label for="moufile" class="upload-label"><i class="mdi mdi-upload"></i></label>
+                    <label for="moufile" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
                 </div>
             </div>
             @error('mou')
@@ -235,8 +235,8 @@
                     placeholder="Associate partner agreement start date"
                     value="{{ old('agreement_start_date', $associate->agreement_start_date) }}">
                 <div class="input-group-append">
-                    <input type="file" name="agreementfile" hidden />
-                    <label for="upload" class="upload-label"><i class="mdi mdi-upload"></i></label>
+                    <input type="file" name="agreementfile" id="agreementfile" hidden />
+                    <label for="agreementfile" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
                 </div>
             </div>
             @error('agreement_start_date')
@@ -290,7 +290,7 @@
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
-        <div class="col-md-12 text-right mt-3">
+        <div class="col-md-12 text-end mt-3">
             <button type="submit" class="btn btn-success" form="associate-partner-form">Update
                 Associate Partner</button>
         </div>

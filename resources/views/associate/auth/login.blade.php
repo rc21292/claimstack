@@ -39,8 +39,8 @@
 
                                 <form action="{{ route('associate-partner.login') }}" method="POST">
                                     @csrf
-                                    <div class="form-group">
-                                        <label for="emailaddress">Email address</label>
+                                    <div class="form-group mb-3">
+                                        <label for="emailaddress" class="form-label">Email address</label>
                                         <input class="form-control" type="email" name="email" id="emailaddress" placeholder="Enter your email" value="{{ old('email') }}">
                                         @error('email')
                                         <div class="invalid-feedback">
@@ -49,9 +49,9 @@
                                         @enderror
                                     </div>
 
-                                    <div class="form-group">
-                                        <a href="{{ route('associate-partner.password.request') }}" class="text-muted float-right"><small>Forgot your password?</small></a>
-                                        <label for="password">Password</label>
+                                    <div class="form-group mb-3">
+                                        <a href="{{ route('associate-partner.password.request') }}" class="text-muted float-end"><small>Forgot your password?</small></a>
+                                        <label for="password" class="form-label">Password</label>
                                         <div class="input-group input-group-merge">
                                             <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password">
                                             <div class="input-group-append" data-password="false">

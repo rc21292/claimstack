@@ -10,10 +10,10 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <div class="input-group">
-                        <input class="form-control" name="search" type="search"placeholder="Type here to Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">Search</button>
-                        </div>
+                            <input class="form-control" name="search" type="search"placeholder="Type here to Search">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">Search</button>
+                            </div>
                         </div>
                     </div>
                     <h4 class="page-title">Manage Associate Partner</h4>
@@ -25,52 +25,57 @@
 
         <!-- start page content -->
         <div class="row">
-            <div class="col-12">
-                <div class="card no-shadow">                    
-                    <div class="card-body table-responsive">
-                        @if (count($associates) > 0)
-                            <table id="basics-datatable" class="table table-hover">
-                                <thead class="thead-grey">
-                                    <tr>
-                                        <th scope="col">UID</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Type</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Phone</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($associates as $associate)
+            <div class="col-xl-12">
+                <div class="card no-shadow">
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            @if (count($associates) > 0)
+                                <table id="basics-datatable" class="table table-hover">
+                                    <thead class="thead-grey">
                                         <tr>
-                                            <th scope="row">{{ $associate->associate_partner_id }}</th>
-                                            <td>{!! $associate->firstname !!} {!! $associate->lastname !!}</td>
-                                            <td><span class="badge badge-outline-secondary">{{ ucfirst($associate->type) }}</span></td>
-                                            <td>{{ $associate->email }}</td>
-                                            <td>{{ $associate->phone }}</td>
-                                            <td>
-                                                <div class="btn-group">
-                                                    <a href="{{ route('admin.associate-partners.edit', $associate->id) }}"
-                                                        class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
-                                                    <button type="button" class="btn btn-danger"
-                                                        onclick="confirmDelete({{ $associate->id }})"><i
-                                                            class="mdi mdi-delete"></i></button>
-                                                    <form id='delete-form{{ $associate->id }}'
-                                                        action='{{ route('admin.associate-partners.destroy', $associate->id) }}'
-                                                        method='POST'>
-                                                        <input type='hidden' name='_token' value='{{ csrf_token() }}'>
-                                                        <input type='hidden' name='_method' value='DELETE'>
-                                                    </form>
-                                                </div>
-                                            </td>
+                                            <th scope="col">UID</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Type</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Phone</th>
+                                            <th scope="col">Action</th>
                                         </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                            {{ $associates->links('pagination::bootstrap-4') }}
-                        @else
-                            <p class="text-center">No Associate Partner found.</p>
-                        @endif
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($associates as $associate)
+                                            <tr>
+                                                <th scope="row">{{ $associate->associate_partner_id }}</th>
+                                                <td>{!! $associate->firstname !!} {!! $associate->lastname !!}</td>
+                                                <td><span
+                                                        class="badge badge-outline-secondary">{{ ucfirst($associate->type) }}</span>
+                                                </td>
+                                                <td>{{ $associate->email }}</td>
+                                                <td>{{ $associate->phone }}</td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <a href="{{ route('admin.associate-partners.edit', $associate->id) }}"
+                                                            class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
+                                                        <button type="button" class="btn btn-danger"
+                                                            onclick="confirmDelete({{ $associate->id }})"><i
+                                                                class="mdi mdi-delete"></i></button>
+                                                        <form id='delete-form{{ $associate->id }}'
+                                                            action='{{ route('admin.associate-partners.destroy', $associate->id) }}'
+                                                            method='POST'>
+                                                            <input type='hidden' name='_token'
+                                                                value='{{ csrf_token() }}'>
+                                                            <input type='hidden' name='_method' value='DELETE'>
+                                                        </form>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            @else
+                                <p class="text-center">No Associate Partner found.</p>
+                            @endif
+                        </div>
+                        {{ $associates->links('pagination::bootstrap-4') }}
                     </div>
                 </div>
             </div>

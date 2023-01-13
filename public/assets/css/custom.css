@@ -1,7 +1,7 @@
 body{
     background-color: #ffffff !important;
 }
-.left-side-menu {
+.leftside-menu {
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
 }
@@ -53,10 +53,10 @@ body{
     font-size: 23px;
     cursor: pointer;
 }
-body[data-leftbar-theme=dark] .left-side-menu {
-    background: #3E4097 !important;
+body[data-leftbar-theme=dark] .leftside-menu {
+    background: #3E4097;
 }
-body[data-leftbar-theme=dark] .left-side-menu .logo {
+body[data-leftbar-theme=dark] .leftside-menu .logo {
     background: #E9FAFF !important;
 }
 .navbar-custom {
@@ -81,4 +81,11 @@ body[data-leftbar-theme=dark] .left-side-menu .logo {
     color: #fff;
     background-color: #4C4D9E !important;
     border-color: #4C4D9E !important;
+}
+body[data-leftbar-compact-mode=condensed]:not(.authentication-bg) .side-nav .side-nav-item:hover>.collapse>ul, body[data-leftbar-compact-mode=condensed]:not(.authentication-bg) .side-nav .side-nav-item:hover>.collapsing>ul {   
+    width: 262px !important;
+}
+
+body[data-leftbar-compact-mode=condensed]:not(.authentication-bg) .side-nav .side-nav-item:hover .side-nav-link {
+    width: 332px !important;
 }

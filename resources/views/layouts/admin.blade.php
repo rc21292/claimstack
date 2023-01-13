@@ -11,23 +11,18 @@
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
 
     <!-- App css -->
-    <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="light-style" />
-    <link href="{{ asset('assets/css/app-dark.min.css') }}" rel="stylesheet" type="text/css" id="dark-style" />
+    <link href="{{ asset('assets/css/icons.min.css ') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/app.min.css ') }}" rel="stylesheet" type="text/css" id="light-style" />
+    <link href="{{ asset('assets/css/app-dark.min.css ') }}" rel="stylesheet" type="text/css" id="dark-style" />
     <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet" type="text/css" />
-    @yield('head')
 </head>
 
-<body class="loading" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
-    <!-- Pre-loader -->
-    <div id="preloader">
-        <div id="status">
-            <div class="bouncing-loader"><div ></div><div></div><div></div></div>
-        </div>
-    </div>
-    <!-- End Preloader-->
+<body class="loading"
+    data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
+    <!-- Begin page -->
     <div class="wrapper">
         @include('admin.sections.sidebar')
+
         <div class="content-page">
             <div class="content">
                 @include('admin.sections.navbar')
@@ -37,7 +32,6 @@
     </div>
     <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
     <script src="{{ asset('assets/js/app.min.js') }}"></script>
-    @stack('scripts')
 </body>
 
 </html>

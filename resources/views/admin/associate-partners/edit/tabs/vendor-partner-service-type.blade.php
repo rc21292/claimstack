@@ -8,7 +8,7 @@
         </div>
 
         <div class="col-md-6 mt-1">
-            <select class="custom-select" id="cashless_claims_management" name="cashless_claims_management">
+            <select class="form-select" id="cashless_claims_management" name="cashless_claims_management">
                 <option value="">Service Offered by</option>
                 <option value="Bharat Claims"
                     {{ old('cashless_claims_management',  isset($associate->service) ? $associate->service->cashless_claims_management : '') == 'Bharat Claims' ? 'selected' : '' }}>
@@ -42,7 +42,7 @@
         </div>
 
         <div class="col-md-6 mt-1">
-            <select class="custom-select" id="cashless_helpdesk" name="cashless_helpdesk">
+            <select class="form-select" id="cashless_helpdesk" name="cashless_helpdesk">
                 <option value="">Service Offered by</option>
                 <option value="Bharat Claims"
                     {{ old('cashless_helpdesk', isset($associate->service) ? $associate->service->cashless_helpdesk : '') == 'Bharat Claims' ? 'selected' : '' }}>
@@ -75,7 +75,7 @@
         </div>
 
         <div class="col-md-6 mt-1">
-            <select class="custom-select" id="claims_assessment" name="claims_assessment">
+            <select class="form-select" id="claims_assessment" name="claims_assessment">
                 <option value="">Service Offered by</option>
                 <option value="Bharat Claims"
                     {{ old('claims_assessment', isset($associate->service) ? $associate->service->claims_assessment : '') == 'Bharat Claims' ? 'selected' : '' }}>
@@ -108,7 +108,7 @@
         </div>
 
         <div class="col-md-6 mt-1">
-            <select class="custom-select" id="claims_bill_entry" name="claims_bill_entry">
+            <select class="form-select" id="claims_bill_entry" name="claims_bill_entry">
                 <option value="">Service Offered by</option>
                 <option value="Bharat Claims"
                     {{ old('claims_bill_entry', isset($associate->service) ? $associate->service->claims_bill_entry : '') == 'Bharat Claims' ? 'selected' : '' }}>
@@ -141,7 +141,7 @@
         </div>
 
         <div class="col-md-6 mt-1">
-            <select class="custom-select" id="claims_reimbursement" name="claims_reimbursement">
+            <select class="form-select" id="claims_reimbursement" name="claims_reimbursement">
                 <option value="">Service Offered by</option>
                 <option value="Bharat Claims"
                     {{ old('claims_reimbursement', isset($associate->service) ? $associate->service->claims_reimbursement : '') == 'Bharat Claims' ? 'selected' : '' }}>
@@ -175,7 +175,7 @@
         </div>
 
         <div class="col-md-6 mt-1">
-            <select class="custom-select" id="doctor_claim_process" name="doctor_claim_process">
+            <select class="form-select" id="doctor_claim_process" name="doctor_claim_process">
                 <option value="">Service Offered by</option>
                 <option value="Bharat Claims"
                     {{ old('doctor_claim_process', isset($associate->service) ? $associate->service->doctor_claim_process : '') == 'Bharat Claims' ? 'selected' : '' }}>
@@ -209,7 +209,7 @@
         </div>
 
         <div class="col-md-6 mt-1">
-            <select class="custom-select" id="doctor_honorary_panel" name="doctor_honorary_panel">
+            <select class="form-select" id="doctor_honorary_panel" name="doctor_honorary_panel">
                 <option value="">Service Offered by</option>
                 <option value="Bharat Claims"
                     {{ old('doctor_honorary_panel', isset($associate->service) ? $associate->service->doctor_honorary_panel : '') == 'Bharat Claims' ? 'selected' : '' }}>
@@ -244,7 +244,7 @@
         </div>
 
         <div class="col-md-6 mt-1">
-            <select class="custom-select" id="doctor_tele_consultation" name="doctor_tele_consultation">
+            <select class="form-select" id="doctor_tele_consultation" name="doctor_tele_consultation">
                 <option value="">Service Offered by</option>
                 <option value="Bharat Claims"
                     {{ old('doctor_tele_consultation', isset($associate->service) ? $associate->service->doctor_tele_consultation : '') == 'Bharat Claims' ? 'selected' : '' }}>
@@ -279,7 +279,7 @@
         </div>
 
         <div class="col-md-6 mt-1">
-            <select class="custom-select" id="insurance_tpa_coordination" name="insurance_tpa_coordination">
+            <select class="form-select" id="insurance_tpa_coordination" name="insurance_tpa_coordination">
                 <option value="">Service Offered by</option>
                 <option value="Bharat Claims"
                     {{ old('insurance_tpa_coordination', isset($associate->service) ? $associate->service->insurance_tpa_coordination : '') == 'Bharat Claims' ? 'selected' : '' }}>
@@ -314,7 +314,7 @@
         </div>
 
         <div class="col-md-6 mt-1">
-            <select class="custom-select" id="medical_lending_bill" name="medical_lending_bill">
+            <select class="form-select" id="medical_lending_bill" name="medical_lending_bill">
                 <option value="">Service Offered by</option>
                 <option value="Bharat Claims"
                     {{ old('medical_lending_bill', isset($associate->service) ? $associate->service->medical_lending_bill : '') == 'Bharat Claims' ? 'selected' : '' }}>
@@ -349,7 +349,7 @@
         </div>
 
         <div class="col-md-6 mt-1">
-            <select class="custom-select" id="medical_lending_patient" name="medical_lending_patient">
+            <select class="form-select" id="medical_lending_patient" name="medical_lending_patient">
                 <option value="">Service Offered by</option>
                 <option value="Bharat Claims"
                     {{ old('medical_lending_patient', isset($associate->service) ? $associate->service->medical_lending_patient : '') == 'Bharat Claims' ? 'selected' : '' }}>
@@ -383,7 +383,7 @@
         </div>
 
         <div class="col-md-6 mt-1">
-            <select class="custom-select" id="others" name="others">
+            <select class="form-select" id="others" name="others">
                 <option value="">Service Offered by</option>
                 <option value="Bharat Claims"
                     {{ old('others', isset($associate->service) ? $associate->service->others : '') == 'Bharat Claims' ? 'selected' : '' }}>Bharat Claims
@@ -414,7 +414,7 @@
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
-        <div class="col-md-12 text-right mt-3">
+        <div class="col-md-12 text-end mt-3">
             <button type="submit" class="btn btn-success" form="vendor-partner-service-form">Update</button>
         </div>
     </div>

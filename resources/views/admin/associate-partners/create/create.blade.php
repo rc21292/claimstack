@@ -54,7 +54,7 @@
                                 </div>
                                 <div class="col-md-6 mt-3">
                                     <label for="type">Associate Partner Type <span class="text-danger">*</span></label>
-                                    <select class="custom-select" id="type" name="type">
+                                    <select class="form-select" id="type" name="type">
                                         <option value="">Select Type</option>
                                         <option value="vendor" {{ old('type') == 'vendor' ? 'selected' : '' }}>Vendor Type
                                         </option>
@@ -69,11 +69,9 @@
                                     <label for="pan">PAN Number <span class="text-danger">*</span></label>
                                     <div class="input-group">
                                         <input type="text" class="form-control" id="pan" name="pan"
-                                            placeholder="Enter PAN no." value="{{ old('pan') }}">
-                                        <div class="input-group-append">
+                                            placeholder="Enter PAN no." value="{{ old('pan') }}">                                       
                                             <input type="file" name="panfile" id="upload" hidden />
-                                            <label for="upload" class="upload-label"><i class="mdi mdi-upload"></i></label>
-                                        </div>
+                                            <label for="upload" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
                                     </div>
                                     @error('pan')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -147,7 +145,7 @@
                                 <div class="col-md-12 mt-3">
                                     <label for="statuses">Associate Partner Status <span
                                             class="text-danger">*</span></label>
-                                    <select class="custom-select" id="statuses" name="status">
+                                    <select class="form-select" id="statuses" name="status">
                                         <option value="">Select Status</option>
                                         <option value="Main" {{ old('status') == 'Main' ? 'selected' : '' }}>Main
                                         </option>
@@ -240,7 +238,7 @@
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="col-md-12 text-right mt-3">
+                                <div class="col-md-12 text-end mt-3">
                                     <button type="submit" class="btn btn-success" form="associate-partner-form">Create
                                         Associate Partner</button>
                                 </div>
