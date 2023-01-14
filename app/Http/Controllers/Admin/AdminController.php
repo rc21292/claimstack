@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
 
 class AdminController extends Controller
 {
@@ -39,10 +40,12 @@ class AdminController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();       
+        $user = Auth::user();    
+        $role = Role::where('name', 'user')->with('permissions')->first();
+        $permissions =  $role->permissions;  
         $admins = Admin::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code']);
         $users  = User::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code']);
-        return view('admin.admins.create.create',  compact('admins', 'users'));
+        return view('admin.admins.create.create',  compact('admins', 'users', 'permissions'));
     }
 
     /**

@@ -27,6 +27,7 @@ class Admin extends Authenticatable
         'employee_code',
         'designation',
         'department',
+        'password',
         'phone',
         'linked_employee',
         'linked_employee_id',

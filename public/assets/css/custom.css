@@ -89,3 +89,6 @@ body[data-leftbar-compact-mode=condensed]:not(.authentication-bg) .side-nav .sid
 body[data-leftbar-compact-mode=condensed]:not(.authentication-bg) .side-nav .side-nav-item:hover .side-nav-link {
     width: 332px !important;
 }
+.custom-accordion a.collapsed i.accordion-arrow:before {
+    content: "\F0140" !important;
+}

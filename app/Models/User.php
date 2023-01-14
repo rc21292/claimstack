@@ -26,6 +26,7 @@ class User extends Authenticatable
         'designation',
         'department',
         'phone',
+        'password',
         'linked_employee',
         'linked_employee_id',
         'kra'

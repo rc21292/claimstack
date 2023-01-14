@@ -154,6 +154,10 @@
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
+                                <div class="col-md-12 mt-3">
+                                    <label>Role Based Access Control <span class="text-danger">*</span></label>
+                                    @include('admin.admins.create.permission')
+                                </div>
                                
                                                                
                                 
