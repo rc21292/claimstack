@@ -15,7 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('front.welcome');
-});
+})->name('index');
+
+Route::get('/account-type', function () {
+    return view('front.account-type');
+})->name('account-type');
 
 Auth::routes();
 

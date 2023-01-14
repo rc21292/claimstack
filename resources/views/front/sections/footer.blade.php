@@ -1,7 +1,7 @@
 <div class="container-fluid bg-primary pt-4">
     <footer class="row">
         <div class="col-md-7 mb-4 px-5">
-            <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
+            <a href="{{ route('index') }}" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
                 <img src="{{ asset('assets/images/logos/logo-light.png') }}" alt="" height="46">
             </a>
             <p>A Next  Level Evolution in Healthcare IT, Web based EMR,<br> Revenue Cycle Management Solution, Designed To Meet<br> The Opportunities</p>
@@ -11,7 +11,7 @@
         <div class="col-sm-6">
             <h5 class="mb-3">Useful Links</h5>
             <ul class="nav flex-column">
-                <li class="nav-item mb-2"><a href="/" class="nav-link p-0 text-white">Home</a></li>
+                <li class="nav-item mb-2"><a href="{{ route('index') }}" class="nav-link p-0 text-white">Home</a></li>
                 <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Pricing</a></li>
                 <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Contact</a></li>
                 <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">FAQs</a></li>

@@ -4,8 +4,10 @@
         padding-left: 0.7rem;
     }
 }
-.banner {
+.content{
     margin-top: 77.56px;
+}
+.banner {
     background-color: #E9FAFF !important;
 }
 .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .show>.nav-link {
