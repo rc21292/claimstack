@@ -41,7 +41,7 @@ class AdminController extends Controller
     public function create()
     {
         $user = Auth::user();    
-        $role = Role::where('name', 'user')->with('permissions')->first();
+        $role = Role::where('name', 'admin')->with('permissions')->first();
         $permissions =  $role->permissions;  
         $admins = Admin::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code']);
         $users  = User::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code']);
@@ -120,10 +120,12 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        $admin  = Admin::find($id);       
+        $admin  = Admin::find($id);
+        $role = Role::where('name', 'admin')->with('permissions')->first();
+        $permissions =  $role->permissions;       
         $admins = Admin::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code']);
         $users  = User::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code']);
-        return view('admin.admins.edit.edit',  compact('admins', 'users', 'admin'));
+        return view('admin.admins.edit.edit',  compact('admins', 'users', 'admin', 'permissions'));
     }
 
     /**

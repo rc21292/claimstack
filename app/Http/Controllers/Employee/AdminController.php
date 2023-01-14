@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class AdminController extends Controller
 {
@@ -38,9 +39,11 @@ class AdminController extends Controller
      */
     public function create()
     {
+        $role = Role::where('name', 'admin')->with('permissions')->first();
+        $permissions =  $role->permissions;
         $admins = Admin::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code']);
         $users  = User::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code']);
-        return view('employee.admins.create.create',  compact('admins', 'users'));
+        return view('employee.admins.create.create',  compact('admins', 'users', 'permissions'));
     }
 
     /**
@@ -115,10 +118,12 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
+        $role = Role::where('name', 'admin')->with('permissions')->first();
+        $permissions =  $role->permissions;
         $admin  = Admin::find($id);
         $admins = Admin::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code']);
         $users  = User::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code']);
-        return view('employee.admins.edit.edit',  compact('admins', 'users', 'admin'));
+        return view('employee.admins.edit.edit',  compact('admins', 'users', 'admin', 'permissions'));
     }
 
     /**
