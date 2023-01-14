@@ -25,8 +25,8 @@ class UserSeed extends Seeder
             User::create([
                 'firstname' => $faker->firstname(),
                 'lastname' => $faker->lastname(),
-                'email' => $faker->unique()->safeEmail(),
-                'employee_code' => 'CSEMP0' . $i,
+                'email' => $i == 1 ? 'user@claimstack.com' : $faker->unique()->safeEmail(),
+                'employee_code' => 'EMPU0' . $i,
                 'designation' => 'Employee',
                 'phone' => $faker->numerify('9#########'),
                 'linked_with' => $faker->randomElement([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]),

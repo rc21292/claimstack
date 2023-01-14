@@ -48,6 +48,11 @@ return [
             'driver' => 'session',
             'provider' => 'associates',
         ],
+        'employee' => [
+            'driver' => 'session',
+            'provider' => 'employees',
+        ],
+   
     ],
 
     /*
@@ -79,6 +84,10 @@ return [
         'associates' => [
             'driver' => 'eloquent',
             'model' => App\Models\AssociatePartner::class,
+        ],
+        'employees' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Employee::class,
         ],
 
         // 'users' => [
@@ -117,6 +126,12 @@ return [
         ],
         'associates' => [
             'provider' => 'associates',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'employees' => [
+            'provider' => 'employees',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

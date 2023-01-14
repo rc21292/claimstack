@@ -27,6 +27,10 @@ class Authenticate extends Middleware
             return route('associate-partner.login');
         }
 
+        if ($request->is('employee') || $request->is('employee/*')) {
+            return route('employee.login');
+        }
+
         if (! $request->expectsJson()) {
             return route('login');
         }

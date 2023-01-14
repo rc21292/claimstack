@@ -31,7 +31,7 @@ class AssociatePartnerSeed extends Seeder
                 'type' => $faker->randomElement(['vendor', 'sales']),
                 'pan' => Str::upper(Str::random(10)),
                 'owner' => $faker->name(),
-                'email' => $faker->unique()->safeEmail(),
+                'email' => $i == 1 ? 'associate@claimstack.com' : $faker->unique()->safeEmail(),
                 'address' => $faker->address,
                 'city' => $faker->city,
                 'state' => $faker->state,

@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Admin;
+use App\Models\Employee;
 use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 use Faker\Generator;
 use Illuminate\Support\Facades\Hash;
 
-class AdminSeed extends Seeder
+class EmployeeSeed extends Seeder
 {
     /**
      * Run the database seeds.
@@ -22,12 +22,12 @@ class AdminSeed extends Seeder
         $faker = app(Generator::class);
 
         for ($i = 1; $i < 101; $i++) {
-            Admin::create([
+            Employee::create([
                 'firstname' => $faker->firstname(),
                 'lastname' => $faker->lastname(),
-                'email' => $i == 1 ? 'admin@claimstack.com' : $faker->unique()->safeEmail(),
-                'employee_code' => 'EMPA0' . $i,
-                'designation' => 'Admin',
+                'email' =>  $i == 1 ? 'employee@claimstack.com' : $faker->unique()->safeEmail(),
+                'employee_code' => 'EMPE0' . $i,
+                'designation' => 'Employee',
                 'phone' => $faker->numerify('9#########'),
                 'linked_with' => $faker->randomElement([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]),
                 'kra' => Str::upper(Str::random(8)),

@@ -22,11 +22,11 @@
     data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
     <!-- Begin page -->
     <div class="wrapper">
-        @include('admin.sections.sidebar')
+        @include('employee.sections.sidebar')
 
         <div class="content-page">
             <div class="content">
-                @include('admin.sections.navbar')
+                @include('employee.sections.navbar')
                 @yield('content')
             </div>
         </div>

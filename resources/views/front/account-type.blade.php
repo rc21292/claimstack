@@ -8,60 +8,60 @@
             <div class="card-body">
                 <div class="row justify-content-center">
                     <div class="col-sm-3 px-4">
-                        <a href="#">
-                        <div class="account-type">
-                            <img src="{{ asset('assets/images/loginType/employee.png') }}" alt="Employee">
-                            <h5 class="text-white">Employee</h5>
-                        </div>
+                        <a href="{{ route('employee.login') }}">
+                            <div class="account-type">
+                                <img src="{{ asset('assets/images/loginType/employee.png') }}" alt="Employee">
+                                <h5 class="text-white">Employee</h5>
+                            </div>
                         </a>
                     </div>
                     <div class="col-sm-3 px-4">
-                         <a href="#">
-                        <div class="account-type">
-                            <img src="{{ asset('assets/images/loginType/Hospital.png') }}" alt="Hospital">
-                            <h5 class="text-white">Hospital</h5>
-                        </div>
-                         </a>
+                        <a href="#">
+                            <div class="account-type">
+                                <img src="{{ asset('assets/images/loginType/Hospital.png') }}" alt="Hospital">
+                                <h5 class="text-white">Hospital</h5>
+                            </div>
+                        </a>
                     </div>
                     <div class="col-sm-3 px-4">
-                         <a href="#">
-                        <div class="account-type">
-                            <img src="{{ asset('assets/images/loginType/Claimant.png') }}" alt="Claimant">
-                            <h5 class="text-white pt-2">Claimant</h5>
-                        </div>
-                    </a>
+                        <a href="#">
+                            <div class="account-type">
+                                <img src="{{ asset('assets/images/loginType/Claimant.png') }}" alt="Claimant">
+                                <h5 class="text-white pt-2">Claimant</h5>
+                            </div>
+                        </a>
                     </div>
                     <div class="col-sm-3 px-4">
-                         <a href="#">
-                        <div class="account-type">
-                            <img src="{{ asset('assets/images/loginType/salesPartner.png') }}" alt="salesPartner">
-                            <h5 class="text-white">Sales Partner</h5>
-                        </div>
-                    </a>
+                        <a href="#">
+                            <div class="account-type">
+                                <img src="{{ asset('assets/images/loginType/salesPartner.png') }}" alt="salesPartner">
+                                <h5 class="text-white">Sales Partner</h5>
+                            </div>
+                        </a>
                     </div>
                     <div class="col-sm-3 px-4">
-                         <a href="#">
-                        <div class="account-type">
-                            <img src="{{ asset('assets/images/loginType/vendor.png') }}" alt="vendor">
-                            <h5 class="text-white">Vendor</h5>
-                        </div>
-                    </a>
+                        <a href="#">
+                            <div class="account-type">
+                                <img src="{{ asset('assets/images/loginType/vendor.png') }}" alt="vendor">
+                                <h5 class="text-white">Vendor</h5>
+                            </div>
+                        </a>
                     </div>
                     <div class="col-sm-3 px-4">
-                         <a href="#">
-                        <div class="account-type">
-                            <img src="{{ asset('assets/images/loginType/Insurer.png') }}" alt="Insurer">
-                            <h5 class="text-white">Insurer</h5>
-                        </div>
-                    </a>
+                        <a href="#">
+                            <div class="account-type">
+                                <img src="{{ asset('assets/images/loginType/Insurer.png') }}" alt="Insurer">
+                                <h5 class="text-white">Insurer</h5>
+                            </div>
+                        </a>
                     </div>
                     <div class="col-sm-3 px-4">
-                         <a href="#">
-                        <div class="account-type">
-                            <img src="{{ asset('assets/images/loginType/tpa.png') }}" alt="tpa">
-                            <h5 class="text-white">TPA</h5>
-                        </div>
-                    </a>
+                        <a href="#">
+                            <div class="account-type">
+                                <img src="{{ asset('assets/images/loginType/tpa.png') }}" alt="tpa">
+                                <h5 class="text-white">TPA</h5>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
