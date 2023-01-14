@@ -40,9 +40,11 @@
                 </a>
                 <div class="collapse" id="adminMenu">
                     <ul class="side-nav-second-level">
+                       
                         <li>
                             <a href="{{ route('admin.admins.create') }}">Create Admin</a>
                         </li>
+                       
                         <li>
                             <a href="{{ route('admin.admins.index') }}">Manage Admin</a>
                         </li>                       

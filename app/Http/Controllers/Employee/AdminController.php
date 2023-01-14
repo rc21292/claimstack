@@ -91,6 +91,8 @@ class AdminController extends Controller
             'linked_employee_id'  =>  $request->linked_employee_id
         ]);
 
+        $admin->assignRole('admin');
+
         return redirect()->route('employee.admins.index')->with('success', 'Admin created successfully');
     }
 

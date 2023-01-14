@@ -77,7 +77,7 @@ class UserController extends Controller
 
         $this->validate($request, $rules, $messages);
 
-        $admin                    =   User::create([
+        $user                    =   User::create([
             'firstname'           =>  $request->firstname,
             'lastname'            =>  $request->lastname,
             'employee_code'       =>  $request->employee_code,
@@ -90,6 +90,8 @@ class UserController extends Controller
             'linked_employee'     =>  $request->linked_employee,
             'linked_employee_id'  =>  $request->linked_employee_id
         ]);
+
+        $user->assignRole('user');
 
         return redirect()->route('employee.users.index')->with('success', 'User created successfully');
     }

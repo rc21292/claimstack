@@ -10,7 +10,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use Faker\Generator;
 use Illuminate\Support\Facades\Hash;
-
+use Spatie\Permission\Models\Role;
 class AdminSeed extends Seeder
 {
     /**
@@ -23,7 +23,7 @@ class AdminSeed extends Seeder
         $faker = app(Generator::class);
 
         for ($i = 1; $i < 101; $i++) {
-            Admin::create([
+            $admin = Admin::create([
                 'firstname' => $faker->firstname(),
                 'lastname' => $faker->lastname(),
                 'email' => $i == 1 ? 'admin@claimstack.com' : $faker->unique()->safeEmail(),
@@ -36,6 +36,11 @@ class AdminSeed extends Seeder
                 'password' => Hash::make('password')
 
             ]);
+            $admin->assignRole('admin');
+            $role = Role::where('name', 'admin')->with('permissions')->first();
+            foreach($role->permissions as $permission){
+                 $admin->givePermissionTo($permission);
+            }
         }
         
         $admins = Admin::get(['id', 'employee_code']);

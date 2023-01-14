@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -38,6 +39,7 @@ class AdminController extends Controller
      */
     public function create()
     {
+        $user = Auth::user();       
         $admins = Admin::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code']);
         $users  = User::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code']);
         return view('admin.admins.create.create',  compact('admins', 'users'));
@@ -90,6 +92,8 @@ class AdminController extends Controller
             'linked_employee'     =>  $request->linked_employee,
             'linked_employee_id'  =>  $request->linked_employee_id
         ]);
+        
+        $admin->assignRole('admin');
 
         return redirect()->route('admin.admins.index')->with('success', 'Admin created successfully');
     }
@@ -113,7 +117,7 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        $admin  = Admin::find($id);
+        $admin  = Admin::find($id);       
         $admins = Admin::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code']);
         $users  = User::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code']);
         return view('admin.admins.edit.edit',  compact('admins', 'users', 'admin'));

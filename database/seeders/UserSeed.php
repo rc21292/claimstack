@@ -9,7 +9,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use Faker\Generator;
 use Illuminate\Support\Facades\Hash;
-
+use Spatie\Permission\Models\Role;
 class UserSeed extends Seeder
 {
     /**
@@ -22,7 +22,7 @@ class UserSeed extends Seeder
         $faker = app(Generator::class);
 
         for ($i = 1; $i < 101; $i++) {
-            User::create([
+            $user = User::create([
                 'firstname' => $faker->firstname(),
                 'lastname' => $faker->lastname(),
                 'email' => $i == 1 ? 'user@claimstack.com' : $faker->unique()->safeEmail(),
@@ -32,9 +32,13 @@ class UserSeed extends Seeder
                 'phone' => $faker->numerify('9#########'),              
                 'kra' => Str::upper(Str::random(8)),
                 'email_verified_at' => Carbon::now(),
-                'password' => Hash::make('password')
-
+                'password' => Hash::make('password')              
             ]);
+            $user->assignRole('user');
+             $role = Role::where('name', 'user')->with('permissions')->first();
+            foreach($role->permissions as $permission){
+                 $user->givePermissionTo($permission);
+            }
         }
         $admins = User::get(['id', 'employee_code']);
         foreach ($admins as $admin) {
