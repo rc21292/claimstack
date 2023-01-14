@@ -58,4 +58,7 @@
     height: auto;
     width: 228px;
 }
-  
+
+.bg-dark-primary{
+    background-color: #36387E;
+}
