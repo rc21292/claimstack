@@ -48,6 +48,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Import Export Route
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get('admins/import-export',[AdminController::class,'importExport'])->name('admins.import-export');
+    Route::post('admins/import',[AdminController::class,'import'])->name('admins.import');
+    Route::get('admins/export',[AdminController::class,'export'])->name('admins.export');
+
      /*
     |--------------------------------------------------------------------------
     | Admins Route
@@ -58,11 +69,31 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     /*
     |--------------------------------------------------------------------------
+    | Users Import Export Route
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get('users/import-export',[UserController::class,'importExport'])->name('users.import-export');
+    Route::post('users/import',[UserController::class,'import'])->name('users.import');
+    Route::get('users/export',[UserController::class,'export'])->name('users.export');
+
+    /*
+    |--------------------------------------------------------------------------
     | Users Route
     |--------------------------------------------------------------------------
     */
 
     Route::resource('users', UserController::class);
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Import Export Route
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get('associate-partners/import-export',[AssociatePartnerController::class,'importExport'])->name('associate-partners.import-export');
+    Route::post('associate-partners/import',[AssociatePartnerController::class,'import'])->name('associate-partners.import');
+    Route::get('associate-partners/export',[AssociatePartnerController::class,'export'])->name('associate-partners.export');
 
     /*
     |--------------------------------------------------------------------------

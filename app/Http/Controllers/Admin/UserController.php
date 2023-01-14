@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\User;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ImportUser;
+use App\Exports\ExportUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -187,5 +190,18 @@ class UserController extends Controller
     {
         User::find($id)->delete();
         return redirect()->route('admin.users.index')->with('success', 'User deleted successfully');
+    }
+
+    public function importExport(Request $request){
+        return view('admin.users.import-export');
+    }
+
+    public function import(Request $request){
+        Excel::import(new ImportUser, $request->file('file')->store('files'));
+        return redirect()->back()->with('success', 'Your file successfully imported!!');;
+    }
+
+    public function export(Request $request){
+        return Excel::download(new ExportUser, 'users.xlsx');
     }
 }

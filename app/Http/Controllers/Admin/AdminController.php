@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
-use App\Models\User;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ImportAdmin;
+use App\Exports\ExportAdmin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -189,5 +191,18 @@ class AdminController extends Controller
     {
         Admin::find($id)->delete();
         return redirect()->route('admin.admins.index')->with('success', 'Admin deleted successfully');
+    }
+
+    public function importExport(Request $request){
+        return view('admin.admins.import-export');
+    }
+
+    public function import(Request $request){
+        Excel::import(new ImportAdmin, $request->file('file')->store('files'));
+        return redirect()->back()->with('success', 'Your file successfully imported!!');;
+    }
+
+    public function export(Request $request){
+        return Excel::download(new ExportAdmin, 'admins.xlsx');
     }
 }

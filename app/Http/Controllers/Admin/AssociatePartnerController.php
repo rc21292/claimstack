@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\AssociatePartner;
 use App\Models\SalesServiceType;
 use App\Models\User;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ImportAssociatePartner;
+use App\Exports\ExportAssociatePartner;
 use App\Models\VendorServiceType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -405,5 +408,18 @@ class AssociatePartnerController extends Controller
     {
         AssociatePartner::find($id)->delete();
         return redirect()->route('admin.associate-partners.index')->with('success', 'Associate partner deleted successfully');
+    }
+
+    public function importExport(Request $request){
+        return view('admin.associate-partners.import-export');
+    }
+
+    public function import(Request $request){
+        Excel::import(new ImportAssociatePartner, $request->file('file')->store('files'));
+        return redirect()->back()->with('success', 'Your file successfully imported!!');;
+    }
+
+    public function export(Request $request){
+        return Excel::download(new ExportAssociatePartner, 'associate-partners.xlsx');
     }
 }
