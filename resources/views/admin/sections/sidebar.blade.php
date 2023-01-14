@@ -33,6 +33,42 @@
             </li>
 
             <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#adminMenu" aria-expanded="false" aria-controls="adminMenu" class="side-nav-link">
+                    <i class="mdi mdi-shield-account"></i>                   
+                    <span> Admin </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="adminMenu">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="{{ route('admin.admins.create') }}">Create Admin</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.admins.index') }}">Manage Admin</a>
+                        </li>                       
+                    </ul>
+                </div>
+            </li>
+
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#userMenu" aria-expanded="false" aria-controls="userMenu" class="side-nav-link">
+                    <i class="mdi mdi-account"></i>                   
+                    <span> User </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="userMenu">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="{{ route('admin.users.create') }}">Create User</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.users.index') }}">Manage User</a>
+                        </li>                       
+                    </ul>
+                </div>
+            </li>
+
+            <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#associatePartner" aria-expanded="false" aria-controls="associatePartner" class="side-nav-link">
                     <i class="mdi mdi-account-group"></i>                   
                     <span> Associate Partner </span>

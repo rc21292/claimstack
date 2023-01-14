@@ -9,12 +9,14 @@
             <div class="col-12">
                 <div class="page-title-box">
                     <div class="page-title-right">
-                        <div class="input-group">
-                            <input class="form-control" name="search" type="search"placeholder="Type here to Search">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Search</button>
+                        <form action="{{ route('employee.associate-partners.index') }}">
+                            <div class="input-group">
+                                <input class="form-control" name="search" type="search"placeholder="Type here to Search">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit">Search</button>
+                                </div>
                             </div>
-                        </div>
+                        </form>  
                     </div>
                     <h4 class="page-title">Manage Associate Partner</h4>
                 </div>

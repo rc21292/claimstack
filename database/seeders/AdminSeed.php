@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Admin;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -26,14 +27,24 @@ class AdminSeed extends Seeder
                 'firstname' => $faker->firstname(),
                 'lastname' => $faker->lastname(),
                 'email' => $i == 1 ? 'admin@claimstack.com' : $faker->unique()->safeEmail(),
-                'employee_code' => 'EMPA0' . $i,
+                'employee_code' => 'EMP' . $i,
                 'designation' => 'Admin',
-                'phone' => $faker->numerify('9#########'),
-                'linked_with' => $faker->randomElement([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]),
+                'department' => $faker->randomElement(['Operations', 'Sales', 'Accounts', 'Lending', 'IT', 'Insurance']),
+                'phone' => $faker->numerify('9#########'),                
                 'kra' => Str::upper(Str::random(8)),
                 'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('password')
 
+            ]);
+        }
+        
+        $admins = Admin::get(['id', 'employee_code']);
+
+        foreach ($admins as $admin) {
+            $part  = User::inRandomOrder()->first();
+            Admin::where('id', $admin->id)->update([
+                'linked_employee' => $part->id,
+                'linked_employee_id' => $part->employee_code
             ]);
         }
     }

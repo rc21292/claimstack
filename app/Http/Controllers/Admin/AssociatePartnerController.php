@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\VendorServiceType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class AssociatePartnerController extends Controller
 {
@@ -22,10 +23,15 @@ class AssociatePartnerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $associates = AssociatePartner::orderBy('id', 'desc')->paginate(20);
-        return view('admin.associate-partners.manage',  compact('associates'));
+        $filter_search = $request->search;
+        $associates = AssociatePartner::query();
+        if($filter_search){
+            $associates->where(DB::raw("concat(firstname, ' ', lastname)"), 'like','%' . $filter_search . '%');
+        }
+        $associates = $associates->orderBy('id', 'desc')->paginate(20);
+        return view('admin.associate-partners.manage',  compact('associates', 'filter_search'));       
     }
 
     /**

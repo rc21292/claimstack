@@ -23,8 +23,10 @@ class User extends Authenticatable
         'email',
         'employee_code',
         'designation',
+        'department',
         'phone',
-        'linked_with',
+        'linked_employee',
+        'linked_employee_id',
         'kra'
     ];
 

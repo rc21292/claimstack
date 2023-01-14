@@ -26,7 +26,8 @@ class Employee extends Authenticatable
         'employee_code',
         'designation',
         'phone',
-        'linked_with',
+        'linked_employee',
+        'linked_employee_id',
         'kra'
     ];
 

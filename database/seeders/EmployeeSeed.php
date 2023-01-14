@@ -26,10 +26,9 @@ class EmployeeSeed extends Seeder
                 'firstname' => $faker->firstname(),
                 'lastname' => $faker->lastname(),
                 'email' =>  $i == 1 ? 'employee@claimstack.com' : $faker->unique()->safeEmail(),
-                'employee_code' => 'EMPE0' . $i,
+                'employee_code' => 'EMP' . $i,
                 'designation' => 'Employee',
-                'phone' => $faker->numerify('9#########'),
-                'linked_with' => $faker->randomElement([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]),
+                'phone' => $faker->numerify('9#########'),               
                 'kra' => Str::upper(Str::random(8)),
                 'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('password')

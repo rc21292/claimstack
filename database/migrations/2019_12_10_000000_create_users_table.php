@@ -21,8 +21,10 @@ return new class extends Migration
             $table->string('employee_code')->nullable();
             $table->string('designation')->nullable();
             $table->string('phone')->nullable();
-            $table->string('linked_with')->nullable();
+            $table->string('department')->nullable();
             $table->string('kra')->nullable();
+            $table->string('linked_employee')->nullable();
+            $table->string('linked_employee_id')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

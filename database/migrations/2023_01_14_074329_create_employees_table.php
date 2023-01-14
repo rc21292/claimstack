@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('employee_code')->nullable();
             $table->string('designation')->nullable();
             $table->string('phone')->nullable();
-            $table->string('linked_with')->nullable();
             $table->string('kra')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

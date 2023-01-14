@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AssociatePartnerController;
 use App\Http\Controllers\Admin\Auth\ChangePasswordController;
 use App\Http\Controllers\Admin\Auth\ForgotPasswordController;
@@ -45,6 +47,22 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     */
 
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+     /*
+    |--------------------------------------------------------------------------
+    | Admins Route
+    |--------------------------------------------------------------------------
+    */
+
+    Route::resource('admins', AdminController::class);
+
+    /*
+    |--------------------------------------------------------------------------
+    | Users Route
+    |--------------------------------------------------------------------------
+    */
+
+    Route::resource('users', UserController::class);
 
     /*
     |--------------------------------------------------------------------------

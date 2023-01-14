@@ -1,5 +1,5 @@
-@extends('layouts.admin')
-@section('title', 'Associate Partners')
+@extends('layouts.employee')
+@section('title', 'Users')
 @section('content')
     <!-- Start Content-->
     <div class="container-fluid">
@@ -9,7 +9,7 @@
             <div class="col-12">
                 <div class="page-title-box">
                     <div class="page-title-right">
-                        <form action="{{ route('admin.associate-partners.index') }}">
+                        <form action="{{ route('employee.users.index') }}">
                             <div class="input-group">
                                 <input class="form-control" name="search" type="search"placeholder="Type here to Search">
                                 <div class="input-group-append">
@@ -18,11 +18,11 @@
                             </div>
                         </form>  
                     </div>
-                    <h4 class="page-title">Manage Associate Partner</h4>
+                    <h4 class="page-title">Manage User</h4>
                 </div>
             </div>
         </div>
-        @include('admin.sections.flash-message')
+        @include('employee.sections.flash-message')
         <!-- end page title -->
 
         <!-- start page content -->
@@ -31,37 +31,35 @@
                 <div class="card no-shadow">
                     <div class="card-body p-0">
                         <div class="table-responsive">
-                            @if (count($associates) > 0)
+                            @if (count($users) > 0)
                                 <table id="basics-datatable" class="table table-hover">
                                     <thead class="thead-grey">
                                         <tr>
                                             <th scope="col">UID</th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Type</th>
+                                            <th scope="col">Employee Code</th>
+                                            <th scope="col">Name</th>                                            
                                             <th scope="col">Email</th>
-                                            <th scope="col">Phone</th>
+                                            <th scope="col">Mobile</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($associates as $associate)
+                                        @foreach ($users as $user)
                                             <tr>
-                                                <th scope="row">{{ $associate->associate_partner_id }}</th>
-                                                <td>{!! $associate->firstname !!} {!! $associate->lastname !!}</td>
-                                                <td><span
-                                                        class="badge badge-outline-secondary">{{ ucfirst($associate->type) }}</span>
-                                                </td>
-                                                <td>{{ $associate->email }}</td>
-                                                <td>{{ $associate->phone }}</td>
+                                                <th scope="row">{{ $user->employee_code }}</th>
+                                                <td>{{ $user->id }}</td>
+                                                <td>{!! $user->firstname !!} {!! $user->lastname !!}</td>                                                
+                                                <td>{{ $user->email }}</td>
+                                                <td>{{ $user->phone }}</td>
                                                 <td>
                                                     <div class="btn-group">
-                                                        <a href="{{ route('admin.associate-partners.edit', $associate->id) }}"
+                                                        <a href="{{ route('employee.users.edit', $user->id) }}"
                                                             class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
                                                         <button type="button" class="btn btn-danger"
-                                                            onclick="confirmDelete({{ $associate->id }})"><i
+                                                            onclick="confirmDelete({{ $user->id }})"><i
                                                                 class="mdi mdi-delete"></i></button>
-                                                        <form id='delete-form{{ $associate->id }}'
-                                                            action='{{ route('admin.associate-partners.destroy', $associate->id) }}'
+                                                        <form id='delete-form{{ $user->id }}'
+                                                            action='{{ route('employee.users.destroy', $user->id) }}'
                                                             method='POST'>
                                                             <input type='hidden' name='_token'
                                                                 value='{{ csrf_token() }}'>
@@ -74,10 +72,10 @@
                                     </tbody>
                                 </table>
                             @else
-                                <p class="text-center">No Associate Partner found.</p>
+                                <p class="text-center">No User found.</p>
                             @endif
                         </div>
-                        {{ $associates->withQueryString()->links('pagination::bootstrap-4') }}
+                        {{ $users->withQueryString()->links('pagination::bootstrap-4') }}
                     </div>
                 </div>
             </div>
@@ -87,7 +85,7 @@
     </div> <!-- container -->
 @endsection
 {{-- @push('filter')
-    @include('admin.filters.question-filter')
+    @include('employee.filters.question-filter')
 @endpush --}}
 @push('scripts')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

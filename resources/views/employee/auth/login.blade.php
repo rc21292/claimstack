@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>@yield('title')</title>
+    <title>Login | Employee</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Claim Stack" name="description" />
     <meta content="Coderthemes" name="author" />
