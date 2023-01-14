@@ -32,6 +32,7 @@ class User extends Authenticatable
         'kra'
     ];
 
+
     /**
      * The attributes that should be hidden for serialization.
      *
