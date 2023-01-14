@@ -64,3 +64,19 @@
 .bg-dark-primary{
     background-color: #36387E;
 }
+.bg-grey{
+    background-color: #F4F4F4;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+     border-radius: 10px;
+}
+
+.account-type {
+    background: rgb(2,0,36);
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-top: 20px;
+    border-radius: 10px;
+    height: 127px;
+    background: linear-gradient(0deg, rgb(21 18 60 / 82%) 1%, rgba(62,64,149,1) 33%, rgb(0 212 255) 100%);
+}
