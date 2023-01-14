@@ -70,7 +70,7 @@ body[data-leftbar-theme=dark] .leftside-menu .logo {
     background-color:inherit ;  
 }
 .text-primary{
-    color: #4C4D9E !important;
+    color: #3E4097 !important;
 }
 .table .thead-grey th {
     color: #000000;
@@ -79,8 +79,8 @@ body[data-leftbar-theme=dark] .leftside-menu .logo {
 }
 .btn-primary {
     color: #fff;
-    background-color: #4C4D9E !important;
-    border-color: #4C4D9E !important;
+    background-color: #3E4097 !important;
+    border-color: #3E4097 !important;
 }
 body[data-leftbar-compact-mode=condensed]:not(.authentication-bg) .side-nav .side-nav-item:hover>.collapse>ul, body[data-leftbar-compact-mode=condensed]:not(.authentication-bg) .side-nav .side-nav-item:hover>.collapsing>ul {   
     width: 262px !important;
