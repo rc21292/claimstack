@@ -178,7 +178,7 @@
 
 
                                 <div class="col-md-12 text-end mt-3">
-                                    <button type="submit" class="btn btn-success" form="adminForm">Create
+                                    <button type="submit" class="btn btn-success" form="adminForm">Update
                                         Admin</button>
                                 </div>
                             </div>

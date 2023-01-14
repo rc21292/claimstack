@@ -178,8 +178,8 @@
 
 
                                 <div class="col-md-12 text-end mt-3">
-                                    <button type="submit" class="btn btn-success" form="userForm">Create
-                                        user</button>
+                                    <button type="submit" class="btn btn-success" form="userForm">Update
+                                        User</button>
                                 </div>
                             </div>
                         </form>

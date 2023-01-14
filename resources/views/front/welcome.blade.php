@@ -17,5 +17,6 @@
     </section>
     <section class="section-two py-4">
         <img class="section-two-bg" src="{{ asset('assets/images/logos/logo_sm.png') }}" alt="background-image">
+        <h1 class="coming-soon">Coming Soon...</h1>
     </section>
 @endsection
