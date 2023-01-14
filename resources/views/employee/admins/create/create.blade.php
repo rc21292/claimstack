@@ -155,7 +155,10 @@
                                     @enderror
                                 </div>
                                
-                                                               
+                                <div class="col-md-12 mt-3">
+                                    <label>Role Based Access Control <span class="text-danger">*</span></label>
+                                    @include('employee.admins.create.permission')
+                                </div>                           
                                 
                                 <div class="col-md-12 text-end mt-3">
                                     <button type="submit" class="btn btn-success" form="adminForm">Create
