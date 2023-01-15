@@ -126,6 +126,7 @@ class AdminController extends Controller
         $role = Role::where('name', 'admin')->with('permissions')->first();
         $permissions =  $role->permissions;
         $admin  = Admin::find($id);
+        $admin->permissions = $admin->getPermissionNames()->toArray();
         $admins = Admin::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code', 'department']);
         $users  = User::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code', 'department']);
         return view('employee.admins.edit.edit',  compact('admins', 'users', 'admin', 'permissions'));

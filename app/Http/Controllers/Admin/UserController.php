@@ -129,6 +129,7 @@ class UserController extends Controller
         $role = Role::where('name', 'user')->with('permissions')->first();
         $permissions =  $role->permissions;
         $user  = User::find($id);
+        $user->permissions = $user->getPermissionNames()->toArray();
         $admins = Admin::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code', 'department']);
         $users  = User::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code','department']);
         return view('admin.users.edit.edit',  compact('admins', 'users', 'user', 'permissions'));
