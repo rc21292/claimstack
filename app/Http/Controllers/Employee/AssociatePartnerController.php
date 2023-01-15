@@ -10,6 +10,7 @@ use App\Models\VendorServiceType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use App\Notifications\Associate\CredentialsGeneratedNotification;
 
 class AssociatePartnerController extends Controller
 {
@@ -64,7 +65,7 @@ class AssociatePartnerController extends Controller
             'city'                     => 'required',
             'state'                    => 'required',
             'pincode'                  => 'required',
-            'phone'                    => 'required',
+            'phone'                    => 'required|numeric',
             'status'                   => 'required',
             'reference'                => 'required',
             'assigned_employee'        => 'required',
@@ -114,6 +115,9 @@ class AssociatePartnerController extends Controller
             'linked_employee'          => $request->linked_employee,
             'linked_employee_id'       => $request->linked_employee_id
         ]);
+
+        $password = '12345678';
+        $associate_partner->notify(new CredentialsGeneratedNotification($associate_partner->email, $password, $associate_partner));
 
         AssociatePartner::where('id', $associate_partner->id)->update([
             'associate_partner_id'      => 'AP' . substr($associate_partner->pan, 0, 2) . substr($associate_partner->pan, -3)
@@ -179,7 +183,7 @@ class AssociatePartnerController extends Controller
             'city'                     => 'required',
             'state'                    => 'required',
             'pincode'                  => 'required',
-            'phone'                    => 'required',
+            'phone'                    => 'required|numeric',
             'status'                   => 'required',
             'reference'                => 'required',
             'assigned_employee'        => 'required',

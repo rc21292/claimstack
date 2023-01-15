@@ -103,7 +103,7 @@
         </div>
         <div class="col-md-6 mt-3">
             <label for="phone">Associate Partner Mobile Number <span class="text-danger">*</span></label>
-            <input type="tel" class="form-control" id="phone" name="phone"
+            <input type="number" class="form-control" id="phone" name="phone"
                 placeholder="Enter associate partner mobile number" value="{{ old('phone', $associate->phone) }}">
             @error('phone')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>

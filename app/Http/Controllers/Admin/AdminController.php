@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
+use App\Notifications\Admin\CredentialsGeneratedNotification;
 
 class AdminController extends Controller
 {
@@ -101,6 +102,9 @@ class AdminController extends Controller
         ]);
         
         $admin->assignRole('admin');
+
+        $password = '12345678';
+        $admin->notify(new CredentialsGeneratedNotification($admin->email, $password, $admin));
 
         return redirect()->route('admin.admins.index')->with('success', 'Admin created successfully');
     }

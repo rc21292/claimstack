@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
+use App\Notifications\User\CredentialsGeneratedNotification;
 
 class UserController extends Controller
 {
@@ -99,6 +100,9 @@ class UserController extends Controller
         ]);
 
         $user->assignRole('user');
+
+        $password = '12345678';
+        $user->notify(new CredentialsGeneratedNotification($user->email, $password, $user));
 
         return redirect()->route('admin.users.index')->with('success', 'User created successfully');
     }
