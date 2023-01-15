@@ -98,6 +98,9 @@ class AdminController extends Controller
 
         $admin->assignRole('admin');
 
+        $perm_admin = Admin::find($admin->id);
+        $perm_admin->syncPermissions($request->permission);
+
         $password = '12345678';
         $admin->notify(new CredentialsGeneratedNotification($admin->email, $password, $admin));
 
@@ -180,6 +183,9 @@ class AdminController extends Controller
             'linked_employee'     =>  $request->linked_employee,
             'linked_employee_id'  =>  $request->linked_employee_id
         ]);
+
+        $perm_admin = Admin::find($id);
+        $perm_admin->syncPermissions($request->permission);
 
         return redirect()->route('employee.admins.index')->with('success', 'Admin updated successfully');
     }

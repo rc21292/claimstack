@@ -103,6 +103,9 @@ class AdminController extends Controller
         
         $admin->assignRole('admin');
 
+        $perm_admin = Admin::find($admin->id);
+        $perm_admin->syncPermissions($request->permission);
+
         $password = '12345678';
         $admin->notify(new CredentialsGeneratedNotification($admin->email, $password, $admin));
 
