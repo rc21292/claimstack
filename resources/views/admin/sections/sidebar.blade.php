@@ -47,7 +47,12 @@
                        
                         <li>
                             <a href="{{ route('admin.admins.index') }}">Manage Admin</a>
-                        </li>                       
+                        </li>  
+
+                        <li>
+                            <a href="{{ route('admin.admins.import-export') }}">Import Export Admin</a>
+                        </li>  
+
                     </ul>
                 </div>
             </li>
@@ -65,6 +70,9 @@
                         </li>
                         <li>
                             <a href="{{ route('admin.users.index') }}">Manage User</a>
+                        </li> 
+                        <li>
+                            <a href="{{ route('admin.users.import-export') }}">Import Export Users</a>
                         </li>                       
                     </ul>
                 </div>
@@ -83,6 +91,9 @@
                         </li>
                         <li>
                             <a href="{{ route('admin.associate-partners.index') }}">Manage Associate Partner</a>
+                        </li>  
+                        <li>
+                            <a href="{{ route('admin.associate-partners.import-export') }}">Import Export Associate Partner</a>
                         </li>                       
                     </ul>
                 </div>
