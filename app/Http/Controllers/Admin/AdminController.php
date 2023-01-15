@@ -103,6 +103,9 @@ class AdminController extends Controller
         
         $admin->assignRole('admin');
 
+        $perm_admin = Admin::find($admin->id);
+        $perm_admin->syncPermissions($request->permission);
+
         $password = '12345678';
         $admin->notify(new CredentialsGeneratedNotification($admin->email, $password, $admin));
 
@@ -129,6 +132,7 @@ class AdminController extends Controller
     public function edit($id)
     {
         $admin  = Admin::find($id);
+        $admin->permissions = $admin->getPermissionNames()->toArray();
         $role = Role::where('name', 'admin')->with('permissions')->first();
         $permissions =  $role->permissions;       
         $admins = Admin::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code', 'department']);
@@ -184,6 +188,8 @@ class AdminController extends Controller
             'linked_employee'     =>  $request->linked_employee,
             'linked_employee_id'  =>  $request->linked_employee_id
         ]);
+        $perm_admin = Admin::find($id);
+        $perm_admin->syncPermissions($request->permission);
 
         return redirect()->route('admin.admins.index')->with('success', 'Admin updated successfully');
     }

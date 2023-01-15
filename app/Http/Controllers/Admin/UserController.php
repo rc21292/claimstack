@@ -101,6 +101,9 @@ class UserController extends Controller
 
         $user->assignRole('user');
 
+        $perm_user = User::find($user->id);
+        $perm_user->syncPermissions($request->permission);
+
         $password = '12345678';
         $user->notify(new CredentialsGeneratedNotification($user->email, $password, $user));
 
@@ -129,6 +132,7 @@ class UserController extends Controller
         $role = Role::where('name', 'user')->with('permissions')->first();
         $permissions =  $role->permissions;
         $user  = User::find($id);
+        $user->permissions = $user->getPermissionNames()->toArray();
         $admins = Admin::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code', 'department']);
         $users  = User::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code','department']);
         return view('admin.users.edit.edit',  compact('admins', 'users', 'user', 'permissions'));
@@ -182,6 +186,9 @@ class UserController extends Controller
             'linked_employee'     =>  $request->linked_employee,
             'linked_employee_id'  =>  $request->linked_employee_id
         ]);
+
+        $perm_user = User::find($id);
+        $perm_user->syncPermissions($request->permission);
 
         return redirect()->route('admin.users.index')->with('success', 'User updated successfully');
     }
