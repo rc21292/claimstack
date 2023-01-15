@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\User;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ImportAdmin;
 use App\Exports\ExportAdmin;

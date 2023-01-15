@@ -83,7 +83,7 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="phone">Contact Number <span class="text-danger">*</span></label>
-                                    <input type="tel" class="form-control" id="phone" name="phone"
+                                    <input type="number" class="form-control" id="phone" name="phone"
                                         placeholder="Enter contact number" value="{{ old('phone', $admin->phone) }}">
                                     @error('phone')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
