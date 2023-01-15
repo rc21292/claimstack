@@ -47,8 +47,15 @@ body{
 }
 .upload-label {
     display: inline-block;
-    background-color: #727CF5;
+    background-color: #3E4097;
     color: white;
+    padding: 0px 13px 2px 13px;
+    font-size: 23px;
+    cursor: pointer;
+}
+.download-label {
+    display: inline-block;
+    color: black;
     padding: 0px 13px 2px 13px;
     font-size: 23px;
     cursor: pointer;

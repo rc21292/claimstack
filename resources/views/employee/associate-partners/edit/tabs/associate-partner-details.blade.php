@@ -41,10 +41,11 @@
             <div class="input-group">
                 <input type="text" class="form-control" id="pan" name="pan" placeholder="Enter PAN no."
                     value="{{ old('pan', $associate->pan) }}">
-                <div class="input-group-append">
+                    @isset($associate->panfile)
+                    <a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->panfile) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+                    @endisset
                     <input type="file" name="panfile" hidden id="panfile"/>
                     <label for="panfile" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
-                </div>
             </div>
             @error('pan')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
