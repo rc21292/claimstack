@@ -101,7 +101,7 @@
                                                 data-id="{{ $row->employee_code }}">
                                                 [<strong>Name: </strong>{{ $row->firstname }}{{ $row->lastname }}] 
                                                 [<strong>UID: </strong>{{ $row->employee_code }}]
-                                                [<strong>Department: </strong>{{ $row->employee_code }}]
+                                                [<strong>Department: </strong>{{ $row->department }}]
                                             </option>
                                         @endforeach
                                     </select>

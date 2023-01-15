@@ -49,6 +49,9 @@
             @error('pan')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
+            @error('panfile')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
         </div>
         <div class="col-md-6 mt-3">
             <label for="owner">Associate Partner Owner's Name <span class="text-danger">*</span></label>
@@ -137,8 +140,10 @@
                     <option value="{{ $row->id }}"
                         {{ old('linked_associate_partner', $associate->linked_associate_partner) == $row->id ? 'selected' : '' }}
                         data-id="{{ $row->associate_partner_id }}">
-                        {{ $row->firstname }} {{ $row->lastname }}
-                        ({{ $row->associate_partner_id }})
+                        [<strong>Name: </strong>{{ $row->firstname }}{{ $row->lastname }}] 
+                        [<strong>UID: </strong>{{ $row->associate_partner_id }}]
+                        [<strong>City: </strong>{{ $row->city }}]
+                        [<strong>State: </strong>{{ $row->state }}]     
                     </option>
                 @endforeach
             </select>
@@ -163,8 +168,10 @@
                 @foreach ($users as $user)
                     <option value="{{ $user->id }}"
                         {{ old('assigned_employee', $associate->assigned_employee) == $user->id ? 'selected' : '' }}
-                        data-id="{{ $user->employee_code }}">{{ $user->firstname }}
-                        {{ $user->lastname }} ({{ $user->employee_code }})</option>
+                        data-id="{{ $user->employee_code }}">
+                        [<strong>Name: </strong>{{ $user->firstname }}{{ $user->lastname }}] 
+                                                [<strong>UID: </strong>{{ $user->employee_code }}]
+                                                [<strong>Department: </strong>{{ $user->department }}]</option>
                 @endforeach
             </select>
             @error('assigned_employee')
@@ -188,8 +195,10 @@
                 @foreach ($users as $user)
                     <option value="{{ $user->id }}"
                         {{ old('linked_employee', $associate->linked_employee) == $user->id ? 'selected' : '' }}
-                        data-id="{{ $user->employee_code }}">{{ $user->firstname }}
-                        {{ $user->lastname }} ({{ $user->employee_code }})</option>
+                        data-id="{{ $user->employee_code }}">
+                        [<strong>Name: </strong>{{ $user->firstname }}{{ $user->lastname }}] 
+                                                [<strong>UID: </strong>{{ $user->employee_code }}]
+                                                [<strong>Department: </strong>{{ $user->department }}]</option>
                 @endforeach
             </select>
             @error('linked_employee')

@@ -62,6 +62,7 @@ class AssociatePartnerController extends Controller
             'firstname'                => 'required',
             'type'                     => 'required',
             'pan'                      => 'required',
+            'panfile'                  => 'required',
             'owner'                    => 'required',
             'email'                    => 'required|unique:associate_partners',
             'address'                  => 'required',
@@ -81,6 +82,7 @@ class AssociatePartnerController extends Controller
             'firstname.required'             => 'Please enter firstname',
             'type.required'                  => 'Please select associate partner type.',
             'pan.required'                   => 'Please enter PAN number.',
+            'panfile.required'               => 'Please upload PAN Card.',
             'owner.required'                 => "Please enter associate partner's owner name",
             'email.required'                 => 'Please enter official email ID.',
             'address.required'               => 'Please enter address.',
@@ -170,10 +172,13 @@ class AssociatePartnerController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $associate_partner             = AssociatePartner::find($id);
+
         $rules = [
             'firstname'                => 'required',
             'type'                     => 'required',
             'pan'                      => 'required',
+            'panfile'                  =>  isset($associate_partner->panfile) ? '' : 'required',
             'owner'                    => 'required',
             'email'                    => 'required|unique:associate_partners,email,'.$id,     
             'address'                  => 'required',
@@ -200,6 +205,7 @@ class AssociatePartnerController extends Controller
             'firstname.required'             => 'Please enter firstname',
             'type.required'                  => 'Please select associate partner type.',
             'pan.required'                   => 'Please enter PAN number.',
+            'panfile.required'               => 'Please upload PAN Card.',
             'owner.required'                 => "Please enter associate partner's owner name",
             'email.required'                 => 'Please enter official email ID.',
             'address.required'               => 'Please enter address.',
@@ -251,7 +257,7 @@ class AssociatePartnerController extends Controller
             'comments'                 => $request->comments,
         ]);
 
-        $associate_partner             = AssociatePartner::find($id);
+
 
         AssociatePartner::where('id', $id)->update([
             'associate_partner_id'      => 'AP' . substr($associate_partner->pan, 0, 2) . substr($associate_partner->pan, -3)
