@@ -27,6 +27,7 @@ class AdminSeed extends Seeder
                 'firstname' => $faker->firstname(),
                 'lastname' => $faker->lastname(),
                 'email' => $i == 1 ? 'admin@claimstack.com' : $faker->unique()->safeEmail(),
+                'uid' => $i,
                 'employee_code' => 'EMP' . $i,
                 'designation' => 'Admin',
                 'department' => $faker->randomElement(['Operations', 'Sales', 'Accounts', 'Lending', 'IT', 'Insurance']),

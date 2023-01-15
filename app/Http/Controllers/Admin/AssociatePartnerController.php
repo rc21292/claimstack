@@ -46,6 +46,7 @@ class AssociatePartnerController extends Controller
     {
         $associates = AssociatePartner::get();
         $users      = User::get();
+        
         return view('admin.associate-partners.create.create',  compact('associates', 'users'));
     }
 

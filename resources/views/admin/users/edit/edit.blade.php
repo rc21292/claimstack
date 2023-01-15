@@ -54,11 +54,11 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-6 mt-3">
-                                    <label for="employee_code">Employee Code <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="employee_code" name="employee_code"
+                                    <label for="uid">Employee Code <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="uid" name="uid"
                                         placeholder="Enter employee code"
-                                        value="{{ old('employee_code', $user->employee_code) }}">
-                                    @error('employee_code')
+                                        value="{{ old('uid', $user->uid) }}">
+                                    @error('uid')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -98,8 +98,11 @@
                                         @foreach ($users as $row)
                                             <option value="{{ $row->id }}"
                                                 {{ old('linked_employee', $user->linked_employee) == $row->id ? 'selected' : '' }}
-                                                data-id="{{ $row->employee_code }}">{{ $row->firstname }}
-                                                {{ $row->lastname }} ({{ $row->employee_code }})</option>
+                                                data-id="{{ $row->employee_code }}">
+                                                [<strong>Name: </strong>{{ $row->firstname }}{{ $row->lastname }}] 
+                                                [<strong>UID: </strong>{{ $row->employee_code }}]
+                                                [<strong>Department: </strong>{{ $row->employee_code }}]
+                                            </option>
                                         @endforeach
                                     </select>
                                     @error('linked_employee')

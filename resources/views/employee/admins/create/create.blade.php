@@ -53,10 +53,10 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-6 mt-3">
-                                    <label for="employee_code">Employee Code <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="employee_code" name="employee_code"
-                                    placeholder="Enter employee code" value="{{ old('employee_code') }}">
-                                    @error('employee_code')
+                                    <label for="uid">Employee Code <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="uid" name="uid"
+                                    placeholder="Enter employee code" value="{{ old('uid') }}">
+                                    @error('uid')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -96,8 +96,11 @@
                                         @foreach ($users as $user)
                                             <option value="{{ $user->id }}"
                                                 {{ old('linked_employee') == $user->id ? 'selected' : '' }}
-                                                data-id="{{ $user->employee_code }}">{{ $user->firstname }}
-                                                {{ $user->lastname }} ({{ $user->employee_code }})</option>
+                                                data-id="{{ $user->employee_code }}">
+                                                [<strong>Name: </strong>{{ $user->firstname }}{{ $user->lastname }}] 
+                                                [<strong>UID: </strong>{{ $user->employee_code }}]
+                                                [<strong>Department: </strong>{{ $user->employee_code }}]
+                                            </option>
                                         @endforeach
                                     </select>
                                     @error('linked_employee')

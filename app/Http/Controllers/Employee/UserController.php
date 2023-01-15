@@ -41,8 +41,8 @@ class UserController extends Controller
     {
         $role = Role::where('name', 'user')->with('permissions')->first();
         $permissions =  $role->permissions;
-        $admins = Admin::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code']);
-        $users  = User::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code']);
+        $admins = Admin::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code', 'department']);
+        $users  = User::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code', 'department']);
         return view('employee.users.create.create',  compact('admins', 'users', 'permissions'));
     }
 
@@ -55,20 +55,20 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'firstname'                => 'required',
-            'employee_code'            => 'required',
-            'designation'              => 'required',           
-            'email'                    => 'required|unique:users',           
-            'phone'                    => 'required',
+            'firstname'                => 'required|alpha_spaces',
+            'uid'                      => 'required|unique:users',
+            'designation'              => 'required|alpha_spaces',           
+            'email'                    => 'required|unique:users',
+            'phone'                    => 'required|numeric',
             'department'               => 'required',
-            'kra'                      => 'required',
+            'kra'                      => 'required|alpha_spaces',
             'linked_employee'          => 'required',
             'linked_employee_id'       => 'required',
         ];
 
         $messages = [
             'firstname.required'             => 'Please enter firstname',
-            'employee_code.required'         => 'Please enter employee code.',
+            'uid.required'                   => 'Please enter employee code.',
             'designation.required'           => 'Please enter designation.',          
             'email.required'                 => 'Please enter official mail ID.',         
             'phone.required'                 => 'Please enter contact number.',
@@ -83,7 +83,8 @@ class UserController extends Controller
         $user                    =   User::create([
             'firstname'           =>  $request->firstname,
             'lastname'            =>  $request->lastname,
-            'employee_code'       =>  $request->employee_code,
+            'uid'                 =>  $request->uid,
+            'employee_code'       =>  'EMP'.$request->uid,
             'designation'         =>  $request->designation,           
             'email'               =>  $request->email,
             'phone'               =>  $request->phone,
@@ -121,8 +122,8 @@ class UserController extends Controller
         $role = Role::where('name', 'user')->with('permissions')->first();
         $permissions =  $role->permissions;
         $user  = User::find($id);
-        $admins = Admin::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code']);
-        $users  = User::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code']);
+        $admins = Admin::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code', 'department']);
+        $users  = User::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code', 'department']);
         return view('employee.users.edit.edit',  compact('admins', 'users', 'user', 'permissions'));
     }
 
@@ -136,20 +137,20 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $rules = [
-            'firstname'                => 'required',
-            'employee_code'            => 'required',
-            'designation'              => 'required',           
+            'firstname'                => 'required|alpha_spaces',
+            'uid'                      => 'required|unique:users,uid,'.$id,
+            'designation'              => 'required|alpha_spaces',      
             'email'                    => 'required|unique:users,email,'.$id,           
-            'phone'                    => 'required',
+            'phone'                    => 'required|numeric',
             'department'               => 'required',
-            'kra'                      => 'required',
+            'kra'                      => 'required|alpha_spaces',
             'linked_employee'          => 'required',
             'linked_employee_id'       => 'required',
         ];
 
         $messages = [
             'firstname.required'             => 'Please enter firstname',
-            'employee_code.required'         => 'Please enter employee code.',
+            'uid.required'                   => 'Please enter employee code.',
             'designation.required'           => 'Please enter designation.',          
             'email.required'                 => 'Please enter official mail ID.',         
             'phone.required'                 => 'Please enter contact number.',
@@ -164,7 +165,8 @@ class UserController extends Controller
         $user                    =   User::where('id', $id)->update([
             'firstname'           =>  $request->firstname,
             'lastname'            =>  $request->lastname,
-            'employee_code'       =>  $request->employee_code,
+            'uid'                 =>  $request->uid,
+            'employee_code'       =>  'EMP'.$request->uid,
             'designation'         =>  $request->designation,           
             'email'               =>  $request->email,
             'phone'               =>  $request->phone,
