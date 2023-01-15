@@ -66,6 +66,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     */
 
     Route::resource('admins', AdminController::class);
+    Route::post('admin/change-pasword', [AdminController::class, 'changePassword'])->name('admins.change-password');
 
     /*
     |--------------------------------------------------------------------------
@@ -84,6 +85,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     */
 
     Route::resource('users', UserController::class);
+    Route::post('user/change-pasword', [UserController::class, 'changePassword'])->name('users.change-password');
 
     /*
     |--------------------------------------------------------------------------

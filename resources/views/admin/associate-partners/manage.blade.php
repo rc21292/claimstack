@@ -59,7 +59,7 @@
                                                             class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
                                                         <button type="button" class="btn btn-danger"
                                                             onclick="confirmDelete({{ $associate->id }})"><i
-                                                                class="mdi mdi-delete"></i></button>
+                                                                class="uil uil-trash-alt"></i></button>
                                                         <form id='delete-form{{ $associate->id }}'
                                                             action='{{ route('admin.associate-partners.destroy', $associate->id) }}'
                                                             method='POST'>

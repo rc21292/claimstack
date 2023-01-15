@@ -57,7 +57,7 @@
                                                             class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
                                                         <button type="button" class="btn btn-danger"
                                                             onclick="confirmDelete({{ $user->id }})"><i
-                                                                class="mdi mdi-delete"></i></button>
+                                                                class="uil uil-trash-alt"></i></button>
                                                         <form id='delete-form{{ $user->id }}'
                                                             action='{{ route('admin.users.destroy', $user->id) }}'
                                                             method='POST'>
@@ -65,6 +65,11 @@
                                                                 value='{{ csrf_token() }}'>
                                                             <input type='hidden' name='_method' value='DELETE'>
                                                         </form>
+                                                        <button type="button" class="btn btn-warning change-password"
+                                                        data-bs-toggle="modal" data-bs-target="#modal-password" 
+                                                        data-uid="{{ $user->employee_code }}" 
+                                                        data-id="{{ $user->id }}"><i
+                                                            class="uil uil-ellipsis-v"></i></button>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -83,6 +88,39 @@
         <!-- end page content -->
 
     </div> <!-- container -->
+    <div id="modal-password" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-passwordLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-colored-header bg-primary">
+                    <p class="modal-title text-center" id="primary-header-modalLabel"><strong>Want to Change Password of UMP-</strong><span id="uid">{{ old('uid') }}</span></p>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" id="changePasswordForm" action="{{ route('admin.users.change-password') }}">
+                        @csrf
+                        <input type="hidden" value="{{ old('id') }}" name="id" id="id">
+                        <input type="hidden" value="{{ old('uid') }}" name="uid" id="employee_code">
+                        <div class="form-group mb-2 {{ $errors->has('new_password') ? 'has-error' : '' }}">
+                            <label for="new_password">New password *</label>
+                            <input type="password" id="new_password" name="new_password" placeholder="Enter new password" class="form-control">
+                            @error('new_password')
+                                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group mb-2 {{ $errors->has('new_password_confirmation') ? 'has-error' : '' }}">
+                            <label for="new_password_confirmation">Confirm password *</label>
+                            <input type="password" id="new_password_confirmation" name="new_password_confirmation"
+                                class="form-control" placeholder="Re-enter new password">                           
+                        </div>
+                    </form>
+                </div>
+                <div class="text-center mb-3">
+                    <button type="button" class="btn btn-sm btn-light" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" form="changePasswordForm" class="btn btn-sm btn-success">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 {{-- @push('filter')
     @include('employee.filters.question-filter')
@@ -106,4 +144,20 @@
             })
         };
     </script>
+    <script>
+        $(".change-password").click(function () {
+                var id = $(this).data('id');
+                var uid = $(this).data('uid');
+                $('#uid').text(uid);
+                $('#employee_code').val(uid);                
+                $('#id').val(id);
+            });
+    </script>
+    @error('new_password')
+    <script>
+        $(document).ready(function () {
+            $('#modal-password').modal('show');
+        });       
+    </script>
+    @enderror
 @endpush

@@ -217,4 +217,20 @@ class UserController extends Controller
     public function export(Request $request){
         return Excel::download(new ExportUser, 'users.xlsx');
     }
+
+    public function changePassword(Request $request)
+    {
+        $id = $request->id;
+
+        $this->validate($request, [          
+            'new_password' => 'required|min:8|confirmed',
+
+        ]);
+
+        $user = User::find($id);
+        $user->password = Hash::make($request->new_password);
+        $user->save();       
+
+        return redirect()->back()->with('success', 'Password changed successfully');
+    }
 }
