@@ -100,7 +100,7 @@ class UserController extends Controller
         $perm_user = User::find($user->id);
         $perm_user->syncPermissions($request->permission);
         $password = '12345678';
-        $user->notify(new CredentialsGeneratedNotification($user->email, $password, $user));
+        // $user->notify(new CredentialsGeneratedNotification($user->email, $password, $user));
         
 
         return redirect()->route('employee.users.index')->with('success', 'User created successfully');

@@ -117,7 +117,7 @@ class AssociatePartnerController extends Controller
         ]);
 
         $password = '12345678';
-        $associate_partner->notify(new CredentialsGeneratedNotification($associate_partner->email, $password, $associate_partner));
+        // $associate_partner->notify(new CredentialsGeneratedNotification($associate_partner->email, $password, $associate_partner));
 
         AssociatePartner::where('id', $associate_partner->id)->update([
             'associate_partner_id'      => 'AP' . substr($associate_partner->pan, 0, 2) . substr($associate_partner->pan, -3)

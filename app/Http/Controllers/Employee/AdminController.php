@@ -102,7 +102,7 @@ class AdminController extends Controller
         $perm_admin->syncPermissions($request->permission);
 
         $password = '12345678';
-        $admin->notify(new CredentialsGeneratedNotification($admin->email, $password, $admin));
+        // $admin->notify(new CredentialsGeneratedNotification($admin->email, $password, $admin));
 
         return redirect()->route('employee.admins.index')->with('success', 'Admin created successfully');
     }
