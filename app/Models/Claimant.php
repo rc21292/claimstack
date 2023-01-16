@@ -10,7 +10,7 @@ class Claimant extends Model
     use HasFactory;
 
     protected $fillable = [
-        'patient_id'
+        'patient_id',
         'claim_id',
         'patient_firstname',
         'patient_lastname',
