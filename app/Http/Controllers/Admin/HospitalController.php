@@ -37,7 +37,7 @@ class HospitalController extends Controller
         $associates = AssociatePartner::get();
         $users      = User::get();
         
-        return view('hospital.associate-partners.create.create',  compact('associates', 'users'));
+        return view('admin.hospitals.create.create',  compact('associates', 'users'));
     }
 
     /**

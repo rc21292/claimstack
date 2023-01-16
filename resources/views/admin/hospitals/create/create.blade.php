@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Create Associate Partners')
+@section('title', 'Create Hospital ID')
 @section('content')
     <!-- Start Content-->
     <div class="container-fluid">
@@ -12,11 +12,11 @@
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Claim Stack</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="javascript:void(0);">Associate Partner</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Hospital</a></li>
                             <li class="breadcrumb-item active">Create</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">Create Associate Partner</h4>
+                    <h4 class="page-title">Create Hospital ID</h4>
                 </div>
             </div>
         </div>
@@ -28,75 +28,49 @@
             <div class="col-12">
                 <div class="card no-shadow">
                     <div class="card-body">
-                        <form action="{{ route('admin.associate-partners.store') }}" method="post"
-                            id="associate-partner-form" enctype="multipart/form-data">
+                        <form action="{{ route('admin.hospitals.store') }}" method="post" id="hospital-form"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
-
-                                <div class="col-md-12">
-                                    <label for="firstname">Associate Partner Name <span class="text-danger">*</span></label>
-                                </div>
-
-                                <div class="col-md-6 mt-1">
-                                    <input type="text" class="form-control" id="firstname" name="firstname"
-                                        placeholder="Firstname" value="{{ old('firstname') }}">
-                                    @error('firstname')
+                                <div class="col-md-12 mt-3">
+                                    <label for="name">Hospital Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="name" name="name"
+                                        placeholder="Enter Hospital name" value="{{ old('name') }}">
+                                    @error('name')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
 
-                                <div class="col-md-6 mt-1">
-                                    <input type="text" class="form-control" id="lastname" name="lastname"
-                                        placeholder="Lastname" value="{{ old('lastname') }}">
-                                    @error('lastname')
-                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                    @enderror
-                                </div>
                                 <div class="col-md-6 mt-3">
-                                    <label for="type">Associate Partner Type <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="type" name="type">
-                                        <option value="">Select Type</option>
-                                        <option value="vendor" {{ old('type') == 'vendor' ? 'selected' : '' }}>Vendor Type
+                                    <label for="onboarding">Hospital Onboarding <span class="text-danger">*</span></label>
+                                    <select class="form-select" id="onboarding" name="onboarding">
+                                        <option value="">Select onboarding</option>
+                                        <option value="Tie Up" {{ old('onboarding') == 'Tie Up' ? 'selected' : '' }}>Tie Up
                                         </option>
-                                        <option value="sales" {{ old('type') == 'sales' ? 'selected' : '' }}>Sales Type
+                                        <option value="Non - Tie Up"
+                                            {{ old('onboarding') == 'Non - Tie Up' ? 'selected' : '' }}>Non - Tie Up
                                         </option>
                                     </select>
-                                    @error('type')
+                                    @error('onboarding')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
+
                                 <div class="col-md-6 mt-3">
-                                    <label for="pan">PAN Number <span class="text-danger">*</span></label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" id="pan" name="pan"
-                                            placeholder="Enter PAN no." value="{{ old('pan') }}">                                       
-                                            <input type="file" name="panfile" id="upload" hidden />
-                                            <label for="upload" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
-                                    </div>
-                                    @error('pan')
-                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                    @enderror
-                                    @error('panfile')
-                                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="col-md-6 mt-3">
-                                    <label for="owner">Associate Partner Owner's Name <span
-                                            class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="owner" name="owner"
-                                        placeholder="Enter associate partner owner's name" value="{{ old('owner') }}">
-                                    @error('owner')
+                                    <label for="by">Hospital By <span class="text-danger">*</span></label>
+                                    <select class="form-select" id="by" name="by">
+                                        <option value="">Select by</option>
+                                        <option value="Direct" {{ old('by') == 'Direct' ? 'selected' : '' }}>Direct
+                                        </option>
+                                        <option value="Associate Partner"
+                                            {{ old('by') == 'Associate Partner' ? 'selected' : '' }}>Associate Partner
+                                        </option>
+                                    </select>
+                                    @error('by')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="col-md-6 mt-3">
-                                    <label for="owner">Official email ID <span class="text-danger">*</span></label>
-                                    <input type="email" class="form-control" id="email" name="email"
-                                        placeholder="Enter official emailID" value="{{ old('email') }}">
-                                    @error('email')
-                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                    @enderror
-                                </div>
+
                                 <div class="col-md-12 mt-3">
                                     <label for="address">Hospital Address <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="address" name="address"
@@ -128,52 +102,112 @@
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
+
+                                <div class="col-md-12 mt-2">
+                                    <label for="firstname">Hospital Owner's Name <span class="text-danger">*</span></label>
+                                </div>
+
+                                <div class="col-md-6 mt-1">
+                                    <input type="text" class="form-control" id="firstname" name="firstname"
+                                        placeholder="Firstname" value="{{ old('firstname') }}">
+                                    @error('firstname')
+                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6 mt-1">
+                                    <input type="text" class="form-control" id="lastname" name="lastname"
+                                        placeholder="Lastname" value="{{ old('lastname') }}">
+                                    @error('lastname')
+                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
                                 <div class="col-md-6 mt-3">
-                                    <label for="phone">Associate Partner Mobile Number <span
+                                    <label for="pan">Hospital PAN Number <span class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="pan" name="pan"
+                                            placeholder="Enter Hospital PAN no." value="{{ old('pan') }}">
+                                        <input type="file" name="panfile" id="upload" hidden />
+                                        <label for="upload" class="btn btn-primary upload-label"><i
+                                                class="mdi mdi-upload"></i></label>
+                                    </div>
+                                    @error('pan')
+                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                    @error('panfile')
+                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6 mt-3">
+                                    <label for="owner">Hospital email ID <span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control" id="email" name="email"
+                                        placeholder="Enter hospital email ID" value="{{ old('email') }}">
+                                    @error('email')
+                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6 mt-3">
+                                    <label for="landline">Hospital Landline Number <span
+                                            class="text-danger">*</span></label>
+                                    <input type="number" class="form-control" id="landline" name="landline"
+                                        placeholder="Enter hospital landline number" value="{{ old('landline') }}">
+                                    @error('landline')
+                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+
+
+                                <div class="col-md-6 mt-3">
+                                    <label for="phone">Hospital Mobile Number <span
                                             class="text-danger">*</span></label>
                                     <input type="number" class="form-control" id="phone" name="phone"
-                                        placeholder="Enter associate partner mobile number" value="{{ old('phone') }}">
+                                        placeholder="Enter hospital mobile number" value="{{ old('phone') }}">
                                     @error('phone')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="col-md-6 mt-3">
-                                    <label for="reference">Reference <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="reference" name="reference"
-                                        placeholder="Enter reference" value="{{ old('reference') }}">
-                                    @error('reference')
-                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                    @enderror
-                                </div>
+
                                 <div class="col-md-12 mt-3">
-                                    <label for="statuses">Associate Partner Status <span
-                                            class="text-danger">*</span></label>
-                                    <select class="form-select" id="statuses" name="status">
-                                        <option value="">Select Status</option>
-                                        <option value="Main" {{ old('status') == 'Main' ? 'selected' : '' }}>Main
-                                        </option>
-                                        <option value="Sub AP" {{ old('status') == 'Sub AP' ? 'selected' : '' }}>Sub AP
-                                        </option>
-                                        <option value="Agency" {{ old('status') == 'Agency' ? 'selected' : '' }}>Agency
-                                        </option>
-                                    </select>
-                                    @error('status')
+                                    <label for="rohini">Rohini Code <span class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="rohini" name="rohini"
+                                            placeholder="Enter rohini code." value="{{ old('rohini') }}">
+                                        <input type="file" name="rohinifile" id="rohinifile" hidden />
+                                        <label for="rohinifile" class="btn btn-primary upload-label"><i
+                                                class="mdi mdi-upload"></i></label>
+                                    </div>
+                                    @error('rohini')
+                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                    @error('rohinifile')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
+
+
+
+
+
+
                                 <div class="col-md-6 mt-3">
-                                    <label for="linked_associate_partner">Linked Associate Partner Name </label>
-                                    <select class="form-control select2" id="linked_associate_partner"  name="linked_associate_partner"
-                                        data-toggle="select2" onchange="setLinkedAssociatePartnerId()">
+                                    <label for="linked_associate_partner">Associate Partner Name </label>
+                                    <select class="form-control select2" id="linked_associate_partner"
+                                        name="linked_associate_partner" data-toggle="select2"
+                                        onchange="setLinkedAssociatePartnerId()">
                                         <option value="">Select Associate Partner</option>
                                         @foreach ($associates as $associate)
                                             <option value="{{ $associate->id }}"
                                                 {{ old('linked_associate_partner') == $associate->id ? 'selected' : '' }}
                                                 data-id="{{ $associate->associate_partner_id }}">
-                                                [<strong>Name: </strong>{{ $associate->firstname }}{{ $associate->lastname }}] 
+                                                [<strong>Name:
+                                                </strong>{{ $associate->firstname }}{{ $associate->lastname }}]
                                                 [<strong>UID: </strong>{{ $associate->associate_partner_id }}]
                                                 [<strong>City: </strong>{{ $associate->city }}]
-                                                [<strong>State: </strong>{{ $associate->state }}]                                               
+                                                [<strong>State: </strong>{{ $associate->state }}]
                                             </option>
                                         @endforeach
                                     </select>
@@ -182,7 +216,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-6 mt-3">
-                                    <label for="linked_associate_partner_id">Linked Associate Partner ID </label>
+                                    <label for="linked_associate_partner_id">Associate Partner ID </label>
                                     <input type="text" class="form-control" id="linked_associate_partner_id"
                                         name="linked_associate_partner_id" placeholder="Enter linked associate partner ID"
                                         value="{{ old('linked_associate_partner_id') }}">
@@ -193,14 +227,14 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="assigned_employee">Assigned To Employee Name <span
                                             class="text-danger">*</span></label>
-                                    <select class="form-control select2" id="assigned_employee" name="assigned_employee" data-toggle="select2"
-                                        onchange="setAssignedEmployeeId()">
+                                    <select class="form-control select2" id="assigned_employee" name="assigned_employee"
+                                        data-toggle="select2" onchange="setAssignedEmployeeId()">
                                         <option value="">Select Assigned To Employee</option>
                                         @foreach ($users as $user)
                                             <option value="{{ $user->id }}"
                                                 {{ old('assigned_employee') == $user->id ? 'selected' : '' }}
                                                 data-id="{{ $user->employee_code }}">
-                                                [<strong>Name: </strong>{{ $user->firstname }}{{ $user->lastname }}] 
+                                                [<strong>Name: </strong>{{ $user->firstname }}{{ $user->lastname }}]
                                                 [<strong>UID: </strong>{{ $user->employee_code }}]
                                                 [<strong>Department: </strong>{{ $user->department }}]</option>
                                         @endforeach
@@ -222,14 +256,14 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="linked_employee">Linked With Employee Name <span
                                             class="text-danger">*</span></label>
-                                    <select class="form-control select2" id="linked_employee" name="linked_employee" data-toggle="select2"
-                                        onchange="setLinkedWithEmployeeId()">
+                                    <select class="form-control select2" id="linked_employee" name="linked_employee"
+                                        data-toggle="select2" onchange="setLinkedWithEmployeeId()">
                                         <option value="">Select Linked With Employee</option>
                                         @foreach ($users as $user)
                                             <option value="{{ $user->id }}"
                                                 {{ old('linked_employee') == $user->id ? 'selected' : '' }}
                                                 data-id="{{ $user->employee_code }}">
-                                                [<strong>Name: </strong>{{ $user->firstname }}{{ $user->lastname }}] 
+                                                [<strong>Name: </strong>{{ $user->firstname }}{{ $user->lastname }}]
                                                 [<strong>UID: </strong>{{ $user->employee_code }}]
                                                 [<strong>Department: </strong>{{ $user->department }}]
                                             </option>
@@ -249,9 +283,16 @@
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
+                                <div class="col-md-12 mt-3">
+                                    <label for="comments">Comments </label>
+                                    <textarea class="form-control" id="comments" name="comments" placeholder="Comments" rows="4">{{ old('comments') }}</textarea>
+                                    @error('comments')
+                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
                                 <div class="col-md-12 text-end mt-3">
-                                    <button type="submit" class="btn btn-success" form="associate-partner-form">Create
-                                        Associate Partner</button>
+                                    <button type="submit" class="btn btn-success" form="hospital-form">Create
+                                        Hospital ID</button>
                                 </div>
                             </div>
                         </form>
