@@ -225,10 +225,11 @@
                     <option value="no" {{ old('mou', $associate->mou) == 'no' ? 'selected' : '' }}>No
                     </option>
                 </select>
-                <div class="input-group-append">
+                 @isset($associate->moufile)
+                        <a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->moufile) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+                    @endisset
                     <input type="file" name="moufile" hidden id="moufile"  />
                     <label for="moufile" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
-                </div>
             </div>
             @error('mou')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -244,10 +245,12 @@
                 <input type="date" class="form-control" id="agreement_start_date" name="agreement_start_date"
                     placeholder="Associate partner agreement start date"
                     value="{{ old('agreement_start_date', $associate->agreement_start_date) }}">
-                <div class="input-group-append">
+                    @isset($associate->agreementfile)
+                        <a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->agreementfile) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+                    @endisset
                     <input type="file" name="agreementfile" id="agreementfile" hidden />
                     <label for="agreementfile" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
-                </div>
+                
             </div>
             @error('agreement_start_date')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
