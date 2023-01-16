@@ -64,7 +64,7 @@ class HospitalController extends Controller
             'rohini'                   => 'required',
             'rohinifile'               => 'required',
             'landline'                 => 'required|numeric|digits:10',
-            'email'                    => 'required|unique:associate_partners',
+            'email'                    => 'required|unique:hospitals',
             'address'                  => 'required',
             'city'                     => 'required',
             'state'                    => 'required',
