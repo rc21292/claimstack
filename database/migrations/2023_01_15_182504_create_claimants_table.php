@@ -13,6 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
+        
         Schema::create('claimants', function (Blueprint $table) {
             $table->id();
             $table->integer('patient_id')->nullable();
