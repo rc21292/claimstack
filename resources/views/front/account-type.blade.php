@@ -16,7 +16,7 @@
                         </a>
                     </div>
                     <div class="col-sm-3 px-4">
-                        <a href="#">
+                        <a href="{{ route('hospital.login') }}">
                             <div class="account-type">
                                 <img src="{{ asset('assets/images/loginType/Hospital.png') }}" alt="Hospital">
                                 <h5 class="text-white">Hospital</h5>

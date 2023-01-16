@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
         $this->call(AssociatePartnerSeed::class);       
         $this->call(PatientSeed::class);       
         $this->call(ClaimSeed::class);       
-        $this->call(ClaimantSeed::class);       
+        $this->call(ClaimantSeed::class);
+        $this->call(AssociatePartnerSeed::class);   
+        $this->call(HospitalSeeder::class);
     }
 }

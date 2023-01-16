@@ -100,6 +100,27 @@
             </li>
 
             <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#hospitalModule" aria-expanded="false" aria-controls="hospitalModule" class="side-nav-link">
+                    <i class="mdi mdi-hospital-building"></i>                   
+                    <span> Hospital </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="hospitalModule">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="{{ route('admin.hospitals.create') }}">Create Hospital ID</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.hospitals.index') }}">Manage Hospital Profile</a>
+                        </li>  
+                        <li>
+                            <a href="javascript:void(0)">Claims</a>
+                        </li>                       
+                    </ul>
+                </div>
+            </li>
+
+            <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#settings" aria-expanded="false" aria-controls="settings" class="side-nav-link">
                     <i class="dripicons-gear"></i>                   
                     <span> Settings </span>

@@ -25,6 +25,8 @@ class RouteServiceProvider extends ServiceProvider
 
     public const ASSOCIATE = '/associate-partner';
 
+    public const HOSPITAL = '/hospital';
+
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
      *
@@ -50,6 +52,9 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::middleware('web')
                 ->group(base_path('routes/employee.php'));
+
+            Route::middleware('web')
+                ->group(base_path('routes/hospital.php'));
         });
     }
 
