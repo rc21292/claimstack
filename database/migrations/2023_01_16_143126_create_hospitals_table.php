@@ -41,6 +41,7 @@ return new class extends Migration
             $table->string('linked_employee_id')->nullable();
             $table->longText('comments')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

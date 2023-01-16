@@ -9,6 +9,7 @@ use App\Http\Controllers\Hospital\Auth\LoginController;
 use App\Http\Controllers\Hospital\Auth\MyAccountController;
 use App\Http\Controllers\Hospital\Auth\ResetPasswordController;
 use App\Http\Controllers\Hospital\DashboardController;
+use App\Http\Controllers\Hospital\HospitalController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -66,6 +67,13 @@ Route::group(['prefix' => 'hospital', 'as' => 'hospital.'], function () {
     Route::resource('users', UserController::class);
     Route::post('user/change-pasword', [UserController::class, 'changePassword'])->name('users.change-password');
 
+    /*
+    |--------------------------------------------------------------------------
+    | Hospitals Route
+    |--------------------------------------------------------------------------
+    */
+
+    Route::resource('hospitals', HospitalController::class); 
     /*
     |--------------------------------------------------------------------------
     | Associate partners Route

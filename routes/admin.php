@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\MyAccountController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\HospitalController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -96,6 +97,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('associate-partners/import-export',[AssociatePartnerController::class,'importExport'])->name('associate-partners.import-export');
     Route::post('associate-partners/import',[AssociatePartnerController::class,'import'])->name('associate-partners.import');
     Route::get('associate-partners/export',[AssociatePartnerController::class,'export'])->name('associate-partners.export');
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Hospitals Route
+    |--------------------------------------------------------------------------
+    */
+
+    Route::resource('hospitals', HospitalController::class);   
 
     /*
     |--------------------------------------------------------------------------
