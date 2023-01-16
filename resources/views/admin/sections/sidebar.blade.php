@@ -114,7 +114,7 @@
                             <a href="{{ route('admin.hospitals.index') }}">Manage Hospital Profile</a>
                         </li>  
                         <li>
-                            <a href="javascript:void(0)">Claims</a>
+                            <a href="{{ route('admin.claims.index') }}">Claims</a>
                         </li>                       
                     </ul>
                 </div>

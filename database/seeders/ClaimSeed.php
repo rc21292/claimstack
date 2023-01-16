@@ -24,7 +24,7 @@ class ClaimSeed extends Seeder
         $faker = app(Generator::class);
         $user  = User::inRandomOrder()->first();
         $patient  = Patient::inRandomOrder()->first();
-        for ($i = 1; $i < 10; $i++) {
+        for ($i = 1; $i < 101; $i++) {
             Claim::create([
                 'firstname' => $faker->firstname(),
                 'lastname' => $faker->lastname(),

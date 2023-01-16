@@ -10,6 +10,8 @@ use App\Http\Controllers\Admin\Auth\MyAccountController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HospitalController;
+use App\Http\Controllers\Admin\ClaimController;
+use App\Http\Controllers\Admin\PatientController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -107,6 +109,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     Route::resource('hospitals', HospitalController::class);   
     Route::post('hospital/change-pasword', [HospitalController::class, 'changePassword'])->name('hospitals.change-password');
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Claims Route
+    |--------------------------------------------------------------------------
+    */
+
+    Route::resource('claims', ClaimController::class);
+    Route::resource('patients', PatientController::class);
 
     /*
     |--------------------------------------------------------------------------
