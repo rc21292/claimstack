@@ -56,6 +56,9 @@ Route::group(['prefix' => 'hospital', 'as' => 'hospital.'], function () {
     */
 
     Route::resource('admins', AdminController::class);
+    Route::get('admins/import-export',[AdminController::class,'importExport'])->name('admins.import-export');
+    Route::post('admins/import',[AdminController::class,'import'])->name('admins.import');
+    Route::get('admins/export',[AdminController::class,'export'])->name('admins.export');
     Route::post('admin/change-pasword', [AdminController::class, 'changePassword'])->name('admins.change-password');
 
     /*
@@ -65,6 +68,9 @@ Route::group(['prefix' => 'hospital', 'as' => 'hospital.'], function () {
     */
 
     Route::resource('users', UserController::class);
+    Route::get('users/import-export',[UserController::class,'importExport'])->name('users.import-export');
+    Route::post('users/import',[UserController::class,'import'])->name('users.import');
+    Route::get('users/export',[UserController::class,'export'])->name('users.export');
     Route::post('user/change-pasword', [UserController::class, 'changePassword'])->name('users.change-password');
 
     /*
@@ -81,7 +87,9 @@ Route::group(['prefix' => 'hospital', 'as' => 'hospital.'], function () {
     */
 
     Route::resource('associate-partners', AssociatePartnerController::class);
-
+    Route::get('associate-partners/import-export',[AssociatePartnerController::class,'importExport'])->name('associate-partners.import-export');
+    Route::post('associate-partners/import',[AssociatePartnerController::class,'import'])->name('associate-partners.import');
+    Route::get('associate-partners/export',[AssociatePartnerController::class,'export'])->name('associate-partners.export');
     Route::put('associate-partners/vendor-services/{id}', [AssociatePartnerController::class, 'updateVendorServices'])->name('associate-partners.vendor-services');
     Route::put('associate-partners/sales-services/{id}', [AssociatePartnerController::class, 'updateSalesServices'])->name('associate-partners.sales-services');
 
