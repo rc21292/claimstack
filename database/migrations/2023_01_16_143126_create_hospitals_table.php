@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('hospitals', function (Blueprint $table) {
             $table->id();
-            $table->string('uid');
+            $table->string('uid')->nullable();
             $table->string('name');
             $table->enum('onboarding', ['Tie Up', 'Non - Tie Up'])->default('Tie Up');
             $table->enum('by', ['Direct', 'Associate Partner'])->default('Direct');
