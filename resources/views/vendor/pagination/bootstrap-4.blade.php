@@ -1,5 +1,5 @@
 @if ($paginator->hasPages())
-    <div class="row">
+    <div class="row mx-1">
         <div class="col-sm-3">
                 <p class="text-sm text-gray-700 leading-5 ml-3">
                     {!! __('Showing') !!}

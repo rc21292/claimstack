@@ -80,6 +80,7 @@ Route::group(['prefix' => 'hospital', 'as' => 'hospital.'], function () {
     */
 
     Route::resource('hospitals', HospitalController::class); 
+    Route::post('hospital/change-pasword', [HospitalController::class, 'changePassword'])->name('hospitals.change-password');
     /*
     |--------------------------------------------------------------------------
     | Associate partners Route

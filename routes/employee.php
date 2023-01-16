@@ -74,6 +74,7 @@ Route::group(['prefix' => 'employee', 'as' => 'employee.'], function () {
     */
 
     Route::resource('hospitals', HospitalController::class); 
+    Route::post('hospital/change-pasword', [HospitalController::class, 'changePassword'])->name('hospitals.change-password');
     /*
     |--------------------------------------------------------------------------
     | Associate partners Route
