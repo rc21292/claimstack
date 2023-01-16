@@ -52,6 +52,10 @@ return [
             'driver' => 'session',
             'provider' => 'employees',
         ],
+        'hospital' => [
+            'driver' => 'session',
+            'provider' => 'hospitals',
+        ],
    
     ],
 
@@ -88,6 +92,10 @@ return [
         'employees' => [
             'driver' => 'eloquent',
             'model' => App\Models\Employee::class,
+        ],
+        'hospitals' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Hospital::class,
         ],
 
         // 'users' => [
@@ -132,6 +140,12 @@ return [
         ],
         'employees' => [
             'provider' => 'employees',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'hospitals' => [
+            'provider' => 'hospitals',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

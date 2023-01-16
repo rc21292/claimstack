@@ -31,6 +31,10 @@ class Authenticate extends Middleware
             return route('employee.login');
         }
 
+        if ($request->is('hospital') || $request->is('hospital/*')) {
+            return route('hospital.login');
+        }
+
         if (! $request->expectsJson()) {
             return route('login');
         }
