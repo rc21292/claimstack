@@ -56,13 +56,14 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'firstname'                => 'required|alpha_spaces',
-            'uid'                      => 'required|unique:users',
-            'designation'              => 'required|alpha_spaces',           
-            'email'                    => 'required|unique:users',
+            'firstname'                => 'required|alpha_spaces|max:15',
+            'lastname'                 => isset($request->lastname) ? 'alpha_spaces|max:30' : '',
+            'uid'                      => 'required|unique:admins|unique:users|alpha_num|digits:8',
+            'designation'              => 'required|alpha_spaces|max:30',           
+            'email'                    => 'required|email|unique:admins|unique:users|unique:hospitals|unique:associate_partners|unique:employees',
             'phone'                    => 'required|numeric|digits:10',
             'department'               => 'required',
-            'kra'                      => 'required|alpha_spaces',
+            'kra'                      =>  'required|alpha_spaces|max:40',
             'linked_employee'          => 'required',
             'linked_employee_id'       => 'required',
         ];
@@ -144,13 +145,14 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $rules = [
-            'firstname'                => 'required|alpha_spaces',
-            'uid'                      => 'required|unique:users,uid,'.$id,
-            'designation'              => 'required|alpha_spaces',      
-            'email'                    => 'required|unique:users,email,'.$id,           
+            'firstname'                => 'required|alpha_spaces|max:15',
+            'lastname'                 => isset($request->lastname) ? 'alpha_spaces|max:30' : '',
+            'uid'                      => 'required|alpha_num|digits:8|unique:admins|unique:users,uid,'.$id,
+            'designation'              => 'required|alpha_spaces|max:30',      
+            'email'                    => 'required|email|unique:admins|unique:hospitals|unique:associate_partners|unique:employees|unique:users,email,'.$id,       
             'phone'                    => 'required|numeric|digits:10',
             'department'               => 'required',
-            'kra'                      => 'required|alpha_spaces',
+            'kra'                      =>  'required|alpha_spaces|max:40',
             'linked_employee'          => 'required',
             'linked_employee_id'       => 'required',
         ];

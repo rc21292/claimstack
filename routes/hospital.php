@@ -12,6 +12,7 @@ use App\Http\Controllers\Hospital\DashboardController;
 use App\Http\Controllers\Hospital\HospitalController;
 use App\Http\Controllers\Hospital\PatientController;
 use App\Http\Controllers\Hospital\ClaimController;
+use App\Http\Controllers\Hospital\UtilityController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -128,4 +129,10 @@ Route::group(['prefix' => 'hospital', 'as' => 'hospital.'], function () {
 
     Route::post('change-password', [ChangePasswordController::class,'changePassword'])->name('change-password');
 
+    /*
+    |--------------------------------------------------------------------------
+    | Utility Route
+    |--------------------------------------------------------------------------
+    */
+    Route::get('get-employees-by-department/{department}', [UtilityController::class,'getEmployeesByDepartment'])->name('get.employees');
 });

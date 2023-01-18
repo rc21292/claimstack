@@ -89,39 +89,9 @@
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="col-md-6 mt-3">
-                                    <label for="linked_employee">Linked With Employee Name <span
-                                            class="text-danger">*</span></label>
-                                    <select class="form-control select2" id="linked_employee" name="linked_employee"
-                                        data-toggle="select2" onchange="setLinkedWithEmployeeId()">
-                                        <option value="">Select Linked With Employee</option>
-                                        @foreach ($users as $user)
-                                            <option value="{{ $user->id }}"
-                                                {{ old('linked_employee', $admin->linked_employee) == $user->id ? 'selected' : '' }}
-                                                data-id="{{ $user->employee_code }}">
-                                                [<strong>Name: </strong>{{ $user->firstname }}{{ $user->lastname }}] 
-                                                [<strong>UID: </strong>{{ $user->employee_code }}]
-                                                [<strong>Department: </strong>{{ $user->department }}]
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('linked_employee')
-                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="col-md-6 mt-3">
-                                    <label for="linked_employee_id">Linked With Employee ID <span
-                                            class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="linked_employee_id"
-                                        name="linked_employee_id" placeholder="Enter linked with employee ID"
-                                        value="{{ old('linked_employee_id', $admin->linked_employee_id) }}">
-                                    @error('linked_employee_id')
-                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                    @enderror
-                                </div>
                                 <div class="col-md-12 mt-3">
                                     <label for="department">Department <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="department" name="department">
+                                    <select class="form-select" id="department" name="department" onchange="loadEmployees()">
                                         <option value="">Select Department</option>
                                         <option value="Operations"
                                             {{ old('department', $admin->department) == 'Operations' ? 'selected' : '' }}>
@@ -169,6 +139,28 @@
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
+                                <div class="col-md-6 mt-3">
+                                    <label for="linked_employee">Linked With Employee Name <span
+                                            class="text-danger">*</span></label>
+                                    <select class="form-control select2" id="linked_employee" name="linked_employee"
+                                        data-toggle="select2" onchange="setLinkedWithEmployeeId()">
+                                        <option value="">Select Linked With Employee</option>                                        
+                                    </select>
+                                    @error('linked_employee')
+                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6 mt-3">
+                                    <label for="linked_employee_id">Linked With Employee ID <span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="linked_employee_id"
+                                        name="linked_employee_id" placeholder="Enter linked with employee ID"
+                                        value="{{ old('linked_employee_id', $admin->linked_employee_id) }}">
+                                    @error('linked_employee_id')
+                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                
                                 <div class="col-md-12 mt-3">
                                     <label for="kra">KRA <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="kra" name="kra"
@@ -201,5 +193,27 @@
             var linked_employee = $("#linked_employee").select2().find(":selected").data("id");
             $('#linked_employee_id').val(linked_employee);
         }
+    </script>
+    <script>
+        function loadEmployees(){
+            var department  = $("#department").val();            
+            var url         = '{{ route("admin.get.employees", ":department") }}';
+            url             = url.replace(':department', department);
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                   $('#linked_employee').html(data)
+                   $('#linked_employee').val('{{ old("linked_employee", $admin->linked_employee) }}')
+                }
+            });
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            loadEmployees();
+        });
     </script>
 @endpush

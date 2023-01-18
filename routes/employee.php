@@ -12,6 +12,7 @@ use App\Http\Controllers\Employee\DashboardController;
 use App\Http\Controllers\Employee\HospitalController;
 use App\Http\Controllers\Employee\PatientController;
 use App\Http\Controllers\Employee\ClaimController;
+use App\Http\Controllers\Employee\UtilityController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -119,5 +120,12 @@ Route::group(['prefix' => 'employee', 'as' => 'employee.'], function () {
     Route::get('change-password', [ChangePasswordController::class,'changePasswordForm'])->name('password.form');
 
     Route::post('change-password', [ChangePasswordController::class,'changePassword'])->name('change-password');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Utility Route
+    |--------------------------------------------------------------------------
+    */
+    Route::get('get-employees-by-department/{department}', [UtilityController::class,'getEmployeesByDepartment'])->name('get.employees');
 
 });

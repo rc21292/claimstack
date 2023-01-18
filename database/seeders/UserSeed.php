@@ -21,13 +21,13 @@ class UserSeed extends Seeder
     {
         $faker = app(Generator::class);
 
-        for ($i = 1; $i < 101; $i++) {
+        for ($i = 1; $i < 20; $i++) {
             $user = User::create([
                 'firstname' => $faker->firstname(),
                 'lastname' => $faker->lastname(),
                 'email' => $i == 1 ? 'user@claimstack.com' : $faker->unique()->safeEmail(),
-                'uid' => $i,
-                'employee_code' => 'EMP0' . $i,
+                'uid' => $i + 1,
+                'employee_code' => 'EMP0' . $i + 1,
                 'designation' => 'Employee',
                 'department' => $faker->randomElement(['Operations', 'Sales', 'Accounts', 'Lending', 'IT', 'Insurance']),
                 'phone' => $faker->numerify('9#########'),              
@@ -41,9 +41,9 @@ class UserSeed extends Seeder
                  $user->givePermissionTo($permission);
             }
         }
-        $admins = User::get(['id', 'employee_code']);
+        $admins = User::get(['id', 'employee_code', 'department']);
         foreach ($admins as $admin) {
-            $part  = User::inRandomOrder()->first();
+            $part  = User::where('department', $admin->department)->first();
             User::where('id', $admin->id)->update([
                 'linked_employee' => $part->id,
                 'linked_employee_id' => $part->employee_code

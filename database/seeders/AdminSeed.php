@@ -22,13 +22,13 @@ class AdminSeed extends Seeder
     {
         $faker = app(Generator::class);
 
-        for ($i = 1; $i < 101; $i++) {
+        for ($i = 1; $i < 20; $i++) {
             $admin = Admin::create([
                 'firstname' => $faker->firstname(),
                 'lastname' => $faker->lastname(),
                 'email' => $i == 1 ? 'admin@claimstack.com' : $faker->unique()->safeEmail(),
-                'uid' => $i,
-                'employee_code' => 'EMP' . $i,
+                'uid' => $i + 20,
+                'employee_code' => 'EMP' . $i + 20,
                 'designation' => 'Admin',
                 'department' => $faker->randomElement(['Operations', 'Sales', 'Accounts', 'Lending', 'IT', 'Insurance']),
                 'phone' => $faker->numerify('9#########'),                
@@ -44,10 +44,10 @@ class AdminSeed extends Seeder
             }
         }
         
-        $admins = Admin::get(['id', 'employee_code']);
+        $admins = Admin::get(['id', 'employee_code', 'department']);
 
         foreach ($admins as $admin) {
-            $part  = User::inRandomOrder()->first();
+            $part  = User::where('department', $admin->department)->inRandomOrder()->first();
             Admin::where('id', $admin->id)->update([
                 'linked_employee' => $part->id,
                 'linked_employee_id' => $part->employee_code
