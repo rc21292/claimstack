@@ -21,7 +21,7 @@ class HospitalSeeder extends Seeder
     public function run()
     {
         $faker = app(Generator::class);
-        for ($i = 1; $i < 10; $i++) {
+        for ($i = 1; $i < 60; $i++) {
 
             $partner    = AssociatePartner::inRandomOrder()->first();
             $linked     = User::inRandomOrder()->first();
