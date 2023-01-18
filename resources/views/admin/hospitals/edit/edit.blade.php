@@ -36,7 +36,7 @@
                                     <span class="d-none d-md-block">Hospital Details</span>
                                 </a>
                             </li>
-                            @if ($hospital->type == 'vendor')
+                            {{-- @if ($hospital->type == 'vendor')
                                 <li class="nav-item">
                                     <a href="#vendor_partner_service_type" data-bs-toggle="tab" aria-expanded="false"
                                         class="nav-link rounded-0 ">
@@ -66,7 +66,7 @@
                                         <span class="d-none d-md-block">Sales Partner Reports</span>
                                     </a>
                                 </li>
-                            @endif
+                            @endif --}}
                         </ul>
 
                         <div class="tab-content">

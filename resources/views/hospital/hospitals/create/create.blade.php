@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.hospital')
 @section('title', 'Create Hospital ID')
 @section('content')
     <!-- Start Content-->
@@ -11,7 +11,7 @@
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Claim Stack</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('hospital.dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item"><a href="javascript:void(0);">Hospital</a></li>
                             <li class="breadcrumb-item active">Create</li>
                         </ol>
@@ -20,7 +20,7 @@
                 </div>
             </div>
         </div>
-        @include('admin.sections.flash-message')
+        @include('hospital.sections.flash-message')
         <!-- end page title -->
 
         <!-- start page content -->
@@ -28,7 +28,7 @@
             <div class="col-12">
                 <div class="card no-shadow">
                     <div class="card-body">
-                        <form action="{{ route('admin.hospitals.store') }}" method="post" id="hospital-form"
+                        <form action="{{ route('hospital.hospitals.store') }}" method="post" id="hospital-form"
                             enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
@@ -188,42 +188,28 @@
                                     @enderror
                                 </div>
 
-
-
-
-
-
                                 <div class="col-md-6 mt-3">
-                                    <label for="linked_associate_partner">Associate Partner Name </label>
-                                    <select class="form-control select2" id="linked_associate_partner"
-                                        name="linked_associate_partner" data-toggle="select2"
-                                        onchange="setLinkedAssociatePartnerId()">
-                                        <option value="">Select Associate Partner</option>
-                                        @foreach ($associates as $associate)
-                                            <option value="{{ $associate->id }}"
-                                                {{ old('linked_associate_partner') == $associate->id ? 'selected' : '' }}
-                                                data-id="{{ $associate->associate_partner_id }}">
-                                                [<strong>Name:
-                                                </strong>{{ $associate->firstname }}{{ $associate->lastname }}]
-                                                [<strong>UID: </strong>{{ $associate->associate_partner_id }}]
-                                                [<strong>City: </strong>{{ $associate->city }}]
-                                                [<strong>State: </strong>{{ $associate->state }}]
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('linked_associate_partner')
+                                    <label for="associate_partner_id">Associate Partner ID <span
+                                        class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="associate_partner_id"
+                                        name="associate_partner_id" placeholder="Enter associate partner ID"
+                                        value="{{ old('associate_partner_id') }}">
+                                    @error('associate_partner_id')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
+
                                 <div class="col-md-6 mt-3">
-                                    <label for="linked_associate_partner_id">Associate Partner ID </label>
-                                    <input type="text" class="form-control" id="linked_associate_partner_id"
-                                        name="linked_associate_partner_id" placeholder="Enter linked associate partner ID"
-                                        value="{{ old('linked_associate_partner_id') }}">
-                                    @error('linked_associate_partner_id')
+                                    <label for="associate_partner_name">Associate Partner Name <span
+                                        class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="associate_partner_id"
+                                        name="associate_partner_name" placeholder="Enter associate partner name"
+                                        value="{{ old('associate_partner_name') }}">
+                                    @error('associate_partner_name')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
+                               
                                 <div class="col-md-6 mt-3">
                                     <label for="assigned_employee">Assigned To Employee Name <span
                                             class="text-danger">*</span></label>

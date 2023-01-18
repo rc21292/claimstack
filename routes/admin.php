@@ -118,6 +118,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     */
 
     Route::resource('claims', ClaimController::class);
+
+    /*
+    |--------------------------------------------------------------------------
+    | Patients Route
+    |--------------------------------------------------------------------------
+    */
     Route::resource('patients', PatientController::class);
 
     /*

@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
-use App\Notifications\User\CredentialsGeneratedNotification;
+
 
 class PatientController extends Controller
 {
@@ -29,13 +29,7 @@ class PatientController extends Controller
      */
     public function index(Request $request)
     {
-        $filter_search = $request->search;
-        $users = Patient::query();
-        if($filter_search){
-            $users->where(DB::raw("concat(firstname, ' ', lastname)"), 'like','%' . $filter_search . '%');
-        }
-        $users = $users->orderBy('id', 'desc')->paginate(20);
-        return view('admin.users.manage',  compact('users', 'filter_search'));
+        
     }
 
     /**
@@ -48,7 +42,7 @@ class PatientController extends Controller
         $hospital_id = $request->hospital_id;
         $associates = AssociatePartner::get();
         $hospital = Hospital::where('id',$hospital_id)->first(['name','address','city', 'state', 'pincode']);
-        return view('admin.patients.create.create',  compact('hospital_id','associates','hospital'));
+        return view('admin.claims.create.patient',  compact('hospital_id','associates','hospital'));
     }
 
     /**
@@ -61,17 +55,15 @@ class PatientController extends Controller
     {
 
         $rules = [
-            'firstname'                => 'required|alpha_spaces',
-            // 'uid'                      => 'required|unique:users',
-            'dob'              => 'required',           
-            'email'                    => 'required|unique:users',
+            'firstname'                 => 'required|alpha_spaces',            
+            'dob'                       => 'required',           
+            'email'                     => 'required|unique:users',
             'mobile'                    => 'required|numeric|digits:10',
-            'address'               => 'required',
+            'address'                   => 'required',
         ];
 
         $messages = [
             'firstname.required'             => 'Please enter firstname',
-            // 'uid.required'                => 'Please enter employee code.',
             'dob.required'                   => 'Please enter dob.',          
             'email.required'                 => 'Please enter official mail ID.',         
             'mobile.required'                 => 'Please enter contact number.',
@@ -80,12 +72,7 @@ class PatientController extends Controller
 
         $this->validate($request, $rules, $messages);
 
-        $user                     =   Patient::create($request->all());
-
-        $perm_user = Patient::find($user->id);
-
-        $password = '12345678';
-        $user->notify(new CredentialsGeneratedNotification($user->email, $password, $user));
+        $patient                     =   Patient::create($request->all());       
 
         return redirect()->route('admin.patients.index')->with('success', 'Patient created successfully');
     }
@@ -109,13 +96,7 @@ class PatientController extends Controller
      */
     public function edit($id)
     {
-        $role = Role::where('name', 'user')->with('permissions')->first();
-        $permissions =  $role->permissions;
-        $user  = Patient::find($id);
-        $user->permissions = $user->getPermissionNames()->toArray();
-        $admins = Admin::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code', 'department']);
-        $users  = Patient::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code','department']);
-        return view('admin.users.edit.edit',  compact('admins', 'users', 'user', 'permissions'));
+        //
     }
 
     /**
@@ -184,19 +165,7 @@ class PatientController extends Controller
         Patient::find($id)->delete();
         return redirect()->route('admin.users.index')->with('success', 'Patient deleted successfully');
     }
-
-    public function importExport(Request $request){
-        return view('admin.users.import-export');
-    }
-
-    public function import(Request $request){
-        Excel::import(new ImportPatient, $request->file('file')->store('files'));
-        return redirect()->back()->with('success', 'Your file successfully imported!!');;
-    }
-
-    public function export(Request $request){
-        return Excel::download(new ExportPatient, 'users.xlsx');
-    }
+  
 
     public function changePassword(Request $request)
     {

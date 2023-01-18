@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Hospital;
 
 use App\Http\Controllers\Controller;
 use App\Models\AssociatePartner;
@@ -14,7 +14,7 @@ class ClaimController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware('auth:hospital');
     }
     /**
      * Display a listing of the resource.
@@ -30,7 +30,7 @@ class ClaimController extends Controller
         }
         $claims = $claims->orderBy('id', 'desc')->paginate(20);
 
-        return view('admin.claims.manage',  compact('claims', 'filter_search'));       
+        return view('hospital.claims.manage',  compact('claims', 'filter_search'));       
     }
 
     /**
@@ -40,7 +40,7 @@ class ClaimController extends Controller
      */
     public function create()
     {
-        //
+       //
     }
 
     /**
@@ -51,7 +51,7 @@ class ClaimController extends Controller
      */
     public function store(Request $request)
     {
-       //
+        //
     }
 
     /**

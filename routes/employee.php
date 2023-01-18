@@ -10,6 +10,8 @@ use App\Http\Controllers\Employee\Auth\MyAccountController;
 use App\Http\Controllers\Employee\Auth\ResetPasswordController;
 use App\Http\Controllers\Employee\DashboardController;
 use App\Http\Controllers\Employee\HospitalController;
+use App\Http\Controllers\Employee\PatientController;
+use App\Http\Controllers\Employee\ClaimController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -75,6 +77,22 @@ Route::group(['prefix' => 'employee', 'as' => 'employee.'], function () {
 
     Route::resource('hospitals', HospitalController::class); 
     Route::post('hospital/change-pasword', [HospitalController::class, 'changePassword'])->name('hospitals.change-password');
+
+        /*
+    |--------------------------------------------------------------------------
+    | Claims Route
+    |--------------------------------------------------------------------------
+    */
+
+    Route::resource('claims', ClaimController::class);
+
+    /*
+    |--------------------------------------------------------------------------
+    | Patients Route
+    |--------------------------------------------------------------------------
+    */
+    Route::resource('patients', PatientController::class);
+
     /*
     |--------------------------------------------------------------------------
     | Associate partners Route

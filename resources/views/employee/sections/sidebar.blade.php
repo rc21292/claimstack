@@ -101,7 +101,7 @@
                             <a href="{{ route('employee.hospitals.index') }}">Manage Hospital Profile</a>
                         </li>  
                         <li>
-                            <a href="javascript:void(0)">Claims</a>
+                            <a href="{{ route('employee.claims.index') }}">Claims</a>
                         </li>                       
                     </ul>
                 </div>
