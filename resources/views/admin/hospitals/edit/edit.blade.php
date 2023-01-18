@@ -30,10 +30,17 @@
                     <div class="card-body">
                         <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
                             <li class="nav-item">
-                                <a href="#associate_partner_details" data-bs-toggle="tab" aria-expanded="true"
+                                <a href="#hospital_details" data-bs-toggle="tab" aria-expanded="true"
                                     class="nav-link rounded-0 active">
                                     <i class="mdi mdi-home-variant d-md-none d-block"></i>
                                     <span class="d-none d-md-block">Hospital Details</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#hospital_tie_up_details" data-bs-toggle="tab" aria-expanded="false"
+                                    class="nav-link rounded-0 ">
+                                    <i class="mdi mdi-home-variant d-md-none d-block"></i>
+                                    <span class="d-none d-md-block">Hospital Tie-up Details</span>
                                 </a>
                             </li>
                             {{-- @if ($hospital->type == 'vendor')
@@ -70,8 +77,11 @@
                         </ul>
 
                         <div class="tab-content">
-                            <div class="tab-pane show active" id="associate_partner_details">
+                            <div class="tab-pane show active" id="hospital_details">
                                 @include('admin.hospitals.edit.tabs.hospital-details')
+                            </div>
+                            <div class="tab-pane" id="hospital_tie_up_details">
+                                @include('admin.hospitals.edit.tabs.hospital-tie-up-details')
                             </div>
                             {{-- @if ($hospital->type == 'vendor')
                                 <div class="tab-pane" id="vendor_partner_service_type">
