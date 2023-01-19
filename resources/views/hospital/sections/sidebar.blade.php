@@ -28,7 +28,7 @@
             <li class="side-nav-item">
                 <a href="{{ route('hospital.dashboard') }}" class="side-nav-link">
                     <i class="uil-home-alt"></i>
-                    <span> Dashbaord </span>
+                    <span> Dashboard </span>
                 </a>
             </li>
 
