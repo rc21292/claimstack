@@ -352,7 +352,7 @@
                     class="text-danger">*</span></label>
                     <div class="input-group">
                         <label class="input-group-text" for="phone">+91</label>
-            <input type="text" class="form-control" id="contact_person_phone" name="contact_person_phone"
+            <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" class="form-control" id="contact_person_phone" name="contact_person_phone"
                 placeholder="Associate partner contact person's mobile no."
                 value="{{ old('contact_person_phone', $associate->contact_person_phone) }}">
                     </div>
