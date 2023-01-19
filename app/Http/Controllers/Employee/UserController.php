@@ -71,6 +71,7 @@ class UserController extends Controller
         $messages = [
             'firstname.required'             => 'Please enter firstname',
             'uid.required'                   => 'Please enter employee code.',
+'uid.unique'                   => 'This Employee Code is already taken.',
             'designation.required'           => 'Please enter designation.',
             'email.required'                 => 'Please enter official mail ID.',
             'phone.required'                 => 'Please enter contact number.',
@@ -160,6 +161,7 @@ class UserController extends Controller
         $messages = [
             'firstname.required'             => 'Please enter firstname',
             'uid.required'                   => 'Please enter employee code.',
+'uid.unique'                   => 'This Employee Code is already taken.',
             'designation.required'           => 'Please enter designation.',
             'email.required'                 => 'Please enter official mail ID.',
             'phone.required'                 => 'Please enter contact number.',
