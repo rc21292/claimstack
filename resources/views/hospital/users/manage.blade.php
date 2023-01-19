@@ -16,7 +16,7 @@
                                     <button class="btn btn-primary" type="submit">Search</button>
                                 </div>
                             </div>
-                        </form>  
+                        </form>
                     </div>
                     <h4 class="page-title">Manage User</h4>
                 </div>
@@ -37,7 +37,7 @@
                                         <tr>
                                             <th scope="col">UID</th>
                                             <th scope="col">Employee Code</th>
-                                            <th scope="col">Name</th>                                            
+                                            <th scope="col">Name</th>
                                             <th scope="col">Email</th>
                                             <th scope="col">Mobile</th>
                                             <th scope="col">Action</th>
@@ -47,8 +47,8 @@
                                         @foreach ($users as $user)
                                             <tr>
                                                 <th scope="row">{{ $user->employee_code }}</th>
-                                                <td>{{ $user->id }}</td>
-                                                <td>{!! $user->firstname !!} {!! $user->lastname !!}</td>                                                
+                                                <td>{{ $user->uid }}</td>
+                                                <td>{!! $user->firstname !!} {!! $user->lastname !!}</td>
                                                 <td>{{ $user->email }}</td>
                                                 <td>{{ $user->phone }}</td>
                                                 <td>
@@ -66,8 +66,8 @@
                                                             <input type='hidden' name='_method' value='DELETE'>
                                                         </form>
                                                         <button type="button" class="btn btn-warning change-password"
-                                                        data-bs-toggle="modal" data-bs-target="#modal-password" 
-                                                        data-uid="{{ $user->employee_code }}" 
+                                                        data-bs-toggle="modal" data-bs-target="#modal-password"
+                                                        data-uid="{{ $user->employee_code }}"
                                                         data-id="{{ $user->id }}"><i
                                                             class="uil uil-ellipsis-v"></i></button>
                                                     </div>
@@ -110,7 +110,7 @@
                         <div class="form-group mb-2 {{ $errors->has('new_password_confirmation') ? 'has-error' : '' }}">
                             <label for="new_password_confirmation">Confirm password *</label>
                             <input type="password" id="new_password_confirmation" name="new_password_confirmation"
-                                class="form-control" placeholder="Re-enter new password">                           
+                                class="form-control" placeholder="Re-enter new password">
                         </div>
                     </form>
                 </div>
@@ -149,7 +149,7 @@
                 var id = $(this).data('id');
                 var uid = $(this).data('uid');
                 $('#uid').text(uid);
-                $('#employee_code').val(uid);                
+                $('#employee_code').val(uid);
                 $('#id').val(id);
             });
     </script>
@@ -157,7 +157,7 @@
     <script>
         $(document).ready(function () {
             $('#modal-password').modal('show');
-        });       
+        });
     </script>
     @enderror
 @endpush
