@@ -116,6 +116,9 @@ class AssociatePartnerController extends Controller
             'phone'                    => $request->phone,
             'status'                   => $request->status,
             'reference'                => $request->reference,
+            'linked_associate_partner'          => $request->linked_associate_partner ? $request->linked_associate_partner : null,
+            'linked_associate_partner_id'          => $request->linked_associate_partner_id ? $request->linked_associate_partner_id : null,
+            'linked_employee_id'       => $request->linked_employee_id,
             'assigned_employee'        => $request->assigned_employee,
             'assigned_employee_department'        => $request->assigned_employee_department,
             'linked_employee_department'        => $request->linked_employee_department,
@@ -163,7 +166,7 @@ class AssociatePartnerController extends Controller
     public function edit($id)
     {
         $associate          = AssociatePartner::find($id);
-        $associate->sub_associate_partners = AssociatePartner::where('status', 'Sub AP')->get();
+        $associate->sub_associate_partners = AssociatePartner::where('status', 'Sub AP')->where('linked_associate_partner', $id)->get();
         $associate->service = $associate->type == 'vendor' ? VendorServiceType::where('associate_partner_id', $id)->first() :  SalesServiceType::where('associate_partner_id', $id)->first();
         $associates         = AssociatePartner::get();
         $users              = User::get();
@@ -264,6 +267,8 @@ class AssociatePartnerController extends Controller
             'pincode'                  => $request->pincode,
             'phone'                    => $request->phone,
             'status'                   => $request->status,
+            'linked_associate_partner'          => $request->linked_associate_partner ? $request->linked_associate_partner : null,
+            'linked_associate_partner_id'          => $request->linked_associate_partner_id ? $request->linked_associate_partner_id : null,
             'reference'                => $request->reference,
             'assigned_employee_department'        => $request->assigned_employee_department,
             'linked_employee_department'        => $request->linked_employee_department,
