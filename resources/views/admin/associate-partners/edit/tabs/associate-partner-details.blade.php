@@ -39,7 +39,7 @@
         <div class="col-md-6 mt-3">
             <label for="pan">PAN Number <span class="text-danger">*</span></label>
             <div class="input-group">
-                <input type="text" class="form-control" id="pan" name="pan" placeholder="Enter PAN no."
+                <input type="text" class="form-control" id="pan" name="pan" maxlength="10" placeholder="Enter PAN no."
                     value="{{ old('pan', $associate->pan) }}">
                     @isset($associate->panfile)
                         <a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->panfile) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
@@ -95,7 +95,7 @@
         </div>
 
         <div class="col-md-4 mt-2">
-            <input type="number" class="form-control" id="pincode" name="pincode" maxlength="10" placeholder="Pincode"
+            <input type="number" class="form-control" id="pincode" name="pincode" maxlength="6" placeholder="Pincode"
                 value="{{ old('pincode', $associate->pincode) }}">
             @error('pincode')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>

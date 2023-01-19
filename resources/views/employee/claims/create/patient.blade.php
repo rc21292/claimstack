@@ -103,7 +103,7 @@
                                 </div>
 
                                 <div class="col-md-4 mt-2">
-                                    <input type="number" class="form-control" id="pincode" name="pincode" maxlength="10"
+                                    <input type="number" class="form-control" id="pincode" name="pincode" maxlength="6"
                                         placeholder="Pincode" value="{{ old('pincode') }}">
                                     @error('pincode')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -210,7 +210,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="pan">Patient PAN Number <span class="text-danger">*</span></label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="pan" name="pan"
+                                        <input type="text" class="form-control" id="pan" name="pan" maxlength="10"
                                             placeholder="Enter Patient PAN no." value="{{ old('pan') }}">
                                         <input type="file" name="panfile" id="upload" hidden />
                                         <label for="upload" class="btn btn-primary upload-label"><i
