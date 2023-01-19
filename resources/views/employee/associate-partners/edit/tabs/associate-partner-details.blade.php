@@ -317,17 +317,11 @@
         <div class="col-md-6 mt-3">
             <label for="agreement_start_date">Associate Partner Agreement Start Date <span
                     class="text-danger">*</span></label>
-            <div class="input-group">
+
                 <input type="date" class="form-control" id="agreement_start_date" name="agreement_start_date"
                     placeholder="Associate partner agreement start date"
                     value="{{ old('agreement_start_date', $associate->agreement_start_date) }}">
-                    @isset($associate->moufile)
-                        <a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->moufile) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-                    @endisset
-                    <input type="file" name="agreementfile" id="agreementfile" hidden />
-                    <label for="agreementfile" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
 
-            </div>
             @error('agreement_start_date')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
