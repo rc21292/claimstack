@@ -22,7 +22,7 @@
         </div>
         @include('admin.sections.flash-message')
         <!-- end page title -->
-        
+
         <!-- start page content -->
         <div class="row">
             <div class="col-12">
@@ -60,6 +60,13 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="#sub_sales_partner_status" data-bs-toggle="tab" aria-expanded="false"
+                                        class="nav-link rounded-0">
+                                        <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                                        <span class="d-none d-md-block">Sub-Sales Partner Status</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="#sales_partner_reports" data-bs-toggle="tab" aria-expanded="false"
                                         class="nav-link rounded-0">
                                         <i class="mdi mdi-settings-outline d-md-none d-block"></i>
@@ -75,7 +82,7 @@
                             </div>
                             @if ($associate->type == 'vendor')
                                 <div class="tab-pane" id="vendor_partner_service_type">
-                                   @include('admin.associate-partners.edit.tabs.vendor-partner-service-type')
+                                    @include('admin.associate-partners.edit.tabs.vendor-partner-service-type')
                                 </div>
                                 <div class="tab-pane" id="vendor_partner_reports">
                                     @include('admin.associate-partners.edit.tabs.vendor-partner-reports')
@@ -83,6 +90,9 @@
                             @else
                                 <div class="tab-pane" id="sales_partner_service_type">
                                     @include('admin.associate-partners.edit.tabs.sales-partner-service-type')
+                                </div>
+                                <div class="tab-pane" id="sub_sales_partner_status">
+                                    @include('admin.associate-partners.edit.tabs.sub-sales-partner-status')
                                 </div>
                                 <div class="tab-pane" id="sales_partner_reports">
                                     @include('admin.associate-partners.edit.tabs.vendor-partner-reports')
@@ -95,3 +105,82 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        function setLinkedAssociatePartnerId() {
+            var linked_associate_partner = $("#linked_associate_partner").select2().find(":selected").data("id");
+            $('#linked_associate_partner_id').val(linked_associate_partner);
+        }
+
+        function setAssignedEmployeeId() {
+            var assigned_employee = $("#assigned_employee").select2().find(":selected").data("id");
+            $('#assigned_employee_id').val(assigned_employee);
+        }
+
+        function setLinkedWithEmployeeId() {
+            var linked_employee = $("#linked_employee").select2().find(":selected").data("id");
+            $('#linked_employee_id').val(linked_employee);
+        }
+    </script>
+    <script>
+        function loadLinkedEmployees() {
+            var department = $("#linked_employee_department").val();
+            if (!department) {
+                department = 'Operations'
+            }
+            var url = '{{ route('admin.get.employees', ':department') }}';
+            url = url.replace(':department', department);
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    $('#linked_employee').html(data)
+                    $('#linked_employee').val('{{ old('linked_employee', $associate->linked_employee) }}')
+                }
+            });
+        }
+    </script>
+    <script>
+        function loadAssignedEmployees() {
+            var department = $("#assigned_employee_department").val();
+            if (!department) {
+                department = 'Operations'
+            }
+            var url = '{{ route('admin.get.employees', ':department') }}';
+            url = url.replace(':department', department);
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    $('#assigned_employee').html(data)
+                    $('#assigned_employee').val('{{ old('assigned_employee', $associate->assigned_employee) }}')
+                }
+            });
+        }
+    </script>
+    <script>
+        $(document).ready(function() {
+            loadAssignedEmployees();
+            loadLinkedEmployees();
+        });
+    </script>
+    <script>
+        $("#mou").change(function() {
+            var value = $(this).val();
+            switch (value) {
+                case "no":
+                    document.getElementById("moufile").disabled = true;
+                    break;
+                case "yes":
+                    document.getElementById("moufile").disabled = false;
+                    break;
+                default:
+                    break;
+            }
+        });
+    </script>
+@endpush

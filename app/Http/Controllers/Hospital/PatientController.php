@@ -55,9 +55,9 @@ class PatientController extends Controller
     {
 
         $rules = [
-            'firstname'                => 'required|alpha_spaces',
+            'firstname'                => 'required|string',
             // 'uid'                      => 'required|unique:users',
-            'dob'              => 'required',           
+            'dob'              => 'required',
             'email'                    => 'required|unique:users',
             'mobile'                    => 'required|numeric|digits:10',
             'address'               => 'required',
@@ -66,8 +66,8 @@ class PatientController extends Controller
         $messages = [
             'firstname.required'             => 'Please enter firstname',
             // 'uid.required'                => 'Please enter employee code.',
-            'dob.required'                   => 'Please enter dob.',          
-            'email.required'                 => 'Please enter official mail ID.',         
+            'dob.required'                   => 'Please enter dob.',
+            'email.required'                 => 'Please enter official mail ID.',
             'mobile.required'                 => 'Please enter contact number.',
             'address.required'            => 'Please select address.',
         ];
@@ -103,7 +103,7 @@ class PatientController extends Controller
      */
     public function edit($id)
     {
-        // 
+        //
     }
 
     /**
@@ -115,7 +115,7 @@ class PatientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // 
+        //
     }
 
     /**
@@ -129,20 +129,20 @@ class PatientController extends Controller
         Patient::find($id)->delete();
         return redirect()->route('employee.users.index')->with('success', 'Patient deleted successfully');
     }
-   
+
 
     public function changePassword(Request $request)
     {
         $id = $request->id;
 
-        $this->validate($request, [          
+        $this->validate($request, [
             'new_password' => 'required|min:8|confirmed',
 
         ]);
 
         $user = Patient::find($id);
         $user->password = Hash::make($request->new_password);
-        $user->save();       
+        $user->save();
 
         return redirect()->back()->with('success', 'Password changed successfully');
     }

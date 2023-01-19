@@ -9,7 +9,7 @@
         </div>
 
         <div class="col-md-6 mt-1">
-            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Firstname"
+            <input type="text" class="form-control" id="firstname" name="firstname" maxlength="15" placeholder="Firstname"
                 value="{{ old('firstname', $associate->firstname) }}">
             @error('firstname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -17,7 +17,7 @@
         </div>
 
         <div class="col-md-6 mt-1">
-            <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Lastname"
+            <input type="text" class="form-control" id="lastname" name="lastname" maxlength="30" placeholder="Lastname"
                 value="{{ old('lastname', $associate->lastname) }}">
             @error('lastname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -39,7 +39,7 @@
         <div class="col-md-6 mt-3">
             <label for="pan">PAN Number <span class="text-danger">*</span></label>
             <div class="input-group">
-                <input type="text" class="form-control" id="pan" name="pan" placeholder="Enter PAN no."
+                <input type="text" class="form-control" id="pan" name="pan" maxlength="10" placeholder="Enter PAN no."
                     value="{{ old('pan', $associate->pan) }}">
                     @isset($associate->panfile)
                         <a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->panfile) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
@@ -56,7 +56,7 @@
         </div>
         <div class="col-md-6 mt-3">
             <label for="owner">Associate Partner Owner's Name <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="owner" name="owner"
+            <input type="text" class="form-control" id="owner" name="owner" maxlength="15"
                 placeholder="Enter associate partner owner's name" value="{{ old('owner', $associate->owner) }}">
             @error('owner')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -64,7 +64,7 @@
         </div>
         <div class="col-md-6 mt-3">
             <label for="owner">Official email ID <span class="text-danger">*</span></label>
-            <input type="email" class="form-control" id="email" name="email"
+            <input type="email" class="form-control" id="email" name="email" maxlength="30"
                 placeholder="Enter official emailID" value="{{ old('email', $associate->email) }}">
             @error('email')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -95,7 +95,7 @@
         </div>
 
         <div class="col-md-4 mt-2">
-            <input type="number" class="form-control" id="pincode" name="pincode" placeholder="Pincode"
+            <input type="number" class="form-control" id="pincode" name="pincode" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==6) return false;" placeholder="Pincode"
                 value="{{ old('pincode', $associate->pincode) }}">
             @error('pincode')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -103,8 +103,11 @@
         </div>
         <div class="col-md-6 mt-3">
             <label for="phone">Associate Partner Mobile Number <span class="text-danger">*</span></label>
-            <input type="number" class="form-control" id="phone" name="phone"
+            <div class="input-group">
+                <label class="input-group-text" for="phone">+91</label>
+            <input type="number" class="form-control" id="phone" name="phone"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"
                 placeholder="Enter associate partner mobile number" value="{{ old('phone', $associate->phone) }}">
+            </div>
             @error('phone')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
@@ -141,10 +144,10 @@
                     <option value="{{ $row->id }}"
                         {{ old('linked_associate_partner', $associate->linked_associate_partner) == $row->id ? 'selected' : '' }}
                         data-id="{{ $row->associate_partner_id }}">
-                        [<strong>Name: </strong>{{ $row->firstname }}{{ $row->lastname }}] 
+                        [<strong>Name: </strong>{{ $row->firstname }}{{ $row->lastname }}]
                         [<strong>UID: </strong>{{ $row->associate_partner_id }}]
                         [<strong>City: </strong>{{ $row->city }}]
-                        [<strong>State: </strong>{{ $row->state }}]     
+                        [<strong>State: </strong>{{ $row->state }}]
                     </option>
                 @endforeach
             </select>
@@ -161,19 +164,56 @@
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
+        <div class="col-md-12 mt-3">
+            <label for="assigned_employee_department">Assigned To Employee Department <span class="text-danger">*</span></label>
+            <select class="form-select" id="assigned_employee_department" name="assigned_employee_department"
+                onchange="loadAssignedEmployees()">
+                <option value="">Select Department</option>
+                <option value="Operations"
+                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Operations' ? 'selected' : '' }}>Operations
+                </option>
+                <option value="Sales" {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Sales' ? 'selected' : '' }}>Sales
+                </option>
+                <option value="Accounts" {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Accounts' ? 'selected' : '' }}>
+                    Accounts
+                </option>
+                <option value="Analytics & MIS"
+                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Analytics & MIS' ? 'selected' : '' }}>Analytics & MIS
+                </option>
+                <option value="IT" {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'IT' ? 'selected' : '' }}>IT
+                </option>
+                <option value="Product Management"
+                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Product Management' ? 'selected' : '' }}>Product
+                    Management
+                </option>
+                <option value="Provider management"
+                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Provider management' ? 'selected' : '' }}>Provider
+                    management
+                </option>
+                <option value="Insurance"
+                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Insurance' ? 'selected' : '' }}>Insurance
+                </option>
+                <option value="Claims Processing"
+                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Claims Processing' ? 'selected' : '' }}>Claims
+                    Processing
+                </option>
+                <option value="Cashless" {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Cashless' ? 'selected' : '' }}>
+                    Cashless
+                </option>
+                <option value="Lending" {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Lending' ? 'selected' : '' }}>
+                    Lending
+                </option>
+            </select>
+            @error('assigned_employee_department')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
         <div class="col-md-6 mt-3">
             <label for="assigned_employee">Assigned To Employee Name <span class="text-danger">*</span></label>
             <select class="form-control select2" id="assigned_employee" name="assigned_employee"
                 data-toggle="select2" onchange="setAssignedEmployeeId()">
                 <option value="">Select Assigned To Employee</option>
-                @foreach ($users as $user)
-                    <option value="{{ $user->id }}"
-                        {{ old('assigned_employee', $associate->assigned_employee) == $user->id ? 'selected' : '' }}
-                        data-id="{{ $user->employee_code }}">
-                        [<strong>Name: </strong>{{ $user->firstname }}{{ $user->lastname }}] 
-                                                [<strong>UID: </strong>{{ $user->employee_code }}]
-                                                [<strong>Department: </strong>{{ $user->department }}]</option>
-                @endforeach
+
             </select>
             @error('assigned_employee')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -188,19 +228,56 @@
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
+        <div class="col-md-12 mt-3">
+            <label for="linked_employee_department">Linked With Employee Department <span class="text-danger">*</span></label>
+            <select class="form-select" id="linked_employee_department" name="linked_employee_department"
+                onchange="loadLinkedEmployees()">
+                <option value="">Select Department</option>
+                <option value="Operations"
+                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Operations' ? 'selected' : '' }}>Operations
+                </option>
+                <option value="Sales" {{ old('linked_employee_department', $associate->linked_employee_department) == 'Sales' ? 'selected' : '' }}>Sales
+                </option>
+                <option value="Accounts" {{ old('linked_employee_department', $associate->linked_employee_department) == 'Accounts' ? 'selected' : '' }}>
+                    Accounts
+                </option>
+                <option value="Analytics & MIS"
+                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Analytics & MIS' ? 'selected' : '' }}>Analytics & MIS
+                </option>
+                <option value="IT" {{ old('linked_employee_department', $associate->linked_employee_department) == 'IT' ? 'selected' : '' }}>IT
+                </option>
+                <option value="Product Management"
+                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Product Management' ? 'selected' : '' }}>Product
+                    Management
+                </option>
+                <option value="Provider management"
+                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Provider management' ? 'selected' : '' }}>Provider
+                    management
+                </option>
+                <option value="Insurance"
+                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Insurance' ? 'selected' : '' }}>Insurance
+                </option>
+                <option value="Claims Processing"
+                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Claims Processing' ? 'selected' : '' }}>Claims
+                    Processing
+                </option>
+                <option value="Cashless" {{ old('linked_employee_department', $associate->linked_employee_department) == 'Cashless' ? 'selected' : '' }}>
+                    Cashless
+                </option>
+                <option value="Lending" {{ old('linked_employee_department', $associate->linked_employee_department) == 'Lending' ? 'selected' : '' }}>
+                    Lending
+                </option>
+            </select>
+            @error('linked_employee_department')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
         <div class="col-md-6 mt-3">
             <label for="linked_employee">Linked With Employee Name <span class="text-danger">*</span></label>
             <select class="form-control select2" id="linked_employee" name="linked_employee" data-toggle="select2"
                 onchange="setLinkedWithEmployeeId()">
                 <option value="">Select Linked With Employee</option>
-                @foreach ($users as $user)
-                    <option value="{{ $user->id }}"
-                        {{ old('linked_employee', $associate->linked_employee) == $user->id ? 'selected' : '' }}
-                        data-id="{{ $user->employee_code }}">
-                        [<strong>Name: </strong>{{ $user->firstname }}{{ $user->lastname }}] 
-                                                [<strong>UID: </strong>{{ $user->employee_code }}]
-                                                [<strong>Department: </strong>{{ $user->department }}]</option>
-                @endforeach
+
             </select>
             @error('linked_employee')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -241,17 +318,11 @@
         <div class="col-md-6 mt-3">
             <label for="agreement_start_date">Associate Partner Agreement Start Date <span
                     class="text-danger">*</span></label>
-            <div class="input-group">
+
                 <input type="date" class="form-control" id="agreement_start_date" name="agreement_start_date"
                     placeholder="Associate partner agreement start date"
                     value="{{ old('agreement_start_date', $associate->agreement_start_date) }}">
-                    @isset($associate->agreementfile)
-                        <a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->agreementfile) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-                    @endisset
-                    <input type="file" name="agreementfile" id="agreementfile" hidden />
-                    <label for="agreementfile" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
-                
-            </div>
+
             @error('agreement_start_date')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
@@ -279,9 +350,12 @@
         <div class="col-md-6 mt-3">
             <label for="contact_person_phone">Associate Partner Contact Person's Mobile No. <span
                     class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="contact_person_phone" name="contact_person_phone"
+                    <div class="input-group">
+                        <label class="input-group-text" for="phone">+91</label>
+            <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" class="form-control" id="contact_person_phone" name="contact_person_phone"
                 placeholder="Associate partner contact person's mobile no."
                 value="{{ old('contact_person_phone', $associate->contact_person_phone) }}">
+                    </div>
             @error('contact_person_phone')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
@@ -297,8 +371,67 @@
             @enderror
         </div>
         <div class="col-md-12 mt-3">
-            <label for="comments">Comments </label>
-            <textarea class="form-control" id="comments" name="comments" placeholder="Comments" rows="4">{{ old('comments', $associate->comments) }}</textarea>
+            <label for="address">Hospital Bank Details <span class="text-danger">*</span></label>
+        </div>
+        <div class="col-md-4 mt-2">
+            <input type="text" class="form-control" id="bank_name" name="bank_name" maxlength="45"
+                placeholder="Bank Name" value="{{ old('bank_name', $associate->bank_name) }}">
+            @error('bank_name')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div class="col-md-4 mt-2">
+            <input type="text" class="form-control" id="bank_address" name="bank_address" maxlength="80"
+                placeholder="Bank Address" value="{{ old('bank_address', $associate->bank_address) }}">
+            @error('bank_address')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div class="col-md-3 mt-2">
+            <select class="form-select" id="cancel_cheque" name="cancel_cheque">
+                <option value="">Cancel Cheque</option>
+                <option value="Yes" {{ old('cancel_cheque', $associate->cancel_cheque) == 'Yes' ? 'selected' : '' }}>Yes
+                </option>
+                <option value="No"
+                    {{ old('cancel_cheque', $associate->cancel_cheque) == 'No' ? 'selected' : '' }}>No
+                </option>
+            </select>
+
+            @error('cancel_cheque')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div class="col-md-1 mt-2">
+                <input type="file" name="cancel_cheque_file" id="cupload" hidden />
+                <label for="cupload" class="btn btn-primary upload-label"><i
+                        class="mdi mdi-upload"></i></label>
+            @error('cancel_cheque_file')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+
+
+        <div class="col-md-6 mt-3">
+            <input type="number" class="form-control" id="bank_account_no" name="bank_account_no" maxlength="20"
+                placeholder="Bank Account No." value="{{ old('bank_account_no', $associate->bank_account_no) }}">
+            @error('bank_account_no')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div class="col-md-6 mt-3">
+            <input type="text" class="form-control" id="bank_ifs_code" name="bank_ifs_code" maxlength="11"
+                placeholder="Bank IFSC Code" value="{{ old('bank_ifs_code', $associate->bank_ifs_code) }}">
+            @error('bank_ifs_code')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="col-md-12 mt-3">
+            <label for="comments">Associate Partner Comments </label>
+            <textarea class="form-control" id="comments" name="comments" maxlength="250" placeholder="Comments" rows="4">{{ old('comments', $associate->comments) }}</textarea>
             @error('comments')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror

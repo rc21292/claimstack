@@ -40,14 +40,15 @@
 
                                 <div class="col-md-6 mt-1">
                                     <input type="text" class="form-control" id="firstname" name="firstname"
-                                        placeholder="Firstname" value="{{ old('firstname', $user->firstname) }}">
+                                        maxlength="15" placeholder="Firstname"
+                                        value="{{ old('firstname', $user->firstname) }}">
                                     @error('firstname')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
 
                                 <div class="col-md-6 mt-1">
-                                    <input type="text" class="form-control" id="lastname" name="lastname"
+                                    <input type="text" class="form-control" id="lastname" name="lastname" maxlength="30"
                                         placeholder="Lastname" value="{{ old('lastname', $user->lastname) }}">
                                     @error('lastname')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -55,9 +56,8 @@
                                 </div>
                                 <div class="col-md-6 mt-3">
                                     <label for="uid">Employee Code <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="uid" name="uid"
-                                        placeholder="Enter employee code"
-                                        value="{{ old('uid', $user->uid) }}">
+                                    <input type="text" class="form-control" id="uid" name="uid" maxlength="8"
+                                        placeholder="Enter employee code" value="{{ old('uid', $user->uid) }}">
                                     @error('uid')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -65,7 +65,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="designation">Designation <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="designation" name="designation"
-                                        placeholder="Enter designation"
+                                        maxlength="30" placeholder="Enter designation"
                                         value="{{ old('designation', $user->designation) }}">
                                     @error('designation')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -74,7 +74,7 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="owner">Official Mail ID <span class="text-danger">*</span></label>
-                                    <input type="email" class="form-control" id="email" name="email"
+                                    <input type="email" class="form-control" id="email" name="email" maxlength="30"
                                         placeholder="Enter official mail ID" value="{{ old('email', $user->email) }}">
                                     @error('email')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -83,45 +83,19 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="phone">Contact Number <span class="text-danger">*</span></label>
-                                    <input type="number" class="form-control" id="phone" name="phone"
-                                        placeholder="Enter contact number" value="{{ old('phone', $user->phone) }}">
+                                    <div class="input-group">
+                                        <label class="input-group-text" for="phone">+91</label>
+                                        <input type="number" class="form-control" id="phone" name="phone"
+                                            pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"
+                                            placeholder="Enter contact number" value="{{ old('phone', $user->phone) }}">
+                                    </div>
                                     @error('phone')
-                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="col-md-6 mt-3">
-                                    <label for="linked_employee">Linked With Employee Name <span
-                                            class="text-danger">*</span></label>
-                                    <select class="form-control select2" id="linked_employee" name="linked_employee"
-                                        data-toggle="select2" onchange="setLinkedWithEmployeeId()">
-                                        <option value="">Select Linked With Employee</option>
-                                        @foreach ($users as $row)
-                                            <option value="{{ $row->id }}"
-                                                {{ old('linked_employee', $user->linked_employee) == $row->id ? 'selected' : '' }}
-                                                data-id="{{ $row->employee_code }}">
-                                                [<strong>Name: </strong>{{ $row->firstname }}{{ $row->lastname }}] 
-                                                [<strong>UID: </strong>{{ $row->employee_code }}]
-                                                [<strong>Department: </strong>{{ $row->department }}]
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('linked_employee')
-                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="col-md-6 mt-3">
-                                    <label for="linked_employee_id">Linked With Employee ID <span
-                                            class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="linked_employee_id"
-                                        name="linked_employee_id" placeholder="Enter linked with employee ID"
-                                        value="{{ old('linked_employee_id', $user->linked_employee_id) }}">
-                                    @error('linked_employee_id')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="col-md-12 mt-3">
                                     <label for="department">Department <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="department" name="department">
+                                    <select class="form-select" id="department" name="department" onchange="loadEmployees()">
                                         <option value="">Select Department</option>
                                         <option value="Operations"
                                             {{ old('department', $user->department) == 'Operations' ? 'selected' : '' }}>
@@ -169,10 +143,32 @@
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
+                                <div class="col-md-6 mt-3">
+                                    <label for="linked_employee">Linked With Employee Name <span
+                                            class="text-danger">*</span></label>
+                                    <select class="form-control select2" id="linked_employee" name="linked_employee"
+                                        data-toggle="select2" onchange="setLinkedWithEmployeeId()">
+                                        <option value="">Select Linked With Employee</option>
+                                    </select>
+                                    @error('linked_employee')
+                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6 mt-3">
+                                    <label for="linked_employee_id">Linked With Employee ID <span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="linked_employee_id"
+                                        name="linked_employee_id" placeholder="Enter linked with employee ID"
+                                        value="{{ old('linked_employee_id', $user->linked_employee_id) }}">
+                                    @error('linked_employee_id')
+                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
                                 <div class="col-md-12 mt-3">
                                     <label for="kra">KRA <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="kra" name="kra"
-                                        placeholder="Enter kra" value="{{ old('kra', $user->kra) }}">
+                                        maxlength="40" placeholder="Enter kra" value="{{ old('kra', $user->kra) }}">
                                     @error('kra')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -204,4 +200,26 @@
             $('#linked_employee_id').val(linked_employee);
         }
     </script>
+        <script>
+            function loadEmployees(){
+                var department  = $("#department").val();
+                var url         = '{{ route("hospital.get.employees", ":department") }}';
+                url             = url.replace(':department', department);
+
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                       $('#linked_employee').html(data)
+                       $('#linked_employee').val('{{ old("linked_employee", $user->linked_employee) }}')
+                    }
+                });
+            }
+        </script>
+        <script>
+            $(document).ready(function () {
+                loadEmployees();
+            });
+        </script>
 @endpush

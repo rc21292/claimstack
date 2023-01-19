@@ -35,7 +35,7 @@ class AssociatePartnerController extends Controller
             $associates->where(DB::raw("concat(firstname, ' ', lastname)"), 'like','%' . $filter_search . '%');
         }
         $associates = $associates->orderBy('id', 'desc')->paginate(20);
-        return view('hospital.associate-partners.manage',  compact('associates', 'filter_search'));       
+        return view('hospital.associate-partners.manage',  compact('associates', 'filter_search'));
     }
 
     /**
@@ -47,7 +47,7 @@ class AssociatePartnerController extends Controller
     {
         $associates = AssociatePartner::get();
         $users      = User::get();
-        
+
         return view('hospital.associate-partners.create.create',  compact('associates', 'users'));
     }
 
@@ -62,14 +62,14 @@ class AssociatePartnerController extends Controller
         $rules = [
             'firstname'                => 'required',
             'type'                     => 'required',
-            'pan'                      => 'required',
+            'pan'                      => 'required|alpha_num',
             'panfile'                  => 'required',
             'owner'                    => 'required',
             'email'                    => 'required|unique:associate_partners',
             'address'                  => 'required',
             'city'                     => 'required',
             'state'                    => 'required',
-            'pincode'                  => 'required',
+            'pincode'                  => 'required|numeric',
             'phone'                    => 'required|numeric|digits:10',
             'status'                   => 'required',
             'reference'                => 'required',
@@ -118,6 +118,8 @@ class AssociatePartnerController extends Controller
             'reference'                => $request->reference,
             'assigned_employee'        => $request->assigned_employee,
             'assigned_employee_id'     => $request->assigned_employee_id,
+            'assigned_employee_department'        => $request->assigned_employee_department,
+            'linked_employee_department'        => $request->linked_employee_department,
             'linked_employee'          => $request->linked_employee,
             'linked_employee_id'       => $request->linked_employee_id
         ]);
@@ -149,7 +151,7 @@ class AssociatePartnerController extends Controller
      */
     public function show($id)
     {
-        //        
+        //
     }
 
     /**
@@ -161,6 +163,7 @@ class AssociatePartnerController extends Controller
     public function edit($id)
     {
         $associate          = AssociatePartner::find($id);
+        $associate->sub_associate_partners = AssociatePartner::where('status', 'Sub AP')->get();
         $associate->service = $associate->type == 'vendor' ? VendorServiceType::where('associate_partner_id', $id)->first() :  SalesServiceType::where('associate_partner_id', $id)->first();
         $associates         = AssociatePartner::get();
         $users              = User::get();
@@ -181,28 +184,35 @@ class AssociatePartnerController extends Controller
         $rules = [
             'firstname'                => 'required',
             'type'                     => 'required',
-            'pan'                      => 'required',
+            'pan'                      => 'required|alpha_num',
             'panfile'                  =>  isset($associate_partner->panfile) ? '' : 'required',
             'owner'                    => 'required',
-            'email'                    => 'required|unique:associate_partners,email,'.$id,     
+            'email'                    => 'required|unique:associate_partners,email,'.$id,
             'address'                  => 'required',
             'city'                     => 'required',
             'state'                    => 'required',
-            'pincode'                  => 'required',
+            'pincode'                  => 'required|numeric',
             'phone'                    => 'required|numeric|digits:10',
             'status'                   => 'required',
             'reference'                => 'required',
             'assigned_employee'        => 'required',
             'assigned_employee_id'     => 'required',
+            'assigned_employee_department'        => 'required',
+            'linked_employee_department'        => 'required',
             'linked_employee'          => 'required',
             'linked_employee_id'       => 'required',
             'mou'                      => 'required',
             'moufile'                  => $request->mou == 'yes' ? 'required' : '',
             'agreement_start_date'     => 'required',
-            'agreement_end_date'       => 'required',
+            'agreement_end_date'       => 'required|after:agreement_start_date',
             'contact_person'           => 'required',
             'contact_person_phone'     => 'required',
             'contact_person_email'     => 'required',
+            'bank_name'                => 'required',
+            'bank_address'             => 'required',
+            'cancel_cheque'            => 'required',
+            'bank_account_no'          => 'required',
+            'bank_ifs_code'            => 'required',
         ];
 
         $messages = [
@@ -221,15 +231,22 @@ class AssociatePartnerController extends Controller
             'reference.required'             => 'Please enter reference',
             'assigned_employee.required'     => 'Please select assigned employee.',
             'assigned_employee_id.required'  => 'Please enter assigned employee ID.',
+            'assigned_employee_department.required'  => 'Please select assigned to employee department.',
+            'linked_employee_department.required'  => 'Please select linked with employee department.',
             'linked_employee.required'       => 'Please select linked employee.',
             'linked_employee_id.required'    => 'Please enter linked employee ID.',
-            'mou'                           => 'Please select MOU',
-            'moufile'                       => 'Please upload MOU File',
-            'agreement_start_date'          => 'Please select agreement start date',
-            'agreement_end_date'            => 'Please select agreement end date',
-            'contact_person'                => 'Please enter contact person name.',
-            'contact_person_phone'          => 'Please enter contact person phone.',
-            'contact_person_email'          => 'Please enter contact person email.',
+            'mou.required'                   => 'Please select MOU',
+            'moufile.required'               => 'Please upload MOU File',
+            'agreement_start_date.required'  => 'Please select agreement start date',
+            'agreement_end_date.required'    => 'Please select agreement end date',
+            'contact_person.required'        => 'Please enter contact person name.',
+            'contact_person_phone.required'  => 'Please enter contact person phone.',
+            'contact_person_email.required'  => 'Please enter contact person email.',
+            'bank_name.required'             => 'Please Enter Bank Name',
+            'bank_address.required'          => 'Please Enter Bank Address',
+            'cancel_cheque.required'         => 'Please Enter Cancel Cheque',
+            'bank_account_no.required'       => 'Please Enter Bank Account No',
+            'bank_ifs_code.required'         => 'Please Enter Bank Ifs Code',
         ];
 
         $this->validate($request, $rules, $messages);
@@ -250,6 +267,8 @@ class AssociatePartnerController extends Controller
             'reference'                => $request->reference,
             'assigned_employee'        => $request->assigned_employee,
             'assigned_employee_id'     => $request->assigned_employee_id,
+            'assigned_employee_department'        => $request->assigned_employee_department,
+            'linked_employee_department'        => $request->linked_employee_department,
             'linked_employee'          => $request->linked_employee,
             'linked_employee_id'       => $request->linked_employee_id,
             'mou'                      => $request->mou,
@@ -258,6 +277,11 @@ class AssociatePartnerController extends Controller
             'contact_person'           => $request->contact_person,
             'contact_person_phone'     => $request->contact_person_phone,
             'contact_person_email'     => $request->contact_person_email,
+            'bank_name'                => $request->bank_name,
+            'bank_address'             => $request->bank_address,
+            'cancel_cheque'            => $request->cancel_cheque,
+            'bank_account_no'          => $request->bank_account_no,
+            'bank_ifs_code'            => $request->bank_ifs_code,
             'comments'                 => $request->comments,
         ]);
 
@@ -291,6 +315,15 @@ class AssociatePartnerController extends Controller
             $agreementfile->storeAs('uploads/associate-partners/' . $id . '/', $name, 'public');
             AssociatePartner::where('id', $id)->update([
                 'agreementfile'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('cancel_cheque_file')) {
+            $cancel_cheque_file                    = $request->file('cancel_cheque_file');
+            $name                       = $cancel_cheque_file->getClientOriginalName();
+            $cancel_cheque_file->storeAs('uploads/associate-partners/' . $id . '/', $name, 'public');
+            AssociatePartner::where('id', $id)->update([
+                'cancel_cheque_file'               =>  $name
             ]);
         }
 

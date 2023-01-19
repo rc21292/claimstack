@@ -21,19 +21,19 @@ class UserSeed extends Seeder
     {
         $faker = app(Generator::class);
 
-        for ($i = 1; $i < 101; $i++) {
+        for ($i = 1; $i < 61; $i++) {
             $user = User::create([
                 'firstname' => $faker->firstname(),
                 'lastname' => $faker->lastname(),
                 'email' => $i == 1 ? 'user@claimstack.com' : $faker->unique()->safeEmail(),
                 'uid' => $i,
-                'employee_code' => 'EMP0' . $i,
+                'employee_code' => 'EMP' . $i,
                 'designation' => 'Employee',
-                'department' => $faker->randomElement(['Operations', 'Sales', 'Accounts', 'Lending', 'IT', 'Insurance']),
-                'phone' => $faker->numerify('9#########'),              
+                'department' => $faker->randomElement(['Operations', 'Sales', 'Accounts', 'Lending', 'IT', 'Insurance', 'Analytics & MIS', 'Product Management', 'Provider management', 'Claims Processing', 'Claims Processing']),
+                'phone' => $faker->numerify('9#########'),
                 'kra' => Str::upper(Str::random(8)),
                 'email_verified_at' => Carbon::now(),
-                'password' => Hash::make('password')              
+                'password' => Hash::make('password')
             ]);
             $user->assignRole('user');
              $role = Role::where('name', 'user')->with('permissions')->first();
@@ -41,9 +41,9 @@ class UserSeed extends Seeder
                  $user->givePermissionTo($permission);
             }
         }
-        $admins = User::get(['id', 'employee_code']);
+        $admins = User::get(['id', 'employee_code', 'department']);
         foreach ($admins as $admin) {
-            $part  = User::inRandomOrder()->first();
+            $part  = User::where('department', $admin->department)->first();
             User::where('id', $admin->id)->update([
                 'linked_employee' => $part->id,
                 'linked_employee_id' => $part->employee_code

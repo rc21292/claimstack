@@ -24,7 +24,7 @@ class PatientSeed extends Seeder
         $faker = app(Generator::class);
         $user  = User::inRandomOrder()->first();
         $ap  = AssociatePartner::inRandomOrder()->first();
-        for ($i = 1; $i < 101; $i++) {
+        for ($i = 1; $i < 10; $i++) {
             Patient::create([
                 'firstname' => $faker->firstname(),
                 'lastname' => $faker->lastname(),
@@ -42,7 +42,7 @@ class PatientSeed extends Seeder
                 'hospital_pincode' => $faker->postcode,
                 'associate_partner_id' => $ap->id,
                 'hospital_id' => $user->id,
-                'email' =>  $i == 1 ? 'employee@claimstack.com' : $faker->unique()->safeEmail(),
+                'email' =>  $i == 1 ? 'patient@claimstack.com' : $faker->unique()->safeEmail(),
                 'mobile' => $faker->numerify('9#########')
             ]);
         }

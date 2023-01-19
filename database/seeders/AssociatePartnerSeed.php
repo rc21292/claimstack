@@ -24,7 +24,7 @@ class AssociatePartnerSeed extends Seeder
     {
         $faker = app(Generator::class);
         $user  = User::inRandomOrder()->first();
-        for ($i = 1; $i < 101; $i++) {
+        for ($i = 1; $i < 60; $i++) {
             AssociatePartner::create([
                 'firstname' => $faker->firstname(),
                 'lastname' => $faker->lastname(),
@@ -39,8 +39,10 @@ class AssociatePartnerSeed extends Seeder
                 'phone' => $faker->numerify('9#########'),
                 'reference' => 'Refereed By Admin',
                 'status' => $faker->randomElement(['Main', 'Sub AP', 'Agency']),
+                'assigned_employee_department' => $user->department,
                 'assigned_employee' => $user->id,
                 'assigned_employee_id' => $user->employee_code,
+                'linked_employee_department' => $user->department,
                 'linked_employee' => $user->id,
                 'linked_employee_id' => $user->employee_code,
                 'mou' => $faker->randomElement(['yes', 'no']),
@@ -49,6 +51,11 @@ class AssociatePartnerSeed extends Seeder
                 'contact_person' => $faker->name(),
                 'contact_person_phone' => $faker->numerify('9#########'),
                 'contact_person_email' => $faker->unique()->safeEmail(),
+                'bank_name' =>  $faker->randomElement(['Punjab National Bank', 'State Bank of India', 'Axis Bank', 'HDFC Bank', 'ICICI Bank']),
+                'bank_address' => $faker->address,
+                'bank_account_no' => $faker->numerify('4#7###8###0#'),
+                'bank_ifs_code' => 'IFSC'.$faker->numerify('9###2##'),
+                'cancel_cheque' => $faker->randomElement(['Yes', 'No']),
                 'comments' => $faker->realText($maxNbChars = 200, $indexSize = 2),
                 'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('password')

@@ -44,9 +44,9 @@ class AdminController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();    
+        $user = Auth::user();
         $role = Role::where('name', 'admin')->with('permissions')->first();
-        $permissions =  $role->permissions;  
+        $permissions =  $role->permissions;
         $admins = Admin::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code', 'department']);
         $users  = User::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code', 'department']);
         return view('hospital.admins.create.create',  compact('admins', 'users', 'permissions'));
@@ -61,13 +61,14 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'firstname'                => 'required|alpha_spaces',
-            'uid'                      => 'required|unique:admins',
-            'designation'              => 'required|alpha_spaces',     
-            'email'                    => 'required|unique:admins',           
+            'firstname'                => 'required|string|max:15',
+            'lastname'                 => isset($request->lastname) ? 'string|max:30' : '',
+            'uid'                      => 'required|unique:admins|unique:users|string|max:8',
+            'designation'              => 'required|string|max:30',
+            'email'                    => 'required|email|unique:admins|unique:users|unique:hospitals|unique:associate_partners|unique:employees',
             'phone'                    => 'required|numeric|digits:10',
             'department'               => 'required',
-            'kra'                      => 'required|alpha_spaces',
+            'kra'                      =>  'required|string|max:40',
             'linked_employee'          => 'required',
             'linked_employee_id'       => 'required',
         ];
@@ -75,11 +76,12 @@ class AdminController extends Controller
         $messages = [
             'firstname.required'             => 'Please enter firstname',
             'uid.required'                   => 'Please enter employee code.',
-            'designation.required'           => 'Please enter designation.',          
-            'email.required'                 => 'Please enter official mail ID.',         
+'uid.unique'                   => 'This Employee Code is already taken.',
+            'designation.required'           => 'Please enter designation.',
+            'email.required'                 => 'Please enter official mail ID.',
             'phone.required'                 => 'Please enter contact number.',
             'department.required'            => 'Please select department.',
-            'kra.required'                   => 'Please enter KRA',           
+            'kra.required'                   => 'Please enter KRA',
             'linked_employee.required'       => 'Please select linked employee.',
             'linked_employee_id.required'    => 'Please enter linked employee ID.',
         ];
@@ -91,7 +93,7 @@ class AdminController extends Controller
             'lastname'            =>  $request->lastname,
             'uid'                 =>  $request->uid,
             'employee_code'       =>  'EMP'.$request->uid,
-            'designation'         =>  $request->designation,           
+            'designation'         =>  $request->designation,
             'email'               =>  $request->email,
             'phone'               =>  $request->phone,
             'password'            =>  Hash::make('12345678'),
@@ -100,7 +102,7 @@ class AdminController extends Controller
             'linked_employee'     =>  $request->linked_employee,
             'linked_employee_id'  =>  $request->linked_employee_id
         ]);
-        
+
         $admin->assignRole('admin');
 
         $perm_admin = Admin::find($admin->id);
@@ -134,7 +136,7 @@ class AdminController extends Controller
         $admin  = Admin::find($id);
         $admin->permissions = $admin->getPermissionNames()->toArray();
         $role = Role::where('name', 'admin')->with('permissions')->first();
-        $permissions =  $role->permissions;       
+        $permissions =  $role->permissions;
         $admins = Admin::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code', 'department']);
         $users  = User::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'employee_code', 'department']);
         return view('hospital.admins.edit.edit',  compact('admins', 'users', 'admin', 'permissions'));
@@ -150,13 +152,14 @@ class AdminController extends Controller
     public function update(Request $request, $id)
     {
         $rules = [
-            'firstname'                => 'required|alpha_spaces',
-            'uid'                      => 'required|unique:admins,uid,'.$id,
-            'designation'              => 'required|alpha_spaces',        
-            'email'                    => 'required|unique:admins,email,'.$id,           
+            'firstname'                => 'required|string|max:15',
+            'lastname'                 => isset($request->lastname) ? 'string|max:30' : '',
+            'uid'                      => 'required|string|max:8|unique:users|unique:admins,uid,'.$id,
+            'designation'              => 'required|string|max:30',
+            'email'                    => 'required|email|unique:users|unique:hospitals|unique:associate_partners|unique:employees|unique:admins,email,'.$id,
             'phone'                    => 'required|numeric|digits:10',
             'department'               => 'required',
-            'kra'                      => 'required|alpha_spaces',
+            'kra'                      =>  'required|string|max:40',
             'linked_employee'          => 'required',
             'linked_employee_id'       => 'required',
         ];
@@ -164,11 +167,12 @@ class AdminController extends Controller
         $messages = [
             'firstname.required'             => 'Please enter firstname',
             'uid.required'                   => 'Please enter employee code.',
-            'designation.required'           => 'Please enter designation.',          
-            'email.required'                 => 'Please enter official mail ID.',         
+'uid.unique'                   => 'This Employee Code is already taken.',
+            'designation.required'           => 'Please enter designation.',
+            'email.required'                 => 'Please enter official mail ID.',
             'phone.required'                 => 'Please enter contact number.',
             'department.required'            => 'Please select department.',
-            'kra.required'                   => 'Please enter KRA',           
+            'kra.required'                   => 'Please enter KRA',
             'linked_employee.required'       => 'Please select linked employee.',
             'linked_employee_id.required'    => 'Please enter linked employee ID.',
         ];
@@ -180,7 +184,7 @@ class AdminController extends Controller
             'lastname'            =>  $request->lastname,
             'uid'                 =>  $request->uid,
             'employee_code'       =>  'EMP'.$request->uid,
-            'designation'         =>  $request->designation,           
+            'designation'         =>  $request->designation,
             'email'               =>  $request->email,
             'phone'               =>  $request->phone,
             'department'          =>  $request->department,
@@ -223,14 +227,14 @@ class AdminController extends Controller
     {
         $id = $request->id;
 
-        $this->validate($request, [          
+        $this->validate($request, [
             'new_password' => 'required|min:8|confirmed',
 
         ]);
 
         $user = Admin::find($id);
         $user->password = Hash::make($request->new_password);
-        $user->save();       
+        $user->save();
 
         return redirect()->back()->with('success', 'Password changed successfully');
     }

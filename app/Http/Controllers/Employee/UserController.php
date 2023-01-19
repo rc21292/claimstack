@@ -56,13 +56,14 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'firstname'                => 'required|alpha_spaces',
-            'uid'                      => 'required|unique:users',
-            'designation'              => 'required|alpha_spaces',           
-            'email'                    => 'required|unique:users',
+            'firstname'                => 'required|string|max:15',
+            'lastname'                 => isset($request->lastname) ? 'string|max:30' : '',
+            'uid'                      => 'required|unique:admins|unique:users|string|max:8',
+            'designation'              => 'required|string|max:30',
+            'email'                    => 'required|email|unique:admins|unique:users|unique:hospitals|unique:associate_partners|unique:employees',
             'phone'                    => 'required|numeric|digits:10',
             'department'               => 'required',
-            'kra'                      => 'required|alpha_spaces',
+            'kra'                      =>  'required|string|max:40',
             'linked_employee'          => 'required',
             'linked_employee_id'       => 'required',
         ];
@@ -70,11 +71,12 @@ class UserController extends Controller
         $messages = [
             'firstname.required'             => 'Please enter firstname',
             'uid.required'                   => 'Please enter employee code.',
-            'designation.required'           => 'Please enter designation.',          
-            'email.required'                 => 'Please enter official mail ID.',         
+'uid.unique'                   => 'This Employee Code is already taken.',
+            'designation.required'           => 'Please enter designation.',
+            'email.required'                 => 'Please enter official mail ID.',
             'phone.required'                 => 'Please enter contact number.',
             'department.required'            => 'Please select department.',
-            'kra.required'                   => 'Please enter KRA',           
+            'kra.required'                   => 'Please enter KRA',
             'linked_employee.required'       => 'Please select linked employee.',
             'linked_employee_id.required'    => 'Please enter linked employee ID.',
         ];
@@ -86,7 +88,7 @@ class UserController extends Controller
             'lastname'            =>  $request->lastname,
             'uid'                 =>  $request->uid,
             'employee_code'       =>  'EMP'.$request->uid,
-            'designation'         =>  $request->designation,           
+            'designation'         =>  $request->designation,
             'email'               =>  $request->email,
             'phone'               =>  $request->phone,
             'password'            =>  Hash::make('12345678'),
@@ -101,7 +103,7 @@ class UserController extends Controller
         $perm_user->syncPermissions($request->permission);
         $password = '12345678';
         $user->notify(new CredentialsGeneratedNotification($user->email, $password, $user));
-        
+
 
         return redirect()->route('employee.users.index')->with('success', 'User created successfully');
     }
@@ -144,13 +146,14 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $rules = [
-            'firstname'                => 'required|alpha_spaces',
-            'uid'                      => 'required|unique:users,uid,'.$id,
-            'designation'              => 'required|alpha_spaces',      
-            'email'                    => 'required|unique:users,email,'.$id,           
+            'firstname'                => 'required|string|max:15',
+            'lastname'                 => isset($request->lastname) ? 'string|max:30' : '',
+            'uid'                      => 'required|string|max:8|unique:admins|unique:users,uid,'.$id,
+            'designation'              => 'required|string|max:30',
+            'email'                    => 'required|email|unique:admins|unique:hospitals|unique:associate_partners|unique:employees|unique:users,email,'.$id,
             'phone'                    => 'required|numeric|digits:10',
             'department'               => 'required',
-            'kra'                      => 'required|alpha_spaces',
+            'kra'                      =>  'required|string|max:40',
             'linked_employee'          => 'required',
             'linked_employee_id'       => 'required',
         ];
@@ -158,11 +161,12 @@ class UserController extends Controller
         $messages = [
             'firstname.required'             => 'Please enter firstname',
             'uid.required'                   => 'Please enter employee code.',
-            'designation.required'           => 'Please enter designation.',          
-            'email.required'                 => 'Please enter official mail ID.',         
+'uid.unique'                   => 'This Employee Code is already taken.',
+            'designation.required'           => 'Please enter designation.',
+            'email.required'                 => 'Please enter official mail ID.',
             'phone.required'                 => 'Please enter contact number.',
             'department.required'            => 'Please select department.',
-            'kra.required'                   => 'Please enter KRA',           
+            'kra.required'                   => 'Please enter KRA',
             'linked_employee.required'       => 'Please select linked employee.',
             'linked_employee_id.required'    => 'Please enter linked employee ID.',
         ];
@@ -174,7 +178,7 @@ class UserController extends Controller
             'lastname'            =>  $request->lastname,
             'uid'                 =>  $request->uid,
             'employee_code'       =>  'EMP'.$request->uid,
-            'designation'         =>  $request->designation,           
+            'designation'         =>  $request->designation,
             'email'               =>  $request->email,
             'phone'               =>  $request->phone,
             'department'          =>  $request->department,
@@ -205,14 +209,14 @@ class UserController extends Controller
     {
         $id = $request->id;
 
-        $this->validate($request, [          
+        $this->validate($request, [
             'new_password' => 'required|min:8|confirmed',
 
         ]);
 
         $user = User::find($id);
         $user->password = Hash::make($request->new_password);
-        $user->save();       
+        $user->save();
 
         return redirect()->back()->with('success', 'Password changed successfully');
     }

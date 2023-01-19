@@ -30,7 +30,7 @@ class HospitalController extends Controller
             $hospitals->where('name', 'like','%' . $filter_search . '%');
         }
         $hospitals = $hospitals->orderBy('id', 'desc')->paginate(20);
-        return view('employee.hospitals.manage',  compact('hospitals', 'filter_search'));       
+        return view('employee.hospitals.manage',  compact('hospitals', 'filter_search'));
     }
 
     /**
@@ -42,7 +42,7 @@ class HospitalController extends Controller
     {
         $associates = AssociatePartner::get();
         $users      = User::get();
-        
+
         return view('employee.hospitals.create.create',  compact('associates', 'users'));
     }
 
@@ -59,7 +59,7 @@ class HospitalController extends Controller
             'firstname'                => 'required',
             'onboarding'               => 'required',
             'by'                       => 'required',
-            'pan'                      => 'required',
+            'pan'                      => 'required|alpha_num',
             'panfile'                  => 'required',
             'rohini'                   => 'required',
             'rohinifile'               => 'required',
@@ -68,8 +68,8 @@ class HospitalController extends Controller
             'address'                  => 'required',
             'city'                     => 'required',
             'state'                    => 'required',
-            'pincode'                  => 'required',
-            'phone'                    => 'required|numeric|digits:10',           
+            'pincode'                  => 'required|numeric',
+            'phone'                    => 'required|numeric|digits:10',
             'associate_partner_id'     => 'required',
             'associate_partner_name'   => 'required',
             'assigned_employee'        => 'required',
@@ -111,15 +111,15 @@ class HospitalController extends Controller
             'address'                  => $request->address,
             'city'                     => $request->city,
             'state'                    => $request->state,
-            'pincode'                  => $request->pincode,            
+            'pincode'                  => $request->pincode,
             'password'                 => Hash::make('12345678'),
             'firstname'                => $request->firstname,
-            'lastname'                 => $request->lastname,  
+            'lastname'                 => $request->lastname,
             'pan'                      => $request->pan,
-            'email'                    => $request->email,                              
+            'email'                    => $request->email,
             'landline'                 => $request->landline,
             'phone'                    => $request->phone,
-            'rohini'                   => $request->rohini,  
+            'rohini'                   => $request->rohini,
             'linked_associate_partner' => $request->associate_partner_name,
             'linked_associate_partner_id' => $request->associate_partner_id,
             'assigned_employee'        => $request->assigned_employee,
@@ -176,7 +176,7 @@ class HospitalController extends Controller
      */
     public function edit($id)
     {
-        
+
         $hospital          = Hospital::find($id);
         $hospitals         = Hospital::get();
         $users              = User::get();
@@ -200,15 +200,15 @@ class HospitalController extends Controller
             'firstname'                => 'required',
             'onboarding'               => 'required',
             'by'                       => 'required',
-            'pan'                      => 'required',
+            'pan'                      => 'required|alpha_num',
             'rohini'                   => 'required',
             'landline'                 => 'required|numeric|digits:10',
             'email'                    => 'required|unique:hospitals,email,'.$id,
             'address'                  => 'required',
             'city'                     => 'required',
             'state'                    => 'required',
-            'pincode'                  => 'required',
-            'phone'                    => 'required|numeric|digits:10',           
+            'pincode'                  => 'required|numeric',
+            'phone'                    => 'required|numeric|digits:10',
             'associate_partner_id'     => 'required',
             'tan' => 'required',
             'gst' => 'required',
@@ -287,7 +287,7 @@ class HospitalController extends Controller
         ];
 
         $this->validate($request, $rules, $messages);
-        
+
         Hospital::where('id', $id)->update([
             'name'                     => $request->name,
             'onboarding'               => $request->onboarding,
@@ -295,15 +295,15 @@ class HospitalController extends Controller
             'address'                  => $request->address,
             'city'                     => $request->city,
             'state'                    => $request->state,
-            'pincode'                  => $request->pincode,            
+            'pincode'                  => $request->pincode,
             'password'                 => Hash::make('12345678'),
             'firstname'                => $request->firstname,
-            'lastname'                 => $request->lastname,  
+            'lastname'                 => $request->lastname,
             'pan'                      => $request->pan,
-            'email'                    => $request->email,                              
+            'email'                    => $request->email,
             'landline'                 => $request->landline,
             'phone'                    => $request->phone,
-            'rohini'                   => $request->rohini,  
+            'rohini'                   => $request->rohini,
             'linked_associate_partner' => $request->associate_partner_name,
             'linked_associate_partner_id' => $request->associate_partner_id,
             'tan' => $request->tan,

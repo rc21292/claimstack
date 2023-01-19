@@ -16,7 +16,7 @@
                                     <button class="btn btn-primary" type="submit">Search</button>
                                 </div>
                             </div>
-                        </form>  
+                        </form>
                     </div>
                     <h4 class="page-title">Manage Admin</h4>
                 </div>
@@ -37,7 +37,7 @@
                                         <tr>
                                             <th scope="col">UID</th>
                                             <th scope="col">Employee Code</th>
-                                            <th scope="col">Name</th>                                            
+                                            <th scope="col">Name</th>
                                             <th scope="col">Email</th>
                                             <th scope="col">Mobile</th>
                                             <th scope="col">Action</th>
@@ -47,8 +47,8 @@
                                         @foreach ($admins as $admin)
                                             <tr>
                                                 <th scope="row">{{ $admin->employee_code }}</th>
-                                                <td>{{ $admin->id }}</td>
-                                                <td>{!! $admin->firstname !!} {!! $admin->lastname !!}</td>                                                
+                                                <td>{{ $admin->uid }}</td>
+                                                <td>{!! $admin->firstname !!} {!! $admin->lastname !!}</td>
                                                 <td>{{ $admin->email }}</td>
                                                 <td>{{ $admin->phone }}</td>
                                                 <td>
@@ -58,7 +58,7 @@
                                                         <button type="button" class="btn btn-danger"
                                                             onclick="confirmDelete({{ $admin->id }})"><i
                                                                 class="uil uil-trash-alt"></i></button>
-                                                       
+
                                                         <form id='delete-form{{ $admin->id }}'
                                                             action='{{ route('admin.admins.destroy', $admin->id) }}'
                                                             method='POST'>
@@ -67,8 +67,8 @@
                                                             <input type='hidden' name='_method' value='DELETE'>
                                                         </form>
                                                         <button type="button" class="btn btn-warning change-password"
-                                                        data-bs-toggle="modal" data-bs-target="#modal-password" 
-                                                        data-uid="{{ $admin->employee_code }}" 
+                                                        data-bs-toggle="modal" data-bs-target="#modal-password"
+                                                        data-uid="{{ $admin->employee_code }}"
                                                         data-id="{{ $admin->id }}"><i
                                                             class="uil uil-ellipsis-v"></i></button>
                                                     </div>
@@ -111,7 +111,7 @@
                         <div class="form-group mb-2 {{ $errors->has('new_password_confirmation') ? 'has-error' : '' }}">
                             <label for="new_password_confirmation">Confirm password *</label>
                             <input type="password" id="new_password_confirmation" name="new_password_confirmation"
-                                class="form-control" placeholder="Re-enter new password">                           
+                                class="form-control" placeholder="Re-enter new password">
                         </div>
                     </form>
                 </div>
@@ -122,8 +122,8 @@
             </div>
         </div>
     </div>
-    
-    
+
+
 @endsection
 {{-- @push('filter')
     @include('employee.filters.question-filter')
@@ -152,7 +152,7 @@
                 var id = $(this).data('id');
                 var uid = $(this).data('uid');
                 $('#uid').text(uid);
-                $('#employee_code').val(uid);                
+                $('#employee_code').val(uid);
                 $('#id').val(id);
             });
     </script>
@@ -160,7 +160,7 @@
     <script>
         $(document).ready(function () {
             $('#modal-password').modal('show');
-        });       
+        });
     </script>
     @enderror
 @endpush
