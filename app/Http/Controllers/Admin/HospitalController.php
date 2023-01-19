@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\AssociatePartner;
 use App\Models\Hospital;
+use App\Models\HospitalTieUp;
 use App\Models\User;
 use App\Notifications\Hospital\CredentialsGeneratedNotification;
 use Illuminate\Http\Request;
@@ -178,9 +179,10 @@ class HospitalController extends Controller
     {
 
         $hospital          = Hospital::find($id);
+        $hospital_tie_ups          = HospitalTieUp::where('hospital_id', $id)->first();
         $hospitals         = Hospital::get();
         $users              = User::get();
-        return view('admin.hospitals.edit.edit',  compact('hospital', 'hospitals', 'users'));
+        return view('admin.hospitals.edit.edit',  compact('hospital', 'hospitals', 'hospital_tie_ups', 'users'));
     }
 
     /**
@@ -441,6 +443,112 @@ class HospitalController extends Controller
                 'rohinifile'               =>  $rhnname
             ]);
         }
+
+        return redirect()->back()->with('success', 'Hospital updated successfully');
+    }
+
+
+    public function updateHospitalTieUps(Request $request, $id)
+    {
+        $hospital             = Hospital::find($id);
+
+        $rules = [
+            'mou_inception_date'                     => 'required',
+            'bhc_packages_for_surgical_procedures_accepted'                => 'required',
+            'discount_on_medical_management_cases'               => 'required',
+            'discount_on_final_bill'                       => 'required',
+            'discount_on_room_rent'                      => 'required|alpha_num',
+            'discount_on_medicines'                   => 'required',
+            'discount_on_consumables'                 => 'required',
+            'referral_commission_offered'                    => 'required',
+            'referral'                  => 'required',
+            'claimstag_usage_services'                     => 'required',
+            'claimstag_installation_charges'                    => 'required',
+            'claimstag_usage_charges'                  => 'required|numeric',
+            'claims_reimbursement_insured_services'                    => 'required',
+            'claims_reimbursement_insured_service_charges'     => 'required',
+            'cashless_claims_management_services' => 'required',
+            'cashless_claims_management_services_charges' => 'required',
+            'medical_lending_for_patients' => 'required',
+            'medical_lending_service_type' => 'required',
+            'subvention' => 'required',
+            'medical_lending_for_bill_invoice_discounting' => 'required',
+            'comments_on_invoice_discounting' => 'required',
+            'lending_finance_company_agreement' => 'required',
+            'lending_finance_company_agreement_date' => 'required',
+            'hms_services' => 'required',
+            'hms_charges' => 'required',
+            'hospital_management_system_installation' => 'required',
+            'comments' => 'required',
+        ];
+
+        $messages = [
+            'mou_inception_date.required'                   => 'Please Enter Mou Inception Date',
+            'bhc_packages_for_surgical_procedures_accepted.required'              => 'Please Enter Bhc Packages For Surgical Procedures Accepted',
+            'discount_on_medical_management_cases.required'             => 'Please Enter Discount On Medical Management Cases',
+            'discount_on_final_bill.required'                     => 'Please Enter Discount On Final Bill',
+            'discount_on_room_rent.required'                    => 'Please Enter Discount On Room Rent',
+            'discount_on_medicines.required'                 => 'Please Enter Discount On Medicines',
+            'discount_on_consumables.required'               => 'Please Enter Discount On Consumables',
+            'referral_commission_offered.required'                  => 'Please Enter Referral Commission Offered',
+            'referral.required'                => 'Please Enter referral',
+            'claimstag_usage_services.required'                   => 'Please Enter Claimstag Usage Services',
+            'claimstag_installation_charges.required'                  => 'Please Enter Claimstag Installation Charges',
+            'claimstag_usage_charges.required'                => 'Please Enter Claimstag Usage Charges',
+            'claims_reimbursement_insured_services.required'                  => 'Please Enter Claims Reimbursement Insured Services',
+            'claims_reimbursement_insured_service_charges.required'   => 'Please Enter Claims Reimbursement Insured Service Charges',
+            'cashless_claims_management_services.required' => 'Please Enter Cashless Claims Management Services',
+            'cashless_claims_management_services_charges.required' => 'Please Enter Cashless Claims Management Services Charges',
+            'medical_lending_for_patients.required' => 'Please Enter Medical Lending For Patients',
+            'medical_lending_service_type.required' => 'Please Enter Medical Lending Service Type',
+            'subvention.required' => 'Please Enter subvention',
+            'medical_lending_for_bill_invoice_discounting.required' => 'Please Enter Medical Lending For Bill Invoice Discounting',
+            'comments_on_invoice_discounting.required' => 'Please Enter Comments On Invoice Discounting',
+            'lending_finance_company_agreement.required' => 'Please Enter Lending Finance Company Agreement',
+            'lending_finance_company_agreement_date.required' => 'Please Enter Lending Finance Company Agreement Date',
+            'hms_services.required' => 'Please Enter Hms Services',
+            'hospital_management_system_installation.required' => 'Please Enter hospital Management System Installation',
+            'hms_charges.required' => 'Please Enter Hms Charges',
+            'comments.required' => 'Please Enter comments',
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+          $hospitalT =  HospitalTieUp::updateOrCreate([
+                'hospital_id' => $id],
+                [
+                'mou_inception_date'                     => $request->mou_inception_date,
+                'bhc_packages_for_surgical_procedures_accepted'               => $request->bhc_packages_for_surgical_procedures_accepted,
+                'discount_on_medical_management_cases'                       => $request->discount_on_medical_management_cases,
+                'discount_on_final_bill'                  => $request->discount_on_final_bill,
+                'discount_on_room_rent'                     => $request->discount_on_room_rent,
+                'discount_on_medicines'                    => $request->discount_on_medicines,
+                'discount_on_consumables'                  => $request->discount_on_consumables,
+                'referral_commission_offered'                 => $request->referral_commission_offered,
+                'referral'                => $request->referral,
+                'claimstag_usage_services'                 => $request->claimstag_usage_services,
+                'claimstag_installation_charges'                      => $request->claimstag_installation_charges,
+                'claimstag_usage_charges'                    => $request->claimstag_usage_charges,
+                'claims_reimbursement_insured_services'                 => $request->claims_reimbursement_insured_services,
+                'claims_reimbursement_insured_service_charges'                    => $request->claims_reimbursement_insured_service_charges,
+                'cashless_claims_management_services'                   => $request->cashless_claims_management_services,
+                'cashless_claims_management_services_charges' => $request->cashless_claims_management_services_charges,
+                'medical_lending_for_patients' => $request->medical_lending_for_patients,
+                'medical_lending_service_type' => $request->medical_lending_service_type,
+                'subvention' => $request->subvention,
+                'medical_lending_for_bill_invoice_discounting' => $request->medical_lending_for_bill_invoice_discounting,
+                'comments_on_invoice_discounting' => $request->comments_on_invoice_discounting,
+                'lending_finance_company_agreement' => $request->lending_finance_company_agreement,
+                'lending_finance_company_agreement_date' => $request->lending_finance_company_agreement_date,
+                'hms_services' => $request->hms_services,
+                'hospital_management_system_installation' => $request->hospital_management_system_installation,
+                'hms_charges' => $request->hms_charges,
+                'comments' => $request->comments
+            ]);
+        
+        HospitalTieUp::where('hospital_id', $id)->update([
+            'uid'      => 'HSPTUP'.$hospital->id
+        ]);
 
         return redirect()->back()->with('success', 'Hospital updated successfully');
     }
