@@ -30,7 +30,7 @@ class AdminSeed extends Seeder
                 'uid' => $i + 60,
                 'employee_code' => 'EMP' . $i + 60,
                 'designation' => 'Admin',
-                'department' => $faker->randomElement(['Operations', 'Sales', 'Accounts', 'Lending', 'IT', 'Insurance']),
+                'department' => $faker->randomElement(['Operations', 'Sales', 'Accounts', 'Lending', 'IT', 'Insurance', 'Analytics & MIS', 'Product Management', 'Provider management', 'Claims Processing', 'Claims Processing']),
                 'phone' => $faker->numerify('9#########'),
                 'kra' => Str::upper(Str::random(8)),
                 'email_verified_at' => Carbon::now(),
