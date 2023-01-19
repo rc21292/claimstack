@@ -27,9 +27,9 @@
             <label for="type">Associate Partner Type <span class="text-danger">*</span></label>
             <select class="form-select" id="type" name="type">
                 <option value="">Select Type</option>
-                <option value="vendor" {{ old('type', $associate->type) == 'vendor' ? 'selected' : '' }}>Vendor Type
+                <option value="vendor" {{ old('type', $associate->type) == 'vendor' ? 'selected' : '' }}>Vendor Partner
                 </option>
-                <option value="sales" {{ old('type', $associate->type) == 'sales' ? 'selected' : '' }}>Sales Type
+                <option value="sales" {{ old('type', $associate->type) == 'sales' ? 'selected' : '' }}>Sales Partner
                 </option>
             </select>
             @error('type')
