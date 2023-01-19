@@ -164,7 +164,7 @@
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="col-md-6 mt-3">
+                                <div class="col-md-6 mt-3 linked">
                                     <label for="linked_associate_partner">Linked Associate Partner Name </label>
                                     <select class="form-control select2" id="linked_associate_partner"  name="linked_associate_partner"
                                         data-toggle="select2" onchange="setLinkedAssociatePartnerId()">
@@ -184,7 +184,7 @@
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="col-md-6 mt-3">
+                                <div class="col-md-6 mt-3 linked">
                                     <label for="linked_associate_partner_id">Linked Associate Partner ID </label>
                                     <input type="text" class="form-control" id="linked_associate_partner_id"
                                         name="linked_associate_partner_id" placeholder="Enter linked associate partner ID"
@@ -398,6 +398,25 @@
         $(document).ready(function() {
             loadAssignedEmployees();
             loadLinkedEmployees();
+        });
+    </script>
+    <script>
+        $("#statuses").change(function() {
+            var value = $(this).val();
+            switch (value) {
+                case "Main":
+                    $('.linked').css('display', 'none');
+                    break;
+                case "Sub AP":
+                    $('.linked').css('display', 'block');
+                    break;
+                case "Agency":
+                    $('.linked').css('display', 'none');
+                    break;
+                default:
+                    $('.linked').css('display', 'none');
+                    break;
+            }
         });
     </script>
 @endpush
