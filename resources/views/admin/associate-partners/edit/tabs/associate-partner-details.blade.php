@@ -95,7 +95,7 @@
         </div>
 
         <div class="col-md-4 mt-2">
-            <input type="number" class="form-control" id="pincode" name="pincode" maxlength="6" placeholder="Pincode"
+            <input type="number" class="form-control" id="pincode" name="pincode" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==6) return false;" placeholder="Pincode"
                 value="{{ old('pincode', $associate->pincode) }}">
             @error('pincode')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
