@@ -165,7 +165,7 @@ class AssociatePartnerController extends Controller
     public function edit($id)
     {
         $associate          = AssociatePartner::find($id);
-        $associate->sub_associate_partners = AssociatePartner::where('status', 'Sub AP')->get();
+        $associate->sub_associate_partners = AssociatePartner::where('status', 'Sub AP')->where('linked_associate_partner', $id)->get();
         $associate->service = $associate->type == 'vendor' ? VendorServiceType::where('associate_partner_id', $id)->first() :  SalesServiceType::where('associate_partner_id', $id)->first();
         $associates         = AssociatePartner::get();
         $users              = User::get();
