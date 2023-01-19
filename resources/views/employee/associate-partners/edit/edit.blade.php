@@ -168,4 +168,19 @@
         loadLinkedEmployees();
     });
 </script>
+<script>
+    $("#mou").change(function() {
+        var value = $(this).val();
+        switch (value) {
+            case "no":
+                document.getElementById("moufile").disabled = true;
+                break;
+            case "yes":
+                document.getElementById("moufile").disabled = false;
+                break;
+            default:
+                break;
+        }
+    });
+</script>
 @endpush

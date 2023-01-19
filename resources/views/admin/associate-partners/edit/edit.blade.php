@@ -82,7 +82,7 @@
                             </div>
                             @if ($associate->type == 'vendor')
                                 <div class="tab-pane" id="vendor_partner_service_type">
-                                   @include('admin.associate-partners.edit.tabs.vendor-partner-service-type')
+                                    @include('admin.associate-partners.edit.tabs.vendor-partner-service-type')
                                 </div>
                                 <div class="tab-pane" id="vendor_partner_reports">
                                     @include('admin.associate-partners.edit.tabs.vendor-partner-reports')
@@ -106,66 +106,81 @@
     </div>
 @endsection
 @push('scripts')
-<script>
-    function setLinkedAssociatePartnerId() {
-        var linked_associate_partner = $("#linked_associate_partner").select2().find(":selected").data("id");
-        $('#linked_associate_partner_id').val(linked_associate_partner);
-    }
-
-    function setAssignedEmployeeId() {
-        var assigned_employee = $("#assigned_employee").select2().find(":selected").data("id");
-        $('#assigned_employee_id').val(assigned_employee);
-    }
-
-    function setLinkedWithEmployeeId() {
-        var linked_employee = $("#linked_employee").select2().find(":selected").data("id");
-        $('#linked_employee_id').val(linked_employee);
-    }
-</script>
-<script>
-    function loadLinkedEmployees() {
-        var department = $("#linked_employee_department").val();
-        if (!department) {
-            department = 'Operations'
+    <script>
+        function setLinkedAssociatePartnerId() {
+            var linked_associate_partner = $("#linked_associate_partner").select2().find(":selected").data("id");
+            $('#linked_associate_partner_id').val(linked_associate_partner);
         }
-        var url = '{{ route('admin.get.employees', ':department') }}';
-        url = url.replace(':department', department);
 
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(data) {
-                $('#linked_employee').html(data)
-                $('#linked_employee').val('{{ old('linked_employee', $associate->linked_employee) }}')
+        function setAssignedEmployeeId() {
+            var assigned_employee = $("#assigned_employee").select2().find(":selected").data("id");
+            $('#assigned_employee_id').val(assigned_employee);
+        }
+
+        function setLinkedWithEmployeeId() {
+            var linked_employee = $("#linked_employee").select2().find(":selected").data("id");
+            $('#linked_employee_id').val(linked_employee);
+        }
+    </script>
+    <script>
+        function loadLinkedEmployees() {
+            var department = $("#linked_employee_department").val();
+            if (!department) {
+                department = 'Operations'
+            }
+            var url = '{{ route('admin.get.employees', ':department') }}';
+            url = url.replace(':department', department);
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    $('#linked_employee').html(data)
+                    $('#linked_employee').val('{{ old('linked_employee', $associate->linked_employee) }}')
+                }
+            });
+        }
+    </script>
+    <script>
+        function loadAssignedEmployees() {
+            var department = $("#assigned_employee_department").val();
+            if (!department) {
+                department = 'Operations'
+            }
+            var url = '{{ route('admin.get.employees', ':department') }}';
+            url = url.replace(':department', department);
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    $('#assigned_employee').html(data)
+                    $('#assigned_employee').val('{{ old('assigned_employee', $associate->assigned_employee) }}')
+                }
+            });
+        }
+    </script>
+    <script>
+        $(document).ready(function() {
+            loadAssignedEmployees();
+            loadLinkedEmployees();
+        });
+    </script>
+    <script>
+        $("#mou").change(function() {
+            var value = $(this).val();
+            switch (value) {
+                case "no":
+                    document.getElementById("moufile").disabled = true;
+                    break;
+                case "yes":
+                    document.getElementById("moufile").disabled = false;
+                    break;
+                default:
+                    break;
             }
         });
-    }
-</script>
- <script>
-    function loadAssignedEmployees() {
-        var department = $("#assigned_employee_department").val();
-        if (!department) {
-            department = 'Operations'
-        }
-        var url = '{{ route('admin.get.employees', ':department') }}';
-        url = url.replace(':department', department);
-
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: 'json',
-            success: function(data) {
-                $('#assigned_employee').html(data)
-                $('#assigned_employee').val('{{ old('assigned_employee', $associate->assigned_employee) }}')
-            }
-        });
-    }
-</script>
-<script>
-    $(document).ready(function() {
-        loadAssignedEmployees();
-        loadLinkedEmployees();
-    });
-</script>
+    </script>
 @endpush
