@@ -67,6 +67,20 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="#sales_partner_hospital_status" data-bs-toggle="tab" aria-expanded="false"
+                                        class="nav-link rounded-0">
+                                        <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                                        <span class="d-none d-md-block">Sales Partner Hospital Status</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#sales_partner_claim_status" data-bs-toggle="tab" aria-expanded="false"
+                                        class="nav-link rounded-0">
+                                        <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                                        <span class="d-none d-md-block">Sales Partner Claim Status</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="#sales_partner_reports" data-bs-toggle="tab" aria-expanded="false"
                                         class="nav-link rounded-0">
                                         <i class="mdi mdi-settings-outline d-md-none d-block"></i>
@@ -93,6 +107,12 @@
                                 </div>
                                 <div class="tab-pane" id="sub_sales_partner_status">
                                     @include('admin.associate-partners.edit.tabs.sub-sales-partner-status')
+                                </div>
+                                <div class="tab-pane" id="sales_partner_hospital_status">
+                                    @include('admin.associate-partners.edit.tabs.sales-partner-hospital-status')
+                                </div>
+                                <div class="tab-pane" id="sales_partner_claim_status">
+                                    @include('admin.associate-partners.edit.tabs.sales-partner-claim-status')
                                 </div>
                                 <div class="tab-pane" id="sales_partner_reports">
                                     @include('admin.associate-partners.edit.tabs.vendor-partner-reports')
