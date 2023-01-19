@@ -375,7 +375,7 @@
             <label for="address">Hospital Bank Details <span class="text-danger">*</span></label>
         </div>
         <div class="col-md-4 mt-2">
-            <input type="text" class="form-control" id="bank_name" name="bank_name"
+            <input type="text" class="form-control" id="bank_name" name="bank_name" maxlength="45"
                 placeholder="Bank Name" value="{{ old('bank_name', $hospital->bank_name) }}">
             @error('bank_name')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -383,7 +383,7 @@
         </div>
 
         <div class="col-md-4 mt-2">
-            <input type="text" class="form-control" id="bank_address" name="bank_address"
+            <input type="text" class="form-control" id="bank_address" name="bank_address" maxlength="80"
                 placeholder="Bank Address" value="{{ old('bank_address', $hospital->bank_address) }}">
             @error('bank_address')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -416,7 +416,7 @@
 
 
         <div class="col-md-6 mt-3">
-            <input type="number" class="form-control" id="bank_account_no" name="bank_account_no"
+            <input type="number" class="form-control" id="bank_account_no" name="bank_account_no" maxlength="20"
                 placeholder="Bank Account No." value="{{ old('bank_account_no', $hospital->bank_account_no) }}">
             @error('bank_account_no')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -424,7 +424,7 @@
         </div>
 
         <div class="col-md-6 mt-3">
-            <input type="text" class="form-control" id="bank_ifs_code" name="bank_ifs_code"
+            <input type="text" class="form-control" id="bank_ifs_code" name="bank_ifs_code" maxlength="11"
                 placeholder="Bank Ifs Code" value="{{ old('bank_ifs_code', $hospital->bank_ifs_code) }}">
             @error('bank_ifs_code')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>

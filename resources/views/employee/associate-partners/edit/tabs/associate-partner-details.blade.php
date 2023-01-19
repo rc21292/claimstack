@@ -164,19 +164,55 @@
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
+        <div class="col-md-12 mt-3">
+            <label for="assigned_employee_department">Assigned To Employee Department <span class="text-danger">*</span></label>
+            <select class="form-select" id="assigned_employee_department" name="assigned_employee_department"
+                onchange="loadAssignedEmployees()">
+                <option value="">Select Department</option>
+                <option value="Operations"
+                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Operations' ? 'selected' : '' }}>Operations
+                </option>
+                <option value="Sales" {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Sales' ? 'selected' : '' }}>Sales
+                </option>
+                <option value="Accounts" {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Accounts' ? 'selected' : '' }}>
+                    Accounts
+                </option>
+                <option value="Analytics & MIS"
+                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Analytics & MIS' ? 'selected' : '' }}>Analytics & MIS
+                </option>
+                <option value="IT" {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'IT' ? 'selected' : '' }}>IT
+                </option>
+                <option value="Product Management"
+                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Product Management' ? 'selected' : '' }}>Product
+                    Management
+                </option>
+                <option value="Provider management"
+                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Provider management' ? 'selected' : '' }}>Provider
+                    management
+                </option>
+                <option value="Insurance"
+                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Insurance' ? 'selected' : '' }}>Insurance
+                </option>
+                <option value="Claims Processing"
+                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Claims Processing' ? 'selected' : '' }}>Claims
+                    Processing
+                </option>
+                <option value="Cashless" {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Cashless' ? 'selected' : '' }}>
+                    Cashless
+                </option>
+                <option value="Lending" {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Lending' ? 'selected' : '' }}>
+                    Lending
+                </option>
+            </select>
+            @error('assigned_employee_department')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
         <div class="col-md-6 mt-3">
             <label for="assigned_employee">Assigned To Employee Name <span class="text-danger">*</span></label>
             <select class="form-control select2" id="assigned_employee" name="assigned_employee"
                 data-toggle="select2" onchange="setAssignedEmployeeId()">
                 <option value="">Select Assigned To Employee</option>
-                @foreach ($users as $user)
-                    <option value="{{ $user->id }}"
-                        {{ old('assigned_employee', $associate->assigned_employee) == $user->id ? 'selected' : '' }}
-                        data-id="{{ $user->employee_code }}">
-                        [<strong>Name: </strong>{{ $user->firstname }}{{ $user->lastname }}]
-                                                [<strong>UID: </strong>{{ $user->employee_code }}]
-                                                [<strong>Department: </strong>{{ $user->department }}]</option>
-                @endforeach
             </select>
             @error('assigned_employee')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -191,19 +227,55 @@
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
+        <div class="col-md-12 mt-3">
+            <label for="linked_employee_department">Linked With Employee Department <span class="text-danger">*</span></label>
+            <select class="form-select" id="linked_employee_department" name="linked_employee_department"
+                onchange="loadLinkedEmployees()">
+                <option value="">Select Department</option>
+                <option value="Operations"
+                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Operations' ? 'selected' : '' }}>Operations
+                </option>
+                <option value="Sales" {{ old('linked_employee_department', $associate->linked_employee_department) == 'Sales' ? 'selected' : '' }}>Sales
+                </option>
+                <option value="Accounts" {{ old('linked_employee_department', $associate->linked_employee_department) == 'Accounts' ? 'selected' : '' }}>
+                    Accounts
+                </option>
+                <option value="Analytics & MIS"
+                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Analytics & MIS' ? 'selected' : '' }}>Analytics & MIS
+                </option>
+                <option value="IT" {{ old('linked_employee_department', $associate->linked_employee_department) == 'IT' ? 'selected' : '' }}>IT
+                </option>
+                <option value="Product Management"
+                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Product Management' ? 'selected' : '' }}>Product
+                    Management
+                </option>
+                <option value="Provider management"
+                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Provider management' ? 'selected' : '' }}>Provider
+                    management
+                </option>
+                <option value="Insurance"
+                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Insurance' ? 'selected' : '' }}>Insurance
+                </option>
+                <option value="Claims Processing"
+                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Claims Processing' ? 'selected' : '' }}>Claims
+                    Processing
+                </option>
+                <option value="Cashless" {{ old('linked_employee_department', $associate->linked_employee_department) == 'Cashless' ? 'selected' : '' }}>
+                    Cashless
+                </option>
+                <option value="Lending" {{ old('linked_employee_department', $associate->linked_employee_department) == 'Lending' ? 'selected' : '' }}>
+                    Lending
+                </option>
+            </select>
+            @error('linked_employee_department')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
         <div class="col-md-6 mt-3">
             <label for="linked_employee">Linked With Employee Name <span class="text-danger">*</span></label>
             <select class="form-control select2" id="linked_employee" name="linked_employee" data-toggle="select2"
                 onchange="setLinkedWithEmployeeId()">
                 <option value="">Select Linked With Employee</option>
-                @foreach ($users as $user)
-                    <option value="{{ $user->id }}"
-                        {{ old('linked_employee', $associate->linked_employee) == $user->id ? 'selected' : '' }}
-                        data-id="{{ $user->employee_code }}">
-                        [<strong>Name: </strong>{{ $user->firstname }}{{ $user->lastname }}]
-                                                [<strong>UID: </strong>{{ $user->employee_code }}]
-                                                [<strong>Department: </strong>{{ $user->department }}]</option>
-                @endforeach
             </select>
             @error('linked_employee')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -307,7 +379,7 @@
             <label for="address">Hospital Bank Details <span class="text-danger">*</span></label>
         </div>
         <div class="col-md-4 mt-2">
-            <input type="text" class="form-control" id="bank_name" name="bank_name"
+            <input type="text" class="form-control" id="bank_name" name="bank_name" maxlength="45"
                 placeholder="Bank Name" value="{{ old('bank_name', $associate->bank_name) }}">
             @error('bank_name')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -315,7 +387,7 @@
         </div>
 
         <div class="col-md-4 mt-2">
-            <input type="text" class="form-control" id="bank_address" name="bank_address"
+            <input type="text" class="form-control" id="bank_address" name="bank_address" maxlength="80"
                 placeholder="Bank Address" value="{{ old('bank_address', $associate->bank_address) }}">
             @error('bank_address')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -348,7 +420,7 @@
 
 
         <div class="col-md-6 mt-3">
-            <input type="number" class="form-control" id="bank_account_no" name="bank_account_no"
+            <input type="number" class="form-control" id="bank_account_no" name="bank_account_no" maxlength="20"
                 placeholder="Bank Account No." value="{{ old('bank_account_no', $associate->bank_account_no) }}">
             @error('bank_account_no')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -356,7 +428,7 @@
         </div>
 
         <div class="col-md-6 mt-3">
-            <input type="text" class="form-control" id="bank_ifs_code" name="bank_ifs_code"
+            <input type="text" class="form-control" id="bank_ifs_code" name="bank_ifs_code" maxlength="11"
                 placeholder="Bank IFSC Code" value="{{ old('bank_ifs_code', $associate->bank_ifs_code) }}">
             @error('bank_ifs_code')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
