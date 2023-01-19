@@ -9,7 +9,7 @@
         </div>
 
         <div class="col-md-6 mt-1">
-            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Firstname"
+            <input type="text" class="form-control" id="firstname" name="firstname" maxlength="15" placeholder="Firstname"
                 value="{{ old('firstname', $associate->firstname) }}">
             @error('firstname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>

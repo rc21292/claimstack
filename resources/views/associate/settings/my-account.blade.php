@@ -35,7 +35,7 @@
                         @method('PUT')
                         <div class="form-group  mb-2">
                             <label for="firstname">First Name</label>
-                            <input type="text" class="form-control" id="firstname" name="firstname"
+                            <input type="text" class="form-control" id="firstname" name="firstname" maxlength="15"
                                 placeholder="Enter Firstname" value="{{ old('firstname', $admin->firstname) }}">
                             @error('firstname')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
