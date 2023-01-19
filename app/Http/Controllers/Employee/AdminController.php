@@ -58,7 +58,7 @@ class AdminController extends Controller
         $rules = [
             'firstname'                => 'required|alpha_spaces|max:15',
             'lastname'                 => isset($request->lastname) ? 'alpha_spaces|max:30' : '',
-            'uid'                      => 'required|unique:admins|unique:users|alpha_num|digits:8',
+            'uid'                      => 'required|unique:admins|unique:users|alpha_num|max:8',
             'designation'              => 'required|alpha_spaces|max:30',         
             'email'                    => 'required|email|unique:admins|unique:users|unique:hospitals|unique:associate_partners|unique:employees',
             'phone'                    => 'required|numeric|digits:10',
@@ -148,7 +148,7 @@ class AdminController extends Controller
         $rules = [
             'firstname'                => 'required|alpha_spaces|max:15',
             'lastname'                 => isset($request->lastname) ? 'alpha_spaces|max:30' : '',
-            'uid'                      => 'required|alpha_num|digits:8|unique:users|unique:admins,uid,'.$id,
+            'uid'                      => 'required|alpha_num|max:8|unique:users|unique:admins,uid,'.$id,
             'designation'              => 'required|alpha_spaces|max:30',           
             'email'                    => 'required|email|unique:users|unique:hospitals|unique:associate_partners|unique:employees|unique:admins,email,'.$id,
             'phone'                    => 'required|numeric|digits:10',
