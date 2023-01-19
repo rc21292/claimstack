@@ -17,7 +17,7 @@
         </div>
 
         <div class="col-md-6 mt-1">
-            <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Lastname"
+            <input type="text" class="form-control" id="lastname" name="lastname" maxlength="30" placeholder="Lastname"
                 value="{{ old('lastname', $associate->lastname) }}">
             @error('lastname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -64,7 +64,7 @@
         </div>
         <div class="col-md-6 mt-3">
             <label for="owner">Official email ID <span class="text-danger">*</span></label>
-            <input type="email" class="form-control" id="email" name="email"
+            <input type="email" class="form-control" id="email" name="email" maxlength="30"
                 placeholder="Enter official emailID" value="{{ old('email', $associate->email) }}">
             @error('email')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -103,8 +103,11 @@
         </div>
         <div class="col-md-6 mt-3">
             <label for="phone">Associate Partner Mobile Number <span class="text-danger">*</span></label>
-            <input type="number" class="form-control" id="phone" name="phone"
+            <div class="input-group">
+                <label class="input-group-text" for="phone">+91</label>
+            <input type="number" class="form-control" id="phone" name="phone"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"
                 placeholder="Enter associate partner mobile number" value="{{ old('phone', $associate->phone) }}">
+            </div>
             @error('phone')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
@@ -141,10 +144,10 @@
                     <option value="{{ $row->id }}"
                         {{ old('linked_associate_partner', $associate->linked_associate_partner) == $row->id ? 'selected' : '' }}
                         data-id="{{ $row->associate_partner_id }}">
-                        [<strong>Name: </strong>{{ $row->firstname }}{{ $row->lastname }}] 
+                        [<strong>Name: </strong>{{ $row->firstname }}{{ $row->lastname }}]
                         [<strong>UID: </strong>{{ $row->associate_partner_id }}]
                         [<strong>City: </strong>{{ $row->city }}]
-                        [<strong>State: </strong>{{ $row->state }}]     
+                        [<strong>State: </strong>{{ $row->state }}]
                     </option>
                 @endforeach
             </select>
@@ -170,7 +173,7 @@
                     <option value="{{ $user->id }}"
                         {{ old('assigned_employee', $associate->assigned_employee) == $user->id ? 'selected' : '' }}
                         data-id="{{ $user->employee_code }}">
-                        [<strong>Name: </strong>{{ $user->firstname }}{{ $user->lastname }}] 
+                        [<strong>Name: </strong>{{ $user->firstname }}{{ $user->lastname }}]
                                                 [<strong>UID: </strong>{{ $user->employee_code }}]
                                                 [<strong>Department: </strong>{{ $user->department }}]</option>
                 @endforeach
@@ -197,7 +200,7 @@
                     <option value="{{ $user->id }}"
                         {{ old('linked_employee', $associate->linked_employee) == $user->id ? 'selected' : '' }}
                         data-id="{{ $user->employee_code }}">
-                        [<strong>Name: </strong>{{ $user->firstname }}{{ $user->lastname }}] 
+                        [<strong>Name: </strong>{{ $user->firstname }}{{ $user->lastname }}]
                                                 [<strong>UID: </strong>{{ $user->employee_code }}]
                                                 [<strong>Department: </strong>{{ $user->department }}]</option>
                 @endforeach
@@ -250,7 +253,7 @@
                     @endisset
                     <input type="file" name="agreementfile" id="agreementfile" hidden />
                     <label for="agreementfile" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
-                
+
             </div>
             @error('agreement_start_date')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -279,9 +282,12 @@
         <div class="col-md-6 mt-3">
             <label for="contact_person_phone">Associate Partner Contact Person's Mobile No. <span
                     class="text-danger">*</span></label>
+                    <div class="input-group">
+                        <label class="input-group-text" for="contact_person_phone">+91</label>
             <input type="text" class="form-control" id="contact_person_phone" name="contact_person_phone"
                 placeholder="Associate partner contact person's mobile no."
                 value="{{ old('contact_person_phone', $associate->contact_person_phone) }}">
+                    </div>
             @error('contact_person_phone')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror

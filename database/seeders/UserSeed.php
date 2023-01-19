@@ -21,19 +21,19 @@ class UserSeed extends Seeder
     {
         $faker = app(Generator::class);
 
-        for ($i = 1; $i < 60; $i++) {
+        for ($i = 1; $i < 61; $i++) {
             $user = User::create([
                 'firstname' => $faker->firstname(),
                 'lastname' => $faker->lastname(),
                 'email' => $i == 1 ? 'user@claimstack.com' : $faker->unique()->safeEmail(),
-                'uid' => $i + 1,
-                'employee_code' => 'EMP0' . $i + 1,
+                'uid' => $i,
+                'employee_code' => 'EMP' . $i,
                 'designation' => 'Employee',
                 'department' => $faker->randomElement(['Operations', 'Sales', 'Accounts', 'Lending', 'IT', 'Insurance']),
-                'phone' => $faker->numerify('9#########'),              
+                'phone' => $faker->numerify('9#########'),
                 'kra' => Str::upper(Str::random(8)),
                 'email_verified_at' => Carbon::now(),
-                'password' => Hash::make('password')              
+                'password' => Hash::make('password')
             ]);
             $user->assignRole('user');
              $role = Role::where('name', 'user')->with('permissions')->first();

@@ -39,15 +39,16 @@
                                 </div>
 
                                 <div class="col-md-6 mt-1">
-                                    <input type="text" class="form-control" id="firstname" name="firstname" maxlength="15"
-                                        placeholder="Firstname" value="{{ old('firstname', $user->firstname) }}">
+                                    <input type="text" class="form-control" id="firstname" name="firstname"
+                                        maxlength="15" placeholder="Firstname"
+                                        value="{{ old('firstname', $user->firstname) }}">
                                     @error('firstname')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
 
                                 <div class="col-md-6 mt-1">
-                                    <input type="text" class="form-control" id="lastname" name="lastname"
+                                    <input type="text" class="form-control" id="lastname" name="lastname" maxlength="30"
                                         placeholder="Lastname" value="{{ old('lastname', $user->lastname) }}">
                                     @error('lastname')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -55,9 +56,8 @@
                                 </div>
                                 <div class="col-md-6 mt-3">
                                     <label for="uid">Employee Code <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="uid" name="uid"
-                                        placeholder="Enter employee code"
-                                        value="{{ old('uid', $user->uid) }}">
+                                    <input type="text" class="form-control" id="uid" name="uid" maxlength="8"
+                                        placeholder="Enter employee code" value="{{ old('uid', $user->uid) }}">
                                     @error('uid')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -65,7 +65,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="designation">Designation <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="designation" name="designation"
-                                        placeholder="Enter designation"
+                                        maxlength="30" placeholder="Enter designation"
                                         value="{{ old('designation', $user->designation) }}">
                                     @error('designation')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -74,7 +74,7 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="owner">Official Mail ID <span class="text-danger">*</span></label>
-                                    <input type="email" class="form-control" id="email" name="email"
+                                    <input type="email" class="form-control" id="email" name="email" maxlength="30"
                                         placeholder="Enter official mail ID" value="{{ old('email', $user->email) }}">
                                     @error('email')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -83,8 +83,12 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="phone">Contact Number <span class="text-danger">*</span></label>
-                                    <input type="number" class="form-control" id="phone" name="phone"
-                                        placeholder="Enter contact number" value="{{ old('phone', $user->phone) }}">
+                                    <div class="input-group">
+                                        <label class="input-group-text" for="phone">+91</label>
+                                        <input type="number" class="form-control" id="phone" name="phone"
+                                            pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"
+                                            placeholder="Enter contact number" value="{{ old('phone', $user->phone) }}">
+                                    </div>
                                     @error('phone')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -99,7 +103,7 @@
                                             <option value="{{ $row->id }}"
                                                 {{ old('linked_employee', $user->linked_employee) == $row->id ? 'selected' : '' }}
                                                 data-id="{{ $row->employee_code }}">
-                                                [<strong>Name: </strong>{{ $row->firstname }}{{ $row->lastname }}] 
+                                                [<strong>Name: </strong>{{ $row->firstname }}{{ $row->lastname }}]
                                                 [<strong>UID: </strong>{{ $row->employee_code }}]
                                                 [<strong>Department: </strong>{{ $row->department }}]
                                             </option>
@@ -172,7 +176,7 @@
                                 <div class="col-md-12 mt-3">
                                     <label for="kra">KRA <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="kra" name="kra"
-                                        placeholder="Enter kra" value="{{ old('kra', $user->kra) }}">
+                                        maxlength="40" placeholder="Enter kra" value="{{ old('kra', $user->kra) }}">
                                     @error('kra')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror

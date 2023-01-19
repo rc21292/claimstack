@@ -46,7 +46,7 @@
                                 </div>
 
                                 <div class="col-md-6 mt-1">
-                                    <input type="text" class="form-control" id="lastname" name="lastname"
+                                    <input type="text" class="form-control" id="lastname" name="lastname" maxlength="30"
                                         placeholder="Lastname" value="{{ old('lastname') }}">
                                     @error('lastname')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -54,7 +54,7 @@
                                 </div>
                                 <div class="col-md-6 mt-3">
                                     <label for="uid">Employee Code <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="uid" name="uid"
+                                    <input type="text" class="form-control" id="uid" name="uid" maxlength="8"
                                     placeholder="Enter employee code" value="{{ old('uid') }}">
                                     @error('uid')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -62,27 +62,30 @@
                                 </div>
                                 <div class="col-md-6 mt-3">
                                     <label for="designation">Designation <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="designation" name="designation"
+                                    <input type="text" class="form-control" id="designation" name="designation" maxlength="30"
                                             placeholder="Enter designation" value="{{ old('designation') }}">
                                     @error('designation')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                
+
                                 <div class="col-md-6 mt-3">
                                     <label for="owner">Official Mail ID <span class="text-danger">*</span></label>
-                                    <input type="email" class="form-control" id="email" name="email"
+                                    <input type="email" class="form-control" id="email" name="email" maxlength="30"
                                         placeholder="Enter official mail ID" value="{{ old('email') }}">
                                     @error('email')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
-                               
+
                                 <div class="col-md-6 mt-3">
                                     <label for="phone">Contact Number <span
                                             class="text-danger">*</span></label>
-                                    <input type="tel" class="form-control" id="phone" name="phone"
-                                        placeholder="Enter contact number" value="{{ old('phone') }}">
+                                            <div class="input-group">
+                                                <label class="input-group-text" for="phone">+91</label>
+                                                    <input type="tel" class="form-control" id="phone" name="phone"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"
+                                                        placeholder="Enter contact number" value="{{ old('phone') }}">
+                                            </div>
                                     @error('phone')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -97,7 +100,7 @@
                                             <option value="{{ $user->id }}"
                                                 {{ old('linked_employee') == $user->id ? 'selected' : '' }}
                                                 data-id="{{ $user->employee_code }}">
-                                                [<strong>Name: </strong>{{ $user->firstname }}{{ $user->lastname }}] 
+                                                [<strong>Name: </strong>{{ $user->firstname }}{{ $user->lastname }}]
                                                 [<strong>UID: </strong>{{ $user->employee_code }}]
                                                 [<strong>Department: </strong>{{ $user->department }}]
                                             </option>
@@ -151,7 +154,7 @@
                                 </div>
                                 <div class="col-md-12 mt-3">
                                     <label for="kra">KRA <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="kra" name="kra"
+                                    <input type="text" class="form-control" id="kra" name="kra" maxlength="40"
                                         placeholder="Enter kra" value="{{ old('kra') }}">
                                     @error('kra')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -161,8 +164,8 @@
                                     <label>Role Based Access Control <span class="text-danger">*</span></label>
                                     @include('employee.users.create.permission')
                                 </div>
-                                                               
-                                
+
+
                                 <div class="col-md-12 text-end mt-3">
                                     <button type="submit" class="btn btn-success" form="adminForm">Create
                                         User</button>

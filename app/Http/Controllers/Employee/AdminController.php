@@ -56,14 +56,14 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'firstname'                => 'required|alpha_spaces|max:15',
-            'lastname'                 => isset($request->lastname) ? 'alpha_spaces|max:30' : '',
+            'firstname'                => 'required|string|max:15',
+            'lastname'                 => isset($request->lastname) ? 'string|max:30' : '',
             'uid'                      => 'required|unique:admins|unique:users|alpha_num|max:8',
-            'designation'              => 'required|alpha_spaces|max:30',         
+            'designation'              => 'required|string|max:30',
             'email'                    => 'required|email|unique:admins|unique:users|unique:hospitals|unique:associate_partners|unique:employees',
             'phone'                    => 'required|numeric|digits:10',
             'department'               => 'required',
-            'kra'                      =>  'required|alpha_spaces|max:40',
+            'kra'                      =>  'required|string|max:40',
             'linked_employee'          => 'required',
             'linked_employee_id'       => 'required',
         ];
@@ -71,11 +71,11 @@ class AdminController extends Controller
         $messages = [
             'firstname.required'             => 'Please enter firstname',
             'uid.required'                   => 'Please enter employee code.',
-            'designation.required'           => 'Please enter designation.',          
-            'email.required'                 => 'Please enter official mail ID.',         
+            'designation.required'           => 'Please enter designation.',
+            'email.required'                 => 'Please enter official mail ID.',
             'phone.required'                 => 'Please enter contact number.',
             'department.required'            => 'Please select department.',
-            'kra.required'                   => 'Please enter KRA',           
+            'kra.required'                   => 'Please enter KRA',
             'linked_employee.required'       => 'Please select linked employee.',
             'linked_employee_id.required'    => 'Please enter linked employee ID.',
         ];
@@ -87,7 +87,7 @@ class AdminController extends Controller
             'lastname'            =>  $request->lastname,
             'uid'                 =>  $request->uid,
             'employee_code'       =>  'EMP'.$request->uid,
-            'designation'         =>  $request->designation,           
+            'designation'         =>  $request->designation,
             'email'               =>  $request->email,
             'phone'               =>  $request->phone,
             'password'            =>  Hash::make('12345678'),
@@ -146,14 +146,14 @@ class AdminController extends Controller
     public function update(Request $request, $id)
     {
         $rules = [
-            'firstname'                => 'required|alpha_spaces|max:15',
-            'lastname'                 => isset($request->lastname) ? 'alpha_spaces|max:30' : '',
+            'firstname'                => 'required|string|max:15',
+            'lastname'                 => isset($request->lastname) ? 'string|max:30' : '',
             'uid'                      => 'required|alpha_num|max:8|unique:users|unique:admins,uid,'.$id,
-            'designation'              => 'required|alpha_spaces|max:30',           
+            'designation'              => 'required|string|max:30',
             'email'                    => 'required|email|unique:users|unique:hospitals|unique:associate_partners|unique:employees|unique:admins,email,'.$id,
             'phone'                    => 'required|numeric|digits:10',
             'department'               => 'required',
-            'kra'                      =>  'required|alpha_spaces|max:40',
+            'kra'                      =>  'required|string|max:40',
             'linked_employee'          => 'required',
             'linked_employee_id'       => 'required',
         ];
@@ -161,11 +161,11 @@ class AdminController extends Controller
         $messages = [
             'firstname.required'             => 'Please enter firstname',
             'uid.required'                   => 'Please enter employee code.',
-            'designation.required'           => 'Please enter designation.',          
-            'email.required'                 => 'Please enter official mail ID.',         
+            'designation.required'           => 'Please enter designation.',
+            'email.required'                 => 'Please enter official mail ID.',
             'phone.required'                 => 'Please enter contact number.',
             'department.required'            => 'Please select department.',
-            'kra.required'                   => 'Please enter KRA',           
+            'kra.required'                   => 'Please enter KRA',
             'linked_employee.required'       => 'Please select linked employee.',
             'linked_employee_id.required'    => 'Please enter linked employee ID.',
         ];
@@ -177,7 +177,7 @@ class AdminController extends Controller
             'lastname'            =>  $request->lastname,
             'uid'                 =>  $request->uid,
             'employee_code'       =>  'EMP'.$request->uid,
-            'designation'         =>  $request->designation,           
+            'designation'         =>  $request->designation,
             'email'               =>  $request->email,
             'phone'               =>  $request->phone,
             'department'          =>  $request->department,
@@ -208,14 +208,14 @@ class AdminController extends Controller
     {
         $id = $request->id;
 
-        $this->validate($request, [          
+        $this->validate($request, [
             'new_password' => 'required|min:8|confirmed',
 
         ]);
 
         $user = Admin::find($id);
         $user->password = Hash::make($request->new_password);
-        $user->save();       
+        $user->save();
 
         return redirect()->back()->with('success', 'Password changed successfully');
     }

@@ -45,7 +45,7 @@
                                 </div>
 
                                 <div class="col-md-6 mt-1">
-                                    <input type="text" class="form-control" id="lastname" name="lastname"
+                                    <input type="text" class="form-control" id="lastname" name="lastname" maxlength="30"
                                         placeholder="Lastname" value="{{ old('lastname') }}">
                                     @error('lastname')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -114,7 +114,7 @@
                                     <label for="id_proof">Patient ID Proof <span class="text-danger">*</span></label>
                                     <div class="input-group">
                                         <input type="text" class="form-control" id="id_proof" name="id_proof"
-                                            placeholder="Enter Patient ID Proof no." value="{{ old('id_proof') }}">                                       
+                                            placeholder="Enter Patient ID Proof no." value="{{ old('id_proof') }}">
                                             <input type="file" name="id_proof_file" id="upload" hidden />
                                             <label for="upload" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
                                     </div>
@@ -200,7 +200,7 @@
                                 </div>
 
                                 <div class="col-md-6 mt-1">
-                                    <input type="text" class="form-control" id="lastname" name="lastname"
+                                    <input type="text" class="form-control" id="lastname" name="lastname" maxlength="30"
                                         placeholder="Lastname" value="{{ old('lastname') }}">
                                     @error('lastname')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -226,7 +226,7 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="owner">Patient email ID <span class="text-danger">*</span></label>
-                                    <input type="email" class="form-control" id="email" name="email"
+                                    <input type="email" class="form-control" id="email" name="email" maxlength="30"
                                         placeholder="Enter hospital email ID" value="{{ old('email') }}">
                                     @error('email')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>

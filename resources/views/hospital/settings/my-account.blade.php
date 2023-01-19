@@ -43,7 +43,7 @@
                         </div>
                         <div class="form-group mb-2">
                             <label for="lastname">Last Name</label>
-                            <input type="text" class="form-control" id="lastname" name="lastname"
+                            <input type="text" class="form-control" id="lastname" name="lastname" maxlength="30"
                                 placeholder="Enter Lastname" value="{{ old('lastname', $admin->lastname) }}">
                             @error('lastname')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -51,7 +51,7 @@
                         </div>
                         <div class="form-group mb-2">
                             <label for="email">Email Address</label>
-                            <input type="email" class="form-control" id="email" name="email"
+                            <input type="email" class="form-control" id="email" name="email" maxlength="30"
                                 placeholder="Enter Email Address" value="{{ old('email', $admin->email) }}">
                             @error('email')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -59,7 +59,7 @@
                         </div>
                         <div class="form-group mb-2">
                             <label for="phone">Phone Number</label>
-                            <input type="text" class="form-control" id="phone" name="phone"
+                            <input type="text" class="form-control" id="phone" name="phone"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"
                                 placeholder="Enter Phone Number" value="{{ old('phone', $admin->phone) }}">
                             @error('phone')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>

@@ -46,7 +46,7 @@
                                 </div>
 
                                 <div class="col-md-6 mt-1">
-                                    <input type="text" class="form-control" id="lastname" name="lastname"
+                                    <input type="text" class="form-control" id="lastname" name="lastname" maxlength="30"
                                         placeholder="Lastname" value="{{ old('lastname') }}">
                                     @error('lastname')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -69,7 +69,7 @@
                                     <label for="pan">PAN Number <span class="text-danger">*</span></label>
                                     <div class="input-group">
                                         <input type="text" class="form-control" id="pan" name="pan"
-                                            placeholder="Enter PAN no." value="{{ old('pan') }}">                                       
+                                            placeholder="Enter PAN no." value="{{ old('pan') }}">
                                             <input type="file" name="panfile" id="upload" hidden />
                                             <label for="upload" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
                                     </div>
@@ -91,7 +91,7 @@
                                 </div>
                                 <div class="col-md-6 mt-3">
                                     <label for="owner">Official email ID <span class="text-danger">*</span></label>
-                                    <input type="email" class="form-control" id="email" name="email"
+                                    <input type="email" class="form-control" id="email" name="email" maxlength="30"
                                         placeholder="Enter official emailID" value="{{ old('email') }}">
                                     @error('email')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -131,8 +131,11 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="phone">Associate Partner Mobile Number <span
                                             class="text-danger">*</span></label>
-                                    <input type="number" class="form-control" id="phone" name="phone"
-                                        placeholder="Enter associate partner mobile number" value="{{ old('phone') }}">
+                                            <div class="input-group">
+                                                <label class="input-group-text" for="phone">+91</label>
+                                                    <input type="number" class="form-control" id="phone" name="phone"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"
+                                                        placeholder="Enter associate partner mobile number" value="{{ old('phone') }}">
+                                            </div>
                                     @error('phone')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -170,10 +173,10 @@
                                             <option value="{{ $associate->id }}"
                                                 {{ old('linked_associate_partner') == $associate->id ? 'selected' : '' }}
                                                 data-id="{{ $associate->associate_partner_id }}">
-                                                [<strong>Name: </strong>{{ $associate->firstname }}{{ $associate->lastname }}] 
+                                                [<strong>Name: </strong>{{ $associate->firstname }}{{ $associate->lastname }}]
                                                 [<strong>UID: </strong>{{ $associate->associate_partner_id }}]
                                                 [<strong>City: </strong>{{ $associate->city }}]
-                                                [<strong>State: </strong>{{ $associate->state }}]                                               
+                                                [<strong>State: </strong>{{ $associate->state }}]
                                             </option>
                                         @endforeach
                                     </select>
@@ -200,7 +203,7 @@
                                             <option value="{{ $user->id }}"
                                                 {{ old('assigned_employee') == $user->id ? 'selected' : '' }}
                                                 data-id="{{ $user->employee_code }}">
-                                                [<strong>Name: </strong>{{ $user->firstname }}{{ $user->lastname }}] 
+                                                [<strong>Name: </strong>{{ $user->firstname }}{{ $user->lastname }}]
                                                 [<strong>UID: </strong>{{ $user->employee_code }}]
                                                 [<strong>Department: </strong>{{ $user->department }}]</option>
                                         @endforeach
@@ -229,7 +232,7 @@
                                             <option value="{{ $user->id }}"
                                                 {{ old('linked_employee') == $user->id ? 'selected' : '' }}
                                                 data-id="{{ $user->employee_code }}">
-                                                [<strong>Name: </strong>{{ $user->firstname }}{{ $user->lastname }}] 
+                                                [<strong>Name: </strong>{{ $user->firstname }}{{ $user->lastname }}]
                                                 [<strong>UID: </strong>{{ $user->employee_code }}]
                                                 [<strong>Department: </strong>{{ $user->department }}]
                                             </option>

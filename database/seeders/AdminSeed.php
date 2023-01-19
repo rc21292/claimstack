@@ -22,16 +22,16 @@ class AdminSeed extends Seeder
     {
         $faker = app(Generator::class);
 
-        for ($i = 1; $i < 60; $i++) {
+        for ($i = 1; $i < 61; $i++) {
             $admin = Admin::create([
                 'firstname' => $faker->firstname(),
                 'lastname' => $faker->lastname(),
                 'email' => $i == 1 ? 'admin@claimstack.com' : $faker->unique()->safeEmail(),
-                'uid' => $i + 20,
-                'employee_code' => 'EMP' . $i + 20,
+                'uid' => $i + 60,
+                'employee_code' => 'EMP' . $i + 60,
                 'designation' => 'Admin',
                 'department' => $faker->randomElement(['Operations', 'Sales', 'Accounts', 'Lending', 'IT', 'Insurance']),
-                'phone' => $faker->numerify('9#########'),                
+                'phone' => $faker->numerify('9#########'),
                 'kra' => Str::upper(Str::random(8)),
                 'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('password')
@@ -43,7 +43,7 @@ class AdminSeed extends Seeder
                  $admin->givePermissionTo($permission);
             }
         }
-        
+
         $admins = Admin::get(['id', 'employee_code', 'department']);
 
         foreach ($admins as $admin) {

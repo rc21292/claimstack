@@ -116,7 +116,7 @@
                                 </div>
 
                                 <div class="col-md-6 mt-1">
-                                    <input type="text" class="form-control" id="lastname" name="lastname"
+                                    <input type="text" class="form-control" id="lastname" name="lastname" maxlength="30"
                                         placeholder="Lastname" value="{{ old('lastname') }}">
                                     @error('lastname')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -142,7 +142,7 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="owner">Hospital email ID <span class="text-danger">*</span></label>
-                                    <input type="email" class="form-control" id="email" name="email"
+                                    <input type="email" class="form-control" id="email" name="email" maxlength="30"
                                         placeholder="Enter hospital email ID" value="{{ old('email') }}">
                                     @error('email')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -164,7 +164,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="phone">Hospital Mobile Number <span
                                             class="text-danger">*</span></label>
-                                    <input type="number" class="form-control" id="phone" name="phone"
+                                    <input type="number" class="form-control" id="phone" name="phone"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"
                                         placeholder="Enter hospital mobile number" value="{{ old('phone') }}">
                                     @error('phone')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -209,7 +209,7 @@
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
-                               
+
                                 <div class="col-md-6 mt-3">
                                     <label for="assigned_employee">Assigned To Employee Name <span
                                             class="text-danger">*</span></label>

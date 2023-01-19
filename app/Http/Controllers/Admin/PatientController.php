@@ -29,7 +29,7 @@ class PatientController extends Controller
      */
     public function index(Request $request)
     {
-        
+
     }
 
     /**
@@ -55,8 +55,8 @@ class PatientController extends Controller
     {
 
         $rules = [
-            'firstname'                 => 'required|alpha_spaces',            
-            'dob'                       => 'required',           
+            'firstname'                 => 'required|string',
+            'dob'                       => 'required',
             'email'                     => 'required|unique:users',
             'mobile'                    => 'required|numeric|digits:10',
             'address'                   => 'required',
@@ -64,15 +64,15 @@ class PatientController extends Controller
 
         $messages = [
             'firstname.required'             => 'Please enter firstname',
-            'dob.required'                   => 'Please enter dob.',          
-            'email.required'                 => 'Please enter official mail ID.',         
+            'dob.required'                   => 'Please enter dob.',
+            'email.required'                 => 'Please enter official mail ID.',
             'mobile.required'                 => 'Please enter contact number.',
             'address.required'            => 'Please select address.',
         ];
 
         $this->validate($request, $rules, $messages);
 
-        $patient                     =   Patient::create($request->all());       
+        $patient                     =   Patient::create($request->all());
 
         return redirect()->route('admin.patients.index')->with('success', 'Patient created successfully');
     }
@@ -109,13 +109,13 @@ class PatientController extends Controller
     public function update(Request $request, $id)
     {
         $rules = [
-            'firstname'                => 'required|alpha_spaces',
+            'firstname'                => 'required|string',
             'uid'                      => 'required|unique:users,email,'.$id,
-            'designation'              => 'required|alpha_spaces',         
-            'email'                    => 'required|unique:users,email,'.$id,           
+            'designation'              => 'required|string',
+            'email'                    => 'required|unique:users,email,'.$id,
             'phone'                    => 'required|numeric|digits:10',
             'department'               => 'required',
-            'kra'                      => 'required|alpha_spaces',
+            'kra'                      => 'required|string',
             'linked_employee'          => 'required',
             'linked_employee_id'       => 'required',
         ];
@@ -123,11 +123,11 @@ class PatientController extends Controller
         $messages = [
             'firstname.required'             => 'Please enter firstname',
             'uid.required'                   => 'Please enter employee code.',
-            'designation.required'           => 'Please enter designation.',          
-            'email.required'                 => 'Please enter official mail ID.',         
+            'designation.required'           => 'Please enter designation.',
+            'email.required'                 => 'Please enter official mail ID.',
             'phone.required'                 => 'Please enter contact number.',
             'department.required'            => 'Please select department.',
-            'kra.required'                   => 'Please enter KRA',           
+            'kra.required'                   => 'Please enter KRA',
             'linked_employee.required'       => 'Please select linked employee.',
             'linked_employee_id.required'    => 'Please enter linked employee ID.',
         ];
@@ -139,7 +139,7 @@ class PatientController extends Controller
             'lastname'            =>  $request->lastname,
             'uid'                 =>  $request->uid,
             'employee_code'       =>  'EMP'.$request->uid,
-            'designation'         =>  $request->designation,           
+            'designation'         =>  $request->designation,
             'email'               =>  $request->email,
             'phone'               =>  $request->phone,
             'department'          =>  $request->department,
@@ -165,20 +165,20 @@ class PatientController extends Controller
         Patient::find($id)->delete();
         return redirect()->route('admin.users.index')->with('success', 'Patient deleted successfully');
     }
-  
+
 
     public function changePassword(Request $request)
     {
         $id = $request->id;
 
-        $this->validate($request, [          
+        $this->validate($request, [
             'new_password' => 'required|min:8|confirmed',
 
         ]);
 
         $user = Patient::find($id);
         $user->password = Hash::make($request->new_password);
-        $user->save();       
+        $user->save();
 
         return redirect()->back()->with('success', 'Password changed successfully');
     }
