@@ -56,7 +56,7 @@
         </div>
         <div class="col-md-6 mt-3">
             <label for="owner">Associate Partner Owner's Name <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="owner" name="owner"
+            <input type="text" class="form-control" id="owner" name="owner" maxlength="15"
                 placeholder="Enter associate partner owner's name" value="{{ old('owner', $associate->owner) }}">
             @error('owner')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -95,7 +95,7 @@
         </div>
 
         <div class="col-md-4 mt-2">
-            <input type="number" class="form-control" id="pincode" name="pincode" placeholder="Pincode"
+            <input type="number" class="form-control" id="pincode" name="pincode" maxlength="10" placeholder="Pincode"
                 value="{{ old('pincode', $associate->pincode) }}">
             @error('pincode')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -304,7 +304,7 @@
         </div>
         <div class="col-md-12 mt-3">
             <label for="comments">Comments </label>
-            <textarea class="form-control" id="comments" name="comments" placeholder="Comments" rows="4">{{ old('comments', $associate->comments) }}</textarea>
+            <textarea class="form-control" id="comments" name="comments" maxlength="250" placeholder="Comments" rows="4">{{ old('comments', $associate->comments) }}</textarea>
             @error('comments')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror

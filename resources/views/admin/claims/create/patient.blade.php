@@ -103,7 +103,7 @@
                                 </div>
 
                                 <div class="col-md-4 mt-2">
-                                    <input type="number" class="form-control" id="pincode" name="pincode"
+                                    <input type="number" class="form-control" id="pincode" name="pincode" maxlength="10"
                                         placeholder="Pincode" value="{{ old('pincode') }}">
                                     @error('pincode')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -289,7 +289,7 @@
                                 </div>
                                 <div class="col-md-12 mt-3">
                                     <label for="comments">Comments </label>
-                                    <textarea class="form-control" id="comments" name="comments" placeholder="Comments" rows="4">{{ old('comments') }}</textarea>
+                                    <textarea class="form-control" id="comments" name="comments" maxlength="250" placeholder="Comments" rows="4">{{ old('comments') }}</textarea>
                                     @error('comments')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
