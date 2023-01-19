@@ -333,7 +333,7 @@
 
 
         <div class="col-md-12 mt-3">
-            <label for="hms_charges">Lending / Finance Company's Agreement Date <span class="text-danger">*</span></label>
+            <label for="hms_charges">HMS Charges<span class="text-danger">*</span></label>
             <input type="text" class="form-control" id="hms_charges" name="hms_charges"
                 placeholder="Enter Lending / Finance Company's Agreement Date" value="{{ old('hms_charges', $hospital->hms_charges) }}">
             @error('hms_charges')
