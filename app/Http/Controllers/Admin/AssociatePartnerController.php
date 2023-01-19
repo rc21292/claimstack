@@ -117,6 +117,8 @@ class AssociatePartnerController extends Controller
             'status'                   => $request->status,
             'reference'                => $request->reference,
             'assigned_employee'        => $request->assigned_employee,
+            'assigned_employee_department'        => $request->assigned_employee_department,
+            'linked_employee_department'        => $request->linked_employee_department,
             'assigned_employee_id'     => $request->assigned_employee_id,
             'linked_employee'          => $request->linked_employee,
             'linked_employee_id'       => $request->linked_employee_id
