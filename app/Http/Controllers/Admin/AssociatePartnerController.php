@@ -35,7 +35,7 @@ class AssociatePartnerController extends Controller
             $associates->where(DB::raw("concat(firstname, ' ', lastname)"), 'like','%' . $filter_search . '%');
         }
         $associates = $associates->orderBy('id', 'desc')->paginate(20);
-        return view('admin.associate-partners.manage',  compact('associates', 'filter_search'));       
+        return view('admin.associate-partners.manage',  compact('associates', 'filter_search'));
     }
 
     /**
@@ -47,7 +47,7 @@ class AssociatePartnerController extends Controller
     {
         $associates = AssociatePartner::get();
         $users      = User::get();
-        
+
         return view('admin.associate-partners.create.create',  compact('associates', 'users'));
     }
 
@@ -149,7 +149,7 @@ class AssociatePartnerController extends Controller
      */
     public function show($id)
     {
-        //        
+        //
     }
 
     /**
@@ -161,6 +161,7 @@ class AssociatePartnerController extends Controller
     public function edit($id)
     {
         $associate          = AssociatePartner::find($id);
+        $associate->sub_associate_partners = AssociatePartner::where('status', 'Sub AP')->get();
         $associate->service = $associate->type == 'vendor' ? VendorServiceType::where('associate_partner_id', $id)->first() :  SalesServiceType::where('associate_partner_id', $id)->first();
         $associates         = AssociatePartner::get();
         $users              = User::get();
@@ -184,7 +185,7 @@ class AssociatePartnerController extends Controller
             'pan'                      => 'required',
             'panfile'                  =>  isset($associate_partner->panfile) ? '' : 'required',
             'owner'                    => 'required',
-            'email'                    => 'required|unique:associate_partners,email,'.$id,     
+            'email'                    => 'required|unique:associate_partners,email,'.$id,
             'address'                  => 'required',
             'city'                     => 'required',
             'state'                    => 'required',

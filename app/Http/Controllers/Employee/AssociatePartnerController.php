@@ -32,7 +32,7 @@ class AssociatePartnerController extends Controller
             $associates->where(DB::raw("concat(firstname, ' ', lastname)"), 'like','%' . $filter_search . '%');
         }
         $associates = $associates->orderBy('id', 'desc')->paginate(20);
-        return view('employee.associate-partners.manage',  compact('associates', 'filter_search'));       
+        return view('employee.associate-partners.manage',  compact('associates', 'filter_search'));
     }
 
     /**
@@ -155,6 +155,7 @@ class AssociatePartnerController extends Controller
     public function edit($id)
     {
         $associate          = AssociatePartner::find($id);
+        $associate->sub_associate_partners = AssociatePartner::where('status', 'Sub AP')->get();
         $associate->service = $associate->type == 'vendor' ? VendorServiceType::where('associate_partner_id', $id)->first() :  SalesServiceType::where('associate_partner_id', $id)->first();
         $associates         = AssociatePartner::get();
         $users              = User::get();
@@ -178,7 +179,7 @@ class AssociatePartnerController extends Controller
             'pan'                      => 'required',
             'panfile'                  =>  isset($associate_partner->panfile) ? '' : 'required',
             'owner'                    => 'required',
-            'email'                    => 'required|unique:associate_partners,email,'.$id,     
+            'email'                    => 'required|unique:associate_partners,email,'.$id,
             'address'                  => 'required',
             'city'                     => 'required',
             'state'                    => 'required',
@@ -254,7 +255,7 @@ class AssociatePartnerController extends Controller
             'contact_person_email'     => $request->contact_person_email,
             'comments'                 => $request->comments,
         ]);
-       
+
 
         AssociatePartner::where('id', $id)->update([
             'associate_partner_id'      => 'AP' . substr($associate_partner->pan, 0, 2) . substr($associate_partner->pan, -3)

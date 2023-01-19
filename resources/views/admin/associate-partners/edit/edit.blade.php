@@ -22,7 +22,7 @@
         </div>
         @include('admin.sections.flash-message')
         <!-- end page title -->
-        
+
         <!-- start page content -->
         <div class="row">
             <div class="col-12">
@@ -60,6 +60,13 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="#sub_sales_partner_status" data-bs-toggle="tab" aria-expanded="false"
+                                        class="nav-link rounded-0">
+                                        <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                                        <span class="d-none d-md-block">Sub-Sales Partner Status</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="#sales_partner_reports" data-bs-toggle="tab" aria-expanded="false"
                                         class="nav-link rounded-0">
                                         <i class="mdi mdi-settings-outline d-md-none d-block"></i>
@@ -83,6 +90,9 @@
                             @else
                                 <div class="tab-pane" id="sales_partner_service_type">
                                     @include('admin.associate-partners.edit.tabs.sales-partner-service-type')
+                                </div>
+                                <div class="tab-pane" id="sub_sales_partner_status">
+                                    @include('admin.associate-partners.edit.tabs.sub-sales-partner-status')
                                 </div>
                                 <div class="tab-pane" id="sales_partner_reports">
                                     @include('admin.associate-partners.edit.tabs.vendor-partner-reports')

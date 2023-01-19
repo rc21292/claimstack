@@ -1,5 +1,5 @@
-@extends('layouts.employee')
-@section('title', 'Edit Hospitals')
+@extends('layouts.hospital')
+@section('title', 'Edit Associate Partners')
 @section('content')
     <!-- Start Content-->
     <div class="container-fluid">
@@ -11,18 +11,18 @@
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Claim Stack</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('employee.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="javascript:void(0);">Hospital</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('hospital.dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Associate Partner</a></li>
                             <li class="breadcrumb-item active">Edit</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">Edit Hospital</h4>
+                    <h4 class="page-title">Edit Associate Partner</h4>
                 </div>
             </div>
         </div>
-        @include('employee.sections.flash-message')
+        @include('hospital.sections.flash-message')
         <!-- end page title -->
-        
+
         <!-- start page content -->
         <div class="row">
             <div class="col-12">
@@ -33,10 +33,10 @@
                                 <a href="#associate_partner_details" data-bs-toggle="tab" aria-expanded="true"
                                     class="nav-link rounded-0 active">
                                     <i class="mdi mdi-home-variant d-md-none d-block"></i>
-                                    <span class="d-none d-md-block">Hospital Details</span>
+                                    <span class="d-none d-md-block">Associate Partner Details</span>
                                 </a>
                             </li>
-                            {{-- @if ($hospital->type == 'vendor')
+                            @if ($associate->type == 'vendor')
                                 <li class="nav-item">
                                     <a href="#vendor_partner_service_type" data-bs-toggle="tab" aria-expanded="false"
                                         class="nav-link rounded-0 ">
@@ -60,34 +60,44 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="#sub_sales_partner_status" data-bs-toggle="tab" aria-expanded="false"
+                                        class="nav-link rounded-0">
+                                        <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                                        <span class="d-none d-md-block">Sub-Sales Partner Status</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="#sales_partner_reports" data-bs-toggle="tab" aria-expanded="false"
                                         class="nav-link rounded-0">
                                         <i class="mdi mdi-settings-outline d-md-none d-block"></i>
                                         <span class="d-none d-md-block">Sales Partner Reports</span>
                                     </a>
                                 </li>
-                            @endif --}}
+                            @endif
                         </ul>
 
                         <div class="tab-content">
                             <div class="tab-pane show active" id="associate_partner_details">
-                                @include('employee.hospitals.edit.tabs.hospital-details')
+                                @include('hospital.associate-partners.edit.tabs.associate-partner-details')
                             </div>
-                            {{-- @if ($hospital->type == 'vendor')
+                            @if ($associate->type == 'vendor')
                                 <div class="tab-pane" id="vendor_partner_service_type">
-                                   @include('employee.hospitals.edit.tabs.vendor-partner-service-type')
+                                   @include('hospital.associate-partners.edit.tabs.vendor-partner-service-type')
                                 </div>
                                 <div class="tab-pane" id="vendor_partner_reports">
-                                    @include('employee.associate-partners.edit.tabs.vendor-partner-reports')
+                                    @include('hospital.associate-partners.edit.tabs.vendor-partner-reports')
                                 </div>
                             @else
                                 <div class="tab-pane" id="sales_partner_service_type">
-                                    @include('employee.associate-partners.edit.tabs.sales-partner-service-type')
+                                    @include('hospital.associate-partners.edit.tabs.sales-partner-service-type')
+                                </div>
+                                <div class="tab-pane" id="sub_sales_partner_status">
+                                    @include('hospital.associate-partners.edit.tabs.sub-sales-partner-status')
                                 </div>
                                 <div class="tab-pane" id="sales_partner_reports">
-                                    @include('employee.associate-partners.edit.tabs.vendor-partner-reports')
+                                    @include('hospital.associate-partners.edit.tabs.vendor-partner-reports')
                                 </div>
-                            @endif --}}
+                            @endif
                         </div>
                     </div>
                 </div>
