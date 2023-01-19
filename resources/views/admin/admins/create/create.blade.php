@@ -216,4 +216,7 @@
             loadEmployees();
         });
     </script>
+    <script>
+        
+    </script>
 @endpush

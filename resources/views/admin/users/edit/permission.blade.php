@@ -14,9 +14,12 @@
             data-bs-parent="#custom-accordion-one">
             <div class="card-body">
                 <ul class="list-group">
+                    <li class="list-group-item">
+                        <button type="button" class="btn btn-sm btn-warning  me-1 float-end" onclick="$('.mcer').prop('checked', true);">Select All</button>
+                    </li>
                     @foreach ($permissions as $permission)
                     <li class="list-group-item">
-                        <input class="form-check-input me-1 float-end" name="permission[]" type="checkbox" {{ in_array($permission->name, $user->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
+                        <input class="form-check-input me-1 float-end mcer" name="permission[]" type="checkbox" {{ in_array($permission->name, $user->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
                         {{ $permission->name }}
                     </li>
                     @if($loop->iteration == 10)
@@ -42,12 +45,15 @@
             data-bs-parent="#custom-accordion-one">
             <div class="card-body">
                 <ul class="list-group">
+                    <li class="list-group-item">
+                        <button type="button" class="btn btn-sm btn-warning  me-1 float-end" onclick="$('.lcr').prop('checked', true);">Select All</button>
+                    </li>
                     @foreach ($permissions as $permission)
                     @if($loop->iteration < 11)
                         @continue
                     @endif
                     <li class="list-group-item">
-                        <input class="form-check-input me-1 float-end" name="permission[]" type="checkbox" {{ in_array($permission->name, $user->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
+                        <input class="form-check-input me-1 float-end lcr" name="permission[]" type="checkbox" {{ in_array($permission->name, $user->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
                         {{ $permission->name }}
                     </li>
                     @if($loop->iteration == 18)
@@ -73,12 +79,15 @@
             data-bs-parent="#custom-accordion-one">
             <div class="card-body">
                 <ul class="list-group">
+                    <li class="list-group-item">
+                        <button type="button" class="btn btn-sm btn-warning  me-1 float-end" onclick="$('.uer').prop('checked', true);">Select All</button>
+                    </li>
                     @foreach ($permissions as $permission)
                     @if($loop->iteration < 19)
                         @continue
                     @endif
                     <li class="list-group-item">
-                        <input class="form-check-input me-1 float-end" name="permission[]" type="checkbox" {{ in_array($permission->name, $user->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
+                        <input class="form-check-input me-1 float-end uer" name="permission[]" type="checkbox" {{ in_array($permission->name, $user->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
                         {{ $permission->name }}
                     </li>
                     @if($loop->iteration == 32)
@@ -104,12 +113,15 @@
             data-bs-parent="#custom-accordion-one">
             <div class="card-body">
                 <ul class="list-group">
+                    <li class="list-group-item">
+                        <button type="button" class="btn btn-sm btn-warning  me-1 float-end" onclick="$('.cr').prop('checked', true);">Select All</button>
+                    </li>
                     @foreach ($permissions as $permission)
                     @if($loop->iteration < 33)
                         @continue
                     @endif
                     <li class="list-group-item">
-                        <input class="form-check-input me-1 float-end" name="permission[]" type="checkbox" {{ in_array($permission->name, $user->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
+                        <input class="form-check-input me-1 float-end cr" name="permission[]" type="checkbox" {{ in_array($permission->name, $user->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
                         {{ $permission->name }}
                     </li>
                     @if($loop->iteration == 37)
@@ -135,12 +147,15 @@
             data-bs-parent="#custom-accordion-one">
             <div class="card-body">
                 <ul class="list-group">
+                    <li class="list-group-item">
+                        <button type="button" class="btn btn-sm btn-warning  me-1 float-end" onclick="$('.ar').prop('checked', true);">Select All</button>
+                    </li>
                     @foreach ($permissions as $permission)
                     @if($loop->iteration < 38)
                         @continue
                     @endif
                     <li class="list-group-item">
-                        <input class="form-check-input me-1 float-end" name="permission[]" type="checkbox" {{ in_array($permission->name, $user->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
+                        <input class="form-check-input me-1 float-end ar" name="permission[]" type="checkbox" {{ in_array($permission->name, $user->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
                         {{ $permission->name }}
                     </li>
                     @if($loop->iteration == 46)
@@ -166,12 +181,15 @@
             data-bs-parent="#custom-accordion-one">
             <div class="card-body">
                 <ul class="list-group">
+                    <li class="list-group-item">
+                        <button type="button" class="btn btn-sm btn-warning  me-1 float-end" onclick="$('.cvr').prop('checked', true);">Select All</button>
+                    </li>
                     @foreach ($permissions as $permission)
                     @if($loop->iteration < 47)
                         @continue
                     @endif
                     <li class="list-group-item">
-                        <input class="form-check-input me-1 float-end" name="permission[]" type="checkbox" {{ in_array($permission->name, $user->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
+                        <input class="form-check-input me-1 float-end cvr" name="permission[]" type="checkbox" {{ in_array($permission->name, $user->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
                         {{ $permission->name }}
                     </li>
                     @if($loop->iteration == 49)
@@ -197,12 +215,15 @@
             data-bs-parent="#custom-accordion-one">
             <div class="card-body">
                 <ul class="list-group">
+                    <li class="list-group-item">
+                        <button type="button" class="btn btn-sm btn-warning  me-1 float-end" onclick="$('.or').prop('checked', true);">Select All</button>
+                    </li>
                     @foreach ($permissions as $permission)
                     @if($loop->iteration < 50)
                         @continue
                     @endif
                     <li class="list-group-item">
-                        <input class="form-check-input me-1 float-end" name="permission[]" type="checkbox" {{ in_array($permission->name, $user->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
+                        <input class="form-check-input me-1 float-end or" name="permission[]" type="checkbox" {{ in_array($permission->name, $user->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
                         {{ $permission->name }}
                     </li>
                     @if($loop->iteration == 55)
