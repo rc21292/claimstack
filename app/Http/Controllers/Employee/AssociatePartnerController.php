@@ -198,6 +198,11 @@ class AssociatePartnerController extends Controller
             'contact_person'           => 'required',
             'contact_person_phone'     => 'required',
             'contact_person_email'     => 'required',
+            'bank_name'                => 'required',
+            'bank_address'             => 'required',
+            'cancel_cheque'            => 'required',
+            'bank_account_no'          => 'required',
+            'bank_ifs_code'            => 'required',
         ];
 
         $messages = [
@@ -218,13 +223,18 @@ class AssociatePartnerController extends Controller
             'assigned_employee_id.required'  => 'Please enter assigned employee ID.',
             'linked_employee.required'       => 'Please select linked employee.',
             'linked_employee_id.required'    => 'Please enter linked employee ID.',
-            'mou.required'                           => 'Please select MOU',
-            'moufile.required'                       => 'Please upload MOU File',
-            'agreement_start_date.required'          => 'Please select agreement start date',
-            'agreement_end_date.required'            => 'Please select agreement end date',
-            'contact_person.required'                => 'Please enter contact person name.',
-            'contact_person_phone.required'          => 'Please enter contact person phone.',
-            'contact_person_email.required'          => 'Please enter contact person email.',
+            'mou.required'                   => 'Please select MOU',
+            'moufile.required'               => 'Please upload MOU File',
+            'agreement_start_date.required'  => 'Please select agreement start date',
+            'agreement_end_date.required'    => 'Please select agreement end date',
+            'contact_person.required'        => 'Please enter contact person name.',
+            'contact_person_phone.required'  => 'Please enter contact person phone.',
+            'contact_person_email.required'  => 'Please enter contact person email.',
+            'bank_name.required'             => 'Please Enter Bank Name',
+            'bank_address.required'          => 'Please Enter Bank Address',
+            'cancel_cheque.required'         => 'Please Enter Cancel Cheque',
+            'bank_account_no.required'       => 'Please Enter Bank Account No',
+            'bank_ifs_code.required'         => 'Please Enter Bank Ifs Code',
         ];
 
         $this->validate($request, $rules, $messages);
@@ -253,6 +263,11 @@ class AssociatePartnerController extends Controller
             'contact_person'           => $request->contact_person,
             'contact_person_phone'     => $request->contact_person_phone,
             'contact_person_email'     => $request->contact_person_email,
+            'bank_name'                => $request->bank_name,
+            'bank_address'             => $request->bank_address,
+            'cancel_cheque'            => $request->cancel_cheque,
+            'bank_account_no'          => $request->bank_account_no,
+            'bank_ifs_code'            => $request->bank_ifs_code,
             'comments'                 => $request->comments,
         ]);
 
@@ -285,6 +300,15 @@ class AssociatePartnerController extends Controller
             $agreementfile->storeAs('uploads/associate-partners/' . $id . '/', $name, 'public');
             AssociatePartner::where('id', $id)->update([
                 'agreementfile'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('cancel_cheque_file')) {
+            $cancel_cheque_file                    = $request->file('cancel_cheque_file');
+            $name                       = $cancel_cheque_file->getClientOriginalName();
+            $cancel_cheque_file->storeAs('uploads/associate-partners/' . $id . '/', $name, 'public');
+            AssociatePartner::where('id', $id)->update([
+                'cancel_cheque_file'               =>  $name
             ]);
         }
 

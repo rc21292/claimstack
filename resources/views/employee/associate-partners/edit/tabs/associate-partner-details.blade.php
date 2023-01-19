@@ -304,7 +304,66 @@
             @enderror
         </div>
         <div class="col-md-12 mt-3">
-            <label for="comments">Comments </label>
+            <label for="address">Hospital Bank Details <span class="text-danger">*</span></label>
+        </div>
+        <div class="col-md-4 mt-2">
+            <input type="text" class="form-control" id="bank_name" name="bank_name"
+                placeholder="Bank Name" value="{{ old('bank_name', $associate->bank_name) }}">
+            @error('bank_name')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div class="col-md-4 mt-2">
+            <input type="text" class="form-control" id="bank_address" name="bank_address"
+                placeholder="Bank Address" value="{{ old('bank_address', $associate->bank_address) }}">
+            @error('bank_address')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div class="col-md-3 mt-2">
+            <select class="form-select" id="cancel_cheque" name="cancel_cheque">
+                <option value="">Cancel Cheque</option>
+                <option value="Yes" {{ old('cancel_cheque', $associate->cancel_cheque) == 'Yes' ? 'selected' : '' }}>Yes
+                </option>
+                <option value="No"
+                    {{ old('cancel_cheque', $associate->cancel_cheque) == 'No' ? 'selected' : '' }}>No
+                </option>
+            </select>
+
+            @error('cancel_cheque')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div class="col-md-1 mt-2">
+                <input type="file" name="cancel_cheque_file" id="cupload" hidden />
+                <label for="cupload" class="btn btn-primary upload-label"><i
+                        class="mdi mdi-upload"></i></label>
+            @error('cancel_cheque_file')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+
+
+        <div class="col-md-6 mt-3">
+            <input type="number" class="form-control" id="bank_account_no" name="bank_account_no"
+                placeholder="Bank Account No." value="{{ old('bank_account_no', $associate->bank_account_no) }}">
+            @error('bank_account_no')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div class="col-md-6 mt-3">
+            <input type="text" class="form-control" id="bank_ifs_code" name="bank_ifs_code"
+                placeholder="Bank IFSC Code" value="{{ old('bank_ifs_code', $associate->bank_ifs_code) }}">
+            @error('bank_ifs_code')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="col-md-12 mt-3">
+            <label for="comments">Associate Partner Comments </label>
             <textarea class="form-control" id="comments" name="comments" maxlength="250" placeholder="Comments" rows="4">{{ old('comments', $associate->comments) }}</textarea>
             @error('comments')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
