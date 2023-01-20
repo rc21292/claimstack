@@ -4,6 +4,7 @@ namespace App\Imports;
 
 use App\Models\AssociatePartner;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Illuminate\Support\Facades\Hash;
 
 class ImportAssociatePartner implements ToModel
 {
@@ -14,38 +15,47 @@ class ImportAssociatePartner implements ToModel
     */
     public function model(array $row)
     {
+
+        if ($row[0] == 'Name') {
+            return;
+        }
+
+
         return new AssociatePartner([
-            'firstname' => $row[0],
-            'lastname' => $row[1],
-            'associate_partner_id' => $row[2],
-            'type' => $row[3],
-            'pan' => $row[4],
-            'panfile' => $row[5],
-            'owner' => $row[6],
-            'email' => $row[7],
-            'address' => $row[8],
-            'city' => $row[9],
-            'state' => $row[10],
-            'pincode' => $row[11],
-            'password' => $row[12],
-            'phone' => $row[13],
-            'reference' => $row[14],
-            'status' => $row[15],
-            'linked_associate_partner' => $row[16],
-            'linked_associate_partner_id' => $row[17],
-            'assigned_employee' => $row[18],
-            'assigned_employee_id' => $row[19],
-            'linked_employee' => $row[20],
-            'linked_employee_id' => $row[21],
-            'mou' => $row[22],
-            'moufile' => $row[23],
-            'agreement_start_date' => $row[24],
-            'agreementfile' => $row[25],
-            'agreement_end_date' => $row[26],
-            'contact_person' => $row[27],
-            'contact_person_phone' => $row[28],
-            'contact_person_email' => $row[29],
-            'comments' => $row[30],
+            'name' => $row[0],
+            'type' => $row[1],
+            'pan' => $row[2],
+            'associate_partner_id' => 'AP' . substr($row[2], 0, 2) . substr($row[2], -3),
+            'owner' => $row[3],
+            'email' => $row[4],
+            'address' => $row[5],
+            'city' => $row[6],
+            'state' => $row[7],
+            'pincode' => $row[8],
+            'password' => Hash::make('12345678'),
+            'phone' => $row[9],
+            'reference' => $row[10],
+            'status' => $row[11],
+            'linked_associate_partner' => $row[12],
+            'linked_associate_partner_id' => $row[13],
+            'assigned_employee_department' => $row[14],
+            'assigned_employee' => $row[15],
+            'assigned_employee_id' => $row[16],
+            'linked_employee_department' => $row[17],
+            'linked_employee' => $row[18],
+            'linked_employee_id' => $row[19],
+            'mou' => $row[20],
+            'agreement_start_date' => $row[21],
+            'agreement_end_date' => $row[22],
+            'contact_person' => $row[23],
+            'contact_person_phone' => $row[24],
+            'contact_person_email' => $row[25],
+            'bank_name' => $row[26],
+            'bank_address' => $row[27],
+            'bank_account_no' => $row[28],
+            'bank_ifs_code' => $row[29],
+            'cancel_cheque' => $row[30],
+            'comments' => $row[31],
         ]);
     }
 }

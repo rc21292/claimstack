@@ -13,46 +13,47 @@ class ExportAssociatePartner implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        return AssociatePartner::all();
+        return AssociatePartner::get(['id', 'name', 'associate_partner_id', 'type', 'pan', 'owner', 'email', 'address', 'city', 'state', 'pincode', 'phone', 'reference', 'status', 'linked_associate_partner', 'linked_associate_partner_id', 'assigned_employee_department', 'assigned_employee', 'assigned_employee_id', 'linked_employee_department', 'linked_employee', 'linked_employee_id', 'mou', 'agreement_start_date', 'agreement_end_date', 'contact_person', 'contact_person_phone', 'contact_person_email', 'bank_name', 'bank_address', 'bank_account_no', 'bank_ifs_code', 'cancel_cheque', 'comments' ]);
     }
 
     public function headings(): array
     {
         return [
             'Id',
-            'firstname',
-            'lastname',
-            'associate_partner_id',
-            'type',
-            'pan',
-            'panfile',
-            'owner',
-            'email',
-            'address',
-            'city',
-            'state',
-            'pincode',
-            'password',
-            'phone',
-            'reference',
-            'status',
-            'linked_associate_partner',
-            'linked_associate_partner_id',
-            'assigned_employee',
-            'assigned_employee_id',
-            'linked_employee',
-            'linked_employee_id',
-            'mou',
-            'moufile',
-            'agreement_start_date',
-            'agreementfile',
-            'agreement_end_date',
-            'contact_person',
-            'contact_person_phone',
-            'contact_person_email',
-            'comments',
-            'Created At',
-            'Updated At'
+            'Name',
+            'Associate Partner Id',
+            'Type',
+            'Pan',
+            'Owner',
+            'Email',
+            'Address',
+            'City',
+            'State',
+            'Pincode',
+            'Phone',
+            'Reference',
+            'Status',
+            'Linked Associate Partner',
+            'Linked Associate Partner Id',
+            'Assigned Employee Department',
+            'Assigned Employee',
+            'Assigned Employee Id',
+            'Linked Employee Department',
+            'Linked Employee',
+            'Linked Employee Id',
+            'Mou',
+            'Agreement Start Date',
+            'Agreement End Date',
+            'Contact Person',
+            'Contact Person Phone',
+            'Contact Person Email',
+            'Bank Name',
+            'Bank Address',
+            'Bank Account No',
+            'Bank Ifs Code',
+            'Cancel Cheque',
+            'Comments',
+            'Created At'
         ];
     }
 }

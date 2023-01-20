@@ -32,7 +32,7 @@
                             @csrf
                             <div class="form-group mb-4">
                                 <div class="custom-file text-left">
-                                    <input type="file" name="file" class="custom-file-input" id="customFile">
+                                    <input required type="file" name="file" class="custom-file-input" id="customFile">
                                     <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
                             </div>
