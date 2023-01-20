@@ -3,7 +3,7 @@
         <div class="card no-shadow">
             <div class="card-body p-0">
                 <div class="table-responsive">
-                    @if (count($associates) > 0)
+                    @if (count($associate->sub_associate_partners) > 0)
                         <table id="basics-datatable" class="table table-hover">
                             <thead class="thead-grey">
                                 <tr>

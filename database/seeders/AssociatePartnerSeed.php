@@ -25,9 +25,10 @@ class AssociatePartnerSeed extends Seeder
         $faker = app(Generator::class);
         $user  = User::inRandomOrder()->first();
         for ($i = 1; $i < 60; $i++) {
+            $type =  $faker->randomElement(['vendor', 'sales']);
             AssociatePartner::create([
                 'name' =>  $faker->company,
-                'type' => $faker->randomElement(['vendor', 'sales']),
+                'type' => $type,
                 'pan' => Str::upper(Str::random(10)),
                 'owner_firstname' => $faker->firstname(),
                 'owner_lastname' => $faker->lastname(),
@@ -38,7 +39,7 @@ class AssociatePartnerSeed extends Seeder
                 'pincode' => 110009,
                 'phone' => $faker->numerify('9#########'),
                 'reference' => 'Refereed By Admin',
-                'status' => $faker->randomElement(['Main', 'Sub AP', 'Agency']),
+                'status' => $type == 'sales' ? $faker->randomElement(['Sub AP', 'Main', 'Agency']) : 'Main',
                 'assigned_employee_department' => $user->department,
                 'assigned_employee' => $user->id,
                 'assigned_employee_id' => $user->employee_code,
@@ -116,8 +117,8 @@ class AssociatePartnerSeed extends Seeder
         }
 
         foreach ($associate_partners as $partner) {
-            $part  = AssociatePartner::inRandomOrder()->first();
-            AssociatePartner::where('id', $partner->id)->where('status', 'Sub AP')->update([
+            $part  = AssociatePartner::where('status', 'Main')->where('type', 'sales')->inRandomOrder()->first();
+            AssociatePartner::where('id', $partner->id)->where('type', 'sales')->whereIn('status', ['Sub AP', 'Agency'])->update([
                 'linked_associate_partner' => $part->id,
                 'linked_associate_partner_id' => $part->associate_partner_id
             ]);
