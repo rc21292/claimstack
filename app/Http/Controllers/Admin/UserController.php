@@ -63,7 +63,7 @@ class UserController extends Controller
             'lastname'                 => isset($request->lastname) ? 'string|max:30' : '',
             'uid'                      => 'required|unique:admins|unique:users|string|max:8',
             'designation'              => 'required|string|max:30',
-            'email'                    => 'required|email|unique:admins|unique:users|unique:hospitals|unique:associate_partners|unique:employees',
+            'email'                    => 'required|email|unique:admins|unique:users,email,NULL,id,deleted_at,NULL|unique:hospitals,email,NULL,id,deleted_at,NULL|unique:associate_partners,email,NULL,id,deleted_at,NULL|unique:employees,email,NULL,id,deleted_at,NULL',
             'phone'                    => 'required|numeric|digits:10',
             'department'               => 'required',
             'kra'                      =>  'required|string|max:40',
