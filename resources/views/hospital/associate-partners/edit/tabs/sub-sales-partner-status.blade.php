@@ -46,7 +46,7 @@
                             </tbody>
                         </table>
                     @else
-                        <p class="text-center">No Sub Associate Partner found.</p>
+                        <p class="text-center pt-5 pb-5">No Sub Associate Partner found.</p>
                     @endif
                 </div>
             </div>
