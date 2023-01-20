@@ -16,6 +16,7 @@
                 <ul class="list-group">
                     <li class="list-group-item">
                         <button type="button" class="btn btn-sm btn-warning  me-1 float-end" onclick="$('.mcer').prop('checked', true);">Select All</button>
+                        <button type="button" class="btn btn-sm btn-danger  me-1 float-end" onclick="$('.mcer').prop('checked', false);">Deselect All</button>
                     </li>
                     @foreach ($permissions as $permission)
                     <li class="list-group-item">
@@ -47,6 +48,7 @@
                 <ul class="list-group">
                     <li class="list-group-item">
                         <button type="button" class="btn btn-sm btn-warning  me-1 float-end" onclick="$('.lcr').prop('checked', true);">Select All</button>
+                        <button type="button" class="btn btn-sm btn-danger  me-1 float-end" onclick="$('.lcr').prop('checked', false);">Deselect All</button>
                     </li>
                     @foreach ($permissions as $permission)
                     @if($loop->iteration < 11)
@@ -81,6 +83,7 @@
                 <ul class="list-group">
                     <li class="list-group-item">
                         <button type="button" class="btn btn-sm btn-warning  me-1 float-end" onclick="$('.uer').prop('checked', true);">Select All</button>
+                        <button type="button" class="btn btn-sm btn-danger  me-1 float-end" onclick="$('.uer').prop('checked', false);">Deselect All</button>
                     </li>
                     @foreach ($permissions as $permission)
                     @if($loop->iteration < 19)
@@ -115,6 +118,7 @@
                 <ul class="list-group">
                     <li class="list-group-item">
                         <button type="button" class="btn btn-sm btn-warning  me-1 float-end" onclick="$('.cr').prop('checked', true);">Select All</button>
+                        <button type="button" class="btn btn-sm btn-danger  me-1 float-end" onclick="$('.cr').prop('checked', false);">Deselect All</button>
                     </li>
                     @foreach ($permissions as $permission)
                     @if($loop->iteration < 33)
@@ -149,6 +153,7 @@
                 <ul class="list-group">
                     <li class="list-group-item">
                         <button type="button" class="btn btn-sm btn-warning  me-1 float-end" onclick="$('.ar').prop('checked', true);">Select All</button>
+                        <button type="button" class="btn btn-sm btn-danger  me-1 float-end" onclick="$('.ar').prop('checked', false);">Deselect All</button>
                     </li>
                     @foreach ($permissions as $permission)
                     @if($loop->iteration < 38)
@@ -183,6 +188,7 @@
                 <ul class="list-group">
                     <li class="list-group-item">
                         <button type="button" class="btn btn-sm btn-warning  me-1 float-end" onclick="$('.cvr').prop('checked', true);">Select All</button>
+                        <button type="button" class="btn btn-sm btn-danger  me-1 float-end" onclick="$('.cvr').prop('checked', false);">Deselect All</button>
                     </li>
                     @foreach ($permissions as $permission)
                     @if($loop->iteration < 47)
@@ -217,6 +223,7 @@
                 <ul class="list-group">
                     <li class="list-group-item">
                         <button type="button" class="btn btn-sm btn-warning  me-1 float-end" onclick="$('.or').prop('checked', true);">Select All</button>
+                        <button type="button" class="btn btn-sm btn-danger  me-1 float-end" onclick="$('.or').prop('checked', false);">Deselect All</button>
                     </li>
                     @foreach ($permissions as $permission)
                     @if($loop->iteration < 50)
