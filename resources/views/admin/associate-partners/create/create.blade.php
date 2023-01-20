@@ -179,7 +179,7 @@
                                                 {{ old('linked_associate_partner') == $associate->id ? 'selected' : '' }}
                                                 data-id="{{ $associate->associate_partner_id }}">
                                                 [<strong>Name:
-                                                </strong>{{ $associate->firstname }}{{ $associate->lastname }}]
+                                                </strong>{{ $associate->name }}]
                                                 [<strong>UID: </strong>{{ $associate->associate_partner_id }}]
                                                 [<strong>City: </strong>{{ $associate->city }}]
                                                 [<strong>State: </strong>{{ $associate->state }}]

@@ -145,7 +145,7 @@
                     <option value="{{ $row->id }}"
                         {{ old('linked_associate_partner', $associate->linked_associate_partner) == $row->id ? 'selected' : '' }}
                         data-id="{{ $row->associate_partner_id }}">
-                        [<strong>Name: </strong>{{ $row->firstname }}{{ $row->lastname }}]
+                        [<strong>Name: </strong>{{ $row->name }}]
                         [<strong>UID: </strong>{{ $row->associate_partner_id }}]
                         [<strong>City: </strong>{{ $row->city }}]
                         [<strong>State: </strong>{{ $row->state }}]
