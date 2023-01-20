@@ -19,7 +19,7 @@
                                 @foreach ($associate->sub_associate_partners as $sub_associate_partner)
                                     <tr>
                                         <th scope="row">{{ $sub_associate_partner->associate_partner_id }}</th>
-                                        <td>{!! $sub_associate_partner->firstname !!} {!! $sub_associate_partner->lastname !!}</td>
+                                        <td>{!! $sub_associate_partner->name !!}</td>
                                         <td><span
                                                 class="badge badge-outline-secondary">{{ ucfirst($sub_associate_partner->type) }}</span>
                                         </td>

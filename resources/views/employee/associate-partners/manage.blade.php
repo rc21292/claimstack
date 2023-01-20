@@ -16,7 +16,7 @@
                                     <button class="btn btn-primary" type="submit">Search</button>
                                 </div>
                             </div>
-                        </form>  
+                        </form>
                     </div>
                     <h4 class="page-title">Manage Associate Partner</h4>
                 </div>
@@ -47,7 +47,7 @@
                                         @foreach ($associates as $associate)
                                             <tr>
                                                 <th scope="row">{{ $associate->associate_partner_id }}</th>
-                                                <td>{!! $associate->firstname !!} {!! $associate->lastname !!}</td>
+                                                <td>{!! $associate->name !!}</td>
                                                 <td><span
                                                         class="badge badge-outline-secondary">{{ ucfirst($associate->type) }}</span>
                                                 </td>
