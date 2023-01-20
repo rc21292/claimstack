@@ -7,7 +7,7 @@
 @else
 {{ $slot }}
 @endif --}}
-<img src="{{ asset('assets/images/logos/logo-dark.png') }}" class="logo" alt="Claimstack" width="100%">
+<img src="{{ asset('assets/images/logos/logo-dark.png') }}" alt="Claimstack" width="100%">
 </a>
 </td>
 </tr>
