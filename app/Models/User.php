@@ -20,11 +20,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
 
-    public static function boot()
-    {
-        parent::boot();
-        User::observe(new \App\Observers\UserActionsObserver);
-    }
+    // public static function boot()
+    // {
+    //     parent::boot();
+    //     User::observe(new \App\Observers\UserActionsObserver);
+    // }
 
 
     protected $fillable = [
