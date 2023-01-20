@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\AssociatePartner;
 use App\Models\Hospital;
+use App\Models\HospitalFacility;
 use App\Models\HospitalTieUp;
 use App\Models\User;
 use App\Notifications\Hospital\CredentialsGeneratedNotification;
@@ -180,9 +181,10 @@ class HospitalController extends Controller
 
         $hospital          = Hospital::find($id);
         $hospital_tie_ups          = HospitalTieUp::where('hospital_id', $id)->first();
+        $hospital_facility          = HospitalFacility::where('hospital_id', $id)->first();
         $hospitals         = Hospital::get();
         $users              = User::get();
-        return view('admin.hospitals.edit.edit',  compact('hospital', 'hospitals', 'hospital_tie_ups', 'users'));
+        return view('admin.hospitals.edit.edit',  compact('hospital', 'hospitals', 'hospital_facility', 'hospital_tie_ups', 'users'));
     }
 
     /**
@@ -549,6 +551,92 @@ class HospitalController extends Controller
         HospitalTieUp::where('hospital_id', $id)->update([
             'uid'      => 'HSPTUP'.$hospital->id
         ]);
+
+        return redirect()->back()->with('success', 'Hospital updated successfully');
+    }
+
+    public function updateHospitalFacility(Request $request, $id)
+    {
+        
+        $hospital             = Hospital::find($id);
+
+        $rules = [
+            'pharmacy'                     => 'required',
+            'lab'                => 'required',
+            'ambulance'               => 'required',
+            'operation_theatre'                       => 'required',
+            'icu'                      => 'required',
+            'iccu'                   => 'required',
+            'nicu'                 => 'required',
+            'csc_sterilization'                    => 'required',
+            'centralized_gas_ons'                  => 'required',
+            'centralized_ac'                     => 'required',
+            'kitchen'                    => 'required',
+            'usg_machine'                  => 'required',
+            'digital_xray'                    => 'required',
+            'ct'     => 'required',
+            'mri' => 'required',
+            'pet_scan' => 'required',
+            'organ_transplant_unit' => 'required',
+            'burn_unit' => 'required',
+            'dialysis_unit' => 'required',
+            'blood_bank' => 'required',
+            'hospital_facility_comments' => 'required'
+        ];
+
+        $messages = [
+            'pharmacy.required'                   => 'Please Enter Pharmacy',
+            'lab.required'              => 'Please Enter Lab',
+            'ambulance.required'             => 'Please Enter Ambulance',
+            'operation_theatre.required'                     => 'Please Enter Operation Theatre',
+            'icu.required'                    => 'Please Enter ICU',
+            'iccu.required'                 => 'Please Enter ICCU',
+            'nicu.required'               => 'Please Enter NICU',
+            'csc_sterilization.required'                  => 'Please Enter CSC (Sterilization)',
+            'centralized_gas_ons.required'                => 'Please Enter Centralized-Gas (ONS)',
+            'centralized_ac.required'                   => 'Please Enter Centralized-AC',
+            'kitchen.required'                  => 'Please Enter Kitchen',
+            'usg_machine.required'                => 'Please Enter USG Machine',
+            'digital_xray.required'                  => 'Please Enter Digital X-Ray',
+            'ct.required'   => 'Please Enter CT',
+            'mri.required' => 'Please Enter MRI',
+            'pet_scan.required' => 'Please Enter PET Scan',
+            'organ_transplant_unit.required' => 'Please Enter Organ Transplant Unit',
+            'burn_unit.required' => 'Please Enter Burn Unit',
+            'dialysis_unit.required' => 'Please Enter Dialysis Unit',
+            'blood_bank.required' => 'Please Enter Blood Bank',
+            'hospital_facility_comments.required' => 'Please Enter Hospital Facility Comments',
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+      
+
+        $hospitalT =  HospitalFacility::updateOrCreate([
+            'hospital_id' => $id],
+            [
+                'pharmacy'                     => $request->pharmacy,
+                'lab'               => $request->lab,
+                'ambulance'                       => $request->ambulance,
+                'operation_theatre'                  => $request->operation_theatre,
+                'icu'                     => $request->icu,
+                'iccu'                    => $request->iccu,
+                'nicu'                  => $request->nicu,
+                'csc_sterilization'                 => $request->csc_sterilization,
+                'centralized_gas_ons'                => $request->centralized_gas_ons,
+                'centralized_ac'                 => $request->centralized_ac,
+                'kitchen'                      => $request->kitchen,
+                'usg_machine'                    => $request->usg_machine,
+                'digital_xray'                 => $request->digital_xray,
+                'ct'                    => $request->ct,
+                'mri'                   => $request->mri,
+                'pet_scan' => $request->pet_scan,
+                'organ_transplant_unit' => $request->organ_transplant_unit,
+                'burn_unit' => $request->burn_unit,
+                'dialysis_unit' => $request->dialysis_unit,
+                'blood_bank' => $request->blood_bank,
+                'hospital_facility_comments' => $request->hospital_facility_comments
+            ]);
 
         return redirect()->back()->with('success', 'Hospital updated successfully');
     }

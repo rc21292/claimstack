@@ -36,6 +36,7 @@
                                     <span class="d-none d-md-block">Hospital Details</span>
                                 </a>
                             </li>
+
                             <li class="nav-item">
                                 <a href="#hospital_tie_up_details" data-bs-toggle="tab" aria-expanded="false"
                                     class="nav-link rounded-0 ">
@@ -43,37 +44,14 @@
                                     <span class="d-none d-md-block">Hospital Tie-up Details</span>
                                 </a>
                             </li>
-                            {{-- @if ($hospital->type == 'vendor')
-                                <li class="nav-item">
-                                    <a href="#vendor_partner_service_type" data-bs-toggle="tab" aria-expanded="false"
-                                        class="nav-link rounded-0 ">
-                                        <i class="mdi mdi-account-circle d-md-none d-block"></i>
-                                        <span class="d-none d-md-block">Vendor Partner Service Type</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#vendor_partner_reports" data-bs-toggle="tab" aria-expanded="false"
-                                        class="nav-link rounded-0">
-                                        <i class="mdi mdi-settings-outline d-md-none d-block"></i>
-                                        <span class="d-none d-md-block">Vendor Partner Reports</span>
-                                    </a>
-                                </li>
-                            @else
-                                <li class="nav-item">
-                                    <a href="#sales_partner_service_type" data-bs-toggle="tab" aria-expanded="false"
-                                        class="nav-link rounded-0">
-                                        <i class="mdi mdi-account-circle d-md-none d-block"></i>
-                                        <span class="d-none d-md-block">Sales Partner Service Type</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#sales_partner_reports" data-bs-toggle="tab" aria-expanded="false"
-                                        class="nav-link rounded-0">
-                                        <i class="mdi mdi-settings-outline d-md-none d-block"></i>
-                                        <span class="d-none d-md-block">Sales Partner Reports</span>
-                                    </a>
-                                </li>
-                            @endif --}}
+
+                            <li class="nav-item">
+                                <a href="#hospital_facilities" data-bs-toggle="tab" aria-expanded="false"
+                                    class="nav-link rounded-0 ">
+                                    <i class="mdi mdi-home-variant d-md-none d-block"></i>
+                                    <span class="d-none d-md-block">Hospital Facility Details</span>
+                                </a>
+                            </li>
                         </ul>
 
                         <div class="tab-content">
@@ -83,21 +61,9 @@
                             <div class="tab-pane" id="hospital_tie_up_details">
                                 @include('admin.hospitals.edit.tabs.hospital-tie-up-details')
                             </div>
-                            {{-- @if ($hospital->type == 'vendor')
-                                <div class="tab-pane" id="vendor_partner_service_type">
-                                   @include('admin.hospitals.edit.tabs.vendor-partner-service-type')
-                                </div>
-                                <div class="tab-pane" id="vendor_partner_reports">
-                                    @include('admin.associate-partners.edit.tabs.vendor-partner-reports')
-                                </div>
-                            @else
-                                <div class="tab-pane" id="sales_partner_service_type">
-                                    @include('admin.associate-partners.edit.tabs.sales-partner-service-type')
-                                </div>
-                                <div class="tab-pane" id="sales_partner_reports">
-                                    @include('admin.associate-partners.edit.tabs.vendor-partner-reports')
-                                </div>
-                            @endif --}}
+                            <div class="tab-pane" id="hospital_facilities">
+                                @include('admin.hospitals.edit.tabs.hospital-facilities')
+                            </div>
                         </div>
                     </div>
                 </div>
