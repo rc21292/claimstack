@@ -197,9 +197,9 @@
                 </a>
                 <div class="collapse" id="settings">
                     <ul class="side-nav-second-level">
-                        <li>
+                        {{-- <li>
                             <a href="{{ route('hospital.password.form') }}">Change Password</a>
-                        </li>
+                        </li> --}}
                         <li>
                             <a href="{{ route('hospital.my-account.edit', Auth::guard('hospital')->id()) }}">My Profile</a>
                         </li>

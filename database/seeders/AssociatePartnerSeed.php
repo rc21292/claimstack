@@ -26,16 +26,16 @@ class AssociatePartnerSeed extends Seeder
         $user  = User::inRandomOrder()->first();
         for ($i = 1; $i < 60; $i++) {
             AssociatePartner::create([
-                'firstname' => $faker->firstname(),
-                'lastname' => $faker->lastname(),
+                'name' =>  $faker->company,
                 'type' => $faker->randomElement(['vendor', 'sales']),
                 'pan' => Str::upper(Str::random(10)),
-                'owner' => $faker->name(),
+                'owner_firstname' => $faker->firstname(),
+                'owner_lastname' => $faker->lastname(),
                 'email' => $i == 1 ? 'associate@claimstack.com' : $faker->unique()->safeEmail(),
                 'address' => $faker->address,
                 'city' => $faker->city,
                 'state' => $faker->state,
-                'pincode' => $faker->postcode,
+                'pincode' => 110009,
                 'phone' => $faker->numerify('9#########'),
                 'reference' => 'Refereed By Admin',
                 'status' => $faker->randomElement(['Main', 'Sub AP', 'Agency']),
@@ -117,7 +117,7 @@ class AssociatePartnerSeed extends Seeder
 
         foreach ($associate_partners as $partner) {
             $part  = AssociatePartner::inRandomOrder()->first();
-            AssociatePartner::where('id', $partner->id)->update([
+            AssociatePartner::where('id', $partner->id)->where('status', 'Sub AP')->update([
                 'linked_associate_partner' => $part->id,
                 'linked_associate_partner_id' => $part->associate_partner_id
             ]);

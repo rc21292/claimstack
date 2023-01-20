@@ -184,9 +184,9 @@
                 </a>
                 <div class="collapse" id="settings">
                     <ul class="side-nav-second-level">
-                        <li>
+                        {{-- <li>
                             <a href="{{ route('employee.password.form') }}">Change Password</a>
-                        </li>
+                        </li> --}}
                         <li>
                             <a href="{{ route('employee.my-account.edit', Auth::guard('employee')->id()) }}">My Profile</a>
                         </li>

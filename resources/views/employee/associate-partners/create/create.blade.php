@@ -32,27 +32,15 @@
                             id="associate-partner-form" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
-
-                                <div class="col-md-12">
-                                    <label for="firstname">Associate Partner Name <span class="text-danger">*</span></label>
-                                </div>
-
-                                <div class="col-md-6 mt-1">
-                                    <input type="text" class="form-control" id="firstname" name="firstname" maxlength="15"
-                                        placeholder="Firstname" value="{{ old('firstname') }}">
-                                    @error('firstname')
+                                <div class="col-md-6">
+                                    <label for="name">Associate Partner Company's Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="name" name="name"
+                                        maxlength="15" placeholder="Enter company name" value="{{ old('name') }}">
+                                    @error('name')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
-
-                                <div class="col-md-6 mt-1">
-                                    <input type="text" class="form-control" id="lastname" name="lastname" maxlength="30"
-                                        placeholder="Lastname" value="{{ old('lastname') }}">
-                                    @error('lastname')
-                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="col-md-6 mt-3">
+                                <div class="col-md-6">
                                     <label for="type">Associate Partner Type <span class="text-danger">*</span></label>
                                     <select class="form-select" id="type" name="type">
                                         <option value="">Select Type</option>
@@ -65,13 +53,34 @@
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
+                                <div class="col-md-12 mt-3">
+                                    <label for="owner_firstname">Associate Partner Owner Name <span class="text-danger">*</span></label>
+                                </div>
+
+                                <div class="col-md-6 mt-1">
+                                    <input type="text" class="form-control" id="owner_firstname" name="owner_firstname"
+                                        maxlength="15" placeholder="Enter firstname" value="{{ old('owner_firstname') }}">
+                                    @error('owner_firstname')
+                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6 mt-1">
+                                    <input type="text" class="form-control" id="owner_lastname" name="owner_lastname" maxlength="30"
+                                        placeholder="Enter lastname" value="{{ old('owner_lastname') }}">
+                                    @error('owner_lastname')
+                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
                                 <div class="col-md-6 mt-3">
                                     <label for="pan">PAN Number <span class="text-danger">*</span></label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="pan" name="pan" maxlength="10"
-                                            placeholder="Enter PAN no." value="{{ old('pan') }}">
-                                            <input type="file" name="panfile" id="upload" hidden />
-                                            <label for="upload" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
+                                        <input type="text" class="form-control" id="pan" name="pan"
+                                            maxlength="10" placeholder="Enter PAN no." value="{{ old('pan') }}">
+                                        <input type="file" name="panfile" id="upload" hidden />
+                                        <label for="upload" class="btn btn-primary upload-label"><i
+                                                class="mdi mdi-upload"></i></label>
                                     </div>
                                     @error('pan')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -80,15 +89,7 @@
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="col-md-6 mt-3">
-                                    <label for="owner">Associate Partner Owner's Name <span
-                                            class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="owner" name="owner" maxlength="15"
-                                        placeholder="Enter associate partner owner's name" value="{{ old('owner') }}">
-                                    @error('owner')
-                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                    @enderror
-                                </div>
+
                                 <div class="col-md-6 mt-3">
                                     <label for="owner">Official email ID <span class="text-danger">*</span></label>
                                     <input type="email" class="form-control" id="email" name="email" maxlength="30"
@@ -98,7 +99,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-12 mt-3">
-                                    <label for="address">Hospital Address <span class="text-danger">*</span></label>
+                                    <label for="address">Associate Partner Address <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="address" name="address"
                                         placeholder="Address Line" value="{{ old('address') }}">
                                     @error('address')
@@ -122,7 +123,8 @@
                                 </div>
 
                                 <div class="col-md-4 mt-2">
-                                    <input type="text" class="form-control" id="pincode" name="pincode" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==6) return false;"
+                                    <input type="number" class="form-control" id="pincode" name="pincode"
+                                        pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==6) return false;"
                                         placeholder="Pincode" value="{{ old('pincode') }}">
                                     @error('pincode')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -131,11 +133,13 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="phone">Associate Partner Mobile Number <span
                                             class="text-danger">*</span></label>
-                                            <div class="input-group">
-                                                <label class="input-group-text" for="phone">+91</label>
-                                    <input type="number" class="form-control" id="phone" name="phone"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"
-                                        placeholder="Enter associate partner mobile number" value="{{ old('phone') }}">
-                                            </div>
+                                    <div class="input-group">
+                                        <label class="input-group-text" for="phone">+91</label>
+                                        <input type="number" class="form-control" id="phone" name="phone"
+                                            pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"
+                                            placeholder="Enter associate partner mobile number"
+                                            value="{{ old('phone') }}">
+                                    </div>
                                     @error('phone')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -166,14 +170,16 @@
                                 </div>
                                 <div class="col-md-6 mt-3 linked">
                                     <label for="linked_associate_partner">Linked Associate Partner Name </label>
-                                    <select class="form-control select2" id="linked_associate_partner"  name="linked_associate_partner"
-                                        data-toggle="select2" onchange="setLinkedAssociatePartnerId()">
+                                    <select class="form-control select2" id="linked_associate_partner"
+                                        name="linked_associate_partner" data-toggle="select2"
+                                        onchange="setLinkedAssociatePartnerId()">
                                         <option value="">Select Associate Partner</option>
                                         @foreach ($associates as $associate)
                                             <option value="{{ $associate->id }}"
                                                 {{ old('linked_associate_partner') == $associate->id ? 'selected' : '' }}
                                                 data-id="{{ $associate->associate_partner_id }}">
-                                                [<strong>Name: </strong>{{ $associate->firstname }}{{ $associate->lastname }}]
+                                                [<strong>Name:
+                                                </strong>{{ $associate->firstname }}{{ $associate->lastname }}]
                                                 [<strong>UID: </strong>{{ $associate->associate_partner_id }}]
                                                 [<strong>City: </strong>{{ $associate->city }}]
                                                 [<strong>State: </strong>{{ $associate->state }}]
@@ -194,42 +200,54 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-12 mt-3">
-                                    <label for="assigned_employee_department">Assigned To Employee Department <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="assigned_employee_department" name="assigned_employee_department"
-                                        onchange="loadAssignedEmployees()">
+                                    <label for="assigned_employee_department">Assigned To Employee Department <span
+                                            class="text-danger">*</span></label>
+                                    <select class="form-select" id="assigned_employee_department"
+                                        name="assigned_employee_department" onchange="loadAssignedEmployees()">
                                         <option value="">Select Department</option>
                                         <option value="Operations"
-                                            {{ old('assigned_employee_department') == 'Operations' ? 'selected' : '' }}>Operations
+                                            {{ old('assigned_employee_department') == 'Operations' ? 'selected' : '' }}>
+                                            Operations
                                         </option>
-                                        <option value="Sales" {{ old('assigned_employee_department') == 'Sales' ? 'selected' : '' }}>Sales
+                                        <option value="Sales"
+                                            {{ old('assigned_employee_department') == 'Sales' ? 'selected' : '' }}>Sales
                                         </option>
-                                        <option value="Accounts" {{ old('assigned_employee_department') == 'Accounts' ? 'selected' : '' }}>
+                                        <option value="Accounts"
+                                            {{ old('assigned_employee_department') == 'Accounts' ? 'selected' : '' }}>
                                             Accounts
                                         </option>
                                         <option value="Analytics & MIS"
-                                            {{ old('assigned_employee_department') == 'Analytics & MIS' ? 'selected' : '' }}>Analytics & MIS
+                                            {{ old('assigned_employee_department') == 'Analytics & MIS' ? 'selected' : '' }}>
+                                            Analytics & MIS
                                         </option>
-                                        <option value="IT" {{ old('assigned_employee_department') == 'IT' ? 'selected' : '' }}>IT
+                                        <option value="IT"
+                                            {{ old('assigned_employee_department') == 'IT' ? 'selected' : '' }}>IT
                                         </option>
                                         <option value="Product Management"
-                                            {{ old('assigned_employee_department') == 'Product Management' ? 'selected' : '' }}>Product
+                                            {{ old('assigned_employee_department') == 'Product Management' ? 'selected' : '' }}>
+                                            Product
                                             Management
                                         </option>
                                         <option value="Provider management"
-                                            {{ old('assigned_employee_department') == 'Provider management' ? 'selected' : '' }}>Provider
+                                            {{ old('assigned_employee_department') == 'Provider management' ? 'selected' : '' }}>
+                                            Provider
                                             management
                                         </option>
                                         <option value="Insurance"
-                                            {{ old('assigned_employee_department') == 'Insurance' ? 'selected' : '' }}>Insurance
+                                            {{ old('assigned_employee_department') == 'Insurance' ? 'selected' : '' }}>
+                                            Insurance
                                         </option>
                                         <option value="Claims Processing"
-                                            {{ old('assigned_employee_department') == 'Claims Processing' ? 'selected' : '' }}>Claims
+                                            {{ old('assigned_employee_department') == 'Claims Processing' ? 'selected' : '' }}>
+                                            Claims
                                             Processing
                                         </option>
-                                        <option value="Cashless" {{ old('assigned_employee_department') == 'Cashless' ? 'selected' : '' }}>
+                                        <option value="Cashless"
+                                            {{ old('assigned_employee_department') == 'Cashless' ? 'selected' : '' }}>
                                             Cashless
                                         </option>
-                                        <option value="Lending" {{ old('assigned_employee_department') == 'Lending' ? 'selected' : '' }}>
+                                        <option value="Lending"
+                                            {{ old('assigned_employee_department') == 'Lending' ? 'selected' : '' }}>
                                             Lending
                                         </option>
                                     </select>
@@ -240,8 +258,8 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="assigned_employee">Assigned To Employee Name <span
                                             class="text-danger">*</span></label>
-                                    <select class="form-control select2" id="assigned_employee" name="assigned_employee" data-toggle="select2"
-                                        onchange="setAssignedEmployeeId()">
+                                    <select class="form-control select2" id="assigned_employee" name="assigned_employee"
+                                        data-toggle="select2" onchange="setAssignedEmployeeId()">
                                         <option value="">Select Assigned To Employee</option>
                                     </select>
                                     @error('assigned_employee')
@@ -259,42 +277,54 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-12 mt-3">
-                                    <label for="linked_employee_department">Linked With Employee Department <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="linked_employee_department" name="linked_employee_department"
-                                        onchange="loadLinkedEmployees()">
+                                    <label for="linked_employee_department">Linked With Employee Department <span
+                                            class="text-danger">*</span></label>
+                                    <select class="form-select" id="linked_employee_department"
+                                        name="linked_employee_department" onchange="loadLinkedEmployees()">
                                         <option value="">Select Department</option>
                                         <option value="Operations"
-                                            {{ old('linked_employee_department') == 'Operations' ? 'selected' : '' }}>Operations
+                                            {{ old('linked_employee_department') == 'Operations' ? 'selected' : '' }}>
+                                            Operations
                                         </option>
-                                        <option value="Sales" {{ old('linked_employee_department') == 'Sales' ? 'selected' : '' }}>Sales
+                                        <option value="Sales"
+                                            {{ old('linked_employee_department') == 'Sales' ? 'selected' : '' }}>Sales
                                         </option>
-                                        <option value="Accounts" {{ old('linked_employee_department') == 'Accounts' ? 'selected' : '' }}>
+                                        <option value="Accounts"
+                                            {{ old('linked_employee_department') == 'Accounts' ? 'selected' : '' }}>
                                             Accounts
                                         </option>
                                         <option value="Analytics & MIS"
-                                            {{ old('linked_employee_department') == 'Analytics & MIS' ? 'selected' : '' }}>Analytics & MIS
+                                            {{ old('linked_employee_department') == 'Analytics & MIS' ? 'selected' : '' }}>
+                                            Analytics & MIS
                                         </option>
-                                        <option value="IT" {{ old('linked_employee_department') == 'IT' ? 'selected' : '' }}>IT
+                                        <option value="IT"
+                                            {{ old('linked_employee_department') == 'IT' ? 'selected' : '' }}>IT
                                         </option>
                                         <option value="Product Management"
-                                            {{ old('linked_employee_department') == 'Product Management' ? 'selected' : '' }}>Product
+                                            {{ old('linked_employee_department') == 'Product Management' ? 'selected' : '' }}>
+                                            Product
                                             Management
                                         </option>
                                         <option value="Provider management"
-                                            {{ old('linked_employee_department') == 'Provider management' ? 'selected' : '' }}>Provider
+                                            {{ old('linked_employee_department') == 'Provider management' ? 'selected' : '' }}>
+                                            Provider
                                             management
                                         </option>
                                         <option value="Insurance"
-                                            {{ old('linked_employee_department') == 'Insurance' ? 'selected' : '' }}>Insurance
+                                            {{ old('linked_employee_department') == 'Insurance' ? 'selected' : '' }}>
+                                            Insurance
                                         </option>
                                         <option value="Claims Processing"
-                                            {{ old('linked_employee_department') == 'Claims Processing' ? 'selected' : '' }}>Claims
+                                            {{ old('linked_employee_department') == 'Claims Processing' ? 'selected' : '' }}>
+                                            Claims
                                             Processing
                                         </option>
-                                        <option value="Cashless" {{ old('linked_employee_department') == 'Cashless' ? 'selected' : '' }}>
+                                        <option value="Cashless"
+                                            {{ old('linked_employee_department') == 'Cashless' ? 'selected' : '' }}>
                                             Cashless
                                         </option>
-                                        <option value="Lending" {{ old('linked_employee_department') == 'Lending' ? 'selected' : '' }}>
+                                        <option value="Lending"
+                                            {{ old('linked_employee_department') == 'Lending' ? 'selected' : '' }}>
                                             Lending
                                         </option>
                                     </select>
@@ -305,8 +335,8 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="linked_employee">Linked With Employee Name <span
                                             class="text-danger">*</span></label>
-                                    <select class="form-control select2" id="linked_employee" name="linked_employee" data-toggle="select2"
-                                        onchange="setLinkedWithEmployeeId()">
+                                    <select class="form-control select2" id="linked_employee" name="linked_employee"
+                                        data-toggle="select2" onchange="setLinkedWithEmployeeId()">
                                         <option value="">Select Linked With Employee</option>
                                     </select>
                                     @error('linked_employee')
@@ -352,7 +382,7 @@
             $('#linked_employee_id').val(linked_employee);
         }
     </script>
-     <script>
+    <script>
         function loadLinkedEmployees() {
             var department = $("#linked_employee_department").val();
             if (!department) {
@@ -372,7 +402,7 @@
             });
         }
     </script>
-     <script>
+    <script>
         function loadAssignedEmployees() {
             var department = $("#assigned_employee_department").val();
             if (!department) {
@@ -409,7 +439,7 @@
                     $('.linked').css('display', 'block');
                     break;
                 case "Agency":
-                    $('.linked').css('display', 'none');
+                    $('.linked').css('display', 'block');
                     break;
                 default:
                     $('.linked').css('display', 'none');

@@ -60,11 +60,11 @@ class AssociatePartnerController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'firstname'                => 'required',
+            'name'                     => 'required',
+            'owner_firstname'          => 'required',
             'type'                     => 'required',
             'pan'                      => 'required|alpha_num',
             'panfile'                  => 'required',
-            'owner'                    => 'required',
             'email'                    => 'required|unique:associate_partners',
             'address'                  => 'required',
             'city'                     => 'required',
@@ -80,11 +80,11 @@ class AssociatePartnerController extends Controller
         ];
 
         $messages = [
-            'firstname.required'             => 'Please enter firstname',
+            'name.required'                  => 'Please enter company name',
             'type.required'                  => 'Please select associate partner type.',
             'pan.required'                   => 'Please enter PAN number.',
             'panfile.required'               => 'Please upload PAN Card.',
-            'owner.required'                 => "Please enter associate partner's owner name",
+            'owner_firstname.required'       => "Please enter associate partner's owner name",
             'email.required'                 => 'Please enter official email ID.',
             'address.required'               => 'Please enter address.',
             'city.required'                  => 'Please enter city.',
@@ -102,11 +102,11 @@ class AssociatePartnerController extends Controller
         $this->validate($request, $rules, $messages);
 
         $associate_partner             =  AssociatePartner::create([
-            'firstname'                => $request->firstname,
-            'lastname'                 => $request->lastname,
+            'name'                     => $request->name,
             'type'                     => $request->type,
             'pan'                      => $request->pan,
-            'owner'                    => $request->owner,
+            'owner_firstname'          => $request->owner_firstname,
+            'owner_lastname'           => $request->owner_lastname,
             'email'                    => $request->email,
             'password'                 => Hash::make('12345678'),
             'address'                  => $request->address,
@@ -182,11 +182,11 @@ class AssociatePartnerController extends Controller
         $associate_partner             = AssociatePartner::find($id);
 
         $rules = [
-            'firstname'                => 'required',
+            'name'                     => 'required',
             'type'                     => 'required',
             'pan'                      => 'required|alpha_num',
             'panfile'                  =>  isset($associate_partner->panfile) ? '' : 'required',
-            'owner'                    => 'required',
+            'owner_firstname'          => 'required',
             'email'                    => 'required|unique:associate_partners,email,'.$id,
             'address'                  => 'required',
             'city'                     => 'required',
@@ -216,11 +216,11 @@ class AssociatePartnerController extends Controller
         ];
 
         $messages = [
-            'firstname.required'             => 'Please enter firstname',
+            'name.required'                  => 'Please enter company name',
             'type.required'                  => 'Please select associate partner type.',
             'pan.required'                   => 'Please enter PAN number.',
             'panfile.required'               => 'Please upload PAN Card.',
-            'owner.required'                 => "Please enter associate partner's owner name",
+            'owner_firstname.required'       => "Please enter associate partner's owner name",
             'email.required'                 => 'Please enter official email ID.',
             'address.required'               => 'Please enter address.',
             'assigned_employee_department.required'  => 'Please select assigned to employee department.',
@@ -252,11 +252,11 @@ class AssociatePartnerController extends Controller
         $this->validate($request, $rules, $messages);
 
         AssociatePartner::where('id', $id)->update([
-            'firstname'                => $request->firstname,
-            'lastname'                 => $request->lastname,
+            'name'                     => $request->name,
             'type'                     => $request->type,
             'pan'                      => $request->pan,
-            'owner'                    => $request->owner,
+            'owner_firstname'          => $request->owner_firstname,
+            'owner_lastname'           => $request->owner_lastname,
             'email'                    => $request->email,
             'address'                  => $request->address,
             'city'                     => $request->city,

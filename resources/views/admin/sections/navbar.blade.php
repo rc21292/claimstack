@@ -116,10 +116,10 @@
                 </a>
 
                 <!-- item-->
-                <a href="{{ route('admin.password.form') }}" class="dropdown-item notify-item">
+                {{-- <a href="{{ route('admin.password.form') }}" class="dropdown-item notify-item">
                     <i class="mdi mdi-key mr-1"></i>
                     <span>Change password</span>
-                </a>
+                </a> --}}
 
                 <!-- item-->
                 <a href="{{ route('admin.logout') }}"

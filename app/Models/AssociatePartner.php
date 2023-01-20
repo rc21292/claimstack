@@ -21,13 +21,13 @@ class AssociatePartner extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'firstname',
-        'lastname',
+        'name',
         'associate_partner_id',
         'type',
         'pan',
         'panfile',
-        'owner',
+        'owner_firstname',
+        'owner_lastname',
         'email',
         'address',
         'city',

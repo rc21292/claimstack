@@ -3,27 +3,15 @@
     @csrf
     @method('PUT')
     <div class="form-group row">
-
-        <div class="col-md-12">
-            <label for="firstname">Associate Partner Name <span class="text-danger">*</span></label>
-        </div>
-
-        <div class="col-md-6 mt-1">
-            <input type="text" class="form-control" id="firstname" name="firstname" maxlength="15" placeholder="Firstname"
-                value="{{ old('firstname', $associate->firstname) }}">
-            @error('firstname')
+        <div class="col-md-6">
+            <label for="name">Associate Partner Company's Name <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="name" name="name"
+                maxlength="15" placeholder="Enter company name" value="{{ old('name', $associate->name) }}">
+            @error('name')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
-
-        <div class="col-md-6 mt-1">
-            <input type="text" class="form-control" id="lastname" name="lastname" maxlength="30" placeholder="Lastname"
-                value="{{ old('lastname', $associate->lastname) }}">
-            @error('lastname')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
-        </div>
-        <div class="col-md-6 mt-3">
+        <div class="col-md-6">
             <label for="type">Associate Partner Type <span class="text-danger">*</span></label>
             <select class="form-select" id="type" name="type">
                 <option value="">Select Type</option>
@@ -36,6 +24,26 @@
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
+        <div class="col-md-12 mt-3">
+            <label for="owner_firstname">Associate Partner Owner Name <span class="text-danger">*</span></label>
+        </div>
+
+        <div class="col-md-6 mt-1">
+            <input type="text" class="form-control" id="owner_firstname" name="owner_firstname"
+                maxlength="15" placeholder="Enter firstname" value="{{ old('owner_firstname', $associate->owner_firstname) }}">
+            @error('owner_firstname')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div class="col-md-6 mt-1">
+            <input type="text" class="form-control" id="owner_lastname" name="owner_lastname" maxlength="30"
+                placeholder="Enter lastname" value="{{ old('owner_lastname', $associate->owner_lastname) }}">
+            @error('owner_lastname')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+
         <div class="col-md-6 mt-3">
             <label for="pan">PAN Number <span class="text-danger">*</span></label>
             <div class="input-group">
@@ -54,14 +62,7 @@
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
-        <div class="col-md-6 mt-3">
-            <label for="owner">Associate Partner Owner's Name <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="owner" name="owner" maxlength="15"
-                placeholder="Enter associate partner owner's name" value="{{ old('owner', $associate->owner) }}">
-            @error('owner')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
-        </div>
+
         <div class="col-md-6 mt-3">
             <label for="owner">Official email ID <span class="text-danger">*</span></label>
             <input type="email" class="form-control" id="email" name="email" maxlength="30"
@@ -71,7 +72,7 @@
             @enderror
         </div>
         <div class="col-md-12 mt-3">
-            <label for="address">Hospital Address <span class="text-danger">*</span></label>
+            <label for="address">Associate Partner Address <span class="text-danger">*</span></label>
             <input type="text" class="form-control" id="address" name="address" placeholder="Address Line"
                 value="{{ old('address', $associate->address) }}">
             @error('address')
@@ -371,7 +372,7 @@
             @enderror
         </div>
         <div class="col-md-12 mt-3">
-            <label for="address">Hospital Bank Details <span class="text-danger">*</span></label>
+            <label for="address">Associate Partner's Bank Details <span class="text-danger">*</span></label>
         </div>
         <div class="col-md-4 mt-2">
             <input type="text" class="form-control" id="bank_name" name="bank_name" maxlength="45"
