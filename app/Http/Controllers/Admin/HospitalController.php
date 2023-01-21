@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\AssociatePartner;
+use App\Models\Insurer;
 use App\Models\Hospital;
 use App\Models\HospitalFacility;
+use App\Models\HospitalInfrastructure;
+use App\Models\HospitalDepartment;
 use App\Models\HospitalTieUp;
 use App\Models\User;
 use App\Notifications\Hospital\CredentialsGeneratedNotification;
@@ -178,13 +181,15 @@ class HospitalController extends Controller
      */
     public function edit($id)
     {
-
         $hospital          = Hospital::find($id);
+        $insurers          = Insurer::all();
         $hospital_tie_ups          = HospitalTieUp::where('hospital_id', $id)->first();
         $hospital_facility          = HospitalFacility::where('hospital_id', $id)->first();
+        $hospital_nfrastructure          = HospitalInfrastructure::where('hospital_id', $id)->first();
+        $hospital_department          = HospitalDepartment::where('hospital_id', $id)->first();
         $hospitals         = Hospital::get();
         $users              = User::get();
-        return view('admin.hospitals.edit.edit',  compact('hospital', 'hospitals', 'hospital_facility', 'hospital_tie_ups', 'users'));
+        return view('admin.hospitals.edit.edit',  compact('hospital', 'hospitals', 'hospital_facility', 'hospital_nfrastructure', 'hospital_department', 'hospital_tie_ups', 'users', 'insurers'));
     }
 
     /**
@@ -637,6 +642,181 @@ class HospitalController extends Controller
                 'blood_bank' => $request->blood_bank,
                 'hospital_facility_comments' => $request->hospital_facility_comments
             ]);
+
+        return redirect()->back()->with('success', 'Hospital updated successfully');
+    }
+
+
+    public function updateHospitalInfrastructure(Request $request, $id)
+    {
+        
+        $hospital             = Hospital::find($id);
+
+        $rules = [
+            'city_category'                     => 'required',
+            'hospital_type'                => 'required',
+            'hospital_category'               => 'required',
+            'no_of_beds'                       => 'required',
+            'no_of_ots'                      => 'required',
+            'no_of_modular_ots'                   => 'required',
+            'no_of_icus'                 => 'required',
+            'no_of_iccus'                    => 'required',
+            'no_of_nicus'                  => 'required',
+            'no_of_rmos'                     => 'required',
+            'no_of_nurses'                    => 'required',
+            'nabl_approved_lab'                  => 'required',
+            'no_of_dialysis_units'                    => 'required',
+            'no_ambulance_normal'     => 'required',
+            'no_ambulance_acls' => 'required',
+            'nabh_status' => 'required',
+            'jci_status' => 'required',
+            'nqac_nhsrc_status' => 'required',
+            'hippa_status' => 'required',
+            'comments' => 'required'
+        ];
+
+        $messages = [
+            'city_category.required'                   => 'Please Enter City Category',
+            'hospital_type.required'              => 'Please Enter Hospital Type',
+            'hospital_category.required'             => 'Please Enter Hospital Category ',
+            'no_of_beds.required'                     => 'Please Enter No. of Beds',
+            'no_of_ots.required'                    => 'Please Enter No. of OTs',
+            'no_of_modular_ots.required'                 => 'Please Enter No. of Modular OTs',
+            'no_of_icus.required'               => 'Please Enter No. of ICUs',
+            'no_of_iccus.required'                  => 'Please Enter No. of ICCUs',
+            'no_of_nicus.required'                => 'Please Enter No. of NICUs',
+            'no_of_rmos.required'                   => 'Please Enter No. of RMOs',
+            'no_of_nurses.required'                  => 'Please Enter No. of Nurses',
+            'nabl_approved_lab.required'                => 'Please Enter NABL Approved Lab',
+            'no_of_dialysis_units.required'                  => 'Please Enter No. of Dialysis Units',
+            'no_ambulance_normal.required'   => 'Please Enter No. Ambulance - Normal',
+            'no_ambulance_acls.required' => 'Please Enter No. Ambulance - ACLS',
+            'nabh_status.required' => 'Please Enter NABH Status',
+            'jci_status.required' => 'Please Enter JCI Status',
+            'nqac_nhsrc_status.required' => 'Please Enter NQAC/NHSRC Status',
+            'hippa_status.required' => 'Please Enter HIPPA Status',
+            'comments.required' => 'Please Enter Hospital Infra Comments',
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+        $hospitalT =  HospitalInfrastructure::updateOrCreate([
+            'hospital_id' => $id],
+            [
+                'city_category'                     => $request->city_category,
+                'hospital_type'               => $request->hospital_type,
+                'hospital_category'                       => $request->hospital_category,
+                'no_of_beds'                  => $request->no_of_beds,
+                'no_of_ots'                     => $request->no_of_ots,
+                'no_of_modular_ots'                    => $request->no_of_modular_ots,
+                'no_of_icus'                  => $request->no_of_icus,
+                'no_of_iccus'                 => $request->no_of_iccus,
+                'no_of_nicus'                => $request->no_of_nicus,
+                'no_of_rmos'                 => $request->no_of_rmos,
+                'no_of_nurses'                      => $request->no_of_nurses,
+                'nabl_approved_lab'                    => $request->nabl_approved_lab,
+                'no_of_dialysis_units'                 => $request->no_of_dialysis_units,
+                'no_ambulance_normal'                    => $request->no_ambulance_normal,
+                'no_ambulance_acls'                   => $request->no_ambulance_acls,
+                'nabh_status' => $request->nabh_status,
+                'jci_status' => $request->jci_status,
+                'nqac_nhsrc_status' => $request->nqac_nhsrc_status,
+                'hippa_status' => $request->hippa_status,
+                'comments' => $request->comments
+            ]);
+
+        return redirect()->back()->with('success', 'Hospital updated successfully');
+    }
+
+
+    public function updateHospitalDepartment(Request $request, $id)
+    {
+        $hospital             = Hospital::find($id);
+
+        $rules = [
+            'specialization'              => 'required',
+            'doctors_name'                => 'required',
+            'registration_no'             => 'required|max:20',
+            'email_id'                    => 'required|email|max:45',
+            'doctors_mobile_no'           => 'required|numeric|digits:10',
+            // 'upload'                      => 'required',
+        ];
+
+        $messages = [
+            'specialization.required'            => 'Please Enter Specialization',
+            'doctors_name.required'              => 'Please Enter Doctors Name',
+            'registration_no.required'           => 'Please Enter Registration No.',
+            'email_id.required'                  => 'Please Enter Email ID',
+            'doctors_mobile_no.required'         => 'Please Enter Doctors Mobile No.',
+            // 'upload.required'                    => 'Please Upload a file',
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+        HospitalDepartment::updateOrCreate([
+            'hospital_id' => $id],
+            [
+                'specialization'             => $request->specialization,
+                'doctors_name'               => $request->doctors_name,
+                'registration_no'            => $request->registration_no,
+                'email_id'                   => $request->email_id,
+                'doctors_mobile_no'          => $request->doctors_mobile_no,
+        ]);
+
+        if ($request->hasfile('upload')) {
+            $upload                    = $request->file('upload');
+            $name                       = $upload->getClientOriginalName();
+            $upload->storeAs('uploads/hospital/department/' . $hospital->id . '/', $name, 'public');
+            HospitalDepartment::where('hospital_id', $hospital->id)->update([
+                'upload'               =>  $name
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Hospital updated successfully');
+    }
+
+    public function updateHospitalEmpanelmentStatus(Request $request, $id)
+    {
+        $hospital             = Hospital::find($id);
+
+        $rules = [
+            'specialization'              => 'required',
+            'doctors_name'                => 'required',
+            'registration_no'             => 'required|max:20',
+            'email_id'                    => 'required|email|max:45',
+            'doctors_mobile_no'           => 'required|numeric|digits:10',
+            // 'upload'                      => 'required',
+        ];
+
+        $messages = [
+            'specialization.required'            => 'Please Enter Specialization',
+            'doctors_name.required'              => 'Please Enter Doctors Name',
+            'registration_no.required'           => 'Please Enter Registration No.',
+            'email_id.required'                  => 'Please Enter Email ID',
+            'doctors_mobile_no.required'         => 'Please Enter Doctors Mobile No.',
+            // 'upload.required'                    => 'Please Upload a file',
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+        HospitalDepartment::updateOrCreate([
+            'hospital_id' => $id],
+            [
+                'specialization'             => $request->specialization,
+                'doctors_name'               => $request->doctors_name,
+                'registration_no'            => $request->registration_no,
+                'email_id'                   => $request->email_id,
+                'doctors_mobile_no'          => $request->doctors_mobile_no,
+        ]);
+
+        if ($request->hasfile('upload')) {
+            $upload                    = $request->file('upload');
+            $name                       = $upload->getClientOriginalName();
+            $upload->storeAs('uploads/hospital/department/' . $hospital->id . '/', $name, 'public');
+            HospitalDepartment::where('hospital_id', $hospital->id)->update([
+                'upload'               =>  $name
+            ]);
+        }
 
         return redirect()->back()->with('success', 'Hospital updated successfully');
     }

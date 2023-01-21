@@ -41,7 +41,7 @@
                                 <a href="#hospital_tie_up_details" data-bs-toggle="tab" aria-expanded="false"
                                     class="nav-link rounded-0 ">
                                     <i class="mdi mdi-home-variant d-md-none d-block"></i>
-                                    <span class="d-none d-md-block">Hospital Tie-up Details</span>
+                                    <span class="d-none d-md-block">Hospital Tie-Ups</span>
                                 </a>
                             </li>
 
@@ -49,9 +49,34 @@
                                 <a href="#hospital_facilities" data-bs-toggle="tab" aria-expanded="false"
                                     class="nav-link rounded-0 ">
                                     <i class="mdi mdi-home-variant d-md-none d-block"></i>
-                                    <span class="d-none d-md-block">Hospital Facility Details</span>
+                                    <span class="d-none d-md-block">Hospital Facilities</span>
                                 </a>
                             </li>
+
+                            <li class="nav-item">
+                                <a href="#hospital_infrastructures" data-bs-toggle="tab" aria-expanded="false"
+                                    class="nav-link rounded-0 ">
+                                    <i class="mdi mdi-home-variant d-md-none d-block"></i>
+                                    <span class="d-none d-md-block">Hospital Infrastructure</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="#hospital_department" data-bs-toggle="tab" aria-expanded="false"
+                                    class="nav-link rounded-0 ">
+                                    <i class="mdi mdi-home-variant d-md-none d-block"></i>
+                                    <span class="d-none d-md-block">Hospital Department</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="#empanelment_status" data-bs-toggle="tab" aria-expanded="false"
+                                    class="nav-link rounded-0 ">
+                                    <i class="mdi mdi-home-variant d-md-none d-block"></i>
+                                    <span class="d-none d-md-block">Empanelment Status</span>
+                                </a>
+                            </li>
+
                         </ul>
 
                         <div class="tab-content">
@@ -63,6 +88,15 @@
                             </div>
                             <div class="tab-pane" id="hospital_facilities">
                                 @include('admin.hospitals.edit.tabs.hospital-facilities')
+                            </div>
+                            <div class="tab-pane" id="hospital_infrastructures">
+                                @include('admin.hospitals.edit.tabs.hospital-infrastructures')
+                            </div>
+                            <div class="tab-pane" id="hospital_department">
+                                @include('admin.hospitals.edit.tabs.hospital-department')
+                            </div>
+                            <div class="tab-pane" id="empanelment_status">
+                                @include('admin.hospitals.edit.tabs.hospital-empanelment-status')
                             </div>
                         </div>
                     </div>
