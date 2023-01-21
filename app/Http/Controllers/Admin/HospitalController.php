@@ -460,33 +460,33 @@ class HospitalController extends Controller
         $hospital             = Hospital::find($id);
 
         $rules = [
-            'mou_inception_date'                     => 'required',
+            'mou_inception_date'                     => isset($request->mou_inception_date)?'required':'',
             'bhc_packages_for_surgical_procedures_accepted'                => 'required',
             'discount_on_medical_management_cases'               => 'required',
-            'discount_on_final_bill'                       => 'required',
-            'discount_on_room_rent'                      => 'required|alpha_num',
-            'discount_on_medicines'                   => 'required',
-            'discount_on_consumables'                 => 'required',
+            'discount_on_final_bill'                       => 'required_if:discount_on_medical_management_cases,Yes|numeric|digits_between:1,2',
+            'discount_on_room_rent'                      => 'required_if:discount_on_medical_management_cases,Yes|numeric|digits_between:1,2',
+            'discount_on_medicines'                   => 'required_if:discount_on_medical_management_cases,Yes|numeric|digits_between:1,2',
+            'discount_on_consumables'                 => 'required_if:discount_on_medical_management_cases,Yes|numeric|digits_between:1,2',
             'referral_commission_offered'                    => 'required',
-            'referral'                  => 'required',
+            'referral'                  => 'required_if:referral_commission_offered,Yes|numeric|digits_between:1,2',
             'claimstag_usage_services'                     => 'required',
-            'claimstag_installation_charges'                    => 'required',
-            'claimstag_usage_charges'                  => 'required|numeric',
+            'claimstag_installation_charges'                    => 'required|numeric|digits_between:1,6',
+            'claimstag_usage_charges'                  => 'required||numeric|digits_between:1,6',
             'claims_reimbursement_insured_services'                    => 'required',
-            'claims_reimbursement_insured_service_charges'     => 'required',
+            'claims_reimbursement_insured_service_charges'     => 'required|numeric|digits_between:1,2',
             'cashless_claims_management_services' => 'required',
-            'cashless_claims_management_services_charges' => 'required',
-            'medical_lending_for_patients' => 'required',
-            'medical_lending_service_type' => 'required',
-            'subvention' => 'required',
-            'medical_lending_for_bill_invoice_discounting' => 'required',
-            'comments_on_invoice_discounting' => 'required',
+            'cashless_claims_management_services_charges' => 'required|numeric|digits_between:1,2',
             'lending_finance_company_agreement' => 'required',
-            'lending_finance_company_agreement_date' => 'required',
-            'hms_services' => 'required',
-            'hms_charges' => 'required',
+            'lending_finance_company_agreement_date' => 'required_if:lending_finance_company_agreement,Yes',
+            'medical_lending_for_patients' => 'required_if:lending_finance_company_agreement,Yes',
+            'medical_lending_service_type' => 'required_if:lending_finance_company_agreement,Yes',
+            'subvention' => 'required_if:lending_finance_company_agreement,Yes|numeric:digits_between:1,2',
+            'medical_lending_for_bill_invoice_discounting' => 'required_if:lending_finance_company_agreement,Yes',
+            'comments_on_invoice_discounting' => 'required_if:lending_finance_company_agreement,Yes|max:40',
             'hospital_management_system_installation' => 'required',
-            'comments' => 'required',
+            'hms_services' => 'required_if:hospital_management_system_installation,Yes',
+            'hms_charges' => 'required_if:hospital_management_system_installation,Yes|numeric',
+            'comments' => 'required|string|max:250',
         ];
 
         $messages = [
@@ -561,8 +561,7 @@ class HospitalController extends Controller
     }
 
     public function updateHospitalFacility(Request $request, $id)
-    {
-        
+    {        
         $hospital             = Hospital::find($id);
 
         $rules = [
@@ -620,30 +619,212 @@ class HospitalController extends Controller
         $hospitalT =  HospitalFacility::updateOrCreate([
             'hospital_id' => $id],
             [
-                'pharmacy'                     => $request->pharmacy,
-                'lab'               => $request->lab,
-                'ambulance'                       => $request->ambulance,
-                'operation_theatre'                  => $request->operation_theatre,
-                'icu'                     => $request->icu,
-                'iccu'                    => $request->iccu,
-                'nicu'                  => $request->nicu,
-                'csc_sterilization'                 => $request->csc_sterilization,
-                'centralized_gas_ons'                => $request->centralized_gas_ons,
-                'centralized_ac'                 => $request->centralized_ac,
-                'kitchen'                      => $request->kitchen,
-                'usg_machine'                    => $request->usg_machine,
-                'digital_xray'                 => $request->digital_xray,
-                'ct'                    => $request->ct,
-                'mri'                   => $request->mri,
-                'pet_scan' => $request->pet_scan,
-                'organ_transplant_unit' => $request->organ_transplant_unit,
-                'burn_unit' => $request->burn_unit,
-                'dialysis_unit' => $request->dialysis_unit,
-                'blood_bank' => $request->blood_bank,
-                'hospital_facility_comments' => $request->hospital_facility_comments
+                'pharmacy'                              => $request->pharmacy,
+                'lab'                                   => $request->lab,
+                'ambulance'                              => $request->ambulance,
+                'operation_theatre'                     => $request->operation_theatre,
+                'icu'                                    => $request->icu,
+                'iccu'                                  => $request->iccu,
+                'nicu'                                  => $request->nicu,
+                'csc_sterilization'                     => $request->csc_sterilization,
+                'centralized_gas_ons'                    => $request->centralized_gas_ons,
+                'centralized_ac'                        => $request->centralized_ac,
+                'kitchen'                                => $request->kitchen,
+                'usg_machine'                            => $request->usg_machine,
+                'digital_xray'                          => $request->digital_xray,
+                'ct'                                    => $request->ct,
+                'mri'                                   => $request->mri,
+                'pet_scan' =>                           $request->pet_scan,
+                'organ_transplant_unit' =>              $request->organ_transplant_unit,
+                'burn_unit' =>                          $request->burn_unit,
+                'dialysis_unit' =>                      $request->dialysis_unit,
+                'blood_bank' =>                         $request->blood_bank,
+                'hospital_facility_comments' =>         $request->hospital_facility_comments
             ]);
 
-        return redirect()->back()->with('success', 'Hospital updated successfully');
+
+        if ($request->hasfile('pharmacy_file')) {
+            $pharmacy_file                    = $request->file('pharmacy_file');
+            $name                       = $pharmacy_file->getClientOriginalName();
+            $pharmacy_file->storeAs('uploads/hospital/facility/' . $hospital->id . '/', $name, 'public');
+            HospitalFacility::where('hospital_id', $hospital->id)->update([
+                'pharmacy_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('lab_file')) {
+            $lab_file                    = $request->file('lab_file');
+            $name                       = $lab_file->getClientOriginalName();
+            $lab_file->storeAs('uploads/hospital/facility/' . $hospital->id . '/', $name, 'public');
+            HospitalFacility::where('hospital_id', $hospital->id)->update([
+                'lab_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('ambulance_file')) {
+            $ambulance_file                    = $request->file('ambulance_file');
+            $name                       = $ambulance_file->getClientOriginalName();
+            $ambulance_file->storeAs('uploads/hospital/facility/' . $hospital->id . '/', $name, 'public');
+            HospitalFacility::where('hospital_id', $hospital->id)->update([
+                'ambulance_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('operation_theatre_file')) {
+            $operation_theatre_file                    = $request->file('operation_theatre_file');
+            $name                       = $operation_theatre_file->getClientOriginalName();
+            $operation_theatre_file->storeAs('uploads/hospital/facility/' . $hospital->id . '/', $name, 'public');
+            HospitalFacility::where('hospital_id', $hospital->id)->update([
+                'operation_theatre_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('icu_file')) {
+            $icu_file                    = $request->file('icu_file');
+            $name                       = $icu_file->getClientOriginalName();
+            $icu_file->storeAs('uploads/hospital/facility/' . $hospital->id . '/', $name, 'public');
+            HospitalFacility::where('hospital_id', $hospital->id)->update([
+                'icu_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('iccu_file')) {
+            $iccu_file                    = $request->file('iccu_file');
+            $name                       = $iccu_file->getClientOriginalName();
+            $iccu_file->storeAs('uploads/hospital/facility/' . $hospital->id . '/', $name, 'public');
+            HospitalFacility::where('hospital_id', $hospital->id)->update([
+                'iccu_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('nicu_file')) {
+            $nicu_file                    = $request->file('nicu_file');
+            $name                       = $nicu_file->getClientOriginalName();
+            $nicu_file->storeAs('uploads/hospital/facility/' . $hospital->id . '/', $name, 'public');
+            HospitalFacility::where('hospital_id', $hospital->id)->update([
+                'nicu_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('csc_sterilization_file')) {
+            $csc_sterilization_file                    = $request->file('csc_sterilization_file');
+            $name                       = $csc_sterilization_file->getClientOriginalName();
+            $csc_sterilization_file->storeAs('uploads/hospital/facility/' . $hospital->id . '/', $name, 'public');
+            HospitalFacility::where('hospital_id', $hospital->id)->update([
+                'csc_sterilization_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('centralized_gas_ons_file')) {
+            $centralized_gas_ons_file                    = $request->file('centralized_gas_ons_file');
+            $name                       = $centralized_gas_ons_file->getClientOriginalName();
+            $centralized_gas_ons_file->storeAs('uploads/hospital/facility/' . $hospital->id . '/', $name, 'public');
+            HospitalFacility::where('hospital_id', $hospital->id)->update([
+                'centralized_gas_ons_file'               =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('centralized_ac_file')) {
+            $centralized_ac_file                    = $request->file('centralized_ac_file');
+            $rhnname                       = $centralized_ac_file->getClientOriginalName();
+            $centralized_ac_file->storeAs('uploads/hospital/facility/' . $hospital->id . '/', $rhnname, 'public');
+            HospitalFacility::where('hospital_id', $hospital->id)->update([
+                'centralized_ac_file'               =>  $rhnname
+            ]);
+        }
+
+        if ($request->hasfile('kitchen_file')) {
+            $kitchen_file                    = $request->file('kitchen_file');
+            $name                       = $kitchen_file->getClientOriginalName();
+            $kitchen_file->storeAs('uploads/hospital/facility/' . $hospital->id . '/', $name, 'public');
+            HospitalFacility::where('hospital_id', $hospital->id)->update([
+                'kitchen_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('usg_machine_file')) {
+            $usg_machine_file                    = $request->file('usg_machine_file');
+            $name                       = $usg_machine_file->getClientOriginalName();
+            $usg_machine_file->storeAs('uploads/hospital/facility/' . $hospital->id . '/', $name, 'public');
+            HospitalFacility::where('hospital_id', $hospital->id)->update([
+                'usg_machine_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('digital_xray_file')) {
+            $digital_xray_file                    = $request->file('digital_xray_file');
+            $name                       = $digital_xray_file->getClientOriginalName();
+            $digital_xray_file->storeAs('uploads/hospital/facility/' . $hospital->id . '/', $name, 'public');
+            HospitalFacility::where('hospital_id', $hospital->id)->update([
+                'digital_xray_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('mri_file')) {
+            $mri_file                    = $request->file('mri_file');
+            $name                       = $mri_file->getClientOriginalName();
+            $mri_file->storeAs('uploads/hospital/facility/' . $hospital->id . '/', $name, 'public');
+            HospitalFacility::where('hospital_id', $hospital->id)->update([
+                'mri_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('ct_file')) {
+            $ct_file                    = $request->file('ct_file');
+            $name                       = $ct_file->getClientOriginalName();
+            $ct_file->storeAs('uploads/hospital/facility/' . $hospital->id . '/', $name, 'public');
+            HospitalFacility::where('hospital_id', $hospital->id)->update([
+                'ct_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('pet_scan_file')) {
+            $pet_scan_file                    = $request->file('pet_scan_file');
+            $name                       = $pet_scan_file->getClientOriginalName();
+            $pet_scan_file->storeAs('uploads/hospital/facility/' . $hospital->id . '/', $name, 'public');
+            HospitalFacility::where('hospital_id', $hospital->id)->update([
+                'pet_scan_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('organ_transplant_unit_file')) {
+            $organ_transplant_unit_file                    = $request->file('organ_transplant_unit_file');
+            $name                       = $organ_transplant_unit_file->getClientOriginalName();
+            $organ_transplant_unit_file->storeAs('uploads/hospital/facility/' . $hospital->id . '/', $name, 'public');
+            HospitalFacility::where('hospital_id', $hospital->id)->update([
+                'organ_transplant_unit_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('burn_unit_file')) {
+            $burn_unit_file                    = $request->file('burn_unit_file');
+            $name                       = $burn_unit_file->getClientOriginalName();
+            $burn_unit_file->storeAs('uploads/hospital/facility/' . $hospital->id . '/', $name, 'public');
+            HospitalFacility::where('hospital_id', $hospital->id)->update([
+                'burn_unit_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('dialysis_unit_file')) {
+            $dialysis_unit_file                    = $request->file('dialysis_unit_file');
+            $name                       = $dialysis_unit_file->getClientOriginalName();
+            $dialysis_unit_file->storeAs('uploads/hospital/facility/' . $hospital->id . '/', $name, 'public');
+            HospitalFacility::where('hospital_id', $hospital->id)->update([
+                'dialysis_unit_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('blood_bank_file')) {
+            $blood_bank_file                    = $request->file('blood_bank_file');
+            $rhnname                       = $blood_bank_file->getClientOriginalName();
+            $blood_bank_file->storeAs('uploads/hospital/facility/' . $hospital->id . '/', $rhnname, 'public');
+            HospitalFacility::where('hospital_id', $hospital->id)->update([
+                'blood_bank_file'               =>  $rhnname
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'HospitalFacility updated hospital_successfully');
     }
 
 
@@ -654,25 +835,25 @@ class HospitalController extends Controller
 
         $rules = [
             'city_category'                     => 'required',
-            'hospital_type'                => 'required',
-            'hospital_category'               => 'required',
-            'no_of_beds'                       => 'required',
-            'no_of_ots'                      => 'required',
-            'no_of_modular_ots'                   => 'required',
-            'no_of_icus'                 => 'required',
-            'no_of_iccus'                    => 'required',
-            'no_of_nicus'                  => 'required',
-            'no_of_rmos'                     => 'required',
-            'no_of_nurses'                    => 'required',
+            'hospital_type'                => 'required|string|max:25',
+            'hospital_category'               => 'required|string|max:25',
+            'no_of_beds'                       => 'required|numeric|digits_between:1,3',
+            'no_of_ots'                      => 'required|numeric|digits_between:1,3',
+            'no_of_modular_ots'                   => 'required|numeric|digits_between:1,3',
+            'no_of_icus'                 => 'required|numeric|digits_between:1,3',
+            'no_of_iccus'                    => 'required|numeric|digits_between:1,3',
+            'no_of_nicus'                  => 'required|numeric|digits_between:1,3',
+            'no_of_rmos'                     => 'required|numeric|digits_between:1,4',
+            'no_of_nurses'                    => 'required|numeric|digits_between:1,4',
             'nabl_approved_lab'                  => 'required',
-            'no_of_dialysis_units'                    => 'required',
-            'no_ambulance_normal'     => 'required',
-            'no_ambulance_acls' => 'required',
+            'no_of_dialysis_units'                    => 'required|numeric|digits_between:1,3',
+            'no_ambulance_normal'     => 'required|numeric|digits_between:1,3',
+            'no_ambulance_acls' => 'required|numeric|digits_between:1,3',
             'nabh_status' => 'required',
             'jci_status' => 'required',
             'nqac_nhsrc_status' => 'required',
             'hippa_status' => 'required',
-            'comments' => 'required'
+            'comments' => 'required|string|max:250'
         ];
 
         $messages = [
@@ -725,6 +906,53 @@ class HospitalController extends Controller
                 'comments' => $request->comments
             ]);
 
+
+        if ($request->hasfile('nabl_approved_lab_file')) {
+            $nabl_approved_lab_file                    = $request->file('nabl_approved_lab_file');
+            $name                       = $nabl_approved_lab_file->getClientOriginalName();
+            $nabl_approved_lab_file->storeAs('uploads/hospital/infrastructure/' . $hospital->id . '/', $name, 'public');
+            HospitalInfrastructure::where('hospital_id', $hospital->id)->update([
+                'nabl_approved_lab_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('nabh_status_file')) {
+            $nabh_status_file                    = $request->file('nabh_status_file');
+            $name                       = $nabh_status_file->getClientOriginalName();
+            $nabh_status_file->storeAs('uploads/hospital/infrastructure/' . $hospital->id . '/', $name, 'public');
+            HospitalInfrastructure::where('hospital_id', $hospital->id)->update([
+                'nabh_status_file'               =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('nqac_nhsrc_status_file')) {
+            $nqac_nhsrc_status_file                    = $request->file('nqac_nhsrc_status_file');
+            $name                       = $nqac_nhsrc_status_file->getClientOriginalName();
+            $nqac_nhsrc_status_file->storeAs('uploads/hospital/infrastructure/' . $hospital->id . '/', $name, 'public');
+            HospitalInfrastructure::where('hospital_id', $hospital->id)->update([
+                'nqac_nhsrc_status_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('jci_status_file')) {
+            $jci_status_file                    = $request->file('jci_status_file');
+            $name                       = $jci_status_file->getClientOriginalName();
+            $jci_status_file->storeAs('uploads/hospital/infrastructure/' . $hospital->id . '/', $name, 'public');
+            HospitalInfrastructure::where('hospital_id', $hospital->id)->update([
+                'jci_status_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('hippa_status_file')) {
+            $hippa_status_file                    = $request->file('hippa_status_file');
+            $name                       = $hippa_status_file->getClientOriginalName();
+            $hippa_status_file->storeAs('uploads/hospital/infrastructure/' . $hospital->id . '/', $name, 'public');
+            HospitalInfrastructure::where('hospital_id', $hospital->id)->update([
+                'hippa_status_file'               =>  $name
+            ]);
+        }
+
         return redirect()->back()->with('success', 'Hospital updated successfully');
     }
 
@@ -735,11 +963,10 @@ class HospitalController extends Controller
 
         $rules = [
             'specialization'              => 'required',
-            'doctors_name'                => 'required',
-            'registration_no'             => 'required|max:20',
-            'email_id'                    => 'required|email|max:45',
-            'doctors_mobile_no'           => 'required|numeric|digits:10',
-            // 'upload'                      => 'required',
+            'doctors_name'                => 'required_if:$request->show_doctor,1',
+            'registration_no'             => 'required_if:$request->show_doctor,1|max:20',
+            'email_id'                    => 'required_if:$request->show_doctor,1|email|max:45',
+            'doctors_mobile_no'           => 'required_if:$request->show_doctor,1|numeric|digits:10',
         ];
 
         $messages = [
@@ -748,7 +975,6 @@ class HospitalController extends Controller
             'registration_no.required'           => 'Please Enter Registration No.',
             'email_id.required'                  => 'Please Enter Email ID',
             'doctors_mobile_no.required'         => 'Please Enter Doctors Mobile No.',
-            // 'upload.required'                    => 'Please Upload a file',
         ];
 
         $this->validate($request, $rules, $messages);
@@ -785,7 +1011,6 @@ class HospitalController extends Controller
             'registration_no'             => 'required|max:20',
             'email_id'                    => 'required|email|max:45',
             'doctors_mobile_no'           => 'required|numeric|digits:10',
-            // 'upload'                      => 'required',
         ];
 
         $messages = [
@@ -794,7 +1019,6 @@ class HospitalController extends Controller
             'registration_no.required'           => 'Please Enter Registration No.',
             'email_id.required'                  => 'Please Enter Email ID',
             'doctors_mobile_no.required'         => 'Please Enter Doctors Mobile No.',
-            // 'upload.required'                    => 'Please Upload a file',
         ];
 
         $this->validate($request, $rules, $messages);
@@ -812,7 +1036,7 @@ class HospitalController extends Controller
         if ($request->hasfile('upload')) {
             $upload                    = $request->file('upload');
             $name                       = $upload->getClientOriginalName();
-            $upload->storeAs('uploads/hospital/department/' . $hospital->id . '/', $name, 'public');
+            $upload->storeAs('uploads/hospital/empanelment_status/' . $hospital->id . '/', $name, 'public');
             HospitalDepartment::where('hospital_id', $hospital->id)->update([
                 'upload'               =>  $name
             ]);

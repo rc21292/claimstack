@@ -41,6 +41,8 @@
             @enderror
         </div>
 
+        <input type="hidden" name="show_doctor" id="show-doctor" value="0">
+
         <div class="col-md-6 show-hide mt-3">
             <label for="registration_no">Registration No.  <span class="text-danger">*</span></label>
             <input type="text" class="form-control" id="registration_no" name="registration_no"
@@ -52,7 +54,7 @@
 
         <div class="col-md-6 show-hide mt-3">
             <label for="email_id">Email ID <span class="text-danger">*</span></label>
-            <input type="email" required class="form-control" id="email_id" name="email_id"
+            <input type="email" class="form-control" id="email_id" name="email_id"
                 placeholder="Enter Email ID" value="{{ old('email_id', $hospital_department->email_id ?? '') }}">
             @error('email_id')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -92,9 +94,11 @@
     <script>
 $(document).ready(function() {
   $(".show-hide").hide();
+    $("#show-doctor").val(0);
 
   $('.show-doctors').click(function() {
     $(".show-hide").toggle('fast');
+    $("#show-doctor").val(1);
   });
 });
     </script>

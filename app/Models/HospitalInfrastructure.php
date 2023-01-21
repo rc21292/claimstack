@@ -31,6 +31,6 @@ class HospitalInfrastructure extends Model
         'jci_status',
         'nqac_nhsrc_status',
         'hippa_status',
-        'hospital_infra_comments',
+        'comments',
     ];
 }

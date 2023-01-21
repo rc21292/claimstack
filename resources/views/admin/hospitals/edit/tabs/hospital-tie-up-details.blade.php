@@ -5,14 +5,14 @@
     <div class="form-group row">
         <div class="col-md-12 mt-3">
             <label for="mou_inception_date">MoU Inception Date <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="mou_inception_date" name="mou_inception_date"
+            <input type="date" class="form-control" @if($hospital->signed_mous_file) disabled @endif id="mou_inception_date" name="mou_inception_date"
                 placeholder="Enter MoU Inception Date" value="{{ old('mou_inception_date', $hospital_tie_ups->mou_inception_date ?? '') }}">
             @error('mou_inception_date')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
 
-        <div class="col-md-6 mt-3">
+        <div class="col-md-5 mt-3">
             <label for="bhc_packages_for_surgical_procedures_accepted">BHC Packages for Surgical Procedures Accepted <span class="text-danger">*</span></label>
             <select class="form-select" id="bhc_packages_for_surgical_procedures_accepted" name="bhc_packages_for_surgical_procedures_accepted">
                 <option value="">Select</option>
@@ -27,23 +27,29 @@
             @enderror
         </div>
 
+        <div class="col-md-1 mt-32" style="margin-top: 45px !important;">
+            <input type="file" name="bhc_packages_for_surgical_procedures_accepted_file" @if($hospital_tie_ups->bhc_packages_for_surgical_procedures_accepted == 'No') disabled @endif id="bhc_packages_for_surgical_procedures_accepted_file" hidden />
+            <label for="bhc_packages_for_surgical_procedures_accepted_file" class="btn btn-primary upload-label"><i
+                class="mdi mdi-upload"></i></label>
+                @error('bhc_packages_for_surgical_procedures_accepted_file')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+
 
         <div class="col-md-6 mt-3">
             <label for="discount_on_medical_management_cases">Discount on Medical Management Cases <span class="text-danger">*</span></label>
             <select class="form-select" id="discount_on_medical_management_cases" name="discount_on_medical_management_cases">
                 <option value="">Select</option>
-                <option value="Yes" {{ old('discount_on_medical_management_cases', $hospital_tie_ups->discount_on_medical_management_cases?? '') == 'Yes' ? 'selected' : '' }}>Yes
-                </option>
-                <option value="No"
-                    {{ old('discount_on_medical_management_cases', $hospital_tie_ups->discount_on_medical_management_cases?? '') == 'No' ? 'selected' : '' }}>No
-                </option>
+                <option value="Yes" {{ old('discount_on_medical_management_cases', $hospital_tie_ups->discount_on_medical_management_cases?? '') == 'Yes' ? 'selected' : '' }}>Yes</option>
+                <option value="No" {{ old('discount_on_medical_management_cases', $hospital_tie_ups->discount_on_medical_management_cases?? '') == 'No' ? 'selected' : '' }}>No</option>
             </select>
             @error('discount_on_medical_management_cases')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
 
-        <div class="col-md-6 mt-3">
+        <div class="col-md-6 mt-3 show-hide-field">
             <label for="discount_on_final_bill">Discount on final bill % <span
                     class="text-danger">*</span></label>
             <input type="number" class="form-control" id="discount_on_final_bill" name="discount_on_final_bill"
@@ -53,7 +59,7 @@
             @enderror
         </div>
 
-        <div class="col-md-6 mt-3">
+        <div class="col-md-6 mt-3 show-hide-field">
             <label for="discount_on_room_rent">Discount on room rent % <span
                     class="text-danger">*</span></label>
             <input type="number" class="form-control" id="discount_on_room_rent" name="discount_on_room_rent"
@@ -63,7 +69,7 @@
             @enderror
         </div>
 
-        <div class="col-md-6 mt-3">
+        <div class="col-md-6 mt-3 show-hide-field">
             <label for="discount_on_medicines">Discount on medicines % <span
                     class="text-danger">*</span></label>
             <input type="number" class="form-control" id="discount_on_medicines" name="discount_on_medicines"
@@ -73,7 +79,7 @@
             @enderror
         </div>
 
-        <div class="col-md-6 mt-3">
+        <div class="col-md-6 mt-3 show-hide-field">
             <label for="discount_on_consumables">Discount on consumables % <span
                     class="text-danger">*</span></label>
             <input type="number" class="form-control" id="discount_on_consumables" name="discount_on_consumables"
@@ -99,7 +105,7 @@
         </div>
 
 
-        <div class="col-md-6 mt-3">
+        <div class="col-md-6 mt-3 show-hide-referral">
             <label for="referral">Referral % <span
                     class="text-danger">*</span></label>
             <input type="number" class="form-control" id="referral" name="referral"
@@ -219,7 +225,41 @@
             @enderror
         </div>
 
-        <div class="col-md-6 mt-3">
+
+        <div class="col-md-5 mt-3">
+            <label for="lending_finance_company_agreement">Lending / Finance Company's Agreement <span class="text-danger">*</span></label>
+            <select class="form-select" id="lending_finance_company_agreement" name="lending_finance_company_agreement">
+                <option value="">Select</option>
+                <option value="Yes" {{ old('lending_finance_company_agreement', $hospital_tie_ups->lending_finance_company_agreement ?? '') == 'Yes' ? 'selected' : '' }}>Yes
+                </option>
+                <option value="No"
+                    {{ old('lending_finance_company_agreement', $hospital_tie_ups->lending_finance_company_agreement ?? '') == 'No' ? 'selected' : '' }}>No
+                </option>
+            </select>
+            @error('lending_finance_company_agreement')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div class="col-md-1 mt-32" style="margin-top: 45px !important;">
+            <input type="file" name="lending_finance_company_agreement_file" @if($hospital_tie_ups->lending_finance_company_agreement == 'No') disabled @endif id="lending_finance_company_agreement_file" hidden />
+            <label for="lending_finance_company_agreement_file" class="btn btn-primary upload-label"><i
+                class="mdi mdi-upload"></i></label>
+                @error('lending_finance_company_agreement_file')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+        </div>
+
+        <div class="col-md-6 mt-3 show-hide-agrrement">
+            <label for="lending_finance_company_agreement_date">Lending / Finance Company's Agreement Date <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="lending_finance_company_agreement_date" name="lending_finance_company_agreement_date"
+                placeholder="Enter Lending / Finance Company's Agreement Date" value="{{ old('lending_finance_company_agreement_date', $hospital_tie_ups->lending_finance_company_agreement_date??'') }}">
+            @error('lending_finance_company_agreement_date')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div class="col-md-6 mt-3 show-hide-agrrement">
             <label for="medical_lending_for_patients">Medical Lending for Patients <span class="text-danger">*</span></label>
             <select class="form-select" id="medical_lending_for_patients" name="medical_lending_for_patients">
                 <option value="">Select</option>
@@ -234,8 +274,7 @@
             @enderror
         </div>
 
-
-        <div class="col-md-6 mt-3">
+        <div class="col-md-6 mt-3 show-hide-agrrement">
             <label for="medical_lending_service_type">Medical Lending Service Type <span class="text-danger">*</span></label>
             <select class="form-select" id="medical_lending_service_type" name="medical_lending_service_type">
                 <option value="">Select</option>
@@ -253,7 +292,7 @@
             @enderror
         </div>
 
-        <div class="col-md-6 mt-3">
+        <div class="col-md-6 mt-3 show-hide-agrrement">
             <label for="subvention">Subvention % <span
                     class="text-danger">*</span></label>
             <input type="number" class="form-control" id="subvention" name="subvention"
@@ -263,7 +302,7 @@
             @enderror
         </div>
 
-        <div class="col-md-6 mt-3">
+        <div class="col-md-6 mt-3 show-hide-agrrement">
             <label for="medical_lending_for_bill_invoice_discounting">Medical Lending for Bill/ Invoice Discounting <span class="text-danger">*</span></label>
             <select class="form-select" id="medical_lending_for_bill_invoice_discounting" name="medical_lending_for_bill_invoice_discounting">
                 <option value="">Select</option>
@@ -278,29 +317,11 @@
             @enderror
         </div>
 
-        <div class="col-md-6 mt-3">
+        <div class="col-md-6 mt-3 show-hide-agrrement">
             <label for="comments_on_invoice_discounting">Comments on Invoice Discounting <span class="text-danger">*</span></label>
             <input type="text" class="form-control" id="comments_on_invoice_discounting" name="comments_on_invoice_discounting"
                 placeholder="Enter Comments on Invoice Discounting" value="{{ old('comments_on_invoice_discounting', $hospital_tie_ups->comments_on_invoice_discounting??'') }}">
             @error('comments_on_invoice_discounting')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
-        </div>
-
-        <div class="col-md-6 mt-3">
-            <label for="lending_finance_company_agreement">Lending / Finance Company's Agreement <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="lending_finance_company_agreement" name="lending_finance_company_agreement"
-                placeholder="Enter Lending / Finance Company's Agreement" value="{{ old('lending_finance_company_agreement', $hospital_tie_ups->lending_finance_company_agreement??'') }}">
-            @error('lending_finance_company_agreement')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
-        </div>
-
-        <div class="col-md-6 mt-3">
-            <label for="lending_finance_company_agreement_date">Lending / Finance Company's Agreement Date <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="lending_finance_company_agreement_date" name="lending_finance_company_agreement_date"
-                placeholder="Enter Lending / Finance Company's Agreement Date" value="{{ old('lending_finance_company_agreement_date', $hospital_tie_ups->lending_finance_company_agreement_date??'') }}">
-            @error('lending_finance_company_agreement_date')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
@@ -320,7 +341,7 @@
             @enderror
         </div>
 
-        <div class="col-md-6 mt-3">
+        <div class="col-md-6 mt-3 show-hide-hms">
             <label for="hms_services">HMS Services<span class="text-danger">*</span></label>
             <select class="form-select" id="hms_services" name="hms_services">
                 <option value="">Select</option>
@@ -343,16 +364,14 @@
             @enderror
         </div>
 
-        <div class="col-md-6 mt-3">
+        <div class="col-md-6 mt-3 show-hide-hms">
             <label for="hms_charges">HMS Charges<span class="text-danger">*</span></label>
             <input type="number" class="form-control" id="hms_charges" name="hms_charges"
-                placeholder="Enter Lending / Finance Company's Agreement Date" value="{{ old('hms_charges', $hospital_tie_ups->hms_charges??'') }}">
+                placeholder="Enter HMS Charges" value="{{ old('hms_charges', $hospital_tie_ups->hms_charges??'') }}">
             @error('hms_charges')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
-
-
 
         <div class="col-md-12 mt-3">
             <label for="comments">Comments </label>
@@ -367,3 +386,65 @@
         </div>
     </div>
 </form>
+@push('scripts')
+<script>
+
+var field = "{{ old('discount_on_medical_management_cases', $hospital_tie_ups->discount_on_medical_management_cases ?? '')  }}";
+
+var field_ref = "{{ old('referral_commission_offered', $hospital_tie_ups->referral_commission_offered ?? '')  }}";
+
+var field_agrr = "{{ old('lending_finance_company_agreement', $hospital_tie_ups->lending_finance_company_agreement ?? '')  }}";
+
+var field_hms = "{{ old('hospital_management_system_installation', $hospital_tie_ups->hospital_management_system_installation ?? '')  }}";
+
+    if( field === 'No'){
+        $(".show-hide-field").hide();
+    }
+
+    if( field_agrr === 'No'){
+        $(".show-hide-agrrement").hide();
+    }
+
+    if( field_ref === 'No'){
+        $(".show-hide-referral").hide();
+    }
+
+    if( field_hms === 'No'){
+        $(".show-hide-hms").hide();
+    }
+
+
+    $('#discount_on_medical_management_cases').on('change', function(){
+        if($(this).val() == 'No'){
+            $(".show-hide-field").hide();
+        }else{
+            $(".show-hide-field").show();
+        }
+    });
+
+    $('#referral_commission_offered').on('change', function(){
+        if($(this).val() == 'No'){
+            $(".show-hide-referral").hide();
+        }else{
+            $(".show-hide-referral").show();
+        }
+    });
+
+     $('#hospital_management_system_installation').on('change', function(){
+        if($(this).val() == 'No'){
+            $(".show-hide-hms").hide();
+        }else{
+            $(".show-hide-hms").show();
+        }
+    });
+
+    $('#lending_finance_company_agreement').on('change', function(){
+        if($(this).val() == 'No'){
+            $(".show-hide-referral").hide();
+        }else{
+            $(".show-hide-referral").show();
+        }
+    });
+</script>
+@endpush
+
