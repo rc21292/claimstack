@@ -153,8 +153,6 @@
                                     @enderror
                                 </div>
 
-
-
                                 <div class="col-md-12 mt-3">
                                     <label for="hospital_address">Hospital Address <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="hospital_address" name="hospital_address"
@@ -261,11 +259,6 @@
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
-
-
-
-
-
 
                                 <div class="col-md-6 mt-3">
                                     <label for="assigned_employee_id">Assigned To Employee ID <span
