@@ -1,4 +1,4 @@
-<form action="{{ route('hospital.hospitals.update', $hospital->id) }}" method="post" id="hospital-form"
+<form action="{{ route('admin.hospitals.update', $hospital->id) }}" method="post" id="hospital-form"
     enctype="multipart/form-data">
     @csrf
     @method('PUT')
@@ -121,8 +121,7 @@
         </div>
 
         <div class="col-md-6 mt-3">
-            <label for="landline">Hospital Landline Number <span
-                    class="text-danger">*</span></label>
+            <label for="landline">Hospital Landline Number <span class="text-danger">*</span></label>
             <input type="number" class="form-control" id="landline" name="landline"
                 placeholder="Enter hospital landline number" value="{{ old('landline', $hospital->landline) }}">
             @error('landline')
@@ -133,10 +132,11 @@
 
 
         <div class="col-md-6 mt-3">
-            <label for="phone">Hospital Mobile Number <span
-                    class="text-danger">*</span></label>
-            <input type="number" class="form-control" id="phone" name="phone"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"
-                placeholder="Enter hospital mobile number" value="{{ old('phone', $hospital->phone) }}">
+            <label for="phone">Hospital Mobile Number <span class="text-danger">*</span></label>
+            <div class="input-group">
+                <label class="input-group-text" for="phone">+91</label>
+                <input type="number" class="form-control" id="phone" name="phone"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" placeholder="Enter hospital mobile number" value="{{ old('phone', $hospital->phone) }}">
+            </div>
             @error('phone')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
@@ -186,8 +186,8 @@
             <div class="input-group">
                 <input type="text" class="form-control" id="tan" name="tan"
                     placeholder="Enter Hospital Tan no." value="{{ old('tan', $hospital->tan) }}">
-                <input type="file" name="tanfile" id="tanupload" hidden />
-                <label for="tanupload" class="btn btn-primary upload-label"><i
+                <input type="file" name="tanfile" id="tanfile" hidden />
+                <label for="tanfile" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
             </div>
             @error('tan')
@@ -203,8 +203,8 @@
             <div class="input-group">
                 <input type="text" class="form-control" id="gst" name="gst"
                     placeholder="Enter Hospital Gst no." value="{{ old('gst', $hospital->gst) }}">
-                <input type="file" name="gstfile" id="gstupload" hidden />
-                <label for="gstupload" class="btn btn-primary upload-label"><i
+                <input type="file" name="gstfile" id="gstfile" hidden />
+                <label for="gstfile" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
             </div>
             @error('gst')
@@ -225,10 +225,11 @@
         </div>
 
         <div class="col-md-6 mt-3">
-            <label for="owner_phone">Hospital Owner Mobile Number <span
-                    class="text-danger">*</span></label>
-            <input type="number" class="form-control" id="owner_phone" name="owner_phone"
-                placeholder="Enter hospital Owner mobile number" value="{{ old('owner_phone', $hospital->owner_phone) }}">
+            <label for="owner_phone">Hospital Owner Mobile Number <span class="text-danger">*</span></label>
+            <div class="input-group">
+                <label class="input-group-text" for="phone">+91</label>
+                <input type="number" class="form-control" id="owner_phone" name="owner_phone" placeholder="Enter hospital Owner mobile number" value="{{ old('owner_phone', $hospital->owner_phone) }}">
+            </div>
             @error('owner_phone')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
@@ -255,10 +256,11 @@
         </div>
 
         <div class="col-md-6 mt-3">
-            <label for="contact_person_phone">Contact Person Mobile Number <span
-                    class="text-danger">*</span></label>
-            <input type="number" class="form-control" id="contact_person_phone" name="contact_person_phone"
-                placeholder="Enter hospital Owner mobile number" value="{{ old('contact_person_phone', $hospital->contact_person_phone) }}">
+            <label for="contact_person_phone">Contact Person Mobile Number <span class="text-danger">*</span></label>
+                <div class="input-group">
+                    <label class="input-group-text" for="phone">+91</label>
+                    <input type="number" class="form-control" id="contact_person_phone" name="contact_person_phone"  placeholder="Enter hospital Owner mobile number" value="{{ old('contact_person_phone', $hospital->contact_person_phone) }}">
+                </div>
             @error('contact_person_phone')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
@@ -295,10 +297,11 @@
         </div>
 
         <div class="col-md-6 mt-3">
-            <label for="medical_superintendent_mobile">Medical Superintendent Mobile Number <span
-                    class="text-danger">*</span></label>
-            <input type="number" class="form-control" id="medical_superintendent_mobile" name="medical_superintendent_mobile"
-                placeholder="Enter Medical Superintendent Mobile Number" value="{{ old('medical_superintendent_mobile', $hospital->medical_superintendent_mobile) }}">
+            <label for="medical_superintendent_mobile">Medical Superintendent Mobile Number <span  class="text-danger">*</span></label>
+            <div class="input-group">
+                <label class="input-group-text" for="phone">+91</label>
+                <input type="number" class="form-control" id="medical_superintendent_mobile" name="medical_superintendent_mobile" placeholder="Enter Medical Superintendent Mobile Number" value="{{ old('medical_superintendent_mobile', $hospital->medical_superintendent_mobile) }}">
+            </div>
             @error('medical_superintendent_mobile')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
@@ -406,14 +409,13 @@
         </div>
 
         <div class="col-md-1 mt-2">
-                <input type="file" name="cancel_cheque_file" id="cupload" hidden />
-                <label for="cupload" class="btn btn-primary upload-label"><i
+                <input type="file" name="cancel_cheque_file" id="cancel_cheque_file" hidden />
+                <label for="cancel_cheque_file" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
             @error('cancel_cheque_file')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
-
 
         <div class="col-md-6 mt-3">
             <input type="number" class="form-control" id="bank_account_no" name="bank_account_no" maxlength="20"
@@ -448,8 +450,8 @@
         </div>
 
         <div class="col-md-1 mt-32" style="margin-top: 32px !important;">
-                <input type="file" name="tariff_list_soc_file" id="tupload" hidden />
-                <label for="tupload" class="btn btn-primary upload-label"><i
+                <input type="file" name="tariff_list_soc_file" id="tariff_list_soc_file" hidden />
+                <label for="tariff_list_soc_file" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
             @error('tariff_list_soc_file')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -462,8 +464,8 @@
             <div class="input-group">
                 <input type="text" class="form-control" id="nabh_registration_no" name="nabh_registration_no"
                     placeholder="Hospital NABH Registration No." value="{{ old('nabh_registration_no', $hospital->nabh_registration_no) }}">
-                <input type="file" name="nabh_registration_file" id="nupload" hidden />
-                <label for="nupload" class="btn btn-primary upload-label"><i
+                <input type="file" name="nabh_registration_file" id="nabh_registration_file" hidden />
+                <label for="nabh_registration_file" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
             </div>
             @error('nabh_registration_no')
@@ -480,8 +482,8 @@
             <div class="input-group">
                 <input type="text" class="form-control" id="nabl_registration_no" name="nabl_registration_no"
                     placeholder="Hospital NABL Registration No." value="{{ old('nabl_registration_no', $hospital->nabl_registration_no) }}">
-                <input type="file" name="nabl_registration_file" id="lupload" hidden />
-                <label for="lupload" class="btn btn-primary upload-label"><i
+                <input type="file" name="nabl_registration_file" id="nabl_registration_file" hidden />
+                <label for="nabl_registration_file" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
             </div>
             @error('nabl_registration_no')
@@ -510,8 +512,8 @@
         </div>
 
         <div class="col-md-1 mt-32" style="margin-top: 32px !important;">
-                <input type="file" name="signed_mous_file" id="supload" hidden />
-                <label for="supload" class="btn btn-primary upload-label"><i
+                <input type="file" name="signed_mous_file" id="signed_mous_file" hidden />
+                <label for="signed_mous_file" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
             @error('signed_mous_file')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -524,8 +526,8 @@
             <div class="input-group">
                 <input type="text" class="form-control" id="other_documents" name="other_documents"
                     placeholder="Hospital Hospital Other Documents" value="{{ old('other_documents', $hospital->other_documents) }}">
-                <input type="file" name="other_documents_file" id="oupload" hidden />
-                <label for="oupload" class="btn btn-primary upload-label"><i
+                <input type="file" name="other_documents_file" id="other_documents_file" hidden />
+                <label for="other_documents_file" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
             </div>
             @error('other_documents')
@@ -566,8 +568,8 @@
         </div>
 
         <div class="col-md-1 mt-32" style="margin-top: 32px !important;">
-                <input type="file" name="iso_status_file" id="iupload" hidden />
-                <label for="iupload" class="btn btn-primary upload-label"><i
+                <input type="file" name="iso_status_file" id="iso_status_file" hidden />
+                <label for="iso_status_file" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
             @error('iso_status_file')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -587,3 +589,53 @@
         </div>
     </div>
 </form>
+
+@push('scripts')
+
+<script>
+
+    var field = "{{ old('cancel_cheque', $hospital->cancel_cheque ?? '')  }}";
+
+    var field_ref = "{{ old('tariff_list_soc', $hospital->tariff_list_soc ?? '')  }}";
+
+    var field_agrr = "{{ old('nabh_registration', $hospital->nabh_registration ?? '')  }}";
+
+    var field_hms = "{{ old('nabl_registration', $hospital->nabl_registration ?? '')  }}";
+
+    var field_hms1 = "{{ old('signed_mous', $hospital->signed_mous ?? '')  }}";
+
+    var field_hms2 = "{{ old('other_documents', $hospital->other_documents ?? '')  }}";
+
+    var field_hms3 = "{{ old('iso_status', $hospital->iso_status ?? '')  }}";
+
+    if( field === 'No'){
+        $("#cancel_cheque_file").attr("disabled", 'disabled');
+    }
+
+    if( field_ref === 'No'){
+        $("#tariff_list_soc_file").attr("disabled", 'disabled');
+    }
+
+    if( field_agrr  === 'No'){
+        $("#nabh_registration_file").attr("disabled", 'disabled');
+    }
+
+    if( field_hms === 'No'){
+        $("#nabl_registration_file").attr("disabled", 'disabled');
+    }
+
+    if( field_hms1 === 'No'){
+        $("#signed_mous_file").attr("disabled", 'disabled');
+    }
+
+    if( field_hms2 === 'No'){
+        $("#other_documents_file").attr("disabled", 'disabled');
+    }
+
+    if( field_hms3 === 'No'){
+        $("#iso_status_file").attr("disabled", 'disabled');
+    }
+
+</script>
+
+@endpush
