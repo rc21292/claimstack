@@ -184,7 +184,15 @@ class HospitalController extends Controller
         $hospital          = Hospital::find($id);
         $insurers          = Insurer::all();
         $hospital_tie_ups          = HospitalTieUp::where('hospital_id', $id)->first();
+        if (!$hospital_tie_ups) {
+            HospitalTieUp::create(['hospital_id'=> $id]);
+            $hospital_tie_ups          = HospitalTieUp::where('hospital_id', $id)->first();
+        }
         $hospital_facility          = HospitalFacility::where('hospital_id', $id)->first();
+        if (!$hospital_facility) {
+            HospitalFacility::create(['hospital_id'=> $id]);
+            $hospital_facility          = HospitalFacility::where('hospital_id', $id)->first();
+        }
         $hospital_nfrastructure          = HospitalInfrastructure::where('hospital_id', $id)->first();
         $hospital_department          = HospitalDepartment::where('hospital_id', $id)->first();
         $hospitals         = Hospital::get();
