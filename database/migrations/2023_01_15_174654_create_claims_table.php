@@ -45,7 +45,7 @@ return new class extends Migration
            $table->enum('admission_type', ['Day Care', 'Hospitalization'])->default('Day Care');
            $table->enum('claim_category', ['Cashless', 'Reimbursement'])->default('Cashless');
            $table->enum('treatment_category', ['Surgical', 'Medical Management'])->default('Surgical');
-           $table->enum('disease_category', ['Cardiac', 'Dialysis', 'Eye Related', 'Infection', 'maternity ', 'Neuro Related', 'Trauma'])->default('Cardiac');
+           $table->enum('disease_category', ['Cardiac', 'Dialysis', 'Eye Related', 'Infection', 'Maternity ', 'Neuro Related', 'Trauma'])->default('Cardiac');
            $table->enum('disease_type', ['PED', 'Non-PED'])->default('PED');
            $table->string('disease_name')->nullable();    
            $table->longText('claim_intimation_comments')->nullable();       

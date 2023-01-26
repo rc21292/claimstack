@@ -73,7 +73,11 @@ class ClaimController extends Controller
      */
     public function edit($id)
     {
-        //
+        $hospital          = Hospital::find($id);
+        $hospital_id         = $id;
+        $hospitals         = Hospital::get();
+        $users              = User::get();
+        return view('admin.claims.edit.edit',  compact('hospital','hospital_id'));
     }
 
     /**

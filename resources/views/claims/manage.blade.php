@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.hospital')
 @section('title', 'Manage Claims')
 @section('content')
     <!-- Start Content-->
@@ -9,7 +9,7 @@
             <div class="col-12">
                 <div class="page-title-box">
                     <div class="page-title-right">
-                        <form action="{{ route('admin.claims.index') }}">
+                        <form action="{{ route('hospital.claims.index') }}">
                             <div class="input-group">
                                 <input class="form-control" name="search" type="search"placeholder="Type here to Search">
                                 <div class="input-group-append">
@@ -22,7 +22,7 @@
                 </div>
             </div>
         </div>
-        @include('admin.sections.flash-message')
+        @include('hospital.sections.flash-message')
         <!-- end page title -->
 
         <!-- start page content -->
@@ -51,9 +51,7 @@
                                                 <td>{{ $hospital->state }}</td>                                               
                                                 <td>
                                                     <div class="btn-group">
-                                                        <a href="{{ route('admin.claims.edit', $hospital->id) }}"
-                                                            class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
-                                                        <a href="{{ route('admin.patients.create', ['hospital_id' => $hospital->id]) }}"
+                                                        <a href="{{ route('hospital.patients.create', ['hospital_id' => $hospital->id]) }}"
                                                             class="btn btn-primary"><i class="mdi mdi-plus"></i> Create Patient</a>                 
                                                         </form>
                                                     </div>
@@ -77,7 +75,7 @@
 
 @endsection
 {{-- @push('filter')
-    @include('admin.filters.question-filter')
+    @include('hospital.filters.question-filter')
 @endpush --}}
 @push('scripts')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

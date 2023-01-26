@@ -28,7 +28,7 @@
             <div class="col-12">
                 <div class="card no-shadow">
                     <div class="card-body">
-                        <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
+                        <ul class="nav nav-pills bg-nav-pills nav-justified mb-3" style="white-space: nowrap;">
                             <li class="nav-item">
                                 <a href="#hospital_details" data-bs-toggle="tab" aria-expanded="true"
                                     class="nav-link rounded-0 active">
@@ -69,7 +69,7 @@
                                 </a>
                             </li>
 
-                            <li class="nav-item">
+                            <li class="nav-item" style="display: none;">
                                 <a href="#empanelment_status" data-bs-toggle="tab" aria-expanded="false"
                                     class="nav-link rounded-0 ">
                                     <i class="mdi mdi-home-variant d-md-none d-block"></i>
@@ -77,7 +77,7 @@
                                 </a>
                             </li>
 
-                            <li class="nav-item">
+                            <li class="nav-item" style="display: none;">
                                 <a href="#negative_isting" data-bs-toggle="tab" aria-expanded="false"
                                     class="nav-link rounded-0 ">
                                     <i class="mdi mdi-home-variant d-md-none d-block"></i>
