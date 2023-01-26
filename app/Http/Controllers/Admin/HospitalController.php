@@ -229,16 +229,16 @@ class HospitalController extends Controller
             'associate_partner_id'     => 'required',
             'tan' => 'required',
             'gst' => 'required',
-            'owner_email' => 'required',
-            'owner_phone' => 'required',
+            'owner_email' => 'required|email',
+            'owner_phone' => 'required|numeric|digits:10',
             'contact_person_name' => 'required',
-            'contact_person_email' => 'required',
+            'contact_person_email' => 'required|email',
             'contact_person_phone' => 'required|numeric|digits:10',
-            'registration_no' => 'required',
+            'registration_no' => 'required|alpha_num|digits_between:1,20',
             'medical_superintendent_name' => 'required',
-            'medical_superintendent_email' => 'required',
+            'medical_superintendent_email' => 'required|email',
             'medical_superintendent_mobile' => 'required|numeric|digits:10',
-            'medical_superintendent_registration_no' => 'required',
+            'medical_superintendent_registration_no' => 'required|alpha_num|digits_between:1,20',
             'medical_superintendent_qualification' => 'required',
             'pollution_clearance_certificate' => 'required',
             'fire_safety_clearance_certificate' => 'required',
@@ -246,11 +246,11 @@ class HospitalController extends Controller
             'bank_name' => 'required',
             'bank_address' => 'required',
             'cancel_cheque' => 'required',
-            'bank_account_no' => 'required',
-            'bank_ifs_code' => 'required',
+            'bank_account_no' => 'required|alpha_num|digits_between:1,20',
+            'bank_ifs_code' => 'required|alpha_num|digits_between:1,11',
             'tariff_list_soc' => 'required',
-            'nabh_registration_no' => 'required',
-            'nabl_registration_no' => 'required',
+            'nabh_registration_no' => 'required|alpha_num|digits_between:1,15',
+            'nabl_registration_no' => 'required|alpha_num|digits_between:1,15',
             'signed_mous' => 'required',
             'other_documents' => 'required',
             'hrms_software' => 'required',
@@ -376,7 +376,6 @@ class HospitalController extends Controller
             ]);
         }
 
-
         if ($request->hasfile('gstfile')) {
             $gstfile                    = $request->file('gstfile');
             $name                       = $gstfile->getClientOriginalName();
@@ -385,8 +384,6 @@ class HospitalController extends Controller
                 'gstfile'               =>  $name
             ]);
         }
-
-
 
         if ($request->hasfile('cancel_cheque_file')) {
             $cancel_cheque_file                    = $request->file('cancel_cheque_file');
@@ -397,9 +394,6 @@ class HospitalController extends Controller
             ]);
         }
 
-
-
-
         if ($request->hasfile('tariff_list_soc_file')) {
             $tariff_list_soc_file                    = $request->file('tariff_list_soc_file');
             $name                       = $tariff_list_soc_file->getClientOriginalName();
@@ -408,8 +402,6 @@ class HospitalController extends Controller
                 'tariff_list_soc_file'               =>  $name
             ]);
         }
-
-
 
         if ($request->hasfile('nabh_registration_file')) {
             $nabh_registration_file                    = $request->file('nabh_registration_file');
@@ -438,8 +430,6 @@ class HospitalController extends Controller
             ]);
         }
 
-
-
         if ($request->hasfile('other_documents_file')) {
             $other_documents_file                    = $request->file('other_documents_file');
             $name                       = $other_documents_file->getClientOriginalName();
@@ -448,7 +438,6 @@ class HospitalController extends Controller
                 'other_documents_file'               =>  $name
             ]);
         }
-
 
         if ($request->hasfile('rohinifile')) {
             $rohinifile                    = $request->file('rohinifile');

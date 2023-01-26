@@ -141,8 +141,11 @@
         <div class="col-md-6 mt-3">
             <label for="claimstag_installation_charges">ClaimStag Installation Charges (One Time Payment) <span
                     class="text-danger">*</span></label>
-            <input type="number" class="form-control" id="claimstag_installation_charges" name="claimstag_installation_charges"
+            <div class="input-group">
+                <label class="input-group-text" for="phone">Rs.</label>
+                <input type="number" class="form-control" id="claimstag_installation_charges" name="claimstag_installation_charges"
                 placeholder="Enter ClaimStag Installation Charges (One Time Payment) " value="{{ old('claimstag_installation_charges', $hospital_tie_ups->claimstag_installation_charges??'') }}">
+            </div>
             @error('claimstag_installation_charges')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
@@ -151,8 +154,11 @@
         <div class="col-md-6 mt-3">
             <label for="claimstag_usage_charges">ClaimStag Usage Charges <span
                     class="text-danger">*</span></label>
-            <input type="number" class="form-control" id="claimstag_usage_charges" name="claimstag_usage_charges"
+            <div class="input-group">
+                <label class="input-group-text" for="phone">Rs.</label>
+                <input type="number" class="form-control" id="claimstag_usage_charges" name="claimstag_usage_charges"
                 placeholder="Enter ClaimStag Usage Charges" value="{{ old('claimstag_usage_charges', $hospital_tie_ups->claimstag_usage_charges??'') }}">
+            </div>
             @error('claimstag_usage_charges')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
@@ -184,8 +190,11 @@
         <div class="col-md-6 mt-3">
             <label for="claims_reimbursement_insured_service_charges">Claims Reimbursement - Insured Service Charges <span
                     class="text-danger">*</span></label>
-            <input type="number" class="form-control" id="claims_reimbursement_insured_service_charges" name="claims_reimbursement_insured_service_charges"
+            <div class="input-group">
+                <label class="input-group-text" for="phone">Rs.</label>
+                <input type="number" class="form-control" id="claims_reimbursement_insured_service_charges" name="claims_reimbursement_insured_service_charges"
                 placeholder="Enter Claims Reimbursement - Insured Service Charges" value="{{ old('claims_reimbursement_insured_service_charges', $hospital_tie_ups->claims_reimbursement_insured_service_charges??'') }}">
+            </div>
             @error('claims_reimbursement_insured_service_charges')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
@@ -218,8 +227,11 @@
         <div class="col-md-6 mt-3">
             <label for="cashless_claims_management_services_charges">Claims Reimbursement - Insured Service Charges <span
                     class="text-danger">*</span></label>
-            <input type="number" class="form-control" id="cashless_claims_management_services_charges" name="cashless_claims_management_services_charges"
+            <div class="input-group">
+                <label class="input-group-text" for="phone">Rs.</label>
+                <input type="number" class="form-control" id="cashless_claims_management_services_charges" name="cashless_claims_management_services_charges"
                 placeholder="Enter Claims Reimbursement - Insured Service Charges" value="{{ old('cashless_claims_management_services_charges', $hospital_tie_ups->cashless_claims_management_services_charges??'') }}">
+            </div>
             @error('cashless_claims_management_services_charges')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
@@ -366,8 +378,11 @@
 
         <div class="col-md-6 mt-3 show-hide-hms">
             <label for="hms_charges">HMS Charges<span class="text-danger">*</span></label>
-            <input type="number" class="form-control" id="hms_charges" name="hms_charges"
+            <div class="input-group">
+                <label class="input-group-text" for="phone">Rs.</label>
+                <input type="number" class="form-control" id="hms_charges" name="hms_charges"
                 placeholder="Enter HMS Charges" value="{{ old('hms_charges', $hospital_tie_ups->hms_charges??'') }}">
+            </div>
             @error('hms_charges')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
