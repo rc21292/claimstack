@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.user')
 @section('title', 'Create Associate Partners')
 @section('content')
     <!-- Start Content-->
@@ -11,7 +11,7 @@
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Claim Stack</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('user.dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item"><a href="javascript:void(0);">Associate Partner</a></li>
                             <li class="breadcrumb-item active">Create</li>
                         </ol>
@@ -20,7 +20,7 @@
                 </div>
             </div>
         </div>
-        @include('admin.sections.flash-message')
+        @include('user.sections.flash-message')
         <!-- end page title -->
 
         <!-- start page content -->
@@ -83,7 +83,7 @@
             if (!department) {
                 department = 'Operations'
             }
-            var url = '{{ route('admin.get.employees', ':department') }}';
+            var url = '{{ route('user.get.employees', ':department') }}';
             url = url.replace(':department', department);
 
             $.ajax({
@@ -103,7 +103,7 @@
             if (!department) {
                 department = 'Operations'
             }
-            var url = '{{ route('admin.get.employees', ':department') }}';
+            var url = '{{ route('user.get.employees', ':department') }}';
             url = url.replace(':department', department);
 
             $.ajax({
