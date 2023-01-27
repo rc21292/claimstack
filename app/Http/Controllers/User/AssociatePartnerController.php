@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\AssociatePartner;
@@ -20,7 +20,7 @@ class AssociatePartnerController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware('auth:user');
     }
     /**
      * Display a listing of the resource.
@@ -35,7 +35,7 @@ class AssociatePartnerController extends Controller
             $associates->where(DB::raw("concat(firstname, ' ', lastname)"), 'like','%' . $filter_search . '%');
         }
         $associates = $associates->orderBy('id', 'desc')->paginate(20);
-        return view('admin.associate-partners.manage',  compact('associates', 'filter_search'));
+        return view('user.associate-partners.manage',  compact('associates', 'filter_search'));
     }
 
     /**
@@ -48,7 +48,7 @@ class AssociatePartnerController extends Controller
         $associates = AssociatePartner::get();
         $users      = User::get();
 
-        return view('admin.associate-partners.create.create',  compact('associates', 'users'));
+        return view('user.associate-partners.create.create',  compact('associates', 'users'));
     }
 
     /**
@@ -140,7 +140,7 @@ class AssociatePartnerController extends Controller
             ]);
         }
 
-        return redirect()->route('admin.associate-partners.index')->with('success', 'Associate partner created successfully');
+        return redirect()->route('user.associate-partners.index')->with('success', 'Associate partner created successfully');
     }
 
     /**
@@ -152,7 +152,7 @@ class AssociatePartnerController extends Controller
     public function show($id)
     {
         $associate = AssociatePartner::find($id);
-        return view('admin.associate-partners.view.show',  compact('associate'));
+        return view('user.associate-partners.view.show',  compact('associate'));
     }
 
     /**
@@ -168,7 +168,7 @@ class AssociatePartnerController extends Controller
         $associate->service = $associate->type == 'vendor' ? VendorServiceType::where('associate_partner_id', $id)->first() :  SalesServiceType::where('associate_partner_id', $id)->first();
         $associates         = AssociatePartner::get();
         $users              = User::get();
-        return view('admin.associate-partners.edit.edit',  compact('associate', 'associates', 'users'));
+        return view('user.associate-partners.edit.edit',  compact('associate', 'associates', 'users'));
     }
 
     /**
@@ -452,11 +452,11 @@ class AssociatePartnerController extends Controller
     public function destroy($id)
     {
         AssociatePartner::find($id)->delete();
-        return redirect()->route('admin.associate-partners.index')->with('success', 'Associate partner deleted successfully');
+        return redirect()->route('user.associate-partners.index')->with('success', 'Associate partner deleted successfully');
     }
 
     public function importExport(Request $request){
-        return view('admin.associate-partners.import-export');
+        return view('user.associate-partners.import-export');
     }
 
     public function import(Request $request){

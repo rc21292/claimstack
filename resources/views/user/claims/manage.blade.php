@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Associate Partners')
+@section('title', 'Manage Claims')
 @section('content')
     <!-- Start Content-->
     <div class="container-fluid">
@@ -9,16 +9,16 @@
             <div class="col-12">
                 <div class="page-title-box">
                     <div class="page-title-right">
-                        <form action="{{ route('admin.associate-partners.index') }}">
+                        <form action="{{ route('admin.claims.index') }}">
                             <div class="input-group">
                                 <input class="form-control" name="search" type="search"placeholder="Type here to Search">
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="submit">Search</button>
                                 </div>
                             </div>
-                        </form>
+                        </form>  
                     </div>
-                    <h4 class="page-title">Manage Associate Partner</h4>
+                    <h4 class="page-title">Manage Claims</h4>
                 </div>
             </div>
         </div>
@@ -31,43 +31,30 @@
                 <div class="card no-shadow">
                     <div class="card-body p-0">
                         <div class="table-responsive">
-                            @if (count($associates) > 0)
+                            @if (count($claims) > 0)
                                 <table id="basics-datatable" class="table table-hover">
                                     <thead class="thead-grey">
                                         <tr>
                                             <th scope="col">UID</th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Type</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Phone</th>
+                                            <th scope="col">Claims Name</th>
+                                            <th scope="col">City</th>
+                                            <th scope="col">State</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($associates as $associate)
+                                        @foreach ($claims as $hospital)
                                             <tr>
-                                                <th scope="row">{{ $associate->associate_partner_id }}</th>
-                                                <td>{!! $associate->name !!}</td>
-                                                <td><span
-                                                        class="badge badge-outline-secondary">{{ ucfirst($associate->type) }}</span>
-                                                </td>
-                                                <td>{{ $associate->email }}</td>
-                                                <td>{{ $associate->phone }}</td>
+                                                <th scope="row">{{ $hospital->uid }}</th>
+                                                <td>{!! $hospital->name !!}</td>
+                                                <td>{{ $hospital->city }}</td>
+                                                <td>{{ $hospital->state }}</td>                                               
                                                 <td>
                                                     <div class="btn-group">
-                                                        <a href="{{ route('admin.associate-partners.edit', $associate->id) }}"
+                                                        <a href="{{ route('admin.claims.edit', $hospital->id) }}"
                                                             class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
-                                                        <a href="{{ route('admin.associate-partners.show', $associate->id) }}"
-                                                            class="btn btn-info"><i class="mdi mdi-eye"></i></a>
-                                                        <button type="button" class="btn btn-danger"
-                                                            onclick="confirmDelete({{ $associate->id }})"><i
-                                                                class="uil uil-trash-alt"></i></button>
-                                                        <form id='delete-form{{ $associate->id }}'
-                                                            action='{{ route('admin.associate-partners.destroy', $associate->id) }}'
-                                                            method='POST'>
-                                                            <input type='hidden' name='_token'
-                                                                value='{{ csrf_token() }}'>
-                                                            <input type='hidden' name='_method' value='DELETE'>
+                                                        <a href="{{ route('admin.patients.create', ['hospital_id' => $hospital->id]) }}"
+                                                            class="btn btn-primary"><i class="mdi mdi-plus"></i> Create Patient</a>                 
                                                         </form>
                                                     </div>
                                                 </td>
@@ -76,10 +63,10 @@
                                     </tbody>
                                 </table>
                             @else
-                                <p class="text-center">No Associate Partner found.</p>
+                                <p class="text-center">No Claims found.</p>
                             @endif
                         </div>
-                        {{ $associates->withQueryString()->links('pagination::bootstrap-4') }}
+                        {{ $claims->withQueryString()->links('pagination::bootstrap-4') }}
                     </div>
                 </div>
             </div>
@@ -87,6 +74,7 @@
         <!-- end page content -->
 
     </div> <!-- container -->
+
 @endsection
 {{-- @push('filter')
     @include('admin.filters.question-filter')
@@ -110,4 +98,6 @@
             })
         };
     </script>
+
+
 @endpush

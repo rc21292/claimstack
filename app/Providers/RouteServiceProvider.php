@@ -21,6 +21,8 @@ class RouteServiceProvider extends ServiceProvider
 
     public const ADMIN = '/admin';
 
+    public const USER = '/user';
+
     public const EMPLOYEE = '/employee';
 
     public const ASSOCIATE = '/associate-partner';
@@ -46,6 +48,9 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::middleware('web')
                 ->group(base_path('routes/admin.php'));
+
+            Route::middleware('web')
+                ->group(base_path('routes/user.php'));
 
             Route::middleware('web')
                 ->group(base_path('routes/associate.php'));
