@@ -27,13 +27,13 @@
                                         <td>{{ $sub_associate_partner->phone }}</td>
                                         <td>
                                             <div class="btn-group">
-                                                <a href="{{ route('admin.associate-partners.edit', $sub_associate_partner->id) }}"
+                                                <a href="{{ route('hospital.associate-partners.edit', $sub_associate_partner->id) }}"
                                                     class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
                                                 <button type="button" class="btn btn-danger"
                                                     onclick="confirmDelete({{ $sub_associate_partner->id }})"><i
                                                         class="uil uil-trash-alt"></i></button>
                                                 <form id='delete-form{{ $sub_associate_partner->id }}'
-                                                    action='{{ route('admin.associate-partners.destroy', $sub_associate_partner->id) }}'
+                                                    action='{{ route('hospital.associate-partners.destroy', $sub_associate_partner->id) }}'
                                                     method='POST'>
                                                     <input type='hidden' name='_token'
                                                         value='{{ csrf_token() }}'>

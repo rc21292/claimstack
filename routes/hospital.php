@@ -83,6 +83,18 @@ Route::group(['prefix' => 'hospital', 'as' => 'hospital.'], function () {
     */
 
     Route::resource('hospitals', HospitalController::class); 
+
+    Route::put('hospitals/tie-ups/{id}', [HospitalController::class, 'updateHospitalTieUps'])->name('hospitals.tie-ups');
+
+    Route::put('hospitals/infrastructures/{id}', [HospitalController::class, 'updateHospitalInfrastructure'])->name('hospitals.infrastructures');
+
+    Route::put('hospitals/facility/{id}', [HospitalController::class, 'updateHospitalFacility'])->name('hospitals.facility');
+
+    Route::put('hospitals/department/{id}', [HospitalController::class, 'updateHospitalDepartment'])->name('hospitals.department');
+
+    Route::put('hospitals/empanelment-status/{id}', [HospitalController::class, 'updateHospitalEmpanelmentStatus'])->name('hospitals.empanelment-status');
+    
+    
     Route::post('hospital/change-pasword', [HospitalController::class, 'changePassword'])->name('hospitals.change-password');
 
     /*

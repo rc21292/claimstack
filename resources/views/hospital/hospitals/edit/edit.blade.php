@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.hospital')
 @section('title', 'Edit Hospitals')
 @section('content')
     <!-- Start Content-->
@@ -11,7 +11,7 @@
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Claim Stack</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('hospital.dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item"><a href="javascript:void(0);">Hospital</a></li>
                             <li class="breadcrumb-item active">Edit</li>
                         </ol>
@@ -20,7 +20,7 @@
                 </div>
             </div>
         </div>
-        @include('admin.sections.flash-message')
+        @include('hospital.sections.flash-message')
         <!-- end page title -->
         
         <!-- start page content -->
@@ -89,25 +89,25 @@
 
                         <div class="tab-content">
                             <div class="tab-pane show active" id="hospital_details">
-                                @include('admin.hospitals.edit.tabs.hospital-details')
+                                @include('hospital.hospitals.edit.tabs.hospital-details')
                             </div>
                             <div class="tab-pane" id="hospital_tie_up_details">
-                                @include('admin.hospitals.edit.tabs.hospital-tie-up-details')
+                                @include('hospital.hospitals.edit.tabs.hospital-tie-up-details')
                             </div>
                             <div class="tab-pane" id="hospital_facilities">
-                                @include('admin.hospitals.edit.tabs.hospital-facilities')
+                                @include('hospital.hospitals.edit.tabs.hospital-facilities')
                             </div>
                             <div class="tab-pane" id="hospital_infrastructures">
-                                @include('admin.hospitals.edit.tabs.hospital-infrastructures')
+                                @include('hospital.hospitals.edit.tabs.hospital-infrastructures')
                             </div>
                             <div class="tab-pane" id="hospital_department">
-                                @include('admin.hospitals.edit.tabs.hospital-department')
+                                @include('hospital.hospitals.edit.tabs.hospital-department')
                             </div>
                             <div class="tab-pane" id="empanelment_status">
-                                @include('admin.hospitals.edit.tabs.hospital-empanelment-status')
+                                @include('hospital.hospitals.edit.tabs.hospital-empanelment-status')
                             </div>
                             <div class="tab-pane" id="negative_isting">
-                                @include('admin.hospitals.edit.tabs.hospital-negative-listing-status')
+                                @include('hospital.hospitals.edit.tabs.hospital-negative-listing-status')
                             </div>
                         </div>
                     </div>

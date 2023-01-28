@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.hospital')
 @section('title', 'Import Export Associate Partners')
 @section('content')
     <!-- Start Content-->
@@ -11,7 +11,7 @@
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Claim Stack</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('hospital.dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item"><a href="javascript:void(0);">Associate Partners</a></li>
                             <li class="breadcrumb-item active">Import Export</li>
                         </ol>
@@ -20,7 +20,7 @@
                 </div>
             </div>
         </div>
-        @include('admin.sections.flash-message')
+        @include('hospital.sections.flash-message')
         <!-- end page title -->
 
         <!-- start page content -->
@@ -28,16 +28,16 @@
             <div class="col-12">
                 <div class="card no-shadow">
                     <div class="card-body">
-                        <form action="{{ route('admin.associate-partners.import') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('hospital.associate-partners.import') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group mb-4">
                                 <div class="custom-file text-left">
-                                    <input type="file" name="file" class="custom-file-input" id="customFile">
+                                    <input required type="file" name="file" class="custom-file-input" id="customFile">
                                     <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
                             </div>
                             <button class="btn btn-primary">Import Associate Partners</button>
-                            <a class="btn btn-success" href="{{ route('admin.associate-partners.export') }}">Export Associate Partners</a>
+                            <a class="btn btn-success" href="{{ route('hospital.associate-partners.export') }}">Export Associate Partners</a>
                         </form>
                     </div>
                 </div>

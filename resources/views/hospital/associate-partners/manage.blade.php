@@ -1,4 +1,4 @@
-@extends('layouts.hospital')
+@extends('layouts.admin')
 @section('title', 'Associate Partners')
 @section('content')
     <!-- Start Content-->
@@ -57,6 +57,8 @@
                                                     <div class="btn-group">
                                                         <a href="{{ route('hospital.associate-partners.edit', $associate->id) }}"
                                                             class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
+                                                        <a href="{{ route('hospital.associate-partners.show', $associate->id) }}"
+                                                            class="btn btn-info"><i class="mdi mdi-eye"></i></a>
                                                         <button type="button" class="btn btn-danger"
                                                             onclick="confirmDelete({{ $associate->id }})"><i
                                                                 class="uil uil-trash-alt"></i></button>
