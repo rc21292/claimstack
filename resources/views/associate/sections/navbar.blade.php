@@ -44,7 +44,7 @@
                     <!-- item-->
                     <a href="javascript:void(0);" class="dropdown-item notify-item">
                         <div class="notify-icon">
-                            <img src="assets/images/users/avatar-2.jpg" class="img-fluid rounded-circle"
+                            <img src="{{ asset('assets/images/users/avatar-2.jpg') }}" class="img-fluid rounded-circle"
                                 alt="" />
                         </div>
                         <p class="notify-details">Cristina Pride</p>
@@ -66,7 +66,7 @@
                     <!-- item-->
                     <a href="javascript:void(0);" class="dropdown-item notify-item">
                         <div class="notify-icon">
-                            <img src="assets/images/users/avatar-4.jpg" class="img-fluid rounded-circle"
+                            <img src="{{ asset('assets/images/users/avatar-4.jpg') }}" class="img-fluid rounded-circle"
                                 alt="" />
                         </div>
                         <p class="notify-details">Karen Robinson</p>
@@ -104,7 +104,7 @@
                 <span>
                     <span class="account-user-name">{{ Auth::guard('associate')->user()->firstname }}
                         {{ Auth::guard('associate')->user()->lastname }}</span>
-                    <span class="account-position">Associate Partner</span>
+                    <span class="account-position">Admin</span>
                 </span>
             </a>
             <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
@@ -116,10 +116,10 @@
                 </a>
 
                 <!-- item-->
-                <a href="{{ route('associate-partner.password.form') }}" class="dropdown-item notify-item">
+                {{-- <a href="{{ route('associate.password.form') }}" class="dropdown-item notify-item">
                     <i class="mdi mdi-key mr-1"></i>
                     <span>Change password</span>
-                </a>
+                </a> --}}
 
                 <!-- item-->
                 <a href="{{ route('associate-partner.logout') }}"
@@ -129,7 +129,7 @@
                     <span>Logout</span>
                 </a>
                 <form id="logout-form"
-                    action="{{ 'App\Models\AssociatePartner' == Auth::getProvider()->getModel() ? route('associate-partner.logout') : route('associate-partner.logout') }}"
+                    action="{{ 'App\Models\Admin' == Auth::getProvider()->getModel() ? route('associate-partner.logout') : route('associate-partner.logout') }}"
                     method="POST" style="display: none;">
                     {{ csrf_field() }}
                 </form>

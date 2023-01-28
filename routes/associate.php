@@ -6,6 +6,12 @@ use App\Http\Controllers\Associate\Auth\LoginController;
 use App\Http\Controllers\Associate\Auth\MyAccountController;
 use App\Http\Controllers\Associate\Auth\ResetPasswordController;
 use App\Http\Controllers\Associate\DashboardController;
+use App\Http\Controllers\Associate\AdminController;
+use App\Http\Controllers\Associate\UserController;
+use App\Http\Controllers\Associate\HospitalController;
+use App\Http\Controllers\Associate\ClaimController;
+use App\Http\Controllers\Associate\PatientController;
+use App\Http\Controllers\Associate\AssociatePartnerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,6 +51,104 @@ Route::group(['prefix' => 'associate-partner', 'as' => 'associate-partner.'], fu
 
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Import Export Route
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get('admins/import-export',[AdminController::class,'importExport'])->name('admins.import-export');
+    Route::post('admins/import',[AdminController::class,'import'])->name('admins.import');
+    Route::get('admins/export',[AdminController::class,'export'])->name('admins.export');
+
+     /*
+    |--------------------------------------------------------------------------
+    | Admins Route
+    |--------------------------------------------------------------------------
+    */
+
+    Route::resource('admins', AdminController::class);
+    Route::post('admin/change-pasword', [AdminController::class, 'changePassword'])->name('admins.change-password');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Users Import Export Route
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get('users/import-export',[UserController::class,'importExport'])->name('users.import-export');
+    Route::post('users/import',[UserController::class,'import'])->name('users.import');
+    Route::get('users/export',[UserController::class,'export'])->name('users.export');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Users Route
+    |--------------------------------------------------------------------------
+    */
+
+    Route::resource('users', UserController::class);
+    Route::post('user/change-pasword', [UserController::class, 'changePassword'])->name('users.change-password');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Import Export Route
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get('associate-partners/import-export',[AssociatePartnerController::class,'importExport'])->name('associate-partners.import-export');
+    Route::post('associate-partners/import',[AssociatePartnerController::class,'import'])->name('associate-partners.import');
+    Route::get('associate-partners/export',[AssociatePartnerController::class,'export'])->name('associate-partners.export');
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Hospitals Route
+    |--------------------------------------------------------------------------
+    */
+
+    Route::resource('hospitals', HospitalController::class); 
+
+    Route::put('hospitals/tie-ups/{id}', [HospitalController::class, 'updateHospitalTieUps'])->name('hospitals.tie-ups');
+
+    Route::put('hospitals/infrastructures/{id}', [HospitalController::class, 'updateHospitalInfrastructure'])->name('hospitals.infrastructures');
+
+    Route::put('hospitals/facility/{id}', [HospitalController::class, 'updateHospitalFacility'])->name('hospitals.facility');
+
+    Route::put('hospitals/department/{id}', [HospitalController::class, 'updateHospitalDepartment'])->name('hospitals.department');
+
+    Route::put('hospitals/empanelment-status/{id}', [HospitalController::class, 'updateHospitalEmpanelmentStatus'])->name('hospitals.empanelment-status');
+    
+    Route::post('hospital/change-pasword', [HospitalController::class, 'changePassword'])->name('hospitals.change-password');
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Claims Route
+    |--------------------------------------------------------------------------
+    */
+
+    Route::resource('claims', ClaimController::class);
+
+    /*
+    |--------------------------------------------------------------------------
+    | Patients Route
+    |--------------------------------------------------------------------------
+    */
+    Route::resource('patients', PatientController::class);
+
+    /*
+    |--------------------------------------------------------------------------
+    | Associate partners Route
+    |--------------------------------------------------------------------------
+    */
+
+    Route::resource('associate-partners', AssociatePartnerController::class);
+
+    Route::put('associate-partners/vendor-services/{id}', [AssociatePartnerController::class, 'updateVendorServices'])->name('associate-partners.vendor-services');
+    Route::put('associate-partners/sales-services/{id}', [AssociatePartnerController::class, 'updateSalesServices'])->name('associate-partners.sales-services');
+
+
      /*
     |--------------------------------------------------------------------------
     | Settings > My Account Route
@@ -53,6 +157,7 @@ Route::group(['prefix' => 'associate-partner', 'as' => 'associate-partner.'], fu
     Route::resource('my-account', MyAccountController::class);
 
     /*
+
     |--------------------------------------------------------------------------
     | Settings > Change Password Route
     |--------------------------------------------------------------------------
@@ -61,4 +166,5 @@ Route::group(['prefix' => 'associate-partner', 'as' => 'associate-partner.'], fu
 
     Route::post('change-password', [ChangePasswordController::class,'changePassword'])->name('change-password');
 
+    Route::get('get-employees-by-department/{department}', [UtilityController::class,'getEmployeesByDepartment'])->name('get.employees');
 });
