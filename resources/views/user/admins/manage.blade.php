@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.user')
 @section('title', 'Admins')
 @section('content')
     <!-- Start Content-->
@@ -9,7 +9,7 @@
             <div class="col-12">
                 <div class="page-title-box">
                     <div class="page-title-right">
-                        <form action="{{ route('admin.admins.index') }}">
+                        <form action="{{ route('user.admins.index') }}">
                             <div class="input-group">
                                 <input class="form-control" name="search" type="search"placeholder="Type here to Search">
                                 <div class="input-group-append">
@@ -22,7 +22,7 @@
                 </div>
             </div>
         </div>
-        @include('admin.sections.flash-message')
+        @include('user.sections.flash-message')
         <!-- end page title -->
 
         <!-- start page content -->
@@ -53,14 +53,14 @@
                                                 <td>{{ $admin->phone }}</td>
                                                 <td>
                                                     <div class="btn-group">
-                                                        <a href="{{ route('admin.admins.edit', $admin->id) }}"
+                                                        <a href="{{ route('user.admins.edit', $admin->id) }}"
                                                             class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
                                                         <button type="button" class="btn btn-danger"
                                                             onclick="confirmDelete({{ $admin->id }})"><i
                                                                 class="uil uil-trash-alt"></i></button>
 
                                                         <form id='delete-form{{ $admin->id }}'
-                                                            action='{{ route('admin.admins.destroy', $admin->id) }}'
+                                                            action='{{ route('user.admins.destroy', $admin->id) }}'
                                                             method='POST'>
                                                             <input type='hidden' name='_token'
                                                                 value='{{ csrf_token() }}'>
@@ -97,7 +97,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" id="changePasswordForm" action="{{ route('admin.admins.change-password') }}">
+                    <form method="POST" id="changePasswordForm" action="{{ route('user.admins.change-password') }}">
                         @csrf
                         <input type="hidden" value="{{ old('id') }}" name="id" id="id">
                         <input type="hidden" value="{{ old('uid') }}" name="uid" id="employee_code">

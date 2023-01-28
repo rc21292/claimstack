@@ -109,11 +109,11 @@
             </a>
             <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
                 <!-- item-->
-                {{-- <a href="{{ route('user.my-account.edit', Auth::guard('user')->id()) }}"
+                <a href="{{ route('user.my-account.edit', Auth::guard('user')->id()) }}"
                     class="dropdown-item notify-item">
                     <i class="mdi mdi-account-circle mr-1"></i>
                     <span>My Account</span>
-                </a> --}}
+                </a>
 
                 <!-- item-->
                 {{-- <a href="{{ route('user.password.form') }}" class="dropdown-item notify-item">

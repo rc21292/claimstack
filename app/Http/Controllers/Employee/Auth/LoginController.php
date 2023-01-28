@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Employee\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Employee;
+use App\Models\SuperAdmin;
+use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -31,14 +34,23 @@ class LoginController extends Controller
         ]);
 
         // Attempt to log the user in
-        if(Auth::guard('employee')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember))
+
+        if(Auth::guard('super-admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember))
         {
-            return redirect()->intended(route('employee.dashboard'));
+           return redirect()->to(route('super-admin.dashboard'));
+
+        } if(Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember))
+        {
+            return redirect()->to(route('admin.dashboard'));
+
+        } if(Auth::guard('user')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember))
+        {
+            return redirect()->to(route('user.dashboard'));
 
         }else{
 
-           return $this->sendFailedLoginResponse($request);
-       }
+            return $this->sendFailedLoginResponse($request);
+        }
 
    }
 

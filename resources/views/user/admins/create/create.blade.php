@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.user')
 @section('title', 'Create Admin')
 @section('content')
     <!-- Start Content-->
@@ -11,7 +11,7 @@
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Claim Stack</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('user.dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item"><a href="javascript:void(0);">Admin</a></li>
                             <li class="breadcrumb-item active">Create</li>
                         </ol>
@@ -20,7 +20,7 @@
                 </div>
             </div>
         </div>
-        @include('admin.sections.flash-message')
+        @include('user.sections.flash-message')
         <!-- end page title -->
 
         <!-- start page content -->
@@ -28,7 +28,7 @@
             <div class="col-12">
                 <div class="card no-shadow">
                     <div class="card-body">
-                        <form action="{{ route('admin.admins.store') }}" method="post" id="adminForm"
+                        <form action="{{ route('user.admins.store') }}" method="post" id="adminForm"
                             enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
@@ -166,7 +166,7 @@
                                 </div>
                                 <div class="col-md-12 mt-3">
                                     <label>Role Based Access Control <span class="text-danger">*</span></label>
-                                    @include('admin.admins.create.permission')
+                                    @include('user.admins.create.permission')
                                 </div>
 
 
@@ -197,7 +197,7 @@
             if (!department) {
                 department = 'Operations'
             }
-            var url = '{{ route('admin.get.employees', ':department') }}';
+            var url = '{{ route('user.get.employees', ':department') }}';
             url = url.replace(':department', department);
 
             $.ajax({
