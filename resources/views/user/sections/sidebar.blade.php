@@ -43,15 +43,15 @@
                     <ul class="side-nav-second-level">
 
                         <li>
-                            <a href="{{ route('user.admins.create') }}">Create Admin</a>
+                            <a onclick="return false;" href="{{ route('user.admins.create') }}">Create Admin</a>
                         </li>
 
                         <li>
-                            <a href="{{ route('user.admins.index') }}">Manage Admin</a>
+                            <a onclick="return false;" href="{{ route('user.admins.index') }}">Manage Admin</a>
                         </li>
 
                         <li>
-                            <a href="{{ route('user.admins.import-export') }}">Import Export Admin</a>
+                            <a onclick="return false;" href="{{ route('user.admins.import-export') }}">Import Export Admin</a>
                         </li>
 
                     </ul>
@@ -118,6 +118,11 @@
                         <li>
                             <a href="{{ route('user.hospitals.index') }}">Manage Hospital Profile</a>
                         </li>
+
+                        <li>
+                            <a href="{{ route('user.hospitals.import-export') }}">Import Export Hospitals</a>
+                        </li>
+
                         <li>
                             <a href="{{ route('user.claims.index') }}">Claims</a>
                         </li>

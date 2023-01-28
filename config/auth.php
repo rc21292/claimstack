@@ -144,6 +144,12 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+        'super-admins' => [
+            'provider' => 'super-admins',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
         'associates' => [
             'provider' => 'associates',
             'table' => 'password_resets',

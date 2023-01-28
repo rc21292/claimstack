@@ -43,15 +43,15 @@
                     <ul class="side-nav-second-level">
 
                         <li>
-                            <a href="{{ route('associate-partner.admins.create') }}">Create Admin</a>
+                            <a onclick="return false;" href="{{ route('associate-partner.admins.create') }}">Create Admin</a>
                         </li>
 
                         <li>
-                            <a href="{{ route('associate-partner.admins.index') }}">Manage Admin</a>
+                            <a onclick="return false;" href="{{ route('associate-partner.admins.index') }}">Manage Admin</a>
                         </li>
 
                         <li>
-                            <a href="{{ route('associate-partner.admins.import-export') }}">Import Export Admin</a>
+                            <a onclick="return false;" href="{{ route('associate-partner.admins.import-export') }}">Import Export Admin</a>
                         </li>
 
                     </ul>
@@ -68,13 +68,13 @@
                 <div class="collapse" id="userMenu">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="{{ route('associate-partner.users.create') }}">Create User</a>
+                            <a onclick="return false;" href="{{ route('associate-partner.users.create') }}">Create User</a>
                         </li>
                         <li>
-                            <a href="{{ route('associate-partner.users.index') }}">Manage User</a>
+                            <a onclick="return false;" href="{{ route('associate-partner.users.index') }}">Manage User</a>
                         </li>
                         <li>
-                            <a href="{{ route('associate-partner.users.import-export') }}">Import Export Users</a>
+                            <a onclick="return false;" href="{{ route('associate-partner.users.import-export') }}">Import Export Users</a>
                         </li>
                     </ul>
                 </div>

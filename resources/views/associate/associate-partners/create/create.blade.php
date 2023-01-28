@@ -11,7 +11,7 @@
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Claim Stack</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('associate.dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('associate-partner.dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item"><a href="javascript:void(0);">Associate Partner</a></li>
                             <li class="breadcrumb-item active">Create</li>
                         </ol>
@@ -28,7 +28,7 @@
             <div class="col-12">
                 <div class="card no-shadow">
                     <div class="card-body">
-                        <form action="{{ route('associate.associate-partners.store') }}" method="post"
+                        <form action="{{ route('associate-partner.associate-partners.store') }}" method="post"
                             id="associate-partner-form" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
@@ -388,7 +388,7 @@
             if (!department) {
                 department = 'Operations'
             }
-            var url = '{{ route('associate.get.employees', ':department') }}';
+            var url = '{{ route('associate-partner.get.employees', ':department') }}';
             url = url.replace(':department', department);
 
             $.ajax({
@@ -408,7 +408,7 @@
             if (!department) {
                 department = 'Operations'
             }
-            var url = '{{ route('associate.get.employees', ':department') }}';
+            var url = '{{ route('associate-partner.get.employees', ':department') }}';
             url = url.replace(':department', department);
 
             $.ajax({

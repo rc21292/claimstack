@@ -10,6 +10,9 @@ use App\Models\Hospital;
 use App\Models\HospitalFacility;
 use App\Models\HospitalInfrastructure;
 use App\Models\HospitalDepartment;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ImportHospital;
+use App\Exports\ExportHospital;
 use App\Models\HospitalTieUp;
 use App\Models\User;
 use App\Notifications\Hospital\CredentialsGeneratedNotification;
@@ -1049,6 +1052,26 @@ class HospitalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function importExport(Request $request){
+        return view('admin.hospitals.import-export');
+    }
+
+    public function import(Request $request){
+        try {
+            Excel::import(new ImportHospital, $request->file('file')->store('files'));
+        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+            $failures = $e->failures();
+            return redirect()->back()->with('error', 'import is not proceded successfully, please check sheed, make sure email is unique!!');;
+
+        }
+        return redirect()->back()->with('success', 'Your file successfully imported!!');;
+    }
+
+    public function export(Request $request){
+        return Excel::download(new ExportHospital, 'hospitals.xlsx');
+    }
+
     public function destroy($id)
     {
         Hospital::find($id)->delete();

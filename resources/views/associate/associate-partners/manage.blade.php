@@ -9,7 +9,7 @@
             <div class="col-12">
                 <div class="page-title-box">
                     <div class="page-title-right">
-                        <form action="{{ route('associate.associate-partners.index') }}">
+                        <form action="{{ route('associate-partner.associate-partners.index') }}">
                             <div class="input-group">
                                 <input class="form-control" name="search" type="search"placeholder="Type here to Search">
                                 <div class="input-group-append">
@@ -55,15 +55,15 @@
                                                 <td>{{ $associate->phone }}</td>
                                                 <td>
                                                     <div class="btn-group">
-                                                        <a href="{{ route('associate.associate-partners.edit', $associate->id) }}"
+                                                        <a href="{{ route('associate-partner.associate-partners.edit', $associate->id) }}"
                                                             class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
-                                                        <a href="{{ route('associate.associate-partners.show', $associate->id) }}"
+                                                        <a href="{{ route('associate-partner.associate-partners.show', $associate->id) }}"
                                                             class="btn btn-info"><i class="mdi mdi-eye"></i></a>
                                                         <button type="button" class="btn btn-danger"
                                                             onclick="confirmDelete({{ $associate->id }})"><i
                                                                 class="uil uil-trash-alt"></i></button>
                                                         <form id='delete-form{{ $associate->id }}'
-                                                            action='{{ route('associate.associate-partners.destroy', $associate->id) }}'
+                                                            action='{{ route('associate-partner.associate-partners.destroy', $associate->id) }}'
                                                             method='POST'>
                                                             <input type='hidden' name='_token'
                                                                 value='{{ csrf_token() }}'>

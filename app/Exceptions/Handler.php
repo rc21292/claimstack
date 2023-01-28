@@ -60,6 +60,14 @@ class Handler extends ExceptionHandler
             return redirect()->guest(route('admin.login'));
         }
 
+        if ($request->is('user') || $request->is('user/*')) {
+            return redirect()->guest(route('user.login'));
+        }
+
+        if ($request->is('super-admin') || $request->is('super-admin/*')) {
+            return redirect()->guest(route('super-admin.login'));
+        }
+
         if ($request->is('associate-partner') || $request->is('associate-partner/*')) {
             return redirect()->guest(route('associate-partner.login'));
         }

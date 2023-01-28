@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\AssociatePartner;
+use App\Models\Admin;
+use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -15,6 +17,11 @@ class DashboardController extends Controller
 
     public function index()
     {
+        $id = Auth()->user()->id;
+        $admin  = Admin::find($id);
+        $admin->permissions = $admin->getPermissionNames()->toArray();
+        $role = Role::where('name', 'admin')->with('permissions')->first();
+        $permissions =  $role->permissions;
         $total_associates = AssociatePartner::count();
         $vendor_associates = AssociatePartner::where('type', 'vendor')->count();
         $sales_associates = AssociatePartner::where('type', 'sales')->count();

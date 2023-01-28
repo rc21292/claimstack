@@ -74,7 +74,7 @@ class PatientController extends Controller
 
         $patient                     =   Patient::create($request->all());
 
-        return redirect()->route('associate.patients.index')->with('success', 'Patient created successfully');
+        return redirect()->route('associate-partner.patients.index')->with('success', 'Patient created successfully');
     }
 
     /**
@@ -152,7 +152,7 @@ class PatientController extends Controller
         $perm_user = Patient::find($id);
         $perm_user->syncPermissions($request->permission);
 
-        return redirect()->route('associate.users.index')->with('success', 'Patient updated successfully');
+        return redirect()->route('associate-partner.users.index')->with('success', 'Patient updated successfully');
     }
 
     /**
@@ -164,7 +164,7 @@ class PatientController extends Controller
     public function destroy($id)
     {
         Patient::find($id)->delete();
-        return redirect()->route('associate.users.index')->with('success', 'Patient deleted successfully');
+        return redirect()->route('associate-partner.users.index')->with('success', 'Patient deleted successfully');
     }
 
 

@@ -42,15 +42,15 @@
                     <ul class="side-nav-second-level">
 
                         <li>
-                            <a href="{{ route('hospital.admins.create') }}">Create Admin</a>
+                            <a onclick="return false;" href="{{ route('hospital.admins.create') }}">Create Admin</a>
                         </li>
 
                         <li>
-                            <a href="{{ route('hospital.admins.index') }}">Manage Admin</a>
+                            <a onclick="return false;" href="{{ route('hospital.admins.index') }}">Manage Admin</a>
                         </li>
 
                         <li>
-                            <a href="{{ route('hospital.admins.import-export') }}">Import Export Admin</a>
+                            <a onclick="return false;" href="{{ route('hospital.admins.import-export') }}">Import Export Admin</a>
                         </li>
 
                     </ul>
@@ -66,13 +66,13 @@
                 <div class="collapse" id="userMenu">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="{{ route('hospital.users.create') }}">Create User</a>
+                            <a onclick="return false;" href="{{ route('hospital.users.create') }}">Create User</a>
                         </li>
                         <li>
-                            <a href="{{ route('hospital.users.index') }}">Manage User</a>
+                            <a onclick="return false;" href="{{ route('hospital.users.index') }}">Manage User</a>
                         </li>
                         <li>
-                            <a href="{{ route('hospital.users.import-export') }}">Import Export Users</a>
+                            <a onclick="return false;" href="{{ route('hospital.users.import-export') }}">Import Export Users</a>
                         </li>
                     </ul>
                 </div>
@@ -87,13 +87,13 @@
                 <div class="collapse" id="associatePartner">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="{{ route('hospital.associate-partners.create') }}">Create Associate Partner</a>
+                            <a onclick="return false;" href="{{ route('hospital.associate-partners.create') }}">Create Associate Partner</a>
                         </li>
                         <li>
-                            <a href="{{ route('hospital.associate-partners.index') }}">Manage Associate Partner</a>
+                            <a onclick="return false;" href="{{ route('hospital.associate-partners.index') }}">Manage Associate Partner</a>
                         </li>
                         <li>
-                            <a href="{{ route('hospital.associate-partners.import-export') }}">Import Export Associate Partner</a>
+                            <a onclick="return false;" href="{{ route('hospital.associate-partners.import-export') }}">Import Export Associate Partner</a>
                         </li>
                     </ul>
                 </div>

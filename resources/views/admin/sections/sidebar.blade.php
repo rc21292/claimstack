@@ -119,6 +119,9 @@
                             <a href="{{ route('admin.hospitals.index') }}">Manage Hospital Profile</a>
                         </li>
                         <li>
+                            <a href="{{ route('admin.hospitals.import-export') }}">Import Export Hospitals</a>
+                        </li>
+                        <li>
                             <a href="{{ route('admin.claims.index') }}">Claims</a>
                         </li>
                     </ul>

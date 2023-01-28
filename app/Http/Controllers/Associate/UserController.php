@@ -109,7 +109,7 @@ class UserController extends Controller
         $password = '12345678';
         $user->notify(new CredentialsGeneratedNotification($user->email, $password, $user));
 
-        return redirect()->route('associate.users.index')->with('success', 'User created successfully');
+        return redirect()->route('associate-partner.users.index')->with('success', 'User created successfully');
     }
 
     /**
@@ -194,7 +194,7 @@ class UserController extends Controller
         $perm_user = User::find($id);
         $perm_user->syncPermissions($request->permission);
 
-        return redirect()->route('associate.users.index')->with('success', 'User updated successfully');
+        return redirect()->route('associate-partner.users.index')->with('success', 'User updated successfully');
     }
 
     /**
@@ -206,7 +206,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         User::find($id)->delete();
-        return redirect()->route('associate.users.index')->with('success', 'User deleted successfully');
+        return redirect()->route('associate-partner.users.index')->with('success', 'User deleted successfully');
     }
 
     public function importExport(Request $request){

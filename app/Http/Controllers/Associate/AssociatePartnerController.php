@@ -140,7 +140,7 @@ class AssociatePartnerController extends Controller
             ]);
         }
 
-        return redirect()->route('associate.associate-partners.index')->with('success', 'Associate partner created successfully');
+        return redirect()->route('associate-partners.index')->with('success', 'Associate partner created successfully');
     }
 
     /**
@@ -452,7 +452,7 @@ class AssociatePartnerController extends Controller
     public function destroy($id)
     {
         AssociatePartner::find($id)->delete();
-        return redirect()->route('associate.associate-partners.index')->with('success', 'Associate partner deleted successfully');
+        return redirect()->route('associate-partners.index')->with('success', 'Associate partner deleted successfully');
     }
 
     public function importExport(Request $request){

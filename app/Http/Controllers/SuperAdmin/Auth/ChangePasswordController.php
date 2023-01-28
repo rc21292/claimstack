@@ -18,14 +18,14 @@ class ChangePasswordController extends Controller
 
     public function changePasswordForm()
     {
-        $id = Auth::guard('admin')->id();
+        $id = Auth::guard('super-admin')->id();
         $user = Admin::find($id);
-        return view('admin.settings.change-password', compact('user'));
+        return view('super-admin.settings.change-password', compact('user'));
     }
 
     public function changePassword(Request $request)
     {
-        $id = Auth::guard('admin')->id();
+        $id = Auth::guard('super-admin')->id();
 
         $this->validate($request, [
             'current_password' => 'required',
@@ -40,12 +40,12 @@ class ChangePasswordController extends Controller
             $user->password = Hash::make($request->password);
             $user->save();
 
-            return redirect()->route('admin.password.form')->with('success', 'Password changed successfully!');
+            return redirect()->route('super-admin.password.form')->with('success', 'Password changed successfully!');
         } else {
 
             return redirect()->back()->with('error', 'Current password is incorrect');
         }
 
-        return redirect()->route('admin.password.form')->with('success', 'Password changed successfully');
+        return redirect()->route('super-admin.password.form')->with('success', 'Password changed successfully');
     }
 }

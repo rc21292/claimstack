@@ -1,4 +1,4 @@
-<form action="{{ route('associate.associate-partners.sales-services', $associate->id) }}" method="post"
+<form action="{{ route('associate-partner.associate-partners.sales-services', $associate->id) }}" method="post"
     id="sales-partner-service-form" enctype="multipart/form-data">
     @csrf
     @method('PUT')
