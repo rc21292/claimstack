@@ -24,7 +24,10 @@ class RedirectIfAuthenticated
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
                 switch ($guard) {
-                    case 'admin':
+                    case 'super-admin':
+                        return redirect(RouteServiceProvider::SUPERADMIN);
+                        break;
+                     case 'admin':
                         return redirect(RouteServiceProvider::ADMIN);
                         break;
                     case 'user':
