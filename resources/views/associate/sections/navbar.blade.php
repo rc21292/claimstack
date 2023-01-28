@@ -102,9 +102,8 @@
                     <img src="{{ asset('assets/images/users/avatar-1.jpg') }}" alt="user-image" class="rounded-circle">
                 </span>
                 <span>
-                    <span class="account-user-name">{{ Auth::guard('associate')->user()->firstname }}
-                        {{ Auth::guard('associate')->user()->lastname }}</span>
-                    <span class="account-position">Admin</span>
+                    <span class="account-user-name">{{ Auth::guard('associate')->user()->name }}</span>
+                    <span class="account-position">Associate Partner</span>
                 </span>
             </a>
             <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
