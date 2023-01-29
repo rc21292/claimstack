@@ -3,7 +3,6 @@
 @section('content')
     <!-- Start Content-->
     <div class="container-fluid">
-
         <!-- start page title -->
         <div class="row">
             <div class="col-12">
@@ -11,7 +10,7 @@
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Claim Stack</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('user.dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('super-admin.dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item"><a href="javascript:void(0);">Associate Partner</a></li>
                             <li class="breadcrumb-item active">Create</li>
                         </ol>
@@ -20,126 +19,69 @@
                 </div>
             </div>
         </div>
-        @include('user.sections.flash-message')
+        @include('super-admin.sections.flash-message')
         <!-- end page title -->
 
         <!-- start page content -->
         <div class="row">
             <div class="col-12">
                 <div class="card no-shadow">
-                    <div class="card-body">
-                        <div class="card text-center">
-                    <div class="card-header">
-                        <ul class="nav nav-tabs card-header-tabs" id="myTab">
-                            <li class="nav-item">
-                                <a href="#home" class="nav-link active" data-bs-toggle="tab">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#profile" class="nav-link" data-bs-toggle="tab">Profile</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="card-body">
-                        <div class="tab-content">
-                            <div class="tab-pane fade show active" id="home">
-                                <h5 class="card-title">Home tab content</h5>
-                                <p class="card-text">Here is some example text to make up the tab's content. Replace it with your own text anytime.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <div class="card-body p-0" >
+                        <div class="" style="background:#3E4097">
+                            <div class="d-flex align-items-center mb-2" >
+                                <div class="flex-shrink-0">
+                                    <div class="avatar-md" style="margin-top: 10px;margin-left:20px ;">
+                                        <span class="avatar-title bg-success  rounded-circle"style="background: white;">
+                                            AP
+                                        </span>
+                                    </div>
+
+                                </div>
+                                <div class="d-flex flex-row align-items-center m-2 text-white">
+                                    <p class="mb-0 me-2">{{$associate->name }}<br> Associate Partner Status | UID</p>
+                                </div>                        
                             </div>
-                            <div class="tab-pane fade" id="profile">
-                                <h5 class="card-title">Profile tab content</h5>
-                                <p class="card-text">Here is some example text to make up the tab's content. Replace it with your own text anytime.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <div class="col-12 nav nav-tabs" id="myTab" >
+                                <a class="text-white px-2 active" href="#home" c data-bs-toggle="tab">Documents</a>
+                                <a class="text-white px-2" href="#profile" data-bs-toggle="tab">MOU</a>
                             </div>
                         </div>
-                    </div>
-                </div>
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <div class="tab-content">
+                                    <div class="tab-pane fade show active" id="home">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Assciate Partner Pan Number</td>
+                                                    <td><a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->panfile) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>Cancel Cheque</td>
+                                                    <td><a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->cancel_cheque_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+
+                                                </tr>                  
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="tab-pane fade" id="profile">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <td>MOU</td>
+                                                    <td><a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->moufile) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+
+                                                </tr>                 
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
-@push('scripts')
-    <script>
-        function setLinkedAssociatePartnerId() {
-            var linked_associate_partner = $("#linked_associate_partner").select2().find(":selected").data("id");
-            $('#linked_associate_partner_id').val(linked_associate_partner);
-        }
-
-        function setAssignedEmployeeId() {
-            var assigned_employee = $("#assigned_employee").select2().find(":selected").data("id");
-            $('#assigned_employee_id').val(assigned_employee);
-        }
-
-        function setLinkedWithEmployeeId() {
-            var linked_employee = $("#linked_employee").select2().find(":selected").data("id");
-            $('#linked_employee_id').val(linked_employee);
-        }
-    </script>
-    <script>
-        function loadLinkedEmployees() {
-            var department = $("#linked_employee_department").val();
-            if (!department) {
-                department = 'Operations'
-            }
-            var url = '{{ route('user.get.employees', ':department') }}';
-            url = url.replace(':department', department);
-
-            $.ajax({
-                url: url,
-                type: 'GET',
-                dataType: 'json',
-                success: function(data) {
-                    $('#linked_employee').html(data)
-                    $('#linked_employee').val('{{ old('linked_employee') }}')
-                }
-            });
-        }
-    </script>
-    <script>
-        function loadAssignedEmployees() {
-            var department = $("#assigned_employee_department").val();
-            if (!department) {
-                department = 'Operations'
-            }
-            var url = '{{ route('user.get.employees', ':department') }}';
-            url = url.replace(':department', department);
-
-            $.ajax({
-                url: url,
-                type: 'GET',
-                dataType: 'json',
-                success: function(data) {
-                    $('#assigned_employee').html(data)
-                    $('#assigned_employee').val('{{ old('assigned_employee') }}')
-                }
-            });
-        }
-    </script>
-    <script>
-        $(document).ready(function() {
-            loadAssignedEmployees();
-            loadLinkedEmployees();
-        });
-    </script>
-    <script>
-        $("#statuses").change(function() {
-            var value = $(this).val();
-            switch (value) {
-                case "Main":
-                    $('.linked').css('display', 'none');
-                    break;
-                case "Sub AP":
-                    $('.linked').css('display', 'block');
-                    break;
-                case "Agency":
-                    $('.linked').css('display', 'block');
-                    break;
-                default:
-                    $('.linked').css('display', 'none');
-                    break;
-            }
-        });
-    </script>
-@endpush
