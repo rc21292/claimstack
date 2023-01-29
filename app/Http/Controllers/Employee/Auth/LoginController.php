@@ -43,7 +43,7 @@ class LoginController extends Controller
         {
             return redirect()->to(route('admin.dashboard'));
 
-        } if(Auth::guard('user')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember))
+        } if(Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember))
         {
             return redirect()->to(route('user.dashboard'));
 
