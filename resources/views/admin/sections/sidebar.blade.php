@@ -89,9 +89,11 @@
                 </a>
                 <div class="collapse" id="associatePartner">
                     <ul class="side-nav-second-level">
+                        @if(auth()->check() && auth()->user()->hasDirectPermission('Associate Partner Module Creation/Editing Rights'))
                         <li>
                             <a href="{{ route('admin.associate-partners.create') }}">Create Associate Partner</a>
                         </li>
+                        @endif
                         <li>
                             <a href="{{ route('admin.associate-partners.index') }}">Manage Associate Partner</a>
                         </li>
