@@ -7,6 +7,7 @@ use App\Models\AssociatePartner;
 use App\Models\Admin;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
+use Auth;
 
 class DashboardController extends Controller
 {
@@ -17,6 +18,7 @@ class DashboardController extends Controller
 
     public function index()
     {
+        // echo "<pre>";print_r(Auth()->user()->can('permissions:Hospital Module Creation/Editing Rights'));"</pre>";exit;
         $id = Auth()->user()->id;
         $admin  = Admin::find($id);
         $admin->permissions = $admin->getPermissionNames()->toArray();

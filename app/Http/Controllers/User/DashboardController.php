@@ -10,7 +10,7 @@ class DashboardController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:user');
+        $this->middleware('auth:web');
     }
 
     public function index()

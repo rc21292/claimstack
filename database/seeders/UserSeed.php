@@ -36,7 +36,7 @@ class UserSeed extends Seeder
                 'password' => Hash::make('password')
             ]);
             $user->assignRole('user');
-             $role = Role::where('name', 'user')->with('permissions')->first();
+            $role = Role::where('name', 'user')->with('permissions')->first();
             foreach($role->permissions as $permission){
                  $user->givePermissionTo($permission);
             }

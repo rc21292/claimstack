@@ -14,7 +14,7 @@ class LoginController extends Controller
 
     public function __construct()
     {
-        $this->middleware('guest:user')->except('logout');
+        $this->middleware('guest:web')->except('logout');
     }
 
     public function showLoginForm()
@@ -31,7 +31,7 @@ class LoginController extends Controller
         ]);
 
         // Attempt to log the user in
-        if(Auth::guard('user')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember))
+        if(Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember))
         {
             return redirect()->intended(route('user.dashboard'));
 
@@ -51,9 +51,9 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
 
-        if(Auth::guard('user')->check()) // this means that the user was logged in.
+        if(Auth::guard('web')->check()) // this means that the user was logged in.
         {
-            Auth::guard('user')->logout();
+            Auth::guard('web')->logout();
             return redirect()->route('user.login');
         }
     }

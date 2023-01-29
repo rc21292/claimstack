@@ -51,8 +51,10 @@
                                                 <td>{{ $hospital->state }}</td>                                               
                                                 <td>
                                                     <div class="btn-group">
+                                                        @if(auth()->check() && auth()->user()->hasDirectPermission('Hospital Details Updation/Editing Rights'))
                                                         <a href="{{ route('user.hospitals.edit', $hospital->id) }}"
                                                             class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
+                                                        @endif
                                                         <button type="button" class="btn btn-danger"
                                                             onclick="confirmDelete({{ $hospital->id }})"><i
                                                                 class="uil uil-trash-alt"></i></button>

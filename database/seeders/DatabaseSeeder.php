@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(EmployeeSeed::class); 
         $this->call(UserSeed::class); 
         $this->call(AdminSeed::class);
+        $this->call(SuperAdminSeed::class);
         $this->call(AssociatePartnerSeed::class);       
         $this->call(PatientSeed::class);       
         $this->call(ClaimSeed::class);       

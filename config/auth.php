@@ -48,10 +48,6 @@ return [
             'driver' => 'session',
             'provider' => 'super-admins',
         ],
-        'user' => [
-            'driver' => 'session',
-            'provider' => 'users',
-        ],
         'associate' => [
             'driver' => 'session',
             'provider' => 'associates',
@@ -84,14 +80,14 @@ return [
     |
     */
 
-    'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\User::class,
-        ],
+    'providers' => [        
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
+        ],
+        'users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
         ],
         'super-admins' => [
             'driver' => 'eloquent',
@@ -109,11 +105,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Hospital::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        /*'users' => [
+            'driver' => 'database',
+            'table' => 'users',
+        ],*/
     ],
 
     /*

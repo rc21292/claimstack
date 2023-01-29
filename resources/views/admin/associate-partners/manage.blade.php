@@ -55,8 +55,10 @@
                                                 <td>{{ $associate->phone }}</td>
                                                 <td>
                                                     <div class="btn-group">
+                                                        @if(auth()->check() && auth()->user()->hasDirectPermission('Associate Partner Updation/Editing Rights'))
                                                         <a href="{{ route('admin.associate-partners.edit', $associate->id) }}"
                                                             class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
+                                                        @endif
                                                         <a href="{{ route('admin.associate-partners.show', $associate->id) }}"
                                                             class="btn btn-info"><i class="mdi mdi-eye"></i></a>
                                                         <button type="button" class="btn btn-danger"

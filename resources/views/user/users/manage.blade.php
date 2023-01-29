@@ -53,8 +53,10 @@
                                                 <td>{{ $user->phone }}</td>
                                                 <td>
                                                     <div class="btn-group">
+                                                        @if(auth()->check() && auth()->user()->hasDirectPermission('User Updation/Editing Rights'))
                                                         <a href="{{ route('user.users.edit', $user->id) }}"
                                                             class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
+                                                        @endif
                                                         <button type="button" class="btn btn-danger"
                                                             onclick="confirmDelete({{ $user->id }})"><i
                                                                 class="uil uil-trash-alt"></i></button>

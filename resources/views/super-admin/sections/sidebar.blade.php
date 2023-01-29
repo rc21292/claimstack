@@ -167,6 +167,28 @@
             </li>
 
             <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#claims" aria-expanded="false" aria-controls="claims"
+                    class="side-nav-link">
+                    <i class="mdi mdi-doctor"></i>
+                    <span> Claims </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="claims">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="{{ route('super-admin.patients.index') }}">Patients</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('super-admin.claims.index') }}">Claims</a>
+                        </li>
+                          <li>
+                            <a href="{{ route('super-admin.claims.index') }}">Claimants</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#authorization" aria-expanded="false"
                     aria-controls="authorization" class="side-nav-link">
                     <i class="uil-shield-check"></i>

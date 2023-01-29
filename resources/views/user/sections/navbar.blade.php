@@ -102,14 +102,14 @@
                     <img src="{{ asset('assets/images/users/avatar-1.jpg') }}" alt="user-image" class="rounded-circle">
                 </span>
                 <span>
-                    <span class="account-user-name">{{ Auth::guard('user')->user()->firstname }}
-                        {{ Auth::guard('user')->user()->lastname }}</span>
+                    <span class="account-user-name">{{ Auth::guard('web')->user()->firstname }}
+                        {{ Auth::guard('web')->user()->lastname }}</span>
                     <span class="account-position">User</span>
                 </span>
             </a>
             <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
                 <!-- item-->
-                <a href="{{ route('user.my-account.edit', Auth::guard('user')->id()) }}"
+                <a href="{{ route('user.my-account.edit', Auth::guard('web')->id()) }}"
                     class="dropdown-item notify-item">
                     <i class="mdi mdi-account-circle mr-1"></i>
                     <span>My Account</span>
