@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.user')
 @section('title', 'My Account')
 @section('content')
     <!-- Start Content-->
@@ -30,7 +30,7 @@
             <div class="card no-shadow">
                 <div class="card-body">
                     <form id="accountForm" method="POST"
-                        action="{{ route('admin.my-account.update', Auth::guard('admin')->id()) }}" enctype="multipart/form-data">
+                        action="{{ route('user.my-account.update', Auth::guard('web')->id()) }}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="form-group mb-2">
@@ -59,7 +59,7 @@
                         </div>
                         <div class="form-group mb-2">
                             <label for="phone">Phone Number</label>
-                            <input type="text" class="form-control" id="phone" name="phone"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"
+                            <input type="text" class="form-control" id="phone" name="phone"
                                 placeholder="Enter Phone Number" value="{{ old('phone', $admin->phone) }}">
                             @error('phone')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>

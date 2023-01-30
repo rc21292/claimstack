@@ -65,7 +65,7 @@ class MyAccountController extends Controller
      */
     public function edit(Hospital $admin)
     {
-        $id             = Auth::guard('admin')->id();
+        $id             = Auth::guard('hospital')->id();
         $admin          = Hospital::find($id);
         $admin->avatar  = isset($admin->avatar) ? asset('storage/uploads/admin/'.$admin->avatar) : URL::to('assets/images/placeholder.png') ;
         return view('hospital.settings.my-account', compact('admin'));

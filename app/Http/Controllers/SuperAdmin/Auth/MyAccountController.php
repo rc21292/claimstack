@@ -65,10 +65,10 @@ class MyAccountController extends Controller
      */
     public function edit(SuperAdmin $admin)
     {
-        $id             = Auth::guard('admin')->id();
+        $id             = Auth::guard('super-admin')->id();
         $admin          = SuperAdmin::find($id);
         $admin->avatar  = isset($admin->avatar) ? asset('storage/uploads/admin/'.$admin->avatar) : URL::to('assets/images/placeholder.png') ;
-        return view('admin.settings.my-account', compact('admin'));
+        return view('super-admin.settings.my-account', compact('admin'));
     }
 
     /**

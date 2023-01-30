@@ -65,10 +65,10 @@ class MyAccountController extends Controller
      */
     public function edit(User $user)
     {
-        $id             = Auth::guard('user')->id();
-        $user          = User::find($id);
-        $user->avatar  = isset($user->avatar) ? asset('storage/uploads/user/'.$user->avatar) : URL::to('assets/images/placeholder.png') ;
-        return view('user.settings.my-account', compact('user'));
+        $id             = Auth::guard('web')->id();
+        $admin          = User::find($id);
+        $admin->avatar  = isset($admin->avatar) ? asset('storage/uploads/user/'.$admin->avatar) : URL::to('assets/images/placeholder.png');
+        return view('user.settings.my-account', compact('admin'));
     }
 
     /**

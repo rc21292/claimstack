@@ -11,6 +11,7 @@ use App\Http\Controllers\SuperAdmin\Auth\ResetPasswordController;
 use App\Http\Controllers\SuperAdmin\DashboardController;
 use App\Http\Controllers\SuperAdmin\HospitalController;
 use App\Http\Controllers\SuperAdmin\ClaimController;
+use App\Http\Controllers\SuperAdmin\ClaimantController;
 use App\Http\Controllers\SuperAdmin\PatientController;
 use App\Http\Controllers\SuperAdmin\UtilityController;
 use Illuminate\Support\Facades\Route;
@@ -134,6 +135,17 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     */
 
     Route::resource('claims', ClaimController::class);
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Claimant Route
+    |--------------------------------------------------------------------------
+    */
+
+    Route::resource('claimants', ClaimantController::class);
+
+
 
     /*
     |--------------------------------------------------------------------------

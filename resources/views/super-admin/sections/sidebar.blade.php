@@ -182,7 +182,7 @@
                             <a href="{{ route('super-admin.claims.index') }}">Claims</a>
                         </li>
                           <li>
-                            <a href="{{ route('super-admin.claims.index') }}">Claimants</a>
+                            <a href="{{ route('super-admin.claimants.index') }}">Claimants</a>
                         </li>
                     </ul>
                 </div>

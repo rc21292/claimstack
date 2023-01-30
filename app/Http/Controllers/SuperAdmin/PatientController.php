@@ -29,7 +29,14 @@ class PatientController extends Controller
      */
     public function index(Request $request)
     {
+        $filter_search = $request->search;
+        $patients = Patient::query();
+        if($filter_search){
+            $patients->where('name', 'like','%' . $filter_search . '%');
+        }
+        $patients = $patients->orderBy('id', 'desc')->paginate(20);
 
+        return view('super-admin.claims.manage-patient',  compact('patients', 'filter_search'));       
     }
 
     /**
