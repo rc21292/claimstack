@@ -66,6 +66,7 @@ class UserController extends Controller
             'email'                    => 'required|email|unique:users|unique:users|unique:hospitals|unique:associate_partners|unique:employees',
             'phone'                    => 'required|numeric|digits:10',
             'department'               => 'required',
+            'linked_with_superadmin'   => 'required',
             'kra'                      =>  'required|string|max:40',
             'linked_employee'          => 'required',
             'linked_employee_id'       => 'required',
@@ -96,6 +97,7 @@ class UserController extends Controller
             'phone'               =>  $request->phone,
             'password'            =>  Hash::make('12345678'),
             'department'          =>  $request->department,
+            'linked_with_superadmin' => $request->linked_with_superadmin,
             'kra'                 =>  $request->kra,
             'linked_employee'     =>  $request->linked_employee,
             'linked_employee_id'  =>  $request->linked_employee_id
@@ -157,6 +159,7 @@ class UserController extends Controller
             'email'                    => 'required|email|unique:users|unique:hospitals|unique:associate_partners|unique:employees|unique:users,email,'.$id,
             'phone'                    => 'required|numeric|digits:10',
             'department'               => 'required',
+            'linked_with_superadmin'   => 'required',
             'kra'                      =>  'required|string|max:40',
             'linked_employee'          => 'required',
             'linked_employee_id'       => 'required',
@@ -186,6 +189,7 @@ class UserController extends Controller
             'email'               =>  $request->email,
             'phone'               =>  $request->phone,
             'department'          =>  $request->department,
+            'linked_with_superadmin' => $request->linked_with_superadmin,
             'kra'                 =>  $request->kra,
             'linked_employee'     =>  $request->linked_employee,
             'linked_employee_id'  =>  $request->linked_employee_id

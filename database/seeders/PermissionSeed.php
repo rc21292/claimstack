@@ -83,6 +83,7 @@ class PermissionSeed extends Seeder
         Permission::create(['name' => 'Bill Generation Rights', 'guard_name' => 'web']);
         Permission::create(['name' => 'Hospital Activation Rights', 'guard_name' => 'web']);
         Permission::create(['name' => 'Hospital Deactivation Rights', 'guard_name' => 'web']);
+        Permission::create(['name' => 'Downloading Rights', 'guard_name' => 'web']);
 
        
 
@@ -148,7 +149,7 @@ class PermissionSeed extends Seeder
         Permission::create(['name' => 'Bill Generation Rights', 'guard_name' => 'admin']);
         Permission::create(['name' => 'Hospital Activation Rights', 'guard_name' => 'admin']);
         Permission::create(['name' => 'Hospital Deactivation Rights', 'guard_name' => 'admin']);
-
+        Permission::create(['name' => 'Downloading Rights', 'guard_name' => 'admin']);
         $user_permissions = Permission::where('guard_name', 'web')->get();
 
         foreach($user_permissions as $user_permission){

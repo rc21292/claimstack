@@ -91,6 +91,20 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-12 mt-3">
+                                    <label for="linked_with_superadmin">Linked With Super Admin <span class="text-danger">*</span></label>
+                                    <select class="form-select" id="linked_with_superadmin" name="linked_with_superadmin">
+                                        <option value="">Select</option>
+                                        <option value="yes"
+                                            {{ old('linked_with_superadmin') == 'yes' ? 'selected' : '' }}>Yes
+                                        </option>
+                                        <option value="no" {{ old('linked_with_superadmin') == 'no' ? 'selected' : '' }}>No
+                                        </option>
+                                    </select>
+                                    @error('linked_with_superadmin')
+                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="col-md-12 mt-3">
                                     <label for="department">Department <span class="text-danger">*</span></label>
                                     <select class="form-select" id="department" name="department" onchange="loadEmployees()">
                                         <option value="">Select Department</option>

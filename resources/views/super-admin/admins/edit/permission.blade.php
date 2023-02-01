@@ -233,7 +233,7 @@
                         <input class="form-check-input me-1 float-end or" name="permission[]" type="checkbox" {{ in_array($permission->name, $admin->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
                         {{ $permission->name }}
                     </li>
-                    @if($loop->iteration == 55)
+                    @if($loop->iteration == 56)
                         @break
                     @endif
                     @endforeach

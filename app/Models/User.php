@@ -34,6 +34,7 @@ class User extends Authenticatable
         'uid',
         'employee_code',
         'designation',
+        'linked_with_superadmin',
         'department',
         'phone',
         'password',
