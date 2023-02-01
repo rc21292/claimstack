@@ -134,7 +134,7 @@
         </div>
 
         <div class="col-md-1 mt-32" style="margin-top: 45px !important;">
-            <input type="file" name="nabl_approved_lab_file" id="nabl_approved_lab_file" hidden />
+            <input type="file" name="nabl_approved_lab_file" @if(old('nabl_approved_lab', $hospital_nfrastructure->nabl_approved_lab ?? '') == 'No' ) disabled @endif id="nabl_approved_lab_file" hidden />
             <label for="nabl_approved_lab_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
                 @error('nabl_approved_lab_file')
@@ -190,7 +190,7 @@
         </div>
 
         <div class="col-md-1 mt-32" style="margin-top: 45px !important;">
-            <input type="file" name="nabh_status_file" id="nabh_status_file" hidden />
+            <input type="file" name="nabh_status_file" @if(old('nabh_status', $hospital_nfrastructure->nabh_status ?? '') == 'No' ) disabled @endif id="nabh_status_file" hidden />
             <label for="nabh_status_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
                 @error('nabh_status_file')
@@ -218,7 +218,7 @@
         </div>
 
         <div class="col-md-1 mt-32" style="margin-top: 45px !important;">
-            <input type="file" name="nqac_nhsrc_status_file" id="nqac_nhsrc_status_file" hidden />
+            <input type="file" name="nqac_nhsrc_status_file" @if(old('nqac_nhsrc_status', $hospital_nfrastructure->nqac_nhsrc_status ?? '') == 'No' ) disabled @endif id="nqac_nhsrc_status_file" hidden />
             <label for="nqac_nhsrc_status_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
                 @error('nqac_nhsrc_status_file')
@@ -244,7 +244,7 @@
         </div>
 
         <div class="col-md-1 mt-32" style="margin-top: 45px !important;">
-            <input type="file" name="jci_status_file" id="jci_status_file" hidden />
+            <input type="file" name="jci_status_file" @if(old('jci_status', $hospital_nfrastructure->jci_status ?? '') == 'No' ) disabled @endif id="jci_status_file" hidden />
             <label for="jci_status_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
                 @error('jci_status_file')
@@ -268,7 +268,7 @@
         </div>
 
         <div class="col-md-1 mt-32" style="margin-top: 45px !important;">
-            <input type="file" name="hippa_status_file" id="hippa_status_file" hidden />
+            <input type="file" name="hippa_status_file" @if(old('hippa_status', $hospital_nfrastructure->hippa_status ?? '') == 'No' ) disabled @endif id="hippa_status_file" hidden />
             <label for="hippa_status_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
                 @error('hippa_status_file')
@@ -289,7 +289,6 @@
         </div>
     </div>
 </form>
-
 @push('scripts')
 <script>
     $('select').on('change', function(){
