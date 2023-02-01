@@ -65,8 +65,8 @@ class UserController extends Controller
             'department'               => 'required',
             'linked_with_superadmin'   => 'required',
             'kra'                      =>  'required|string|max:40',
-            'linked_employee'          => 'required',
-            'linked_employee_id'       => 'required',
+            'linked_employee'          => $request->linked_with_superadmin == 'no' ? 'required' :'',
+            'linked_employee_id'       => $request->linked_with_superadmin == 'no' ? 'required' : '',
         ];
 
         $messages = [
@@ -157,8 +157,8 @@ class UserController extends Controller
             'department'               => 'required',
             'linked_with_superadmin'   => 'required',
             'kra'                      =>  'required|string|max:40',
-            'linked_employee'          => 'required',
-            'linked_employee_id'       => 'required',
+            'linked_employee'          => $request->linked_with_superadmin == 'no' ? 'required' :'',
+            'linked_employee_id'       => $request->linked_with_superadmin == 'no' ? 'required' : '',
         ];
 
         $messages = [
