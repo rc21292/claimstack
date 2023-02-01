@@ -502,7 +502,7 @@
 <script>
     $('select').on('change', function(){
             var id = $(this).attr('id');
-        if($(this).val() == 'No'){
+        if($(this).val() == 'No' || $(this).val() == 'NA'){
             $("#"+id+"_file").attr('disabled',true);
         }else{
             $("#"+id+"_file").attr('disabled',false);

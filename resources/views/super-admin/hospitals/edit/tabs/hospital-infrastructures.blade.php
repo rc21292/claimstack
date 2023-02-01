@@ -134,8 +134,8 @@
         </div>
 
         <div class="col-md-1 mt-32" style="margin-top: 45px !important;">
-            <input type="file" name="nabl_approved_lab_file" id="nabl_approved_lab_upload" hidden />
-            <label for="nabl_approved_lab_upload" class="btn btn-primary upload-label"><i
+            <input type="file" name="nabl_approved_lab_file" id="nabl_approved_lab_file" hidden />
+            <label for="nabl_approved_lab_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
                 @error('nabl_approved_lab_file')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -190,8 +190,8 @@
         </div>
 
         <div class="col-md-1 mt-32" style="margin-top: 45px !important;">
-            <input type="file" name="nabh_status_file" id="nabh_status_upload" hidden />
-            <label for="nabh_status_upload" class="btn btn-primary upload-label"><i
+            <input type="file" name="nabh_status_file" id="nabh_status_file" hidden />
+            <label for="nabh_status_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
                 @error('nabh_status_file')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -218,8 +218,8 @@
         </div>
 
         <div class="col-md-1 mt-32" style="margin-top: 45px !important;">
-            <input type="file" name="nqac_nhsrc_status_file" id="nqac_nhsrc_status_upload" hidden />
-            <label for="nqac_nhsrc_status_upload" class="btn btn-primary upload-label"><i
+            <input type="file" name="nqac_nhsrc_status_file" id="nqac_nhsrc_status_file" hidden />
+            <label for="nqac_nhsrc_status_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
                 @error('nqac_nhsrc_status_file')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -244,8 +244,8 @@
         </div>
 
         <div class="col-md-1 mt-32" style="margin-top: 45px !important;">
-            <input type="file" name="jci_status_file" id="jci_status_upload" hidden />
-            <label for="jci_status_upload" class="btn btn-primary upload-label"><i
+            <input type="file" name="jci_status_file" id="jci_status_file" hidden />
+            <label for="jci_status_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
                 @error('jci_status_file')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -268,8 +268,8 @@
         </div>
 
         <div class="col-md-1 mt-32" style="margin-top: 45px !important;">
-            <input type="file" name="hippa_status_file" id="hippa_status_upload" hidden />
-            <label for="hippa_status_upload" class="btn btn-primary upload-label"><i
+            <input type="file" name="hippa_status_file" id="hippa_status_file" hidden />
+            <label for="hippa_status_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
                 @error('hippa_status_file')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -289,3 +289,15 @@
         </div>
     </div>
 </form>
+@push('scripts')
+<script>
+    $('select').on('change', function(){
+        var id = $(this).attr('id');
+        if($(this).val() == 'No' || $(this).val() == 'NA'){
+            $("#"+id+"_file").attr('disabled',true);
+        }else{
+            $("#"+id+"_file").attr('disabled',false);
+        }
+    });
+</script>
+@endpush
