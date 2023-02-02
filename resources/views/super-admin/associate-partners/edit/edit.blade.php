@@ -173,5 +173,24 @@
                     break;
             }
         });
+
+        $(document).ready(function(){
+            $("#agreement_end_date_error").html('');
+            $("#agreement_end_date").on("input", function(){
+                $("#agreement_end_date_error").html('');
+             var end_date =  $(this).val();
+             var StartDate =  $("#agreement_start_date").val();
+
+             var startDate = new Date(StartDate);
+             var endDate = new Date(end_date);
+
+             if(startDate != '' && endDate != '' && startDate> endDate)
+             {
+                $("#agreement_end_date_error").html('Please ensure that the End Date is greater than or equal to the Start Date.');
+                return false;
+            }
+        });
+        });
+        
     </script>    
 @endpush
