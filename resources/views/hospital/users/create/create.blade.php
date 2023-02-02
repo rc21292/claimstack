@@ -147,7 +147,7 @@
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="col-md-6 mt-3">
+                                <div class="col-md-6 mt-3 div_linked_employee">
                                     <label for="linked_employee">Linked With Employee Name <span
                                             class="text-danger">*</span></label>
                                     <select class="form-control select2" id="linked_employee" name="linked_employee"
@@ -158,7 +158,7 @@
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="col-md-6 mt-3">
+                                <div class="col-md-6 mt-3 div_linked_employee">
                                     <label for="linked_employee_id">Linked With Employee ID <span
                                             class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="linked_employee_id"
