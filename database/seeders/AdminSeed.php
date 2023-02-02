@@ -22,7 +22,7 @@ class AdminSeed extends Seeder
     {
         $faker = app(Generator::class);
 
-        for ($i = 1; $i < 21; $i++) {
+        for ($i = 1; $i < 61; $i++) {
             $admin = Admin::create([
                 'firstname' => $faker->firstname(),
                 'lastname' => $faker->lastname(),
