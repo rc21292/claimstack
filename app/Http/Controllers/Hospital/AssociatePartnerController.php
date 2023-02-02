@@ -31,7 +31,7 @@ class AssociatePartnerController extends Controller
         $filter_search = $request->search;
         $associates = AssociatePartner::query();
         if($filter_search){
-            $associates->where(DB::raw("concat(firstname, ' ', lastname)"), 'like','%' . $filter_search . '%');
+            $associates->where('name', 'like','%' . $filter_search . '%');
         }
         $associates = $associates->orderBy('id', 'desc')->paginate(20);
         return view('hospital.associate-partners.manage',  compact('associates', 'filter_search'));

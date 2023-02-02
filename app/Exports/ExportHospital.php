@@ -13,7 +13,7 @@ class ExportHospital implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        return Hospital::get([
+        return Hospital::latest('id')->get([
             'id',
             'uid',
             'name',

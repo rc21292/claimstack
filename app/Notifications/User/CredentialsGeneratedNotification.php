@@ -96,7 +96,7 @@ class CredentialsGeneratedNotification extends Notification
      */
     protected function resetUrl($notifiable)
     {       
-        return url(route('login'));
+        return url(route('user.login'));
     }
 
     /**

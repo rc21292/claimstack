@@ -13,7 +13,7 @@ class ExportUser implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        return User::get(['id', 'firstname', 'lastname', 'email', 'uid', 'employee_code', 'designation', 'department', 'phone', 'linked_employee', 'linked_employee_id', 'kra', 'created_at']);
+        return User::latest('id')->get(['id', 'firstname', 'lastname', 'email', 'uid', 'employee_code', 'designation', 'department', 'phone', 'linked_employee', 'linked_employee_id', 'kra', 'created_at']);
     }
 
     public function headings(): array

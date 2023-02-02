@@ -13,7 +13,7 @@ class ExportAdmin implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        return Admin::get(['id', 'firstname', 'lastname', 'email', 'employee_code', 'designation', 'department', 'phone', 'linked_employee', 'linked_employee_id', 'kra', 'created_at']);
+        return Admin::latest('id')->get(['id', 'firstname', 'lastname', 'email', 'employee_code', 'designation', 'department', 'phone', 'linked_employee', 'linked_employee_id', 'kra', 'created_at']);
     }
 
     public function headings(): array
