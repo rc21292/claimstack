@@ -32,7 +32,7 @@
                         </a>
                     </div>
                     <div class="col-sm-3 px-4">
-                        <a href="#">
+                        <a href="{{ route('associate-partner.login') }}">
                             <div class="account-type">
                                 <img src="{{ asset('assets/images/loginType/salesPartner.png') }}" alt="salesPartner">
                                 <h5 class="text-white">Sales Partner</h5>
@@ -40,7 +40,7 @@
                         </a>
                     </div>
                     <div class="col-sm-3 px-4">
-                        <a href="#">
+                        <a href="{{ route('associate-partner.login') }}">
                             <div class="account-type">
                                 <img src="{{ asset('assets/images/loginType/vendor.png') }}" alt="vendor">
                                 <h5 class="text-white">Vendor</h5>
