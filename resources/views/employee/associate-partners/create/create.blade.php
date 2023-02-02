@@ -35,7 +35,7 @@
                                 <div class="col-md-6">
                                     <label for="name">Associate Partner Company's Name <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="name" name="name"
-                                        maxlength="15" placeholder="Enter company name" value="{{ old('name') }}">
+                                        maxlength="60" placeholder="Enter company name" value="{{ old('name') }}">
                                     @error('name')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
