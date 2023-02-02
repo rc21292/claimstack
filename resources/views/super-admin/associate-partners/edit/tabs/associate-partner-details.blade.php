@@ -416,7 +416,7 @@
 
 
         <div class="col-md-6 mt-3">
-            <input type="number" class="form-control" id="bank_account_no" name="bank_account_no" maxlength="20"
+            <input type="text" class="form-control" id="bank_account_no" name="bank_account_no" maxlength="20"
                 placeholder="Bank Account No." value="{{ old('bank_account_no', $associate->bank_account_no) }}">
             @error('bank_account_no')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
