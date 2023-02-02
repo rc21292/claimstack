@@ -48,7 +48,7 @@
                                     <a href="#vendor_partner_reports" data-bs-toggle="tab" aria-expanded="false"
                                         class="nav-link rounded-0">
                                         <i class="mdi mdi-settings-outline d-md-none d-block"></i>
-                                        <span class="d-none d-md-block">Vendor Partner Reports</span>
+                                        <span class="d-none d-md-block">Reports</span>
                                     </a>
                                 </li>
                             @else
@@ -58,33 +58,12 @@
                                         <i class="mdi mdi-account-circle d-md-none d-block"></i>
                                         <span class="d-none d-md-block">Sales Partner Service Type</span>
                                     </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#sub_sales_partner_status" data-bs-toggle="tab" aria-expanded="false"
-                                        class="nav-link rounded-0">
-                                        <i class="mdi mdi-account-circle d-md-none d-block"></i>
-                                        <span class="d-none d-md-block">Sub-Sales Partner Status</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#sales_partner_hospital_status" data-bs-toggle="tab" aria-expanded="false"
-                                        class="nav-link rounded-0">
-                                        <i class="mdi mdi-account-circle d-md-none d-block"></i>
-                                        <span class="d-none d-md-block">Sales Partner Hospital Status</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#sales_partner_claim_status" data-bs-toggle="tab" aria-expanded="false"
-                                        class="nav-link rounded-0">
-                                        <i class="mdi mdi-account-circle d-md-none d-block"></i>
-                                        <span class="d-none d-md-block">Sales Partner Claim Status</span>
-                                    </a>
-                                </li>
+                                </li>                                
                                 <li class="nav-item">
                                     <a href="#sales_partner_reports" data-bs-toggle="tab" aria-expanded="false"
                                         class="nav-link rounded-0">
                                         <i class="mdi mdi-settings-outline d-md-none d-block"></i>
-                                        <span class="d-none d-md-block">Sales Partner Reports</span>
+                                        <span class="d-none d-md-block">Reports</span>
                                     </a>
                                 </li>
                             @endif
@@ -104,16 +83,7 @@
                             @else
                                 <div class="tab-pane" id="sales_partner_service_type">
                                     @include('super-admin.associate-partners.edit.tabs.sales-partner-service-type')
-                                </div>
-                                <div class="tab-pane" id="sub_sales_partner_status">
-                                    @include('super-admin.associate-partners.edit.tabs.sub-sales-partner-status')
-                                </div>
-                                <div class="tab-pane" id="sales_partner_hospital_status">
-                                    @include('super-admin.associate-partners.edit.tabs.sales-partner-hospital-status')
-                                </div>
-                                <div class="tab-pane" id="sales_partner_claim_status">
-                                    @include('super-admin.associate-partners.edit.tabs.sales-partner-claim-status')
-                                </div>
+                                </div>                                
                                 <div class="tab-pane" id="sales_partner_reports">
                                     @include('super-admin.associate-partners.edit.tabs.vendor-partner-reports')
                                 </div>
@@ -126,6 +96,7 @@
     </div>
 @endsection
 @push('scripts')
+@include('super-admin.associate-partners.edit.script')
     <script>
         function setLinkedAssociatePartnerId() {
             var linked_associate_partner = $("#linked_associate_partner").select2().find(":selected").data("id");
@@ -148,7 +119,7 @@
             if (!department) {
                 department = 'Operations'
             }
-            var url = '{{ route('super-admin.get.employees', ':department') }}';
+            var url = '{{ route('admin.get.employees', ':department') }}';
             url = url.replace(':department', department);
 
             $.ajax({
@@ -168,7 +139,7 @@
             if (!department) {
                 department = 'Operations'
             }
-            var url = '{{ route('super-admin.get.employees', ':department') }}';
+            var url = '{{ route('admin.get.employees', ':department') }}';
             url = url.replace(':department', department);
 
             $.ajax({
@@ -202,5 +173,5 @@
                     break;
             }
         });
-    </script>
+    </script>    
 @endpush
