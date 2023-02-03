@@ -393,27 +393,27 @@
             @enderror
         </div>
 
-        <div class="col-md-3 mt-2">
-            <select class="form-select" id="cancel_cheque" name="cancel_cheque">
-                <option value="">Cancel Cheque</option>
-                <option value="Yes" {{ old('cancel_cheque', $hospital->cancel_cheque) == 'Yes' ? 'selected' : '' }}>Yes
-                </option>
-                <option value="No"
+        <div class="col-md-4 mt-2">
+            <div class="input-group">
+                <select class="form-select" id="cancel_cheque" name="cancel_cheque">
+                    <option value="">Cancel Cheque</option>
+                    <option value="Yes" {{ old('cancel_cheque', $hospital->cancel_cheque) == 'Yes' ? 'selected' : '' }}>Yes
+                    </option>
+                    <option value="No"
                     {{ old('cancel_cheque', $hospital->cancel_cheque) == 'No' ? 'selected' : '' }}>No
                 </option>
             </select>
+            <input type="file" name="cancel_cheque_file" id="cancel_cheque_file" hidden />
+            <label for="cancel_cheque_file" class="btn btn-primary upload-label"><i
+                class="mdi mdi-upload"></i></label>
+
+            </div>
 
             @error('cancel_cheque')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-        </div>
-
-        <div class="col-md-1 mt-2">
-                <input type="file" name="cancel_cheque_file" id="cancel_cheque_file" hidden />
-                <label for="cancel_cheque_file" class="btn btn-primary upload-label"><i
-                        class="mdi mdi-upload"></i></label>
             @error('cancel_cheque_file')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
 
@@ -433,31 +433,28 @@
             @enderror
         </div>
 
-        <div class="col-md-5 mt-2">
+        <div class="col-md-6 mt-2">
             <label for="certificate_of_incorporation">Hospital Tariff List / SOC (Printed)* (if yes upload) <span class="text-danger">*</span></label>
-            <select class="form-select" id="tariff_list_soc" name="tariff_list_soc">
-                <option value="">Select</option>
-                <option value="Yes" {{ old('tariff_list_soc', $hospital->tariff_list_soc) == 'Yes' ? 'selected' : '' }}>Yes
-                </option>
-                <option value="No"
+            <div class="input-group">
+                <select class="form-select" id="tariff_list_soc" name="tariff_list_soc">
+                    <option value="">Select</option>
+                    <option value="Yes" {{ old('tariff_list_soc', $hospital->tariff_list_soc) == 'Yes' ? 'selected' : '' }}>Yes
+                    </option>
+                    <option value="No"
                     {{ old('tariff_list_soc', $hospital->tariff_list_soc) == 'No' ? 'selected' : '' }}>No
                 </option>
             </select>
-
+            <input type="file" name="tariff_list_soc_file" id="tariff_list_soc_file" hidden />
+            <label for="tariff_list_soc_file" class="btn btn-primary upload-label"><i
+                class="mdi mdi-upload"></i></label>
+            </div>
             @error('tariff_list_soc')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-        </div>
-
-        <div class="col-md-1 mt-32" style="margin-top: 32px !important;">
-                <input type="file" name="tariff_list_soc_file" id="tariff_list_soc_file" hidden />
-                <label for="tariff_list_soc_file" class="btn btn-primary upload-label"><i
-                        class="mdi mdi-upload"></i></label>
             @error('tariff_list_soc_file')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
-
 
         <div class="col-md-6 mt-3">
             <label for="nabh_registration_no">Hospital NABH Registration No. <span class="text-danger">*</span></label>
@@ -495,31 +492,28 @@
         </div>
 
 
-        <div class="col-md-5 mt-2">
+        <div class="col-md-6 mt-2">
             <label for="certificate_of_incorporation">Hospital Signed MOUs*  (if yes upload) <span class="text-danger">*</span></label>
-            <select class="form-select" id="signed_mous" name="signed_mous">
-                <option value="">Select</option>
-                <option value="Yes" {{ old('signed_mous', $hospital->signed_mous) == 'Yes' ? 'selected' : '' }}>Yes
-                </option>
-                <option value="No"
+            <div class="input-group">
+                <select class="form-select" id="signed_mous" name="signed_mous">
+                    <option value="">Select</option>
+                    <option value="Yes" {{ old('signed_mous', $hospital->signed_mous) == 'Yes' ? 'selected' : '' }}>Yes
+                    </option>
+                    <option value="No"
                     {{ old('signed_mous', $hospital->signed_mous) == 'No' ? 'selected' : '' }}>No
                 </option>
             </select>
-
+            <input type="file" name="signed_mous_file" id="signed_mous_file" hidden />
+            <label for="signed_mous_file" class="btn btn-primary upload-label"><i
+                class="mdi mdi-upload"></i></label>
+            </div>
             @error('signed_mous')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-        </div>
-
-        <div class="col-md-1 mt-32" style="margin-top: 32px !important;">
-                <input type="file" name="signed_mous_file" id="signed_mous_file" hidden />
-                <label for="signed_mous_file" class="btn btn-primary upload-label"><i
-                        class="mdi mdi-upload"></i></label>
             @error('signed_mous_file')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
-
 
         <div class="col-md-6 mt-3">
             <label for="other_documents">Hospital Hospital Other Documents <span class="text-danger">*</span></label>
@@ -551,28 +545,26 @@
         </div>
 
 
-        <div class="col-md-11 mt-2">
+        <div class="col-md-12 mt-2">
             <label for="iso_status">ISO Status <span class="text-danger">*</span></label>
-            <select class="form-select" id="iso_status" name="iso_status">
-                <option value="">Select</option>
-                <option value="Yes" {{ old('iso_status', $hospital->iso_status) == 'Yes' ? 'selected' : '' }}>Yes
-                </option>
-                <option value="No"
+            <div class="input-group">
+                <select class="form-select" id="iso_status" name="iso_status">
+                    <option value="">Select</option>
+                    <option value="Yes" {{ old('iso_status', $hospital->iso_status) == 'Yes' ? 'selected' : '' }}>Yes
+                    </option>
+                    <option value="No"
                     {{ old('iso_status', $hospital->iso_status) == 'No' ? 'selected' : '' }}>No
                 </option>
             </select>
-
+            <input type="file" name="iso_status_file" id="iso_status_file" hidden />
+            <label for="iso_status_file" class="btn btn-primary upload-label"><i
+                class="mdi mdi-upload"></i></label>
+            </div>
             @error('iso_status')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-        </div>
-
-        <div class="col-md-1 mt-32" style="margin-top: 32px !important;">
-                <input type="file" name="iso_status_file" id="iso_status_file" hidden />
-                <label for="iso_status_file" class="btn btn-primary upload-label"><i
-                        class="mdi mdi-upload"></i></label>
             @error('iso_status_file')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
 

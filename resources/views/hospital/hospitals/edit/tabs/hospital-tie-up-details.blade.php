@@ -1,4 +1,4 @@
-<form action="{{ route('hospital.hospitals.tie-ups', $hospital->id) }}" method="post" id="hospital-tie-up-form"
+<form action="{{ route('super-admin.hospitals.tie-ups', $hospital->id) }}" method="post" id="hospital-tie-up-form"
     enctype="multipart/form-data">
     @csrf
     @method('PUT')
@@ -12,8 +12,9 @@
             @enderror
         </div>
 
-        <div class="col-md-5 mt-3">
+        <div class="col-md-6 mt-3">
             <label for="bhc_packages_for_surgical_procedures_accepted">BHC Packages for Surgical Procedures Accepted <span class="text-danger">*</span></label>
+            <div class="input-group">
             <select class="form-select" id="bhc_packages_for_surgical_procedures_accepted" name="bhc_packages_for_surgical_procedures_accepted">
                 <option value="">Select</option>
                 <option value="Yes" {{ old('bhc_packages_for_surgical_procedures_accepted', $hospital_tie_ups->bhc_packages_for_surgical_procedures_accepted ?? '') == 'Yes' ? 'selected' : '' }}>Yes
@@ -22,20 +23,17 @@
                     {{ old('bhc_packages_for_surgical_procedures_accepted', $hospital_tie_ups->bhc_packages_for_surgical_procedures_accepted ?? '') == 'No' ? 'selected' : '' }}>No
                 </option>
             </select>
-            @error('bhc_packages_for_surgical_procedures_accepted')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
-        </div>
-
-        <div class="col-md-1 mt-32" style="margin-top: 45px !important;">
             <input type="file" name="bhc_packages_for_surgical_procedures_accepted_file" @if($hospital_tie_ups->bhc_packages_for_surgical_procedures_accepted == 'No') disabled @endif id="bhc_packages_for_surgical_procedures_accepted_file" hidden />
             <label for="bhc_packages_for_surgical_procedures_accepted_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
-                @error('bhc_packages_for_surgical_procedures_accepted_file')
+            </div>
+            @error('bhc_packages_for_surgical_procedures_accepted')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+            @error('bhc_packages_for_surgical_procedures_accepted_file')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
-            </div>
-
+        </div>
 
         <div class="col-md-6 mt-3">
             <label for="discount_on_medical_management_cases">Discount on Medical Management Cases <span class="text-danger">*</span></label>
@@ -238,8 +236,9 @@
         </div>
 
 
-        <div class="col-md-5 mt-3">
+        <div class="col-md-6 mt-3">
             <label for="lending_finance_company_agreement">Lending / Finance Company's Agreement <span class="text-danger">*</span></label>
+            <div class="input-group">
             <select class="form-select" id="lending_finance_company_agreement" name="lending_finance_company_agreement">
                 <option value="">Select</option>
                 <option value="Yes" {{ old('lending_finance_company_agreement', $hospital_tie_ups->lending_finance_company_agreement ?? '') == 'Yes' ? 'selected' : '' }}>Yes
@@ -248,16 +247,14 @@
                     {{ old('lending_finance_company_agreement', $hospital_tie_ups->lending_finance_company_agreement ?? '') == 'No' ? 'selected' : '' }}>No
                 </option>
             </select>
-            @error('lending_finance_company_agreement')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
-        </div>
-
-        <div class="col-md-1 mt-32" style="margin-top: 45px !important;">
             <input type="file" name="lending_finance_company_agreement_file" @if($hospital_tie_ups->lending_finance_company_agreement == 'No') disabled @endif id="lending_finance_company_agreement_file" hidden />
             <label for="lending_finance_company_agreement_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
-                @error('lending_finance_company_agreement_file')
+            </div>
+            @error('lending_finance_company_agreement')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+            @error('lending_finance_company_agreement_file')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
         </div>

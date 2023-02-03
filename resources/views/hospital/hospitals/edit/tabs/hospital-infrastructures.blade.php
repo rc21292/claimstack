@@ -1,4 +1,4 @@
-<form action="{{ route('hospital.hospitals.infrastructures', $hospital->id) }}" method="post" id="hospital-infrastructures-form"
+<form action="{{ route('super-admin.hospitals.infrastructures', $hospital->id) }}" method="post" id="hospital-infrastructures-form"
     enctype="multipart/form-data">
     @csrf
     @method('PUT')
@@ -118,8 +118,9 @@
             @enderror
         </div>
 
-        <div class="col-md-5 mt-3">
+        <div class="col-md-6 mt-3">
             <label for="nabl_approved_lab">NABL Approved Lab <span class="text-danger">*</span></label>
+            <div class="input-group">
             <select class="form-select" id="nabl_approved_lab" name="nabl_approved_lab">
                 <option value="">Select</option>
                 <option value="Yes" {{ old('nabl_approved_lab', $hospital_nfrastructure->nabl_approved_lab ?? '') == 'Yes' ? 'selected' : '' }}>Yes
@@ -127,20 +128,18 @@
                 <option value="No"
                     {{ old('nabl_approved_lab', $hospital_nfrastructure->nabl_approved_lab ?? '') == 'No' ? 'selected' : '' }}>No
                 </option>
+                <input type="file" name="nabl_approved_lab_file" @if(old('nabl_approved_lab', $hospital_nfrastructure->nabl_approved_lab ?? '') == 'No' ) disabled @endif id="nabl_approved_lab_file" hidden />
+            <label for="nabl_approved_lab_file" class="btn btn-primary upload-label"><i
+                class="mdi mdi-upload"></i></label>
             </select>
+        </div>
             @error('nabl_approved_lab')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-        </div>
-
-        <div class="col-md-1 mt-32" style="margin-top: 45px !important;">
-            <input type="file" name="nabl_approved_lab_file" @if(old('nabl_approved_lab', $hospital_nfrastructure->nabl_approved_lab ?? '') == 'No' ) disabled @endif id="nabl_approved_lab_file" hidden />
-            <label for="nabl_approved_lab_file" class="btn btn-primary upload-label"><i
-                class="mdi mdi-upload"></i></label>
-                @error('nabl_approved_lab_file')
+            @error('nabl_approved_lab_file')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
+            @enderror
+        </div>
 
         <div class="col-md-6 mt-3">
             <label for="no_of_dialysis_units">No. of Dialysis Units<span class="text-danger">*</span></label>
@@ -170,8 +169,9 @@
         </div>
 
 
-        <div class="col-md-5 mt-3">
+        <div class="col-md-6 mt-3">
             <label for="nabh_status">NABH Status <span class="text-danger">*</span></label>
+            <div class="input-group">
             <select class="form-select" id="nabh_status" name="nabh_status">
                 <option value="">Select</option>
                 <option value="Approved" {{ old('nabh_status', $hospital_nfrastructure->nabh_status?? '') == 'Approved' ? 'selected' : '' }}>Approved
@@ -184,50 +184,21 @@
                 <option value="NA" {{ old('nabh_status', $hospital_nfrastructure->nabh_status?? '') == 'NA' ? 'selected' : '' }}>NA
                 </option>
             </select>
-            @error('nabh_status')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
-        </div>
-
-        <div class="col-md-1 mt-32" style="margin-top: 45px !important;">
             <input type="file" name="nabh_status_file" @if(old('nabh_status', $hospital_nfrastructure->nabh_status ?? '') == 'No' ) disabled @endif id="nabh_status_file" hidden />
             <label for="nabh_status_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
-                @error('nabh_status_file')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
             </div>
-
-        <div class="col-md-5 mt-3">
-            <label for="nqac_nhsrc_status">NQAC/NHSRC Status<span class="text-danger">*</span></label>
-            <select class="form-select" id="nqac_nhsrc_status" name="nqac_nhsrc_status">
-                <option value="">Select</option>
-                <option value="Approved" {{ old('nqac_nhsrc_status', $hospital_nfrastructure->nqac_nhsrc_status?? '') == 'Approved' ? 'selected' : '' }}>Approved
-                </option>
-                <option value="Pre Approved"
-                    {{ old('nqac_nhsrc_status', $hospital_nfrastructure->nqac_nhsrc_status?? '') == 'Pre Approved' ? 'selected' : '' }}>Pre Approved
-                </option>
-                <option value="Applied" {{ old('nqac_nhsrc_status', $hospital_nfrastructure->nqac_nhsrc_status?? '') == 'Applied' ? 'selected' : '' }}>Applied
-                </option>
-                <option value="NA" {{ old('nqac_nhsrc_status', $hospital_nfrastructure->nqac_nhsrc_status?? '') == 'NA' ? 'selected' : '' }}>NA
-                </option>
-            </select>
-            @error('nqac_nhsrc_status')
+            @error('nabh_status')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-        </div>
-
-        <div class="col-md-1 mt-32" style="margin-top: 45px !important;">
-            <input type="file" name="nqac_nhsrc_status_file" @if(old('nqac_nhsrc_status', $hospital_nfrastructure->nqac_nhsrc_status ?? '') == 'No' ) disabled @endif id="nqac_nhsrc_status_file" hidden />
-            <label for="nqac_nhsrc_status_file" class="btn btn-primary upload-label"><i
-                class="mdi mdi-upload"></i></label>
-                @error('nqac_nhsrc_status_file')
+            @error('nabh_status_file')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
-            </div>
+        </div>
 
-        <div class="col-md-5 mt-3">
+        <div class="col-md-6 mt-3">
             <label for="jci_status">JCI Status <span class="text-danger">*</span></label>
+            <div class="input-group">
             <select class="form-select" id="jci_status" name="jci_status">
                 <option value="">Select</option>
                 <option value="Yes" {{ old('jci_status', $hospital_nfrastructure->jci_status?? '') == 'Yes' ? 'selected' : '' }}>Yes
@@ -238,43 +209,67 @@
                 <option value="Applied" {{ old('jci_status', $hospital_nfrastructure->jci_status?? '') == 'Applied' ? 'selected' : '' }}>Applied
                 </option>
             </select>
-            @error('jci_status')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
-        </div>
-
-        <div class="col-md-1 mt-32" style="margin-top: 45px !important;">
             <input type="file" name="jci_status_file" @if(old('jci_status', $hospital_nfrastructure->jci_status ?? '') == 'No' ) disabled @endif id="jci_status_file" hidden />
             <label for="jci_status_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
-                @error('jci_status_file')
+            </div>
+            @error('jci_status')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+            @error('jci_status_file')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
+        </div>
+
+        <div class="col-md-5 mt-3">
+            <label for="nqac_nhsrc_status">NQAC/NHSRC Status<span class="text-danger">*</span></label>
+            <div class="input-group">
+                <select class="form-select" id="nqac_nhsrc_status" name="nqac_nhsrc_status">
+                    <option value="">Select</option>
+                    <option value="Approved" {{ old('nqac_nhsrc_status', $hospital_nfrastructure->nqac_nhsrc_status?? '') == 'Approved' ? 'selected' : '' }}>Approved
+                    </option>
+                    <option value="Pre Approved"
+                    {{ old('nqac_nhsrc_status', $hospital_nfrastructure->nqac_nhsrc_status?? '') == 'Pre Approved' ? 'selected' : '' }}>Pre Approved
+                </option>
+                <option value="Applied" {{ old('nqac_nhsrc_status', $hospital_nfrastructure->nqac_nhsrc_status?? '') == 'Applied' ? 'selected' : '' }}>Applied
+                </option>
+                <option value="NA" {{ old('nqac_nhsrc_status', $hospital_nfrastructure->nqac_nhsrc_status?? '') == 'NA' ? 'selected' : '' }}>NA
+                </option>
+            </select>
+            <input type="file" name="nqac_nhsrc_status_file" id="nqac_nhsrc_status_file" hidden />
+            <label for="nqac_nhsrc_status_file" class="btn btn-primary upload-label"><i
+                class="mdi mdi-upload"></i></label>
             </div>
+            @error('nqac_nhsrc_status')
+            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+            @error('nqac_nhsrc_status_file')
+            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>s
 
         <div class="col-md-6 mt-3">
             <label for="hippa_status">HIPPA Status <span class="text-danger">*</span></label>
-            <select class="form-select" id="hippa_status" name="hippa_status">
-                <option value="">Select</option>
-                <option value="Yes" {{ old('hippa_status', $hospital_nfrastructure->hippa_status?? '') == 'Yes' ? 'selected' : '' }}>Yes
-                </option>
-                <option value="No"
+            <div class="input-group">
+                <select class="form-select" id="hippa_status" name="hippa_status">
+                    <option value="">Select</option>
+                    <option value="Yes" {{ old('hippa_status', $hospital_nfrastructure->hippa_status?? '') == 'Yes' ? 'selected' : '' }}>Yes
+                    </option>
+                    <option value="No"
                     {{ old('hippa_status', $hospital_nfrastructure->hippa_status?? '') == 'No' ? 'selected' : '' }}>No
                 </option>
             </select>
-            @error('hippa_status')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
-        </div>
-
-        <div class="col-md-1 mt-32" style="margin-top: 45px !important;">
             <input type="file" name="hippa_status_file" @if(old('hippa_status', $hospital_nfrastructure->hippa_status ?? '') == 'No' ) disabled @endif id="hippa_status_file" hidden />
             <label for="hippa_status_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
-                @error('hippa_status_file')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
             </div>
+            @error('hippa_status')
+            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+            @error('hippa_status_file')
+            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
 
         <div class="col-md-12 mt-3">
             <label for="comments">Comments </label>

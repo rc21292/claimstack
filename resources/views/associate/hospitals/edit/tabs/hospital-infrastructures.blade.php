@@ -1,4 +1,4 @@
-<form action="{{ route('user.hospitals.infrastructures', $hospital->id) }}" method="post" id="hospital-infrastructures-form"
+<form action="{{ route('associate-partner.hospitals.infrastructures', $hospital->id) }}" method="post" id="hospital-infrastructures-form"
     enctype="multipart/form-data">
     @csrf
     @method('PUT')
@@ -247,8 +247,6 @@
             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
-
-
 
         <div class="col-md-6 mt-3">
             <label for="hippa_status">HIPPA Status <span class="text-danger">*</span></label>
