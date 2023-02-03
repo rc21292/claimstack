@@ -66,11 +66,13 @@
                                                                 value='{{ csrf_token() }}'>
                                                             <input type='hidden' name='_method' value='DELETE'>
                                                         </form>
+                                                        @if(auth()->check() && auth()->user()->hasDirectPermission('Rights to Change Login Password'))
                                                         <button type="button" class="btn btn-warning change-password"
                                                         data-bs-toggle="modal" data-bs-target="#modal-password"
                                                         data-uid="{{ $admin->employee_code }}"
                                                         data-id="{{ $admin->id }}"><i
                                                             class="uil uil-ellipsis-v"></i></button>
+                                                            @endif
                                                     </div>
                                                 </td>
                                             </tr>

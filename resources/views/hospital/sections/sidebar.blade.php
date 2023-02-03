@@ -33,73 +33,6 @@
             </li>
 
             <li class="side-nav-item">
-                <a data-bs-toggle="collapse" href="#adminMenu" aria-expanded="false" aria-controls="adminMenu" class="side-nav-link">
-                    <i class="mdi mdi-shield-account"></i>
-                    <span> Admin </span>
-                    <span class="menu-arrow"></span>
-                </a>
-                <div class="collapse" id="adminMenu">
-                    <ul class="side-nav-second-level">
-
-                        <li>
-                            <a onclick="return false;" href="{{ route('hospital.admins.create') }}">Create Admin</a>
-                        </li>
-
-                        <li>
-                            <a onclick="return false;" href="{{ route('hospital.admins.index') }}">Manage Admin</a>
-                        </li>
-
-                        <li>
-                            <a onclick="return false;" href="{{ route('hospital.admins.import-export') }}">Import Export Admin</a>
-                        </li>
-
-                    </ul>
-                </div>
-            </li>
-
-            <li class="side-nav-item">
-                <a data-bs-toggle="collapse" href="#userMenu" aria-expanded="false" aria-controls="userMenu" class="side-nav-link">
-                    <i class="mdi mdi-account"></i>
-                    <span> User </span>
-                    <span class="menu-arrow"></span>
-                </a>
-                <div class="collapse" id="userMenu">
-                    <ul class="side-nav-second-level">
-                        <li>
-                            <a onclick="return false;" href="{{ route('hospital.users.create') }}">Create User</a>
-                        </li>
-                        <li>
-                            <a onclick="return false;" href="{{ route('hospital.users.index') }}">Manage User</a>
-                        </li>
-                        <li>
-                            <a onclick="return false;" href="{{ route('hospital.users.import-export') }}">Import Export Users</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-
-            <li class="side-nav-item">
-                <a data-bs-toggle="collapse" href="#associatePartner" aria-expanded="false" aria-controls="associatePartner" class="side-nav-link">
-                    <i class="mdi mdi-account-group"></i>
-                    <span> Associate Partner </span>
-                    <span class="menu-arrow"></span>
-                </a>
-                <div class="collapse" id="associatePartner">
-                    <ul class="side-nav-second-level">
-                        <li>
-                            <a onclick="return false;" href="{{ route('hospital.associate-partners.create') }}">Create Associate Partner</a>
-                        </li>
-                        <li>
-                            <a onclick="return false;" href="{{ route('hospital.associate-partners.index') }}">Manage Associate Partner</a>
-                        </li>
-                        <li>
-                            <a onclick="return false;" href="{{ route('hospital.associate-partners.import-export') }}">Import Export Associate Partner</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-
-            <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#hospitalModule" aria-expanded="false" aria-controls="hospitalModule" class="side-nav-link">
                     <i class="mdi mdi-hospital-building"></i>
                     <span> Hospital </span>
@@ -108,104 +41,34 @@
                 <div class="collapse" id="hospitalModule">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="{{ route('hospital.hospitals.create') }}">Create Hospital ID</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('hospital.hospitals.index') }}">Manage Hospital Profile</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('hospital.claims.index') }}">Claims</a>
+                            <a href="{{ route('hospital.hospitals.index') }}">Manage Hospital</a>
                         </li>
                     </ul>
                 </div>
             </li>
 
             <li class="side-nav-item">
-                <a data-bs-toggle="collapse" href="#insurer" aria-expanded="false" aria-controls="insurer"
-                    class="side-nav-link">
-                    <i class="dripicons-heart"></i>
-                    <span> Insurer </span>
-                    <span class="menu-arrow"></span>
-                </a>
-                <div class="collapse" id="insurer">
-                    <ul class="side-nav-second-level">
-                        <li>
-                            <a href="javascript:Void(0)">Create Insurer</a>
-                        </li>
-                        <li>
-                            <a href="javascript:Void(0)">Manage Insurer</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-
-            <li class="side-nav-item">
-                <a data-bs-toggle="collapse" href="#tpa" aria-expanded="false" aria-controls="tpa"
+                <a data-bs-toggle="collapse" href="#claims" aria-expanded="false" aria-controls="claims"
                     class="side-nav-link">
                     <i class="mdi mdi-doctor"></i>
-                    <span> TPA </span>
+                    <span> Claims </span>
                     <span class="menu-arrow"></span>
                 </a>
-                <div class="collapse" id="tpa">
+                <div class="collapse" id="claims">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="javascript:Void(0)">Create TPA</a>
+                            <a onclick="return false;" href="{{ route('admin.patients.index') }}">Patients</a>
                         </li>
                         <li>
-                            <a href="javascript:Void(0)">Manage TPA</a>
+                            <a onclick="return false;" href="{{ route('admin.claims.index') }}">Claims</a>
+                        </li>
+                          <li>
+                            <a onclick="return false;" href="{{ route('admin.claims.index') }}">Claimants</a>
                         </li>
                     </ul>
                 </div>
             </li>
 
-            <li class="side-nav-item">
-                <a data-bs-toggle="collapse" href="#authorization" aria-expanded="false"
-                    aria-controls="authorization" class="side-nav-link">
-                    <i class="uil-shield-check"></i>
-                    <span> Authorization </span>
-                    <span class="menu-arrow"></span>
-                </a>
-                <div class="collapse" id="authorization">
-                    <ul class="side-nav-second-level">
-                        <li>
-                            <a href="javascript:Void(0)">Hospital Authorization</a>
-                        </li>
-                        <li>
-                            <a href="javascript:Void(0)">Associate Partner Authorization</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="side-nav-item">
-                <a href="javascript:Void(0)" class="side-nav-link">
-                    <i class="uil-folder-medical"></i>
-                    <span> File Management </span>
-                </a>
-            </li>
-            <li class="side-nav-item">
-                <a href="javascript:Void(0)" class="side-nav-link">
-                    <i class="uil-graph-bar"></i>
-                    <span> Report Generation </span>
-                </a>
-            </li>
-
-            <li class="side-nav-item">
-                <a data-bs-toggle="collapse" href="#settings" aria-expanded="false" aria-controls="settings" class="side-nav-link">
-                    <i class="dripicons-gear"></i>
-                    <span> Settings </span>
-                    <span class="menu-arrow"></span>
-                </a>
-                <div class="collapse" id="settings">
-                    <ul class="side-nav-second-level">
-                        {{-- <li>
-                            <a href="{{ route('hospital.password.form') }}">Change Password</a>
-                        </li> --}}
-                        <li>
-                            <a href="{{ route('hospital.my-account.edit', Auth::guard('hospital')->id()) }}">My Profile</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
         </ul>
 
         <!-- Help Box -->

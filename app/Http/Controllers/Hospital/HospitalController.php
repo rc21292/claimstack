@@ -11,6 +11,7 @@ use App\Models\HospitalInfrastructure;
 use App\Models\HospitalDepartment;
 use App\Models\HospitalTieUp;
 use App\Models\User;
+use Auth;
 use App\Notifications\Hospital\CredentialsGeneratedNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -29,13 +30,24 @@ class HospitalController extends Controller
      */
     public function index(Request $request)
     {
-        $filter_search = $request->search;
-        $hospitals = Hospital::query();
-        if($filter_search){
-            $hospitals->where('name', 'like','%' . $filter_search . '%');
+        $id = Auth::user()->id;
+        $hospital          = Hospital::find($id);
+        $insurers          = Insurer::all();
+        $hospital_tie_ups          = HospitalTieUp::where('hospital_id', $id)->first();
+        if (!$hospital_tie_ups) {
+            HospitalTieUp::create(['hospital_id'=> $id]);
+            $hospital_tie_ups          = HospitalTieUp::where('hospital_id', $id)->first();
         }
-        $hospitals = $hospitals->orderBy('id', 'desc')->paginate(20);
-        return view('hospital.hospitals.manage',  compact('hospitals', 'filter_search'));
+        $hospital_facility          = HospitalFacility::where('hospital_id', $id)->first();
+        if (!$hospital_facility) {
+            HospitalFacility::create(['hospital_id'=> $id]);
+            $hospital_facility          = HospitalFacility::where('hospital_id', $id)->first();
+        }
+        $hospital_nfrastructure          = HospitalInfrastructure::where('hospital_id', $id)->first();
+        $hospital_department          = HospitalDepartment::where('hospital_id', $id)->first();
+        $hospitals         = Hospital::get();
+        $users              = User::get();
+        return view('hospital.hospitals.edit.edit',  compact('hospital', 'hospitals', 'hospital_facility', 'hospital_nfrastructure', 'hospital_department', 'hospital_tie_ups', 'users', 'insurers'));
     }
 
     /**
