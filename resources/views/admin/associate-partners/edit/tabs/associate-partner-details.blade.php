@@ -338,6 +338,7 @@
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
+        
         <div class="col-md-6 mt-3">
             <label for="contact_person">Associate Partner Contact Person's Name <span
                     class="text-danger">*</span></label>
