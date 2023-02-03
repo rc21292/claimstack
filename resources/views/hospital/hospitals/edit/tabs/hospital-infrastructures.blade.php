@@ -221,7 +221,7 @@
                 @enderror
         </div>
 
-        <div class="col-md-5 mt-3">
+        <div class="col-md-6 mt-3">
             <label for="nqac_nhsrc_status">NQAC/NHSRC Status<span class="text-danger">*</span></label>
             <div class="input-group">
                 <select class="form-select" id="nqac_nhsrc_status" name="nqac_nhsrc_status">
@@ -246,7 +246,7 @@
             @error('nqac_nhsrc_status_file')
             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-        </div>s
+        </div>
 
         <div class="col-md-6 mt-3">
             <label for="hippa_status">HIPPA Status <span class="text-danger">*</span></label>
