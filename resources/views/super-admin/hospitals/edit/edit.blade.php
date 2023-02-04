@@ -22,12 +22,7 @@
         </div>
         @include('super-admin.sections.flash-message')
 
-        @if($errors->any())
-        <div class="alert alert-warning alert-dismissible bg-warning border-0 fade show" role="alert">
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            <strong>Please check error bellow, some fields are  missing!</strong>
-        </div>            
-        @endif 
+
         <!-- end page title -->
         
         <!-- start page content -->
