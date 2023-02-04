@@ -20,6 +20,7 @@
             </div>
         </div>
         @include('super-admin.sections.flash-message')
+        
         <!-- end page title -->
 
         <!-- start page content -->
@@ -141,7 +142,7 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="owner">Hospital email ID <span class="text-danger">*</span></label>
-                                    <input type="email" class="form-control" id="email" name="email" maxlength="30"
+                                    <input type="text" class="form-control" id="email" name="email" maxlength="30"
                                         placeholder="Enter hospital email ID" value="{{ old('email') }}">
                                     @error('email')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>

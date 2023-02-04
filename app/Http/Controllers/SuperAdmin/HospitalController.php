@@ -74,7 +74,7 @@ class HospitalController extends Controller
             'rohinifile'               => 'required',
             'code'                     => 'required|numeric|digits:3',
             'landline'                 => 'required|numeric|digits_between:1,10',
-            'email'                    => 'required|unique:hospitals|min:1|max:45',
+            'email'                    => 'required|unique:hospitals|email|min:1|max:45',
             'address'                  => 'required',
             'city'                     => 'required',
             'state'                    => 'required',
@@ -214,7 +214,7 @@ class HospitalController extends Controller
             'rohini'                   => 'required',
             'code'                     => 'required|numeric|digits:3',
             'landline'                 => 'required|numeric|digits_between:1,10',
-            'email'                    => 'required|unique:hospitals,email,'.$id,
+            'email'                    => 'required|email|unique:hospitals,email,'.$id,
             'address'                  => 'required',
             'city'                     => 'required',
             'state'                    => 'required',
@@ -955,10 +955,10 @@ class HospitalController extends Controller
 
         $rules = [
             'specialization'              => 'required',
-            'doctors_name'                => 'required_if:$request->show_doctor,1',
-            'registration_no'             => 'required_if:$request->show_doctor,1|max:20',
-            'email_id'                    => 'required_if:$request->show_doctor,1|email|max:45',
-            'doctors_mobile_no'           => 'required_if:$request->show_doctor,1|numeric|digits:10',
+            'doctors_name'                => ($request->show_doctor == 1) ? 'required' : [],
+            'registration_no'             => ($request->show_doctor == 1) ? 'required|max:20' : [],
+            'email_id'                    => ($request->show_doctor == 1) ? 'required|email|max:45' : [],
+            'doctors_mobile_no'           => ($request->show_doctor == 1) ? 'required|numeric|digits:10' : [],
         ];
 
         $messages = [
