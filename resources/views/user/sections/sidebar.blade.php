@@ -89,7 +89,6 @@
                     <span> Associate Partner </span>
                     <span class="menu-arrow"></span>
                 </a>
-                @if(auth()->check() && auth()->user()->hasDirectPermission('Associate Partner Module Creation/Editing Rights'))
                 <div class="collapse" id="associatePartner">
                     <ul class="side-nav-second-level">
                         @if(auth()->check() && auth()->user()->hasDirectPermission('Associate Partner Login ID Creation Rights'))
@@ -97,6 +96,7 @@
                             <a href="{{ route('user.associate-partners.create') }}">Create Associate Partner</a>
                         </li>
                         @endif
+                        @if(auth()->check() && auth()->user()->hasDirectPermission('Associate Partner Updation/Editing Rights'))
                         <li>
                             <a href="{{ route('user.associate-partners.index') }}">Manage Associate Partner</a>
                         </li>
@@ -104,6 +104,7 @@
                             <a href="{{ route('user.associate-partners.import-export') }}">Import Export Associate
                                 Partner</a>
                         </li>
+                        @endif
                     </ul>
                 </div>
                 @endif

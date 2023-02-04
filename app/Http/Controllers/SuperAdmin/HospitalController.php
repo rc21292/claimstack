@@ -48,7 +48,7 @@ class HospitalController extends Controller
      */
     public function create()
     {
-        $associates = AssociatePartner::get();
+        $associates = AssociatePartner::get(['name', 'city', 'state', 'id', 'associate_partner_id']);
         $users      = User::get();
 
         return view('super-admin.hospitals.create.create',  compact('associates', 'users'));
@@ -63,27 +63,24 @@ class HospitalController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'name'                     => 'required',
-            'firstname'                => 'required',
+            'name'                     => 'required|min:1|max:60',
+            'firstname'                => ($request->onboarding == 'Tie Up') ? 'required|min:1|max:15' : [],
+            'lasttname'                => ($request->onboarding == 'Tie Up') ? 'required|min:1|max:30' : [],
             'onboarding'               => 'required',
             'by'                       => 'required',
-            'pan'                      => 'required|alpha_num',
-            'panfile'                  => 'required',
-            'rohini'                   => 'required',
-            'rohinifile'               => 'required',
+            'pan'                      => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|size:10' : [],
+            'panfile'                  => ($request->onboarding == 'Tie Up') ? 'required' : [],
+            'rohini'                   => 'required|size:13',
+            'rohinifile'              =>   'required',
             'landline'                 => 'required|numeric|digits:10',
-            'email'                    => 'required|unique:hospitals',
+            'email'                    => 'required|unique:hospitals|min:1|max:45',
             'address'                  => 'required',
             'city'                     => 'required',
             'state'                    => 'required',
             'pincode'                  => 'required|numeric',
             'phone'                    => 'required|numeric|digits:10',
-            'associate_partner_id'     => 'required',
-            'associate_partner_name'   => 'required',
-            'assigned_employee'        => 'required',
-            'assigned_employee_id'     => 'required',
-            'linked_employee'          => 'required',
-            'linked_employee_id'       => 'required',
+            'linked_associate_partner_id'     => ($request->onboarding == 'Tie Up' && $request->by == 'Associate Partner') ? 'required' : [],
+            'linked_associate_partner'   => ($request->onboarding == 'Tie Up' && $request->by == 'Associate Partner') ? 'required' : [],
         ];
 
         $messages = [
@@ -94,7 +91,6 @@ class HospitalController extends Controller
             'pan.required'                    => 'Please enter PAN number.',
             'panfile.required'                => 'Please upload PAN Card.',
             'rohini.required'                 => 'Please enter Rohini code.',
-            'rohinifile.required'             => 'Please upload Rohini file.',
             'landline.required'               => "Please enter hospital landline",
             'email.required'                  => 'Please enter official email ID.',
             'address.required'                => 'Please enter address.',
@@ -102,12 +98,8 @@ class HospitalController extends Controller
             'state.required'                  => 'Please enter state.',
             'pincode.required'                => 'Please enter pincode.',
             'phone.required'                  => 'Please enter hospital mobile number.',
-            'associate_partner_id.required'   => 'Please enter associate partner ID.',
-            'associate_partner_name.required' => 'Please enter associate partner name.',
-            'assigned_employee.required'      => 'Please select assigned employee.',
-            'assigned_employee_id.required'   => 'Please enter assigned employee ID.',
-            'linked_employee.required'        => 'Please select linked employee.',
-            'linked_employee_id.required'     => 'Please enter linked employee ID.',
+            'linked_associate_partner_id.required'   => 'Please enter associate partner ID.',
+            'linked_associate_partner.required' => 'Please enter associate partner name.',
         ];
 
         $this->validate($request, $rules, $messages);
@@ -128,12 +120,8 @@ class HospitalController extends Controller
             'landline'                 => $request->landline,
             'phone'                    => $request->phone,
             'rohini'                   => $request->rohini,
-            'linked_associate_partner' => $request->associate_partner_name,
-            'linked_associate_partner_id' => $request->associate_partner_id,
-            'assigned_employee'        => $request->assigned_employee,
-            'assigned_employee_id'     => $request->assigned_employee_id,
-            'linked_employee'          => $request->linked_employee,
-            'linked_employee_id'       => $request->linked_employee_id,
+            'linked_associate_partner' => $request->linked_associate_partner,
+            'linked_associate_partner_id' => $request->linked_associate_partner_id,
             'comments'                 => $request->comments
         ]);
 

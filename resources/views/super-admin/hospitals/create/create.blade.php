@@ -189,86 +189,37 @@
                                 </div>
 
                                 <div class="col-md-6 mt-3">
-                                    <label for="associate_partner_id">Associate Partner ID <span
-                                        class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="associate_partner_id"
-                                        name="associate_partner_id" placeholder="Enter associate partner ID"
-                                        value="{{ old('associate_partner_id') }}">
-                                    @error('associate_partner_id')
+                                    <label for="linked_associate_partner">Associate Partner Company Name <span
+                                            class="text-danger">*</span></label>
+                                    <select class="form-control select2" id="linked_associate_partner" name="linked_associate_partner"
+                                        data-toggle="select2" onchange="setLinkedAssociatePartnerId()">
+                                        <option value="">Select Associate Partner</option>
+                                        @foreach ($associates as $associate)
+                                            <option value="{{ $associate->id }}"
+                                                {{ old('linked_associate_partner') == $associate->id ? 'selected' : '' }}
+                                                data-id="{{ $associate->associate_partner_id }}">
+                                                [<strong>Name: </strong>{{ $associate->name }}]
+                                                [<strong>City: </strong>{{ $associate->city }}]
+                                                [<strong>State: </strong>{{ $associate->state }}]</option>
+                                        @endforeach
+                                    </select>
+                                    @error('linked_associate_partner')
+                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6 mt-3">
+                                    <label for="linked_associate_partner_id">Associate Partner ID <span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="linked_associate_partner_id"
+                                        name="linked_associate_partner_id" placeholder="Enter Associate Partner Id"
+                                        value="{{ old('linked_associate_partner_id') }}">
+                                    @error('linked_associate_partner_id')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
 
-                                <div class="col-md-6 mt-3">
-                                    <label for="associate_partner_name">Associate Partner Name <span
-                                        class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="associate_partner_id"
-                                        name="associate_partner_name" placeholder="Enter associate partner name"
-                                        value="{{ old('associate_partner_name') }}">
-                                    @error('associate_partner_name')
-                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                    @enderror
-                                </div>
 
-                                <div class="col-md-6 mt-3">
-                                    <label for="assigned_employee">Assigned To Employee Name <span
-                                            class="text-danger">*</span></label>
-                                    <select class="form-control select2" id="assigned_employee" name="assigned_employee"
-                                        data-toggle="select2" onchange="setAssignedEmployeeId()">
-                                        <option value="">Select Assigned To Employee</option>
-                                        @foreach ($users as $user)
-                                            <option value="{{ $user->id }}"
-                                                {{ old('assigned_employee') == $user->id ? 'selected' : '' }}
-                                                data-id="{{ $user->employee_code }}">
-                                                [<strong>Name: </strong>{{ $user->firstname }}{{ $user->lastname }}]
-                                                [<strong>UID: </strong>{{ $user->employee_code }}]
-                                                [<strong>Department: </strong>{{ $user->department }}]</option>
-                                        @endforeach
-                                    </select>
-                                    @error('assigned_employee')
-                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="col-md-6 mt-3">
-                                    <label for="assigned_employee_id">Assigned To Employee ID <span
-                                            class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="assigned_employee_id"
-                                        name="assigned_employee_id" placeholder="Enter assigned to employee ID"
-                                        value="{{ old('assigned_employee_id') }}">
-                                    @error('assigned_employee_id')
-                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="col-md-6 mt-3">
-                                    <label for="linked_employee">Linked With Employee Name <span
-                                            class="text-danger">*</span></label>
-                                    <select class="form-control select2" id="linked_employee" name="linked_employee"
-                                        data-toggle="select2" onchange="setLinkedWithEmployeeId()">
-                                        <option value="">Select Linked With Employee</option>
-                                        @foreach ($users as $user)
-                                            <option value="{{ $user->id }}"
-                                                {{ old('linked_employee') == $user->id ? 'selected' : '' }}
-                                                data-id="{{ $user->employee_code }}">
-                                                [<strong>Name: </strong>{{ $user->firstname }}{{ $user->lastname }}]
-                                                [<strong>UID: </strong>{{ $user->employee_code }}]
-                                                [<strong>Department: </strong>{{ $user->department }}]
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('linked_employee')
-                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="col-md-6 mt-3">
-                                    <label for="linked_employee_id">Linked With Employee ID <span
-                                            class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="linked_employee_id"
-                                        name="linked_employee_id" placeholder="Enter linked with employee ID"
-                                        value="{{ old('linked_employee_id') }}">
-                                    @error('linked_employee_id')
-                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                    @enderror
-                                </div>
+                                
                                 <div class="col-md-12 mt-3">
                                     <label for="comments">Comments </label>
                                     <textarea class="form-control" id="comments" name="comments" maxlength="250" placeholder="Comments" rows="4">{{ old('comments') }}</textarea>
@@ -304,5 +255,23 @@
             var linked_employee = $("#linked_employee").select2().find(":selected").data("id");
             $('#linked_employee_id').val(linked_employee);
         }
+        
+        var byI = "{{ old('by') }}";
+
+        if(byI == 'Direct'){
+            $("#linked_associate_partner").attr('disabled',true);
+            $("#linked_associate_partner_id").attr('disabled',true);
+        }
+
+        $('#by').on('change', function(){
+            if($(this).val() == 'Direct'){
+                $("#linked_associate_partner").attr('disabled',true);
+                $("#linked_associate_partner_id").attr('disabled',true);
+            }else{
+                $("#linked_associate_partner").attr('disabled',false);
+                $("#linked_associate_partner_id").attr('disabled',false);
+            }
+        });
+
     </script>
 @endpush
