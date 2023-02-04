@@ -1038,50 +1038,6 @@ class HospitalController extends Controller
         return redirect()->back()->with('success', 'Hospital updated successfully');
     }
 
-    public function updateHospitalEmpanelmentStatus(Request $request, $id)
-    {
-        $hospital             = Hospital::find($id);
-
-        $rules = [
-            'specialization'              => 'required',
-            'doctors_name'                => 'required',
-            'registration_no'             => 'required|max:20',
-            'email_id'                    => 'required|email|max:45',
-            'doctors_mobile_no'           => 'required|numeric|digits:10',
-        ];
-
-        $messages = [
-            'specialization.required'            => 'Please Enter Specialization',
-            'doctors_name.required'              => 'Please Enter Doctors Name',
-            'registration_no.required'           => 'Please Enter Registration No.',
-            'email_id.required'                  => 'Please Enter Email ID',
-            'doctors_mobile_no.required'         => 'Please Enter Doctors Mobile No.',
-        ];
-
-        $this->validate($request, $rules, $messages);
-
-        HospitalDepartment::updateOrCreate([
-            'hospital_id' => $id],
-            [
-                'specialization'             => $request->specialization,
-                'doctors_name'               => $request->doctors_name,
-                'registration_no'            => $request->registration_no,
-                'email_id'                   => $request->email_id,
-                'doctors_mobile_no'          => $request->doctors_mobile_no,
-        ]);
-
-        if ($request->hasfile('upload')) {
-            $upload                    = $request->file('upload');
-            $name                       = $upload->getClientOriginalName();
-            $upload->storeAs('uploads/hospital/empanelment_status/' . $hospital->id . '/', $name, 'public');
-            HospitalDepartment::where('hospital_id', $hospital->id)->update([
-                'upload'               =>  $name
-            ]);
-        }
-
-        return redirect()->back()->with('success', 'Hospital updated successfully');
-    }
-
     /**
      * Remove the specified resource from storage.
      *

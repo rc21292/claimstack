@@ -20,7 +20,7 @@
                 </div>
             </div>
         </div>
-        @include('admin.sections.flash-message')
+        @include('associate.sections.flash-message')
         <!-- end page title -->
         
         <!-- start page content -->
@@ -89,25 +89,25 @@
 
                         <div class="tab-content">
                             <div class="tab-pane show active" id="hospital_details">
-                                @include('admin.hospitals.edit.tabs.hospital-details')
+                                @include('associate.hospitals.edit.tabs.hospital-details')
                             </div>
                             <div class="tab-pane" id="hospital_tie_up_details">
-                                @include('admin.hospitals.edit.tabs.hospital-tie-up-details')
+                                @include('associate.hospitals.edit.tabs.hospital-tie-up-details')
                             </div>
                             <div class="tab-pane" id="hospital_facilities">
-                                @include('admin.hospitals.edit.tabs.hospital-facilities')
+                                @include('associate.hospitals.edit.tabs.hospital-facilities')
                             </div>
                             <div class="tab-pane" id="hospital_infrastructures">
-                                @include('admin.hospitals.edit.tabs.hospital-infrastructures')
+                                @include('associate.hospitals.edit.tabs.hospital-infrastructures')
                             </div>
                             <div class="tab-pane" id="hospital_department">
-                                @include('admin.hospitals.edit.tabs.hospital-department')
+                                @include('associate.hospitals.edit.tabs.hospital-department')
                             </div>
                             <div class="tab-pane" id="empanelment_status">
-                                @include('admin.hospitals.edit.tabs.hospital-empanelment-status')
+                                @include('associate.hospitals.edit.tabs.hospital-empanelment-status')
                             </div>
                             <div class="tab-pane" id="negative_isting">
-                                @include('admin.hospitals.edit.tabs.hospital-negative-listing-status')
+                                @include('associate.hospitals.edit.tabs.hospital-negative-listing-status')
                             </div>
                         </div>
                     </div>

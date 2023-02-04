@@ -28,7 +28,7 @@
             <div class="col-12">
                 <div class="card no-shadow">
                     <div class="card-body">
-                        <form action="{{ route('super-admin.hospitals.store') }}" method="post" id="hospital-form"
+                        <form action="{{ route('hospital.hospitals.store') }}" method="post" id="hospital-form"
                             enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
