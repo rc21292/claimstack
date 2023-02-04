@@ -31,6 +31,7 @@ class Hospital extends Authenticatable
         'panfile',
         'email',
         'password',
+        'code',
         'landline',
         'phone',
         'rohini',
