@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('panfile')->nullable();
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('code')->nullable();
             $table->string('landline')->nullable();
             $table->string('phone')->nullable();
             $table->string('rohini')->nullable();

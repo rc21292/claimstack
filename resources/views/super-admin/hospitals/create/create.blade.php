@@ -151,13 +151,24 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="landline">Hospital Landline Number <span
-                                            class="text-danger">*</span></label>
-                                    <input type="number" class="form-control" id="landline" name="landline"
-                                        placeholder="Enter hospital landline number" value="{{ old('landline') }}">
-                                    @error('landline')
+                                        class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <div class="col-3">
+                                                <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length>=3) return false;" class="form-control input-md" id="code" name="code"
+                                                placeholder="Code" value="{{ old('code') }}">
+                                            </div>
+                                            <div class="col-9">
+                                                <input type="number" class="form-control" id="landline" name="landline"
+                                                placeholder="Enter hospital landline number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length >= 10) return false;" value="{{ old('landline') }}">
+                                            </div>
+                                        </div>
+                                        @error('code')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                    @enderror
-                                </div>
+                                        @enderror
+                                        @error('landline')
+                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
 
 
 
