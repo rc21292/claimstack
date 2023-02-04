@@ -72,7 +72,7 @@ class HospitalController extends Controller
             'panfile'                  => ($request->onboarding == 'Tie Up') ? 'required' : [],
             'rohini'                   => 'required|size:13',
             'rohinifile'              =>   'required',
-            'landline'                 => 'required|numeric|digits:10',
+            'landline'                 => 'required|numeric|digits_between:3,13',
             'email'                    => 'required|unique:hospitals|min:1|max:45',
             'address'                  => 'required',
             'city'                     => 'required',
