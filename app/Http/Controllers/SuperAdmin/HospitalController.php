@@ -65,7 +65,7 @@ class HospitalController extends Controller
         $rules = [
             'name'                     => 'required|min:1|max:60',
             'firstname'                => ($request->onboarding == 'Tie Up') ? 'required|min:1|max:15' : [],
-            'lasttname'                => ($request->onboarding == 'Tie Up') ? 'required|min:1|max:30' : [],
+            'lastname'                => ($request->onboarding == 'Tie Up') ? 'required|min:1|max:30' : [],
             'onboarding'               => 'required',
             'by'                       => 'required',
             'pan'                      => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|size:10' : [],
