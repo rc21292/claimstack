@@ -120,16 +120,27 @@
             @enderror
         </div>
 
+
         <div class="col-md-6 mt-3">
-            <label for="landline">Hospital Landline Number <span class="text-danger">*</span></label>
-            <input type="number" class="form-control" id="landline" name="landline"
-                placeholder="Enter hospital landline number" value="{{ old('landline', $hospital->landline) }}">
-            @error('landline')
+            <label for="landline">Hospital Landline Number <span
+                class="text-danger">*</span></label>
+                <div class="input-group">
+                    <div class="col-3">
+                        <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length>=3) return false;" class="form-control input-md" id="code" name="code"
+                        placeholder="Code" value="{{ old('code', $hospital->code) }}">
+                    </div>
+                    <div class="col-9">
+                        <input type="number" class="form-control" id="landline" name="landline"
+                        placeholder="Enter hospital landline number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length >= 10) return false;" value="{{ old('landline', $hospital->landline) }}">
+                    </div>
+                </div>
+                @error('code')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
+                @enderror
+                @error('landline')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
         </div>
-
-
 
         <div class="col-md-6 mt-3">
             <label for="phone">Hospital Mobile Number <span class="text-danger">*</span></label>
@@ -518,8 +529,15 @@
         <div class="col-md-6 mt-3">
             <label for="other_documents">Hospital Hospital Other Documents <span class="text-danger">*</span></label>
             <div class="input-group">
-                <input type="text" class="form-control" id="other_documents" name="other_documents"
-                    placeholder="Hospital Hospital Other Documents" value="{{ old('other_documents', $hospital->other_documents) }}">
+
+                <select class="form-select" id="other_documents" name="other_documents">
+                    <option value="">Select</option>
+                    <option value="Yes" {{ old('other_documents', $hospital->other_documents) == 'Yes' ? 'selected' : '' }}>Yes
+                    </option>
+                    <option value="No"
+                    {{ old('other_documents', $hospital->other_documents) == 'No' ? 'selected' : '' }}>No
+                </option>
+            </select>
                 <input type="file" name="other_documents_file" id="other_documents_file" hidden />
                 <label for="other_documents_file" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>

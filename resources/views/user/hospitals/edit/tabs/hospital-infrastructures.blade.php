@@ -248,8 +248,6 @@
             @enderror
         </div>
 
-
-
         <div class="col-md-6 mt-3">
             <label for="hippa_status">HIPPA Status <span class="text-danger">*</span></label>
             <div class="input-group">

@@ -1,4 +1,4 @@
-<form action="{{ route('super-admin.hospitals.infrastructures', $hospital->id) }}" method="post" id="hospital-infrastructures-form"
+<form action="{{ route('hospital.hospitals.infrastructures', $hospital->id) }}" method="post" id="hospital-infrastructures-form"
     enctype="multipart/form-data">
     @csrf
     @method('PUT')
