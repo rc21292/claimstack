@@ -72,12 +72,14 @@
                             <a href="{{ route('user.users.create') }}">Create User</a>
                         </li>
                         @endif
+                        @if(auth()->check() && auth()->user()->hasDirectPermission('User Updation/Editing Rights'))
                         <li>
                             <a href="{{ route('user.users.index') }}">Manage User</a>
                         </li>
                         <li>
                             <a href="{{ route('user.users.import-export') }}">Import Export Users</a>
                         </li>
+                        @endif
                     </ul>
                 </div>
             </li>
@@ -107,7 +109,6 @@
                         @endif
                     </ul>
                 </div>
-                @endif
             </li>
 
             <li class="side-nav-item">
@@ -117,7 +118,6 @@
                     <span> Hospital </span>
                     <span class="menu-arrow"></span>
                 </a>
-                @if(auth()->check() && auth()->user()->hasDirectPermission('Hospital Module Creation/Editing Rights'))
                 <div class="collapse" id="hospitalModule">
                     <ul class="side-nav-second-level">
                         @if(auth()->check() && auth()->user()->hasDirectPermission('Hospital Login ID Creation Rights'))
@@ -125,20 +125,19 @@
                             <a href="{{ route('user.hospitals.create') }}">Create Hospital ID</a>
                         </li>
                         @endif
+                        @if(auth()->check() && auth()->user()->hasDirectPermission('Hospital Details Updation/Editing Rights'))
                         <li>
                             <a href="{{ route('user.hospitals.index') }}">Manage Hospital Profile</a>
                         </li>
-
                         <li>
                             <a href="{{ route('user.hospitals.import-export') }}">Import Export Hospitals</a>
                         </li>
-
+                        @endif
                         <li>
                             <a href="{{ route('user.claims.index') }}">Claims</a>
                         </li>
                     </ul>
                 </div>
-                @endif
             </li>
 
             <li class="side-nav-item">
@@ -148,7 +147,6 @@
                     <span> Insurer </span>
                     <span class="menu-arrow"></span>
                 </a>
-                @if(auth()->check() && auth()->user()->hasDirectPermission('Insurance Co. Module Creation/Editing Rights'))
                 <div class="collapse" id="insurer">
                     <ul class="side-nav-second-level">
                         @if(auth()->check() && auth()->user()->hasDirectPermission('Insurance Co. Login ID Creation Rights'))
@@ -161,7 +159,6 @@
                         </li>
                     </ul>
                 </div>
-                @endif
             </li>
 
             <li class="side-nav-item">

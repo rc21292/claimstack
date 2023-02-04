@@ -72,12 +72,14 @@
                             <a href="{{ route('admin.users.create') }}">Create User</a>
                         </li>
                         @endif
+                        @if(auth()->check() && auth()->user()->hasDirectPermission('User Updation/Editing Rights'))
                         <li>
                             <a href="{{ route('admin.users.index') }}">Manage User</a>
                         </li>
                         <li>
                             <a href="{{ route('admin.users.import-export') }}">Import Export Users</a>
                         </li>
+                        @endif
                     </ul>
                 </div>
             </li>
@@ -89,7 +91,6 @@
                     <span> Associate Partner </span>
                     <span class="menu-arrow"></span>
                 </a>
-                @if(auth()->check() && auth()->user()->hasDirectPermission('Associate Partner Module Creation/Editing Rights'))
                 <div class="collapse" id="associatePartner">
                     <ul class="side-nav-second-level">
                         @if(auth()->check() && auth()->user()->hasDirectPermission('Associate Partner Login ID Creation Rights'))
@@ -97,6 +98,7 @@
                             <a href="{{ route('admin.associate-partners.create') }}">Create Associate Partner</a>
                         </li>
                         @endif
+                        @if(auth()->check() && auth()->user()->hasDirectPermission('Associate Partner Updation/Editing Rights'))
                         <li>
                             <a href="{{ route('admin.associate-partners.index') }}">Manage Associate Partner</a>
                         </li>
@@ -104,9 +106,9 @@
                             <a href="{{ route('admin.associate-partners.import-export') }}">Import Export Associate
                                 Partner</a>
                         </li>
+                        @endif
                     </ul>
                 </div>
-                @endif
             </li>
 
             <li class="side-nav-item">
@@ -116,7 +118,6 @@
                     <span> Hospital </span>
                     <span class="menu-arrow"></span>
                 </a>
-                @if(auth()->check() && auth()->user()->hasDirectPermission('Hospital Module Creation/Editing Rights'))
                 <div class="collapse" id="hospitalModule">
                     <ul class="side-nav-second-level">
                         @if(auth()->check() && auth()->user()->hasDirectPermission('Hospital Login ID Creation Rights'))
@@ -124,15 +125,16 @@
                             <a href="{{ route('admin.hospitals.create') }}">Create Hospital ID</a>
                         </li>
                         @endif
+                        @if(auth()->check() && auth()->user()->hasDirectPermission('Hospital Details Updation/Editing Rights'))
                         <li>
                             <a href="{{ route('admin.hospitals.index') }}">Manage Hospital Profile</a>
                         </li>
                         <li>
                             <a href="{{ route('admin.hospitals.import-export') }}">Import Export Hospitals</a>
                         </li>
+                        @endif
                     </ul>
                 </div>
-                @endif
             </li>
 
             <li class="side-nav-item">

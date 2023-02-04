@@ -163,13 +163,16 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="phone">Hospital Mobile Number <span
-                                            class="text-danger">*</span></label>
-                                    <input type="number" class="form-control" id="phone" name="phone"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"
-                                        placeholder="Enter hospital mobile number" value="{{ old('phone') }}">
-                                    @error('phone')
+                                        class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <label class="input-group-text" for="phone">+91</label>
+                                            <input type="number" class="form-control" id="phone" name="phone"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"
+                                            placeholder="Enter hospital mobile number" value="{{ old('phone') }}">
+                                        </div>
+                                        @error('phone')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                    @enderror
-                                </div>
+                                        @enderror
+                                    </div>
 
                                 <div class="col-md-12 mt-3">
                                     <label for="rohini">Rohini Code <span class="text-danger">*</span></label>
