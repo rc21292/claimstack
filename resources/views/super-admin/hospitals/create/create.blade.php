@@ -195,8 +195,8 @@
                                         data-toggle="select2" onchange="setLinkedAssociatePartnerId()">
                                         <option value="">Select Associate Partner</option>
                                         @foreach ($associates as $associate)
-                                            <option value="{{ $associate->id }}"
-                                                {{ old('linked_associate_partner') == $associate->id ? 'selected' : '' }}
+                                            <option value="{{ $associate->name }}"
+                                                {{ old('linked_associate_partner') == $associate->name ? 'selected' : '' }}
                                                 data-id="{{ $associate->associate_partner_id }}">
                                                 [<strong>Name: </strong>{{ $associate->name }}]
                                                 [<strong>City: </strong>{{ $associate->city }}]
@@ -255,7 +255,7 @@
             var linked_employee = $("#linked_employee").select2().find(":selected").data("id");
             $('#linked_employee_id').val(linked_employee);
         }
-        
+
         var byI = "{{ old('by') }}";
 
         if(byI == 'Direct'){
