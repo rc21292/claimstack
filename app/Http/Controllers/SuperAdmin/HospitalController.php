@@ -452,33 +452,33 @@ class HospitalController extends Controller
         $hospital             = Hospital::find($id);
 
         $rules = [
-            'mou_inception_date'                     => isset($request->mou_inception_date)?'required':'',
-            'bhc_packages_for_surgical_procedures_accepted'                => 'required',
-            'discount_on_medical_management_cases'               => 'required',
-            'discount_on_final_bill'                       => 'required_if:discount_on_medical_management_cases,Yes|numeric|digits_between:1,2',
-            'discount_on_room_rent'                      => 'required_if:discount_on_medical_management_cases,Yes|numeric|digits_between:1,2',
-            'discount_on_medicines'                   => 'required_if:discount_on_medical_management_cases,Yes|numeric|digits_between:1,2',
-            'discount_on_consumables'                 => 'required_if:discount_on_medical_management_cases,Yes|numeric|digits_between:1,2',
-            'referral_commission_offered'                    => 'required',
-            'referral'                  => 'required_if:referral_commission_offered,Yes|numeric|digits_between:1,2',
-            'claimstag_usage_services'                     => 'required',
-            'claimstag_installation_charges'                    => 'required|numeric|digits_between:1,6',
-            'claimstag_usage_charges'                  => 'required||numeric|digits_between:1,6',
-            'claims_reimbursement_insured_services'                    => 'required',
-            'claims_reimbursement_insured_service_charges'     => 'required|numeric|digits_between:1,2',
-            'cashless_claims_management_services' => 'required',
-            'cashless_claims_management_services_charges' => 'required|numeric|digits_between:1,2',
-            'lending_finance_company_agreement' => 'required',
-            'lending_finance_company_agreement_date' => 'required_if:lending_finance_company_agreement,Yes',
-            'medical_lending_for_patients' => 'required_if:lending_finance_company_agreement,Yes',
-            'medical_lending_service_type' => 'required_if:lending_finance_company_agreement,Yes',
-            'subvention' => 'required_if:lending_finance_company_agreement,Yes|numeric:digits_between:1,2',
-            'medical_lending_for_bill_invoice_discounting' => 'required_if:lending_finance_company_agreement,Yes',
-            'comments_on_invoice_discounting' => 'required_if:lending_finance_company_agreement,Yes|max:40',
-            'hospital_management_system_installation' => 'required',
-            'hms_services' => 'required_if:hospital_management_system_installation,Yes',
-            'hms_charges' => 'required_if:hospital_management_system_installation,Yes|numeric',
-            'comments' => 'required|string|max:250',
+            'mou_inception_date' => ($hospital->onboarding == 'Tie Up' && $hospital->signed_mous_file) ? 'required' : [],
+            'bhc_packages_for_surgical_procedures_accepted' => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'discount_on_medical_management_cases' => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'discount_on_final_bill' => ($hospital->onboarding == 'Tie Up') ? 'required_if:discount_on_medical_management_cases,Yes|numeric|digits_between:1,2' : [],
+            'discount_on_room_rent' => ($hospital->onboarding == 'Tie Up') ? 'required_if:discount_on_medical_management_cases,Yes|numeric|digits_between:1,2' : [],
+            'discount_on_medicines' => ($hospital->onboarding == 'Tie Up') ? 'required_if:discount_on_medical_management_cases,Yes|numeric|digits_between:1,2' : [],
+            'discount_on_consumables' => ($hospital->onboarding == 'Tie Up') ? 'required_if:discount_on_medical_management_cases,Yes|numeric|digits_between:1,2' : [],
+            'referral_commission_offered' => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'referral' => ($hospital->onboarding == 'Tie Up') ? 'required_if:referral_commission_offered,Yes|numeric|digits_between:1,2' : [],
+            'claimstag_usage_services'                     => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'claimstag_installation_charges'                    => ($hospital->onboarding == 'Tie Up') ? 'required|numeric|digits_between:1,6' : [],
+            'claimstag_usage_charges'                  => ($hospital->onboarding == 'Tie Up') ? 'required||numeric|digits_between:1,6' : [],
+            'claims_reimbursement_insured_services'                    => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'claims_reimbursement_insured_service_charges'     => ($hospital->onboarding == 'Tie Up') ? 'required|numeric|digits_between:1,2' : [],
+            'cashless_claims_management_services' => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'cashless_claims_management_services_charges' => ($hospital->onboarding == 'Tie Up') ? 'required|numeric|digits_between:1,2' : [],
+            'lending_finance_company_agreement' => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'lending_finance_company_agreement_date' => ($hospital->onboarding == 'Tie Up') ? 'required_if:lending_finance_company_agreement,Yes' : [],
+            'medical_lending_for_patients' => ($hospital->onboarding == 'Tie Up') ? 'required_if:lending_finance_company_agreement,Yes' : [],
+            'medical_lending_service_type' => ($hospital->onboarding == 'Tie Up') ? 'required_if:lending_finance_company_agreement,Yes' : [],
+            'subvention' => ($hospital->onboarding == 'Tie Up') ? 'required_if:lending_finance_company_agreement,Yes|numeric:digits_between:1,2' : [],
+            'medical_lending_for_bill_invoice_discounting' => ($hospital->onboarding == 'Tie Up') ? 'required_if:lending_finance_company_agreement,Yes' : [],
+            'comments_on_invoice_discounting' => ($hospital->onboarding == 'Tie Up') ? 'required_if:lending_finance_company_agreement,Yes|max:40' : [],
+            'hospital_management_system_installation' => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'hms_services' => ($hospital->onboarding == 'Tie Up') ? 'required_if:hospital_management_system_installation,Yes' : [],
+            'hms_charges' => ($hospital->onboarding == 'Tie Up') ? 'required_if:hospital_management_system_installation,Yes|numeric' : [],
+            'comments' => ($hospital->onboarding == 'Tie Up') ? 'required|string|max:250' : [],
         ];
 
         $messages = [
@@ -557,27 +557,27 @@ class HospitalController extends Controller
         $hospital             = Hospital::find($id);
 
         $rules = [
-            'pharmacy'                     => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'lab'                => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'ambulance'               => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'operation_theatre'                       => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'icu'                      => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'iccu'                   => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'nicu'                 => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'csc_sterilization'                    => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'centralized_gas_ons'                  => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'centralized_ac'                     => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'kitchen'                    => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'usg_machine'                  => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'digital_xray'                    => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'ct'     => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'mri' => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'pet_scan' => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'organ_transplant_unit' => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'burn_unit' => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'dialysis_unit' => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'blood_bank' => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'hospital_facility_comments' => ($request->onboarding == 'Tie Up') ? 'required' : []
+            'pharmacy'                     => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'lab'                => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'ambulance'               => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'operation_theatre'                       => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'icu'                      => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'iccu'                   => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'nicu'                 => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'csc_sterilization'                    => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'centralized_gas_ons'                  => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'centralized_ac'                     => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'kitchen'                    => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'usg_machine'                  => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'digital_xray'                    => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'ct'     => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'mri' => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'pet_scan' => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'organ_transplant_unit' => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'burn_unit' => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'dialysis_unit' => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'blood_bank' => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'hospital_facility_comments' => ($hospital->onboarding == 'Tie Up') ? 'required' : []
         ];
 
         $messages = [
@@ -816,7 +816,7 @@ class HospitalController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('success', 'HospitalFacility updated hospital_successfully');
+        return redirect()->back()->with('success', 'Hospital Facility updated successfully');
     }
 
 
@@ -826,26 +826,26 @@ class HospitalController extends Controller
         $hospital             = Hospital::find($id);
 
         $rules = [
-            'city_category'                     => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'hospital_type'                => ($request->onboarding == 'Tie Up') ? 'required|string|max:25' : [],
-            'hospital_category'               => ($request->onboarding == 'Tie Up') ? 'required|string|max:25' : [],
-            'no_of_beds'                       => ($request->onboarding == 'Tie Up') ? 'required|numeric|digits_between:1,3' : [],
-            'no_of_ots'                      => ($request->onboarding == 'Tie Up') ? 'required|numeric|digits_between:1,3' : [],
-            'no_of_modular_ots'                   => ($request->onboarding == 'Tie Up') ? 'required|numeric|digits_between:1,3' : [],
-            'no_of_icus'                 => ($request->onboarding == 'Tie Up') ? 'required|numeric|digits_between:1,3' : [],
-            'no_of_iccus'                    => ($request->onboarding == 'Tie Up') ? 'required|numeric|digits_between:1,3' : [],
-            'no_of_nicus'                  => ($request->onboarding == 'Tie Up') ? 'required|numeric|digits_between:1,3' : [],
-            'no_of_rmos'                     => ($request->onboarding == 'Tie Up') ? 'required|numeric|digits_between:1,4' : [],
-            'no_of_nurses'                    => ($request->onboarding == 'Tie Up') ? 'required|numeric|digits_between:1,4' : [],
-            'nabl_approved_lab'                  => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'no_of_dialysis_units'                    => ($request->onboarding == 'Tie Up') ? 'required|numeric|digits_between:1,3' : [],
-            'no_ambulance_normal'     => ($request->onboarding == 'Tie Up') ? 'required|numeric|digits_between:1,3' : [],
-            'no_ambulance_acls' => ($request->onboarding == 'Tie Up') ? 'required|numeric|digits_between:1,3' : [],
-            'nabh_status' => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'jci_status' => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'nqac_nhsrc_status' => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'hippa_status' => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'comments' => ($request->onboarding == 'Tie Up') ? 'required|string|max:250' : []
+            'city_category'                     => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'hospital_type'                => ($hospital->onboarding == 'Tie Up') ? 'required|string|max:25' : [],
+            'hospital_category'               => ($hospital->onboarding == 'Tie Up') ? 'required|string|max:25' : [],
+            'no_of_beds'                       => ($hospital->onboarding == 'Tie Up') ? 'required|numeric|digits_between:1,3' : [],
+            'no_of_ots'                      => ($hospital->onboarding == 'Tie Up') ? 'required|numeric|digits_between:1,3' : [],
+            'no_of_modular_ots'                   => ($hospital->onboarding == 'Tie Up') ? 'required|numeric|digits_between:1,3' : [],
+            'no_of_icus'                 => ($hospital->onboarding == 'Tie Up') ? 'required|numeric|digits_between:1,3' : [],
+            'no_of_iccus'                    => ($hospital->onboarding == 'Tie Up') ? 'required|numeric|digits_between:1,3' : [],
+            'no_of_nicus'                  => ($hospital->onboarding == 'Tie Up') ? 'required|numeric|digits_between:1,3' : [],
+            'no_of_rmos'                     => ($hospital->onboarding == 'Tie Up') ? 'required|numeric|digits_between:1,4' : [],
+            'no_of_nurses'                    => ($hospital->onboarding == 'Tie Up') ? 'required|numeric|digits_between:1,4' : [],
+            'nabl_approved_lab'                  => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'no_of_dialysis_units'                    => ($hospital->onboarding == 'Tie Up') ? 'required|numeric|digits_between:1,3' : [],
+            'no_ambulance_normal'     => ($hospital->onboarding == 'Tie Up') ? 'required|numeric|digits_between:1,3' : [],
+            'no_ambulance_acls' => ($hospital->onboarding == 'Tie Up') ? 'required|numeric|digits_between:1,3' : [],
+            'nabh_status' => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'jci_status' => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'nqac_nhsrc_status' => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'hippa_status' => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'comments' => ($hospital->onboarding == 'Tie Up') ? 'required|string|max:250' : []
         ];
 
         $messages = [
