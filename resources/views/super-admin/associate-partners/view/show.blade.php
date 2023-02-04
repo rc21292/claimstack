@@ -53,12 +53,12 @@
                                         <table class="table">
                                             <tbody>
                                                 <tr>
-                                                    <td><a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->panfile) }}" >Associate Partner Pan Number</a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->panfile) }}" >Associate Partner Pan Number</a></td>
                                                     <td><a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->panfile) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
                                                 <tr>
-                                                    <td><a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->cancel_cheque_file) }}" >Cancel Cheque</a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->cancel_cheque_file) }}" >Cancel Cheque</a></td>
                                                     <td><a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->cancel_cheque_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>                  
@@ -69,7 +69,7 @@
                                         <table class="table">
                                             <tbody>
                                                 <tr>
-                                                    <td><a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->moufile) }}">MOU</a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->moufile) }}">MOU</a></td>
                                                     <td><a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->moufile) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>                 
