@@ -33,6 +33,7 @@ class HospitalController extends Controller
         $id = Auth::user()->id;
         $hospital          = Hospital::find($id);
         $insurers          = Insurer::all();
+        $associates = AssociatePartner::get(['name', 'city', 'state', 'id', 'associate_partner_id']);
         $hospital_tie_ups          = HospitalTieUp::where('hospital_id', $id)->first();
         if (!$hospital_tie_ups) {
             HospitalTieUp::create(['hospital_id'=> $id]);
@@ -47,7 +48,7 @@ class HospitalController extends Controller
         $hospital_department          = HospitalDepartment::where('hospital_id', $id)->first();
         $hospitals         = Hospital::get();
         $users              = User::get();
-        return view('hospital.hospitals.edit.edit',  compact('hospital', 'hospitals', 'hospital_facility', 'hospital_nfrastructure', 'hospital_department', 'hospital_tie_ups', 'users', 'insurers'));
+        return view('hospital.hospitals.edit.edit',  compact('hospital', 'associates', 'hospitals', 'hospital_facility', 'hospital_nfrastructure', 'hospital_department', 'hospital_tie_ups', 'users', 'insurers'));
     }
 
     /**
@@ -195,6 +196,7 @@ class HospitalController extends Controller
     {
         $hospital          = Hospital::find($id);
         $insurers          = Insurer::all();
+        $associates = AssociatePartner::get(['name', 'city', 'state', 'id', 'associate_partner_id']);
         $hospital_tie_ups          = HospitalTieUp::where('hospital_id', $id)->first();
         if (!$hospital_tie_ups) {
             HospitalTieUp::create(['hospital_id'=> $id]);
@@ -209,7 +211,7 @@ class HospitalController extends Controller
         $hospital_department          = HospitalDepartment::where('hospital_id', $id)->first();
         $hospitals         = Hospital::get();
         $users              = User::get();
-        return view('hospital.hospitals.edit.edit',  compact('hospital', 'hospitals', 'hospital_facility', 'hospital_nfrastructure', 'hospital_department', 'hospital_tie_ups', 'users', 'insurers'));
+        return view('hospital.hospitals.edit.edit',  compact('hospital', 'associates', 'hospitals', 'hospital_facility', 'hospital_nfrastructure', 'hospital_department', 'hospital_tie_ups', 'users', 'insurers'));
     }
 
     /**
@@ -225,21 +227,25 @@ class HospitalController extends Controller
 
 
         $rules = [
-            'name'                     => 'required',
-            'firstname'                => 'required',
+            'name'                     => 'required|min:1|max:60',
+            'firstname'                => ($request->onboarding == 'Tie Up') ? 'required|min:1|max:15' : [],
+            'lastname'                => ($request->onboarding == 'Tie Up') ? 'required|min:1|max:30' : [],
             'onboarding'               => 'required',
             'by'                       => 'required',
-            'pan'                      => 'required|alpha_num|size:10',
-            'rohini'                   => 'required',
+            'pan'                      => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|size:10' : [],
+            'panfile'                  => ($request->onboarding == 'Tie Up') ? 'required' : [],
+            'rohini'                   => 'required|size:13',
+            'rohinifile'               => 'required',
             'code'                     => 'required|numeric|digits:3',
             'landline'                 => 'required|numeric|digits_between:1,10',
-            'email'                    => 'required|email|unique:hospitals,email,'.$id,
+            'email'                    => 'required|email|min:1|max:45|unique:hospitals,email,'.$id,
             'address'                  => 'required',
             'city'                     => 'required',
             'state'                    => 'required',
             'pincode'                  => 'required|numeric',
             'phone'                    => 'required|numeric|digits:10',
-            'associate_partner_id'     => 'required',
+            'linked_associate_partner_id'     => ($request->by == 'Associate Partner') ? 'required' : [],
+            'linked_associate_partner'   => ($request->by == 'Associate Partner') ? 'required' : [],
             'tan' => ($request->onboarding == 'Tie Up') ? 'required' : [],
             'gst' => ($request->onboarding == 'Tie Up') ? 'required' : [],
             'owner_email' => ($request->onboarding == 'Tie Up') ? 'required|email' : [],
@@ -335,8 +341,8 @@ class HospitalController extends Controller
             'code'                     => $request->code,
             'phone'                    => $request->phone,
             'rohini'                   => $request->rohini,
-            'linked_associate_partner' => $request->associate_partner_name,
-            'linked_associate_partner_id' => $request->associate_partner_id,
+            'linked_associate_partner' => $request->linked_associate_partner,
+            'linked_associate_partner_id' => $request->linked_associate_partner_id,
             'tan' => $request->tan,
             'gst' => $request->gst,
             'owner_email' => $request->owner_email,
