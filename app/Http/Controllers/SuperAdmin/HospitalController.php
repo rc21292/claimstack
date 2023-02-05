@@ -80,8 +80,8 @@ class HospitalController extends Controller
             'state'                    => 'required',
             'pincode'                  => 'required|numeric',
             'phone'                    => 'required|numeric|digits:10',
-            'linked_associate_partner_id'     => ($request->onboarding == 'Tie Up' && $request->by == 'Associate Partner') ? 'required' : [],
-            'linked_associate_partner'   => ($request->onboarding == 'Tie Up' && $request->by == 'Associate Partner') ? 'required' : [],
+            'linked_associate_partner_id'     => ($request->by == 'Associate Partner') ? 'required' : [],
+            'linked_associate_partner'   => ($request->by == 'Associate Partner') ? 'required' : [],
         ];
 
         $messages = [
@@ -226,8 +226,8 @@ class HospitalController extends Controller
             'state'                    => 'required',
             'pincode'                  => 'required|numeric',
             'phone'                    => 'required|numeric|digits:10',
-            'linked_associate_partner_id'     => ($request->onboarding == 'Tie Up' && $request->by == 'Associate Partner') ? 'required' : [],
-            'linked_associate_partner'   => ($request->onboarding == 'Tie Up' && $request->by == 'Associate Partner') ? 'required' : [],
+            'linked_associate_partner_id'     => ($request->by == 'Associate Partner') ? 'required' : [],
+            'linked_associate_partner'   => ($request->by == 'Associate Partner') ? 'required' : [],
             'tan' => ($request->onboarding == 'Tie Up') ? 'required' : [],
             'gst' => ($request->onboarding == 'Tie Up') ? 'required' : [],
             'owner_email' => ($request->onboarding == 'Tie Up') ? 'required|email' : [],
