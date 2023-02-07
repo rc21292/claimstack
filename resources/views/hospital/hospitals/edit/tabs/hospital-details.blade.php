@@ -237,7 +237,7 @@
 
         <div class="col-md-6 mt-3">
             <label for="owner">Hospital Owner Email ID <span class="text-danger">*</span></label>
-            <input type="owner_email" class="form-control" id="owner_email" name="owner_email"
+            <input type="email" class="form-control" id="owner_email" name="owner_email" maxlength="30"
                 placeholder="Enter hospital Owner Email ID" value="{{ old('owner_email', $hospital->owner_email) }}">
             @error('owner_email')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -248,7 +248,7 @@
             <label for="owner_phone">Hospital Owner Mobile Number <span class="text-danger">*</span></label>
             <div class="input-group">
                 <label class="input-group-text" for="phone">+91</label>
-                <input type="number" class="form-control" id="owner_phone" name="owner_phone" placeholder="Enter hospital Owner mobile number" value="{{ old('owner_phone', $hospital->owner_phone) }}">
+                <input type="number" class="form-control"   maxlength="10" id="owner_phone" name="owner_phone" placeholder="Enter hospital Owner mobile number" value="{{ old('owner_phone', $hospital->owner_phone) }}">
             </div>
             @error('owner_phone')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -268,7 +268,7 @@
 
         <div class="col-md-6 mt-3">
             <label for="contact_person_email">Contact Person Email ID <span class="text-danger">*</span></label>
-            <input type="contact_person_email" class="form-control" id="contact_person_email" name="contact_person_email"
+            <input type="email" class="form-control" id="contact_person_email" name="contact_person_email" maxlength="30"
                 placeholder="Enter hospital Owner Email ID" value="{{ old('contact_person_email', $hospital->contact_person_email) }}">
             @error('contact_person_email')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -309,7 +309,7 @@
 
         <div class="col-md-6 mt-3">
             <label for="medical_superintendent_email">Medical Superintendent Email ID <span class="text-danger">*</span></label>
-            <input type="medical_superintendent_email" class="form-control" id="medical_superintendent_email" name="medical_superintendent_email"
+            <input type="email" class="form-control" id="medical_superintendent_email" name="medical_superintendent_email" maxlength="30"
                 placeholder="Enter Medical Superintendent Email ID" value="{{ old('medical_superintendent_email', $hospital->medical_superintendent_email) }}">
             @error('medical_superintendent_email')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>

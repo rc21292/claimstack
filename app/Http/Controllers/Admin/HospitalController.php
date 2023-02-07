@@ -205,7 +205,7 @@ class HospitalController extends Controller
     public function update(Request $request, $id)
     {
         $hospital             = Hospital::find($id);
-
+        
         $rules = [
             'name'                     => 'required|min:1|max:60',
             'firstname'                => ($request->onboarding == 'Tie Up') ? 'required|min:1|max:15' : [],
