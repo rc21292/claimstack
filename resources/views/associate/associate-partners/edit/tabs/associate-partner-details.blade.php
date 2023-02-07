@@ -29,7 +29,7 @@
         </div>
 
         <div class="col-md-6 mt-1">
-            <input type="text" readonly class="form-control" id="owner_firstname" name="owner_firstname"
+            <input type="text" onkeydown="return /[a-z]/i.test(event.key)"  readonly class="form-control" id="owner_firstname" name="owner_firstname"
                 maxlength="15"  placeholder="Enter firstname" value="{{ old('owner_firstname', $associate->owner_firstname) }}">
             @error('owner_firstname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -37,7 +37,7 @@
         </div>
 
         <div class="col-md-6 mt-1">
-            <input type="text" readonly class="form-control" id="owner_lastname" name="owner_lastname" maxlength="30"
+            <input type="text" onkeydown="return /[a-z]/i.test(event.key)"  readonly class="form-control" id="owner_lastname" name="owner_lastname" maxlength="30"
                 placeholder="Enter lastname" value="{{ old('owner_lastname', $associate->owner_lastname) }}">
             @error('owner_lastname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
