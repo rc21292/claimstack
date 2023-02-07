@@ -250,7 +250,7 @@
             <label for="owner_phone">Hospital Owner Mobile Number <span class="text-danger">*</span></label>
             <div class="input-group">
                 <label class="input-group-text" for="phone">+91</label>
-                <input type="number" class="form-control" id="owner_phone" name="owner_phone" placeholder="Enter hospital Owner mobile number" value="{{ old('owner_phone', $hospital->owner_phone) }}">
+                <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" class="form-control" id="owner_phone" name="owner_phone" placeholder="Enter hospital Owner mobile number" value="{{ old('owner_phone', $hospital->owner_phone) }}">
             </div>
             @error('owner_phone')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -281,7 +281,7 @@
             <label for="contact_person_phone">Contact Person Mobile Number <span class="text-danger">*</span></label>
                 <div class="input-group">
                     <label class="input-group-text" for="phone">+91</label>
-                    <input type="number" class="form-control" id="contact_person_phone" name="contact_person_phone"  placeholder="Enter hospital Owner mobile number" value="{{ old('contact_person_phone', $hospital->contact_person_phone) }}">
+                    <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" class="form-control" id="contact_person_phone" name="contact_person_phone"  placeholder="Enter hospital Owner mobile number" value="{{ old('contact_person_phone', $hospital->contact_person_phone) }}">
                 </div>
             @error('contact_person_phone')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -322,7 +322,7 @@
             <label for="medical_superintendent_mobile">Medical Superintendent Mobile Number <span  class="text-danger">*</span></label>
             <div class="input-group">
                 <label class="input-group-text" for="phone">+91</label>
-                <input type="number" class="form-control" id="medical_superintendent_mobile" name="medical_superintendent_mobile" placeholder="Enter Medical Superintendent Mobile Number" value="{{ old('medical_superintendent_mobile', $hospital->medical_superintendent_mobile) }}">
+                <input type="number" class="form-control" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" id="medical_superintendent_mobile" name="medical_superintendent_mobile" placeholder="Enter Medical Superintendent Mobile Number" value="{{ old('medical_superintendent_mobile', $hospital->medical_superintendent_mobile) }}">
             </div>
             @error('medical_superintendent_mobile')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -351,6 +351,7 @@
 
         <div class="col-md-6 mt-3">
             <label for="pollution_clearance_certificate">Hospital Pollution Clearance Certificate <span class="text-danger">*</span></label>
+            <div class="input-group">
             <select class="form-select" id="pollution_clearance_certificate" name="pollution_clearance_certificate">
                 <option value="">Select pollution clearance certificate</option>
                 <option value="Yes" {{ old('pollution_clearance_certificate', $hospital->pollution_clearance_certificate) == 'Yes' ? 'selected' : '' }}>Yes
@@ -359,13 +360,21 @@
                     {{ old('pollution_clearance_certificate', $hospital->pollution_clearance_certificate) == 'No' ? 'selected' : '' }}>No
                 </option>
             </select>
+            <input type="file"  @if(old('pollution_clearance_certificate', $hospital->pollution_clearance_certificate) == 'No') disabled @endif name="pollution_clearance_certificate_file" id="pollution_clearance_certificate_file" hidden />
+            <label for="pollution_clearance_certificate_file" class="btn btn-primary upload-label"><i
+                class="mdi mdi-upload"></i></label>
+            </div>
             @error('pollution_clearance_certificate')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+            @error('pollution_clearance_certificate_file')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
 
         <div class="col-md-6 mt-3">
             <label for="fire_safety_clearance_certificate">Hospital Fire Safety Clearance Certificate <span class="text-danger">*</span></label>
+            <div class="input-group">
             <select class="form-select" id="fire_safety_clearance_certificate" name="fire_safety_clearance_certificate">
                 <option value="">Select Fire Safety Clearance Certificate</option>
                 <option value="Yes" {{ old('fire_safety_clearance_certificate', $hospital->fire_safety_clearance_certificate) == 'Yes' ? 'selected' : '' }}>Yes
@@ -374,7 +383,14 @@
                     {{ old('fire_safety_clearance_certificate', $hospital->fire_safety_clearance_certificate) == 'No' ? 'selected' : '' }}>No
                 </option>
             </select>
+            <input type="file"  @if(old('fire_safety_clearance_certificate', $hospital->fire_safety_clearance_certificate) == 'No') disabled @endif name="fire_safety_clearance_certificate_file" id="fire_safety_clearance_certificate_file" hidden />
+            <label for="fire_safety_clearance_certificate_file" class="btn btn-primary upload-label"><i
+                class="mdi mdi-upload"></i></label>
+            </div>
             @error('fire_safety_clearance_certificate')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+            @error('fire_safety_clearance_certificate_file')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
@@ -382,6 +398,7 @@
 
         <div class="col-md-6 mt-3">
             <label for="certificate_of_incorporation">Hospital Certificate Of Incorporation <span class="text-danger">*</span></label>
+            <div class="input-group">
             <select class="form-select" id="certificate_of_incorporation" name="certificate_of_incorporation">
                 <option value="">Select Certificate Of Incorporation</option>
                 <option value="Yes" {{ old('certificate_of_incorporation', $hospital->certificate_of_incorporation) == 'Yes' ? 'selected' : '' }}>Yes
@@ -390,7 +407,14 @@
                     {{ old('certificate_of_incorporation', $hospital->certificate_of_incorporation) == 'No' ? 'selected' : '' }}>No
                 </option>
             </select>
+            <input type="file"  @if(old('certificate_of_incorporation', $hospital->certificate_of_incorporation) == 'No') disabled @endif name="certificate_of_incorporation_file" id="certificate_of_incorporation_file" hidden />
+            <label for="certificate_of_incorporation_file" class="btn btn-primary upload-label"><i
+                class="mdi mdi-upload"></i></label>
+            </div>
             @error('certificate_of_incorporation')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+            @error('certificate_of_incorporation_file')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
@@ -564,10 +588,14 @@
 
          <div class="col-md-6 mt-3">
             <label for="hrms_software">HRMS Software <span class="text-danger">*</span></label>
-            <div class="input-group">
-                <input type="text" class="form-control" id="hrms_software" name="hrms_software"
-                    placeholder="HRMS Software" value="{{ old('hrms_software', $hospital->hrms_software) }}">
-            </div>
+                <select class="form-select" id="hrms_software" name="hrms_software">
+                    <option value="">Select</option>
+                    <option value="Yes" {{ old('hrms_software', $hospital->hrms_software) == 'Yes' ? 'selected' : '' }}>Yes
+                    </option>
+                    <option value="No"
+                    {{ old('hrms_software', $hospital->hrms_software) == 'No' ? 'selected' : '' }}>No
+                </option>
+            </select>
             @error('hrms_software')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror

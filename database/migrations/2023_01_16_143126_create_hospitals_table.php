@@ -56,8 +56,11 @@ return new class extends Migration
             $table->string('medical_superintendent_qualification')->nullable();
             $table->string('medical_superintendent_mobile')->nullable();
             $table->string('pollution_clearance_certificate')->nullable();
+            $table->string('pollution_clearance_certificate_file')->nullable();
             $table->string('fire_safety_clearance_certificate')->nullable();
+            $table->string('fire_safety_clearance_certificate_file')->nullable();
             $table->string('certificate_of_incorporation')->nullable();
+            $table->string('certificate_of_incorporation_file')->nullable();
             $table->string('bank_name')->nullable();
             $table->text('bank_address')->nullable();
             $table->text('bank_account_no')->nullable();

@@ -5,7 +5,7 @@
     <div class="form-group row">
 
         <div class="col-md-12">
-            <button style="float:right;" type="button" class="btn btn-danger show-doctors"> <i class="mdi mdi-plus"></i> Add Doctor</button>
+            <button style="float:right;" type="button" class="btn btn-success show-doctors"> <i class="mdi mdi-plus"></i> Add Doctor</button>
         </div>
         <div class="col-md-6 mt-3">
             <label for="specialization">Specialization<span class="text-danger">*</span></label>

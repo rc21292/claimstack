@@ -46,7 +46,7 @@
 
         <div class="col-md-6 mt-3">
             <label for="no_of_beds">No. of Beds <span class="text-danger">*</span></label>
-            <input type="number" class="form-control" id="no_of_beds" name="no_of_beds"
+            <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length>4) return false;" class="form-control" id="no_of_beds" name="no_of_beds"
                 placeholder="Enter No. of Beds" value="{{ old('no_of_beds', $hospital_nfrastructure->no_of_beds ?? '') }}">
             @error('no_of_beds')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -55,7 +55,7 @@
 
         <div class="col-md-6 mt-3">
             <label for="no_of_ots">No. of OT's <span class="text-danger">*</span></label>
-            <input type="number" class="form-control" id="no_of_ots" name="no_of_ots"
+            <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length>2) return false;" class="form-control" id="no_of_ots" name="no_of_ots"
                 placeholder="Enter No. of OT's" value="{{ old('no_of_ots', $hospital_nfrastructure->no_of_ots ?? '') }}">
             @error('no_of_ots')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -65,7 +65,7 @@
 
         <div class="col-md-6 mt-3">
             <label for="no_of_modular_ots">No. of Modular OT's <span class="text-danger">*</span></label>
-            <input type="number" class="form-control" id="no_of_modular_ots" name="no_of_modular_ots"
+            <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length>2) return false;" class="form-control" id="no_of_modular_ots" name="no_of_modular_ots"
                 placeholder="Enter No. of Modular OT's" value="{{ old('no_of_modular_ots', $hospital_nfrastructure->no_of_modular_ots ?? '') }}">
             @error('no_of_modular_ots')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -75,7 +75,7 @@
 
         <div class="col-md-6 mt-3">
             <label for="no_of_icus">No. of ICU's <span class="text-danger">*</span></label>
-            <input type="number" class="form-control" id="no_of_icus" name="no_of_icus"
+            <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length>2) return false;" class="form-control" id="no_of_icus" name="no_of_icus"
                 placeholder="Enter No. of ICU's" value="{{ old('no_of_icus', $hospital_nfrastructure->no_of_icus ?? '') }}">
             @error('no_of_icus')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -84,7 +84,7 @@
 
         <div class="col-md-6 mt-3">
             <label for="no_of_iccus">No. of ICCU's <span class="text-danger">*</span></label>
-            <input type="number" class="form-control" id="no_of_iccus" name="no_of_iccus"
+            <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length>2) return false;" class="form-control" id="no_of_iccus" name="no_of_iccus"
                 placeholder="Enter No. of ICCU's" value="{{ old('no_of_iccus', $hospital_nfrastructure->no_of_iccus ?? '') }}">
             @error('no_of_iccus')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -93,7 +93,7 @@
 
         <div class="col-md-6 mt-3">
             <label for="no_of_nicus">No. of NICU's<span class="text-danger">*</span></label>
-            <input type="number" class="form-control" id="no_of_nicus" name="no_of_nicus"
+            <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length>2) return false;" class="form-control" id="no_of_nicus" name="no_of_nicus"
                 placeholder="Enter No. of NICU's" value="{{ old('no_of_nicus', $hospital_nfrastructure->no_of_nicus ?? '') }}">
             @error('no_of_nicus')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -102,7 +102,7 @@
 
         <div class="col-md-6 mt-3">
             <label for="no_of_rmos">No. of RMO's<span class="text-danger">*</span></label>
-            <input type="number" class="form-control" id="no_of_rmos" name="no_of_rmos"
+            <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length>3) return false;" class="form-control" id="no_of_rmos" name="no_of_rmos"
                 placeholder="Enter No. of RMO's" value="{{ old('no_of_rmos', $hospital_nfrastructure->no_of_rmos ?? '') }}">
             @error('no_of_rmos')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -111,7 +111,7 @@
 
         <div class="col-md-6 mt-3">
             <label for="no_of_nurses">No. of Nurses <span class="text-danger">*</span></label>
-            <input type="number" class="form-control" id="no_of_nurses" name="no_of_nurses"
+            <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length>3) return false;" class="form-control" id="no_of_nurses" name="no_of_nurses"
                 placeholder="Enter No. of Nurses " value="{{ old('no_of_nurses', $hospital_nfrastructure->no_of_nurses ?? '') }}">
             @error('no_of_nurses')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -143,7 +143,7 @@
 
         <div class="col-md-6 mt-3">
             <label for="no_of_dialysis_units">No. of Dialysis Units<span class="text-danger">*</span></label>
-            <input type="number" class="form-control" id="no_of_dialysis_units" name="no_of_dialysis_units"
+            <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length>2) return false;" class="form-control" id="no_of_dialysis_units" name="no_of_dialysis_units"
                 placeholder="Enter No. of Dialysis Units" value="{{ old('no_of_dialysis_units', $hospital_nfrastructure->no_of_dialysis_units ?? '') }}">
             @error('no_of_dialysis_units')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -152,7 +152,7 @@
 
         <div class="col-md-6 mt-3">
             <label for="no_ambulance_normal">No. Ambulance - Normal<span class="text-danger">*</span></label>
-            <input type="number" class="form-control" id="no_ambulance_normal" name="no_ambulance_normal"
+            <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length>2) return false;" class="form-control" id="no_ambulance_normal" name="no_ambulance_normal"
                 placeholder="Enter No. Ambulance - Normal" value="{{ old('no_ambulance_normal', $hospital_nfrastructure->no_ambulance_normal ?? '') }}">
             @error('no_ambulance_normal')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -161,7 +161,7 @@
 
         <div class="col-md-6 mt-3">
             <label for="no_ambulance_acls">No. Ambulance - ACLS<span class="text-danger">*</span></label>
-            <input type="number" class="form-control" id="no_ambulance_acls" name="no_ambulance_acls"
+            <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length>2) return false;" class="form-control" id="no_ambulance_acls" name="no_ambulance_acls"
                 placeholder="Enter No. Ambulance - ACLS" value="{{ old('no_ambulance_acls', $hospital_nfrastructure->no_ambulance_acls ?? '') }}">
             @error('no_ambulance_acls')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>

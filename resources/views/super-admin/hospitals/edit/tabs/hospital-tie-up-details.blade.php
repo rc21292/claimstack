@@ -5,7 +5,7 @@
     <div class="form-group row">
         <div class="col-md-12 mt-3">
             <label for="mou_inception_date">MoU Inception Date <span class="text-danger">*</span></label>
-            <input type="date" class="form-control" @if($hospital->signed_mous_file) disabled @endif id="mou_inception_date" name="mou_inception_date"
+            <input type="date" class="form-control" @if(!$hospital->signed_mous_file) disabled @endif id="mou_inception_date" name="mou_inception_date"
                 placeholder="Enter MoU Inception Date" value="{{ old('mou_inception_date', $hospital_tie_ups->mou_inception_date ?? '') }}">
             @error('mou_inception_date')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -50,7 +50,7 @@
         <div class="col-md-6 mt-3 show-hide-field">
             <label for="discount_on_final_bill">Discount on final bill % <span
                     class="text-danger">*</span></label>
-            <input type="number" class="form-control" id="discount_on_final_bill" name="discount_on_final_bill"
+            <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length>1) return false;" class="form-control" id="discount_on_final_bill" name="discount_on_final_bill"
                 placeholder="Enter Discount on final bill %" value="{{ old('discount_on_final_bill', $hospital_tie_ups->discount_on_final_bill??'') }}">
             @error('discount_on_final_bill')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -60,7 +60,7 @@
         <div class="col-md-6 mt-3 show-hide-field">
             <label for="discount_on_room_rent">Discount on room rent % <span
                     class="text-danger">*</span></label>
-            <input type="number" class="form-control" id="discount_on_room_rent" name="discount_on_room_rent"
+            <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length>1) return false;" class="form-control" id="discount_on_room_rent" name="discount_on_room_rent"
                 placeholder="Enter Discount on final bill %" value="{{ old('discount_on_room_rent', $hospital_tie_ups->discount_on_room_rent??'') }}">
             @error('discount_on_room_rent')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -70,7 +70,7 @@
         <div class="col-md-6 mt-3 show-hide-field">
             <label for="discount_on_medicines">Discount on medicines % <span
                     class="text-danger">*</span></label>
-            <input type="number" class="form-control" id="discount_on_medicines" name="discount_on_medicines"
+            <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length>1) return false;" class="form-control" id="discount_on_medicines" name="discount_on_medicines"
                 placeholder="Enter Discount on medicines % " value="{{ old('discount_on_medicines', $hospital_tie_ups->discount_on_medicines??'') }}">
             @error('discount_on_medicines')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -80,7 +80,7 @@
         <div class="col-md-6 mt-3 show-hide-field">
             <label for="discount_on_consumables">Discount on consumables % <span
                     class="text-danger">*</span></label>
-            <input type="number" class="form-control" id="discount_on_consumables" name="discount_on_consumables"
+            <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length>1) return false;" class="form-control" id="discount_on_consumables" name="discount_on_consumables"
                 placeholder="Enter Discount on consumables %" value="{{ old('discount_on_consumables', $hospital_tie_ups->discount_on_consumables??'') }}">
             @error('discount_on_consumables')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -106,7 +106,7 @@
         <div class="col-md-6 mt-3 show-hide-referral">
             <label for="referral">Referral % <span
                     class="text-danger">*</span></label>
-            <input type="number" class="form-control" id="referral" name="referral"
+            <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length>1) return false;" class="form-control" id="referral" name="referral"
                 placeholder="Enter Referral % " value="{{ old('referral', $hospital_tie_ups->referral??'') }}">
             @error('referral')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -114,7 +114,7 @@
         </div>
 
         <div class="col-md-6 mt-3">
-            <label for="claimstag_usage_services">ClaimStag Usage Services <span class="text-danger">*</span></label>
+            <label for="claimstag_usage_services">ClaimStack Usage Services <span class="text-danger">*</span></label>
             <select class="form-select" id="claimstag_usage_services" name="claimstag_usage_services">
                 <option value="">Select</option>
                 <option value="Monthly" {{ old('claimstag_usage_services', $hospital_tie_ups->claimstag_usage_services??'') == 'Monthly' ? 'selected' : '' }}>Monthly
@@ -137,12 +137,12 @@
         </div>
 
         <div class="col-md-6 mt-3">
-            <label for="claimstag_installation_charges">ClaimStag Installation Charges (One Time Payment) <span
+            <label for="claimstag_installation_charges">ClaimStack Installation Charges (One Time Payment) <span
                     class="text-danger">*</span></label>
             <div class="input-group">
                 <label class="input-group-text" for="phone">Rs.</label>
-                <input type="number" class="form-control" id="claimstag_installation_charges" name="claimstag_installation_charges"
-                placeholder="Enter ClaimStag Installation Charges (One Time Payment) " value="{{ old('claimstag_installation_charges', $hospital_tie_ups->claimstag_installation_charges??'') }}">
+                <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length>5) return false;" class="form-control" id="claimstag_installation_charges" name="claimstag_installation_charges"
+                placeholder="Enter ClaimStack Installation Charges (One Time Payment) " value="{{ old('claimstag_installation_charges', $hospital_tie_ups->claimstag_installation_charges??'') }}">
             </div>
             @error('claimstag_installation_charges')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -150,12 +150,12 @@
         </div>
 
         <div class="col-md-6 mt-3">
-            <label for="claimstag_usage_charges">ClaimStag Usage Charges <span
+            <label for="claimstag_usage_charges">ClaimStack Usage Charges <span
                     class="text-danger">*</span></label>
             <div class="input-group">
                 <label class="input-group-text" for="phone">Rs.</label>
-                <input type="number" class="form-control" id="claimstag_usage_charges" name="claimstag_usage_charges"
-                placeholder="Enter ClaimStag Usage Charges" value="{{ old('claimstag_usage_charges', $hospital_tie_ups->claimstag_usage_charges??'') }}">
+                <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length>5) return false;" class="form-control" id="claimstag_usage_charges" name="claimstag_usage_charges"
+                placeholder="Enter ClaimStack Usage Charges" value="{{ old('claimstag_usage_charges', $hospital_tie_ups->claimstag_usage_charges??'') }}">
             </div>
             @error('claimstag_usage_charges')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -163,7 +163,7 @@
         </div>
 
         <div class="col-md-6 mt-3">
-            <label for="claims_reimbursement_insured_services">ClaimStag Usage Services <span class="text-danger">*</span></label>
+            <label for="claims_reimbursement_insured_services">ClaimStack Usage Services <span class="text-danger">*</span></label>
             <select class="form-select" id="claims_reimbursement_insured_services" name="claims_reimbursement_insured_services">
                 <option value="">Select</option>
                 <option value="Monthly" {{ old('claims_reimbursement_insured_services', $hospital_tie_ups->claims_reimbursement_insured_services??'') == 'Monthly' ? 'selected' : '' }}>Monthly
@@ -190,7 +190,7 @@
                     class="text-danger">*</span></label>
             <div class="input-group">
                 <label class="input-group-text" for="phone">Rs.</label>
-                <input type="number" class="form-control" id="claims_reimbursement_insured_service_charges" name="claims_reimbursement_insured_service_charges"
+                <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length>5) return false;" class="form-control" id="claims_reimbursement_insured_service_charges" name="claims_reimbursement_insured_service_charges"
                 placeholder="Enter Claims Reimbursement - Insured Service Charges" value="{{ old('claims_reimbursement_insured_service_charges', $hospital_tie_ups->claims_reimbursement_insured_service_charges??'') }}">
             </div>
             @error('claims_reimbursement_insured_service_charges')
@@ -223,12 +223,12 @@
         </div>
 
         <div class="col-md-6 mt-3">
-            <label for="cashless_claims_management_services_charges">Claims Reimbursement - Insured Service Charges <span
+            <label for="cashless_claims_management_services_charges">CCashless Claims Management Services Charges <span
                     class="text-danger">*</span></label>
             <div class="input-group">
                 <label class="input-group-text" for="phone">Rs.</label>
-                <input type="number" class="form-control" id="cashless_claims_management_services_charges" name="cashless_claims_management_services_charges"
-                placeholder="Enter Claims Reimbursement - Insured Service Charges" value="{{ old('cashless_claims_management_services_charges', $hospital_tie_ups->cashless_claims_management_services_charges??'') }}">
+                <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length>5) return false;" class="form-control" id="cashless_claims_management_services_charges" name="cashless_claims_management_services_charges"
+                placeholder="Enter CCashless Claims Management Services Charges" value="{{ old('cashless_claims_management_services_charges', $hospital_tie_ups->cashless_claims_management_services_charges??'') }}">
             </div>
             @error('cashless_claims_management_services_charges')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -261,7 +261,7 @@
 
         <div class="col-md-6 mt-3 show-hide-agrrement">
             <label for="lending_finance_company_agreement_date">Lending / Finance Company's Agreement Date <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="lending_finance_company_agreement_date" name="lending_finance_company_agreement_date"
+            <input type="date" class="form-control" id="lending_finance_company_agreement_date" name="lending_finance_company_agreement_date"
                 placeholder="Enter Lending / Finance Company's Agreement Date" value="{{ old('lending_finance_company_agreement_date', $hospital_tie_ups->lending_finance_company_agreement_date??'') }}">
             @error('lending_finance_company_agreement_date')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -304,7 +304,7 @@
         <div class="col-md-6 mt-3 show-hide-agrrement">
             <label for="subvention">Subvention % <span
                     class="text-danger">*</span></label>
-            <input type="number" class="form-control" id="subvention" name="subvention"
+            <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length>1) return false;" class="form-control" id="subvention" name="subvention"
                 placeholder="Enter " value="{{ old('subvention', $hospital_tie_ups->subvention??'') }}">
             @error('subvention')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -377,7 +377,7 @@
             <label for="hms_charges">HMS Charges<span class="text-danger">*</span></label>
             <div class="input-group">
                 <label class="input-group-text" for="phone">Rs.</label>
-                <input type="number" class="form-control" id="hms_charges" name="hms_charges"
+                <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length>1) return false;" class="form-control" id="hms_charges" name="hms_charges"
                 placeholder="Enter HMS Charges" value="{{ old('hms_charges', $hospital_tie_ups->hms_charges??'') }}">
             </div>
             @error('hms_charges')
