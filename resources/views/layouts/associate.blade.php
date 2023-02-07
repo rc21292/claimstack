@@ -16,6 +16,7 @@
     <link href="{{ asset('assets/css/app.min.css ') }}" rel="stylesheet" type="text/css" id="light-style" />
     <link href="{{ asset('assets/css/app-dark.min.css ') }}" rel="stylesheet" type="text/css" id="dark-style" />
     <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet" type="text/css" />
+    @yield('head')
 </head>
 
 <body class="loading"

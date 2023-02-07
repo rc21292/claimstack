@@ -5,7 +5,7 @@
     <div class="form-group row">
         <div class="col-md-6">
             <label for="name">Associate Partner Company's Name <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="name" name="name"
+            <input type="text" readonly class="form-control" id="name" name="name"
                 maxlength="60" placeholder="Enter company name" value="{{ old('name', $associate->name) }}">
             @error('name')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -15,9 +15,9 @@
             <label for="type">Associate Partner Type <span class="text-danger">*</span></label>
             <select class="form-select" id="type" name="type">
                 <option value="">Select Type</option>
-                <option value="vendor" {{ old('type', $associate->type) == 'vendor' ? 'selected' : '' }}>Vendor Partner
+                <option value="vendor" {{ old('type', $associate->type) == 'vendor' ? 'selected' : 'disabled' }}>Vendor Partner
                 </option>
-                <option value="sales" {{ old('type', $associate->type) == 'sales' ? 'selected' : '' }}>Sales Partner
+                <option value="sales" {{ old('type', $associate->type) == 'sales' ? 'selected' : 'disabled' }}>Sales Partner
                 </option>
             </select>
             @error('type')
@@ -29,15 +29,15 @@
         </div>
 
         <div class="col-md-6 mt-1">
-            <input type="text" class="form-control" id="owner_firstname" name="owner_firstname"
-                maxlength="15" placeholder="Enter firstname" value="{{ old('owner_firstname', $associate->owner_firstname) }}">
+            <input type="text" readonly class="form-control" id="owner_firstname" name="owner_firstname"
+                maxlength="15"  placeholder="Enter firstname" value="{{ old('owner_firstname', $associate->owner_firstname) }}">
             @error('owner_firstname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
 
         <div class="col-md-6 mt-1">
-            <input type="text" class="form-control" id="owner_lastname" name="owner_lastname" maxlength="30"
+            <input type="text" readonly class="form-control" id="owner_lastname" name="owner_lastname" maxlength="30"
                 placeholder="Enter lastname" value="{{ old('owner_lastname', $associate->owner_lastname) }}">
             @error('owner_lastname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -47,7 +47,7 @@
         <div class="col-md-6 mt-3">
             <label for="pan">PAN Number <span class="text-danger">*</span></label>
             <div class="input-group">
-                <input type="text" class="form-control" id="pan" name="pan" maxlength="10" placeholder="Enter PAN no."
+                <input type="text" readonly class="form-control" id="pan" name="pan" maxlength="10" placeholder="Enter PAN no."
                     value="{{ old('pan', $associate->pan) }}">
                     @isset($associate->panfile)
                         <a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->panfile) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
@@ -65,7 +65,7 @@
 
         <div class="col-md-6 mt-3">
             <label for="owner">Official email ID <span class="text-danger">*</span></label>
-            <input type="email" class="form-control" id="email" name="email" maxlength="30"
+            <input type="email" readonly class="form-control" id="email" name="email" maxlength="30"
                 placeholder="Enter official emailID" value="{{ old('email', $associate->email) }}">
             @error('email')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -73,14 +73,14 @@
         </div>
         <div class="col-md-12 mt-3">
             <label for="address">Associate Partner Address <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="address" name="address" placeholder="Address Line"
+            <input type="text" readonly class="form-control" id="address" name="address" placeholder="Address Line"
                 value="{{ old('address', $associate->address) }}">
             @error('address')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
         <div class="col-md-4 mt-2">
-            <input type="text" class="form-control" id="city" name="city" placeholder="City"
+            <input type="text" readonly class="form-control" id="city" name="city" placeholder="City"
                 value="{{ old('city', $associate->city) }}">
             @error('city')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -88,7 +88,7 @@
         </div>
 
         <div class="col-md-4 mt-2">
-            <input type="text" class="form-control" id="state" name="state" placeholder="State"
+            <input type="text" readonly class="form-control" id="state" name="state" placeholder="State"
                 value="{{ old('state', $associate->state) }}">
             @error('state')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -96,7 +96,7 @@
         </div>
 
         <div class="col-md-4 mt-2">
-            <input type="number" class="form-control" id="pincode" name="pincode" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==6) return false;" placeholder="Pincode"
+            <input type="number" readonly class="form-control" id="pincode" name="pincode" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==6) return false;" placeholder="Pincode"
                 value="{{ old('pincode', $associate->pincode) }}">
             @error('pincode')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -106,7 +106,7 @@
             <label for="phone">Associate Partner Mobile Number <span class="text-danger">*</span></label>
             <div class="input-group">
                 <label class="input-group-text" for="phone">+91</label>
-            <input type="number" class="form-control" id="phone" name="phone"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"
+            <input type="number" readonly class="form-control" id="phone" name="phone"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"
                 placeholder="Enter associate partner mobile number" value="{{ old('phone', $associate->phone) }}">
             </div>
             @error('phone')
@@ -115,7 +115,7 @@
         </div>
         <div class="col-md-6 mt-3">
             <label for="reference">Reference <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="reference" name="reference"
+            <input type="text" readonly class="form-control" id="reference" name="reference"
                 placeholder="Enter reference" value="{{ old('reference', $associate->reference) }}">
             @error('reference')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -125,11 +125,11 @@
             <label for="statuses">Associate Partner Status <span class="text-danger">*</span></label>
             <select class="form-select" id="statuses" name="status">
                 <option value="">Select Status</option>
-                <option value="Main" {{ old('status', $associate->status) == 'Main' ? 'selected' : '' }}>Main
+                <option value="Main" {{ old('status', $associate->status) == 'Main' ? 'selected' : 'disabled' }}>Main
                 </option>
-                <option value="Sub AP" {{ old('status', $associate->status) == 'Sub AP' ? 'selected' : '' }}>Sub AP
+                <option value="Sub AP" {{ old('status', $associate->status) == 'Sub AP' ? 'selected' : 'disabled' }}>Sub AP
                 </option>
-                <option value="Agency" {{ old('status', $associate->status) == 'Agency' ? 'selected' : '' }}>Agency
+                <option value="Agency" {{ old('status', $associate->status) == 'Agency' ? 'selected' : 'disabled' }}>Agency
                 </option>
             </select>
             @error('status')
@@ -138,12 +138,12 @@
         </div>
         <div class="col-md-6 mt-3">
             <label for="linked_associate_partner">Linked Associate Partner Name </label>
-            <select class="form-control select2" id="linked_associate_partner" name="linked_associate_partner"
+            <select class="form-control select2" readonly id="linked_associate_partner" name="linked_associate_partner"
                 data-toggle="select2" onchange="setLinkedAssociatePartnerId()">
                 <option value="">Select Associate Partner</option>
                 @foreach ($associates as $row)
                     <option value="{{ $row->id }}"
-                        {{ old('linked_associate_partner', $associate->linked_associate_partner) == $row->id ? 'selected' : '' }}
+                        {{ old('linked_associate_partner', $associate->linked_associate_partner) == $row->id ? 'selected' : 'disabled' }}
                         data-id="{{ $row->associate_partner_id }}">
                         [<strong>Name: </strong>{{ $row->name }}]
                         [<strong>UID: </strong>{{ $row->associate_partner_id }}]
@@ -158,7 +158,7 @@
         </div>
         <div class="col-md-6 mt-3">
             <label for="linked_associate_partner_id">Linked Associate Partner ID </label>
-            <input type="text" class="form-control" id="linked_associate_partner_id"
+            <input type="text" readonly class="form-control" id="linked_associate_partner_id"
                 name="linked_associate_partner_id" placeholder="Enter linked associate partner ID"
                 value="{{ old('linked_associate_partner_id', $associate->linked_associate_partner_id) }}">
             @error('linked_associate_partner_id')
@@ -171,37 +171,37 @@
                 onchange="loadAssignedEmployees()">
                 <option value="">Select Department</option>
                 <option value="Operations"
-                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Operations' ? 'selected' : '' }}>Operations
+                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Operations' ? 'selected' : 'disabled' }}>Operations
                 </option>
-                <option value="Sales" {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Sales' ? 'selected' : '' }}>Sales
+                <option value="Sales" {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Sales' ? 'selected' : 'disabled' }}>Sales
                 </option>
-                <option value="Accounts" {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Accounts' ? 'selected' : '' }}>
+                <option value="Accounts" {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Accounts' ? 'selected' : 'disabled' }}>
                     Accounts
                 </option>
                 <option value="Analytics & MIS"
-                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Analytics & MIS' ? 'selected' : '' }}>Analytics & MIS
+                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Analytics & MIS' ? 'selected' : 'disabled' }}>Analytics & MIS
                 </option>
-                <option value="IT" {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'IT' ? 'selected' : '' }}>IT
+                <option value="IT" {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'IT' ? 'selected' : 'disabled' }}>IT
                 </option>
                 <option value="Product Management"
-                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Product Management' ? 'selected' : '' }}>Product
+                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Product Management' ? 'selected' : 'disabled' }}>Product
                     Management
                 </option>
                 <option value="Provider management"
-                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Provider management' ? 'selected' : '' }}>Provider
+                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Provider management' ? 'selected' : 'disabled' }}>Provider
                     management
                 </option>
                 <option value="Insurance"
-                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Insurance' ? 'selected' : '' }}>Insurance
+                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Insurance' ? 'selected' : 'disabled' }}>Insurance
                 </option>
                 <option value="Claims Processing"
-                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Claims Processing' ? 'selected' : '' }}>Claims
+                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Claims Processing' ? 'selected' : 'disabled' }}>Claims
                     Processing
                 </option>
-                <option value="Cashless" {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Cashless' ? 'selected' : '' }}>
+                <option value="Cashless" {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Cashless' ? 'selected' : 'disabled' }}>
                     Cashless
                 </option>
-                <option value="Lending" {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Lending' ? 'selected' : '' }}>
+                <option value="Lending" {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Lending' ? 'selected' : 'disabled' }}>
                     Lending
                 </option>
             </select>
@@ -211,7 +211,7 @@
         </div>
         <div class="col-md-6 mt-3">
             <label for="assigned_employee">Assigned To Employee Name <span class="text-danger">*</span></label>
-            <select class="form-control select2" id="assigned_employee" name="assigned_employee"
+            <select class="form-control select2" readonly id="assigned_employee" name="assigned_employee"
                 data-toggle="select2" onchange="setAssignedEmployeeId()">
                 <option value="">Select Assigned To Employee</option>
 
@@ -222,7 +222,7 @@
         </div>
         <div class="col-md-6 mt-3">
             <label for="assigned_employee_id">Assigned To Employee ID <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="assigned_employee_id" name="assigned_employee_id"
+            <input type="text" readonly class="form-control" id="assigned_employee_id" name="assigned_employee_id"
                 placeholder="Enter assigned to employee ID"
                 value="{{ old('assigned_employee_id', $associate->assigned_employee_id) }}">
             @error('assigned_employee_id')
@@ -235,37 +235,37 @@
                 onchange="loadLinkedEmployees()">
                 <option value="">Select Department</option>
                 <option value="Operations"
-                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Operations' ? 'selected' : '' }}>Operations
+                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Operations' ? 'selected' : 'disabled' }}>Operations
                 </option>
-                <option value="Sales" {{ old('linked_employee_department', $associate->linked_employee_department) == 'Sales' ? 'selected' : '' }}>Sales
+                <option value="Sales" {{ old('linked_employee_department', $associate->linked_employee_department) == 'Sales' ? 'selected' : 'disabled' }}>Sales
                 </option>
-                <option value="Accounts" {{ old('linked_employee_department', $associate->linked_employee_department) == 'Accounts' ? 'selected' : '' }}>
+                <option value="Accounts" {{ old('linked_employee_department', $associate->linked_employee_department) == 'Accounts' ? 'selected' : 'disabled' }}>
                     Accounts
                 </option>
                 <option value="Analytics & MIS"
-                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Analytics & MIS' ? 'selected' : '' }}>Analytics & MIS
+                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Analytics & MIS' ? 'selected' : 'disabled' }}>Analytics & MIS
                 </option>
-                <option value="IT" {{ old('linked_employee_department', $associate->linked_employee_department) == 'IT' ? 'selected' : '' }}>IT
+                <option value="IT" {{ old('linked_employee_department', $associate->linked_employee_department) == 'IT' ? 'selected' : 'disabled' }}>IT
                 </option>
                 <option value="Product Management"
-                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Product Management' ? 'selected' : '' }}>Product
+                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Product Management' ? 'selected' : 'disabled' }}>Product
                     Management
                 </option>
                 <option value="Provider management"
-                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Provider management' ? 'selected' : '' }}>Provider
+                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Provider management' ? 'selected' : 'disabled' }}>Provider
                     management
                 </option>
                 <option value="Insurance"
-                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Insurance' ? 'selected' : '' }}>Insurance
+                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Insurance' ? 'selected' : 'disabled' }}>Insurance
                 </option>
                 <option value="Claims Processing"
-                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Claims Processing' ? 'selected' : '' }}>Claims
+                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Claims Processing' ? 'selected' : 'disabled' }}>Claims
                     Processing
                 </option>
-                <option value="Cashless" {{ old('linked_employee_department', $associate->linked_employee_department) == 'Cashless' ? 'selected' : '' }}>
+                <option value="Cashless" {{ old('linked_employee_department', $associate->linked_employee_department) == 'Cashless' ? 'selected' : 'disabled' }}>
                     Cashless
                 </option>
-                <option value="Lending" {{ old('linked_employee_department', $associate->linked_employee_department) == 'Lending' ? 'selected' : '' }}>
+                <option value="Lending" {{ old('linked_employee_department', $associate->linked_employee_department) == 'Lending' ? 'selected' : 'disabled' }}>
                     Lending
                 </option>
             </select>
@@ -275,7 +275,7 @@
         </div>
         <div class="col-md-6 mt-3">
             <label for="linked_employee">Linked With Employee Name <span class="text-danger">*</span></label>
-            <select class="form-control select2" id="linked_employee" name="linked_employee" data-toggle="select2"
+            <select readonly class="form-control select2" id="linked_employee" name="linked_employee" data-toggle="select2"
                 onchange="setLinkedWithEmployeeId()">
                 <option value="">Select Linked With Employee</option>
 
@@ -286,7 +286,7 @@
         </div>
         <div class="col-md-6 mt-3">
             <label for="linked_employee_id">Linked With Employee ID <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="linked_employee_id" name="linked_employee_id"
+            <input type="text" readonly class="form-control" id="linked_employee_id" name="linked_employee_id"
                 placeholder="Enter linked with employee ID"
                 value="{{ old('linked_employee_id', $associate->linked_employee_id) }}">
             @error('linked_employee_id')

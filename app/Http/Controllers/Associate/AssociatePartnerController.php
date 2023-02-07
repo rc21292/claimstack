@@ -9,6 +9,7 @@ use App\Models\User;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ImportAssociatePartner;
 use App\Exports\ExportAssociatePartner;
+use App\Models\Hospital;
 use App\Models\VendorServiceType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -166,6 +167,7 @@ class AssociatePartnerController extends Controller
         $associate          = AssociatePartner::find($id);
         $associate->sub_associate_partners = AssociatePartner::whereIn('status', ['Sub AP', 'Agency'])->where('linked_associate_partner', $id)->get();
         $associate->service = $associate->type == 'vendor' ? VendorServiceType::where('associate_partner_id', $id)->first() :  SalesServiceType::where('associate_partner_id', $id)->first();
+        $associate->hospitals = Hospital::where('linked_associate_partner', $id)->get();        
         $associates         = AssociatePartner::get();
         $users              = User::get();
         return view('associate.associate-partners.edit.edit',  compact('associate', 'associates', 'users'));
@@ -469,7 +471,7 @@ class AssociatePartnerController extends Controller
     public function destroy($id)
     {
         AssociatePartner::find($id)->delete();
-        return redirect()->route('associate-partners.index')->with('success', 'Associate partner deleted successfully');
+        return redirect()->back()->with('success', 'Associate partner deleted successfully');
     }
 
     public function importExport(Request $request){

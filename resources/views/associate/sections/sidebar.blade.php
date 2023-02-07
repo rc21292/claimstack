@@ -32,7 +32,7 @@
                 </a>
             </li>
 
-            <li class="side-nav-item">
+            {{-- <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#adminMenu" aria-expanded="false" aria-controls="adminMenu"
                     class="side-nav-link">
                     <i class="mdi mdi-shield-account"></i>
@@ -78,7 +78,7 @@
                         </li>
                     </ul>
                 </div>
-            </li>
+            </li> --}}
 
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#associatePartner" aria-expanded="false"
@@ -88,17 +88,10 @@
                     <span class="menu-arrow"></span>
                 </a>
                 <div class="collapse" id="associatePartner">
-                    <ul class="side-nav-second-level">
+                    <ul class="side-nav-second-level">                        
                         <li>
-                            <a href="{{ route('associate-partner.associate-partners.create') }}">Create Associate Partner</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('associate-partner.associate-partners.index') }}">Manage Associate Partner</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('associate-partner.associate-partners.import-export') }}">Import Export Associate
-                                Partner</a>
-                        </li>
+                            <a href="{{ route('associate-partner.associate-partners.edit', Auth::guard('associate')->id()) }}">Manage Associate Partner</a>
+                        </li>                        
                     </ul>
                 </div>
             </li>
@@ -125,7 +118,7 @@
                 </div>
             </li>
 
-            <li class="side-nav-item">
+            {{-- <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#insurer" aria-expanded="false" aria-controls="insurer"
                     class="side-nav-link">
                     <i class="dripicons-heart"></i>
@@ -192,7 +185,7 @@
                     <i class="uil-graph-bar"></i>
                     <span> Report Generation </span>
                 </a>
-            </li>
+            </li> --}}
 
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#settings" aria-expanded="false" aria-controls="settings"

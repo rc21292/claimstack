@@ -1049,6 +1049,6 @@ class HospitalController extends Controller
     public function destroy($id)
     {
         Hospital::find($id)->delete();
-        return redirect()->route('associate.hospitals.index')->with('success', 'Hospital deleted successfully');
+        return redirect()->back()->with('success', 'Hospital deleted successfully');
     }
 }
