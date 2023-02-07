@@ -205,6 +205,7 @@
     </div>
 @endsection
 @push('scripts')
+
     <script>
         function setLinkedWithEmployeeId() {
             var linked_employee = $("#linked_employee").select2().find(":selected").data("id");

@@ -39,7 +39,7 @@
                                 </div>
 
                                 <div class="col-md-6 mt-1">
-                                    <input type="text" class="form-control" id="firstname" name="firstname" maxlength="15"
+                                    <input type="text" onkeydown="return /[a-z]/i.test(event.key)"  class="form-control" id="firstname" name="firstname" maxlength="15"
                                         placeholder="Firstname" value="{{ old('firstname', $admin->firstname) }}">
                                     @error('firstname')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -47,7 +47,7 @@
                                 </div>
 
                                 <div class="col-md-6 mt-1">
-                                    <input type="text" class="form-control" id="lastname" name="lastname" maxlength="30"
+                                    <input type="text" onkeydown="return /[a-z]/i.test(event.key)"  class="form-control" id="lastname" name="lastname" maxlength="30"
                                         placeholder="Lastname" value="{{ old('lastname', $admin->lastname) }}">
                                     @error('lastname')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -64,7 +64,7 @@
                                 </div>
                                 <div class="col-md-6 mt-3">
                                     <label for="designation">Designation <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="designation" name="designation" maxlength="30"
+                                    <input type="text" onkeydown="return /[a-z]/i.test(event.key)"  class="form-control" id="designation" name="designation" maxlength="30"
                                         placeholder="Enter designation"
                                         value="{{ old('designation', $admin->designation) }}">
                                     @error('designation')

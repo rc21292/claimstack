@@ -1,5 +1,23 @@
 @extends('layouts.associate')
 @section('title', 'Edit Associate Partners')
+@section('head')
+<style>
+    select[readonly].select2 + .select2-container {
+  pointer-events: none;
+  touch-action: none;
+
+  .select2-selection {
+    background: #eee;
+    box-shadow: none;
+  }
+
+  .select2-selection__arrow,
+  .select2-selection__clear {
+    display: none;
+  }
+}
+</style>
+@endsection
 @section('content')
     <!-- Start Content-->
     <div class="container-fluid">
@@ -58,6 +76,27 @@
                                         <i class="mdi mdi-account-circle d-md-none d-block"></i>
                                         <span class="d-none d-md-block">Sales Partner Service Type</span>
                                     </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#sub_sales_partner_status" data-bs-toggle="tab" aria-expanded="false"
+                                        class="nav-link rounded-0">
+                                        <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                                        <span class="d-none d-md-block">Sub-Sales Partner Status</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#sales_partner_hospital_status" data-bs-toggle="tab" aria-expanded="false"
+                                        class="nav-link rounded-0">
+                                        <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                                        <span class="d-none d-md-block">Sales Partner Hospital Status</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#sales_partner_claim_status" data-bs-toggle="tab" aria-expanded="false"
+                                        class="nav-link rounded-0">
+                                        <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                                        <span class="d-none d-md-block">Sales Partner Claim Status</span>
+                                    </a>
                                 </li>                                
                                 <li class="nav-item">
                                     <a href="#sales_partner_reports" data-bs-toggle="tab" aria-expanded="false"
@@ -83,9 +122,18 @@
                             @else
                                 <div class="tab-pane" id="sales_partner_service_type">
                                     @include('associate.associate-partners.edit.tabs.sales-partner-service-type')
+                                </div>
+                                <div class="tab-pane" id="sub_sales_partner_status">
+                                    @include('associate.associate-partners.edit.tabs.sub-sales-partner-status')
+                                </div>
+                                <div class="tab-pane" id="sales_partner_hospital_status">
+                                    @include('associate.associate-partners.edit.tabs.sales-partner-hospital-status')
+                                </div>
+                                <div class="tab-pane" id="sales_partner_claim_status">
+                                    @include('associate.associate-partners.edit.tabs.sales-partner-claim-status')
                                 </div>                                
                                 <div class="tab-pane" id="sales_partner_reports">
-                                    @include('associate.associate-partners.edit.tabs.vendor-partner-reports')
+                                    @include('associate.associate-partners.edit.tabs.sales-partner-reports')
                                 </div>
                             @endif
                         </div>
@@ -96,6 +144,24 @@
     </div>
 @endsection
 @push('scripts')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript">
+        function confirmDelete(no) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form' + no).submit();
+                }
+            })
+        };
+    </script>
 @include('associate.associate-partners.edit.script')
     <script>
         function setLinkedAssociatePartnerId() {
