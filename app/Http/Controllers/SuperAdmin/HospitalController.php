@@ -567,7 +567,7 @@ class HospitalController extends Controller
             'uid'      => 'HSPTUP'.$hospital->id
         ]);
 
-        return redirect()->back()->with('success', 'Hospital updated successfully');
+        return redirect()->back()->withInput(['tab' => 'hospital_tie_up_details'])->with('success', 'Hospital updated successfully');
     }
 
     public function updateHospitalFacility(Request $request, $id)
