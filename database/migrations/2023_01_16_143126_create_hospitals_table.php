@@ -46,11 +46,13 @@ return new class extends Migration
             $table->string('gstfile')->nullable();
             $table->string('owner_email')->nullable();
             $table->string('owner_phone')->nullable();
-            $table->string('contact_person_name')->nullable();
+            $table->string('contact_person_firstname')->nullable();
+            $table->string('contact_person_lastname')->nullable();
             $table->string('contact_person_email')->nullable();
             $table->string('contact_person_phone')->nullable();
             $table->string('registration_no')->nullable();
-            $table->string('medical_superintendent_name')->nullable();
+            $table->string('medical_superintendent_firstname')->nullable();
+            $table->string('medical_superintendent_lastname')->nullable();
             $table->string('medical_superintendent_email')->nullable();
             $table->string('medical_superintendent_registration_no')->nullable();
             $table->string('medical_superintendent_qualification')->nullable();

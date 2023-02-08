@@ -34,7 +34,7 @@
                             <div class="form-group row">
                                 <div class="col-md-12 mt-3">
                                     <label for="name">Hospital Name <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="name" name="name"
+                                    <input type="text" maxlength="60" class="form-control" id="name" name="name"
                                         placeholder="Enter Hospital name" value="{{ old('name') }}">
                                     @error('name')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -108,7 +108,7 @@
                                 </div>
 
                                 <div class="col-md-6 mt-1">
-                                    <input type="text" class="form-control" id="firstname" name="firstname" maxlength="15"
+                                    <input type="text" maxlength="15" class="form-control" id="firstname" name="firstname" maxlength="15"
                                         placeholder="Firstname" value="{{ old('firstname') }}">
                                     @error('firstname')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -116,7 +116,7 @@
                                 </div>
 
                                 <div class="col-md-6 mt-1">
-                                    <input type="text" class="form-control" id="lastname" name="lastname" maxlength="30"
+                                    <input type="text" maxlength="30" class="form-control" id="lastname" name="lastname" maxlength="30"
                                         placeholder="Lastname" value="{{ old('lastname') }}">
                                     @error('lastname')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -126,7 +126,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="pan">Hospital PAN Number <span class="text-danger">*</span></label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="pan" name="pan" maxlength="10"
+                                        <input type="text" maxlength="10" class="form-control" id="pan" name="pan" maxlength="10"
                                             placeholder="Enter Hospital PAN no." value="{{ old('pan') }}">
                                         <input type="file" name="panfile" id="upload" hidden />
                                         <label for="upload" class="btn btn-primary upload-label"><i
@@ -142,7 +142,7 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="owner">Hospital email ID <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="email" name="email" maxlength="30"
+                                    <input type="text" maxlength="45" class="form-control" id="email" name="email" maxlength="30"
                                         placeholder="Enter hospital email ID" value="{{ old('email') }}">
                                     @error('email')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -188,7 +188,7 @@
                                 <div class="col-md-12 mt-3">
                                     <label for="rohini">Rohini Code <span class="text-danger">*</span></label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="rohini" name="rohini"
+                                        <input type="text" maxlength="13" class="form-control" id="rohini" name="rohini"
                                             placeholder="Enter rohini code." value="{{ old('rohini') }}">
                                         <input type="file" name="rohinifile" id="rohinifile" hidden />
                                         <label for="rohinifile" class="btn btn-primary upload-label"><i

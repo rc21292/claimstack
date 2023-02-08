@@ -328,7 +328,7 @@
 
         <div class="col-md-6 mt-3 show-hide-agrrement">
             <label for="comments_on_invoice_discounting">Comments on Invoice Discounting <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="comments_on_invoice_discounting" name="comments_on_invoice_discounting"
+            <input type="text" maxlength="40" class="form-control" id="comments_on_invoice_discounting" name="comments_on_invoice_discounting"
                 placeholder="Enter Comments on Invoice Discounting" value="{{ old('comments_on_invoice_discounting', $hospital_tie_ups->comments_on_invoice_discounting??'') }}">
             @error('comments_on_invoice_discounting')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>

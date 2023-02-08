@@ -12,7 +12,8 @@ class HospitalDepartment extends Model
     protected $fillable = [
         'hospital_id',
         'specialization',
-        'doctors_name',
+        'doctors_firstname',
+        'doctors_lastname',
         'registration_no',
         'email_id',
         'doctors_mobile_no',

@@ -21,6 +21,8 @@
             </div>
         </div>
         @include('admin.sections.flash-message')
+
+
         <!-- end page title -->
         
         <!-- start page content -->

@@ -28,7 +28,7 @@
 
         <div class="col-md-6 mt-3">
             <label for="hospital_type">Hospital Type <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="hospital_type" name="hospital_type"
+            <input type="text" onkeydown="return /[a-z]/i.test(event.key)" maxlength="25" class="form-control" id="hospital_type" name="hospital_type"
                 placeholder="Enter Hospital Type" value="{{ old('hospital_type', $hospital_nfrastructure->hospital_type ?? '') }}">
             @error('hospital_type')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -37,7 +37,7 @@
 
         <div class="col-md-6 mt-3">
             <label for="hospital_category">Hospital Category  <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="hospital_category" name="hospital_category"
+            <input type="text" onkeydown="return /[a-z]/i.test(event.key)" maxlength="25" class="form-control" id="hospital_category" name="hospital_category"
                 placeholder="Enter Hospital Category" value="{{ old('hospital_category', $hospital_nfrastructure->hospital_category ?? '') }}">
             @error('hospital_category')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>

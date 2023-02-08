@@ -3,7 +3,6 @@
 @section('content')
     <!-- Start Content-->
     <div class="container-fluid">
-
         <!-- start page title -->
         <div class="row">
             <div class="col-12">
@@ -21,6 +20,7 @@
             </div>
         </div>
         @include('admin.sections.flash-message')
+        
         <!-- end page title -->
 
         <!-- start page content -->
@@ -34,7 +34,7 @@
                             <div class="form-group row">
                                 <div class="col-md-12 mt-3">
                                     <label for="name">Hospital Name <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="name" name="name"
+                                    <input type="text" maxlength="60" class="form-control" id="name" name="name"
                                         placeholder="Enter Hospital name" value="{{ old('name') }}">
                                     @error('name')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -108,7 +108,7 @@
                                 </div>
 
                                 <div class="col-md-6 mt-1">
-                                    <input type="text" class="form-control" id="firstname" name="firstname" maxlength="15"
+                                    <input type="text" maxlength="15" class="form-control" id="firstname" name="firstname" maxlength="15"
                                         placeholder="Firstname" value="{{ old('firstname') }}">
                                     @error('firstname')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -116,7 +116,7 @@
                                 </div>
 
                                 <div class="col-md-6 mt-1">
-                                    <input type="text" class="form-control" id="lastname" name="lastname" maxlength="30"
+                                    <input type="text" maxlength="30" class="form-control" id="lastname" name="lastname" maxlength="30"
                                         placeholder="Lastname" value="{{ old('lastname') }}">
                                     @error('lastname')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -126,7 +126,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="pan">Hospital PAN Number <span class="text-danger">*</span></label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="pan" name="pan" maxlength="10"
+                                        <input type="text" maxlength="10" class="form-control" id="pan" name="pan" maxlength="10"
                                             placeholder="Enter Hospital PAN no." value="{{ old('pan') }}">
                                         <input type="file" name="panfile" id="upload" hidden />
                                         <label for="upload" class="btn btn-primary upload-label"><i
@@ -142,7 +142,7 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="owner">Hospital email ID <span class="text-danger">*</span></label>
-                                    <input type="email" class="form-control" id="email" name="email" maxlength="30"
+                                    <input type="text" maxlength="45" class="form-control" id="email" name="email" maxlength="30"
                                         placeholder="Enter hospital email ID" value="{{ old('email') }}">
                                     @error('email')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -188,7 +188,7 @@
                                 <div class="col-md-12 mt-3">
                                     <label for="rohini">Rohini Code <span class="text-danger">*</span></label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="rohini" name="rohini"
+                                        <input type="text" maxlength="13" class="form-control" id="rohini" name="rohini"
                                             placeholder="Enter rohini code." value="{{ old('rohini') }}">
                                         <input type="file" name="rohinifile" id="rohinifile" hidden />
                                         <label for="rohinifile" class="btn btn-primary upload-label"><i
@@ -230,7 +230,10 @@
                                     @error('linked_associate_partner_id')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
-                                </div>                                
+                                </div>
+
+
+                                
                                 <div class="col-md-12 mt-3">
                                     <label for="comments">Comments </label>
                                     <textarea class="form-control" id="comments" name="comments" maxlength="250" placeholder="Comments" rows="4">{{ old('comments') }}</textarea>
@@ -266,5 +269,23 @@
             var linked_employee = $("#linked_employee").select2().find(":selected").data("id");
             $('#linked_employee_id').val(linked_employee);
         }
+
+        var byI = "{{ old('by') }}";
+
+        if(byI == 'Direct'){
+            $("#linked_associate_partner").attr('disabled',true);
+            $("#linked_associate_partner_id").attr('disabled',true);
+        }
+
+        $('#by').on('change', function(){
+            if($(this).val() == 'Direct'){
+                $("#linked_associate_partner").attr('disabled',true);
+                $("#linked_associate_partner_id").attr('disabled',true);
+            }else{
+                $("#linked_associate_partner").attr('disabled',false);
+                $("#linked_associate_partner_id").attr('disabled',false);
+            }
+        });
+
     </script>
 @endpush

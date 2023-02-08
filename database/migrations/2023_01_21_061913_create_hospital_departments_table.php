@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->integer('hospital_id')->unsigned()->nullable();
             $table->enum('specialization', ['ENT', 'Dental', 'Ophthalmology', 'Orthopaedic', 'Gyne', 'Paediatric', 'Neonatology', 'Perinatology', 'Nephrology', 'Hepatology', 'Neurology', 'Cardiac', 'Oncology', 'Gastroenterolog'])->default('Gastroenterolog');
-            $table->string('doctors_name')->nullable();
+            $table->string('doctors_firstname')->nullable();
+            $table->string('doctors_lastname')->nullable();
             $table->string('registration_no')->nullable();
             $table->string('email_id',)->nullable();
             $table->string('doctors_mobile_no',)->nullable();
