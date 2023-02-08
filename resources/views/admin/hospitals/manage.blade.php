@@ -126,6 +126,7 @@
 @push('scripts')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript">
+        localStorage.setItem('activeTab', '');
         function confirmDelete(no) {
             Swal.fire({
                 title: 'Are you sure?',
