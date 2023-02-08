@@ -15,14 +15,6 @@ class DashboardController extends Controller
 
     public function index()
     {
-
-        $id = Auth::user()->id;
-        $associate_partner = AssociatePartner::find($id);
-        $linked_ap         = AssociatePartner::find($associate_partner->linked_employee);
-        $assigned_ap         = AssociatePartner::find($associate_partner->assigned_employee);
-        return view('associate.dashboard', compact('linked_ap', 'assigned_ap'));
-    
-    
         $total_associates = AssociatePartner::count();
         $vendor_associates = AssociatePartner::where('type', 'vendor')->count();
         $sales_associates = AssociatePartner::where('type', 'sales')->count();
