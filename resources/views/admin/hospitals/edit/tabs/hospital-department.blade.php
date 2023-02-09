@@ -37,17 +37,19 @@
             <div class="input-group">
             <input type="text" maxlength="15" onkeydown="return /[a-z]/i.test(event.key)" class="form-control" id="doctors_firstname" name="doctors_firstname"
                 placeholder="Firstname" value="{{ old('doctors_firstname', $hospital_department->doctors_firstname ?? '') }}">
-            @error('doctors_firstname')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
+            
 
             <input type="text" maxlength="30" style="margin-left:10px;" onkeydown="return /[a-z]/i.test(event.key)" class="form-control" id="doctors_lastname" name="doctors_lastname"
                 placeholder="Lastname" value="{{ old('doctors_lastname', $hospital_department->doctors_lastname ?? '') }}">
+            
+
+            </div>
+            @error('doctors_firstname')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
             @error('doctors_lastname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-
-            </div>
         </div>
 
         <input type="hidden" name="show_doctor" id="show-doctor" value="0">
