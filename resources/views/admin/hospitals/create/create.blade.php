@@ -448,7 +448,7 @@
             if (!department) {
                 department = 'Operations'
             }
-            var url = '{{ route('super-admin.get.employees', ':department') }}';
+            var url = '{{ route('admin.get.employees', ':department') }}';
             url = url.replace(':department', department);
 
             $.ajax({
@@ -468,7 +468,7 @@
             if (!department) {
                 department = 'Operations'
             }
-            var url = '{{ route('super-admin.get.employees', ':department') }}';
+            var url = '{{ route('admin.get.employees', ':department') }}';
             url = url.replace(':department', department);
 
             $.ajax({

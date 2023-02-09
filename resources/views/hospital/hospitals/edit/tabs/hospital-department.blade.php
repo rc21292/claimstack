@@ -5,7 +5,7 @@
     <div class="form-group row">
 
         <div class="col-md-12">
-            <button style="float:right;" type="button" class="btn btn-danger show-doctors"> <i class="mdi mdi-plus"></i> Add Doctor</button>
+            <button style="float:right;" type="button" class="btn btn-success show-doctors"> <i class="mdi mdi-plus"></i> Add Doctor</button>
         </div>
         <div class="col-md-6 mt-3">
             <label for="specialization">Specialization<span class="text-danger">*</span></label>
@@ -33,10 +33,19 @@
 
 
         <div class="col-md-6 show-hide mt-3">
-            <label for="doctors_name">Doctors Name <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="doctors_name" name="doctors_name"
-                placeholder="Enter Doctors Name" value="{{ old('doctors_name', $hospital_department->doctors_name ?? '') }}">
-            @error('doctors_name')
+            <label for="doctors_firstname">Doctors Name <span class="text-danger">*</span></label>
+            <div class="input-group">
+            <input type="text" maxlength="15" onkeydown="return /[a-z]/i.test(event.key)" class="form-control" id="doctors_firstname" name="doctors_firstname"
+                placeholder="Firstname" value="{{ old('doctors_firstname', $hospital_department->doctors_firstname ?? '') }}">            
+
+            <input type="text" maxlength="30" style="margin-left:10px;" onkeydown="return /[a-z]/i.test(event.key)" class="form-control" id="doctors_lastname" name="doctors_lastname"
+                placeholder="Lastname" value="{{ old('doctors_lastname', $hospital_department->doctors_lastname ?? '') }}">           
+
+            </div>
+            @error('doctors_firstname')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+            @error('doctors_lastname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
@@ -45,7 +54,7 @@
 
         <div class="col-md-6 show-hide mt-3">
             <label for="registration_no">Registration No.  <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="registration_no" name="registration_no"
+            <input type="text" maxlength="20"  class="form-control" id="registration_no" name="registration_no"
                 placeholder="Enter Registration No. " value="{{ old('registration_no', $hospital_department->registration_no ?? '') }}">
             @error('registration_no')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -54,7 +63,7 @@
 
         <div class="col-md-6 show-hide mt-3">
             <label for="email_id">Email ID <span class="text-danger">*</span></label>
-            <input type="email" class="form-control" id="email_id" name="email_id"
+            <input type="email" maxlength="45"  class="form-control" id="email_id" name="email_id"
                 placeholder="Enter Email ID" value="{{ old('email_id', $hospital_department->email_id ?? '') }}">
             @error('email_id')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>

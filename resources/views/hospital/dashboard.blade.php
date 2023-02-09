@@ -26,17 +26,18 @@
                                         <h2 style="margin-left: 15px; margin-top: 20px;"><span style="color:#3E4097">The Executive you are </span> <span style="color:#FF9E0D"> Linked to </span> <span style="color:#3E4097"> is:</span></h2>
                                         <div style="margin-left: 130px; color: #000000;">
                                         <h4>
-                                            <p>Name            :  Sabir Khan</p>
-                                            <p>Email ID        :  sabir@bharatclaims.com</p>
-                                            <p>Contact No. :  9988766373</p>
+                                            <p>Name            :  {{ @$linked_employee->firstname }}</p>
+                                            <p>Email ID        :  {{ @$linked_employee->email }}</p>
+                                            <p>Contact No. :  {{ @$linked_employee->phone }}</p>
                                         </h4>
                                         </div>
 
                                         <h2 style="margin-left: 15px;"> <span style="color:#3E4097">For all your Operational Queries, Our </span> <span style="color:#FF9E0D"> Assigned Executive </span> <span style="color:#3E4097"> is: </span></h2>
                                         <div style="margin-left: 130px; color:#000000;">
                                         <h4>
-                                            <p>Name            :  Ridhi Joshi</p>
-                                            <p>Email ID        : ridhi@bharatclaims.com</p>
+                                            <p>Name            :  {{ @$assigned_employee->firstname }} {{ @$assigned_employee->lastname }}</p>
+                                            <p>Email ID        :  {{ @$assigned_employee->email }}</p>
+                                            <p>Contact No. :  {{ @$assigned_employee->phone }}</p>
 
                                         </h4>
                                     </div>
