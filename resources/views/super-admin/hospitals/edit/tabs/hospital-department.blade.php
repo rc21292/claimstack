@@ -33,7 +33,7 @@
 
 
         <div class="col-md-6 show-hide mt-3">
-            <label for="doctors_firstname">Doctors Firstname <span class="text-danger">*</span></label>
+            <label for="doctors_firstname">Doctors Name <span class="text-danger">*</span></label>
             <div class="input-group">
             <input type="text" maxlength="15" onkeydown="return /[a-z]/i.test(event.key)" class="form-control" id="doctors_firstname" name="doctors_firstname"
                 placeholder="Firstname" value="{{ old('doctors_firstname', $hospital_department->doctors_firstname ?? '') }}">

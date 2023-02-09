@@ -7,7 +7,7 @@
         <div class="col-md-12">
             <button style="float:right;" type="button" class="btn btn-success show-doctors"> <i class="mdi mdi-plus"></i> Add Doctor</button>
         </div>
-        <div class="col-md-12 mt-3">
+        <div class="col-md-6 mt-3">
             <label for="specialization">Specialization<span class="text-danger">*</span></label>
             <select class="form-select" id="specialization" name="specialization">
                 <option value="">Select Specialization</option>
@@ -33,21 +33,21 @@
 
 
         <div class="col-md-6 show-hide mt-3">
-            <label for="doctors_firstname">Doctors Firstname <span class="text-danger">*</span></label>
+            <label for="doctors_firstname">Doctors Name <span class="text-danger">*</span></label>
+            <div class="input-group">
             <input type="text" maxlength="15" onkeydown="return /[a-z]/i.test(event.key)" class="form-control" id="doctors_firstname" name="doctors_firstname"
-                placeholder="Enter Doctors Name" value="{{ old('doctors_firstname', $hospital_department->doctors_firstname ?? '') }}">
+                placeholder="Firstname" value="{{ old('doctors_firstname', $hospital_department->doctors_firstname ?? '') }}">
             @error('doctors_firstname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-        </div>
 
-        <div class="col-md-6 show-hide mt-3">
-            <label for="doctors_lastname">Doctors Lastname <span class="text-danger">*</span></label>
-            <input type="text" maxlength="30" onkeydown="return /[a-z]/i.test(event.key)" class="form-control" id="doctors_lastname" name="doctors_lastname"
-                placeholder="Enter Doctors Name" value="{{ old('doctors_lastname', $hospital_department->doctors_lastname ?? '') }}">
+            <input type="text" maxlength="30" style="margin-left:10px;" onkeydown="return /[a-z]/i.test(event.key)" class="form-control" id="doctors_lastname" name="doctors_lastname"
+                placeholder="Lastname" value="{{ old('doctors_lastname', $hospital_department->doctors_lastname ?? '') }}">
             @error('doctors_lastname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
+
+            </div>
         </div>
 
         <input type="hidden" name="show_doctor" id="show-doctor" value="0">
