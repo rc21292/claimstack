@@ -82,6 +82,10 @@ class HospitalController extends Controller
             'phone'                    => 'required|numeric|digits:10',
             'linked_associate_partner_id'     => ($request->by == 'Associate Partner') ? 'required' : [],
             'linked_associate_partner'   => ($request->by == 'Associate Partner') ? 'required' : [],
+            'assigned_employee'        => 'required',
+            'assigned_employee_id'     => 'required',
+            'linked_employee'          => 'required',
+            'linked_employee_id'       => 'required',
         ];
 
         $messages = [
@@ -124,6 +128,12 @@ class HospitalController extends Controller
             'rohini'                   => $request->rohini,
             'linked_associate_partner' => $request->linked_associate_partner,
             'linked_associate_partner_id' => $request->linked_associate_partner_id,
+            'assigned_employee'        => $request->assigned_employee,
+            'assigned_employee_department'        => $request->assigned_employee_department,
+            'linked_employee_department'        => $request->linked_employee_department,
+            'assigned_employee_id'     => $request->assigned_employee_id,
+            'linked_employee'          => $request->linked_employee,
+            'linked_employee_id'       => $request->linked_employee_id,
             'comments'                 => $request->comments
         ]);
 
@@ -192,7 +202,6 @@ class HospitalController extends Controller
         $hospitals         = Hospital::get();
         $users              = User::get();
 
-        // echo "<pre>";print_r($hospital);"</pre>";exit;
         return view('super-admin.hospitals.edit.edit',  compact('hospital', 'associates', 'hospitals', 'hospital_facility', 'hospital_nfrastructure', 'hospital_department', 'hospital_tie_ups', 'users', 'insurers'));
     }
 
@@ -228,6 +237,10 @@ class HospitalController extends Controller
             'phone'                    => 'required|numeric|digits:10',
             'linked_associate_partner_id'     => ($request->by == 'Associate Partner') ? 'required' : [],
             'linked_associate_partner'   => ($request->by == 'Associate Partner') ? 'required' : [],
+            'assigned_employee'        => 'required',
+            'assigned_employee_id'     => 'required',
+            'linked_employee'          => 'required',
+            'linked_employee_id'       => 'required',
             'tan' => ($request->onboarding == 'Tie Up') ? 'required' : [],
             'gst' => ($request->onboarding == 'Tie Up') ? 'required' : [],
             'owner_email' => ($request->onboarding == 'Tie Up') ? 'required|email' : [],
@@ -331,6 +344,12 @@ class HospitalController extends Controller
             'rohini'                   => $request->rohini,
             'linked_associate_partner' => $request->linked_associate_partner,
             'linked_associate_partner_id' => $request->linked_associate_partner_id,
+            'assigned_employee'        => $request->assigned_employee,
+            'assigned_employee_department'        => $request->assigned_employee_department,
+            'linked_employee_department'        => $request->linked_employee_department,
+            'assigned_employee_id'     => $request->assigned_employee_id,
+            'linked_employee'          => $request->linked_employee,
+            'linked_employee_id'       => $request->linked_employee_id,
             'tan' => $request->tan,
             'gst' => $request->gst,
             'owner_email' => $request->owner_email,

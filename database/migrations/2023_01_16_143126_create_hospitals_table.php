@@ -34,8 +34,10 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('rohini')->nullable();
             $table->string('rohinifile')->nullable();
+            $table->string('linked_employee_department')->nullable();
             $table->string('linked_associate_partner')->nullable();
             $table->string('linked_associate_partner_id')->nullable();
+            $table->string('assigned_employee_department')->nullable();
             $table->string('assigned_employee')->nullable();
             $table->string('assigned_employee_id')->nullable();
             $table->string('linked_employee')->nullable();

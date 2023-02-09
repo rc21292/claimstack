@@ -201,6 +201,137 @@
                     @enderror
                 </div>
 
+
+
+                <div class="col-md-12 mt-3">
+            <label for="assigned_employee_department">Assigned To Employee Department <span class="text-danger">*</span></label>
+            <select class="form-select" id="assigned_employee_department" name="assigned_employee_department"
+                onchange="loadAssignedEmployees()">
+                <option value="">Select Department</option>
+                <option value="Operations"
+                    {{ old('assigned_employee_department', $hospital->assigned_employee_department) == 'Operations' ? 'selected' : '' }}>Operations
+                </option>
+                <option value="Sales" {{ old('assigned_employee_department', $hospital->assigned_employee_department) == 'Sales' ? 'selected' : '' }}>Sales
+                </option>
+                <option value="Accounts" {{ old('assigned_employee_department', $hospital->assigned_employee_department) == 'Accounts' ? 'selected' : '' }}>
+                    Accounts
+                </option>
+                <option value="Analytics & MIS"
+                    {{ old('assigned_employee_department', $hospital->assigned_employee_department) == 'Analytics & MIS' ? 'selected' : '' }}>Analytics & MIS
+                </option>
+                <option value="IT" {{ old('assigned_employee_department', $hospital->assigned_employee_department) == 'IT' ? 'selected' : '' }}>IT
+                </option>
+                <option value="Product Management"
+                    {{ old('assigned_employee_department', $hospital->assigned_employee_department) == 'Product Management' ? 'selected' : '' }}>Product
+                    Management
+                </option>
+                <option value="Provider management"
+                    {{ old('assigned_employee_department', $hospital->assigned_employee_department) == 'Provider management' ? 'selected' : '' }}>Provider
+                    management
+                </option>
+                <option value="Insurance"
+                    {{ old('assigned_employee_department', $hospital->assigned_employee_department) == 'Insurance' ? 'selected' : '' }}>Insurance
+                </option>
+                <option value="Claims Processing"
+                    {{ old('assigned_employee_department', $hospital->assigned_employee_department) == 'Claims Processing' ? 'selected' : '' }}>Claims
+                    Processing
+                </option>
+                <option value="Cashless" {{ old('assigned_employee_department', $hospital->assigned_employee_department) == 'Cashless' ? 'selected' : '' }}>
+                    Cashless
+                </option>
+                <option value="Lending" {{ old('assigned_employee_department', $hospital->assigned_employee_department) == 'Lending' ? 'selected' : '' }}>
+                    Lending
+                </option>
+            </select>
+            @error('assigned_employee_department')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="col-md-6 mt-3">
+            <label for="assigned_employee">Assigned To Employee Name <span class="text-danger">*</span></label>
+            <select class="form-control select2" id="assigned_employee" name="assigned_employee"
+                data-toggle="select2" onchange="setAssignedEmployeeId()">
+                <option value="">Select Assigned To Employee</option>
+
+            </select>
+            @error('assigned_employee')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="col-md-6 mt-3">
+            <label for="assigned_employee_id">Assigned To Employee ID <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="assigned_employee_id" name="assigned_employee_id"
+                placeholder="Enter assigned to employee ID"
+                value="{{ old('assigned_employee_id', $hospital->assigned_employee_id) }}">
+            @error('assigned_employee_id')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="col-md-12 mt-3">
+            <label for="linked_employee_department">Linked With Employee Department <span class="text-danger">*</span></label>
+            <select class="form-select" id="linked_employee_department" name="linked_employee_department"
+                onchange="loadLinkedEmployees()">
+                <option value="">Select Department</option>
+                <option value="Operations"
+                    {{ old('linked_employee_department', $hospital->linked_employee_department) == 'Operations' ? 'selected' : '' }}>Operations
+                </option>
+                <option value="Sales" {{ old('linked_employee_department', $hospital->linked_employee_department) == 'Sales' ? 'selected' : '' }}>Sales
+                </option>
+                <option value="Accounts" {{ old('linked_employee_department', $hospital->linked_employee_department) == 'Accounts' ? 'selected' : '' }}>
+                    Accounts
+                </option>
+                <option value="Analytics & MIS"
+                    {{ old('linked_employee_department', $hospital->linked_employee_department) == 'Analytics & MIS' ? 'selected' : '' }}>Analytics & MIS
+                </option>
+                <option value="IT" {{ old('linked_employee_department', $hospital->linked_employee_department) == 'IT' ? 'selected' : '' }}>IT
+                </option>
+                <option value="Product Management"
+                    {{ old('linked_employee_department', $hospital->linked_employee_department) == 'Product Management' ? 'selected' : '' }}>Product
+                    Management
+                </option>
+                <option value="Provider management"
+                    {{ old('linked_employee_department', $hospital->linked_employee_department) == 'Provider management' ? 'selected' : '' }}>Provider
+                    management
+                </option>
+                <option value="Insurance"
+                    {{ old('linked_employee_department', $hospital->linked_employee_department) == 'Insurance' ? 'selected' : '' }}>Insurance
+                </option>
+                <option value="Claims Processing"
+                    {{ old('linked_employee_department', $hospital->linked_employee_department) == 'Claims Processing' ? 'selected' : '' }}>Claims
+                    Processing
+                </option>
+                <option value="Cashless" {{ old('linked_employee_department', $hospital->linked_employee_department) == 'Cashless' ? 'selected' : '' }}>
+                    Cashless
+                </option>
+                <option value="Lending" {{ old('linked_employee_department', $hospital->linked_employee_department) == 'Lending' ? 'selected' : '' }}>
+                    Lending
+                </option>
+            </select>
+            @error('linked_employee_department')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="col-md-6 mt-3">
+            <label for="linked_employee">Linked With Employee Name <span class="text-danger">*</span></label>
+            <select class="form-control select2" id="linked_employee" name="linked_employee" data-toggle="select2"
+                onchange="setLinkedWithEmployeeId()">
+                <option value="">Select Linked With Employee</option>
+
+            </select>
+            @error('linked_employee')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="col-md-6 mt-3">
+            <label for="linked_employee_id">Linked With Employee ID <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="linked_employee_id" name="linked_employee_id"
+                placeholder="Enter linked with employee ID"
+                value="{{ old('linked_employee_id', $hospital->linked_employee_id) }}">
+            @error('linked_employee_id')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+
         
 
         <div class="col-md-6 mt-3">
@@ -734,7 +865,53 @@
     if( field_hms3 === 'No'){
         $("#iso_status_file").attr("disabled", 'disabled');
     }
-
 </script>
+
+    <script>
+        function loadLinkedEmployees() {
+            var department = $("#linked_employee_department").val();
+            if (!department) {
+                department = 'Operations'
+            }
+            var url = '{{ route('super-admin.get.employees', ':department') }}';
+            url = url.replace(':department', department);
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    $('#linked_employee').html(data)
+                    $('#linked_employee').val('{{ old('linked_employee', $hospital->linked_employee) }}')
+                }
+            });
+        }
+    </script>
+    <script>
+        function loadAssignedEmployees() {
+            var department = $("#assigned_employee_department").val();
+            if (!department) {
+                department = 'Operations'
+            }
+            var url = '{{ route('super-admin.get.employees', ':department') }}';
+            url = url.replace(':department', department);
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    $('#assigned_employee').html(data)
+                    $('#assigned_employee').val('{{ old('assigned_employee', $hospital->assigned_employee) }}')
+                }
+            });
+        }
+    </script>
+    <script>
+        $(document).ready(function() {
+            loadAssignedEmployees();
+            loadLinkedEmployees();
+        });
+    </script>
 
 @endpush
