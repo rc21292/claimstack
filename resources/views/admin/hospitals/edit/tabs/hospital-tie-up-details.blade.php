@@ -223,7 +223,7 @@
         </div>
 
         <div class="col-md-6 mt-3">
-            <label for="cashless_claims_management_services_charges">CCashless Claims Management Services Charges <span
+            <label for="cashless_claims_management_services_charges">Cashless Claims Management Services Charges <span
                     class="text-danger">*</span></label>
             <div class="input-group">
                 <label class="input-group-text" for="phone">Rs.</label>

@@ -266,13 +266,19 @@ class HospitalController extends Controller
             'cancel_cheque' => ($request->onboarding == 'Tie Up') ? 'required' : [],
             'bank_account_no' => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|min:1|max:20' : [],
             'bank_ifs_code' => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|min:1|max:11' : [],
-            'tariff_list_soc' => ($request->onboarding == 'Tie Up') ? 'required' : [],
             'nabh_registration_no' => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|min:1|max:15' : [],
+            'nabh_registration_file' => ($request->onboarding == 'Tie Up') ? 'required' : [],
             'nabl_registration_no' => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|min:1|max:15' : [],
+            'nabl_registration_file' => ($request->onboarding == 'Tie Up') ? 'required' : [],
+            'tariff_list_soc' => ($request->onboarding == 'Tie Up') ? 'required' : [],
+            'tariff_list_soc_file' => ($request->onboarding == 'Tie Up' && $request->tariff_list_soc == 'Yes') ? 'required' : [],
             'signed_mous' => ($request->onboarding == 'Tie Up') ? 'required' : [],
+            'signed_mous_file' => ($request->onboarding == 'Tie Up' && $request->signed_mous == 'Yes') ? 'required' : [],
             'other_documents' => ($request->onboarding == 'Tie Up') ? 'required' : [],
+            'other_documents_file' => ($request->onboarding == 'Tie Up' && $request->other_documents == 'Yes') ? 'required' : [],
+            'iso_status' => ($request->onboarding == 'Tie Up') ? 'required' : [],
+            'iso_status_file' => ($request->onboarding == 'Tie Up' && $request->iso_status == 'Yes') ? 'required' : [],
             'hrms_software' => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'iso_status' => ($request->onboarding == 'Tie Up') ? 'required' : []
         ];
 
         $messages = [

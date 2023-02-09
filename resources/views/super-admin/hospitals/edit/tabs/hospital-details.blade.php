@@ -479,7 +479,7 @@
         <div class="col-md-6 mt-3">
             <label for="medical_superintendent_registration_no">Medical Superintendent Registration No <span
                     class="text-danger">*</span></label>
-            <input type="number" maxlength="20" class="form-control" id="medical_superintendent_registration_no" name="medical_superintendent_registration_no"
+            <input type="text" maxlength="20" class="form-control" id="medical_superintendent_registration_no" name="medical_superintendent_registration_no"
                 placeholder="Enter Medical Superintendent Registration No" value="{{ old('medical_superintendent_registration_no', $hospital->medical_superintendent_registration_no) }}">
             @error('medical_superintendent_registration_no')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -487,9 +487,9 @@
         </div>
 
         <div class="col-md-6 mt-3">
-            <label for="medical_superintendent_qualification">Medical Superintendent Qualification Name <span class="text-danger">*</span></label>
-            <input type="text" maxlength="30" class="form-control" id="medical_superintendent_qualification" name="medical_superintendent_qualification"
-                placeholder="Enter Medical Superintendent Qualification Name" value="{{ old('medical_superintendent_qualification', $hospital->medical_superintendent_qualification) }}">
+            <label for="medical_superintendent_qualification">Medical Superintendent Qualification <span class="text-danger">*</span></label>
+            <input type="text" maxlength="30" onkeydown="return /[a-z]/i.test(event.key)" class="form-control" id="medical_superintendent_qualification" name="medical_superintendent_qualification"
+                placeholder="Enter Medical Superintendent Qualification" value="{{ old('medical_superintendent_qualification', $hospital->medical_superintendent_qualification) }}">
             @error('medical_superintendent_qualification')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
