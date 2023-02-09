@@ -79,7 +79,7 @@
         </div>
 
         <div class="col-md-6 mt-1">
-            <input type="text" maxlength="15" class="form-control" id="firstname" name="firstname" maxlength="15"
+            <input type="text" maxlength="15" onkeydown="return /[a-z]/i.test(event.key)" class="form-control" id="firstname" name="firstname" maxlength="15"
                 placeholder="Firstname" value="{{ old('firstname', $hospital->firstname) }}">
             @error('firstname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -87,7 +87,7 @@
         </div>
 
         <div class="col-md-6 mt-1">
-            <input type="text" maxlength="30" class="form-control" id="lastname" name="lastname" maxlength="30"
+            <input type="text" maxlength="30" class="form-control" id="lastname" name="lastname" maxlength="30" onkeydown="return /[a-z]/i.test(event.key)"
                 placeholder="Lastname" value="{{ old('lastname', $hospital->lastname) }}">
             @error('lastname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -259,23 +259,21 @@
 
 
         <div class="col-md-6 mt-3">
-            <label for="contact_person_firstname">Contact Person Firstname <span class="text-danger">*</span></label>
+            <label for="contact_person_firstname">Contact Person Name <span class="text-danger">*</span></label>
+            <div class="input-group">
             <input type="text" maxlength="15" onkeydown="return /[a-z]/i.test(event.key)" class="form-control" id="contact_person_firstname" name="contact_person_firstname"
-                placeholder="Enter contact person Firstname" value="{{ old('contact_person_firstname', $hospital->contact_person_firstname) }}">
+                placeholder="Firstname" value="{{ old('contact_person_firstname', $hospital->contact_person_firstname) }}">
             @error('contact_person_firstname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-        </div>
 
-        <div class="col-md-6 mt-3">
-            <label for="contact_person_lastname">Contact Person Lastname <span class="text-danger">*</span></label>
-            <input type="text" maxlength="30" onkeydown="return /[a-z]/i.test(event.key)" class="form-control" id="contact_person_lastname" name="contact_person_lastname"
-                placeholder="Enter contact person Lastname" value="{{ old('contact_person_lastname', $hospital->contact_person_lastname) }}">
+            <input type="text" style="margin-left:10px;" maxlength="30" onkeydown="return /[a-z]/i.test(event.key)" class="form-control" id="contact_person_lastname" name="contact_person_lastname"
+                placeholder="Lastname" value="{{ old('contact_person_lastname', $hospital->contact_person_lastname) }}">
             @error('contact_person_lastname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
+            </div>
         </div>
-
 
         <div class="col-md-6 mt-3">
             <label for="contact_person_email">Contact Person Email ID <span class="text-danger">*</span></label>
@@ -297,7 +295,7 @@
             @enderror
         </div>
 
-        <div class="col-md-12 mt-3">
+        <div class="col-md-6 mt-3">
             <label for="registration_no">Registration Number <span
                     class="text-danger">*</span></label>
             <input type="number" onKeyPress="if(this.value.length==20) return false;" class="form-control" id="registration_no" name="registration_no"
@@ -309,23 +307,22 @@
 
 
         <div class="col-md-6 mt-3">
-            <label for="medical_superintendent_firstname">Medical Superintendent Firstname <span class="text-danger">*</span></label>
-            <input type="text" maxlength="15" onkeydown="return /[a-z]/i.test(event.key)" class="form-control" id="medical_superintendent_firstname" name="medical_superintendent_firstname"
-                placeholder="Enter Medical Superintendent Firstname" value="{{ old('medical_superintendent_firstname', $hospital->medical_superintendent_firstname) }}">
-            @error('medical_superintendent_firstname')
+            <label for="medical_superintendent_firstname">Medical Superintendent Name <span class="text-danger">*</span></label>
+            <div class="input-group">
+                <input type="text" maxlength="15" onkeydown="return /[a-z]/i.test(event.key)" class="form-control" id="medical_superintendent_firstname" name="medical_superintendent_firstname"
+                placeholder="Firstname" value="{{ old('medical_superintendent_firstname', $hospital->medical_superintendent_firstname) }}">
+                @error('medical_superintendent_firstname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
-        </div>
+                @enderror
 
-        <div class="col-md-6 mt-3">
-            <label for="medical_superintendent_lastname">Medical Superintendent Lastname <span class="text-danger">*</span></label>
-            <input type="text" maxlength="30" onkeydown="return /[a-z]/i.test(event.key)" class="form-control" id="medical_superintendent_lastname" name="medical_superintendent_lastname"
-                placeholder="Enter Medical Superintendent Lastname" value="{{ old('medical_superintendent_lastname', $hospital->medical_superintendent_lastname) }}">
-            @error('medical_superintendent_lastname')
+                <input type="text" style="margin-left:10px;" maxlength="30" onkeydown="return /[a-z]/i.test(event.key)" class="form-control" id="medical_superintendent_lastname" name="medical_superintendent_lastname"
+                placeholder="Lastname" value="{{ old('medical_superintendent_lastname', $hospital->medical_superintendent_lastname) }}">
+                @error('medical_superintendent_lastname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
-        </div>
+                @enderror
 
+            </div>
+        </div>
 
         <div class="col-md-6 mt-3">
             <label for="medical_superintendent_email">Medical Superintendent Email ID <span class="text-danger">*</span></label>

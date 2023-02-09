@@ -4,6 +4,7 @@
     @method('PUT')
     <div class="form-group row">
         <div class="col-md-12 mt-3">
+
             <label for="mou_inception_date">MoU Inception Date <span class="text-danger">*</span></label>
             <input type="date" class="form-control" @if(!$hospital->signed_mous_file) readonly @endif id="mou_inception_date" name="mou_inception_date"
                 placeholder="Enter MoU Inception Date" value="{{ old('mou_inception_date', $hospital_tie_ups->mou_inception_date ?? '') }}">
