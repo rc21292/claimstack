@@ -427,7 +427,7 @@
             @enderror
         </div>
 
-        <div class="col-md-12 mt-3">
+        <div class="col-md-6 mt-3">
             <label for="registration_no">Registration Number <span
                     class="text-danger">*</span></label>
             <input type="number" onKeyPress="if(this.value.length==20) return false;" class="form-control" id="registration_no" name="registration_no"
