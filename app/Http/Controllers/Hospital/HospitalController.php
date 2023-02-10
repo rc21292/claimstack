@@ -216,6 +216,96 @@ class HospitalController extends Controller
     {
         $hospital             = Hospital::find($id);
 
+        if ($request->hasfile('panfile')) {
+            $panfile                    = $request->file('panfile');
+            $name                       = $panfile->getClientOriginalName();
+            $panfile->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
+            Hospital::where('id', $hospital->id)->update([
+                'panfile'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('tanfile')) {
+            $tanfile                    = $request->file('tanfile');
+            $name                       = $tanfile->getClientOriginalName();
+            $tanfile->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
+            Hospital::where('id', $hospital->id)->update([
+                'tanfile'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('gstfile')) {
+            $gstfile                    = $request->file('gstfile');
+            $name                       = $gstfile->getClientOriginalName();
+            $gstfile->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
+            Hospital::where('id', $hospital->id)->update([
+                'gstfile'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('cancel_cheque_file')) {
+            $cancel_cheque_file                    = $request->file('cancel_cheque_file');
+            $name                       = $cancel_cheque_file->getClientOriginalName();
+            $cancel_cheque_file->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
+            Hospital::where('id', $hospital->id)->update([
+                'cancel_cheque_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('tariff_list_soc_file')) {
+            $tariff_list_soc_file                    = $request->file('tariff_list_soc_file');
+            $name                       = $tariff_list_soc_file->getClientOriginalName();
+            $tariff_list_soc_file->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
+            Hospital::where('id', $hospital->id)->update([
+                'tariff_list_soc_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('nabh_registration_file')) {
+            $nabh_registration_file                    = $request->file('nabh_registration_file');
+            $name                       = $nabh_registration_file->getClientOriginalName();
+            $nabh_registration_file->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
+            Hospital::where('id', $hospital->id)->update([
+                'nabh_registration_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('nabl_registration_file')) {
+            $nabl_registration_file                    = $request->file('nabl_registration_file');
+            $name                       = $nabl_registration_file->getClientOriginalName();
+            $nabl_registration_file->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
+            Hospital::where('id', $hospital->id)->update([
+                'nabl_registration_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('signed_mous_file')) {
+            $signed_mous_file                    = $request->file('signed_mous_file');
+            $name                       = $signed_mous_file->getClientOriginalName();
+            $signed_mous_file->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
+            Hospital::where('id', $hospital->id)->update([
+                'signed_mous_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('other_documents_file')) {
+            $other_documents_file                    = $request->file('other_documents_file');
+            $name                       = $other_documents_file->getClientOriginalName();
+            $other_documents_file->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
+            Hospital::where('id', $hospital->id)->update([
+                'other_documents_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('rohinifile')) {
+            $rohinifile                    = $request->file('rohinifile');
+            $rhnname                       = $rohinifile->getClientOriginalName();
+            $rohinifile->storeAs('uploads/hospital/' . $hospital->id . '/', $rhnname, 'public');
+            Hospital::where('id', $hospital->id)->update([
+                'rohinifile'               =>  $rhnname
+            ]);
+        }
+
 
         $rules = [
             'name'                                      => 'required|min:1|max:60',
@@ -398,95 +488,7 @@ class HospitalController extends Controller
             'uid'      => 'HSP'.$hospital->id
         ]);
 
-        if ($request->hasfile('panfile')) {
-            $panfile                    = $request->file('panfile');
-            $name                       = $panfile->getClientOriginalName();
-            $panfile->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
-            Hospital::where('id', $hospital->id)->update([
-                'panfile'               =>  $name
-            ]);
-        }
 
-        if ($request->hasfile('tanfile')) {
-            $tanfile                    = $request->file('tanfile');
-            $name                       = $tanfile->getClientOriginalName();
-            $tanfile->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
-            Hospital::where('id', $hospital->id)->update([
-                'tanfile'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('gstfile')) {
-            $gstfile                    = $request->file('gstfile');
-            $name                       = $gstfile->getClientOriginalName();
-            $gstfile->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
-            Hospital::where('id', $hospital->id)->update([
-                'gstfile'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('cancel_cheque_file')) {
-            $cancel_cheque_file                    = $request->file('cancel_cheque_file');
-            $name                       = $cancel_cheque_file->getClientOriginalName();
-            $cancel_cheque_file->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
-            Hospital::where('id', $hospital->id)->update([
-                'cancel_cheque_file'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('tariff_list_soc_file')) {
-            $tariff_list_soc_file                    = $request->file('tariff_list_soc_file');
-            $name                       = $tariff_list_soc_file->getClientOriginalName();
-            $tariff_list_soc_file->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
-            Hospital::where('id', $hospital->id)->update([
-                'tariff_list_soc_file'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('nabh_registration_file')) {
-            $nabh_registration_file                    = $request->file('nabh_registration_file');
-            $name                       = $nabh_registration_file->getClientOriginalName();
-            $nabh_registration_file->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
-            Hospital::where('id', $hospital->id)->update([
-                'nabh_registration_file'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('nabl_registration_file')) {
-            $nabl_registration_file                    = $request->file('nabl_registration_file');
-            $name                       = $nabl_registration_file->getClientOriginalName();
-            $nabl_registration_file->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
-            Hospital::where('id', $hospital->id)->update([
-                'nabl_registration_file'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('signed_mous_file')) {
-            $signed_mous_file                    = $request->file('signed_mous_file');
-            $name                       = $signed_mous_file->getClientOriginalName();
-            $signed_mous_file->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
-            Hospital::where('id', $hospital->id)->update([
-                'signed_mous_file'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('other_documents_file')) {
-            $other_documents_file                    = $request->file('other_documents_file');
-            $name                       = $other_documents_file->getClientOriginalName();
-            $other_documents_file->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
-            Hospital::where('id', $hospital->id)->update([
-                'other_documents_file'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('rohinifile')) {
-            $rohinifile                    = $request->file('rohinifile');
-            $rhnname                       = $rohinifile->getClientOriginalName();
-            $rohinifile->storeAs('uploads/hospital/' . $hospital->id . '/', $rhnname, 'public');
-            Hospital::where('id', $hospital->id)->update([
-                'rohinifile'               =>  $rhnname
-            ]);
-        }
 
         return redirect()->back()->with('success', 'Hospital updated successfully');
     }
@@ -911,6 +913,52 @@ class HospitalController extends Controller
         $hospital             = Hospital::find($id);
         $infrastructure       =  HospitalInfrastructure::where('hospital_id', $id)->first();
 
+        if ($request->hasfile('nabl_approved_lab_file')) {
+            $nabl_approved_lab_file                    = $request->file('nabl_approved_lab_file');
+            $name                       = $nabl_approved_lab_file->getClientOriginalName();
+            $nabl_approved_lab_file->storeAs('uploads/hospital/infrastructure/' . $hospital->id . '/', $name, 'public');
+            HospitalInfrastructure::where('hospital_id', $hospital->id)->update([
+                'nabl_approved_lab_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('nabh_status_file')) {
+            $nabh_status_file                    = $request->file('nabh_status_file');
+            $name                       = $nabh_status_file->getClientOriginalName();
+            $nabh_status_file->storeAs('uploads/hospital/infrastructure/' . $hospital->id . '/', $name, 'public');
+            HospitalInfrastructure::where('hospital_id', $hospital->id)->update([
+                'nabh_status_file'               =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('nqac_nhsrc_status_file')) {
+            $nqac_nhsrc_status_file                    = $request->file('nqac_nhsrc_status_file');
+            $name                       = $nqac_nhsrc_status_file->getClientOriginalName();
+            $nqac_nhsrc_status_file->storeAs('uploads/hospital/infrastructure/' . $hospital->id . '/', $name, 'public');
+            HospitalInfrastructure::where('hospital_id', $hospital->id)->update([
+                'nqac_nhsrc_status_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('jci_status_file')) {
+            $jci_status_file                    = $request->file('jci_status_file');
+            $name                       = $jci_status_file->getClientOriginalName();
+            $jci_status_file->storeAs('uploads/hospital/infrastructure/' . $hospital->id . '/', $name, 'public');
+            HospitalInfrastructure::where('hospital_id', $hospital->id)->update([
+                'jci_status_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('hippa_status_file')) {
+            $hippa_status_file                    = $request->file('hippa_status_file');
+            $name                       = $hippa_status_file->getClientOriginalName();
+            $hippa_status_file->storeAs('uploads/hospital/infrastructure/' . $hospital->id . '/', $name, 'public');
+            HospitalInfrastructure::where('hospital_id', $hospital->id)->update([
+                'hippa_status_file'               =>  $name
+            ]);
+        }
+
         $rules = [
             'city_category'                     => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
             'hospital_type'                     => ($hospital->onboarding == 'Tie Up') ? 'required|string|min:1|max:25' : [],
@@ -989,52 +1037,6 @@ class HospitalController extends Controller
             ]);
 
 
-        if ($request->hasfile('nabl_approved_lab_file')) {
-            $nabl_approved_lab_file                    = $request->file('nabl_approved_lab_file');
-            $name                       = $nabl_approved_lab_file->getClientOriginalName();
-            $nabl_approved_lab_file->storeAs('uploads/hospital/infrastructure/' . $hospital->id . '/', $name, 'public');
-            HospitalInfrastructure::where('hospital_id', $hospital->id)->update([
-                'nabl_approved_lab_file'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('nabh_status_file')) {
-            $nabh_status_file                    = $request->file('nabh_status_file');
-            $name                       = $nabh_status_file->getClientOriginalName();
-            $nabh_status_file->storeAs('uploads/hospital/infrastructure/' . $hospital->id . '/', $name, 'public');
-            HospitalInfrastructure::where('hospital_id', $hospital->id)->update([
-                'nabh_status_file'               =>  $name
-            ]);
-        }
-
-
-        if ($request->hasfile('nqac_nhsrc_status_file')) {
-            $nqac_nhsrc_status_file                    = $request->file('nqac_nhsrc_status_file');
-            $name                       = $nqac_nhsrc_status_file->getClientOriginalName();
-            $nqac_nhsrc_status_file->storeAs('uploads/hospital/infrastructure/' . $hospital->id . '/', $name, 'public');
-            HospitalInfrastructure::where('hospital_id', $hospital->id)->update([
-                'nqac_nhsrc_status_file'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('jci_status_file')) {
-            $jci_status_file                    = $request->file('jci_status_file');
-            $name                       = $jci_status_file->getClientOriginalName();
-            $jci_status_file->storeAs('uploads/hospital/infrastructure/' . $hospital->id . '/', $name, 'public');
-            HospitalInfrastructure::where('hospital_id', $hospital->id)->update([
-                'jci_status_file'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('hippa_status_file')) {
-            $hippa_status_file                    = $request->file('hippa_status_file');
-            $name                       = $hippa_status_file->getClientOriginalName();
-            $hippa_status_file->storeAs('uploads/hospital/infrastructure/' . $hospital->id . '/', $name, 'public');
-            HospitalInfrastructure::where('hospital_id', $hospital->id)->update([
-                'hippa_status_file'               =>  $name
-            ]);
-        }
-
         return redirect()->back()->with('success', 'Hospital updated successfully');
     }
 
@@ -1042,6 +1044,15 @@ class HospitalController extends Controller
     public function updateHospitalDepartment(Request $request, $id)
     {
         $hospital             = Hospital::find($id);
+
+        if ($request->hasfile('upload')) {
+            $upload                    = $request->file('upload');
+            $name                      = $upload->getClientOriginalName();
+            $upload->storeAs('uploads/hospital/department/' . $hospital->id . '/', $name, 'public');
+            HospitalDepartment::where('hospital_id', $hospital->id)->update([
+                'upload'               =>  $name
+            ]);
+        }
 
         $rules = [
             'specialization'              => 'required',
@@ -1072,14 +1083,7 @@ class HospitalController extends Controller
                 'doctors_mobile_no'          => $request->doctors_mobile_no,
         ]);
 
-        if ($request->hasfile('upload')) {
-            $upload                    = $request->file('upload');
-            $name                      = $upload->getClientOriginalName();
-            $upload->storeAs('uploads/hospital/department/' . $hospital->id . '/', $name, 'public');
-            HospitalDepartment::where('hospital_id', $hospital->id)->update([
-                'upload'               =>  $name
-            ]);
-        }
+        
 
         return redirect()->back()->with('success', 'Hospital updated successfully');
     }
@@ -1087,6 +1091,15 @@ class HospitalController extends Controller
     public function updateHospitalEmpanelmentStatus(Request $request, $id)
     {
         $hospital             = Hospital::find($id);
+
+        if ($request->hasfile('upload')) {
+            $upload                             = $request->file('upload');
+            $name                               = $upload->getClientOriginalName();
+            $upload->storeAs('uploads/hospital/empanelment_status/' . $hospital->id . '/', $name, 'public');
+            HospitalDepartment::where('hospital_id', $hospital->id)->update([
+                'upload'                        =>  $name
+            ]);
+        }
 
         $rules = [
             'specialization'              => 'required',
@@ -1116,14 +1129,7 @@ class HospitalController extends Controller
                 'doctors_mobile_no'          => $request->doctors_mobile_no,
         ]);
 
-        if ($request->hasfile('upload')) {
-            $upload                             = $request->file('upload');
-            $name                               = $upload->getClientOriginalName();
-            $upload->storeAs('uploads/hospital/empanelment_status/' . $hospital->id . '/', $name, 'public');
-            HospitalDepartment::where('hospital_id', $hospital->id)->update([
-                'upload'                        =>  $name
-            ]);
-        }
+        
 
         return redirect()->back()->with('success', 'Hospital updated successfully');
     }
