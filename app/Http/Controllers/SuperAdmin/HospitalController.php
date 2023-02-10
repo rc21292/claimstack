@@ -964,7 +964,7 @@ class HospitalController extends Controller
         $hospitalT =  HospitalInfrastructure::updateOrCreate([
             'hospital_id' => $id],
             [
-                'city_category'                     => $request->city_category,
+                'city_category'                     => $request->city_category ? $request->city_category : 'Other',
                 'hospital_type'                     => $request->hospital_type,
                 'hospital_category'                 => $request->hospital_category,
                 'no_of_beds'                        => $request->no_of_beds,
