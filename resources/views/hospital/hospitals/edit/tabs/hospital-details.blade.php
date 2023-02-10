@@ -5,7 +5,7 @@
     <div class="form-group row">
         <div class="col-md-12 mt-3">
             <label for="name">Hospital Name <span class="text-danger">*</span></label>
-            <input type="text" maxlength="60" class="form-control" id="name" name="name"
+            <input type="text" readonly maxlength="60" class="form-control" id="name" name="name"
                 placeholder="Enter Hospital name" value="{{ old('name', $hospital->name) }}">
             @error('name')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -14,7 +14,7 @@
 
         <div class="col-md-6 mt-3">
             <label for="onboarding">Hospital Onboarding <span class="text-danger">*</span></label>
-            <select class="form-select" id="onboarding" name="onboarding">
+            <select disabled class="form-select" id="onboarding" name="onboarding">
                 <option value="">Select onboarding</option>
                 <option value="Tie Up" {{ old('onboarding', $hospital->onboarding) == 'Tie Up' ? 'selected' : '' }}>Tie Up
                 </option>
@@ -29,7 +29,7 @@
 
         <div class="col-md-6 mt-3">
             <label for="by">Hospital By <span class="text-danger">*</span></label>
-            <select class="form-select" id="by" name="by">
+            <select disabled class="form-select" id="by" name="by">
                 <option value="">Select by</option>
                 <option value="Direct" {{ old('by', $hospital->by) == 'Direct' ? 'selected' : '' }}>Direct
                 </option>
@@ -44,14 +44,14 @@
 
         <div class="col-md-12 mt-3">
             <label for="address">Hospital Address <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="address" name="address"
+            <input type="text" readonly class="form-control" id="address" name="address"
                 placeholder="Address Line" value="{{ old('address', $hospital->address) }}">
             @error('address')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
         <div class="col-md-4 mt-2">
-            <input type="text" class="form-control" id="city" name="city"
+            <input type="text" readonly class="form-control" id="city" name="city"
                 placeholder="City" value="{{ old('city', $hospital->city) }}">
             @error('city')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -59,7 +59,7 @@
         </div>
 
         <div class="col-md-4 mt-2">
-            <input type="text" class="form-control" id="state" name="state"
+            <input type="text" readonly class="form-control" id="state" name="state"
                 placeholder="State" value="{{ old('state', $hospital->state) }}">
             @error('state')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -67,7 +67,7 @@
         </div>
 
         <div class="col-md-4 mt-2">
-            <input type="number" class="form-control" id="pincode" name="pincode" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==6) return false;"
+            <input type="number" readonly class="form-control" id="pincode" name="pincode" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==6) return false;"
                 placeholder="Pincode" value="{{ old('pincode', $hospital->pincode) }}">
             @error('pincode')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -79,7 +79,7 @@
         </div>
 
         <div class="col-md-6 mt-1">
-            <input type="text" maxlength="15" class="form-control" id="firstname" name="firstname" maxlength="15"
+            <input type="text" readonly maxlength="15" class="form-control" id="firstname" name="firstname" maxlength="15"
                 placeholder="Firstname" value="{{ old('firstname', $hospital->firstname) }}">
             @error('firstname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -87,7 +87,7 @@
         </div>
 
         <div class="col-md-6 mt-1">
-            <input type="text" maxlength="30" class="form-control" id="lastname" name="lastname" maxlength="30"
+            <input type="text" readonly maxlength="30" class="form-control" id="lastname" name="lastname" maxlength="30"
                 placeholder="Lastname" value="{{ old('lastname', $hospital->lastname) }}">
             @error('lastname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -97,9 +97,9 @@
         <div class="col-md-6 mt-3">
             <label for="pan">Hospital PAN Number <span class="text-danger">*</span></label>
             <div class="input-group">
-                <input type="text" maxlength="10" class="form-control" id="pan" name="pan" maxlength="10"
+                <input type="text" readonly maxlength="10" class="form-control" id="pan" name="pan" maxlength="10"
                     placeholder="Enter Hospital PAN no." value="{{ old('pan', $hospital->pan) }}">
-                <input type="file" name="panfile" id="upload" hidden />
+                <input type="file" disabled name="panfile" id="upload" hidden />
                 <label for="upload" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
             </div>
@@ -113,7 +113,7 @@
 
         <div class="col-md-6 mt-3">
             <label for="owner">Hospital email ID <span class="text-danger">*</span></label>
-            <input type="email" maxlength="45" class="form-control" id="email" name="email" maxlength="30"
+            <input type="email" readonly maxlength="45" class="form-control" id="email" name="email" maxlength="30"
                 placeholder="Enter hospital email ID" value="{{ old('email', $hospital->email) }}">
             @error('email')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -126,11 +126,11 @@
                 class="text-danger">*</span></label>
                 <div class="input-group">
                     <div class="col-3">
-                        <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length>=3) return false;" class="form-control input-md" id="code" name="code"
+                        <input type="number" readonly pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length>=3) return false;" class="form-control input-md" id="code" name="code"
                         placeholder="Code" value="{{ old('code', $hospital->code) }}">
                     </div>
                     <div class="col-9">
-                        <input type="number" class="form-control" id="landline" name="landline"
+                        <input type="number" readonly class="form-control" id="landline" name="landline"
                         placeholder="Enter hospital landline number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length >= 10) return false;" value="{{ old('landline', $hospital->landline) }}">
                     </div>
                 </div>
@@ -146,7 +146,7 @@
             <label for="phone">Hospital Mobile Number <span class="text-danger">*</span></label>
             <div class="input-group">
                 <label class="input-group-text" for="phone">+91</label>
-                <input type="number" class="form-control" id="phone" name="phone"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" placeholder="Enter hospital mobile number" value="{{ old('phone', $hospital->phone) }}">
+                <input type="number" readonly class="form-control" id="phone" name="phone"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" placeholder="Enter hospital mobile number" value="{{ old('phone', $hospital->phone) }}">
             </div>
             @error('phone')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -156,7 +156,7 @@
         <div class="col-md-12 mt-3">
             <label for="rohini">Rohini Code <span class="text-danger">*</span></label>
             <div class="input-group">
-                <input type="text" maxlength="13" class="form-control" id="rohini" name="rohini"
+                <input type="text" readonly maxlength="13" class="form-control" id="rohini" name="rohini"
                     placeholder="Enter rohini code." value="{{ old('rohini', $hospital->rohini) }}">
                 <input type="file" name="rohinifile" id="rohinifile" hidden />
                 <label for="rohinifile" class="btn btn-primary upload-label"><i
@@ -173,7 +173,7 @@
         <div class="col-md-6 mt-3">
             <label for="linked_associate_partner">Associate Partner Company Name <span
                 class="text-danger">*</span></label>
-                <select class="form-control select2" id="linked_associate_partner" name="linked_associate_partner"
+                <select disabled class="form-control select2" id="linked_associate_partner" name="linked_associate_partner"
                 data-toggle="select2" onchange="setLinkedAssociatePartnerId()">
                 <option value="">Select Associate Partner</option>
                 @foreach ($associates as $associate)
@@ -193,7 +193,7 @@
             <div class="col-md-6 mt-3">
                 <label for="linked_associate_partner_id">Associate Partner ID <span
                     class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="linked_associate_partner_id"
+                    <input type="text" readonly class="form-control" id="linked_associate_partner_id"
                     name="linked_associate_partner_id" placeholder="Enter Associate Partner Id"
                     value="{{ old('linked_associate_partner_id', $hospital->linked_associate_partner_id) }}">
                     @error('linked_associate_partner_id')
@@ -203,7 +203,7 @@
 
             <div class="col-md-12 mt-3">
             <label for="assigned_employee_department">Assigned To Employee Department <span class="text-danger">*</span></label>
-            <select class="form-select" id="assigned_employee_department" name="assigned_employee_department"
+            <select disabled class="form-select" id="assigned_employee_department" name="assigned_employee_department"
                 onchange="loadAssignedEmployees()">
                 <option value="">Select Department</option>
                 <option value="Operations"
@@ -247,7 +247,7 @@
         </div>
         <div class="col-md-6 mt-3">
             <label for="assigned_employee">Assigned To Employee Name <span class="text-danger">*</span></label>
-            <select class="form-control select2" id="assigned_employee" name="assigned_employee"
+            <select disabled class="form-control select2" id="assigned_employee" name="assigned_employee"
                 data-toggle="select2" onchange="setAssignedEmployeeId()">
                 <option value="">Select Assigned To Employee</option>
 
@@ -258,7 +258,7 @@
         </div>
         <div class="col-md-6 mt-3">
             <label for="assigned_employee_id">Assigned To Employee ID <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="assigned_employee_id" name="assigned_employee_id"
+            <input type="text" readonly class="form-control" id="assigned_employee_id" name="assigned_employee_id"
                 placeholder="Enter assigned to employee ID"
                 value="{{ old('assigned_employee_id', $hospital->assigned_employee_id) }}">
             @error('assigned_employee_id')
@@ -267,7 +267,7 @@
         </div>
         <div class="col-md-12 mt-3">
             <label for="linked_employee_department">Linked With Employee Department <span class="text-danger">*</span></label>
-            <select class="form-select" id="linked_employee_department" name="linked_employee_department"
+            <select disabled class="form-select" id="linked_employee_department" name="linked_employee_department"
                 onchange="loadLinkedEmployees()">
                 <option value="">Select Department</option>
                 <option value="Operations"
@@ -311,7 +311,7 @@
         </div>
         <div class="col-md-6 mt-3">
             <label for="linked_employee">Linked With Employee Name <span class="text-danger">*</span></label>
-            <select class="form-control select2" id="linked_employee" name="linked_employee" data-toggle="select2"
+            <select disabled class="form-control select2" id="linked_employee" name="linked_employee" data-toggle="select2"
                 onchange="setLinkedWithEmployeeId()">
                 <option value="">Select Linked With Employee</option>
 
@@ -322,7 +322,7 @@
         </div>
         <div class="col-md-6 mt-3">
             <label for="linked_employee_id">Linked With Employee ID <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="linked_employee_id" name="linked_employee_id"
+            <input type="text" readonly class="form-control" id="linked_employee_id" name="linked_employee_id"
                 placeholder="Enter linked with employee ID"
                 value="{{ old('linked_employee_id', $hospital->linked_employee_id) }}">
             @error('linked_employee_id')
