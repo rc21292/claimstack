@@ -75,6 +75,8 @@ class AssociatePartnerController extends Controller
             'reference'                => 'required',
             'assigned_employee'        => 'required',
             'assigned_employee_id'     => 'required',
+            'assigned_employee_department'        => 'required',
+            'linked_employee_department'        => 'required',
             'linked_employee'          => 'required',
             'linked_employee_id'       => 'required',
         ];

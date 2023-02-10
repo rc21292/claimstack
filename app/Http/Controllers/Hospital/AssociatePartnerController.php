@@ -69,6 +69,8 @@ class AssociatePartnerController extends Controller
             'city'                     => 'required',
             'state'                    => 'required',
             'pincode'                  => 'required|numeric',
+            'assigned_employee_department'        => 'required',
+            'linked_employee_department'        => 'required',
             'phone'                    => 'required|numeric|digits:10',
             'status'                   => 'required',
             'reference'                => 'required',

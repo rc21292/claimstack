@@ -74,6 +74,8 @@ class AssociatePartnerController extends Controller
             'phone'                    => 'required|numeric|digits:10',
             'status'                   => 'required',
             'reference'                => 'required',
+            'assigned_employee_department'        => 'required',
+            'linked_employee_department'        => 'required',
             'assigned_employee'        => 'required',
             'assigned_employee_id'     => 'required',
             'linked_employee'          => 'required',

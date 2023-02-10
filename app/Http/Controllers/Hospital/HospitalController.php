@@ -239,6 +239,8 @@ class HospitalController extends Controller
             'linked_associate_partner'                  => ($request->by == 'Associate Partner') ? 'required' : [],
             'assigned_employee'                         => 'required',
             'assigned_employee_id'                      => 'required',
+            'assigned_employee_department'        => 'required',
+            'linked_employee_department'        => 'required',
             'linked_employee'                           => 'required',
             'linked_employee_id'                        => 'required',
             'tan'                                       => ($request->onboarding == 'Tie Up') ? 'required' : [],

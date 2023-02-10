@@ -232,6 +232,8 @@ class HospitalController extends Controller
             'email'                                     => 'required|email|min:1|max:45|unique:hospitals,email,'.$id,
             'address'                                   => 'required',
             'city'                                      => 'required',
+            'assigned_employee_department'        => 'required',
+            'linked_employee_department'        => 'required',
             'state'                                     => 'required',
             'pincode'                                   => 'required|numeric',
             'phone'                                     => 'required|numeric|digits:10',
