@@ -602,7 +602,7 @@ class HospitalController extends Controller
     public function updateHospitalFacility(Request $request, $id)
     {        
         $hospital             = Hospital::find($id);
-        $facility             =  HospitalFacility::where('hospital_id', $id)->fitst();
+        $facility             =  HospitalFacility::where('hospital_id', $id)->first();
 
         $rules = [
             'pharmacy'                          => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
