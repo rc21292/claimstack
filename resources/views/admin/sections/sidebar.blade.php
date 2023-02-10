@@ -41,11 +41,13 @@
                 </a>
                 <div class="collapse" id="adminMenu">
                     <ul class="side-nav-second-level">
-
+                        @if(auth()->check() && auth()->user()->hasDirectPermission('Admin Creation Rights'))
                         <li>
                             <a href="{{ route('admin.admins.create') }}">Create Admin</a>
                         </li>
+                        @endif
 
+                        @if(auth()->check() && auth()->user()->hasDirectPermission('Admin Updation/Editing Rights'))
                         <li>
                             <a href="{{ route('admin.admins.index') }}">Manage Admin</a>
                         </li>
@@ -53,6 +55,7 @@
                         <li>
                             <a href="{{ route('admin.admins.import-export') }}">Import Export Admin</a>
                         </li>
+                        @endif
 
                     </ul>
                 </div>
