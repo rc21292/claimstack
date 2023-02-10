@@ -25,7 +25,7 @@
                                         <h2 style="margin-left: 15px; margin-top: 20px;"><span style="color:#3E4097">The Executive you are </span> <span style="color:#FF9E0D"> Linked to </span> <span style="color:#3E4097"> is:</span></h2>
                                         <div style="margin-left: 130px; color: #000000;">
                                         <h4>
-                                            <p>Name            :  {{ $linked_ap->name }}</p>
+                                            <p>Name            :  {{ $linked_ap->firstname }} {{ $linked_ap->lastname }}</p>
                                             <p>Email ID        :  {{ $linked_ap->email }}</p>
                                             <p>Contact No. :  {{ $linked_ap->phone }}</p>
                                         </h4>
@@ -34,7 +34,7 @@
                                         <h2 style="margin-left: 15px;"> <span style="color:#3E4097">For all your Operational Queries, Our </span> <span style="color:#FF9E0D"> Assigned Executive </span> <span style="color:#3E4097"> is: </span></h2>
                                         <div style="margin-left: 130px; color:#000000;">
                                         <h4>
-                                            <p>Name            :  {{ $assigned_ap->name }}</p>
+                                            <p>Name            :  {{ $assigned_ap->firstname }} {{ $assigned_ap->lastname }}</p>
                                             <p>Email ID        :  {{ $assigned_ap->email }}</p>
                                             <p>Contact No. :  {{ $assigned_ap->phone }}</p>
 

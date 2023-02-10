@@ -34,6 +34,7 @@ class PermissionSeed extends Seeder
         Permission::create(['name' => 'Bill Generation Module Creation/Editing Rights', 'guard_name' => 'web']);
 
 
+        Permission::create(['name' => 'Admin Creation Rights', 'guard_name' => 'web']);
         Permission::create(['name' => 'User Creation Rights', 'guard_name' => 'web']);
         Permission::create(['name' => 'Associate Partner Login ID Creation Rights', 'guard_name' => 'web']);
         Permission::create(['name' => 'Hospital Login ID Creation Rights', 'guard_name' => 'web']);
@@ -43,6 +44,7 @@ class PermissionSeed extends Seeder
         Permission::create(['name' => 'Insurance Co. Login ID Creation Rights', 'guard_name' => 'web']);
         Permission::create(['name' => 'TPA Login ID Creation Rights', 'guard_name' => 'web']);
 
+        Permission::create(['name' => 'Admin Updation/Editing Rights', 'guard_name' => 'web']);
         Permission::create(['name' => 'User Updation/Editing Rights', 'guard_name' => 'web']);
         Permission::create(['name' => 'Associate Partner Updation/Editing Rights', 'guard_name' => 'web']);
         Permission::create(['name' => 'Hospital Details Updation/Editing Rights', 'guard_name' => 'web']);
@@ -99,7 +101,7 @@ class PermissionSeed extends Seeder
         Permission::create(['name' => 'Claim Verification Module Creation/Editing Rights', 'guard_name' => 'admin']);
         Permission::create(['name' => 'Bill Generation Module Creation/Editing Rights', 'guard_name' => 'admin']);
 
-
+        Permission::create(['name' => 'Admin Creation Rights', 'guard_name' => 'admin']);
         Permission::create(['name' => 'User Creation Rights', 'guard_name' => 'admin']);
         Permission::create(['name' => 'Associate Partner Login ID Creation Rights', 'guard_name' => 'admin']);
         Permission::create(['name' => 'Hospital Login ID Creation Rights', 'guard_name' => 'admin']);
@@ -109,6 +111,7 @@ class PermissionSeed extends Seeder
         Permission::create(['name' => 'Insurance Co. Login ID Creation Rights', 'guard_name' => 'admin']);
         Permission::create(['name' => 'TPA Login ID Creation Rights', 'guard_name' => 'admin']);
 
+        Permission::create(['name' => 'Admin Updation/Editing Rights', 'guard_name' => 'admin']);
         Permission::create(['name' => 'User Updation/Editing Rights', 'guard_name' => 'admin']);
         Permission::create(['name' => 'Associate Partner Updation/Editing Rights', 'guard_name' => 'admin']);
         Permission::create(['name' => 'Hospital Details Updation/Editing Rights', 'guard_name' => 'admin']);
