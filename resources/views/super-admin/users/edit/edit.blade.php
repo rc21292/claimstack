@@ -231,9 +231,29 @@
                 });
             }
         </script>
-        <script>
-            $(document).ready(function () {
-                loadEmployees();
-            });
-        </script>
+       <script>
+        $(document).ready(function () {
+            loadEmployees();
+            linkedWithSuperadmin();
+        });
+    </script>
+    <script>
+        function linkedWithSuperadmin() { 
+             var linkedwithsuperadmin =  $('#linked_with_superadmin').val();
+             switch (linkedwithsuperadmin) {
+                 case "yes":
+                     $('.div_linked_employee').css('display', 'none');
+                     break;
+                 
+                 case "no":
+                     $('.div_linked_employee').css('display', 'block');
+                     break;
+             
+                 default:
+                     $('.div_linked_employee').css('display', 'block');
+                     break;
+             }
+             
+         };
+     </script>
 @endpush
