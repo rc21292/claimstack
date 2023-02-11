@@ -13,7 +13,7 @@
         </div>
         <div class="col-md-6">
             <label for="type">Associate Partner Type <span class="text-danger">*</span></label>
-            <select disabled class="form-select" id="type" name="type">
+            <select class="form-select" id="type" name="type">
                 <option value="">Select Type</option>
                 <option value="vendor" {{ old('type', $associate->type) == 'vendor' ? 'selected' : 'disabled' }}>Vendor Partner
                 </option>
@@ -123,7 +123,7 @@
         </div>
         <div class="col-md-12 mt-3">
             <label for="statuses">Associate Partner Status <span class="text-danger">*</span></label>
-            <select disabled class="form-select" id="statuses" name="status">
+            <select class="form-select" id="statuses" name="status">
                 <option value="">Select Status</option>
                 <option value="Main" {{ old('status', $associate->status) == 'Main' ? 'selected' : 'disabled' }}>Main
                 </option>
@@ -167,7 +167,7 @@
         </div>
         <div class="col-md-12 mt-3">
             <label for="assigned_employee_department">Assigned To Employee Department <span class="text-danger">*</span></label>
-            <select disabled class="form-select" id="assigned_employee_department" name="assigned_employee_department"
+            <select class="form-select" id="assigned_employee_department" name="assigned_employee_department"
                 onchange="loadAssignedEmployees()">
                 <option value="">Select Department</option>
                 <option value="Operations"
@@ -211,7 +211,7 @@
         </div>
         <div class="col-md-6 mt-3">
             <label for="assigned_employee">Assigned To Employee Name <span class="text-danger">*</span></label>
-            <select disabled class="form-control select2" readonly id="assigned_employee" name="assigned_employee"
+            <select class="form-control select2" readonly id="assigned_employee" name="assigned_employee"
                 data-toggle="select2" onchange="setAssignedEmployeeId()">
                 <option value="">Select Assigned To Employee</option>
 
@@ -231,7 +231,7 @@
         </div>
         <div class="col-md-12 mt-3">
             <label for="linked_employee_department">Linked With Employee Department <span class="text-danger">*</span></label>
-            <select disabled class="form-select" id="linked_employee_department" name="linked_employee_department"
+            <select class="form-select" id="linked_employee_department" name="linked_employee_department"
                 onchange="loadLinkedEmployees()">
                 <option value="">Select Department</option>
                 <option value="Operations"
@@ -275,7 +275,7 @@
         </div>
         <div class="col-md-6 mt-3">
             <label for="linked_employee">Linked With Employee Name <span class="text-danger">*</span></label>
-            <select readonly disabled class="form-control select2" id="linked_employee" name="linked_employee" data-toggle="select2"
+            <select readonly class="form-control select2" id="linked_employee" name="linked_employee" data-toggle="select2"
                 onchange="setLinkedWithEmployeeId()">
                 <option value="">Select Linked With Employee</option>
 
@@ -364,7 +364,7 @@
         <div class="col-md-6 mt-3">
             <label for="contact_person_email">Associate Partner Contact Person's email ID. <span
                     class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="contact_person_email" name="contact_person_email"
+            <input type="email" class="form-control" id="contact_person_email" name="contact_person_email"
                 placeholder="Associate partner contact person's email ID."
                 value="{{ old('contact_person_email', $associate->contact_person_email) }}">
             @error('contact_person_email')

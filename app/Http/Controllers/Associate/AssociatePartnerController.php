@@ -189,8 +189,7 @@ class AssociatePartnerController extends Controller
         $rules = [
             'name'                     => 'required',
             'type'                     => 'required',
-            'pan'                      => 'required|alpha_num',
-            'panfile'                  =>  isset($associate_partner->panfile) ? '' : 'required',
+            'pan'                      => 'required|alpha_num',            
             'owner_firstname'          => 'required',
             'email'                    => 'required|unique:associate_partners,email,'.$id,
             'address'                  => 'required',
@@ -212,7 +211,7 @@ class AssociatePartnerController extends Controller
             'agreement_end_date'       => 'required|after:agreement_start_date',
             'contact_person'           => 'required',
             'contact_person_phone'     => 'required',
-            'contact_person_email'     => 'required',
+            'contact_person_email'     => 'required|email',
             'bank_name'                => 'required',
             'bank_address'             => 'required',
             'cancel_cheque'            => 'required',
