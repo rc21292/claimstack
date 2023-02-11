@@ -136,9 +136,9 @@
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
-        <div class="col-md-6 mt-3 linked">
+        <div class="col-md-6 mt-3">
             <label for="linked_associate_partner">Linked Associate Partner Name </label>
-            <select disabled class="form-control select2" readonly id="linked_associate_partner" name="linked_associate_partner"
+            <select disabled class="form-control select2 linked" readonly id="linked_associate_partner" name="linked_associate_partner"
                 data-toggle="select2" onchange="setLinkedAssociatePartnerId()">
                 <option value="">Select Associate Partner</option>
                 @foreach ($associates as $row)
@@ -158,7 +158,7 @@
         </div>
         <div class="col-md-6 mt-3 linked">
             <label for="linked_associate_partner_id">Linked Associate Partner ID </label>
-            <input type="text" readonly class="form-control" id="linked_associate_partner_id"
+            <input type="text" readonly class="form-control linked" id="linked_associate_partner_id"
                 name="linked_associate_partner_id" placeholder="Enter linked associate partner ID"
                 value="{{ old('linked_associate_partner_id', $associate->linked_associate_partner_id) }}">
             @error('linked_associate_partner_id')
@@ -450,25 +450,25 @@
     var status = "{{ old('status', $associate->status) }}";
 
     if(status == 'Main'){
-        $('.linked').css('display', 'none');
+        $('.linked').attr('disabled', true);
     }else{
-        $('.linked').css('display', 'block');
+        $('.linked').attr('disabled', false);
     }
 
     $("#statuses").change(function() {
         var value = $(this).val();
         switch (value) {
         case "Main":
-            $('.linked').css('display', 'none');
+            $('.linked').attr('disabled', true);
             break;
         case "Sub AP":
-            $('.linked').css('display', 'block');
+            $('.linked').attr('disabled', false);
             break;
         case "Agency":
-            $('.linked').css('display', 'block');
+            $('.linked').attr('disabled', false);
             break;
         default:
-            $('.linked').css('display', 'none');
+            $('.linked').attr('disabled', true);
             break;
         }
     });
