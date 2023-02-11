@@ -190,7 +190,7 @@ class AssociatePartnerController extends Controller
             'pan'                      => 'required|alpha_num',
             'panfile'                  =>  isset($associate_partner->panfile) ? '' : 'required',
             'owner_firstname'          => 'required',
-            'email'                    => 'required|unique:associate_partners,email,'.$id,
+            'email'                    => 'required|email|unique:associate_partners,email,'.$id,
             'address'                  => 'required',
             'city'                     => 'required',
             'state'                    => 'required',

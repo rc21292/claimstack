@@ -229,7 +229,7 @@ class AssociatePartnerController extends Controller
             'type'                     => 'required',
             'pan'                      => 'required|alpha_num',            
             'owner_firstname'          => 'required',
-            'email'                    => 'required|unique:associate_partners,email,'.$id,
+            'email'                    => 'required|email|unique:associate_partners,email,'.$id,
             'address'                  => 'required',
             'city'                     => 'required',
             'state'                    => 'required',

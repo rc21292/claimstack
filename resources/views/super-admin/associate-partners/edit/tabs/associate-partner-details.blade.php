@@ -65,7 +65,7 @@
 
         <div class="col-md-6 mt-3">
             <label for="owner">Official email ID <span class="text-danger">*</span></label>
-            <input type="email" class="form-control" id="email" name="email" maxlength="30"
+            <input type="text" class="form-control" id="email" name="email" maxlength="30"
                 placeholder="Enter official emailID" value="{{ old('email', $associate->email) }}">
             @error('email')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -391,30 +391,33 @@
             @enderror
         </div>
 
-        <div class="col-md-3 mt-2">
-            <select class="form-select" id="cancel_cheque" name="cancel_cheque">
-                <option value="">Cancel Cheque</option>
-                <option value="Yes" {{ old('cancel_cheque', $associate->cancel_cheque) == 'Yes' ? 'selected' : '' }}>Yes
-                </option>
-                <option value="No"
-                    {{ old('cancel_cheque', $associate->cancel_cheque) == 'No' ? 'selected' : '' }}>No
-                </option>
-            </select>
+        <div class="col-md-4 mt-2">
+            <div class="input-group">
+                <select class="form-select" id="cancel_cheque" name="cancel_cheque">
+                    <option value="">Cancel Cheque</option>
+                    <option value="Yes"
+                        {{ old('cancel_cheque', $associate->cancel_cheque) == 'Yes' ? 'selected' : '' }}>Yes
+                    </option>
+                    <option value="No"
+                        {{ old('cancel_cheque', $associate->cancel_cheque) == 'No' ? 'selected' : '' }}>No
+                    </option>
+                </select>
+                @isset($associate->cancel_cheque_file)
+                    <a href="{{ asset('storage/uploads/associate-partners/' . $associate->id . '/' . $associate->cancel_cheque_file) }}"
+                        download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+                @endisset
+                <input type="file" name="cancel_cheque_file" @if(old('cancel_cheque',$associate->cancel_cheque) == 'No') disabled @endif id="cancel_cheque_file" hidden />
+
+                <label for="cancel_cheque_file" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
+            </div>
 
             @error('cancel_cheque')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-        </div>
-
-        <div class="col-md-1 mt-2">
-                <input type="file" name="cancel_cheque_file" id="cupload" hidden />
-                <label for="cupload" class="btn btn-primary upload-label"><i
-                        class="mdi mdi-upload"></i></label>
             @error('cancel_cheque_file')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
-
 
         <div class="col-md-6 mt-3">
             <input type="text" class="form-control" id="bank_account_no" name="bank_account_no" maxlength="20"
@@ -456,6 +459,14 @@
     }else{
         $('.linked').attr('disabled', false);
     }
+
+    $("select").change(function() {
+        if($(this).val() == 'No'){
+            $("#"+$(this).attr('id')+'_file').attr('disabled', true);
+        }else{
+            $("#"+$(this).attr('id')+'_file').attr('disabled', false);
+        }
+    });
 
     $("#statuses").change(function() {
         var value = $(this).val();

@@ -446,9 +446,9 @@
                     <a href="{{ asset('storage/uploads/associate-partners/' . $associate->id . '/' . $associate->cancel_cheque_file) }}"
                         download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
                 @endisset
-                <input type="file" name="cancel_cheque_file" id="cupload" hidden />
+                <input type="file" name="cancel_cheque_file" @if(old('cancel_cheque',$associate->cancel_cheque) == 'No') disabled @endif  id="cancel_cheque_file" hidden />
 
-                <label for="cupload" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
+                <label for="cancel_cheque_file" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
             </div>
 
             @error('cancel_cheque')
@@ -501,6 +501,14 @@
         } else {
             $('.linked').attr('disabled', false);
         }
+
+        $("select").change(function() {
+            if($(this).val() == 'No'){
+                $("#"+$(this).attr('id')+'_file').attr('disabled', true);
+            }else{
+                $("#"+$(this).attr('id')+'_file').attr('disabled', false);
+            }
+        });
 
         $("#statuses").change(function() {
             var value = $(this).val();
