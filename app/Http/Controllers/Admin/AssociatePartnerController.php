@@ -205,7 +205,7 @@ class AssociatePartnerController extends Controller
             'linked_employee'          => 'required',
             'linked_employee_id'       => 'required',
             'mou'                      => 'required',
-            'moufile'                  => $request->mou == 'yes' ? 'required' : '',
+            'moufile'                  => ($request->mou == 'yes' && empty($associate_partner->moufile)) ? 'required' : [],
             'agreement_start_date'     => 'required',
             'agreement_end_date'       => 'required|after:agreement_start_date',
             'contact_person'           => 'required',
