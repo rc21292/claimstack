@@ -24,6 +24,9 @@
                     {{ old('bhc_packages_for_surgical_procedures_accepted', $hospital_tie_ups->bhc_packages_for_surgical_procedures_accepted ?? '') == 'No' ? 'selected' : '' }}>No
                 </option>
             </select>
+            @isset($hospital_tie_ups->bhc_packages_for_surgical_procedures_accepted_file)
+                <a href="{{ asset('storage/uploads/hospital/'.$hospital_tie_ups->hospital_id.'/'.$hospital_tie_ups->bhc_packages_for_surgical_procedures_accepted_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+            @endisset
             <input type="file" name="bhc_packages_for_surgical_procedures_accepted_file" @if($hospital_tie_ups->bhc_packages_for_surgical_procedures_accepted == 'No') disabled @endif id="bhc_packages_for_surgical_procedures_accepted_file" hidden />
             <label for="bhc_packages_for_surgical_procedures_accepted_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
@@ -248,6 +251,9 @@
                     {{ old('lending_finance_company_agreement', $hospital_tie_ups->lending_finance_company_agreement ?? '') == 'No' ? 'selected' : '' }}>No
                 </option>
             </select>
+            @isset($hospital_tie_ups->lending_finance_company_agreement_file)
+                <a href="{{ asset('storage/uploads/hospital/'.$hospital_tie_ups->hospital_id.'/'.$hospital_tie_ups->lending_finance_company_agreement_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+            @endisset
             <input type="file" name="lending_finance_company_agreement_file" @if($hospital_tie_ups->lending_finance_company_agreement == 'No') disabled @endif id="lending_finance_company_agreement_file" hidden />
             <label for="lending_finance_company_agreement_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>

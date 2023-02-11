@@ -83,6 +83,7 @@ return new class extends Migration
             $table->string('other_documents_file')->nullable();
             $table->string('hrms_software')->nullable();
             $table->string('iso_status')->nullable();
+            $table->string('iso_status_file')->nullable();
             $table->longText('comments')->nullable();
             $table->timestamps();
             $table->softDeletes();

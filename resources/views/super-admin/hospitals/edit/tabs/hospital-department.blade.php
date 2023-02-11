@@ -84,7 +84,10 @@
             @enderror
         </div>
 
-        <div class="col-md-2 show-hide mt-32" style="margin-top: 45px !important;">
+        <div class="col-md-3 show-hide mt-32" style="margin-top: 45px !important;">
+            @isset($hospital_department->upload)
+                    <a href="{{ asset('storage/uploads/hospital/department/'.$hospital_department->hospital_id.'/'.$hospital_department->upload) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+                @endisset
             <input type="file" name="upload" id="dofsupload" hidden />
             <label for="dofsupload" class="btn btn-primary upload-label">
                 Upload <i class="mdi mdi-upload"></i></label>

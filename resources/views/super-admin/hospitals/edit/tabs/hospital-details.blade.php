@@ -99,9 +99,11 @@
             <div class="input-group">
                 <input type="text" maxlength="10" class="form-control" id="pan" name="pan" maxlength="10"
                     placeholder="Enter Hospital PAN no." value="{{ old('pan', $hospital->pan) }}">
-                <input type="file" name="panfile" id="upload" hidden />
-                <label for="upload" class="btn btn-primary upload-label"><i
-                        class="mdi mdi-upload"></i></label>
+            @isset($hospital->panfile)
+                <a href="{{ asset('storage/uploads/hospital/'.$hospital->id.'/'.$hospital->panfile) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+            @endisset
+            <input type="file" name="panfile" id="upload" hidden />
+                <label for="upload" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
             </div>
             @error('pan')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -158,7 +160,10 @@
             <div class="input-group">
                 <input type="text" maxlength="13" class="form-control" id="rohini" name="rohini"
                     placeholder="Enter rohini code." value="{{ old('rohini', $hospital->rohini) }}">
-                <input type="file" name="rohinifile" id="rohinifile" hidden />
+            @isset($hospital->rohinifile)
+                <a href="{{ asset('storage/uploads/hospital/'.$hospital->id.'/'.$hospital->rohinifile) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+            @endisset
+            <input type="file" name="rohinifile" id="rohinifile" hidden />
                 <label for="rohinifile" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
             </div>
@@ -339,7 +344,10 @@
             <div class="input-group">
                 <input type="text" maxlength="10" class="form-control" id="tan" name="tan"
                     placeholder="Enter Hospital Tan no." value="{{ old('tan', $hospital->tan) }}">
-                <input type="file" name="tanfile" id="tanfile" hidden />
+            @isset($hospital->tanfile)
+                <a href="{{ asset('storage/uploads/hospital/'.$hospital->id.'/'.$hospital->tanfile) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+            @endisset
+            <input type="file" name="tanfile" id="tanfile" hidden />
                 <label for="tanfile" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
             </div>
@@ -356,7 +364,10 @@
             <div class="input-group">
                 <input type="text" maxlength="15" class="form-control" id="gst" name="gst"
                     placeholder="Enter Hospital Gst no." value="{{ old('gst', $hospital->gst) }}">
-                <input type="file" name="gstfile" id="gstfile" hidden />
+            @isset($hospital->gstfile)
+                <a href="{{ asset('storage/uploads/hospital/'.$hospital->id.'/'.$hospital->gstfile) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+            @endisset
+            <input type="file" name="gstfile" id="gstfile" hidden />
                 <label for="gstfile" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
             </div>
@@ -507,6 +518,9 @@
                     {{ old('pollution_clearance_certificate', $hospital->pollution_clearance_certificate) == 'No' ? 'selected' : '' }}>No
                 </option>
             </select>
+            @isset($hospital->pollution_clearance_certificate_file)
+                <a href="{{ asset('storage/uploads/hospital/'.$hospital->id.'/'.$hospital->pollution_clearance_certificate_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+            @endisset            
             <input type="file"  @if(old('pollution_clearance_certificate', $hospital->pollution_clearance_certificate) == 'No') disabled @endif name="pollution_clearance_certificate_file" id="pollution_clearance_certificate_file" hidden />
             <label for="pollution_clearance_certificate_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
@@ -530,6 +544,9 @@
                     {{ old('fire_safety_clearance_certificate', $hospital->fire_safety_clearance_certificate) == 'No' ? 'selected' : '' }}>No
                 </option>
             </select>
+            @isset($hospital->fire_safety_clearance_certificate_file)
+                <a href="{{ asset('storage/uploads/hospital/'.$hospital->id.'/'.$hospital->fire_safety_clearance_certificate_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+            @endisset
             <input type="file"  @if(old('fire_safety_clearance_certificate', $hospital->fire_safety_clearance_certificate) == 'No') disabled @endif name="fire_safety_clearance_certificate_file" id="fire_safety_clearance_certificate_file" hidden />
             <label for="fire_safety_clearance_certificate_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
@@ -554,6 +571,9 @@
                     {{ old('certificate_of_incorporation', $hospital->certificate_of_incorporation) == 'No' ? 'selected' : '' }}>No
                 </option>
             </select>
+            @isset($hospital->certificate_of_incorporation_file)
+                <a href="{{ asset('storage/uploads/hospital/'.$hospital->id.'/'.$hospital->certificate_of_incorporation_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+            @endisset
             <input type="file"  @if(old('certificate_of_incorporation', $hospital->certificate_of_incorporation) == 'No') disabled @endif name="certificate_of_incorporation_file" id="certificate_of_incorporation_file" hidden />
             <label for="certificate_of_incorporation_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
@@ -596,6 +616,9 @@
                     {{ old('cancel_cheque', $hospital->cancel_cheque) == 'No' ? 'selected' : '' }}>No
                 </option>
             </select>
+            @isset($hospital->cancel_cheque_file)
+                <a href="{{ asset('storage/uploads/hospital/'.$hospital->id.'/'.$hospital->cancel_cheque_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+            @endisset
             <input type="file" name="cancel_cheque_file" id="cancel_cheque_file" hidden />
             <label for="cancel_cheque_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
@@ -637,6 +660,9 @@
                     {{ old('tariff_list_soc', $hospital->tariff_list_soc) == 'No' ? 'selected' : '' }}>No
                 </option>
             </select>
+        @isset($hospital->tariff_list_soc_file)
+                <a href="{{ asset('storage/uploads/hospital/'.$hospital->id.'/'.$hospital->tariff_list_soc_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+            @endisset
             <input type="file" name="tariff_list_soc_file" id="tariff_list_soc_file" hidden />
             <label for="tariff_list_soc_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
@@ -654,7 +680,10 @@
             <div class="input-group">
                 <input type="text" maxlength="15" class="form-control" id="nabh_registration_no" name="nabh_registration_no"
                     placeholder="Hospital NABH Registration No." value="{{ old('nabh_registration_no', $hospital->nabh_registration_no) }}">
-                <input type="file" name="nabh_registration_file" id="nabh_registration_file" hidden />
+            @isset($hospital->nabh_registration_file)
+                <a href="{{ asset('storage/uploads/hospital/'.$hospital->id.'/'.$hospital->nabh_registration_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+            @endisset
+            <input type="file" name="nabh_registration_file" id="nabh_registration_file" hidden />
                 <label for="nabh_registration_file" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
             </div>
@@ -672,7 +701,10 @@
             <div class="input-group">
                 <input type="text" maxlength="15" class="form-control" id="nabl_registration_no" name="nabl_registration_no"
                     placeholder="Hospital NABL Registration No." value="{{ old('nabl_registration_no', $hospital->nabl_registration_no) }}">
-                <input type="file" name="nabl_registration_file" id="nabl_registration_file" hidden />
+            @isset($hospital->nabl_registration_file)
+                <a href="{{ asset('storage/uploads/hospital/'.$hospital->id.'/'.$hospital->nabl_registration_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+            @endisset
+            <input type="file" name="nabl_registration_file" id="nabl_registration_file" hidden />
                 <label for="nabl_registration_file" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
             </div>
@@ -696,6 +728,9 @@
                     {{ old('signed_mous', $hospital->signed_mous) == 'No' ? 'selected' : '' }}>No
                 </option>
             </select>
+        @isset($hospital->signed_mous_file)
+                <a href="{{ asset('storage/uploads/hospital/'.$hospital->id.'/'.$hospital->signed_mous_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+            @endisset
             <input type="file" name="signed_mous_file" id="signed_mous_file" hidden />
             <label for="signed_mous_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
@@ -720,7 +755,10 @@
                     {{ old('other_documents', $hospital->other_documents) == 'No' ? 'selected' : '' }}>No
                 </option>
             </select>
-                <input type="file" name="other_documents_file" id="other_documents_file" hidden />
+            @isset($hospital->other_documents_file)
+                <a href="{{ asset('storage/uploads/hospital/'.$hospital->id.'/'.$hospital->other_documents_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+            @endisset
+            <input type="file" name="other_documents_file" id="other_documents_file" hidden />
                 <label for="other_documents_file" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
             </div>
@@ -760,6 +798,9 @@
                     {{ old('iso_status', $hospital->iso_status) == 'No' ? 'selected' : '' }}>No
                 </option>
             </select>
+        @isset($hospital->iso_status_file)
+                <a href="{{ asset('storage/uploads/hospital/'.$hospital->id.'/'.$hospital->iso_status_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+            @endisset
             <input type="file" name="iso_status_file" id="iso_status_file" hidden />
             <label for="iso_status_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>

@@ -306,6 +306,42 @@ class HospitalController extends Controller
             ]);
         }
 
+        if ($request->hasfile('iso_status_file')) {
+            $iso_status_file                    = $request->file('iso_status_file');
+            $name                       = $iso_status_file->getClientOriginalName();
+            $iso_status_file->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
+            Hospital::where('id', $hospital->id)->update([
+                'iso_status_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('pollution_clearance_certificate_file')) {
+            $pollution_clearance_certificate_file   = $request->file('pollution_clearance_certificate_file');
+            $name = $pollution_clearance_certificate_file->getClientOriginalName();
+            $pollution_clearance_certificate_file->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
+            Hospital::where('id', $hospital->id)->update([
+                'pollution_clearance_certificate_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('certificate_of_incorporation_file')) {
+            $certificate_of_incorporation_file                    = $request->file('certificate_of_incorporation_file');
+            $name                       = $certificate_of_incorporation_file->getClientOriginalName();
+            $certificate_of_incorporation_file->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
+            Hospital::where('id', $hospital->id)->update([
+                'certificate_of_incorporation_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('fire_safety_clearance_certificate_file')) {
+            $fire_safety_clearance_certificate_file                    = $request->file('fire_safety_clearance_certificate_file');
+            $name                       = $fire_safety_clearance_certificate_file->getClientOriginalName();
+            $fire_safety_clearance_certificate_file->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
+            Hospital::where('id', $hospital->id)->update([
+                'fire_safety_clearance_certificate_file'               =>  $name
+            ]);
+        }
+
 
         $rules = [
             'name'                                      => 'required|min:1|max:60',
@@ -464,11 +500,8 @@ class HospitalController extends Controller
             'medical_superintendent_registration_no'    => $request->medical_superintendent_registration_no,
             'medical_superintendent_qualification'      => $request->medical_superintendent_qualification,
             'pollution_clearance_certificate'           => $request->pollution_clearance_certificate,
-            'pollution_clearance_certificate_file'      => $request->pollution_clearance_certificate_file,
             'fire_safety_clearance_certificate'         => $request->fire_safety_clearance_certificate,
-            'fire_safety_clearance_certificate_file'    => $request->fire_safety_clearance_certificate_file,
             'certificate_of_incorporation'              => $request->certificate_of_incorporation,
-            'certificate_of_incorporation_file'         => $request->certificate_of_incorporation_file,
             'bank_name'                                 => $request->bank_name,
             'bank_address'                              => $request->bank_address,
             'cancel_cheque'                             => $request->cancel_cheque,
@@ -497,6 +530,24 @@ class HospitalController extends Controller
     public function updateHospitalTieUps(Request $request, $id)
     {
         $hospital             = Hospital::find($id);
+
+        if ($request->hasfile('bhc_packages_for_surgical_procedures_accepted_file')) {
+            $bhc_packages_for_surgical_procedures_accepted_file                    = $request->file('bhc_packages_for_surgical_procedures_accepted_file');
+            $name                       = $bhc_packages_for_surgical_procedures_accepted_file->getClientOriginalName();
+            $bhc_packages_for_surgical_procedures_accepted_file->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
+            HospitalTieUp::where('hospital_id', $hospital->id)->update([
+                'bhc_packages_for_surgical_procedures_accepted_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('lending_finance_company_agreement_file')) {
+            $lending_finance_company_agreement_file                    = $request->file('lending_finance_company_agreement_file');
+            $name                       = $lending_finance_company_agreement_file->getClientOriginalName();
+            $lending_finance_company_agreement_file->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
+            HospitalTieUp::where('hospital_id', $hospital->id)->update([
+                'lending_finance_company_agreement_file'               =>  $name
+            ]);
+        }
 
         $rules = [
             'mou_inception_date'                            => ($hospital->onboarding == 'Tie Up' && $hospital->signed_mous_file) ? 'required' : [],
