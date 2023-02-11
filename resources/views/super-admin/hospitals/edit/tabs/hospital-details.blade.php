@@ -430,7 +430,7 @@
         <div class="col-md-6 mt-3">
             <label for="registration_no">Registration Number <span
                     class="text-danger">*</span></label>
-            <input type="number" onKeyPress="if(this.value.length==20) return false;" class="form-control" id="registration_no" name="registration_no"
+            <input type="text" onKeyPress="if(this.value.length==20) return false;" class="form-control" id="registration_no" name="registration_no"
                 placeholder="Enter Registration Number" value="{{ old('registration_no', $hospital->registration_no) }}">
             @error('registration_no')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
