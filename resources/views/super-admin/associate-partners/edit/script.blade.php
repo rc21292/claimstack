@@ -22,42 +22,28 @@
         var value = $('#medical_lending_patient').val();
         switch (value) {
             case "no":
-                $('.div_medical_lending_patient').hide();
+                $('#medical_lending_patient_charge').attr('readonly', true);
                 break;
             case "yes":
-                $('.div_medical_lending_patient').show();
+                $('#medical_lending_patient_charge').attr('readonly', false);
                 break;
             default:
-                $('.div_medical_lending_patient').show();
+                $('#medical_lending_patient_charge').attr('readonly', false);
                 break;
         }
-    }
-    function medicalLendingPatient() {
-        var value = $('#medical_lending_patient').val();
-        switch (value) {
-            case "no":
-                $('.div_medical_lending_patient').hide();
-                break;
-            case "yes":
-                $('.div_medical_lending_patient').show();
-                break;
-            default:
-                $('.div_medical_lending_patient').show();
-                break;
-        }
-    }
+    }    
 
     function medicalLendingBill() {
         var value = $('#medical_lending_bill').val();
         switch (value) {
             case "no":
-                $('.div_medical_lending_bill').hide();
+                $('#medical_lending_bill_charge').attr('readonly', true);
                 break;
             case "yes":
-                $('.div_medical_lending_bill').show();
+                $('#medical_lending_bill_charge').attr('readonly', false);
                 break;
             default:
-                $('.div_medical_lending_bill').show();
+                $('#medical_lending_bill_charge').attr('readonly', false);
                 break;
         }
     }
@@ -66,13 +52,13 @@
         var value = $('#insurance_tpa_coordination').val();
         switch (value) {
             case "no":
-                $('.div_insurance_tpa_coordination').hide();
+                $('#insurance_tpa_coordination_charge').attr('readonly', true);
                 break;
             case "yes":
-                $('.div_insurance_tpa_coordination').show();
+                $('#insurance_tpa_coordination_charge').attr('readonly', false);
                 break;
             default:
-                $('.div_insurance_tpa_coordination').show();
+                $('#insurance_tpa_coordination_charge').attr('readonly', false);
                 break;
         }
     }
@@ -81,13 +67,13 @@
         var value = $('#doctor_tele_consultation').val();
         switch (value) {
             case "no":
-                $('.div_doctor_tele_consultation').hide();
+                $('#doctor_tele_consultation_charge').attr('readonly', true);
                 break;
             case "yes":
-                $('.div_doctor_tele_consultation').show();
+                $('#doctor_tele_consultation_charge').attr('readonly', false);
                 break;
             default:
-                $('.div_doctor_tele_consultation').show();
+                $('#doctor_tele_consultation_charge').attr('readonly', false);
                 break;
         }
     }
@@ -96,13 +82,13 @@
         var value = $('#doctor_honorary_panel').val();
         switch (value) {
             case "no":
-                $('.div_doctor_honorary_panel').hide();
+                $('#doctor_honorary_panel_charge').attr('readonly', true);
                 break;
             case "yes":
-                $('.div_doctor_honorary_panel').show();
+                $('#doctor_honorary_panel_charge').attr('readonly', false);
                 break;
             default:
-                $('.div_doctor_honorary_panel').show();
+                $('#doctor_honorary_panel_charge').attr('readonly', false);
                 break;
         }
     }
@@ -111,13 +97,13 @@
         var value = $('#doctor_claim_process').val();
         switch (value) {
             case "no":
-                $('.div_doctor_claim_process').hide();
+                $('#doctor_claim_process_charge').attr('readonly', true);
                 break;
             case "yes":
-                $('.div_doctor_claim_process').show();
+                $('#doctor_claim_process_charge').attr('readonly', false);
                 break;
             default:
-                $('.div_doctor_claim_process').show();
+                $('#doctor_claim_process_charge').attr('readonly', false);
                 break;
         }
     }
@@ -126,13 +112,13 @@
         var value = $('#claims_reimbursement').val();
         switch (value) {
             case "no":
-                $('.div_claims_reimbursement').hide();
+                $('#claims_reimbursement_charge').attr('readonly', true);
                 break;
             case "yes":
-                $('.div_claims_reimbursement').show();
+                $('#claims_reimbursement_charge').attr('readonly', false);
                 break;
             default:
-                $('.div_claims_reimbursement').show();
+                $('#claims_reimbursement_charge').attr('readonly', false);
                 break;
         }
     }
@@ -141,13 +127,13 @@
         var value = $('#claims_bill_entry').val();
         switch (value) {
             case "no":
-                $('.div_claims_bill_entry').hide();
+                $('#claims_bill_entry_charge').attr('readonly', true);
                 break;
             case "yes":
-                $('.div_claims_bill_entry').show();
+                $('#claims_bill_entry_charge').attr('readonly', false);
                 break;
             default:
-                $('.div_claims_bill_entry').show();
+                $('#claims_bill_entry_charge').attr('readonly', false);
                 break;
         }
     }
@@ -156,13 +142,13 @@
         var value = $('#claims_assessment').val();
         switch (value) {
             case "no":
-                $('.div_claims_assessment').hide();
+                $('#claims_assessment_charge').attr('readonly', true);
                 break;
             case "yes":
-                $('.div_claims_assessment').show();
+                $('#claims_assessment_charge').attr('readonly', false);
                 break;
             default:
-                $('.div_claims_assessment').show();
+                $('#claims_assessment_charge').attr('readonly', false);
                 break;
         }
     }
@@ -171,13 +157,13 @@
         var value = $('#cashless_helpdesk').val();
         switch (value) {
             case "no":
-                $('.div_cashless_helpdesk').hide();
+                $('#cashless_helpdesk_charge').attr('readonly', true);
                 break;
             case "yes":
-                $('.div_cashless_helpdesk').show();
+                $('#cashless_helpdesk_charge').attr('readonly', false);
                 break;
             default:
-                $('.div_cashless_helpdesk').show();
+                $('#cashless_helpdesk_charge').attr('readonly', false);
                 break;
         }
     }
@@ -186,13 +172,13 @@
         var value = $('#cashless_claims_management').val();
         switch (value) {
             case "no":
-                $('.div_cashless_claims_management').hide();
+                $('#cashless_claims_management_charge').attr('readonly', true);
                 break;
             case "yes":
-                $('.div_cashless_claims_management').show();
+                $('#cashless_claims_management_charge').attr('readonly', false);
                 break;
             default:
-                $('.div_cashless_claims_management').show();
+                $('#cashless_claims_management_charge').attr('readonly', false);
                 break;
         }
     }
@@ -201,13 +187,13 @@
         var value = $('#consulting').val();
         switch (value) {
             case "no":
-                $('.div_consulting').hide();
+                $('#consulting_charge').attr('readonly', true);
                 break;
             case "yes":
-                $('.div_consulting').show();
+                $('#consulting_charge').attr('readonly', false);
                 break;
             default:
-                $('.div_consulting').show();
+                $('#consulting_charge').attr('readonly', false);
                 break;
         }
     }
@@ -216,13 +202,13 @@
         var value = $('#dealer_distributor').val();
         switch (value) {
             case "no":
-                $('.div_dealer_distributor').hide();
+                $('#dealer_distributor_charge').attr('readonly', true);
                 break;
             case "yes":
-                $('.div_dealer_distributor').show();
+                $('#dealer_distributor_charge').attr('readonly', false);
                 break;
             default:
-                $('.div_dealer_distributor').show();
+                $('#dealer_distributor_charge').attr('readonly', false);
                 break;
         }
     }
@@ -231,13 +217,13 @@
         var value = $('#hospital_empanelment_agent').val();
         switch (value) {
             case "no":
-                $('.div_hospital_empanelment_agent').hide();
+                $('#hospital_empanelment_agent_charge').attr('readonly', true);
                 break;
             case "yes":
-                $('.div_hospital_empanelment_agent').show();
+                $('#hospital_empanelment_agent_charge').attr('readonly', false);
                 break;
             default:
-                $('.div_hospital_empanelment_agent').show();
+                $('#hospital_empanelment_agent_charge').attr('readonly', false);
                 break;
         }
     }
@@ -246,13 +232,13 @@
         var value = $('#software_sales').val();
         switch (value) {
             case "no":
-                $('.div_software_sales').hide();
+                $('#software_sales_charge').attr('readonly', true);
                 break;
             case "yes":
-                $('.div_software_sales').show();
+                $('#software_sales_charge').attr('readonly', false);
                 break;
             default:
-                $('.div_software_sales').show();
+                $('#software_sales_charge').attr('readonly', false);
                 break;
         }
     }
@@ -261,13 +247,13 @@
         var value = $('#others').val();
         switch (value) {
             case "no":
-                $('.div_others').hide();
+                $('#others_charge').attr('readonly', true);
                 break;
             case "yes":
-                $('.div_others').show();
+                $('#others_charge').attr('readonly', false);
                 break;
             default:
-                $('.div_others').show();
+                $('#others_charge').attr('readonly', false);
                 break;
         }
     }

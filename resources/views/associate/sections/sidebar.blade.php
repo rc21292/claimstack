@@ -90,7 +90,7 @@
                 <div class="collapse" id="associatePartner">
                     <ul class="side-nav-second-level">                        
                         <li>
-                            <a href="{{ route('associate-partner.associate-partners.edit', Auth::guard('associate')->id()) }}">Manage Associate Partner</a>
+                            <a href="{{ route('associate-partner.associate-partners.index')}}">Manage Associate Partner</a>
                         </li>                        
                     </ul>
                 </div>

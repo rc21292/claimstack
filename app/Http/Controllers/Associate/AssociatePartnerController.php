@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Notifications\Associate\CredentialsGeneratedNotification;
+use Illuminate\Support\Facades\Auth;
 
 class AssociatePartnerController extends Controller
 {
@@ -30,13 +31,14 @@ class AssociatePartnerController extends Controller
      */
     public function index(Request $request)
     {
-        $filter_search = $request->search;
-        $associates = AssociatePartner::query();
-        if($filter_search){
-            $associates->where('name', 'like','%' . $filter_search . '%');
-        }
-        $associates = $associates->orderBy('id', 'desc')->paginate(20);
-        return view('associate.associate-partners.manage',  compact('associates', 'filter_search'));
+        $id = Auth::user()->id;
+        $associate          = AssociatePartner::find($id);
+        $associate->sub_associate_partners = AssociatePartner::whereIn('status', ['Sub AP', 'Agency'])->where('linked_associate_partner', $id)->get();
+        $associate->service = $associate->type == 'vendor' ? VendorServiceType::where('associate_partner_id', $id)->first() :  SalesServiceType::where('associate_partner_id', $id)->first();
+        $associate->hospitals = Hospital::where('linked_associate_partner', $id)->get();        
+        $associates         = AssociatePartner::get();
+        $users              = User::get();
+        return view('associate.associate-partners.edit.edit',  compact('associate', 'associates', 'users'));
     }
 
     /**
