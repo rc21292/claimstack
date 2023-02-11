@@ -1081,10 +1081,10 @@ class HospitalController extends Controller
                 'no_of_dialysis_units'              => $request->no_of_dialysis_units,
                 'no_ambulance_normal'               => $request->no_ambulance_normal,
                 'no_ambulance_acls'                 => $request->no_ambulance_acls,
-                'nabh_status'                       => $request->nabh_status,
-                'jci_status'                        => $request->jci_status,
-                'nqac_nhsrc_status'                 => $request->nqac_nhsrc_status,
-                'hippa_status'                      => $request->hippa_status,
+                'nabh_status'                       => $request->nabh_status??'NA',
+                'jci_status'                        => $request->jci_status??'No',
+                'nqac_nhsrc_status'                 => $request->nqac_nhsrc_status??'NA',
+                'hippa_status'                      => $request->hippa_status??'No',
                 'comments'                          => $request->comments
             ]);
 
