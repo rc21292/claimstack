@@ -77,21 +77,21 @@
                                         <span class="d-none d-md-block">Sales Partner Service Type</span>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item" style="display:none;">
                                     <a href="#sub_sales_partner_status" data-bs-toggle="tab" aria-expanded="false"
                                         class="nav-link rounded-0">
                                         <i class="mdi mdi-account-circle d-md-none d-block"></i>
                                         <span class="d-none d-md-block">Sub-Sales Partner Status</span>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item" style="display:none;">
                                     <a href="#sales_partner_hospital_status" data-bs-toggle="tab" aria-expanded="false"
                                         class="nav-link rounded-0">
                                         <i class="mdi mdi-account-circle d-md-none d-block"></i>
                                         <span class="d-none d-md-block">Sales Partner Hospital Status</span>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item" style="display:none;">
                                     <a href="#sales_partner_claim_status" data-bs-toggle="tab" aria-expanded="false"
                                         class="nav-link rounded-0">
                                         <i class="mdi mdi-account-circle d-md-none d-block"></i>

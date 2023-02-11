@@ -96,7 +96,7 @@
                 </div>
             </li>
 
-            <li class="side-nav-item">
+            <li class="side-nav-item" style="display:none;">
                 <a data-bs-toggle="collapse" href="#hospitalModule" aria-expanded="false" aria-controls="hospitalModule"
                     class="side-nav-link">
                     <i class="mdi mdi-hospital-building"></i>

@@ -20,7 +20,7 @@
 
                             <div class="col-12 mt-2">
                                 <div class=" mb-md-0 mb-3">
-                                    <div class="hospital-dashboard" style="position: absolute;   width: 936px;   height: 373px;    left: 294px;     top: 235px;    background: #FFFFFF;    border: 2px solid rgba(253, 226, 157, 0.3);    box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.25);    border-radius: 15px; box-shadow: 0px 4px 4px 0px #00000040 inset;">
+                                    <div class="hospital-dashboard" style="position: absolute;   width: 936px;   height: 415px;    left: 294px;     top: 235px;    background: #FFFFFF;    border: 2px solid rgba(253, 226, 157, 0.3);    box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.25);    border-radius: 15px; box-shadow: 0px 4px 4px 0px #00000040 inset;">
 
                                         <h2 style="margin-left: 15px; margin-top: 20px;"><span style="color:#3E4097">The Executive you are </span> <span style="color:#FF9E0D"> Linked to </span> <span style="color:#3E4097"> is:</span></h2>
                                         <div style="margin-left: 130px; color: #000000;">
