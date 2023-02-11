@@ -1,23 +1,25 @@
-<form action="{{ route('associate-partner.associate-partners.update', $associate->id) }}" method="post" id="associate-partner-form"
-    enctype="multipart/form-data">
+<form action="{{ route('associate-partner.associate-partners.update', $associate->id) }}" method="post"
+    id="associate-partner-form" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="form-group row">
         <div class="col-md-6">
             <label for="name">Associate Partner Company's Name <span class="text-danger">*</span></label>
-            <input type="text" readonly class="form-control" id="name" name="name"
-                maxlength="60" placeholder="Enter company name" value="{{ old('name', $associate->name) }}">
+            <input type="text" readonly class="form-control" id="name" name="name" maxlength="60"
+                placeholder="Enter company name" value="{{ old('name', $associate->name) }}">
             @error('name')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
         <div class="col-md-6">
             <label for="type">Associate Partner Type <span class="text-danger">*</span></label>
-            <select disabled class="form-select" id="type" name="type">
+            <select class="form-select" id="type" name="type">
                 <option value="">Select Type</option>
-                <option value="vendor" {{ old('type', $associate->type) == 'vendor' ? 'selected' : 'disabled' }}>Vendor Partner
+                <option value="vendor" {{ old('type', $associate->type) == 'vendor' ? 'selected' : 'disabled' }}>Vendor
+                    Partner
                 </option>
-                <option value="sales" {{ old('type', $associate->type) == 'sales' ? 'selected' : 'disabled' }}>Sales Partner
+                <option value="sales" {{ old('type', $associate->type) == 'sales' ? 'selected' : 'disabled' }}>Sales
+                    Partner
                 </option>
             </select>
             @error('type')
@@ -29,16 +31,18 @@
         </div>
 
         <div class="col-md-6 mt-1">
-            <input type="text" onkeydown="return /[a-z, ]/i.test(event.key)"  readonly class="form-control" id="owner_firstname" name="owner_firstname"
-                maxlength="15"  placeholder="Enter firstname" value="{{ old('owner_firstname', $associate->owner_firstname) }}">
+            <input type="text" onkeydown="return /[a-z, ]/i.test(event.key)" readonly class="form-control"
+                id="owner_firstname" name="owner_firstname" maxlength="15" placeholder="Enter firstname"
+                value="{{ old('owner_firstname', $associate->owner_firstname) }}">
             @error('owner_firstname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
 
         <div class="col-md-6 mt-1">
-            <input type="text" onkeydown="return /[a-z, ]/i.test(event.key)"  readonly class="form-control" id="owner_lastname" name="owner_lastname" maxlength="30"
-                placeholder="Enter lastname" value="{{ old('owner_lastname', $associate->owner_lastname) }}">
+            <input type="text" onkeydown="return /[a-z, ]/i.test(event.key)" readonly class="form-control"
+                id="owner_lastname" name="owner_lastname" maxlength="30" placeholder="Enter lastname"
+                value="{{ old('owner_lastname', $associate->owner_lastname) }}">
             @error('owner_lastname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
@@ -47,13 +51,14 @@
         <div class="col-md-6 mt-3">
             <label for="pan">PAN Number <span class="text-danger">*</span></label>
             <div class="input-group">
-                <input type="text" readonly class="form-control" id="pan" name="pan" maxlength="10" placeholder="Enter PAN no."
-                    value="{{ old('pan', $associate->pan) }}">
-                    @isset($associate->panfile)
-                        <a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->panfile) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-                    @endisset
-                    <input type="file" disabled name="panfile" hidden id="panfile"/>
-                    <label for="panfile" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
+                <input type="text" readonly class="form-control" id="pan" name="pan" maxlength="10"
+                    placeholder="Enter PAN no." value="{{ old('pan', $associate->pan) }}">
+                @isset($associate->panfile)
+                    <a href="{{ asset('storage/uploads/associate-partners/' . $associate->id . '/' . $associate->panfile) }}"
+                        download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+                @endisset
+                <input type="file" disabled name="panfile" hidden id="panfile" />
+                <label for="panfile" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
             </div>
             @error('pan')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -96,7 +101,8 @@
         </div>
 
         <div class="col-md-4 mt-2">
-            <input type="number" readonly class="form-control" id="pincode" name="pincode" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==6) return false;" placeholder="Pincode"
+            <input type="number" readonly class="form-control" id="pincode" name="pincode"
+                pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==6) return false;" placeholder="Pincode"
                 value="{{ old('pincode', $associate->pincode) }}">
             @error('pincode')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -106,8 +112,10 @@
             <label for="phone">Associate Partner Mobile Number <span class="text-danger">*</span></label>
             <div class="input-group">
                 <label class="input-group-text" for="phone">+91</label>
-            <input type="number" readonly class="form-control" id="phone" name="phone"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"
-                placeholder="Enter associate partner mobile number" value="{{ old('phone', $associate->phone) }}">
+                <input type="number" readonly class="form-control" id="phone" name="phone"
+                    pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"
+                    placeholder="Enter associate partner mobile number"
+                    value="{{ old('phone', $associate->phone) }}">
             </div>
             @error('phone')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -123,13 +131,16 @@
         </div>
         <div class="col-md-12 mt-3">
             <label for="statuses">Associate Partner Status <span class="text-danger">*</span></label>
-            <select disabled class="form-select" id="statuses" name="status">
+            <select class="form-select" id="statuses" name="status">
                 <option value="">Select Status</option>
-                <option value="Main" {{ old('status', $associate->status) == 'Main' ? 'selected' : 'disabled' }}>Main
+                <option value="Main" {{ old('status', $associate->status) == 'Main' ? 'selected' : 'disabled' }}>
+                    Main
                 </option>
-                <option value="Sub AP" {{ old('status', $associate->status) == 'Sub AP' ? 'selected' : 'disabled' }}>Sub AP
+                <option value="Sub AP" {{ old('status', $associate->status) == 'Sub AP' ? 'selected' : 'disabled' }}>
+                    Sub AP
                 </option>
-                <option value="Agency" {{ old('status', $associate->status) == 'Agency' ? 'selected' : 'disabled' }}>Agency
+                <option value="Agency" {{ old('status', $associate->status) == 'Agency' ? 'selected' : 'disabled' }}>
+                    Agency
                 </option>
             </select>
             @error('status')
@@ -138,8 +149,8 @@
         </div>
         <div class="col-md-6 mt-3">
             <label for="linked_associate_partner">Linked Associate Partner Name </label>
-            <select disabled class="form-control select2 linked" readonly id="linked_associate_partner" name="linked_associate_partner"
-                data-toggle="select2" onchange="setLinkedAssociatePartnerId()">
+            <select disabled class="form-control select2 linked" readonly id="linked_associate_partner"
+                name="linked_associate_partner" data-toggle="select2" onchange="setLinkedAssociatePartnerId()">
                 <option value="">Select Associate Partner</option>
                 @foreach ($associates as $row)
                     <option value="{{ $row->id }}"
@@ -166,42 +177,56 @@
             @enderror
         </div>
         <div class="col-md-12 mt-3">
-            <label for="assigned_employee_department">Assigned To Employee Department <span class="text-danger">*</span></label>
-            <select disabled class="form-select" id="assigned_employee_department" name="assigned_employee_department"
+            <label for="assigned_employee_department">Assigned To Employee Department <span
+                    class="text-danger">*</span></label>
+            <select class="form-select" id="assigned_employee_department" name="assigned_employee_department"
                 onchange="loadAssignedEmployees()">
                 <option value="">Select Department</option>
                 <option value="Operations"
-                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Operations' ? 'selected' : 'disabled' }}>Operations
+                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Operations' ? 'selected' : 'disabled' }}>
+                    Operations
                 </option>
-                <option value="Sales" {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Sales' ? 'selected' : 'disabled' }}>Sales
+                <option value="Sales"
+                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Sales' ? 'selected' : 'disabled' }}>
+                    Sales
                 </option>
-                <option value="Accounts" {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Accounts' ? 'selected' : 'disabled' }}>
+                <option value="Accounts"
+                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Accounts' ? 'selected' : 'disabled' }}>
                     Accounts
                 </option>
                 <option value="Analytics & MIS"
-                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Analytics & MIS' ? 'selected' : 'disabled' }}>Analytics & MIS
+                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Analytics & MIS' ? 'selected' : 'disabled' }}>
+                    Analytics & MIS
                 </option>
-                <option value="IT" {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'IT' ? 'selected' : 'disabled' }}>IT
+                <option value="IT"
+                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'IT' ? 'selected' : 'disabled' }}>
+                    IT
                 </option>
                 <option value="Product Management"
-                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Product Management' ? 'selected' : 'disabled' }}>Product
+                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Product Management' ? 'selected' : 'disabled' }}>
+                    Product
                     Management
                 </option>
                 <option value="Provider management"
-                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Provider management' ? 'selected' : 'disabled' }}>Provider
+                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Provider management' ? 'selected' : 'disabled' }}>
+                    Provider
                     management
                 </option>
                 <option value="Insurance"
-                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Insurance' ? 'selected' : 'disabled' }}>Insurance
+                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Insurance' ? 'selected' : 'disabled' }}>
+                    Insurance
                 </option>
                 <option value="Claims Processing"
-                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Claims Processing' ? 'selected' : 'disabled' }}>Claims
+                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Claims Processing' ? 'selected' : 'disabled' }}>
+                    Claims
                     Processing
                 </option>
-                <option value="Cashless" {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Cashless' ? 'selected' : 'disabled' }}>
+                <option value="Cashless"
+                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Cashless' ? 'selected' : 'disabled' }}>
                     Cashless
                 </option>
-                <option value="Lending" {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Lending' ? 'selected' : 'disabled' }}>
+                <option value="Lending"
+                    {{ old('assigned_employee_department', $associate->assigned_employee_department) == 'Lending' ? 'selected' : 'disabled' }}>
                     Lending
                 </option>
             </select>
@@ -211,7 +236,7 @@
         </div>
         <div class="col-md-6 mt-3">
             <label for="assigned_employee">Assigned To Employee Name <span class="text-danger">*</span></label>
-            <select disabled class="form-control select2" readonly id="assigned_employee" name="assigned_employee"
+            <select class="form-control select2" readonly id="assigned_employee" name="assigned_employee"
                 data-toggle="select2" onchange="setAssignedEmployeeId()">
                 <option value="">Select Assigned To Employee</option>
 
@@ -222,50 +247,64 @@
         </div>
         <div class="col-md-6 mt-3">
             <label for="assigned_employee_id">Assigned To Employee ID <span class="text-danger">*</span></label>
-            <input type="text" readonly class="form-control" id="assigned_employee_id" name="assigned_employee_id"
-                placeholder="Enter assigned to employee ID"
+            <input type="text" readonly class="form-control" id="assigned_employee_id"
+                name="assigned_employee_id" placeholder="Enter assigned to employee ID"
                 value="{{ old('assigned_employee_id', $associate->assigned_employee_id) }}">
             @error('assigned_employee_id')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
         <div class="col-md-12 mt-3">
-            <label for="linked_employee_department">Linked With Employee Department <span class="text-danger">*</span></label>
-            <select disabled class="form-select" id="linked_employee_department" name="linked_employee_department"
+            <label for="linked_employee_department">Linked With Employee Department <span
+                    class="text-danger">*</span></label>
+            <select class="form-select" id="linked_employee_department" name="linked_employee_department"
                 onchange="loadLinkedEmployees()">
                 <option value="">Select Department</option>
                 <option value="Operations"
-                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Operations' ? 'selected' : 'disabled' }}>Operations
+                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Operations' ? 'selected' : 'disabled' }}>
+                    Operations
                 </option>
-                <option value="Sales" {{ old('linked_employee_department', $associate->linked_employee_department) == 'Sales' ? 'selected' : 'disabled' }}>Sales
+                <option value="Sales"
+                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Sales' ? 'selected' : 'disabled' }}>
+                    Sales
                 </option>
-                <option value="Accounts" {{ old('linked_employee_department', $associate->linked_employee_department) == 'Accounts' ? 'selected' : 'disabled' }}>
+                <option value="Accounts"
+                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Accounts' ? 'selected' : 'disabled' }}>
                     Accounts
                 </option>
                 <option value="Analytics & MIS"
-                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Analytics & MIS' ? 'selected' : 'disabled' }}>Analytics & MIS
+                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Analytics & MIS' ? 'selected' : 'disabled' }}>
+                    Analytics & MIS
                 </option>
-                <option value="IT" {{ old('linked_employee_department', $associate->linked_employee_department) == 'IT' ? 'selected' : 'disabled' }}>IT
+                <option value="IT"
+                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'IT' ? 'selected' : 'disabled' }}>
+                    IT
                 </option>
                 <option value="Product Management"
-                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Product Management' ? 'selected' : 'disabled' }}>Product
+                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Product Management' ? 'selected' : 'disabled' }}>
+                    Product
                     Management
                 </option>
                 <option value="Provider management"
-                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Provider management' ? 'selected' : 'disabled' }}>Provider
+                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Provider management' ? 'selected' : 'disabled' }}>
+                    Provider
                     management
                 </option>
                 <option value="Insurance"
-                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Insurance' ? 'selected' : 'disabled' }}>Insurance
+                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Insurance' ? 'selected' : 'disabled' }}>
+                    Insurance
                 </option>
                 <option value="Claims Processing"
-                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Claims Processing' ? 'selected' : 'disabled' }}>Claims
+                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Claims Processing' ? 'selected' : 'disabled' }}>
+                    Claims
                     Processing
                 </option>
-                <option value="Cashless" {{ old('linked_employee_department', $associate->linked_employee_department) == 'Cashless' ? 'selected' : 'disabled' }}>
+                <option value="Cashless"
+                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Cashless' ? 'selected' : 'disabled' }}>
                     Cashless
                 </option>
-                <option value="Lending" {{ old('linked_employee_department', $associate->linked_employee_department) == 'Lending' ? 'selected' : 'disabled' }}>
+                <option value="Lending"
+                    {{ old('linked_employee_department', $associate->linked_employee_department) == 'Lending' ? 'selected' : 'disabled' }}>
                     Lending
                 </option>
             </select>
@@ -275,8 +314,8 @@
         </div>
         <div class="col-md-6 mt-3">
             <label for="linked_employee">Linked With Employee Name <span class="text-danger">*</span></label>
-            <select readonly disabled class="form-control select2" id="linked_employee" name="linked_employee" data-toggle="select2"
-                onchange="setLinkedWithEmployeeId()">
+            <select readonly class="form-control select2" id="linked_employee" name="linked_employee"
+                data-toggle="select2" onchange="setLinkedWithEmployeeId()">
                 <option value="">Select Linked With Employee</option>
 
             </select>
@@ -303,11 +342,12 @@
                     <option value="no" {{ old('mou', $associate->mou) == 'no' ? 'selected' : '' }}>No
                     </option>
                 </select>
-                 @isset($associate->moufile)
-                        <a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->moufile) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-                    @endisset
-                    <input type="file" name="moufile" hidden id="moufile"  />
-                    <label for="moufile" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
+                @isset($associate->moufile)
+                    <a href="{{ asset('storage/uploads/associate-partners/' . $associate->id . '/' . $associate->moufile) }}"
+                        download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+                @endisset
+                <input type="file" name="moufile" hidden id="moufile" />
+                <label for="moufile" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
             </div>
             @error('mou')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -320,9 +360,9 @@
             <label for="agreement_start_date">Associate Partner Agreement Start Date <span
                     class="text-danger">*</span></label>
 
-                <input type="date" class="form-control" id="agreement_start_date" name="agreement_start_date"
-                    placeholder="Associate partner agreement start date"
-                    value="{{ old('agreement_start_date', $associate->agreement_start_date) }}">
+            <input type="date" class="form-control" id="agreement_start_date" name="agreement_start_date"
+                placeholder="Associate partner agreement start date"
+                value="{{ old('agreement_start_date', $associate->agreement_start_date) }}">
 
             @error('agreement_start_date')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -341,8 +381,8 @@
         <div class="col-md-6 mt-3">
             <label for="contact_person">Associate Partner Contact Person's Name <span
                     class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="contact_person" name="contact_person"
-                placeholder="Associate partner contact person's name"
+            <input type="text" onkeydown="return /[a-z, ]/i.test(event.key)" class="form-control"
+                id="contact_person" name="contact_person" placeholder="Associate partner contact person's name"
                 value="{{ old('contact_person', $associate->contact_person) }}">
             @error('contact_person')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -351,12 +391,13 @@
         <div class="col-md-6 mt-3">
             <label for="contact_person_phone">Associate Partner Contact Person's Mobile No. <span
                     class="text-danger">*</span></label>
-                    <div class="input-group">
-                        <label class="input-group-text" for="phone">+91</label>
-            <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" class="form-control" id="contact_person_phone" name="contact_person_phone"
-                placeholder="Associate partner contact person's mobile no."
-                value="{{ old('contact_person_phone', $associate->contact_person_phone) }}">
-                    </div>
+            <div class="input-group">
+                <label class="input-group-text" for="phone">+91</label>
+                <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"
+                    class="form-control" id="contact_person_phone" name="contact_person_phone"
+                    placeholder="Associate partner contact person's mobile no."
+                    value="{{ old('contact_person_phone', $associate->contact_person_phone) }}">
+            </div>
             @error('contact_person_phone')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
@@ -364,7 +405,7 @@
         <div class="col-md-6 mt-3">
             <label for="contact_person_email">Associate Partner Contact Person's email ID. <span
                     class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="contact_person_email" name="contact_person_email"
+            <input type="email" class="form-control" id="contact_person_email" name="contact_person_email"
                 placeholder="Associate partner contact person's email ID."
                 value="{{ old('contact_person_email', $associate->contact_person_email) }}">
             @error('contact_person_email')
@@ -390,29 +431,35 @@
             @enderror
         </div>
 
-        <div class="col-md-3 mt-2">
-            <select class="form-select" id="cancel_cheque" name="cancel_cheque">
-                <option value="">Cancel Cheque</option>
-                <option value="Yes" {{ old('cancel_cheque', $associate->cancel_cheque) == 'Yes' ? 'selected' : '' }}>Yes
-                </option>
-                <option value="No"
-                    {{ old('cancel_cheque', $associate->cancel_cheque) == 'No' ? 'selected' : '' }}>No
-                </option>
-            </select>
+        <div class="col-md-4 mt-2">
+            <div class="input-group">
+                <select class="form-select" id="cancel_cheque" name="cancel_cheque">
+                    <option value="">Cancel Cheque</option>
+                    <option value="Yes"
+                        {{ old('cancel_cheque', $associate->cancel_cheque) == 'Yes' ? 'selected' : '' }}>Yes
+                    </option>
+                    <option value="No"
+                        {{ old('cancel_cheque', $associate->cancel_cheque) == 'No' ? 'selected' : '' }}>No
+                    </option>
+                </select>
+                @isset($associate->cancel_cheque_file)
+                    <a href="{{ asset('storage/uploads/associate-partners/' . $associate->id . '/' . $associate->cancel_cheque_file) }}"
+                        download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+                @endisset
+                <input type="file" name="cancel_cheque_file" id="cupload" hidden />
+
+                <label for="cupload" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
+            </div>
 
             @error('cancel_cheque')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-        </div>
-
-        <div class="col-md-1 mt-2">
-                <input type="file" name="cancel_cheque_file" id="cupload" hidden />
-                <label for="cupload" class="btn btn-primary upload-label"><i
-                        class="mdi mdi-upload"></i></label>
             @error('cancel_cheque_file')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
+
+
 
 
         <div class="col-md-6 mt-3">
@@ -432,7 +479,8 @@
         </div>
         <div class="col-md-12 mt-3">
             <label for="comments">Associate Partner Comments </label>
-            <textarea class="form-control" id="comments" name="comments" maxlength="250" placeholder="Comments" rows="4">{{ old('comments', $associate->comments) }}</textarea>
+            <textarea class="form-control" id="comments" name="comments" maxlength="250" placeholder="Comments"
+                rows="4">{{ old('comments', $associate->comments) }}</textarea>
             @error('comments')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
@@ -445,33 +493,31 @@
 </form>
 
 @push('scripts')
-<script>
+    <script>
+        var status = "{{ old('status', $associate->status) }}";
 
-    var status = "{{ old('status', $associate->status) }}";
-
-    if(status == 'Main'){
-        $('.linked').attr('disabled', true);
-    }else{
-        $('.linked').attr('disabled', false);
-    }
-
-    $("#statuses").change(function() {
-        var value = $(this).val();
-        switch (value) {
-        case "Main":
+        if (status == 'Main') {
             $('.linked').attr('disabled', true);
-            break;
-        case "Sub AP":
+        } else {
             $('.linked').attr('disabled', false);
-            break;
-        case "Agency":
-            $('.linked').attr('disabled', false);
-            break;
-        default:
-            $('.linked').attr('disabled', true);
-            break;
         }
-    });
-    </script>
 
-    @endpush
+        $("#statuses").change(function() {
+            var value = $(this).val();
+            switch (value) {
+                case "Main":
+                    $('.linked').attr('disabled', true);
+                    break;
+                case "Sub AP":
+                    $('.linked').attr('disabled', false);
+                    break;
+                case "Agency":
+                    $('.linked').attr('disabled', false);
+                    break;
+                default:
+                    $('.linked').attr('disabled', true);
+                    break;
+            }
+        });
+    </script>
+@endpush
