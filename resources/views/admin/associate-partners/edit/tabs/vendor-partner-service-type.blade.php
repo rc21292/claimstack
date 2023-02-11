@@ -25,9 +25,12 @@
         </div>
 
         <div class="col-md-6 mt-1 div_cashless_claims_management">
-            <input type="number" onKeyPress="if(this.value.length==7) return false;" class="form-control" id="cashless_claims_management_charge"
+            <div class="input-group">
+                <label class="input-group-text" for="phone">Rs.</label>
+                <input type="number" onKeyPress="if(this.value.length==7) return false;" class="form-control" id="cashless_claims_management_charge"
                 name="cashless_claims_management_charge" placeholder="Rs"
                 value="{{ old('cashless_claims_management_charge', isset($associate->service) ? $associate->service->cashless_claims_management_charge : '') }}">
+            </div>
             @error('cashless_claims_management_charge')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
@@ -64,9 +67,12 @@
         </div>
 
         <div class="col-md-6 mt-1 div_cashless_helpdesk">
-            <input type="number" onKeyPress="if(this.value.length==7) return false;" class="form-control" id="cashless_helpdesk_charge" name="cashless_helpdesk_charge"
+            <div class="input-group">
+                <label class="input-group-text" for="phone">Rs.</label>
+                <input type="number" onKeyPress="if(this.value.length==7) return false;" class="form-control" id="cashless_helpdesk_charge" name="cashless_helpdesk_charge"
                 placeholder="Rs"
                 value="{{ old('cashless_helpdesk_charge', isset($associate->service) ? $associate->service->cashless_helpdesk_charge : '') }}">
+            </div>
             @error('cashless_helpdesk_charge')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
@@ -103,9 +109,12 @@
         </div>
 
         <div class="col-md-6 mt-1 div_claims_assessment">
-            <input type="number" onKeyPress="if(this.value.length==7) return false;" class="form-control" id="claims_assessment_charge" name="claims_assessment_charge"
+            <div class="input-group">
+                <label class="input-group-text" for="phone">Rs.</label>
+                <input type="number" onKeyPress="if(this.value.length==7) return false;" class="form-control" id="claims_assessment_charge" name="claims_assessment_charge"
                 placeholder="Rs"
                 value="{{ old('claims_assessment_charge', isset($associate->service) ? $associate->service->claims_assessment_charge : '') }}">
+            </div>
             @error('claims_assessment_charge')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
@@ -142,9 +151,12 @@
         </div>
 
         <div class="col-md-6 mt-1 div_claims_bill_entry">
-            <input type="number" onKeyPress="if(this.value.length==7) return false;" class="form-control" id="claims_bill_entry_charge" name="claims_bill_entry_charge"
+            <div class="input-group">
+                <label class="input-group-text" for="phone">Rs.</label>
+                <input type="number" onKeyPress="if(this.value.length==7) return false;" class="form-control" id="claims_bill_entry_charge" name="claims_bill_entry_charge"
                 placeholder="Rs"
                 value="{{ old('claims_bill_entry_charge', isset($associate->service) ? $associate->service->claims_bill_entry_charge : '') }}">
+            </div>
             @error('claims_bill_entry_charge')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
@@ -181,9 +193,12 @@
         </div>
 
         <div class="col-md-6 mt-1 div_claims_reimbursement">
-            <input type="number" onKeyPress="if(this.value.length==7) return false;" class="form-control" id="claims_reimbursement_charge"
+            <div class="input-group">
+                <label class="input-group-text" for="phone">Rs.</label>
+                <input type="number" onKeyPress="if(this.value.length==7) return false;" class="form-control" id="claims_reimbursement_charge"
                 name="claims_reimbursement_charge" placeholder="Rs"
                 value="{{ old('claims_reimbursement_charge', isset($associate->service) ? $associate->service->claims_reimbursement_charge : '') }}">
+            </div>
             @error('claims_reimbursement_charge')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
@@ -220,9 +235,12 @@
         </div>
 
         <div class="col-md-6 mt-1 div_doctor_claim_process">
-            <input type="number" onKeyPress="if(this.value.length==7) return false;" class="form-control" id="doctor_claim_process_charge"
+            <div class="input-group">
+                <label class="input-group-text" for="phone">Rs.</label>
+                <input type="number" onKeyPress="if(this.value.length==7) return false;" class="form-control" id="doctor_claim_process_charge"
                 name="doctor_claim_process_charge" placeholder="Rs"
                 value="{{ old('doctor_claim_process_charge', isset($associate->service) ? $associate->service->doctor_claim_process_charge : '') }}">
+            </div>
             @error('doctor_claim_process_charge')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
@@ -259,9 +277,12 @@
         </div>
 
         <div class="col-md-6 mt-1 div_doctor_honorary_panel">
-            <input type="number" onKeyPress="if(this.value.length==7) return false;" class="form-control" id="doctor_honorary_panel_charge"
+            <div class="input-group">
+                <label class="input-group-text" for="phone">Rs.</label>
+                <input type="number" onKeyPress="if(this.value.length==7) return false;" class="form-control" id="doctor_honorary_panel_charge"
                 name="doctor_honorary_panel_charge" placeholder="Rs"
                 value="{{ old('doctor_honorary_panel_charge', isset($associate->service) ? $associate->service->doctor_honorary_panel_charge : '') }}">
+            </div>
             @error('doctor_honorary_panel_charge')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
@@ -299,9 +320,12 @@
         </div>
 
         <div class="col-md-6 mt-1 div_doctor_tele_consultation">
-            <input type="number" onKeyPress="if(this.value.length==7) return false;" class="form-control" id="doctor_tele_consultation_charge"
+            <div class="input-group">
+                <label class="input-group-text" for="phone">Rs.</label>
+                <input type="number" onKeyPress="if(this.value.length==7) return false;" class="form-control" id="doctor_tele_consultation_charge"
                 name="doctor_tele_consultation_charge" placeholder="Rs"
                 value="{{ old('doctor_tele_consultation_charge', isset($associate->service) ? $associate->service->doctor_tele_consultation_charge : '') }}">
+            </div>
             @error('doctor_tele_consultation_charge')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
@@ -339,9 +363,12 @@
         </div>
 
         <div class="col-md-6 mt-1 div_insurance_tpa_coordination">
-            <input type="number" onKeyPress="if(this.value.length==7) return false;" class="form-control" id="insurance_tpa_coordination_charge"
+            <div class="input-group">
+                <label class="input-group-text" for="phone">Rs.</label>
+                <input type="number" onKeyPress="if(this.value.length==7) return false;" class="form-control" id="insurance_tpa_coordination_charge"
                 name="insurance_tpa_coordination_charge" placeholder="Rs"
                 value="{{ old('insurance_tpa_coordination_charge', isset($associate->service) ? $associate->service->insurance_tpa_coordination_charge : '') }}">
+            </div>
             @error('insurance_tpa_coordination_charge')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
@@ -379,9 +406,12 @@
         </div>
 
         <div class="col-md-6 mt-1 div_medical_lending_bill">
-            <input type="number" onKeyPress="if(this.value.length==7) return false;" class="form-control" id="medical_lending_bill_charge"
+            <div class="input-group">
+                <label class="input-group-text" for="phone">Rs.</label>
+                <input type="number" onKeyPress="if(this.value.length==7) return false;" class="form-control" id="medical_lending_bill_charge"
                 name="medical_lending_bill_charge" placeholder="Rs"
                 value="{{ old('medical_lending_bill_charge', isset($associate->service) ? $associate->service->medical_lending_bill_charge : '') }}">
+            </div>
             @error('medical_lending_bill_charge')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
@@ -419,9 +449,12 @@
         </div>
 
         <div class="col-md-6 mt-1 div_medical_lending_patient">
-            <input type="number" onKeyPress="if(this.value.length==7) return false;" class="form-control" id="medical_lending_patient_charge"
+            <div class="input-group">
+                <label class="input-group-text" for="phone">Rs.</label>
+                <input type="number" onKeyPress="if(this.value.length==7) return false;" class="form-control" id="medical_lending_patient_charge"
                 name="medical_lending_patient_charge" placeholder="Rs"
                 value="{{ old('medical_lending_patient_charge', isset($associate->service) ? $associate->service->medical_lending_patient_charge : '') }}">
+            </div>
             @error('medical_lending_patient_charge')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
@@ -456,8 +489,11 @@
         </div>
 
         <div class="col-md-6 mt-1 div_others">
-            <input type="number" onKeyPress="if(this.value.length==7) return false;" class="form-control" id="others_charge" name="others_charge"
+            <div class="input-group">
+                <label class="input-group-text" for="phone">Rs.</label>
+                <input type="number" onKeyPress="if(this.value.length==7) return false;" class="form-control" id="others_charge" name="others_charge"
                 placeholder="Rs" value="{{ old('others_charge', isset($associate->service) ? $associate->service->others_charge : '') }}">
+            </div>
             @error('others_charge')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
