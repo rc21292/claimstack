@@ -25,22 +25,17 @@
         </div>
 
         <div class="col-md-6 mt-1 div_consulting">
-            <input type="number" onKeyPress="if(this.value.length==7) return false;"
+            <div class="input-group">
+                <label class="input-group-text" for="phone">Rs.</label>
+                <input type="number" onKeyPress="if(this.value.length==7) return false;"
                 class="form-control" id="consulting_charge" name="consulting_charge" placeholder="Rs"
                 value="{{ old('consulting_charge', isset($associate->service) ? $associate->service->consulting_charge : '') }}">
+            </div>
             @error('consulting_charge')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
 
-        <div class="col-md-12 mt-2">
-            <input type="text" class="form-control" maxlength="45" id="consulting_comment" name="consulting_comment"
-                placeholder="Comment"
-                value="{{ old('consulting_comment', isset($associate->service) ? $associate->service->consulting_comment : '') }}">
-            @error('consulting_comment')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
-        </div>
 
         <div class="col-md-12 mt-3">
             <label for="dealer_distributor">Dealer / Distributor (Hospital) <span class="text-danger">*</span></label>
@@ -65,22 +60,17 @@
         </div>
 
         <div class="col-md-6 mt-1 div_dealer_distributor">
-            <input type="number" onKeyPress="if(this.value.length==7) return false;"
+            <div class="input-group">
+                <label class="input-group-text" for="phone">Rs.</label>
+                <input type="number" onKeyPress="if(this.value.length==7) return false;"
                 class="form-control" id="dealer_distributor_charge" name="dealer_distributor_charge" placeholder="Rs"
                 value="{{ old('dealer_distributor_charge', isset($associate->service) ? $associate->service->dealer_distributor_charge : '') }}">
+            </div>
             @error('dealer_distributor_charge')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
 
-        <div class="col-md-12 mt-2">
-            <input type="text" class="form-control" maxlength="45" id="dealer_distributor_comment"
-                name="dealer_distributor_comment" placeholder="Comment"
-                value="{{ old('dealer_distributor_comment', isset($associate->service) ? $associate->service->dealer_distributor_comment : '') }}">
-            @error('dealer_distributor_comment')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
-        </div>
 
         <div class="col-md-12 mt-3">
             <label for="hospital_empanelment_agent">Hospital Empanelment - Agent<span
@@ -106,23 +96,18 @@
         </div>
 
         <div class="col-md-6 mt-1 div_hospital_empanelment_agent">
-            <input type="number" onKeyPress="if(this.value.length==7) return false;"
+            <div class="input-group">
+                <label class="input-group-text" for="phone">Rs.</label>
+                <input type="number" onKeyPress="if(this.value.length==7) return false;"
                 class="form-control" id="hospital_empanelment_agent_charge" name="hospital_empanelment_agent_charge"
                 placeholder="Rs"
                 value="{{ old('hospital_empanelment_agent_charge', isset($associate->service) ? $associate->service->hospital_empanelment_agent_charge : '') }}">
+            </div>
             @error('hospital_empanelment_agent_charge')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
 
-        <div class="col-md-12 mt-2">
-            <input type="text" class="form-control" maxlength="45" id="hospital_empanelment_agent_comment"
-                name="hospital_empanelment_agent_comment" placeholder="Comment"
-                value="{{ old('hospital_empanelment_agent_comment', isset($associate->service) ? $associate->service->hospital_empanelment_agent_comment : '') }}">
-            @error('hospital_empanelment_agent_comment')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
-        </div>
 
         <div class="col-md-12 mt-3">
             <label for="software_sales">Software Sales<span class="text-danger">*</span></label>
@@ -146,22 +131,17 @@
         </div>
 
         <div class="col-md-6 mt-1 div_software_sales">
-            <input type="number" onKeyPress="if(this.value.length==7) return false;"
+            <div class="input-group">
+                <label class="input-group-text" for="phone">Rs.</label>
+                <input type="number" onKeyPress="if(this.value.length==7) return false;"
                 class="form-control" id="software_sales_charge" name="software_sales_charge" placeholder="Rs"
                 value="{{ old('software_sales_charge', isset($associate->service) ? $associate->service->software_sales_charge : '') }}">
+            </div>
             @error('software_sales_charge')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
 
-        <div class="col-md-12 mt-2">
-            <input type="text" class="form-control" maxlength="45" id="software_sales_comment"
-                name="software_sales_comment" placeholder="Comment"
-                value="{{ old('software_sales_comment', isset($associate->service) ? $associate->service->software_sales_comment : '') }}">
-            @error('software_sales_comment')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
-        </div>
 
         <div class="col-md-12 mt-3">
             <label for="others">Others <span class="text-danger">*</span></label>
@@ -185,21 +165,17 @@
         </div>
 
         <div class="col-md-6 mt-1 div_others">
-            <input type="number" onKeyPress="if(this.value.length==7) return false;"
+            <div class="input-group">
+                <label class="input-group-text" for="phone">Rs.</label>
+                <input type="number" onKeyPress="if(this.value.length==7) return false;"
                 class="form-control" id="others_charge" name="others_charge" placeholder="Rs"
                 value="{{ old('others_charge', isset($associate->service) ? $associate->service->others_charge : '') }}">
+            </div>
             @error('others_charge')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
-        <div class="col-md-12 mt-2">
-            <input type="text" class="form-control" maxlength="45" id="others_comment" name="others_comment"
-                placeholder="Comment"
-                value="{{ old('others_comment', isset($associate->service) ? $associate->service->others_comment : '') }}">
-            @error('others_comment')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
-        </div>
+
         <div class="col-md-12 mt-3">
             <label for="sales_partner_comments">Sales Partner Comments </label>
             <textarea maxlength="250" class="form-control" id="sales_partner_comments" name="sales_partner_comments"
@@ -213,3 +189,4 @@
         </div>
     </div>
 </form>
+s
