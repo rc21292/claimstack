@@ -186,6 +186,42 @@ class AssociatePartnerController extends Controller
     {
         $associate_partner             = AssociatePartner::find($id);
 
+        if ($request->hasfile('panfile')) {
+            $panfile                    = $request->file('panfile');
+            $name                       = $panfile->getClientOriginalName();
+            $panfile->storeAs('uploads/associate-partners/' . $id . '/', $name, 'public');
+            AssociatePartner::where('id', $id)->update([
+                'panfile'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('moufile')) {
+            $moufile                    = $request->file('moufile');
+            $name                       = $moufile->getClientOriginalName();
+            $moufile->storeAs('uploads/associate-partners/' . $id . '/', $name, 'public');
+            AssociatePartner::where('id', $id)->update([
+                'moufile'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('agreementfile')) {
+            $agreementfile                    = $request->file('agreementfile');
+            $name                       = $agreementfile->getClientOriginalName();
+            $agreementfile->storeAs('uploads/associate-partners/' . $id . '/', $name, 'public');
+            AssociatePartner::where('id', $id)->update([
+                'agreementfile'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('cancel_cheque_file')) {
+            $cancel_cheque_file                    = $request->file('cancel_cheque_file');
+            $name                       = $cancel_cheque_file->getClientOriginalName();
+            $cancel_cheque_file->storeAs('uploads/associate-partners/' . $id . '/', $name, 'public');
+            AssociatePartner::where('id', $id)->update([
+                'cancel_cheque_file'               =>  $name
+            ]);
+        }
+
         $rules = [
             'name'                     => 'required',
             'type'                     => 'required',
@@ -206,11 +242,11 @@ class AssociatePartnerController extends Controller
             'linked_employee'          => 'required',
             'linked_employee_id'       => 'required',
             'mou'                      => 'required',
-            'moufile'                  => $request->mou == 'yes' ? 'required' : '',
+            'moufile'                  => ($request->mou == 'yes' && empty($associate_partner->moufile)) ? 'required' : [],
             'agreement_start_date'     => 'required',
             'agreement_end_date'       => 'required|after:agreement_start_date',
             'contact_person'           => 'required',
-            'contact_person_phone'     => 'required',
+            'contact_person_phone'     => 'required|min:10',
             'contact_person_email'     => 'required|email',
             'bank_name'                => 'required',
             'bank_address'             => 'required',
@@ -293,43 +329,7 @@ class AssociatePartnerController extends Controller
 
         AssociatePartner::where('id', $id)->update([
             'associate_partner_id'      => 'AP' . substr($associate_partner->pan, 0, 2) . substr($associate_partner->pan, -3)
-        ]);
-
-        if ($request->hasfile('panfile')) {
-            $panfile                    = $request->file('panfile');
-            $name                       = $panfile->getClientOriginalName();
-            $panfile->storeAs('uploads/associate-partners/' . $id . '/', $name, 'public');
-            AssociatePartner::where('id', $id)->update([
-                'panfile'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('moufile')) {
-            $moufile                    = $request->file('moufile');
-            $name                       = $moufile->getClientOriginalName();
-            $moufile->storeAs('uploads/associate-partners/' . $id . '/', $name, 'public');
-            AssociatePartner::where('id', $id)->update([
-                'moufile'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('agreementfile')) {
-            $agreementfile                    = $request->file('agreementfile');
-            $name                       = $agreementfile->getClientOriginalName();
-            $agreementfile->storeAs('uploads/associate-partners/' . $id . '/', $name, 'public');
-            AssociatePartner::where('id', $id)->update([
-                'agreementfile'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('cancel_cheque_file')) {
-            $cancel_cheque_file                    = $request->file('cancel_cheque_file');
-            $name                       = $cancel_cheque_file->getClientOriginalName();
-            $cancel_cheque_file->storeAs('uploads/associate-partners/' . $id . '/', $name, 'public');
-            AssociatePartner::where('id', $id)->update([
-                'cancel_cheque_file'               =>  $name
-            ]);
-        }
+        ]);        
 
         return redirect()->back()->with('success', 'Associate partner updated successfully');
     }
