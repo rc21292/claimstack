@@ -254,7 +254,7 @@
                 <a href="{{ asset('storage/uploads/hospital/infrastructure/'.$hospital_nfrastructure->hospital_id.'/'.$hospital_nfrastructure->nqac_nhsrc_status_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
             @endisset
 
-            <input type="file" name="nqac_nhsrc_status_file" id="nqac_nhsrc_status_file" hidden />
+            <input type="file" name="nqac_nhsrc_status_file" @if(old('nqac_nhsrc_status', $hospital_nfrastructure->nqac_nhsrc_status ?? '') == 'NA' ) disabled @endif id="nqac_nhsrc_status_file" hidden />
             <label for="nqac_nhsrc_status_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
             </div>

@@ -580,8 +580,7 @@ class HospitalController extends Controller
             'comments_on_invoice_discounting'               => ($hospital->onboarding == 'Tie Up' && $request->lending_finance_company_agreement == 'Yes') ? 'required|max:40' : [],
             'hospital_management_system_installation'       => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
             'hms_services'                                  => ($hospital->onboarding == 'Tie Up' && $request->hospital_management_system_installation == 'Yes') ? 'required' : [],
-            'hms_charges'                                   => ($hospital->onboarding == 'Tie Up' && $request->hospital_management_system_installation == 'Yes') ? 'required|numeric' : [],
-            'comments'                                      => ($hospital->onboarding == 'Tie Up') ? 'required|string|max:250' : [],
+            'hms_charges'                                   => ($hospital->onboarding == 'Tie Up' && $request->hospital_management_system_installation == 'Yes') ? 'required|numeric' : []
         ];
 
         $messages = [
@@ -879,8 +878,7 @@ class HospitalController extends Controller
             'dialysis_unit'                     => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
             'dialysis_unit_file'                => ($hospital->onboarding == 'Tie Up' && $request->dialysis_unit == 'Yes' && empty($facility->dialysis_unit_file)) ? 'required' : [],
             'blood_bank'                        => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
-            'blood_bank_file'                   => ($hospital->onboarding == 'Tie Up' && $request->blood_bank == 'Yes' && empty($facility->blood_bank_file)) ? 'required' : [],
-            'hospital_facility_comments'        => ($hospital->onboarding == 'Tie Up') ? 'required' : []
+            'blood_bank_file'                   => ($hospital->onboarding == 'Tie Up' && $request->blood_bank == 'Yes' && empty($facility->blood_bank_file)) ? 'required' : []
         ];
 
         $messages = [

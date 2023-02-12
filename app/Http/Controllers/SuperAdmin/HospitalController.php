@@ -186,20 +186,35 @@ class HospitalController extends Controller
     {
         $hospital          = Hospital::find($id);
         $insurers          = Insurer::all();
+        
         $associates = AssociatePartner::get(['name', 'city', 'state', 'id', 'associate_partner_id']);
+        
         $hospital_tie_ups          = HospitalTieUp::where('hospital_id', $id)->first();
         if (!$hospital_tie_ups) {
             HospitalTieUp::create(['hospital_id'=> $id]);
             $hospital_tie_ups          = HospitalTieUp::where('hospital_id', $id)->first();
         }
+        
         $hospital_facility          = HospitalFacility::where('hospital_id', $id)->first();
         if (!$hospital_facility) {
             HospitalFacility::create(['hospital_id'=> $id]);
             $hospital_facility          = HospitalFacility::where('hospital_id', $id)->first();
         }
+        
         $hospital_nfrastructure          = HospitalInfrastructure::where('hospital_id', $id)->first();
+        if (!$hospital_nfrastructure) {
+            HospitalInfrastructure::create(['hospital_id'=> $id]);
+            $hospital_nfrastructure          = HospitalInfrastructure::where('hospital_id', $id)->first();
+        }
+        
         $hospital_department          = HospitalDepartment::where('hospital_id', $id)->first();
+        if (!$hospital_department) {
+            HospitalDepartment::create(['hospital_id'=> $id]);
+            $hospital_department          = HospitalDepartment::where('hospital_id', $id)->first();
+        }
+
         $hospitals         = Hospital::get();
+
         $users              = User::get();
 
         return view('super-admin.hospitals.edit.edit',  compact('hospital', 'associates', 'hospitals', 'hospital_facility', 'hospital_nfrastructure', 'hospital_department', 'hospital_tie_ups', 'users', 'insurers'));
@@ -580,8 +595,7 @@ class HospitalController extends Controller
             'comments_on_invoice_discounting'               => ($hospital->onboarding == 'Tie Up' && $request->lending_finance_company_agreement == 'Yes') ? 'required|max:40' : [],
             'hospital_management_system_installation'       => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
             'hms_services'                                  => ($hospital->onboarding == 'Tie Up' && $request->hospital_management_system_installation == 'Yes') ? 'required' : [],
-            'hms_charges'                                   => ($hospital->onboarding == 'Tie Up' && $request->hospital_management_system_installation == 'Yes') ? 'required|numeric' : [],
-            'comments'                                      => ($hospital->onboarding == 'Tie Up') ? 'required|string|max:250' : [],
+            'hms_charges'                                   => ($hospital->onboarding == 'Tie Up' && $request->hospital_management_system_installation == 'Yes') ? 'required|numeric' : []
         ];
 
         $messages = [
@@ -879,8 +893,7 @@ class HospitalController extends Controller
             'dialysis_unit'                     => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
             'dialysis_unit_file'                => ($hospital->onboarding == 'Tie Up' && $request->dialysis_unit == 'Yes' && empty($facility->dialysis_unit_file)) ? 'required' : [],
             'blood_bank'                        => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
-            'blood_bank_file'                   => ($hospital->onboarding == 'Tie Up' && $request->blood_bank == 'Yes' && empty($facility->blood_bank_file)) ? 'required' : [],
-            'hospital_facility_comments'        => ($hospital->onboarding == 'Tie Up') ? 'required' : []
+            'blood_bank_file'                   => ($hospital->onboarding == 'Tie Up' && $request->blood_bank == 'Yes' && empty($facility->blood_bank_file)) ? 'required' : []
         ];
 
         $messages = [
