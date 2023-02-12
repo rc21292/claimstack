@@ -381,7 +381,7 @@
 
         <div class="col-md-6 mt-3">
             <label for="owner">Hospital Owner Email ID <span class="text-danger">*</span></label>
-            <input type="owner_email" maxlength="45" class="form-control" id="owner_email" name="owner_email"
+            <input type="email" maxlength="45" class="form-control" id="owner_email" name="owner_email"
                 placeholder="Enter hospital Owner Email ID" value="{{ old('owner_email', $hospital->owner_email) }}">
             @error('owner_email')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
