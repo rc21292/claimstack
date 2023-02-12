@@ -1062,8 +1062,7 @@ class HospitalController extends Controller
             'nqac_nhsrc_status'                 => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
             'nqac_nhsrc_status_file'            => ($hospital->onboarding == 'Tie Up' && $request->nqac_nhsrc_status != 'NA' && empty($infrastructure->nqac_nhsrc_status_file)) ? 'required' : [],
             'hippa_status'                      => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
-            'hippa_status_file'                 => ($hospital->onboarding == 'Tie Up' && $request->hippa_status != 'No' && empty($infrastructure->hippa_status_file)) ? 'required' : [],
-            'comments'                          => ($hospital->onboarding == 'Tie Up') ? 'required|string|max:250' : []
+            'hippa_status_file'                 => ($hospital->onboarding == 'Tie Up' && $request->hippa_status != 'No' && empty($infrastructure->hippa_status_file)) ? 'required' : []
         ];
 
         $messages = [

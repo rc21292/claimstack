@@ -115,7 +115,7 @@
 
         <div class="col-md-6 mt-3">
             <label for="owner">Hospital email ID <span class="text-danger">*</span></label>
-            <input type="email" maxlength="45" class="form-control" id="email" name="email" maxlength="30"
+            <input type="email" maxlength="45" required class="form-control" id="email" name="email" maxlength="30"
                 placeholder="Enter hospital email ID" value="{{ old('email', $hospital->email) }}">
             @error('email')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -954,7 +954,7 @@
             loadAssignedEmployees();
             loadLinkedEmployees();
         });
-        
+
         /*$(document).on('blur', "input[type='email']", function(event) {
             event.preventDefault();
             var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
