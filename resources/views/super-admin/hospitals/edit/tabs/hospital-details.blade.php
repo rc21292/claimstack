@@ -711,7 +711,7 @@
             @error('nabl_registration_no')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-            @error('nabh_registration_file')
+            @error('nabl_registration_file')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
@@ -955,7 +955,7 @@
             loadLinkedEmployees();
         });
 
-        $(document).on('blur', "input[type='email']", function(event) {
+        /*$(document).on('blur', "input[type='email']", function(event) {
             event.preventDefault();
             var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
             if(!(regex.test($(this).val()))){
@@ -963,7 +963,7 @@
             }else{
                 $(".email-error").remove();
             }
-        });
+        });*/
     </script>
 
 @endpush

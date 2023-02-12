@@ -711,7 +711,7 @@
             @error('nabl_registration_no')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-            @error('nabh_registration_file')
+            @error('nabl_registration_file')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
