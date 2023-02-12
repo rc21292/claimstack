@@ -469,7 +469,7 @@
 
         <div class="col-md-6 mt-3">
             <label for="medical_superintendent_email">Medical Superintendent Email ID <span class="text-danger">*</span></label>
-            <input type="medical_superintendent_email" maxlength="45" class="form-control" id="medical_superintendent_email" name="medical_superintendent_email"
+            <input type="email" maxlength="45" class="form-control" id="medical_superintendent_email" name="medical_superintendent_email"
                 placeholder="Enter Medical Superintendent Email ID" value="{{ old('medical_superintendent_email', $hospital->medical_superintendent_email) }}">
             @error('medical_superintendent_email')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -954,6 +954,17 @@
             loadAssignedEmployees();
             loadLinkedEmployees();
         });
+        
+        /*$(document).on('blur', "input[type='email']", function(event) {
+            event.preventDefault();
+            var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if(!(regex.test($(this).val()))){
+                $(this).parent('div').append('<div style="color:red">Email must required @<div>')
+            }else{
+                $(this).append('')
+            }
+        });*/
+         
     </script>
 
 @endpush
