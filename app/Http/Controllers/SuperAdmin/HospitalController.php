@@ -383,14 +383,15 @@ class HospitalController extends Controller
             'medical_superintendent_registration_no'    => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|min:1|max:20' : [],
             'medical_superintendent_qualification'      => ($request->onboarding == 'Tie Up') ? 'required' : [],
             'pollution_clearance_certificate'           => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'pollution_clearance_certificate_file'      => ($request->onboarding == 'Tie Up' && $request->pollution_clearance_certificate != 'No' && empty($hospital->pollution_clearance_certificate)) ? 'required' : [],
+            'pollution_clearance_certificate_file'      => ($request->onboarding == 'Tie Up' && $request->pollution_clearance_certificate != 'No' && empty($hospital->pollution_clearance_certificate_file)) ? 'required' : [],
             'fire_safety_clearance_certificate'         => ($request->onboarding == 'Tie Up') ? 'required' : [],
             'fire_safety_clearance_certificate_file'    => ($request->onboarding == 'Tie Up' && $request->fire_safety_clearance_certificate != 'No' && empty($hospital->fire_safety_clearance_certificate_file)) ? 'required' : [],
             'certificate_of_incorporation'              => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'certificate_of_incorporation_file'         => ($request->onboarding == 'Tie Up' && $request->certificate_of_incorporation != 'No' && empty($hospital->certificate_of_incorporation)) ? 'required' : [],
+            'certificate_of_incorporation_file'         => ($request->onboarding == 'Tie Up' && $request->certificate_of_incorporation != 'No' && empty($hospital->certificate_of_incorporation_file)) ? 'required' : [],
             'bank_name'                                 => ($request->onboarding == 'Tie Up') ? 'required' : [],
             'bank_address'                              => ($request->onboarding == 'Tie Up') ? 'required' : [],
             'cancel_cheque'                             => ($request->onboarding == 'Tie Up') ? 'required' : [],
+            'cancel_cheque_file'                      => ($request->onboarding == 'Tie Up' && $request->cancel_cheque == 'Yes' && empty($hospital->cancel_cheque_file)) ? 'required' : [],
             'bank_account_no'                           => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|min:1|max:20' : [],
             'bank_ifs_code'                             => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|min:1|max:11' : [],
             'nabh_registration_no'                      => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|min:1|max:15' : [],
@@ -530,6 +531,7 @@ class HospitalController extends Controller
     public function updateHospitalTieUps(Request $request, $id)
     {
         $hospital             = Hospital::find($id);
+        $hospital_tie_ups             = HospitalTieUp::where('hospital_id',$id)->first();
 
 
         if ($request->hasfile('bhc_packages_for_surgical_procedures_accepted_file')) {
@@ -553,6 +555,7 @@ class HospitalController extends Controller
         $rules = [
             'mou_inception_date'                            => ($hospital->onboarding == 'Tie Up' && $hospital->signed_mous_file) ? 'required' : [],
             'bhc_packages_for_surgical_procedures_accepted' => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'bhc_packages_for_surgical_procedures_accepted_file' => ($hospital->onboarding == 'Tie Up' && $request->bhc_packages_for_surgical_procedures_accepted == 'Yes' && empty($hospital_tie_ups->bhc_packages_for_surgical_procedures_accepted_file)) ? 'required' : [],
             'discount_on_medical_management_cases'          => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
             'discount_on_final_bill'                        => ($hospital->onboarding == 'Tie Up' && $request->discount_on_medical_management_cases == 'Yes') ? 'required|numeric|digits_between:1,2' : [],
             'discount_on_room_rent'                         => ($hospital->onboarding == 'Tie Up' && $request->discount_on_medical_management_cases == 'Yes') ? 'required|numeric|digits_between:1,2' : [],
@@ -568,6 +571,7 @@ class HospitalController extends Controller
             'cashless_claims_management_services'           => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
             'cashless_claims_management_services_charges'   => ($hospital->onboarding == 'Tie Up') ? 'required|numeric|digits_between:1,6' : [],
             'lending_finance_company_agreement'             => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'lending_finance_company_agreement_file'             => ($hospital->onboarding == 'Tie Up' && $request->lending_finance_company_agreement == 'Yes' && empty($hospital_tie_ups->lending_finance_company_agreement_file)) ? 'required' : [],
             'lending_finance_company_agreement_date'        => ($hospital->onboarding == 'Tie Up' && $request->lending_finance_company_agreement == 'Yes') ? 'required' : [],
             'medical_lending_for_patients'                  => ($hospital->onboarding == 'Tie Up' && $request->lending_finance_company_agreement == 'Yes') ? 'required' : [],
             'medical_lending_service_type'                  => ($hospital->onboarding == 'Tie Up' && $request->lending_finance_company_agreement == 'Yes') ? 'required' : [],
