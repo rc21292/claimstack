@@ -192,7 +192,7 @@
                 <a href="{{ asset('storage/uploads/hospital/infrastructure/'.$hospital_nfrastructure->hospital_id.'/'.$hospital_nfrastructure->nabh_status_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
             @endisset
 
-            <input type="file" name="nabh_status_file" @if(old('nabh_status', $hospital_nfrastructure->nabh_status ?? '') == 'No' ) disabled @endif id="nabh_status_file" hidden />
+            <input type="file" name="nabh_status_file" @if(old('nabh_status', $hospital_nfrastructure->nabh_status ?? '') == 'NA' ) disabled @endif id="nabh_status_file" hidden />
             <label for="nabh_status_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
             </div>
