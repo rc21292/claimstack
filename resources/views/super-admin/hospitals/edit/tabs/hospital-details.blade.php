@@ -954,6 +954,16 @@
             loadAssignedEmployees();
             loadLinkedEmployees();
         });
+
+        $(document).on('blur', "input[type='email']", function(event) {
+            event.preventDefault();
+            var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if(!(regex.test($(this).val()))){
+                $(this).parent('div').append('<div style="color:red">Email must required @<div>')
+            }else{
+                $(this).append('')
+            }
+        });
     </script>
 
 @endpush

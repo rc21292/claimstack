@@ -955,7 +955,7 @@
             loadLinkedEmployees();
         });
 
-        /*$(document).on('blur', "input[type='email']", function(event) {
+        $(document).on('blur', "input[type='email']", function(event) {
             event.preventDefault();
             var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
             if(!(regex.test($(this).val()))){
@@ -963,7 +963,7 @@
             }else{
                 $(this).append('')
             }
-        });*/
+        });
          
     </script>
 
