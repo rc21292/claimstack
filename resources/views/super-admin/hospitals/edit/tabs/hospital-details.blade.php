@@ -955,15 +955,16 @@
             loadLinkedEmployees();
         });
 
-        /*$(document).on('blur', "input[type='email']", function(event) {
+        $(document).on('keyup', "input[type='email']", function(event) {
+            $(".email-error").remove();
             event.preventDefault();
             var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
             if(!(regex.test($(this).val()))){
-                $(this).parent('div').append('<div class="email-error" style="color:red">Email must required @<div>')
+                $(this).parent('div').append('<div class="email-error error invalid-feedback">The email must be a valid email address.<div>')
             }else{
                 $(".email-error").remove();
             }
-        });*/
+        });
     </script>
 
 @endpush
