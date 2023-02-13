@@ -158,8 +158,8 @@
                                                 placeholder="Code" value="{{ old('code') }}">
                                             </div>
                                             <div class="col-9">
-                                                <input type="number" class="form-control" id="landline" name="landline"
-                                                placeholder="Enter hospital landline number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length >= 10) return false;" value="{{ old('landline') }}">
+                                                <input type="text" maxlength="10" onkeypress="return isNumberKey(event)" class="form-control" id="landline" name="landline"
+                                                placeholder="Enter hospital landline number" value="{{ old('landline') }}">
                                             </div>
                                         </div>
                                         @error('code')
@@ -177,7 +177,7 @@
                                         class="text-danger">*</span></label>
                                         <div class="input-group">
                                             <label class="input-group-text" for="phone">+91</label>
-                                            <input type="number" class="form-control" id="phone" name="phone"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"
+                                            <input type="text" maxlength="10" onkeypress="return isNumberKey(event)" class="form-control" id="phone" name="phone"
                                             placeholder="Enter hospital mobile number" value="{{ old('phone') }}">
                                         </div>
                                         @error('phone')
