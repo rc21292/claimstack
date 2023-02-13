@@ -18,7 +18,6 @@ use App\Notifications\Hospital\CredentialsGeneratedNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Auth;
 
 class HospitalController extends Controller
 {
@@ -33,36 +32,13 @@ class HospitalController extends Controller
      */
     public function index(Request $request)
     {
-        /*$filter_search = $request->search;
+        $filter_search = $request->search;
         $hospitals = Hospital::query();
         if($filter_search){
             $hospitals->where('name', 'like','%' . $filter_search . '%');
         }
         $hospitals = $hospitals->orderBy('id', 'desc')->paginate(20);
-        return view('hospital.hospitals.manage',  compact('hospitals', 'filter_search'));*/
-
-        $id = Auth::user()->id;
-
-        $hospital          = Hospital::find($id);
-        $insurers          = Insurer::all();
-        $associates = AssociatePartner::get(['name', 'city', 'state', 'id', 'associate_partner_id']);
-        $hospital_tie_ups          = HospitalTieUp::where('hospital_id', $id)->first();
-        if (!$hospital_tie_ups) {
-            HospitalTieUp::create(['hospital_id'=> $id]);
-            $hospital_tie_ups          = HospitalTieUp::where('hospital_id', $id)->first();
-        }
-        $hospital_facility          = HospitalFacility::where('hospital_id', $id)->first();
-        if (!$hospital_facility) {
-            HospitalFacility::create(['hospital_id'=> $id]);
-            $hospital_facility          = HospitalFacility::where('hospital_id', $id)->first();
-        }
-        $hospital_nfrastructure          = HospitalInfrastructure::where('hospital_id', $id)->first();
-        $hospital_department          = HospitalDepartment::where('hospital_id', $id)->first();
-        $hospitals         = Hospital::get();
-        $users              = User::get();
-
-        return view('hospital.hospitals.edit.edit',  compact('hospital', 'associates', 'hospitals', 'hospital_facility', 'hospital_nfrastructure', 'hospital_department', 'hospital_tie_ups', 'users', 'insurers'));
-
+        return view('hospital.hospitals.manage',  compact('hospitals', 'filter_search'));
     }
 
     /**
@@ -92,7 +68,7 @@ class HospitalController extends Controller
             'lastname'                => ($request->onboarding == 'Tie Up') ? 'required|min:1|max:30' : [],
             'onboarding'               => 'required',
             'by'                       => 'required',
-            'pan'                      => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|size:10' : [],
+            'pan'                      => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|size:10|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/u' : [],
             'panfile'                  => ($request->onboarding == 'Tie Up') ? 'required' : [],
             'rohini'                   => 'required|size:13',
             'rohinifile'               => 'required',
@@ -108,6 +84,8 @@ class HospitalController extends Controller
             'linked_associate_partner'   => ($request->by == 'Associate Partner') ? 'required' : [],
             'assigned_employee'        => 'required',
             'assigned_employee_id'     => 'required',
+            'assigned_employee_department'        => 'required',
+            'linked_employee_department'        => 'required',
             'linked_employee'          => 'required',
             'linked_employee_id'       => 'required',
         ];
@@ -129,6 +107,7 @@ class HospitalController extends Controller
             'phone.required'                  => 'Please enter hospital mobile number.',
             'linked_associate_partner_id.required'   => 'Please enter associate partner ID.',
             'linked_associate_partner.required' => 'Please enter associate partner name.',
+
         ];
 
         $this->validate($request, $rules, $messages);
@@ -210,20 +189,35 @@ class HospitalController extends Controller
     {
         $hospital          = Hospital::find($id);
         $insurers          = Insurer::all();
+        
         $associates = AssociatePartner::get(['name', 'city', 'state', 'id', 'associate_partner_id']);
+        
         $hospital_tie_ups          = HospitalTieUp::where('hospital_id', $id)->first();
         if (!$hospital_tie_ups) {
             HospitalTieUp::create(['hospital_id'=> $id]);
             $hospital_tie_ups          = HospitalTieUp::where('hospital_id', $id)->first();
         }
+        
         $hospital_facility          = HospitalFacility::where('hospital_id', $id)->first();
         if (!$hospital_facility) {
             HospitalFacility::create(['hospital_id'=> $id]);
             $hospital_facility          = HospitalFacility::where('hospital_id', $id)->first();
         }
+        
         $hospital_nfrastructure          = HospitalInfrastructure::where('hospital_id', $id)->first();
+        if (!$hospital_nfrastructure) {
+            HospitalInfrastructure::create(['hospital_id'=> $id]);
+            $hospital_nfrastructure          = HospitalInfrastructure::where('hospital_id', $id)->first();
+        }
+        
         $hospital_department          = HospitalDepartment::where('hospital_id', $id)->first();
+        if (!$hospital_department) {
+            HospitalDepartment::create(['hospital_id'=> $id]);
+            $hospital_department          = HospitalDepartment::where('hospital_id', $id)->first();
+        }
+
         $hospitals         = Hospital::get();
+
         $users              = User::get();
 
         return view('hospital.hospitals.edit.edit',  compact('hospital', 'associates', 'hospitals', 'hospital_facility', 'hospital_nfrastructure', 'hospital_department', 'hospital_tie_ups', 'users', 'insurers'));
@@ -238,6 +232,7 @@ class HospitalController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // echo "<pre>";print_r($request->files);"</pre>";exit;
         $hospital             = Hospital::find($id);
 
         if ($request->hasfile('panfile')) {
@@ -373,7 +368,7 @@ class HospitalController extends Controller
             'lastname'                                  => ($request->onboarding == 'Tie Up') ? 'required|min:1|max:30' : [],
             'onboarding'                                => 'required',
             'by'                                        => 'required',
-            'pan'                                       => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|size:10' : [],
+            'pan'                                       => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|size:10|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/u' : [],
             'panfile'                                   => ($request->onboarding == 'Tie Up' && empty($hospital->panfile)) ? 'required' : [],
             'rohini'                                    => 'required|size:13',
             'rohinifile'                                => (empty($hospital->rohinifile)) ?  'required' : [],

@@ -52,6 +52,19 @@
             
         });
     </script>
+    <script>
+        $('input[type=file]').change(function () {
+            $(this).siblings('.upload-label').removeClass('btn-primary').addClass('btn-warning');
+        });
+    </script>
+    <script>
+        function isNumberKey(evt){
+            var charCode = (evt.which) ? evt.which : evt.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }
+    </script>
     @stack('scripts')
 </body>
 

@@ -132,8 +132,8 @@
                         placeholder="Code" value="{{ old('code', $hospital->code) }}">
                     </div>
                     <div class="col-9">
-                        <input type="number" class="form-control" id="landline" name="landline"
-                        placeholder="Enter hospital landline number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length >= 10) return false;" value="{{ old('landline', $hospital->landline) }}">
+                        <input type="text" maxlength="10" onkeypress="return isNumberKey(event)" class="form-control" id="landline" name="landline"
+                        placeholder="Enter hospital landline number" value="{{ old('landline', $hospital->landline) }}">
                     </div>
                 </div>
                 @error('code')
@@ -148,7 +148,7 @@
             <label for="phone">Hospital Mobile Number <span class="text-danger">*</span></label>
             <div class="input-group">
                 <label class="input-group-text" for="phone">+91</label>
-                <input type="number" class="form-control" id="phone" name="phone"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" placeholder="Enter hospital mobile number" value="{{ old('phone', $hospital->phone) }}">
+                <input type="text" maxlength="10" onkeypress="return isNumberKey(event)" class="form-control" id="phone" name="phone"  placeholder="Enter hospital mobile number" value="{{ old('phone', $hospital->phone) }}">
             </div>
             @error('phone')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -392,7 +392,7 @@
             <label for="owner_phone">Hospital Owner Mobile Number <span class="text-danger">*</span></label>
             <div class="input-group">
                 <label class="input-group-text" for="phone">+91</label>
-                <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" class="form-control" id="owner_phone" name="owner_phone" placeholder="Enter hospital Owner mobile number" value="{{ old('owner_phone', $hospital->owner_phone) }}">
+                <input type="text" maxlength="10" onkeypress="return isNumberKey(event)" class="form-control" id="owner_phone" name="owner_phone" placeholder="Enter hospital Owner mobile number" value="{{ old('owner_phone', $hospital->owner_phone) }}">
             </div>
             @error('owner_phone')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -431,7 +431,7 @@
             <label for="contact_person_phone">Contact Person Mobile Number <span class="text-danger">*</span></label>
                 <div class="input-group">
                     <label class="input-group-text" for="phone">+91</label>
-                    <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" class="form-control" id="contact_person_phone" name="contact_person_phone"  placeholder="Enter hospital Owner mobile number" value="{{ old('contact_person_phone', $hospital->contact_person_phone) }}">
+                    <input type="text" maxlength="10" onkeypress="return isNumberKey(event)" class="form-control" id="contact_person_phone" name="contact_person_phone"  placeholder="Enter hospital Owner mobile number" value="{{ old('contact_person_phone', $hospital->contact_person_phone) }}">
                 </div>
             @error('contact_person_phone')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -480,7 +480,7 @@
             <label for="medical_superintendent_mobile">Medical Superintendent Mobile Number <span  class="text-danger">*</span></label>
             <div class="input-group">
                 <label class="input-group-text" for="phone">+91</label>
-                <input type="number" class="form-control" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" id="medical_superintendent_mobile" name="medical_superintendent_mobile" placeholder="Enter Medical Superintendent Mobile Number" value="{{ old('medical_superintendent_mobile', $hospital->medical_superintendent_mobile) }}">
+                <input type="text" maxlength="10" onkeypress="return isNumberKey(event)" class="form-control" id="medical_superintendent_mobile" name="medical_superintendent_mobile" placeholder="Enter Medical Superintendent Mobile Number" value="{{ old('medical_superintendent_mobile', $hospital->medical_superintendent_mobile) }}">
             </div>
             @error('medical_superintendent_mobile')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
