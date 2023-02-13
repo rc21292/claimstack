@@ -126,7 +126,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="pan">Hospital PAN Number <span class="text-danger">*</span></label>
                                     <div class="input-group">
-                                        <input type="text" maxlength="10" class="form-control" id="pan" name="pan" maxlength="10"
+                                        <input type="text" title="Please enter Correct Pan Number" maxlength="10" class="form-control" id="pan" name="pan" maxlength="10"
                                             placeholder="Enter Hospital PAN no." value="{{ old('pan') }}">
                                         <input type="file" name="panfile" id="upload" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
                                         <label for="upload" class="btn btn-primary upload-label"><i

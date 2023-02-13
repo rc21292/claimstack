@@ -68,7 +68,7 @@ class HospitalController extends Controller
             'lastname'                => ($request->onboarding == 'Tie Up') ? 'required|min:1|max:30' : [],
             'onboarding'               => 'required',
             'by'                       => 'required',
-            'pan'                      => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|size:10' : [],
+            'pan'                      => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|size:10|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/u' : [],
             'panfile'                  => ($request->onboarding == 'Tie Up') ? 'required' : [],
             'rohini'                   => 'required|size:13',
             'rohinifile'               => 'required',
@@ -84,6 +84,8 @@ class HospitalController extends Controller
             'linked_associate_partner'   => ($request->by == 'Associate Partner') ? 'required' : [],
             'assigned_employee'        => 'required',
             'assigned_employee_id'     => 'required',
+            'assigned_employee_department'        => 'required',
+            'linked_employee_department'        => 'required',
             'linked_employee'          => 'required',
             'linked_employee_id'       => 'required',
         ];
@@ -105,6 +107,7 @@ class HospitalController extends Controller
             'phone.required'                  => 'Please enter hospital mobile number.',
             'linked_associate_partner_id.required'   => 'Please enter associate partner ID.',
             'linked_associate_partner.required' => 'Please enter associate partner name.',
+
         ];
 
         $this->validate($request, $rules, $messages);
@@ -365,7 +368,7 @@ class HospitalController extends Controller
             'lastname'                                  => ($request->onboarding == 'Tie Up') ? 'required|min:1|max:30' : [],
             'onboarding'                                => 'required',
             'by'                                        => 'required',
-            'pan'                                       => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|size:10' : [],
+            'pan'                                       => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|size:10|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/u' : [],
             'panfile'                                   => ($request->onboarding == 'Tie Up' && empty($hospital->panfile)) ? 'required' : [],
             'rohini'                                    => 'required|size:13',
             'rohinifile'                                => (empty($hospital->rohinifile)) ?  'required' : [],
