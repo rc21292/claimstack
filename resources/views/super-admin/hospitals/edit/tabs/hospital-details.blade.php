@@ -102,7 +102,7 @@
             @isset($hospital->panfile)
                 <a href="{{ asset('storage/uploads/hospital/'.$hospital->id.'/'.$hospital->panfile) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
             @endisset
-            <input type="file" name="panfile" id="upload" hidden />
+            <input type="file" name="panfile" id="upload" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
                 <label for="upload" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
             </div>
             @error('pan')
@@ -163,7 +163,7 @@
             @isset($hospital->rohinifile)
                 <a href="{{ asset('storage/uploads/hospital/'.$hospital->id.'/'.$hospital->rohinifile) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
             @endisset
-            <input type="file" name="rohinifile" id="rohinifile" hidden />
+            <input type="file" name="rohinifile" id="rohinifile" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
                 <label for="rohinifile" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
             </div>
@@ -347,7 +347,7 @@
             @isset($hospital->tanfile)
                 <a href="{{ asset('storage/uploads/hospital/'.$hospital->id.'/'.$hospital->tanfile) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
             @endisset
-            <input type="file" name="tanfile" id="tanfile" hidden />
+            <input type="file" name="tanfile" id="tanfile" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
                 <label for="tanfile" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
             </div>
@@ -367,7 +367,7 @@
             @isset($hospital->gstfile)
                 <a href="{{ asset('storage/uploads/hospital/'.$hospital->id.'/'.$hospital->gstfile) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
             @endisset
-            <input type="file" name="gstfile" id="gstfile" hidden />
+            <input type="file" name="gstfile" id="gstfile" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
                 <label for="gstfile" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
             </div>
@@ -521,7 +521,7 @@
             @isset($hospital->pollution_clearance_certificate_file)
                 <a href="{{ asset('storage/uploads/hospital/'.$hospital->id.'/'.$hospital->pollution_clearance_certificate_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
             @endisset            
-            <input type="file"  @if(old('pollution_clearance_certificate', $hospital->pollution_clearance_certificate) == 'No') disabled @endif name="pollution_clearance_certificate_file" id="pollution_clearance_certificate_file" hidden />
+            <input type="file"  @if(old('pollution_clearance_certificate', $hospital->pollution_clearance_certificate) == 'No') disabled @endif name="pollution_clearance_certificate_file" id="pollution_clearance_certificate_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
             <label for="pollution_clearance_certificate_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
             </div>
@@ -547,7 +547,7 @@
             @isset($hospital->fire_safety_clearance_certificate_file)
                 <a href="{{ asset('storage/uploads/hospital/'.$hospital->id.'/'.$hospital->fire_safety_clearance_certificate_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
             @endisset
-            <input type="file"  @if(old('fire_safety_clearance_certificate', $hospital->fire_safety_clearance_certificate) == 'No') disabled @endif name="fire_safety_clearance_certificate_file" id="fire_safety_clearance_certificate_file" hidden />
+            <input type="file"  @if(old('fire_safety_clearance_certificate', $hospital->fire_safety_clearance_certificate) == 'No') disabled @endif name="fire_safety_clearance_certificate_file" id="fire_safety_clearance_certificate_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
             <label for="fire_safety_clearance_certificate_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
             </div>
@@ -574,7 +574,7 @@
             @isset($hospital->certificate_of_incorporation_file)
                 <a href="{{ asset('storage/uploads/hospital/'.$hospital->id.'/'.$hospital->certificate_of_incorporation_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
             @endisset
-            <input type="file"  @if(old('certificate_of_incorporation', $hospital->certificate_of_incorporation) == 'No') disabled @endif name="certificate_of_incorporation_file" id="certificate_of_incorporation_file" hidden />
+            <input type="file"  @if(old('certificate_of_incorporation', $hospital->certificate_of_incorporation) == 'No') disabled @endif name="certificate_of_incorporation_file" id="certificate_of_incorporation_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
             <label for="certificate_of_incorporation_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
             </div>
@@ -619,7 +619,7 @@
             @isset($hospital->cancel_cheque_file)
                 <a href="{{ asset('storage/uploads/hospital/'.$hospital->id.'/'.$hospital->cancel_cheque_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
             @endisset
-            <input type="file" name="cancel_cheque_file" id="cancel_cheque_file" hidden />
+            <input type="file" name="cancel_cheque_file" id="cancel_cheque_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
             <label for="cancel_cheque_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
 
@@ -663,7 +663,7 @@
         @isset($hospital->tariff_list_soc_file)
                 <a href="{{ asset('storage/uploads/hospital/'.$hospital->id.'/'.$hospital->tariff_list_soc_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
             @endisset
-            <input type="file" name="tariff_list_soc_file" id="tariff_list_soc_file" hidden />
+            <input type="file" name="tariff_list_soc_file" id="tariff_list_soc_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
             <label for="tariff_list_soc_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
             </div>
@@ -683,7 +683,7 @@
             @isset($hospital->nabh_registration_file)
                 <a href="{{ asset('storage/uploads/hospital/'.$hospital->id.'/'.$hospital->nabh_registration_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
             @endisset
-            <input type="file" name="nabh_registration_file" id="nabh_registration_file" hidden />
+            <input type="file" name="nabh_registration_file" id="nabh_registration_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
                 <label for="nabh_registration_file" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
             </div>
@@ -704,7 +704,7 @@
             @isset($hospital->nabl_registration_file)
                 <a href="{{ asset('storage/uploads/hospital/'.$hospital->id.'/'.$hospital->nabl_registration_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
             @endisset
-            <input type="file" name="nabl_registration_file" id="nabl_registration_file" hidden />
+            <input type="file" name="nabl_registration_file" id="nabl_registration_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
                 <label for="nabl_registration_file" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
             </div>
@@ -731,7 +731,7 @@
         @isset($hospital->signed_mous_file)
                 <a href="{{ asset('storage/uploads/hospital/'.$hospital->id.'/'.$hospital->signed_mous_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
             @endisset
-            <input type="file" name="signed_mous_file" id="signed_mous_file" hidden />
+            <input type="file" name="signed_mous_file" id="signed_mous_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
             <label for="signed_mous_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
             </div>
@@ -758,7 +758,7 @@
             @isset($hospital->other_documents_file)
                 <a href="{{ asset('storage/uploads/hospital/'.$hospital->id.'/'.$hospital->other_documents_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
             @endisset
-            <input type="file" name="other_documents_file" id="other_documents_file" hidden />
+            <input type="file" name="other_documents_file" id="other_documents_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
                 <label for="other_documents_file" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
             </div>
@@ -801,7 +801,7 @@
         @isset($hospital->iso_status_file)
                 <a href="{{ asset('storage/uploads/hospital/'.$hospital->id.'/'.$hospital->iso_status_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
             @endisset
-            <input type="file" name="iso_status_file" id="iso_status_file" hidden />
+            <input type="file" name="iso_status_file" id="iso_status_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
             <label for="iso_status_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
             </div>

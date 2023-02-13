@@ -132,7 +132,7 @@
             @isset($hospital_nfrastructure->nabl_approved_lab_file)
                     <a href="{{ asset('storage/uploads/hospital/infrastructure/'.$hospital_nfrastructure->hospital_id.'/'.$hospital_nfrastructure->nabl_approved_lab_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
                 @endisset
-            <input type="file" name="nabl_approved_lab_file" @if(old('nabl_approved_lab', $hospital_nfrastructure->nabl_approved_lab ?? '') == 'No' ) disabled @endif id="nabl_approved_lab_file" hidden />
+            <input type="file" name="nabl_approved_lab_file" @if(old('nabl_approved_lab', $hospital_nfrastructure->nabl_approved_lab ?? '') == 'No' ) disabled @endif id="nabl_approved_lab_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
             <label for="nabl_approved_lab_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
         </div>
@@ -192,7 +192,7 @@
                 <a href="{{ asset('storage/uploads/hospital/infrastructure/'.$hospital_nfrastructure->hospital_id.'/'.$hospital_nfrastructure->nabh_status_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
             @endisset
 
-            <input type="file" name="nabh_status_file" @if(old('nabh_status', $hospital_nfrastructure->nabh_status ?? '') == 'NA' ) disabled @endif id="nabh_status_file" hidden />
+            <input type="file" name="nabh_status_file" @if(old('nabh_status', $hospital_nfrastructure->nabh_status ?? '') == 'NA' ) disabled @endif id="nabh_status_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
             <label for="nabh_status_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
             </div>
@@ -222,7 +222,7 @@
                 <a href="{{ asset('storage/uploads/hospital/infrastructure/'.$hospital_nfrastructure->hospital_id.'/'.$hospital_nfrastructure->jci_status_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
             @endisset
 
-            <input type="file" name="jci_status_file" @if(old('jci_status', $hospital_nfrastructure->jci_status ?? '') == 'No' ) disabled @endif id="jci_status_file" hidden />
+            <input type="file" name="jci_status_file" @if(old('jci_status', $hospital_nfrastructure->jci_status ?? '') == 'No' ) disabled @endif id="jci_status_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
             <label for="jci_status_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
             </div>
@@ -254,7 +254,7 @@
                 <a href="{{ asset('storage/uploads/hospital/infrastructure/'.$hospital_nfrastructure->hospital_id.'/'.$hospital_nfrastructure->nqac_nhsrc_status_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
             @endisset
 
-            <input type="file" name="nqac_nhsrc_status_file" @if(old('nqac_nhsrc_status', $hospital_nfrastructure->nqac_nhsrc_status ?? '') == 'NA' ) disabled @endif id="nqac_nhsrc_status_file" hidden />
+            <input type="file" name="nqac_nhsrc_status_file" @if(old('nqac_nhsrc_status', $hospital_nfrastructure->nqac_nhsrc_status ?? '') == 'NA' ) disabled @endif id="nqac_nhsrc_status_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
             <label for="nqac_nhsrc_status_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
             </div>
@@ -282,7 +282,7 @@
                 <a href="{{ asset('storage/uploads/hospital/infrastructure/'.$hospital_nfrastructure->hospital_id.'/'.$hospital_nfrastructure->hippa_status_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
             @endisset
 
-            <input type="file" name="hippa_status_file" @if(old('hippa_status', $hospital_nfrastructure->hippa_status ?? '') == 'No' ) disabled @endif id="hippa_status_file" hidden />
+            <input type="file" name="hippa_status_file" @if(old('hippa_status', $hospital_nfrastructure->hippa_status ?? '') == 'No' ) disabled @endif id="hippa_status_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
             <label for="hippa_status_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
             </div>

@@ -128,7 +128,7 @@
                                     <div class="input-group">
                                         <input type="text" maxlength="10" class="form-control" id="pan" name="pan" maxlength="10"
                                             placeholder="Enter Hospital PAN no." value="{{ old('pan') }}">
-                                        <input type="file" name="panfile" id="upload" hidden />
+                                        <input type="file" name="panfile" id="upload" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
                                         <label for="upload" class="btn btn-primary upload-label"><i
                                                 class="mdi mdi-upload"></i></label>
                                     </div>
@@ -190,7 +190,7 @@
                                     <div class="input-group">
                                         <input type="text" maxlength="13" class="form-control" id="rohini" name="rohini"
                                             placeholder="Enter rohini code." value="{{ old('rohini') }}">
-                                        <input type="file" name="rohinifile" id="rohinifile" hidden />
+                                        <input type="file" name="rohinifile" id="rohinifile" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
                                         <label for="rohinifile" class="btn btn-primary upload-label"><i
                                                 class="mdi mdi-upload"></i></label>
                                     </div>
