@@ -28,7 +28,7 @@
                 $('#medical_lending_patient_charge').attr('readonly', false);
                 break;
             default:
-                $('#medical_lending_patient_charge').attr('readonly', false);
+                $('#medical_lending_patient_charge').attr('readonly', true);
                 break;
         }
     }    
@@ -43,7 +43,7 @@
                 $('#medical_lending_bill_charge').attr('readonly', false);
                 break;
             default:
-                $('#medical_lending_bill_charge').attr('readonly', false);
+                $('#medical_lending_bill_charge').attr('readonly', true);
                 break;
         }
     }
@@ -58,7 +58,7 @@
                 $('#insurance_tpa_coordination_charge').attr('readonly', false);
                 break;
             default:
-                $('#insurance_tpa_coordination_charge').attr('readonly', false);
+                $('#insurance_tpa_coordination_charge').attr('readonly', true);
                 break;
         }
     }
@@ -73,7 +73,7 @@
                 $('#doctor_tele_consultation_charge').attr('readonly', false);
                 break;
             default:
-                $('#doctor_tele_consultation_charge').attr('readonly', false);
+                $('#doctor_tele_consultation_charge').attr('readonly', true);
                 break;
         }
     }
@@ -88,7 +88,7 @@
                 $('#doctor_honorary_panel_charge').attr('readonly', false);
                 break;
             default:
-                $('#doctor_honorary_panel_charge').attr('readonly', false);
+                $('#doctor_honorary_panel_charge').attr('readonly', true);
                 break;
         }
     }
@@ -103,7 +103,7 @@
                 $('#doctor_claim_process_charge').attr('readonly', false);
                 break;
             default:
-                $('#doctor_claim_process_charge').attr('readonly', false);
+                $('#doctor_claim_process_charge').attr('readonly', true);
                 break;
         }
     }
@@ -118,7 +118,7 @@
                 $('#claims_reimbursement_charge').attr('readonly', false);
                 break;
             default:
-                $('#claims_reimbursement_charge').attr('readonly', false);
+                $('#claims_reimbursement_charge').attr('readonly', true);
                 break;
         }
     }
@@ -133,7 +133,7 @@
                 $('#claims_bill_entry_charge').attr('readonly', false);
                 break;
             default:
-                $('#claims_bill_entry_charge').attr('readonly', false);
+                $('#claims_bill_entry_charge').attr('readonly', true);
                 break;
         }
     }
@@ -148,7 +148,7 @@
                 $('#claims_assessment_charge').attr('readonly', false);
                 break;
             default:
-                $('#claims_assessment_charge').attr('readonly', false);
+                $('#claims_assessment_charge').attr('readonly', true);
                 break;
         }
     }
@@ -163,7 +163,7 @@
                 $('#cashless_helpdesk_charge').attr('readonly', false);
                 break;
             default:
-                $('#cashless_helpdesk_charge').attr('readonly', false);
+                $('#cashless_helpdesk_charge').attr('readonly', true);
                 break;
         }
     }
@@ -178,7 +178,7 @@
                 $('#cashless_claims_management_charge').attr('readonly', false);
                 break;
             default:
-                $('#cashless_claims_management_charge').attr('readonly', false);
+                $('#cashless_claims_management_charge').attr('readonly', true);
                 break;
         }
     }
@@ -193,7 +193,7 @@
                 $('#consulting_charge').attr('readonly', false);
                 break;
             default:
-                $('#consulting_charge').attr('readonly', false);
+                $('#consulting_charge').attr('readonly', true);
                 break;
         }
     }
@@ -208,7 +208,7 @@
                 $('#dealer_distributor_charge').attr('readonly', false);
                 break;
             default:
-                $('#dealer_distributor_charge').attr('readonly', false);
+                $('#dealer_distributor_charge').attr('readonly', true);
                 break;
         }
     }
@@ -223,7 +223,7 @@
                 $('#hospital_empanelment_agent_charge').attr('readonly', false);
                 break;
             default:
-                $('#hospital_empanelment_agent_charge').attr('readonly', false);
+                $('#hospital_empanelment_agent_charge').attr('readonly', true);
                 break;
         }
     }
@@ -238,7 +238,7 @@
                 $('#software_sales_charge').attr('readonly', false);
                 break;
             default:
-                $('#software_sales_charge').attr('readonly', false);
+                $('#software_sales_charge').attr('readonly', true);
                 break;
         }
     }
@@ -253,8 +253,21 @@
                 $('#others_charge').attr('readonly', false);
                 break;
             default:
-                $('#others_charge').attr('readonly', false);
+                $('#others_charge').attr('readonly', true);
                 break;
         }
     }
+</script>
+
+<script>
+    $(document).ready(function(){
+        $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
+            localStorage.setItem('activeTab', $(e.target).attr('href'));
+        });
+
+        var activeTab = localStorage.getItem('activeTab');
+        if(activeTab){
+            $('a[href="' + activeTab + '"]').tab('show');
+        }
+    });
 </script>
