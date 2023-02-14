@@ -20,7 +20,7 @@
                     </li>
                     @foreach ($permissions as $permission)
                     <li class="list-group-item">
-                        <input class="form-check-input me-1 float-end mcer" name="permission[]" type="checkbox" {{ in_array($permission->name, $admin->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
+                        <input class="form-check-input me-1 float-end mcer" name="permission[]" type="checkbox" {{{ in_array($permission->name, $admin->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
                         {{ $permission->name }}
                     </li>
                     @if($loop->iteration == 10)
@@ -55,7 +55,7 @@
                         @continue
                     @endif
                     <li class="list-group-item">
-                        <input class="form-check-input me-1 float-end lcr" name="permission[]" type="checkbox" {{ in_array($permission->name, $admin->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
+                        <input class="form-check-input me-1 float-end lcr" name="permission[]" type="checkbox" {{{ in_array($permission->name, $admin->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
                         {{ $permission->name }}
                     </li>
                     @if($loop->iteration == 18)
@@ -90,7 +90,7 @@
                         @continue
                     @endif
                     <li class="list-group-item">
-                        <input class="form-check-input me-1 float-end uer" name="permission[]" type="checkbox" {{ in_array($permission->name, $admin->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
+                        <input class="form-check-input me-1 float-end uer" name="permission[]" type="checkbox" {{{ in_array($permission->name, $admin->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
                         {{ $permission->name }}
                     </li>
                     @if($loop->iteration == 32)
@@ -125,7 +125,7 @@
                         @continue
                     @endif
                     <li class="list-group-item">
-                        <input class="form-check-input me-1 float-end cr" name="permission[]" type="checkbox" {{ in_array($permission->name, $admin->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
+                        <input class="form-check-input me-1 float-end cr" name="permission[]" type="checkbox" {{{ in_array($permission->name, $admin->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
                         {{ $permission->name }}
                     </li>
                     @if($loop->iteration == 37)
@@ -160,7 +160,7 @@
                         @continue
                     @endif
                     <li class="list-group-item">
-                        <input class="form-check-input me-1 float-end ar" name="permission[]" type="checkbox" {{ in_array($permission->name, $admin->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
+                        <input class="form-check-input me-1 float-end ar" name="permission[]" type="checkbox" {{{ in_array($permission->name, $admin->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
                         {{ $permission->name }}
                     </li>
                     @if($loop->iteration == 46)
@@ -195,7 +195,7 @@
                         @continue
                     @endif
                     <li class="list-group-item">
-                        <input class="form-check-input me-1 float-end cvr" name="permission[]" type="checkbox" {{ in_array($permission->name, $admin->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
+                        <input class="form-check-input me-1 float-end cvr" name="permission[]" type="checkbox" {{{ in_array($permission->name, $admin->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
                         {{ $permission->name }}
                     </li>
                     @if($loop->iteration == 49)
@@ -230,7 +230,7 @@
                         @continue
                     @endif
                     <li class="list-group-item">
-                        <input class="form-check-input me-1 float-end or" name="permission[]" type="checkbox" {{ in_array($permission->name, $admin->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
+                        <input class="form-check-input me-1 float-end or" name="permission[]" type="checkbox" {{{ in_array($permission->name, $admin->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
                         {{ $permission->name }}
                     </li>
                     @if($loop->iteration == 56)
