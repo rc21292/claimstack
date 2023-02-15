@@ -5,7 +5,7 @@
     <div class="form-group row">
         <div class="col-md-12 mt-3">
             <label for="name">Hospital Name <span class="text-danger">*</span></label>
-            <input type="text" maxlength="60" class="form-control" id="name" name="name"
+            <input type="text" readonly maxlength="60" class="form-control" id="name" name="name"
                 placeholder="Enter Hospital name" value="{{ old('name', $hospital->name) }}">
             @error('name')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -16,10 +16,10 @@
             <label for="onboarding">Hospital Onboarding <span class="text-danger">*</span></label>
             <select class="form-select" id="onboarding" name="onboarding">
                 <option value="">Select onboarding</option>
-                <option value="Tie Up" {{ old('onboarding', $hospital->onboarding) == 'Tie Up' ? 'selected' : '' }}>Tie Up
+                <option value="Tie Up" {{ old('onboarding', $hospital->onboarding) == 'Tie Up' ? 'selected' : 'disabled' }}>Tie Up
                 </option>
                 <option value="Non - Tie Up"
-                    {{ old('onboarding', $hospital->onboarding) == 'Non - Tie Up' ? 'selected' : '' }}>Non - Tie Up
+                    {{ old('onboarding', $hospital->onboarding) == 'Non - Tie Up' ? 'selected' : 'disabled' }}>Non - Tie Up
                 </option>
             </select>
             @error('onboarding')
@@ -31,10 +31,10 @@
             <label for="by">Hospital By <span class="text-danger">*</span></label>
             <select class="form-select" id="by" name="by">
                 <option value="">Select by</option>
-                <option value="Direct" {{ old('by', $hospital->by) == 'Direct' ? 'selected' : '' }}>Direct
+                <option value="Direct" {{ old('by', $hospital->by) == 'Direct' ? 'selected' : 'disabled' }}>Direct
                 </option>
                 <option value="Associate Partner"
-                    {{ old('by', $hospital->by) == 'Associate Partner' ? 'selected' : '' }}>Associate Partner
+                    {{ old('by', $hospital->by) == 'Associate Partner' ? 'selected' : 'disabled' }}>Associate Partner
                 </option>
             </select>
             @error('by')
@@ -44,14 +44,14 @@
 
         <div class="col-md-12 mt-3">
             <label for="address">Hospital Address <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="address" name="address"
+            <input type="text" readonly class="form-control" id="address" name="address"
                 placeholder="Address Line" value="{{ old('address', $hospital->address) }}">
             @error('address')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
         <div class="col-md-4 mt-2">
-            <input type="text" class="form-control" id="city" name="city"
+            <input type="text" readonly class="form-control" id="city" name="city"
                 placeholder="City" value="{{ old('city', $hospital->city) }}">
             @error('city')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -59,7 +59,7 @@
         </div>
 
         <div class="col-md-4 mt-2">
-            <input type="text" class="form-control" id="state" name="state"
+            <input type="text" readonly class="form-control" id="state" name="state"
                 placeholder="State" value="{{ old('state', $hospital->state) }}">
             @error('state')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -67,7 +67,7 @@
         </div>
 
         <div class="col-md-4 mt-2">
-            <input type="number" class="form-control" id="pincode" name="pincode" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==6) return false;"
+            <input type="number" readonly class="form-control" id="pincode" name="pincode" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==6) return false;"
                 placeholder="Pincode" value="{{ old('pincode', $hospital->pincode) }}">
             @error('pincode')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -79,7 +79,7 @@
         </div>
 
         <div class="col-md-6 mt-1">
-            <input type="text" maxlength="15" onkeydown="return /[a-z, ]/i.test(event.key)" class="form-control" id="firstname" name="firstname" maxlength="15"
+            <input type="text" readonly maxlength="15" onkeydown="return /[a-z, ]/i.test(event.key)" class="form-control" id="firstname" name="firstname" maxlength="15"
                 placeholder="Firstname" value="{{ old('firstname', $hospital->firstname) }}">
             @error('firstname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -87,7 +87,7 @@
         </div>
 
         <div class="col-md-6 mt-1">
-            <input type="text" maxlength="30" class="form-control" id="lastname" name="lastname" maxlength="30" onkeydown="return /[a-z, ]/i.test(event.key)"
+            <input type="text" readonly maxlength="30" class="form-control" id="lastname" name="lastname" maxlength="30" onkeydown="return /[a-z, ]/i.test(event.key)"
                 placeholder="Lastname" value="{{ old('lastname', $hospital->lastname) }}">
             @error('lastname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -97,7 +97,7 @@
         <div class="col-md-6 mt-3">
             <label for="pan">Hospital PAN Number <span class="text-danger">*</span></label>
             <div class="input-group">
-                <input type="text" maxlength="10" class="form-control" id="pan" name="pan" maxlength="10"
+                <input type="text" readonly maxlength="10" class="form-control" id="pan" name="pan" maxlength="10"
                     placeholder="Enter Hospital PAN no." value="{{ old('pan', $hospital->pan) }}">
             @isset($hospital->panfile)
                 <a href="{{ asset('storage/uploads/hospital/'.$hospital->id.'/'.$hospital->panfile) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
@@ -115,7 +115,7 @@
 
         <div class="col-md-6 mt-3">
             <label for="owner">Hospital email ID <span class="text-danger">*</span></label>
-            <input type="email" maxlength="45" required class="form-control" id="email" name="email" maxlength="30"
+            <input type="email" readonly maxlength="45" required class="form-control" id="email" name="email" maxlength="30"
                 placeholder="Enter hospital email ID" value="{{ old('email', $hospital->email) }}">
             @error('email')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -128,7 +128,7 @@
                 class="text-danger">*</span></label>
                 <div class="input-group">
                     <div class="col-3">
-                        <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length>=3) return false;" class="form-control input-md" id="code" name="code"
+                        <input type="number" readonly pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length>=3) return false;" class="form-control input-md" id="code" name="code"
                         placeholder="Code" value="{{ old('code', $hospital->code) }}">
                     </div>
                     <div class="col-9">
@@ -148,7 +148,7 @@
             <label for="phone">Hospital Mobile Number <span class="text-danger">*</span></label>
             <div class="input-group">
                 <label class="input-group-text" for="phone">+91</label>
-                <input type="text" maxlength="10" onkeypress="return isNumberKey(event)" class="form-control" id="phone" name="phone"  placeholder="Enter hospital mobile number" value="{{ old('phone', $hospital->phone) }}">
+                <input type="text" maxlength="10" readonly onkeypress="return isNumberKey(event)" class="form-control" id="phone" name="phone"  placeholder="Enter hospital mobile number" value="{{ old('phone', $hospital->phone) }}">
             </div>
             @error('phone')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -158,7 +158,7 @@
         <div class="col-md-12 mt-3">
             <label for="rohini">Rohini Code <span class="text-danger">*</span></label>
             <div class="input-group">
-                <input type="text" maxlength="13" class="form-control" id="rohini" name="rohini"
+                <input type="text" maxlength="13" readonly class="form-control" id="rohini" name="rohini"
                     placeholder="Enter rohini code." value="{{ old('rohini', $hospital->rohini) }}">
             @isset($hospital->rohinifile)
                 <a href="{{ asset('storage/uploads/hospital/'.$hospital->id.'/'.$hospital->rohinifile) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
@@ -337,7 +337,7 @@
             @enderror
         </div>
 
-        
+
 
         <div class="col-md-6 mt-3">
             <label for="tan">Hospital Tan Number <span class="text-danger">*</span></label>
@@ -404,10 +404,10 @@
             <label for="contact_person_firstname">Contact Person Name <span class="text-danger">*</span></label>
             <div class="input-group">
             <input type="text" maxlength="15" onkeydown="return /[a-z, ]/i.test(event.key)" class="form-control" id="contact_person_firstname" name="contact_person_firstname"
-                placeholder="Firstname" value="{{ old('contact_person_firstname', $hospital->contact_person_firstname) }}">            
+                placeholder="Firstname" value="{{ old('contact_person_firstname', $hospital->contact_person_firstname) }}">
             <input type="text" style="margin-left:10px;" maxlength="30" onkeydown="return /[a-z, ]/i.test(event.key)" class="form-control" id="contact_person_lastname" name="contact_person_lastname"
                 placeholder="Lastname" value="{{ old('contact_person_lastname', $hospital->contact_person_lastname) }}">
-                
+
             </div>
             @error('contact_person_firstname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -454,7 +454,7 @@
             <div class="input-group">
                 <input type="text" maxlength="15" onkeydown="return /[a-z, ]/i.test(event.key)" class="form-control" id="medical_superintendent_firstname" name="medical_superintendent_firstname"
                 placeholder="Firstname" value="{{ old('medical_superintendent_firstname', $hospital->medical_superintendent_firstname) }}">
-                
+
 
                 <input type="text" style="margin-left:10px;" maxlength="30" onkeydown="return /[a-z, ]/i.test(event.key)" class="form-control" id="medical_superintendent_lastname" name="medical_superintendent_lastname"
                 placeholder="Lastname" value="{{ old('medical_superintendent_lastname', $hospital->medical_superintendent_lastname) }}">
@@ -520,7 +520,7 @@
             </select>
             @isset($hospital->pollution_clearance_certificate_file)
                 <a href="{{ asset('storage/uploads/hospital/'.$hospital->id.'/'.$hospital->pollution_clearance_certificate_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-            @endisset            
+            @endisset
             <input type="file"  @if(old('pollution_clearance_certificate', $hospital->pollution_clearance_certificate) == 'No') disabled @endif name="pollution_clearance_certificate_file" id="pollution_clearance_certificate_file" hidden />
             <label for="pollution_clearance_certificate_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
@@ -964,7 +964,7 @@
                 $(this).append('')
             }
         });*/
-         
+
     </script>
 
 @endpush
