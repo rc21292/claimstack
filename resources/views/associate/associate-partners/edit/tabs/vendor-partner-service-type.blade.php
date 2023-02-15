@@ -477,10 +477,10 @@
             <select class="form-select" id="others" name="others" onchange="changeOthers()">
                 <option value="">Select</option>
                 <option value="yes"
-                    {{ old('others', isset($associate->service) ? $associate->service->others : '') == 'yes' ? 'selected' : '' }}>Yes
+                    {{ old('others', isset($associate->service) ? $associate->service->others : '') == 'yes' ? 'selected' : 'disabled' }}>Yes
                 </option>
                 <option value="no"
-                    {{ old('others', isset($associate->service) ? $associate->service->others : '') == 'no' ? 'selected' : '' }}>No
+                    {{ old('others', isset($associate->service) ? $associate->service->others : '') == 'no' ? 'selected' : 'disabled' }}>No
                 </option>
             </select>
             @error('others')
