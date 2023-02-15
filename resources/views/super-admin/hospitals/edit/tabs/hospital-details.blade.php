@@ -337,7 +337,7 @@
             @enderror
         </div>
 
-        
+
 
         <div class="col-md-6 mt-3">
             <label for="tan">Hospital Tan Number <span class="text-danger">*</span></label>
@@ -404,10 +404,10 @@
             <label for="contact_person_firstname">Contact Person Name <span class="text-danger">*</span></label>
             <div class="input-group">
             <input type="text" maxlength="15" onkeydown="return /[a-z, ]/i.test(event.key)" class="form-control" id="contact_person_firstname" name="contact_person_firstname"
-                placeholder="Firstname" value="{{ old('contact_person_firstname', $hospital->contact_person_firstname) }}">            
+                placeholder="Firstname" value="{{ old('contact_person_firstname', $hospital->contact_person_firstname) }}">
             <input type="text" style="margin-left:10px;" maxlength="30" onkeydown="return /[a-z, ]/i.test(event.key)" class="form-control" id="contact_person_lastname" name="contact_person_lastname"
                 placeholder="Lastname" value="{{ old('contact_person_lastname', $hospital->contact_person_lastname) }}">
-                
+
             </div>
             @error('contact_person_firstname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -454,7 +454,7 @@
             <div class="input-group">
                 <input type="text" maxlength="15" onkeydown="return /[a-z, ]/i.test(event.key)" class="form-control" id="medical_superintendent_firstname" name="medical_superintendent_firstname"
                 placeholder="Firstname" value="{{ old('medical_superintendent_firstname', $hospital->medical_superintendent_firstname) }}">
-                
+
 
                 <input type="text" style="margin-left:10px;" maxlength="30" onkeydown="return /[a-z, ]/i.test(event.key)" class="form-control" id="medical_superintendent_lastname" name="medical_superintendent_lastname"
                 placeholder="Lastname" value="{{ old('medical_superintendent_lastname', $hospital->medical_superintendent_lastname) }}">
@@ -520,7 +520,7 @@
             </select>
             @isset($hospital->pollution_clearance_certificate_file)
                 <a href="{{ asset('storage/uploads/hospital/'.$hospital->id.'/'.$hospital->pollution_clearance_certificate_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-            @endisset            
+            @endisset
             <input type="file"  @if(old('pollution_clearance_certificate', $hospital->pollution_clearance_certificate) == 'No') disabled @endif name="pollution_clearance_certificate_file" id="pollution_clearance_certificate_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
             <label for="pollution_clearance_certificate_file" class="btn btn-primary upload-label"><i
                 class="mdi mdi-upload"></i></label>
@@ -953,6 +953,8 @@
         $(document).ready(function() {
             loadAssignedEmployees();
             loadLinkedEmployees();
+            $("#linked_associate_partner").attr('readonly',true);
+            $("#linked_associate_partner_id").attr('readonly',true);
         });
 
         $(document).on('keyup', "input[type='email']", function(event) {
