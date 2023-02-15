@@ -128,11 +128,11 @@
                 class="text-danger">*</span></label>
                 <div class="input-group">
                     <div class="col-3">
-                        <input type="text" maxlength="10" readonly onkeypress="return isNumberKey(event)" class="form-control input-md" id="code" name="code"
+                        <input type="text" maxlength="3" readonly onkeypress="return isNumberKey(event)" class="form-control input-md" id="code" name="code"
                         placeholder="Code" value="{{ old('code', $hospital->code) }}">
                     </div>
                     <div class="col-9">
-                        <input type="text" maxlength="10" onkeypress="return isNumberKey(event)" class="form-control" id="landline" name="landline"
+                        <input type="text" readonly maxlength="10" onkeypress="return isNumberKey(event)" class="form-control" id="landline" name="landline"
                         placeholder="Enter hospital landline number" value="{{ old('landline', $hospital->landline) }}">
                     </div>
                 </div>
