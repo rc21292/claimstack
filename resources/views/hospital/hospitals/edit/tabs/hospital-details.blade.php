@@ -128,7 +128,7 @@
                 class="text-danger">*</span></label>
                 <div class="input-group">
                     <div class="col-3">
-                        <input type="number" readonly pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length>=3) return false;" class="form-control input-md" id="code" name="code"
+                        <input type="text" maxlength="10" readonly onkeypress="return isNumberKey(event)" class="form-control input-md" id="code" name="code"
                         placeholder="Code" value="{{ old('code', $hospital->code) }}">
                     </div>
                     <div class="col-9">
