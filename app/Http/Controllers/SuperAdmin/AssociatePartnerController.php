@@ -63,7 +63,7 @@ class AssociatePartnerController extends Controller
             'name'                     => 'required',
             'owner_firstname'          => 'required',
             'type'                     => 'required',
-            'pan'                      => 'required|alpha_num',
+            'pan'                      => 'required|alpha_num|size:10|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/u',
             'panfile'                  => 'required',
             'email'                    => 'required|email|unique:associate_partners',
             'address'                  => 'required',
@@ -187,7 +187,7 @@ class AssociatePartnerController extends Controller
         $rules = [
             'name'                     => 'required',
             'type'                     => 'required',
-            'pan'                      => 'required|alpha_num',
+            'pan'                      => 'required|alpha_num|size:10|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/u',
             'panfile'                  =>  isset($associate_partner->panfile) ? '' : 'required',
             'owner_firstname'          => 'required',
             'email'                    => 'required|email|unique:associate_partners,email,'.$id,
@@ -214,6 +214,7 @@ class AssociatePartnerController extends Controller
             'bank_name'                => 'required',
             'bank_address'             => 'required',
             'cancel_cheque'            => 'required',
+            'cancel_cheque_file'       => ($request->cancel_cheque == 'Yes' && empty($associate_partner->cancel_cheque_file)) ? 'required' : [],
             'bank_account_no'          => 'required',
             'bank_ifs_code'            => 'required',
         ];

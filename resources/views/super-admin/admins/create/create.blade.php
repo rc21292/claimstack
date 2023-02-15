@@ -230,4 +230,22 @@
             loadEmployees();
         });
     </script>
+
+    <script>
+        var linked_with_superadmin = "{{ old('linked_with_superadmin') }}";
+            switch (linked_with_superadmin) {
+                case "yes":
+                    $('.div_linked_employee').css('display', 'none');
+                    break;
+                
+                case "no":
+                    $('.div_linked_employee').css('display', 'block');
+                    break;
+            
+                default:
+                    $('.div_linked_employee').css('display', 'block');
+                    break;
+            }
+    </script>
+
 @endpush

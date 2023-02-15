@@ -13,16 +13,16 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
-    {   
-        $this->call(PermissionSeed::class); 
-        $this->call(EmployeeSeed::class); 
-        $this->call(UserSeed::class); 
-        $this->call(AdminSeed::class);
+    {
+        $this->call(PermissionSeed::class);
+        // $this->call(EmployeeSeed::class);
+        // $this->call(UserSeed::class);
+        // $this->call(AdminSeed::class);
         $this->call(SuperAdminSeed::class);
-        $this->call(AssociatePartnerSeed::class);       
-        $this->call(PatientSeed::class);       
-        $this->call(ClaimSeed::class);       
-        $this->call(ClaimantSeed::class);
-        $this->call(HospitalSeeder::class);
+        // $this->call(AssociatePartnerSeed::class);
+        // $this->call(PatientSeed::class);
+        // $this->call(ClaimSeed::class);
+        // $this->call(ClaimantSeed::class);
+        // $this->call(HospitalSeeder::class);
     }
 }

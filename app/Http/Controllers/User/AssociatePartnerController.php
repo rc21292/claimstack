@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\AssociatePartner;
 use App\Models\SalesServiceType;
+use App\Models\AssociatePartnerFileHistory;
 use App\Models\User;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ImportAssociatePartner;
@@ -181,6 +182,30 @@ class AssociatePartnerController extends Controller
     public function update(Request $request, $id)
     {
         $associate_partner             = AssociatePartner::find($id);
+
+
+        /*if ($request->hasfile('panfile')) {
+            $panfile                    = $request->file('panfile');
+            $name                       = $panfile->getClientOriginalName();
+            $panfile->storeAs('uploads/associate-partners/' . $id . '/', $name, 'public');
+
+            if (!empty($associate_partner->panfile)) {
+                $exists = AssociatePartnerFileHistory::where(['file_name' => 'panfile', 'associate_partner_id' => $id])->exists();
+                if (!$exists) {
+                    $file_id = 0;
+                }else{
+                    $file_id1 =  AssociatePartnerFileHistory::where(['file_name' => 'panfile', 'associate_partner_id' => $id])->latest('id')->first();
+                    $file_id = $file_id1->file_id;
+                }
+                AssociatePartnerFileHistory::insert(
+                    ['file_name' => 'panfile', 'file_path' => $associate_partner->panfile, 'associate_partner_id' => $id, 'file_id' => $file_id+1]
+                );
+            }
+
+            AssociatePartner::where('id', $id)->update([
+                'panfile'               =>  $name
+            ]);
+        }*/
 
         $rules = [
             'name'                     => 'required',
