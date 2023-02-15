@@ -261,7 +261,7 @@
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
-        <div class="col-md-6 mt-3">
+        {{-- <div class="col-md-6 mt-3">
             <label for="assigned_employee">Assigned To Employee Name <span class="text-danger">*</span></label>
             <select class="form-control select2" id="assigned_employee" name="assigned_employee"
                 data-toggle="select2" onchange="setAssignedEmployeeId()">
@@ -344,7 +344,7 @@
             @error('linked_employee_id')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-        </div>
+        </div> --}}
 
 
 
