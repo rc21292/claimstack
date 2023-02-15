@@ -65,7 +65,7 @@
 
         <div class="col-md-6 mt-3">
             <label for="owner">Official email ID <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="email" name="email" maxlength="30"
+            <input type="text" class="form-control" id="email" name="email" maxlength="45"
                 placeholder="Enter official emailID" value="{{ old('email', $associate->email) }}">
             @error('email')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
