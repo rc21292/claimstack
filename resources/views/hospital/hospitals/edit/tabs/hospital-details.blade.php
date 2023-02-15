@@ -3,6 +3,15 @@
     @csrf
     @method('PUT')
     <div class="form-group row">
+
+        <div class="col-md-12 mt-3">
+            <label for="uid">Hospital UID </label>
+            <input type="text" readonly maxlength="60" class="form-control" id="uid" name="uid"
+                placeholder="Enter Hospital UID" value="{{ old('uid', $hospital->uid) }}">
+            @error('uid')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
         <div class="col-md-12 mt-3">
             <label for="name">Hospital Name <span class="text-danger">*</span></label>
             <input type="text" readonly maxlength="60" class="form-control" id="name" name="name"
