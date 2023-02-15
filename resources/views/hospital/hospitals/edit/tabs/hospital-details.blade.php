@@ -953,6 +953,8 @@
         $(document).ready(function() {
             loadAssignedEmployees();
             loadLinkedEmployees();
+            $("#linked_associate_partner").attr('readonly',true);
+            $("#linked_associate_partner_id").attr('readonly',true);
         });
 
         /*$(document).on('blur', "input[type='email']", function(event) {
