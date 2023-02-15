@@ -217,7 +217,7 @@
 
 
 
-                <div class="col-md-12 mt-3">
+                {{-- <div class="col-md-12 mt-3">
             <label for="assigned_employee_department">Assigned To Employee Department <span class="text-danger">*</span></label>
             <select class="form-select" id="assigned_employee_department" name="assigned_employee_department"
                 onchange="loadAssignedEmployees()">
@@ -260,7 +260,7 @@
             @error('assigned_employee_department')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-        </div>
+        </div> --}}
         {{-- <div class="col-md-6 mt-3">
             <label for="assigned_employee">Assigned To Employee Name <span class="text-danger">*</span></label>
             <select class="form-control select2" id="assigned_employee" name="assigned_employee"
