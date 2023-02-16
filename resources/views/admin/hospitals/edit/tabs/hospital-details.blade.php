@@ -4,6 +4,14 @@
     @method('PUT')
     <div class="form-group row">
         <div class="col-md-12 mt-3">
+            <label for="uid">Hospital UID </label>
+            <input type="text" readonly maxlength="60" class="form-control" id="uid" name="uid"
+                placeholder="Enter Hospital UID" value="{{ old('uid', $hospital->uid) }}">
+            @error('uid')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="col-md-12 mt-3">
             <label for="name">Hospital Name <span class="text-danger">*</span></label>
             <input type="text" maxlength="60" class="form-control" id="name" name="name"
                 placeholder="Enter Hospital name" value="{{ old('name', $hospital->name) }}">
@@ -744,7 +752,7 @@
         </div>
 
         <div class="col-md-6 mt-3">
-            <label for="other_documents">Hospital Hospital Other Documents <span class="text-danger">*</span></label>
+            <label for="other_documents">Hospital Other Documents <span class="text-danger">*</span></label>
             <div class="input-group">
 
                 <select class="form-select" id="other_documents" name="other_documents">

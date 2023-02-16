@@ -17,7 +17,7 @@
                 <option value="no"
                     {{ old('cashless_claims_management', isset($associate->service) ? $associate->service->cashless_claims_management : '') == 'no' ? 'selected' : '' }}>
                     No
-                </option>                
+                </option>
             </select>
             @error('cashless_claims_management')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -36,7 +36,14 @@
             @enderror
         </div>
 
-       
+        <div class="col-md-12 mt-2">
+            <input type="text" class="form-control" maxlength="45" id="cashless_claims_management_comment" name="cashless_claims_management_comment"
+                placeholder="Comment"
+                value="{{ old('cashless_claims_management_comment', isset($associate->service) ? $associate->service->cashless_claims_management_comment : '') }}">
+            @error('cashless_claims_management_comment')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
 
         <div class="col-md-12 mt-3">
             <label for="cashless_helpdesk">Cashless Help Desk <span class="text-danger">*</span></label>
@@ -52,7 +59,7 @@
                 <option value="no"
                     {{ old('cashless_helpdesk', isset($associate->service) ? $associate->service->cashless_helpdesk : '') == 'no' ? 'selected' : '' }}>
                     No
-                </option>                
+                </option>
             </select>
             @error('cashless_helpdesk')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -71,8 +78,14 @@
             @enderror
         </div>
 
-        
-      
+        <div class="col-md-12 mt-2">
+            <input type="text" class="form-control" maxlength="45" id="cashless_helpdesk_comment" name="cashless_helpdesk_comment"
+                placeholder="Comment"
+                value="{{ old('cashless_helpdesk_comment', isset($associate->service) ? $associate->service->cashless_helpdesk_comment : '') }}">
+            @error('cashless_helpdesk_comment')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
 
         <div class="col-md-12 mt-3">
             <label for="claims_assessment">Claims Assessment<span class="text-danger">*</span></label>
@@ -88,7 +101,7 @@
                 <option value="no"
                     {{ old('claims_assessment', isset($associate->service) ? $associate->service->claims_assessment : '') == 'no' ? 'selected' : '' }}>
                     No
-                </option>                
+                </option>
             </select>
             @error('claims_assessment')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -107,7 +120,14 @@
             @enderror
         </div>
 
-    
+        <div class="col-md-12 mt-2">
+            <input type="text" class="form-control" maxlength="45" id="claims_assessment_comment" name="claims_assessment_comment"
+                placeholder="Comment"
+                value="{{ old('claims_assessment_comment', isset($associate->service) ? $associate->service->claims_assessment_comment : '') }}">
+            @error('claims_assessment_comment')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
 
         <div class="col-md-12 mt-3">
             <label for="claims_bill_entry">Claims Bill Entry<span class="text-danger">*</span></label>
@@ -123,7 +143,7 @@
                 <option value="no"
                     {{ old('claims_bill_entry', isset($associate->service) ? $associate->service->claims_bill_entry : '') == 'no' ? 'selected' : '' }}>
                     No
-                </option>                
+                </option>
             </select>
             @error('claims_bill_entry')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -142,7 +162,14 @@
             @enderror
         </div>
 
-    
+        <div class="col-md-12 mt-2">
+            <input type="text" class="form-control" maxlength="45" id="claims_bill_entry_comment" name="claims_bill_entry_comment"
+                placeholder="Comment"
+                value="{{ old('claims_bill_entry_comment', isset($associate->service) ? $associate->service->claims_bill_entry_comment : '') }}">
+            @error('claims_bill_entry_comment')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
 
         <div class="col-md-12 mt-3">
             <label for="claims_reimbursement">Claims Reimbursement - Insured <span class="text-danger">*</span></label>
@@ -158,7 +185,7 @@
                 <option value="no"
                     {{ old('claims_reimbursement', isset($associate->service) ? $associate->service->claims_reimbursement : '') == 'no' ? 'selected' : '' }}>
                     No
-                </option>                
+                </option>
             </select>
             @error('claims_reimbursement')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -177,7 +204,15 @@
             @enderror
         </div>
 
-    
+        <div class="col-md-12 mt-2">
+            <input type="text" class="form-control" maxlength="45" id="claims_reimbursement_comment" name="claims_reimbursement_comment"
+                placeholder="Comment"
+                value="{{ old('claims_reimbursement_comment', isset($associate->service) ? $associate->service->claims_reimbursement_comment : '') }}">
+            @error('claims_reimbursement_comment')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+
         <div class="col-md-12 mt-3">
             <label for="doctor_claim_process">Doctor (Claim Processing) <span class="text-danger">*</span></label>
         </div>
@@ -192,7 +227,7 @@
                 <option value="no"
                     {{ old('doctor_claim_process', isset($associate->service) ? $associate->service->doctor_claim_process : '') == 'no' ? 'selected' : '' }}>
                     No
-                </option>                
+                </option>
             </select>
             @error('doctor_claim_process')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -211,7 +246,14 @@
             @enderror
         </div>
 
-      
+        <div class="col-md-12 mt-2">
+            <input type="text" class="form-control" maxlength="45" id="doctor_claim_process_comment" name="doctor_claim_process_comment"
+                placeholder="Comment"
+                value="{{ old('doctor_claim_process_comment', isset($associate->service) ? $associate->service->doctor_claim_process_comment : '') }}">
+            @error('doctor_claim_process_comment')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
 
         <div class="col-md-12 mt-3">
             <label for="doctor_honorary_panel">Doctor (Honorary/Panel) <span class="text-danger">*</span></label>
@@ -227,7 +269,7 @@
                 <option value="no"
                     {{ old('doctor_honorary_panel', isset($associate->service) ? $associate->service->doctor_honorary_panel : '') == 'no' ? 'selected' : '' }}>
                     No
-                </option>                
+                </option>
             </select>
             @error('doctor_honorary_panel')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -246,7 +288,14 @@
             @enderror
         </div>
 
-       
+        <div class="col-md-12 mt-2">
+            <input type="text" class="form-control" maxlength="45" id="doctor_honorary_panel_comment" name="doctor_honorary_panel_comment"
+                placeholder="Comment"
+                value="{{ old('doctor_honorary_panel_comment', isset($associate->service) ? $associate->service->doctor_honorary_panel_comment : '') }}">
+            @error('doctor_honorary_panel_comment')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
 
         <div class="col-md-12 mt-3">
             <label for="doctor_tele_consultation">Doctor (Tele Consultation) <span
@@ -263,7 +312,7 @@
                 <option value="no"
                     {{ old('doctor_tele_consultation', isset($associate->service) ? $associate->service->doctor_tele_consultation : '') == 'no' ? 'selected' : '' }}>
                     No
-                </option>                
+                </option>
             </select>
             @error('doctor_tele_consultation')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -282,7 +331,14 @@
             @enderror
         </div>
 
-      
+        <div class="col-md-12 mt-2">
+            <input type="text" class="form-control" maxlength="45" id="doctor_tele_consultation_comment" name="doctor_tele_consultation_comment"
+                placeholder="Comment"
+                value="{{ old('doctor_tele_consultation_comment', isset($associate->service) ? $associate->service->doctor_tele_consultation_comment : '') }}">
+            @error('doctor_tele_consultation_comment')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
 
         <div class="col-md-12 mt-3">
             <label for="insurance_tpa_coordination">Insaurance Co. / TPA Coordination <span
@@ -299,7 +355,7 @@
                 <option value="no"
                     {{ old('insurance_tpa_coordination', isset($associate->service) ? $associate->service->insurance_tpa_coordination : '') == 'no' ? 'selected' : '' }}>
                     No
-                </option>                
+                </option>
             </select>
             @error('insurance_tpa_coordination')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -318,7 +374,14 @@
             @enderror
         </div>
 
-       
+        <div class="col-md-12 mt-2">
+            <input type="text" class="form-control" maxlength="45" id="insurance_tpa_coordination_comment" name="insurance_tpa_coordination_comment"
+                placeholder="Comment"
+                value="{{ old('insurance_tpa_coordination_comment', isset($associate->service) ? $associate->service->insurance_tpa_coordination_comment : '') }}">
+            @error('insurance_tpa_coordination_comment')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
 
         <div class="col-md-12 mt-3">
             <label for="medical_lending_bill">Medical Lending for Bill/Invoice Discounting <span
@@ -335,7 +398,7 @@
                 <option value="no"
                     {{ old('medical_lending_bill', isset($associate->service) ? $associate->service->medical_lending_bill : '') == 'no' ? 'selected' : '' }}>
                     No
-                </option>                
+                </option>
             </select>
             @error('medical_lending_bill')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -354,7 +417,14 @@
             @enderror
         </div>
 
-        
+        <div class="col-md-12 mt-2">
+            <input type="text" class="form-control" maxlength="45" id="medical_lending_bill_comment" name="medical_lending_bill_comment"
+                placeholder="Comment"
+                value="{{ old('medical_lending_bill_comment', isset($associate->service) ? $associate->service->medical_lending_bill_comment : '') }}">
+            @error('medical_lending_bill_comment')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
 
         <div class="col-md-12 mt-3">
             <label for="medical_lending_patient">Medical Lending for Patient <span
@@ -371,7 +441,7 @@
                 <option value="no"
                     {{ old('medical_lending_patient', isset($associate->service) ? $associate->service->medical_lending_patient : '') == 'no' ? 'selected' : '' }}>
                     No
-                </option>                
+                </option>
             </select>
             @error('medical_lending_patient')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -390,7 +460,14 @@
             @enderror
         </div>
 
-       
+        <div class="col-md-12 mt-2">
+            <input type="text" class="form-control" maxlength="45" id="medical_lending_patient_comment" name="medical_lending_patient_comment"
+                placeholder="Comment"
+                value="{{ old('medical_lending_patient_comment', isset($associate->service) ? $associate->service->medical_lending_patient_comment : '') }}">
+            @error('medical_lending_patient_comment')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
 
         <div class="col-md-12 mt-3">
             <label for="others">Others <span class="text-danger">*</span></label>
@@ -404,7 +481,7 @@
                 </option>
                 <option value="no"
                     {{ old('others', isset($associate->service) ? $associate->service->others : '') == 'no' ? 'selected' : '' }}>No
-                </option>                
+                </option>
             </select>
             @error('others')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -422,7 +499,14 @@
             @enderror
         </div>
 
-       
+        <div class="col-md-12 mt-2">
+            <input type="text" class="form-control" maxlength="45" id="others_comment" name="others_comment"
+                placeholder="Comment"
+                value="{{ old('others_comment', isset($associate->service) ? $associate->service->others_comment : '') }}">
+            @error('others_comment')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
 
         <div class="col-md-12 mt-3">
             <label for="vendor_partner_comments">Comments </label>

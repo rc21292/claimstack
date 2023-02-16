@@ -36,6 +36,14 @@
             @enderror
         </div>
 
+        <div class="col-md-12 mt-2">
+            <input type="text" class="form-control" maxlength="45" id="consulting_comment" name="consulting_comment"
+                placeholder="Comment"
+                value="{{ old('consulting_comment', isset($associate->service) ? $associate->service->consulting_comment : '') }}">
+            @error('consulting_comment')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
 
         <div class="col-md-12 mt-3">
             <label for="dealer_distributor">Dealer / Distributor (Hospital) <span class="text-danger">*</span></label>
@@ -71,6 +79,14 @@
             @enderror
         </div>
 
+        <div class="col-md-12 mt-2">
+            <input type="text" class="form-control" maxlength="45" id="dealer_distributor_comment"
+                name="dealer_distributor_comment" placeholder="Comment"
+                value="{{ old('dealer_distributor_comment', isset($associate->service) ? $associate->service->dealer_distributor_comment : '') }}">
+            @error('dealer_distributor_comment')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
 
         <div class="col-md-12 mt-3">
             <label for="hospital_empanelment_agent">Hospital Empanelment - Agent<span
@@ -108,6 +124,14 @@
             @enderror
         </div>
 
+        <div class="col-md-12 mt-2">
+            <input type="text" class="form-control" maxlength="45" id="hospital_empanelment_agent_comment"
+                name="hospital_empanelment_agent_comment" placeholder="Comment"
+                value="{{ old('hospital_empanelment_agent_comment', isset($associate->service) ? $associate->service->hospital_empanelment_agent_comment : '') }}">
+            @error('hospital_empanelment_agent_comment')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
 
         <div class="col-md-12 mt-3">
             <label for="software_sales">Software Sales<span class="text-danger">*</span></label>
@@ -142,6 +166,14 @@
             @enderror
         </div>
 
+        <div class="col-md-12 mt-2">
+            <input type="text" class="form-control" maxlength="45" id="software_sales_comment"
+                name="software_sales_comment" placeholder="Comment"
+                value="{{ old('software_sales_comment', isset($associate->service) ? $associate->service->software_sales_comment : '') }}">
+            @error('software_sales_comment')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
 
         <div class="col-md-12 mt-3">
             <label for="others">Others <span class="text-danger">*</span></label>
@@ -175,7 +207,14 @@
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
-
+        <div class="col-md-12 mt-2">
+            <input type="text" class="form-control" maxlength="45" id="others_comment" name="others_comment"
+                placeholder="Comment"
+                value="{{ old('others_comment', isset($associate->service) ? $associate->service->others_comment : '') }}">
+            @error('others_comment')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
         <div class="col-md-12 mt-3">
             <label for="sales_partner_comments">Sales Partner Comments </label>
             <textarea maxlength="250" class="form-control" id="sales_partner_comments" name="sales_partner_comments"
@@ -189,3 +228,4 @@
         </div>
     </div>
 </form>
+s

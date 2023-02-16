@@ -167,7 +167,7 @@
         </div>
 
         <div class="col-md-6 mt-3">
-            <label for="claims_reimbursement_insured_services">ClaimStack Usage Services <span class="text-danger">*</span></label>
+            <label for="claims_reimbursement_insured_services">Claims Reimbursement - Insured Services <span class="text-danger">*</span></label>
             <select class="form-select" id="claims_reimbursement_insured_services" name="claims_reimbursement_insured_services">
                 <option value="">Select</option>
                 <option value="Monthly" {{ old('claims_reimbursement_insured_services', $hospital_tie_ups->claims_reimbursement_insured_services??'') == 'Monthly' ? 'selected' : '' }}>Monthly

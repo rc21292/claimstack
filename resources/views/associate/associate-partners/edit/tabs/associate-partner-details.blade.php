@@ -378,7 +378,7 @@
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
-        <div class="col-md-6 mt-3">
+        {{-- <div class="col-md-6 mt-3">
             <label for="contact_person">Associate Partner Contact Person's Name <span
                     class="text-danger">*</span></label>
             <input type="text" onkeydown="return /[a-z, ]/i.test(event.key)" class="form-control"
@@ -411,7 +411,7 @@
             @error('contact_person_email')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-        </div>
+        </div> --}}
         <div class="col-md-12 mt-3">
             <label for="address">Associate Partner's Bank Details <span class="text-danger">*</span></label>
         </div>

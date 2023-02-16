@@ -753,7 +753,7 @@
         </div>
 
         <div class="col-md-6 mt-3">
-            <label for="other_documents">Hospital Hospital Other Documents <span class="text-danger">*</span></label>
+            <label for="other_documents">Hospital Other Documents <span class="text-danger">*</span></label>
             <div class="input-group">
 
                 <select class="form-select" id="other_documents" name="other_documents">
