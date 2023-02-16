@@ -1,22 +1,6 @@
 @extends('layouts.associate')
 @section('title', 'Edit Associate Partners')
 @section('head')
-<style>
-    select[readonly].select2 + .select2-container {
-  pointer-events: none;
-  touch-action: none;
-
-  .select2-selection {
-    background: #eee;
-    box-shadow: none;
-  }
-
-  .select2-selection__arrow,
-  .select2-selection__clear {
-    display: none;
-  }
-}
-</style>
 @endsection
 @section('content')
     <!-- Start Content-->
@@ -105,6 +89,13 @@
                                         <span class="d-none d-md-block">Reports</span>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="#sales_partner_view" data-bs-toggle="tab" aria-expanded="false"
+                                        class="nav-link rounded-0">
+                                        <i class="mdi mdi-settings-outline d-md-none d-block"></i>
+                                        <span class="d-none d-md-block">View Document </span>
+                                    </a>
+                                </li>
                             @endif
                         </ul>
 
@@ -134,6 +125,9 @@
                                 </div>                                
                                 <div class="tab-pane" id="sales_partner_reports">
                                     @include('associate.associate-partners.edit.tabs.sales-partner-reports')
+                                </div>
+                                <div class="tab-pane" id="sales_partner_view">
+                                    @include('associate.associate-partners.edit.tabs.show')
                                 </div>
                             @endif
                         </div>

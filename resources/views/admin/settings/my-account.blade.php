@@ -59,7 +59,7 @@
                         </div>
                         <div class="form-group mb-2">
                             <label for="phone">Phone Number</label>
-                            <input type="text" class="form-control" id="phone" name="phone"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"
+                            <input type="number" class="form-control" id="phone" name="phone"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"
                                 placeholder="Enter Phone Number" value="{{ old('phone', $admin->phone) }}">
                             @error('phone')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
