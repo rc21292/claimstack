@@ -30,7 +30,7 @@ class ChangePasswordController extends Controller
 
         $this->validate($request, [
             'current_password' => 'required',
-            'password' => 'required|min:8|confirmed',
+            'new_password' => 'required|min:8|confirmed',
 
         ]);
 
@@ -38,7 +38,7 @@ class ChangePasswordController extends Controller
 
         if (Hash::check($request->get('current_password'), $user->password)) {
 
-            $user->password = Hash::make($request->password);
+            $user->password = Hash::make($request->new_password);
             $user->save();
 
             return redirect()->route('super-admin.password.form')->with('success', 'Password changed successfully!');
