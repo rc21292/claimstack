@@ -8,18 +8,19 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Validator;
 use App\Models\Admin;
+use App\Models\SuperAdmin;
 
 class ChangePasswordController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware('auth:super-admin');
     }
 
     public function changePasswordForm()
     {
         $id = Auth::guard('super-admin')->id();
-        $user = Admin::find($id);
+        $user = SuperAdmin::find($id);
         return view('super-admin.settings.change-password', compact('user'));
     }
 
@@ -33,7 +34,7 @@ class ChangePasswordController extends Controller
 
         ]);
 
-        $user = Admin::find($id);
+        $user = SuperAdmin::find($id);
 
         if (Hash::check($request->get('current_password'), $user->password)) {
 
