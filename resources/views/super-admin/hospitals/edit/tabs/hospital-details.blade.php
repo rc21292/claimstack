@@ -853,7 +853,7 @@
             $('#linked_employee_id').val(linked_employee);
         }
 
-        var byI = "{{ old('by') }}";
+        var byI = "{{ old('by', $hospital->by) }}";
 
         if(byI == 'Direct'){
             $("#linked_associate_partner").attr('disabled',true);
