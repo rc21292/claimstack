@@ -238,6 +238,13 @@
                 var ret1 = id_attr.replace('_to','_total_days');
                 var from = $("#"+ret).val();
                 var to = $(this).val();
+
+                /*if (to < from){
+                    $(this).parent('div').append('to date is always grater than start date!')
+                }else{
+                    
+                }*/
+
                 $("#"+ret1).val(datediff(parseDate(from), parseDate(to)));
             }
         });
