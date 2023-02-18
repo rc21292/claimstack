@@ -120,9 +120,24 @@ body[data-leftbar-compact-mode="condensed"]:not(.authentication-bg)
     box-shadow: 0 0 9px 5px #afafaf4a !important;
     background: #f4f4f4 !important;
 }
-.accordion > .card > .card-header {
-    border-radius: 3px;
-    margin-bottom: -1px;
-    border: 1px solid #80808047;
-    background-color: #ffffff;
+
+.accordion-item {
+     border: 0; 
+}
+.accordion-button:not(.collapsed){
+    background-color: #fff;
+    border: 0 !important;
+    box-shadow: none;;
+}
+.accordion-button:focus{
+    box-shadow: none;
+}
+.accordion-header{
+    background-color: #fff;
+}
+.accordion-button {
+    padding: 10px;
+}
+.accordion-button .header-title{
+    margin: 0 !important;
 }

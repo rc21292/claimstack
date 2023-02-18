@@ -19,7 +19,7 @@ return new class extends Migration
            $table->string('firstname');
            $table->string('lastname')->nullable();
            $table->integer('patient_id')->nullable();
-           $table->string('patient_dob')->nullable();
+           $table->date('patient_dob')->nullable();
            $table->enum('patient_gender', ['Male', 'Female', 'Unisex'])->default('Male');
            $table->longText('patient_address')->nullable();
            $table->string('patient_city')->nullable();

@@ -3,47 +3,19 @@
 namespace App\Http\Controllers\SuperAdmin;
 
 use App\Http\Controllers\Controller;
-use App\Models\AssociatePartner;
-use App\Models\Claim;
-use App\Models\Hospital;
-use App\Models\BillEntry;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\BillEntry;
 
-class ClaimController extends Controller
+class BillEntryController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth:super-admin');
-    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $filter_search = $request->search;
-        $claims = Hospital::query();
-        if($filter_search){
-            $claims->where('name', 'like','%' . $filter_search . '%');
-        }
-        $claims = $claims->orderBy('id', 'desc')->paginate(20);
-
-        return view('super-admin.claims.manage',  compact('claims', 'filter_search'));       
-    }
-
-
-    public function billEntry(Request $request)
-    {
-        $bill_entry = BillEntry::first();
-
-        if (!$bill_entry) {
-            $bill_entry = BillEntry::create(['room_rent_date' => date("Y-m-d H:i:s")]);
-        }
-
-        return view('super-admin.claims.edit.tabs.bill-entry',  compact('bill_entry'));       
+        //
     }
 
     /**
@@ -64,7 +36,8 @@ class ClaimController extends Controller
      */
     public function store(Request $request)
     {
-       //
+        BillEntry::create($request->except('_token'));
+        return redirect()->route('super-admin.bill-entry')->with('success', 'Bill Entry created successfully');
     }
 
     /**
@@ -86,11 +59,7 @@ class ClaimController extends Controller
      */
     public function edit($id)
     {
-        $hospital          = Hospital::find($id);
-        $hospital_id         = $id;
-        $hospitals         = Hospital::get();
-        $users              = User::get();
-        return view('super-admin.claims.edit.edit',  compact('hospital','hospital_id'));
+        //
     }
 
     /**
@@ -102,7 +71,8 @@ class ClaimController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        BillEntry::where('id',$id)->update($request->except(['_token', '_method']));
+        return redirect()->route('super-admin.bill-entry')->with('success', 'Bill Entry created successfully');
     }
 
     /**

@@ -15,20 +15,16 @@ return new class extends Migration
     {
         Schema::create('claim_statuses', function (Blueprint $table) {
             $table->id();
-            $table->enum('opted_for_medical_lending',['Yes','No'])->default('No');
-            $table->date('date_of_loan_application')->default(date("Y-m-d H:i:s"));;
-            $table->enum('medical_lending_type',['Yes','No'])->default('No');
-            $table->double('loan_amount_applied_for')->default(0);
-            $table->enum('loan_status',['Yes','No'])->default('No');
-            $table->double('loan_approved_amount')->default(0);
-            $table->double('loan_disbursed_amount')->default(0);
-            $table->date('date_of_loan_disbursement')->default(date("Y-m-d H:i:s"));
-            $table->string('loan_tenure')->nullable();
-            $table->date('loan_start_date')->default(date("Y-m-d H:i:s"));
-            $table->date('claim_settlement_date')->default(date("Y-m-d H:i:s"));
-            $table->date('loan_end_date')->default(date("Y-m-d H:i:s"));
-            $table->double('claim_settled_amount')->default(0);
-            $table->date('claim_amount_disbursed_date')->default(date("Y-m-d H:i:s"));
+            $table->integer('claim_id')->nullable();
+            $table->string('claim_status')->nullable();
+            $table->string('hospital_name')->nullable();
+            $table->string('hospital_address')->nullable();
+            $table->string('hospital_city')->nullable();
+            $table->string('hospital_state')->nullable();
+            $table->string('hospital_pincode')->nullable();
+            $table->date('date_of_admission')->default(date("Y-m-d H:i:s"));
+            $table->date('date_of_discharge')->default(date("Y-m-d H:i:s"));
+            $table->double('final_amount')->default(0);
             $table->timestamps();
         });
     }

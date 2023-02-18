@@ -14,6 +14,7 @@ use App\Http\Controllers\SuperAdmin\ClaimController;
 use App\Http\Controllers\SuperAdmin\ClaimantController;
 use App\Http\Controllers\SuperAdmin\PatientController;
 use App\Http\Controllers\SuperAdmin\UtilityController;
+use App\Http\Controllers\SuperAdmin\BillEntryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -134,7 +135,9 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     |--------------------------------------------------------------------------
     */
 
+    Route::get('claims/bill-entry', [ClaimController::class, 'billEntry'])->name('bill-entry');
     Route::resource('claims', ClaimController::class);
+    Route::resource('bill-entries', BillEntryController::class);
 
 
     /*

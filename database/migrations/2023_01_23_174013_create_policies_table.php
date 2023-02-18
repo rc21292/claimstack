@@ -13,9 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('policies', function (Blueprint $table) {
+        Schema::create('insurance_policies', function (Blueprint $table) {
             $table->id();
-            $table->string('come')->nullable();
             $table->string('patient_id')->nullable();
             $table->string('policy_copy')->nullable();
             $table->string('policy_copy_file')->nullable();
@@ -53,6 +52,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('policies');
+        Schema::dropIfExists('insurance_policies');
     }
 };
