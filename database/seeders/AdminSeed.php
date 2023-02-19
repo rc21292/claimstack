@@ -22,19 +22,24 @@ class AdminSeed extends Seeder
     {
         $faker = app(Generator::class);
 
-        for ($i = 1; $i < 61; $i++) {
+
+
+        for ($i = 1; $i < 6; $i++) {
+            $user = User::inRandomOrder()->first();
             $admin = Admin::create([
-                'firstname' => $faker->firstname(),
-                'lastname' => $faker->lastname(),
-                'email' => $i == 1 ? 'admin@claimstack.com' : $faker->unique()->safeEmail(),
-                'uid' => $i + 60,
-                'employee_code' => 'EMP' . $i + 60,
-                'designation' => 'Admin',
-                'department' => $faker->randomElement(['Operations', 'Sales', 'Accounts', 'Lending', 'IT', 'Insurance', 'Analytics & MIS', 'Product Management', 'Provider management', 'Claims Processing', 'Claims Processing']),
-                'phone' => $faker->numerify('9#########'),
-                'kra' => Str::upper(Str::random(8)),
-                'email_verified_at' => Carbon::now(),
-                'password' => Hash::make('password')
+                'firstname'             => $faker->firstname(),
+                'lastname'              => $faker->lastname(),
+                'email'                 => $i == 1 ? 'admin@claimstack.com' : $faker->unique()->safeEmail(),
+                'uid'                   => $i + 10,
+                'employee_code'         => 'EMP' . $i + 10,
+                'designation'           => 'Admin',
+                'department'            => $user->department,
+                'linked_employee'       => $user->id,
+                'linked_employee_id'    => $user->employee_code,
+                'phone'                 => $faker->numerify('9#########'),
+                'kra'                   => Str::upper(Str::random(8)),
+                'email_verified_at'     => Carbon::now(),
+                'password'              => Hash::make('password')
 
             ]);
             $admin->assignRole('admin');
@@ -45,13 +50,5 @@ class AdminSeed extends Seeder
         }
 
         $admins = Admin::get(['id', 'employee_code', 'department']);
-
-        foreach ($admins as $admin) {
-            $part  = User::where('department', $admin->department)->inRandomOrder()->first();
-            Admin::where('id', $admin->id)->update([
-                'linked_employee' => $part->id,
-                'linked_employee_id' => $part->employee_code
-            ]);
-        }
     }
 }

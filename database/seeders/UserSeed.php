@@ -21,7 +21,7 @@ class UserSeed extends Seeder
     {
         $faker = app(Generator::class);
 
-        for ($i = 1; $i < 61; $i++) {
+        for ($i = 1; $i < 6; $i++) {
             $user = User::create([
                 'firstname' => $faker->firstname(),
                 'lastname' => $faker->lastname(),

@@ -22,9 +22,9 @@ return new class extends Migration
             $table->string('employee_code')->nullable();
             $table->string('designation')->nullable();
             $table->string('phone')->nullable();
-            $table->enum('linked_with_superadmin', ['yes', 'no'])->default('yes');
+            $table->enum('linked_with_superadmin', ['yes', 'no'])->default('no');
             $table->string('department')->nullable();
-            $table->string('kra')->nullable();            
+            $table->string('kra')->nullable();
             $table->string('linked_employee')->nullable();
             $table->string('linked_employee_id')->nullable();
             $table->timestamp('email_verified_at')->nullable();

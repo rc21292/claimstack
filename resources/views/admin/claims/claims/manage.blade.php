@@ -1,4 +1,4 @@
-@extends('layouts.super-admin')
+@extends('layouts.admin')
 @section('title', 'Manage Claims')
 @section('content')
     <!-- Start Content-->
@@ -9,7 +9,7 @@
             <div class="col-12">
                 <div class="page-title-box">
                     <div class="page-title-right">
-                        <form action="{{ route('super-admin.claims.index') }}">
+                        <form action="{{ route('admin.claims.index') }}">
                             <div class="input-group">
                                 <input class="form-control" name="search" type="search"placeholder="Type here to Search">
                                 <div class="input-group-append">
@@ -22,7 +22,7 @@
                 </div>
             </div>
         </div>
-        @include('super-admin.sections.flash-message')
+        @include('admin.sections.flash-message')
         <!-- end page title -->
 
         <!-- start page content -->
@@ -53,7 +53,7 @@
                                                 <td>{{ $patient->patient_current_pincode }}</td>
                                                 <td class="text-center">
                                                     <div class="btn-group">
-                                                        <a href="{{ route('super-admin.claims.create', ['patient_id' => $patient->id]) }}"
+                                                        <a href="{{ route('admin.claims.create', ['patient_id' => $patient->id]) }}"
                                                             class="btn btn-primary"><i class="mdi mdi-plus"></i> New
                                                             Claim</a>
                                                     </div>
@@ -77,7 +77,7 @@
 
 @endsection
 {{-- @push('filter')
-    @include('super-admin.filters.question-filter')
+    @include('admin.filters.question-filter')
 @endpush --}}
 @push('scripts')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

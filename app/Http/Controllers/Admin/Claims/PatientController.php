@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Superadmin\Claims;
+namespace App\Http\Controllers\Admin\Claims;
 
 use App\Http\Controllers\Controller;
 use App\Models\AssociatePartner;
@@ -12,7 +12,7 @@ class PatientController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:super-admin');
+        $this->middleware('auth:admin');
     }
     /**
      * Display a listing of the resource.
@@ -28,7 +28,7 @@ class PatientController extends Controller
         }
         $hospitals = $hospitals->orderBy('id', 'desc')->paginate(20);
 
-        return view('super-admin.claims.patients.manage',  compact('hospitals', 'filter_search'));
+        return view('admin.claims.patients.manage',  compact('hospitals', 'filter_search'));
     }
 
     /**
@@ -50,7 +50,7 @@ class PatientController extends Controller
         }
 
 
-        return view('super-admin.claims.patients.create',  compact('hospital_id', 'associates', 'hospitals'));
+        return view('admin.claims.patients.create',  compact('hospital_id', 'associates', 'hospitals'));
     }
 
     /**
@@ -194,7 +194,7 @@ class PatientController extends Controller
             ]);
         }
 
-        return redirect()->route('super-admin.patients.index')->with('success', 'Patient added successfully');
+        return redirect()->route('admin.patients.index')->with('success', 'Patient added successfully');
     }
 
     /**

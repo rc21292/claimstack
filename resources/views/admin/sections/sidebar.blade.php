@@ -187,23 +187,61 @@
             </li>
 
             <li class="side-nav-item">
-                <a data-bs-toggle="collapse" href="#claims" aria-expanded="false" aria-controls="claims"
-                    class="side-nav-link">
+                <a data-bs-toggle="collapse" href="#claims" aria-expanded="false" aria-controls="claims" class="side-nav-link collapsed">
                     <i class="mdi mdi-doctor"></i>
                     <span> Claims </span>
                     <span class="menu-arrow"></span>
                 </a>
                 @if(auth()->check() && auth()->user()->hasDirectPermission('Claims Module Creation/Editing Rights'))
-                <div class="collapse" id="claims">
+                <div class="collapse" id="claims" style="">
                     <ul class="side-nav-second-level">
-                        <li>
-                            <a href="{{ route('admin.patients.index') }}">Patients</a>
+                        <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#patients" aria-expanded="true" aria-controls="patients" class="">
+                                <span> Patients </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse show" id="patients" style="">
+                                <ul class="side-nav-third-level">
+                                    <li>
+                                        <a href="{{ route('admin.patients.create') }}">Create Patient</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('admin.patients.index') }}">Manage Patient</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </li>
-                        <li>
-                            <a href="{{ route('admin.claims.index') }}">Claims</a>
+                        <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#claims-management" aria-expanded="true" aria-controls="claims-management" class="">
+                                <span> Claims </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse show" id="claims-management" style="">
+                                <ul class="side-nav-third-level">
+                                    <li>
+                                        <a href="{{ route('admin.claims.create') }}">Create Claim</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('admin.claims.index') }}">Manage Claims</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </li>
-                          <li>
-                            <a href="{{ route('admin.claims.index') }}">Claimants</a>
+                        <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#claimant-management" aria-expanded="true" aria-controls="claimant-management" class="">
+                                <span> Claimants </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse show" id="claimant-management" style="">
+                                <ul class="side-nav-third-level">
+                                    <li>
+                                        <a href="{{ route('admin.claimants.create') }}">Create Claimant</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('admin.claimants.create') }}">Manage Claimants</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </li>
                     </ul>
                 </div>

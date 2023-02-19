@@ -1,34 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\Superadmin\Claims;
+namespace App\Http\Controllers\Admin\Claims;
 
 use App\Http\Controllers\Controller;
-use App\Models\AssociatePartner;
-use App\Models\Hospital;
-use App\Models\Patient;
 use Illuminate\Http\Request;
 
-class ClaimController extends Controller
+class ClaimantController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:super-admin');
+        $this->middleware('auth:admin');
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $filter_search = $request->search;
-        $patients = Patient::query();
-        if ($filter_search) {
-            $patients->where('name', 'like', '%' . $filter_search . '%');
-        }
-        $patients = $patients->orderBy('id', 'desc')->paginate(20);
-
-        return view('super-admin.claims.claims.manage',  compact('patients', 'filter_search'));
+        //
     }
 
     /**
@@ -36,15 +26,9 @@ class ClaimController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        $patient_id     = $request->patient_id;
-        $associates     = AssociatePartner::get();
-        $hospitals      = Hospital::get();
-        $patient        = Patient::find($request->patient_id);
-
-
-        return view('super-admin.claims.claims.create',  compact('patient_id', 'associates', 'hospitals', 'patient'));
+        //
     }
 
     /**

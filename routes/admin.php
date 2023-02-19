@@ -10,8 +10,9 @@ use App\Http\Controllers\Admin\Auth\MyAccountController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HospitalController;
-use App\Http\Controllers\Admin\ClaimController;
-use App\Http\Controllers\Admin\PatientController;
+use App\Http\Controllers\Admin\Claims\ClaimController;
+use App\Http\Controllers\Admin\Claims\PatientController;
+use App\Http\Controllers\Admin\Claims\ClaimantController;
 use App\Http\Controllers\Admin\UtilityController;
 use Illuminate\Support\Facades\Route;
 
@@ -111,8 +112,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('hospitals/import-export',[HospitalController::class,'importExport'])->name('hospitals.import-export');
     Route::post('hospitals/import',[HospitalController::class,'import'])->name('hospitals.import');
     Route::get('hospitals/export',[HospitalController::class,'export'])->name('hospitals.export');
-    
-    Route::resource('hospitals', HospitalController::class); 
+
+    Route::resource('hospitals', HospitalController::class);
 
     Route::put('hospitals/tie-ups/{id}', [HospitalController::class, 'updateHospitalTieUps'])->name('hospitals.tie-ups');
 
@@ -123,11 +124,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::put('hospitals/department/{id}', [HospitalController::class, 'updateHospitalDepartment'])->name('hospitals.department');
 
     Route::put('hospitals/empanelment-status/{id}', [HospitalController::class, 'updateHospitalEmpanelmentStatus'])->name('hospitals.empanelment-status');
-    
+
     Route::post('hospital/change-pasword', [HospitalController::class, 'changePassword'])->name('hospitals.change-password');
 
 
-    /*
+/*
     |--------------------------------------------------------------------------
     | Claims Route
     |--------------------------------------------------------------------------
@@ -137,16 +138,21 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     /*
     |--------------------------------------------------------------------------
+    | Claimant Route
+    |--------------------------------------------------------------------------
+    */
+
+    Route::resource('claimants', ClaimantController::class);
+
+
+
+    /*
+    |--------------------------------------------------------------------------
     | Patients Route
     |--------------------------------------------------------------------------
     */
     Route::resource('patients', PatientController::class);
 
-    /*
-    |--------------------------------------------------------------------------
-    | Associate partners Route
-    |--------------------------------------------------------------------------
-    */
 
     Route::resource('associate-partners', AssociatePartnerController::class);
 

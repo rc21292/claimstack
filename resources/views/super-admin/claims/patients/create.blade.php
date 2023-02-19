@@ -63,7 +63,7 @@
                                 <div class="col-md-6">
                                     <label for="name">Hospital Id <span class="text-danger">*</span></label>
                                     <input type="text" readonly class="form-control" id="hospital_id" name="hospital_id"
-                                        placeholder="Enter Hospital name" value="{{ old('hospital_id', $hospital_id) }}">
+                                        placeholder="Enter Hospital name" value="{{ old('hospital_id') }}">
                                     @error('hospital_id')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -659,13 +659,13 @@
                 $("input[name='referral_name']").val('BHC');
             }else if(referred_by == "Hospital's Direct Patient"){
                 var hospital = $("#hospital_name").select2().find(":selected").data("name");
-                        $("input[name='referral_name']").val(hospital);          
+                        $("input[name='referral_name']").val(hospital);
             }else if(referred_by == "Associate Partner"){
                 var apname = $("#hospital_name").select2().find(":selected").data("apname");
                         $("input[name='referral_name']").val(apname);
             }else{
                 $("input[name='referral_name']").val('');
-            }          
+            }
         }
     </script>
 @endpush

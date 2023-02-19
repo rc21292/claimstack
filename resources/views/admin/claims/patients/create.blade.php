@@ -1,5 +1,5 @@
-@extends('layouts.super-admin')
-@section('title', 'Create Claim')
+@extends('layouts.admin')
+@section('title', 'Create Patient ID')
 @section('content')
     <!-- Start Content-->
     <div class="container-fluid">
@@ -11,18 +11,18 @@
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Claim Stack</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('super-admin.dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item"><a href="javascript:void(0);">Claims</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('super-admin.patients.index') }}">Claims</a>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.patients.index') }}">Patients</a>
                             </li>
                             <li class="breadcrumb-item active">Create</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">Claim ID Creation / Claim Intimation</h4>
+                    <h4 class="page-title">Patient ID Creation</h4>
                 </div>
             </div>
         </div>
-        @include('super-admin.sections.flash-message')
+        @include('admin.sections.flash-message')
         <!-- end page title -->
 
         <!-- start page content -->
@@ -30,7 +30,7 @@
             <div class="col-12">
                 <div class="card no-shadow">
                     <div class="card-body">
-                        <form action="{{ route('super-admin.patients.update', $patient->id) }}" method="post" id="hospital-form"
+                        <form action="{{ route('admin.patients.store') }}" method="post" id="hospital-form"
                             enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
@@ -41,7 +41,7 @@
                                         <option value="">Select Associate Partner</option>
                                         @foreach ($hospitals as $hospital)
                                             <option value="{{ $hospital->id }}"
-                                                {{ old('hospital_name', $patient->hospital_id) == $hospital->id ? 'selected' : '' }}
+                                                {{ old('hospital_name', $hospital_id) == $hospital->id ? 'selected' : '' }}
                                                 data-name="{{ $hospital->name }}" data-id="{{ $hospital->uid }}"
                                                 data-address="{{ $hospital->address }}" data-city="{{ $hospital->city }}"
                                                 data-state="{{ $hospital->state }}"

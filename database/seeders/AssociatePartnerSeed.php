@@ -24,12 +24,12 @@ class AssociatePartnerSeed extends Seeder
     {
         $faker = app(Generator::class);
         $user  = User::inRandomOrder()->first();
-        for ($i = 1; $i < 61; $i++) {
+        for ($i = 1; $i < 31; $i++) {
             $type =  $faker->randomElement(['vendor', 'sales']);
             AssociatePartner::create([
                 'name' =>  $faker->company,
                 'type' => $type,
-                'pan' => Str::upper(Str::random(10)),
+                'pan' => 'CCZPP'.$faker->numerify('####').'B',
                 'owner_firstname' => $faker->firstname(),
                 'owner_lastname' => $faker->lastname(),
                 'email' => $i == 1 ? 'associate@claimstack.com' : $faker->unique()->safeEmail(),

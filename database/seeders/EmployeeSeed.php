@@ -21,14 +21,14 @@ class EmployeeSeed extends Seeder
     {
         $faker = app(Generator::class);
 
-        for ($i = 1; $i < 101; $i++) {
+        for ($i = 1; $i < 2; $i++) {
             Employee::create([
                 'firstname' => $faker->firstname(),
                 'lastname' => $faker->lastname(),
                 'email' =>  $i == 1 ? 'employee@claimstack.com' : $faker->unique()->safeEmail(),
                 'employee_code' => 'EMP' . $i,
                 'designation' => 'Employee',
-                'phone' => $faker->numerify('9#########'),               
+                'phone' => $faker->numerify('9#########'),
                 'kra' => Str::upper(Str::random(8)),
                 'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('password')

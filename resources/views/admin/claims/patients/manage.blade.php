@@ -1,5 +1,5 @@
-@extends('layouts.super-admin')
-@section('title', 'Manage Claims')
+@extends('layouts.admin')
+@section('title', 'Manage Patients')
 @section('content')
     <!-- Start Content-->
     <div class="container-fluid">
@@ -9,7 +9,7 @@
             <div class="col-12">
                 <div class="page-title-box">
                     <div class="page-title-right">
-                        <form action="{{ route('super-admin.claims.index') }}">
+                        <form action="{{ route('admin.patients.index') }}">
                             <div class="input-group">
                                 <input class="form-control" name="search" type="search"placeholder="Type here to Search">
                                 <div class="input-group-append">
@@ -18,11 +18,11 @@
                             </div>
                         </form>
                     </div>
-                    <h4 class="page-title">Manage Claims</h4>
+                    <h4 class="page-title">Manage Patients</h4>
                 </div>
             </div>
         </div>
-        @include('super-admin.sections.flash-message')
+        @include('admin.sections.flash-message')
         <!-- end page title -->
 
         <!-- start page content -->
@@ -31,7 +31,7 @@
                 <div class="card no-shadow">
                     <div class="card-body p-0">
                         <div class="table-responsive">
-                            @if (count($patients) > 0)
+                            @if (count($hospitals) > 0)
                                 <table id="basics-datatable" class="table table-hover">
                                     <thead class="thead-grey">
                                         <tr>
@@ -44,18 +44,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($patients as $patient)
+                                        @foreach ($hospitals as $hospital)
                                             <tr>
-                                                <th scope="row">PAT{{ $patient->id }}</th>
-                                                <td>{{ $patient->title }} {{ $patient->firstname }} {{ $patient->middlename }} {{ $patient->lastname }}</td>
-                                                <td>{{ $patient->patient_current_city }}</td>
-                                                <td>{{ $patient->patient_current_state }}</td>
-                                                <td>{{ $patient->patient_current_pincode }}</td>
+                                                <th scope="row">{{ $hospital->uid }}</th>
+                                                <td>{{ $hospital->name }}</td>
+                                                <td>{{ $hospital->city }}</td>
+                                                <td>{{ $hospital->state }}</td>
+                                                <td>{{ $hospital->pincode }}</td>
                                                 <td class="text-center">
                                                     <div class="btn-group">
-                                                        <a href="{{ route('super-admin.claims.create', ['patient_id' => $patient->id]) }}"
+                                                        <a href="{{ route('admin.patients.create', ['hospital_id' => $hospital->id]) }}"
                                                             class="btn btn-primary"><i class="mdi mdi-plus"></i> New
-                                                            Claim</a>
+                                                            Patient</a>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -66,7 +66,7 @@
                                 <p class="text-center">No Patients found.</p>
                             @endif
                         </div>
-                        {{ $patients->withQueryString()->links('pagination::bootstrap-4') }}
+                        {{ $hospitals->withQueryString()->links('pagination::bootstrap-4') }}
                     </div>
                 </div>
             </div>
@@ -77,7 +77,7 @@
 
 @endsection
 {{-- @push('filter')
-    @include('super-admin.filters.question-filter')
+    @include('admin.filters.question-filter')
 @endpush --}}
 @push('scripts')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

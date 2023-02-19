@@ -10,8 +10,9 @@ use App\Http\Controllers\Hospital\Auth\MyAccountController;
 use App\Http\Controllers\Hospital\Auth\ResetPasswordController;
 use App\Http\Controllers\Hospital\DashboardController;
 use App\Http\Controllers\Hospital\HospitalController;
-use App\Http\Controllers\Hospital\PatientController;
-use App\Http\Controllers\Hospital\ClaimController;
+use App\Http\Controllers\Hospital\Claims\ClaimController;
+use App\Http\Controllers\Hospital\Claims\PatientController;
+use App\Http\Controllers\Hospital\Claims\ClaimantController;
 use App\Http\Controllers\Hospital\UtilityController;
 use Illuminate\Support\Facades\Route;
 
@@ -82,7 +83,7 @@ Route::group(['prefix' => 'hospital', 'as' => 'hospital.'], function () {
     |--------------------------------------------------------------------------
     */
 
-    Route::resource('hospitals', HospitalController::class); 
+    Route::resource('hospitals', HospitalController::class);
 
     Route::put('hospitals/tie-ups/{id}', [HospitalController::class, 'updateHospitalTieUps'])->name('hospitals.tie-ups');
 
@@ -93,17 +94,27 @@ Route::group(['prefix' => 'hospital', 'as' => 'hospital.'], function () {
     Route::put('hospitals/department/{id}', [HospitalController::class, 'updateHospitalDepartment'])->name('hospitals.department');
 
     Route::put('hospitals/empanelment-status/{id}', [HospitalController::class, 'updateHospitalEmpanelmentStatus'])->name('hospitals.empanelment-status');
-    
-    
+
+
     Route::post('hospital/change-pasword', [HospitalController::class, 'changePassword'])->name('hospitals.change-password');
 
-    /*
+/*
     |--------------------------------------------------------------------------
     | Claims Route
     |--------------------------------------------------------------------------
     */
 
     Route::resource('claims', ClaimController::class);
+
+    /*
+    |--------------------------------------------------------------------------
+    | Claimant Route
+    |--------------------------------------------------------------------------
+    */
+
+    Route::resource('claimants', ClaimantController::class);
+
+
 
     /*
     |--------------------------------------------------------------------------

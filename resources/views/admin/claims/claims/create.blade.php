@@ -1,4 +1,4 @@
-@extends('layouts.super-admin')
+@extends('layouts.admin')
 @section('title', 'Create Claim')
 @section('content')
     <!-- Start Content-->
@@ -11,9 +11,9 @@
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Claim Stack</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('super-admin.dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item"><a href="javascript:void(0);">Claims</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('super-admin.patients.index') }}">Claims</a>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.patients.index') }}">Claims</a>
                             </li>
                             <li class="breadcrumb-item active">Create</li>
                         </ol>
@@ -22,7 +22,7 @@
                 </div>
             </div>
         </div>
-        @include('super-admin.sections.flash-message')
+        @include('admin.sections.flash-message')
         <!-- end page title -->
 
         <!-- start page content -->
@@ -30,7 +30,7 @@
             <div class="col-12">
                 <div class="card no-shadow">
                     <div class="card-body">
-                        <form action="{{ route('super-admin.patients.update', $patient->id) }}" method="post" id="hospital-form"
+                        <form action="{{ route('admin.patients.update', $patient->id) }}" method="post" id="hospital-form"
                             enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
