@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Superadmin\Claims;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\AssociatePartner;
+use App\Models\Claimant;
+use App\Models\Patient;
+use App\Models\Hospital;
+use App\Models\User;
 
 class ClaimantController extends Controller
 {
@@ -16,9 +21,16 @@ class ClaimantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $filter_search = $request->search;
+        $claimants = Claimant::query();
+        if($filter_search){
+            $claimants->where('name', 'like','%' . $filter_search . '%');
+        }
+        $claimants = $claimants->orderBy('id', 'desc')->paginate(20);
+
+        return view('super-admin.claims.claimants.manage',  compact('claimants', 'filter_search'));       
     }
 
     /**
@@ -26,9 +38,15 @@ class ClaimantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $patient_id     = $request->patient_id;
+        $associates     = AssociatePartner::get();
+        $hospitals      = Hospital::get();
+        $patient        = Patient::find($request->patient_id);
+
+
+        return view('super-admin.claims.claimants.create',  compact('patient_id', 'associates', 'hospitals', 'patient'));
     }
 
     /**

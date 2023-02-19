@@ -239,7 +239,7 @@
                                         <a href="{{ route('super-admin.claimants.create') }}">Create Claimant</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('super-admin.claimants.create') }}">Manage Claimants</a>
+                                        <a href="{{ route('super-admin.claimants.index') }}">Manage Claimants</a>
                                     </li>
                                 </ul>
                             </div>
