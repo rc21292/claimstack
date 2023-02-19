@@ -54,7 +54,7 @@ class LoginController extends Controller
         if(Auth::guard('web')->check()) // this means that the user was logged in.
         {
             Auth::guard('web')->logout();
-            return redirect()->route('user.login');
+            return redirect()->route('employee.login');
         }
     }
 }

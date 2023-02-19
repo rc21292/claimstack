@@ -54,7 +54,7 @@ class LoginController extends Controller
         if(Auth::guard('admin')->check()) // this means that the admin was logged in.
         {
             Auth::guard('admin')->logout();
-            return redirect()->route('admin.login');
+            return redirect()->route('employee.login');
         }
     }
 }
