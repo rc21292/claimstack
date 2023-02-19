@@ -85,4 +85,9 @@ class AssociatePartner extends Authenticatable
     {
         $this->notify(new ResetPasswordNotification($token));
     }
+
+    public function associate_partner()
+    {
+        return $this->hasMany(AssociatePartner::class, 'linked_associate_partner_id');
+    }
 }

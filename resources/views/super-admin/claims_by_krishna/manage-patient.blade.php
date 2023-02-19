@@ -62,7 +62,7 @@
                                     </tbody>
                                 </table>
                             @else
-                                <p class="text-center">No Claims found.</p>
+                                <p class="text-center">No Patients found.</p>
                             @endif
                         </div>
                         {{ $patients->withQueryString()->links('pagination::bootstrap-4') }}

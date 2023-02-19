@@ -49,7 +49,7 @@ class PatientController extends Controller
         $hospital_id = $request->hospital_id;
         $associates = AssociatePartner::get();
         $hospital = Hospital::where('id',$hospital_id)->first(['name','address','city', 'state', 'pincode']);
-        return view('super-admin.claims.create.patient',  compact('hospital_id','associates','hospital'));
+        return view('super-admin.claims.create.claim',  compact('hospital_id','associates','hospital'));
     }
 
     /**

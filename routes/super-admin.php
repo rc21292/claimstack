@@ -10,9 +10,9 @@ use App\Http\Controllers\SuperAdmin\Auth\MyAccountController;
 use App\Http\Controllers\SuperAdmin\Auth\ResetPasswordController;
 use App\Http\Controllers\SuperAdmin\DashboardController;
 use App\Http\Controllers\SuperAdmin\HospitalController;
-use App\Http\Controllers\SuperAdmin\ClaimController;
-use App\Http\Controllers\SuperAdmin\ClaimantController;
-use App\Http\Controllers\SuperAdmin\PatientController;
+use App\Http\Controllers\SuperAdmin\Claims\ClaimController;
+use App\Http\Controllers\SuperAdmin\Claims\ClaimantController;
+use App\Http\Controllers\SuperAdmin\Claims\PatientController;
 use App\Http\Controllers\SuperAdmin\UtilityController;
 use App\Http\Controllers\SuperAdmin\BillEntryController;
 use Illuminate\Support\Facades\Route;
@@ -136,10 +136,18 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     */
 
     Route::get('claims/bill-entry', [ClaimController::class, 'billEntry'])->name('bill-entry');
-    Route::resource('claims', ClaimController::class);
+
     Route::resource('bill-entries', BillEntryController::class);
 
 
+    /*
+    |--------------------------------------------------------------------------
+    | Claims Route
+    |--------------------------------------------------------------------------
+    */
+
+    Route::resource('claims', ClaimController::class);
+    
     /*
     |--------------------------------------------------------------------------
     | Claimant Route

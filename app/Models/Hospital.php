@@ -107,4 +107,13 @@ class Hospital extends Authenticatable
     {
         $this->notify(new ResetPasswordNotification($token));
     }
+    public function patient()
+    {
+        return $this->hasMany(Patient::class);
+    }
+
+    public function associate_partner()
+    {
+        return $this->hasOne(AssociatePartner::class);
+    }
 }
