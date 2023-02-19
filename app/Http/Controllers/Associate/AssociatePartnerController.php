@@ -174,7 +174,13 @@ class AssociatePartnerController extends Controller
         $associate->hospitals = Hospital::where('linked_associate_partner', $id)->get();        
         $associates         = AssociatePartner::get();
         $users              = User::get();
-        return view('associate.associate-partners.edit.edit',  compact('associate', 'associates', 'users'));
+
+
+        $associate_files = AssociatePartnerFileHistory::where('associate_partner_id', $id)->get()
+        ->groupBy('file_name')
+        ->map(function ($pb) { return $pb->keyBy('file_id'); });    
+
+        return view('associate.associate-partners.edit.edit',  compact('associate', 'associates', 'users', 'associate_files'));
     }
 
     /**
