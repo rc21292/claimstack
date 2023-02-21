@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('associate_partner_id')->nullable();
             $table->enum('type', ['vendor', 'sales'])->default('vendor');
             $table->string('pan')->nullable();
+            $table->string('avatar')->nullable();
             $table->string('panfile')->nullable();
             $table->string('owner_firstname')->nullable();
             $table->string('owner_lastname')->nullable();

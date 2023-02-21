@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('uid')->nullable();
             $table->string('name');
+            $table->text('avatar')->nullable();
             $table->enum('onboarding', ['Tie Up', 'Non - Tie Up'])->default('Tie Up');
             $table->enum('by', ['Direct', 'Associate Partner'])->default('Direct');
             $table->longText('address')->nullable();

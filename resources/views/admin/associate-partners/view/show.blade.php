@@ -56,10 +56,32 @@
                                                     <td><a oncontextmenu="return false;" @if(auth()->check() && auth()->user()->hasDirectPermission('Downloading Rights')) target="_blank"  href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->panfile) }}" @else href="javascript:void(0)" @endif>Associate Partner Pan Number</a></td>
                                                     <td><a @if(auth()->check() && auth()->user()->hasDirectPermission('Downloading Rights')) href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->panfile) }}" download @endif class=" download-label"><i class="mdi mdi-download"></i></a></td>
                                                 </tr>
+
+                                                @if($associate_files && (count($associate_files) > 0) && isset($associate_files['panfile']) && $associate_files['panfile'])
+                                                @foreach($associate_files['panfile'] as $moufile1)
+                                                <tr>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$moufile1->file_path) }}">Associate Partner Pan Number{{ $moufile1->file_id }}</a></td>
+                                                    <td><a @if(auth()->check() && auth()->user()->hasDirectPermission('Downloading Rights')) href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$moufile1->file_path) }}" download @endif class=" download-label"><i class="mdi mdi-download"></i></a></td>
+
+                                                </tr> 
+                                                @endforeach
+                                                @endif
+
                                                 <tr>
                                                     <td><a oncontextmenu="return false;" @if(auth()->check() && auth()->user()->hasDirectPermission('Downloading Rights')) target="_blank" href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->cancel_cheque_file) }}" @else href="javascript:void(0)" @endif>Cancel Cheque</a></td>
                                                     <td><a @if(auth()->check() && auth()->user()->hasDirectPermission('Downloading Rights')) href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->cancel_cheque_file) }}" download @endif class=" download-label"><i class="mdi mdi-download"></i></a></td>
                                                 </tr>
+
+                                                @if($associate_files && (count($associate_files) > 0) && isset($associate_files['cancel_cheque_file']) && $associate_files['cancel_cheque_file'])
+                                                @foreach($associate_files['cancel_cheque_file'] as $moufile1)
+                                                <tr>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$moufile1->file_path) }}">Cancel Cheque{{ $moufile1->file_id }}</a></td>
+                                                    <td><a @if(auth()->check() && auth()->user()->hasDirectPermission('Downloading Rights')) href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$moufile1->file_path) }}" download @endif class=" download-label"><i class="mdi mdi-download"></i></a></td>
+
+                                                </tr> 
+                                                @endforeach
+                                                @endif
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -70,6 +92,16 @@
                                                     <td><a oncontextmenu="return false;" @if(auth()->check() && auth()->user()->hasDirectPermission('Downloading Rights')) target="_blank" href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->moufile) }}" @else href="javascript:void(0)" @endif>MOU</a></td>
                                                     <td><a @if(auth()->check() && auth()->user()->hasDirectPermission('Downloading Rights')) href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->moufile) }}" download @endif class=" download-label"><i class="mdi mdi-download"></i></a></td>
                                                 </tr>
+
+                                                @if($associate_files && (count($associate_files) > 0) && isset($associate_files['moufile']) && $associate_files['moufile'])
+                                                @foreach($associate_files['moufile'] as $moufile1)
+                                                <tr>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$moufile1->file_path) }}">MOU{{ $moufile1->file_id }}</a></td>
+                                                    <td><a @if(auth()->check() && auth()->user()->hasDirectPermission('Downloading Rights')) href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$moufile1->file_path) }}" download @endif class=" download-label"><i class="mdi mdi-download"></i></a></td>
+
+                                                </tr> 
+                                                @endforeach
+                                                @endif
                                             </tbody>
                                         </table>
                                     </div>

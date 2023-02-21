@@ -81,13 +81,12 @@ class MyAccountController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'firstname'=>'required',
+            'name'=>'required',
             'email'=>'required',
         ]);
 
         $admin          = AssociatePartner::find($id);
-        $admin->firstname    = $request->firstname;
-        $admin->lastname    = $request->lastname;
+        $admin->name    = $request->name;
         $admin->email   = $request->email;
         $admin->phone   = $request->phone;
 

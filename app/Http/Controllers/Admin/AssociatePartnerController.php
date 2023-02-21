@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -8,6 +9,7 @@ use App\Models\SalesServiceType;
 use App\Models\User;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ImportAssociatePartner;
+use App\Models\AssociatePartnerFileHistory;
 use App\Exports\ExportAssociatePartner;
 use App\Models\VendorServiceType;
 use Illuminate\Http\Request;
@@ -154,7 +156,12 @@ class AssociatePartnerController extends Controller
     public function show($id)
     {
         $associate = AssociatePartner::find($id);
-        return view('admin.associate-partners.view.show',  compact('associate'));
+
+        $associate_files = AssociatePartnerFileHistory::where('associate_partner_id', $id)->get()
+        ->groupBy('file_name')
+        ->map(function ($pb) { return $pb->keyBy('file_id'); });
+
+        return view('admin.associate-partners.view.show',  compact('associate', 'associate_files'));
     }
 
     /**
@@ -298,6 +305,20 @@ class AssociatePartnerController extends Controller
             $panfile                    = $request->file('panfile');
             $name                       = $panfile->getClientOriginalName();
             $panfile->storeAs('uploads/associate-partners/' . $id . '/', $name, 'public');
+
+            if (!empty($associate_partner->panfile)) {
+                $exists = AssociatePartnerFileHistory::where(['file_name' => 'panfile', 'associate_partner_id' => $id])->exists();
+                if (!$exists) {
+                    $file_id = 0;
+                }else{
+                    $file_id1 =  AssociatePartnerFileHistory::where(['file_name' => 'panfile', 'associate_partner_id' => $id])->latest('id')->first();
+                    $file_id = $file_id1->file_id;
+                }
+                AssociatePartnerFileHistory::insert(
+                    ['file_name' => 'panfile', 'file_path' => $associate_partner->panfile, 'associate_partner_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                );
+            }
+
             AssociatePartner::where('id', $id)->update([
                 'panfile'               =>  $name
             ]);
@@ -307,6 +328,20 @@ class AssociatePartnerController extends Controller
             $moufile                    = $request->file('moufile');
             $name                       = $moufile->getClientOriginalName();
             $moufile->storeAs('uploads/associate-partners/' . $id . '/', $name, 'public');
+
+            if (!empty($associate_partner->moufile)) {
+                $exists = AssociatePartnerFileHistory::where(['file_name' => 'moufile', 'associate_partner_id' => $id])->exists();
+                if (!$exists) {
+                    $file_id = 0;
+                }else{
+                    $file_id1 =  AssociatePartnerFileHistory::where(['file_name' => 'moufile', 'associate_partner_id' => $id])->latest('id')->first();
+                    $file_id = $file_id1->file_id;
+                }
+                AssociatePartnerFileHistory::insert(
+                    ['file_name' => 'moufile', 'file_path' => $associate_partner->moufile, 'associate_partner_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                );
+            }
+
             AssociatePartner::where('id', $id)->update([
                 'moufile'               =>  $name
             ]);
@@ -325,6 +360,20 @@ class AssociatePartnerController extends Controller
             $cancel_cheque_file                    = $request->file('cancel_cheque_file');
             $name                       = $cancel_cheque_file->getClientOriginalName();
             $cancel_cheque_file->storeAs('uploads/associate-partners/' . $id . '/', $name, 'public');
+
+            if (!empty($associate_partner->cancel_cheque_file)) {
+                $exists = AssociatePartnerFileHistory::where(['file_name' => 'cancel_cheque_file', 'associate_partner_id' => $id])->exists();
+                if (!$exists) {
+                    $file_id = 0;
+                }else{
+                    $file_id1 =  AssociatePartnerFileHistory::where(['file_name' => 'cancel_cheque_file', 'associate_partner_id' => $id])->latest('id')->first();
+                    $file_id = $file_id1->file_id;
+                }
+                AssociatePartnerFileHistory::insert(
+                    ['file_name' => 'cancel_cheque_file', 'file_path' => $associate_partner->cancel_cheque_file, 'associate_partner_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                );
+            }
+
             AssociatePartner::where('id', $id)->update([
                 'cancel_cheque_file'               =>  $name
             ]);
