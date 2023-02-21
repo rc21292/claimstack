@@ -127,7 +127,7 @@
                 </option>
                 <option value="No"
                     {{ old('nabl_approved_lab', $hospital_nfrastructure->nabl_approved_lab ?? '') == 'No' ? 'selected' : '' }}>No
-                </option>            
+                </option>
             </select>
             @isset($hospital_nfrastructure->nabl_approved_lab_file)
                     <a href="{{ asset('storage/uploads/hospital/infrastructure/'.$hospital_nfrastructure->hospital_id.'/'.$hospital_nfrastructure->nabl_approved_lab_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
@@ -187,7 +187,7 @@
                 <option value="NA" {{ old('nabh_status', $hospital_nfrastructure->nabh_status?? '') == 'NA' ? 'selected' : '' }}>NA
                 </option>
             </select>
-            
+
             @isset($hospital_nfrastructure->nabh_status_file)
                 <a href="{{ asset('storage/uploads/hospital/infrastructure/'.$hospital_nfrastructure->hospital_id.'/'.$hospital_nfrastructure->nabh_status_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
             @endisset
@@ -217,7 +217,7 @@
                 <option value="Applied" {{ old('jci_status', $hospital_nfrastructure->jci_status?? '') == 'Applied' ? 'selected' : '' }}>Applied
                 </option>
             </select>
-            
+
             @isset($hospital_nfrastructure->jci_status_file)
                 <a href="{{ asset('storage/uploads/hospital/infrastructure/'.$hospital_nfrastructure->hospital_id.'/'.$hospital_nfrastructure->jci_status_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
             @endisset
@@ -249,7 +249,7 @@
                 <option value="NA" {{ old('nqac_nhsrc_status', $hospital_nfrastructure->nqac_nhsrc_status?? '') == 'NA' ? 'selected' : '' }}>NA
                 </option>
             </select>
-            
+
             @isset($hospital_nfrastructure->nqac_nhsrc_status_file)
                 <a href="{{ asset('storage/uploads/hospital/infrastructure/'.$hospital_nfrastructure->hospital_id.'/'.$hospital_nfrastructure->nqac_nhsrc_status_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
             @endisset
@@ -277,7 +277,7 @@
                     {{ old('hippa_status', $hospital_nfrastructure->hippa_status?? '') == 'No' ? 'selected' : '' }}>No
                 </option>
             </select>
-            
+
             @isset($hospital_nfrastructure->hippa_status_file)
                 <a href="{{ asset('storage/uploads/hospital/infrastructure/'.$hospital_nfrastructure->hospital_id.'/'.$hospital_nfrastructure->hippa_status_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
             @endisset
@@ -303,7 +303,7 @@
         </div>
         <div class="col-md-12 text-end mt-3">
             <button type="submit" class="btn btn-success" form="hospital-infrastructures-form">Update
-                Hospital Tie Ups</button>
+                Hospital Infrastructure</button>
         </div>
     </div>
 </form>
@@ -318,7 +318,7 @@
         }
     });
 
-     
+
 
 </script>
 @endpush

@@ -232,7 +232,7 @@
             <div class="input-group">
                 <label class="input-group-text" for="phone">Rs.</label>
                 <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length>5) return false;" class="form-control" id="cashless_claims_management_services_charges" name="cashless_claims_management_services_charges"
-                placeholder="Enter CCashless Claims Management Services Charges" value="{{ old('cashless_claims_management_services_charges', $hospital_tie_ups->cashless_claims_management_services_charges??'') }}">
+                placeholder="Enter Cashless Claims Management Services Charges" value="{{ old('cashless_claims_management_services_charges', $hospital_tie_ups->cashless_claims_management_services_charges??'') }}">
             </div>
             @error('cashless_claims_management_services_charges')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>

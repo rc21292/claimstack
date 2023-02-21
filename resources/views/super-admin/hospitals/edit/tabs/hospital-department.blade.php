@@ -37,7 +37,7 @@
             <div class="input-group">
             <input type="text" maxlength="15" onkeydown="return /[a-z, ]/i.test(event.key)" class="form-control" id="doctors_firstname" name="doctors_firstname"
                 placeholder="Firstname" value="{{ old('doctors_firstname', $hospital_department->doctors_firstname ?? '') }}">
-            
+
 
             <input type="text" maxlength="30" style="margin-left:10px;" onkeydown="return /[a-z, ]/i.test(event.key)" class="form-control" id="doctors_lastname" name="doctors_lastname"
                 placeholder="Lastname" value="{{ old('doctors_lastname', $hospital_department->doctors_lastname ?? '') }}">
@@ -88,7 +88,7 @@
             @isset($hospital_department->upload)
                     <a href="{{ asset('storage/uploads/hospital/department/'.$hospital_department->hospital_id.'/'.$hospital_department->upload) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
                 @endisset
-            <input type="file" name="upload" id="dofsupload" hidden />
+            <input type="file" name="upload" id="dofsupload" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
             <label for="dofsupload" class="btn btn-primary upload-label">
                 Upload <i class="mdi mdi-upload"></i></label>
                 @error('upload')
