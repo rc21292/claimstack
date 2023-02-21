@@ -68,7 +68,7 @@ class HospitalController extends Controller
             'lastname'                => ($request->onboarding == 'Tie Up') ? 'required|min:1|max:30' : [],
             'onboarding'               => 'required',
             'by'                       => 'required',
-            'pan'                      => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|size:10' : [],
+            'pan'                      => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|size:10|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/u' : [],
             'panfile'                  => ($request->onboarding == 'Tie Up') ? 'required' : [],
             'rohini'                   => 'required|size:13',
             'rohinifile'               => 'required',
@@ -86,6 +86,8 @@ class HospitalController extends Controller
             'assigned_employee_id'     => 'required',
             'linked_employee'          => 'required',
             'linked_employee_id'       => 'required',
+            'assigned_employee_department'        => 'required',
+            'linked_employee_department'        => 'required',
         ];
 
         $messages = [
@@ -350,7 +352,7 @@ class HospitalController extends Controller
             'onboarding'                                => 'required',
             'by'                                        => 'required',
             'pan'                                       => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|size:10' : [],
-            'panfile'                                   => ($request->onboarding == 'Tie Up' && empty($hospital->panfile)) ? 'required' : [],
+            'pan'                                       => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|size:10|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/u' : [],
             'rohini'                                    => 'required|size:13',
             'rohinifile'                                => (empty($hospital->rohinifile)) ?  'required' : [],
             'code'                                      => 'required|numeric|digits:3',
@@ -579,12 +581,12 @@ class HospitalController extends Controller
             'lending_finance_company_agreement_date'        => ($hospital->onboarding == 'Tie Up' && $request->lending_finance_company_agreement == 'Yes') ? 'required' : [],
             'medical_lending_for_patients'                  => ($hospital->onboarding == 'Tie Up' && $request->lending_finance_company_agreement == 'Yes') ? 'required' : [],
             'medical_lending_service_type'                  => ($hospital->onboarding == 'Tie Up' && $request->lending_finance_company_agreement == 'Yes') ? 'required' : [],
-            'subvention'                                    => ($hospital->onboarding == 'Tie Up' && $request->lending_finance_company_agreement == 'Yes') ? 'required|numeric:digits_between:1,2' : [],
+            'subvention'                                    => ($hospital->onboarding == 'Tie Up' && $request->lending_finance_company_agreement == 'Yes') ? 'required|numeric|max:6' : [],
             'medical_lending_for_bill_invoice_discounting'  => ($hospital->onboarding == 'Tie Up' && $request->lending_finance_company_agreement == 'Yes') ? 'required' : [],
             'comments_on_invoice_discounting'               => ($hospital->onboarding == 'Tie Up' && $request->lending_finance_company_agreement == 'Yes') ? 'required|max:40' : [],
             'hospital_management_system_installation'       => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
             'hms_services'                                  => ($hospital->onboarding == 'Tie Up' && $request->hospital_management_system_installation == 'Yes') ? 'required' : [],
-            'hms_charges'                                   => ($hospital->onboarding == 'Tie Up' && $request->hospital_management_system_installation == 'Yes') ? 'required|numeric' : []
+            'hms_charges'                                   => ($hospital->onboarding == 'Tie Up' && $request->hospital_management_system_installation == 'Yes') ? 'required|max:6' : []
         ];
 
         $messages = [
@@ -650,7 +652,7 @@ class HospitalController extends Controller
                 'hms_charges'                                       => $request->hms_charges,
                 'comments'                                          => $request->comments
             ]);
-        
+
         HospitalTieUp::where('hospital_id', $id)->update([
             'uid'      => 'HSPTUP'.$hospital->id
         ]);
@@ -659,7 +661,7 @@ class HospitalController extends Controller
     }
 
     public function updateHospitalFacility(Request $request, $id)
-    {        
+    {
         $hospital             = Hospital::find($id);
         $facility             =  HospitalFacility::where('hospital_id', $id)->first();
         if ($request->hasfile('pharmacy_file')) {
@@ -931,7 +933,7 @@ class HospitalController extends Controller
 
         $this->validate($request, $rules, $messages);
 
-      
+
 
         $hospitalT =  HospitalFacility::updateOrCreate([
             'hospital_id' => $id],
@@ -960,7 +962,7 @@ class HospitalController extends Controller
             ]);
 
 
-       
+
 
         return redirect()->back()->with('success', 'Hospital Facility updated successfully');
     }
@@ -1030,6 +1032,7 @@ class HospitalController extends Controller
             'no_of_rmos'                        => ($hospital->onboarding == 'Tie Up') ? 'required|numeric|digits_between:1,4' : [],
             'no_of_nurses'                      => ($hospital->onboarding == 'Tie Up') ? 'required|numeric|digits_between:1,4' : [],
             'nabl_approved_lab'                 => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'nabl_approved_lab_file'            => ($hospital->onboarding == 'Tie Up' && $request->nabl_approved_lab != 'No' && empty($infrastructure->nabl_approved_lab_file)) ? 'required' : [],
             'no_of_dialysis_units'              => ($hospital->onboarding == 'Tie Up') ? 'required|numeric|digits_between:1,3' : [],
             'no_ambulance_normal'               => ($hospital->onboarding == 'Tie Up') ? 'required|numeric|digits_between:1,3' : [],
             'no_ambulance_acls'                 => ($hospital->onboarding == 'Tie Up') ? 'required|numeric|digits_between:1,3' : [],
@@ -1140,7 +1143,7 @@ class HospitalController extends Controller
                 'doctors_mobile_no'          => $request->doctors_mobile_no,
         ]);
 
-        
+
 
         return redirect()->back()->with('success', 'Hospital updated successfully');
     }
@@ -1186,7 +1189,7 @@ class HospitalController extends Controller
                 'doctors_mobile_no'          => $request->doctors_mobile_no,
         ]);
 
-        
+
 
         return redirect()->back()->with('success', 'Hospital updated successfully');
     }

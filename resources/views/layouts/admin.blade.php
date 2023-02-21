@@ -34,22 +34,27 @@
     <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
     <script src="{{ asset('assets/js/app.min.js') }}"></script>
     <script>
-        $('#linked_with_superadmin').change(function (e) { 
+        $('#linked_with_superadmin').change(function (e) {
             e.preventDefault();
             switch (e.target.value) {
                 case "yes":
                     $('.div_linked_employee').css('display', 'none');
                     break;
-                
+
                 case "no":
                     $('.div_linked_employee').css('display', 'block');
                     break;
-            
+
                 default:
                     $('.div_linked_employee').css('display', 'block');
                     break;
             }
-            
+
+        });
+    </script>
+    <script>
+        $('input[type=file]').change(function () {
+            $(this).siblings('.upload-label').removeClass('btn-primary').addClass('btn-warning');
         });
     </script>
     @stack('scripts')
