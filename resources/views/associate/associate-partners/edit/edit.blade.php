@@ -89,14 +89,14 @@
                                         <span class="d-none d-md-block">Reports</span>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="#sales_partner_view" data-bs-toggle="tab" aria-expanded="false"
-                                        class="nav-link rounded-0">
-                                        <i class="mdi mdi-settings-outline d-md-none d-block"></i>
-                                        <span class="d-none d-md-block">View Document </span>
-                                    </a>
-                                </li>
                             @endif
+                            <li class="nav-item">
+                                <a href="#sales_partner_view" data-bs-toggle="tab" aria-expanded="false"
+                                    class="nav-link rounded-0">
+                                    <i class="mdi mdi-settings-outline d-md-none d-block"></i>
+                                    <span class="d-none d-md-block">View Document </span>
+                                </a>
+                            </li>
                         </ul>
 
                         <div class="tab-content">
@@ -125,11 +125,11 @@
                                 </div>                                
                                 <div class="tab-pane" id="sales_partner_reports">
                                     @include('associate.associate-partners.edit.tabs.sales-partner-reports')
-                                </div>
-                                <div class="tab-pane" id="sales_partner_view">
-                                    @include('associate.associate-partners.edit.tabs.show')
-                                </div>
+                                </div>                                
                             @endif
+                            <div class="tab-pane" id="sales_partner_view">
+                                @include('associate.associate-partners.edit.tabs.show')
+                            </div>
                         </div>
                     </div>
                 </div>
