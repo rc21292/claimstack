@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="d-flex flex-row align-items-center m-2 text-white">
                                     <p class="mb-0 me-2">{{$associate->name }}<br> Associate Partner Status | UID</p>
-                                </div>                        
+                                </div>
                             </div>
                             <div class="col-12 nav nav-tabs" id="myTab" >
                                 <a class="text-white px-2 active" href="#home" c data-bs-toggle="tab">Documents</a>
@@ -53,15 +53,13 @@
                                         <table class="table">
                                             <tbody>
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->panfile) }}" >Associate Partner Pan Number</a></td>
+                                                    <td><a oncontextmenu="return false;" target="_blank" @if(auth()->check() && auth()->user()->hasDirectPermission('Downloading Rights'))  href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->panfile) }}" @else href="javascript:void(0)" @endif>Associate Partner Pan Number</a></td>
                                                     <td><a @if(auth()->check() && auth()->user()->hasDirectPermission('Downloading Rights')) href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->panfile) }}" download @endif class=" download-label"><i class="mdi mdi-download"></i></a></td>
-
                                                 </tr>
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->cancel_cheque_file) }}" >Cancel Cheque</a></td>
+                                                    <td><a oncontextmenu="return false;" target="_blank" @if(auth()->check() && auth()->user()->hasDirectPermission('Downloading Rights')) href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->cancel_cheque_file) }}" @else href="javascript:void(0)" @endif>Cancel Cheque</a></td>
                                                     <td><a @if(auth()->check() && auth()->user()->hasDirectPermission('Downloading Rights')) href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->cancel_cheque_file) }}" download @endif class=" download-label"><i class="mdi mdi-download"></i></a></td>
-
-                                                </tr>                  
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -69,10 +67,9 @@
                                         <table class="table">
                                             <tbody>
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->moufile) }}">MOU</a></td>
+                                                    <td><a oncontextmenu="return false;" target="_blank" @if(auth()->check() && auth()->user()->hasDirectPermission('Downloading Rights')) href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->moufile) }}" @else href="javascript:void(0)" @endif>MOU</a></td>
                                                     <td><a @if(auth()->check() && auth()->user()->hasDirectPermission('Downloading Rights')) href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->moufile) }}" download @endif class=" download-label"><i class="mdi mdi-download"></i></a></td>
-
-                                                </tr>                 
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
