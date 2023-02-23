@@ -51,6 +51,7 @@ return new class extends Migration
             $table->integer('other_policy_sum_insured')->nullable();
             $table->string('patient_hospitalized_last_4y_since_inception')->nullable();
             $table->string('date_of_admission_past')->nullable();
+            $table->string('diagnosis_previous')->nullable();
             $table->string('policy_details_comments')->nullable();
             $table->string('primary_insured_name')->nullable();
             $table->enum('primary_insured_gender', ['Male', 'Female', 'Other'])->nullable();
