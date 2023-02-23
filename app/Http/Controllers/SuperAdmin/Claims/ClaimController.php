@@ -38,13 +38,13 @@ class ClaimController extends Controller
      */
     public function create(Request $request)
     {
-        $patient_id     = $request->patient_id;
+        // $patient_id     = $request->patient_id;
         $associates     = AssociatePartner::get();
         $hospitals      = Hospital::get();
-        $patient        = Patient::find($request->patient_id);
+        // $patient        = Patient::find($request->patient_id);
 
 
-        return view('super-admin.claims.claims.create',  compact('patient_id', 'associates', 'hospitals', 'patient'));
+        return view('super-admin.claims.claims.create.create',  compact('associates', 'hospitals'));
     }
 
     /**
