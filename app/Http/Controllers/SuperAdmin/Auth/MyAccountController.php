@@ -67,7 +67,7 @@ class MyAccountController extends Controller
     {
         $id             = Auth::guard('super-admin')->id();
         $admin          = SuperAdmin::find($id);
-        $admin->avatar  = isset($admin->avatar) ? asset('storage/uploads/admin/'.$admin->avatar) : URL::to('assets/images/placeholder.png') ;
+        $admin->avatar  = isset($admin->avatar) ? asset('storage/uploads/super-admin/'.$admin->avatar) : URL::to('assets/images/placeholder.png') ;
         return view('super-admin.settings.my-account', compact('admin'));
     }
 

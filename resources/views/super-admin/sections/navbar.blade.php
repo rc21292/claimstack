@@ -99,7 +99,7 @@
             <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#"
                 role="button" aria-haspopup="false" aria-expanded="false">
                 <span class="account-user-avatar">
-                    <img src="{{ asset('assets/images/users/avatar-1.jpg') }}" alt="user-image" class="rounded-circle">
+                    <img src="{{asset('storage/uploads/super-admin/'.Auth::guard('super-admin')->user()->avatar) }}" alt="user-image" class="rounded-circle">
                 </span>
                 <span>
                     <span class="account-user-name">{{ Auth::guard('super-admin')->user()->firstname }}
