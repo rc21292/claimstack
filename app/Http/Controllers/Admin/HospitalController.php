@@ -559,7 +559,7 @@ class HospitalController extends Controller
         }
 
         $rules = [
-            'mou_inception_date'                            => ($hospital->onboarding == 'Tie Up' && $hospital->signed_mous_file) ? 'required' : [],
+            'mou_inception_date'                            => ($hospital->onboarding == 'Tie Up' && $hospital->signed_mous == 'Yes') ? 'required' : [],
             'bhc_packages_for_surgical_procedures_accepted' => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
             'bhc_packages_for_surgical_procedures_accepted_file' => ($hospital->onboarding == 'Tie Up' && $request->bhc_packages_for_surgical_procedures_accepted == 'Yes' && empty($hospital_tie_ups->bhc_packages_for_surgical_procedures_accepted_file)) ? 'required' : [],
             'discount_on_medical_management_cases'          => ($hospital->onboarding == 'Tie Up') ? 'required' : [],

@@ -36,27 +36,27 @@ class HospitalController extends Controller
         $id = Auth::user()->id;
         $hospital          = Hospital::find($id);
         $insurers          = Insurer::all();
-        
+
         $associates = AssociatePartner::get(['name', 'city', 'state', 'id', 'associate_partner_id']);
-        
+
         $hospital_tie_ups          = HospitalTieUp::where('hospital_id', $id)->first();
         if (!$hospital_tie_ups) {
             HospitalTieUp::create(['hospital_id'=> $id]);
             $hospital_tie_ups          = HospitalTieUp::where('hospital_id', $id)->first();
         }
-        
+
         $hospital_facility          = HospitalFacility::where('hospital_id', $id)->first();
         if (!$hospital_facility) {
             HospitalFacility::create(['hospital_id'=> $id]);
             $hospital_facility          = HospitalFacility::where('hospital_id', $id)->first();
         }
-        
+
         $hospital_nfrastructure          = HospitalInfrastructure::where('hospital_id', $id)->first();
         if (!$hospital_nfrastructure) {
             HospitalInfrastructure::create(['hospital_id'=> $id]);
             $hospital_nfrastructure          = HospitalInfrastructure::where('hospital_id', $id)->first();
         }
-        
+
         $hospital_department          = HospitalDepartment::where('hospital_id', $id)->first();
         if (!$hospital_department) {
             HospitalDepartment::create(['hospital_id'=> $id]);
@@ -218,27 +218,27 @@ class HospitalController extends Controller
     {
         $hospital          = Hospital::find($id);
         $insurers          = Insurer::all();
-        
+
         $associates = AssociatePartner::get(['name', 'city', 'state', 'id', 'associate_partner_id']);
-        
+
         $hospital_tie_ups          = HospitalTieUp::where('hospital_id', $id)->first();
         if (!$hospital_tie_ups) {
             HospitalTieUp::create(['hospital_id'=> $id]);
             $hospital_tie_ups          = HospitalTieUp::where('hospital_id', $id)->first();
         }
-        
+
         $hospital_facility          = HospitalFacility::where('hospital_id', $id)->first();
         if (!$hospital_facility) {
             HospitalFacility::create(['hospital_id'=> $id]);
             $hospital_facility          = HospitalFacility::where('hospital_id', $id)->first();
         }
-        
+
         $hospital_nfrastructure          = HospitalInfrastructure::where('hospital_id', $id)->first();
         if (!$hospital_nfrastructure) {
             HospitalInfrastructure::create(['hospital_id'=> $id]);
             $hospital_nfrastructure          = HospitalInfrastructure::where('hospital_id', $id)->first();
         }
-        
+
         $hospital_department          = HospitalDepartment::where('hospital_id', $id)->first();
         if (!$hospital_department) {
             HospitalDepartment::create(['hospital_id'=> $id]);
@@ -605,7 +605,7 @@ class HospitalController extends Controller
         }
 
         $rules = [
-            'mou_inception_date'                            => ($hospital->onboarding == 'Tie Up' && $hospital->signed_mous_file) ? 'required' : [],
+            'mou_inception_date'                            => ($hospital->onboarding == 'Tie Up' && $hospital->signed_mous == 'Yes') ? 'required' : [],
             'bhc_packages_for_surgical_procedures_accepted' => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
             'bhc_packages_for_surgical_procedures_accepted_file' => ($hospital->onboarding == 'Tie Up' && $request->bhc_packages_for_surgical_procedures_accepted == 'Yes' && empty($hospital_tie_ups->bhc_packages_for_surgical_procedures_accepted_file)) ? 'required' : [],
             'discount_on_medical_management_cases'          => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
@@ -698,7 +698,7 @@ class HospitalController extends Controller
                 'hms_charges'                                       => $request->hms_charges,
                 'comments'                                          => $request->comments
             ]);
-        
+
         HospitalTieUp::where('hospital_id', $id)->update([
             'uid'      => 'HSPTUP'.$hospital->id
         ]);
@@ -707,7 +707,7 @@ class HospitalController extends Controller
     }
 
     public function updateHospitalFacility(Request $request, $id)
-    {        
+    {
         $hospital             = Hospital::find($id);
         $facility             =  HospitalFacility::where('hospital_id', $id)->first();
         if ($request->hasfile('pharmacy_file')) {
@@ -979,7 +979,7 @@ class HospitalController extends Controller
 
         $this->validate($request, $rules, $messages);
 
-      
+
 
         $hospitalT =  HospitalFacility::updateOrCreate([
             'hospital_id' => $id],
@@ -1008,7 +1008,7 @@ class HospitalController extends Controller
             ]);
 
 
-       
+
 
         return redirect()->back()->with('success', 'Hospital Facility updated successfully');
     }
@@ -1188,7 +1188,7 @@ class HospitalController extends Controller
                 'doctors_mobile_no'          => $request->doctors_mobile_no,
         ]);
 
-        
+
 
         return redirect()->back()->with('success', 'Hospital updated successfully');
     }
@@ -1234,7 +1234,7 @@ class HospitalController extends Controller
                 'doctors_mobile_no'          => $request->doctors_mobile_no,
         ]);
 
-        
+
 
         return redirect()->back()->with('success', 'Hospital updated successfully');
     }

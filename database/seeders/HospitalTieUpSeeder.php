@@ -26,7 +26,7 @@ class HospitalTieUpSeeder extends Seeder
         foreach ($hospitals as $hospital) {
             HospitalTieUp::create([
                 'hospital_id' => $hospital->id,
-                'mou_inception_date' => Carbon::yesterday()->format('Y-m-d'),
+                'mou_inception_date' => Null,
                 'bhc_packages_for_surgical_procedures_accepted' => 'No',
                 'discount_on_medical_management_cases'  => 'No',
                 'discount_on_final_bill' => 5,
@@ -44,7 +44,7 @@ class HospitalTieUpSeeder extends Seeder
                 'cashless_claims_management_services_charges' => 402,
                 'medical_lending_for_patients' => $faker->randomElement(['Yes', 'No']),
                 'medical_lending_service_type' => $faker->randomElement(['Bridge', 'Term', 'Both']),
-                'subvention' => $faker->numerify('2##8#####'),
+                'subvention' => $faker->randomNumber(2),
                 'medical_lending_for_bill_invoice_discounting' => $faker->randomElement(['Yes', 'No']),
                 'comments_on_invoice_discounting' => $faker->numerify('2##8#####'),
                 'lending_finance_company_agreement' => $faker->numerify('2##8#####'),

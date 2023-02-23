@@ -26,12 +26,14 @@ class HospitalSeeder extends Seeder
             $partner    = AssociatePartner::inRandomOrder()->first();
             $linked     = User::inRandomOrder()->first();
             $assigned   = User::inRandomOrder()->first();
+            $onboarding = $faker->randomElement(['Tie Up', 'Non - Tie Up']);
+            $by         = $faker->randomElement(['Direct', 'Associate Partner']);
 
             Hospital::create([
                 'uid'                           => 'HSP'.$i,
                 'name'                          => $i == 1 ? 'Triveni Hospital' : $faker->company,
-                'onboarding'                    => $faker->randomElement(['Tie Up', 'Non - Tie Up']),
-                'by'                            => $faker->randomElement(['Direct', 'Associate Partner']),
+                'onboarding'                    => $onboarding,
+                'by'                            => $by,
                 'address'                       => $faker->address,
                 'city'                          => $faker->city,
                 'state'                         => $faker->state,
@@ -45,12 +47,12 @@ class HospitalSeeder extends Seeder
                 'landline'                      => $faker->numerify('2##8#####5'),
                 'phone'                         => $faker->numerify('9#########'),
                 'rohini'                        => Str::upper(Str::random(13)),
-                'linked_associate_partner'      => $partner->id,
-                'linked_employee_department'    =>  $linked->department,
-                'assigned_employee_department'    =>  $assigned->department,
-                'linked_associate_partner_id'   =>  $partner->associate_partner_id,
+                'linked_associate_partner'      => $by == 'Direct' ? Null : $partner->id,
+                'linked_associate_partner_id'   => $by == 'Direct' ? Null : $partner->associate_partner_id,
+                'assigned_employee_department'  => $assigned->department,
                 'assigned_employee'             => $assigned->id,
                 'assigned_employee_id'          => $assigned->employee_code,
+                'linked_employee_department'    => $linked->department,
                 'linked_employee'               => $linked->id,
                 'linked_employee_id'            => $linked->employee_code,
                 'tan'                           => Str::upper(Str::random(10)),
