@@ -581,7 +581,7 @@ class HospitalController extends Controller
             'lending_finance_company_agreement_date'        => ($hospital->onboarding == 'Tie Up' && $request->lending_finance_company_agreement == 'Yes') ? 'required' : [],
             'medical_lending_for_patients'                  => ($hospital->onboarding == 'Tie Up' && $request->lending_finance_company_agreement == 'Yes') ? 'required' : [],
             'medical_lending_service_type'                  => ($hospital->onboarding == 'Tie Up' && $request->lending_finance_company_agreement == 'Yes') ? 'required' : [],
-            'subvention'                                    => ($hospital->onboarding == 'Tie Up' && $request->lending_finance_company_agreement == 'Yes') ? 'required|numeric|max:6' : [],
+            'subvention'                                    => ($hospital->onboarding == 'Tie Up' && $request->lending_finance_company_agreement == 'Yes') ? 'required|max:2' : [],
             'medical_lending_for_bill_invoice_discounting'  => ($hospital->onboarding == 'Tie Up' && $request->lending_finance_company_agreement == 'Yes') ? 'required' : [],
             'comments_on_invoice_discounting'               => ($hospital->onboarding == 'Tie Up' && $request->lending_finance_company_agreement == 'Yes') ? 'required|max:40' : [],
             'hospital_management_system_installation'       => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
