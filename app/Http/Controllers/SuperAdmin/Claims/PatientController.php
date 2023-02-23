@@ -25,7 +25,7 @@ class PatientController extends Controller
         $filter_search = $request->search;
         $patients = Patient::query();
         if ($filter_search) {
-            $patients->where(DB::raw("concat(firstname, ' ', middlename, ' ', lastname)"), 'like','%' . $filter_search . '%');
+            $patients->where(DB::raw("concat(title, ' ', firstname, ' ', middlename, ' ', lastname)"), 'like','%' . $filter_search . '%');
         }
         $patients = $patients->orderBy('id', 'desc')->paginate(20);
 
@@ -83,10 +83,10 @@ class PatientController extends Controller
             'patient_current_state'             => 'required',
             'patient_current_pincode'           => 'required',
             'current_permanent_address_same'    => 'required',
-            'patient_permanent_address'         => 'required',
-            'patient_permanent_city'            => 'required',
-            'patient_permanent_state'           => 'required',
-            'patient_permanent_pincode'         => 'required',
+            'patient_permanent_address'         => $request->current_permanent_address_same == 'No' ? 'required' : '',
+            'patient_permanent_city'            => $request->current_permanent_address_same == 'No' ? 'required' : '',
+            'patient_permanent_state'           => $request->current_permanent_address_same == 'No' ? 'required' : '',
+            'patient_permanent_pincode'         => $request->current_permanent_address_same == 'No' ? 'required' : '',
             'id_proof'                          => 'required',
             'id_proof_file'                     => 'required',
             'code'                              => 'required|numeric|digits:3',

@@ -54,7 +54,7 @@ return new class extends Migration
             $table->string('referral_name')->nullable();
             $table->string('admitted_by')->nullable();
             $table->string('admitted_by_title')->nullable();
-            $table->string('admitted_by_firstname');
+            $table->string('admitted_by_firstname')->nullable();
             $table->string('admitted_by_middlename')->nullable();
             $table->string('admitted_by_lastname')->nullable();
             $table->longText('comments')->nullable();
