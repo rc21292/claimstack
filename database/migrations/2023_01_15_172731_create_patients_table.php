@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        
+
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
+            $table->string('uid')->nullable();
             $table->string('title')->nullable();
             $table->string('firstname');
             $table->string('middlename')->nullable();
@@ -46,9 +47,9 @@ return new class extends Migration
             $table->string('associate_partner_id')->nullable();
             $table->string('registration_number')->nullable();
             $table->string('email')->unique();
-            $table->string('phone')->nullable();  
+            $table->string('phone')->nullable();
             $table->string('code')->nullable();
-            $table->string('landline')->nullable();     
+            $table->string('landline')->nullable();
             $table->string('referred_by')->nullable();
             $table->string('referral_name')->nullable();
             $table->string('admitted_by')->nullable();

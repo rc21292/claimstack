@@ -7,6 +7,7 @@ use App\Models\AssociatePartner;
 use App\Models\Hospital;
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PatientController extends Controller
 {
@@ -22,13 +23,13 @@ class PatientController extends Controller
     public function index(Request $request)
     {
         $filter_search = $request->search;
-        $hospitals = Hospital::query();
+        $patients = Patient::query();
         if ($filter_search) {
-            $hospitals->where('name', 'like', '%' . $filter_search . '%');
+            $patients->where(DB::raw("concat(firstname, ' ', middlename, ' ', lastname)"), 'like','%' . $filter_search . '%');
         }
-        $hospitals = $hospitals->orderBy('id', 'desc')->paginate(20);
+        $patients = $patients->orderBy('id', 'desc')->paginate(20);
 
-        return view('super-admin.claims.patients.manage',  compact('hospitals', 'filter_search'));
+        return view('super-admin.claims.patients.manage',  compact('patients', 'filter_search'));
     }
 
     /**
@@ -174,6 +175,10 @@ class PatientController extends Controller
             'admitted_by_middlename'            => $request->admitted_by_middlename,
             'admitted_by_lastname'              => $request->admitted_by_lastname,
             'comments'                          => $request->comments,
+        ]);
+
+        Patient::where('id', $patient->id)->update([
+            'uid'      => 'P'.$patient->id + 1000
         ]);
 
         if ($request->hasfile('dobfile')) {
