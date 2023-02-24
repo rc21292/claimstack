@@ -59,7 +59,7 @@
                 @enderror
             </div>
 
-            <div class="col-md-4 mt-2">
+            <div class="col-md-4 mt-3">
                 <input type="text" class="form-control" id="hospital_city" name="hospital_city"
                 placeholder="City" value="{{ old('hospital_city') }}">
                 @error('hospital_city')
@@ -67,7 +67,7 @@
                 @enderror
             </div>
 
-            <div class="col-md-4 mt-2">
+            <div class="col-md-4 mt-3">
                 <input type="text" class="form-control" id="hospital_state" name="hospital_state"
                 placeholder="State" value="{{ old('hospital_state') }}">
                 @error('hospital_state')
@@ -75,7 +75,7 @@
                 @enderror
             </div>
 
-            <div class="col-md-4 mt-2">
+            <div class="col-md-4 mt-3">
                 <input type="number" class="form-control" id="hospital_pincode" name="hospital_pincode"
                 placeholder="Pincode" value="{{ old('hospital_pincode') }}">
                 @error('hospital_pincode')
@@ -246,7 +246,7 @@
                 @enderror
             </div>
 
-            <div class="col-md-4 mt-2">
+            <div class="col-md-4 mt-3">
                 <input type="text" class="form-control" id="city" name="city"
                 placeholder="City" value="{{ old('city') }}">
                 @error('city')
@@ -254,7 +254,7 @@
                 @enderror
             </div>
 
-            <div class="col-md-4 mt-2">
+            <div class="col-md-4 mt-3">
                 <input type="text" class="form-control" id="state" name="state"
                 placeholder="State" value="{{ old('state') }}">
                 @error('state')
@@ -262,7 +262,7 @@
                 @enderror
             </div>
 
-            <div class="col-md-4 mt-2">
+            <div class="col-md-4 mt-3">
                 <input type="number" class="form-control" id="pincode" name="pincode"
                 placeholder="Pincode" value="{{ old('pincode') }}">
                 @error('pincode')
@@ -270,7 +270,7 @@
                 @enderror
             </div>
 
-            <div class="col-md-6 mt-2">
+            <div class="col-md-6 mt-3">
                 <label>Borrower ID Proof</label>
                 <div class="input-group">
                     <select class="form-select" id="id_proof" name="id_proof">
@@ -354,7 +354,7 @@
                 @enderror
             </div>
 
-            <div class="col-md-4 mt-2">
+            <div class="col-md-4 mt-3">
                 <label>Borrower Bank Statement</label>
                 <div class="input-group">
                     <select class="form-select" id="bank_statement" name="bank_statement">
@@ -374,7 +374,7 @@
                 @enderror
             </div>
 
-            <div class="col-md-4 mt-2">
+            <div class="col-md-4 mt-3">
                 <label>Borrower  ITR (Income Tax Return)</label>
                 <div class="input-group">
                     <select class="form-select" id="itr" name="itr">
@@ -395,7 +395,7 @@
             </div>
 
 
-            <div class="col-md-4 mt-2">
+            <div class="col-md-4 mt-3">
                 <label>Borrower Cancel Cheque</label>
                 <div class="input-group">
                     <select class="form-select" id="cancel_cheque" name="cancel_cheque">
@@ -434,7 +434,7 @@
                 @enderror
             </div>
 
-            <div class="col-md-12 mt-3">
+            <div class="col-md-12 mt-2">
                 <label for="address">Borrower Bank Details <span class="text-danger">*</span></label>
             </div>
 
@@ -455,7 +455,7 @@
                 @enderror
             </div>
 
-            <div class="col-md-6 mt-3">
+            <div class="col-md-6 mt-2">
                 <input type="text" class="form-control" id="bank_account_no" name="bank_account_no" maxlength="20"
                 placeholder="Bank Account No." value="{{ old('bank_account_no', @$hospital->bank_account_no) }}">
                 @error('bank_account_no')
@@ -463,7 +463,7 @@
                 @enderror
             </div>
 
-            <div class="col-md-6 mt-3">
+            <div class="col-md-6 mt-2">
                 <input type="text" class="form-control" id="bank_ifs_code" name="bank_ifs_code" maxlength="11"
                 placeholder="Bank Ifs Code" value="{{ old('bank_ifs_code', @$hospital->bank_ifs_code) }}">
                 @error('bank_ifs_code')
@@ -539,7 +539,7 @@
                 @enderror
             </div>
 
-            <div class="col-md-6 mt-2">
+            <div class="col-md-6 mt-3">
                 <label>Co-Borrower / Borrower Other Documents</label>
                 <div class="input-group">
                     <select class="form-select" id="co_borrower_other_documents" name="co_borrower_other_documents">
@@ -583,7 +583,7 @@
                 <button type="submit" class="btn btn-success" form="claims-form">Create
                 Create / Save Borrower ID</button>
             </div>
-            
+
         </div>
     </form>
 </div>
