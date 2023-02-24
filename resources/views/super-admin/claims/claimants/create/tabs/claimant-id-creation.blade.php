@@ -355,6 +355,12 @@
                 @enderror
             </div>
 
+            
+            <div class="col-md-12 text-end mt-3">
+                <button type="submit" class="btn btn-success" form="claims-form">Create
+                Create / Save Borrower ID</button>
+            </div>
+
         </div>
     </form>
 </div>
