@@ -22,7 +22,7 @@
                 @enderror
             </div>
 
-            <div class="col-md-6 mt-3">
+            <div class="col-md-6">
                 <label for="associate_partner_id">Associate Partner ID <span  class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="associate_partner_id"
                 name="associate_partner_id" placeholder="Associate Partner ID"
@@ -34,7 +34,7 @@
 
             <div class="col-md-6">
                 <label for="name">Hospital Id <span class="text-danger">*</span></label>
-                <input type="text" readonly class="form-control" id="hospital_id" name="hospital_id"
+                <input type="text" class="form-control" id="hospital_id" name="hospital_id"
                 placeholder="Enter Hospital name" value="{{ old('hospital_id') }}">
                 @error('hospital_id')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -47,10 +47,30 @@
             </div>
 
             <div class="col-md-3 mt-1">
+                <select class="form-control" id="patient_title" name="patient_title">
+                    <option value="">Select</option>
+                    <option value="Mr.">Mr.</option>
+                    <option value="Ms.">Ms.</option>
+                </select>
+                @error('patient_title')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="col-md-3 mt-1">
                 <input type="text" maxlength="25" class="form-control" id="patient_firstname"
                 name="patient_firstname" maxlength="15" placeholder="First name"
                 value="{{ old('patient_firstname') }}">
                 @error('patient_firstname')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="col-md-3 mt-1">
+                <input type="text" maxlength="25" class="form-control" id="patient_middlename"
+                name="patient_middlename" maxlength="30" placeholder="Last name"
+                value="{{ old('patient_middlename') }}">
+                @error('patient_middlename')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
@@ -64,48 +84,6 @@
                 @enderror
             </div>
 
-
-            <div class="col-md-12 mt-3">
-                <label for="firstname">Patient Name <span class="text-danger">*</span></label>
-            </div>
-
-            <div class="col-md-3 mt-1">
-                <select class="form-control" id="title" name="title">
-                    <option value="">Select</option>
-                    <option value="Mr.">Mr.</option>
-                    <option value="Ms.">Ms.</option>
-                </select>
-                @error('title')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
-
-            <div class="col-md-3 mt-1">
-                <input type="text" maxlength="25" class="form-control" id="firstname"
-                name="firstname" maxlength="15" placeholder="First name"
-                value="{{ old('firstname') }}">
-                @error('firstname')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
-
-            <div class="col-md-3 mt-1">
-                <input type="text" maxlength="25" class="form-control" id="middlename"
-                name="middlename" maxlength="30" placeholder="Middle name"
-                value="{{ old('middlename') }}">
-                @error('middlename')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
-
-            <div class="col-md-3 mt-1">
-                <input type="text" maxlength="25" class="form-control" id="lastname"
-                name="lastname" maxlength="30" placeholder="Last name"
-                value="{{ old('lastname') }}">
-                @error('lastname')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
 
             <div class="col-md-6 mt-3">
                 <label for="patient_id_proof">Patient ID Proof <span class="text-danger">*</span></label>
@@ -307,6 +285,10 @@
                 @enderror
             </div>
 
+            <div class="col-md-12 mt-3">
+                <label for="address">Claimant Cancel Cheque <span class="text-danger">*</span></label>
+            </div>
+
             <div class="col-md-12 mt-2">
                 <div class="input-group">
                     <select class="form-select" id="cancel_cheque" name="cancel_cheque">
@@ -330,23 +312,23 @@
             <div class="col-md-12 mt-3">
                 <label for="address">Claimant Bank Details <span class="text-danger">*</span></label>
             </div>
-            <div class="col-md-4 mt-2">
+
+
+            <div class="col-md-6 mt-2">
                 <input type="text" class="form-control" id="bank_name" name="bank_name" maxlength="45"
                 placeholder="Bank Name" value="{{ old('bank_name') }}">
                 @error('bank_name')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
-            </div>
+            </div>            
 
-            <div class="col-md-4 mt-2">
+            <div class="col-md-6 mt-2">
                 <input type="text" class="form-control" id="bank_address" name="bank_address" maxlength="80"
                 placeholder="Bank Address" value="{{ old('bank_address') }}">
                 @error('bank_address')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
-
-            
 
             <div class="col-md-6 mt-3">
                 <input type="text" class="form-control" id="bank_account_no" name="bank_account_no" maxlength="20"
@@ -363,9 +345,6 @@
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
-
-
-
 
             <div class="col-md-12 mt-3">
                 <label for="comments">Claimant Comments </label>

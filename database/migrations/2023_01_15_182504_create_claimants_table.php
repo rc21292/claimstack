@@ -18,10 +18,12 @@ return new class extends Migration
             $table->id();
             $table->string('patient_id')->nullable();
             $table->string('claim_id')->nullable();
-            $table->string('associate_partner_id');
+            $table->string('associate_partner_id')->nullable();
             $table->string('hospital_id')->nullable();
-            $table->string('patient_firstname');
-            $table->string('patient_lastname');
+            $table->string('patient_title')->nullable();
+            $table->string('patient_firstname')->nullable();
+            $table->string('patient_middlename')->nullable();
+            $table->string('patient_lastname')->nullable();
             $table->string('patient_id_proof')->nullable();
             $table->string('patient_id_proof_file')->nullable();
             $table->string('are_patient_and_claimant_same')->nullable();
@@ -60,6 +62,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('claimants');
+        Schema::dropIfExists('claimants')->nullable();
     }
 };
