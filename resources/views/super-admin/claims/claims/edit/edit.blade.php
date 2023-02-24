@@ -39,7 +39,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="javascript:void(0)" aria-expanded="false"
+                            <a href="#insurance_policy_tab" data-bs-toggle="tab" aria-expanded="false"
                                 class="nav-link rounded-0">
                                 <i class="mdi mdi-account-circle d-md-none d-block"></i>
                                 <span class="d-none d-md-block">Insurance Policy Details</span>
@@ -50,11 +50,11 @@
 
                     <div class="tab-content">
                         <div class="tab-pane show active" id="claim_creation_tab">
-                            @include('super-admin.claims.claims.create.tabs.claim-creation')
+                            @include('super-admin.claims.claims.edit.tabs.claim-creation')
                         </div>
 
                         <div class="tab-pane" id="insurance_policy_tab">
-                            @include('super-admin.claims.claims.create.tabs.insurance-policy')
+                            @include('super-admin.claims.claims.edit.tabs.insurance-policy')
                         </div>
 
                     </div>

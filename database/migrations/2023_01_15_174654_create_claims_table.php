@@ -13,45 +13,35 @@ return new class extends Migration
      */
     public function up()
     {
-        
+
         Schema::create('claims', function (Blueprint $table) {
            $table->id();
-           $table->string('firstname');
-           $table->string('lastname')->nullable();
+           $table->string('uid')->nullable();
            $table->integer('patient_id')->nullable();
-           $table->date('patient_dob')->nullable();
-           $table->enum('patient_gender', ['Male', 'Female', 'Unisex'])->default('Male');
-           $table->longText('patient_address')->nullable();
-           $table->string('patient_city')->nullable();
-           $table->string('patient_state')->nullable();
-           $table->string('patient_pincode')->nullable();
-           $table->string('patient_id_proof')->nullable();
-           $table->string('patient_id_proof_file')->nullable();
-           $table->integer('hospital_id')->nullable();
-           $table->string('hospital_name')->nullable();
-           $table->string('hospital_address')->nullable();
-           $table->string('hospital_city')->nullable();
-           $table->string('hospital_state')->nullable();
-           $table->string('hospital_pincode')->nullable();
-           $table->string('associate_partner_id')->nullable();
-           $table->string('patient_email')->unique();
-           $table->string('patient_mobile')->nullable();           
-           $table->enum('patient_referred_by', ['Direct', 'Hospital', 'Associate Partner'])->default('Direct');
-           $table->longText('patient_comments')->nullable();
-           $table->date('probable_date_of_admission')->nullable();           
-           $table->date('probable_date_of_discharge')->nullable();           
+           $table->date('admission_date')->nullable();
+           $table->time('admission_time')->nullable();
+           $table->string('abha_id')->nullable();
+           $table->enum('insurance_coverage', ['Yes', 'No'])->default('No');
+           $table->string('policy_no')->nullable();
+           $table->string('company_tpa_id_card_no')->nullable();
            $table->enum('lending_required', ['Yes', 'No'])->default('No');
+           $table->string('hospitalization_due_to')->nullable();
+           $table->date('date_of_delivery')->nullable();
+           $table->string('system_of_medicine')->nullable();
            $table->enum('treatment_type', ['OPD', 'IPD'])->default('OPD');
-           $table->enum('admission_type', ['Day Care', 'Hospitalization'])->default('Day Care');
-           $table->enum('claim_category', ['Cashless', 'Reimbursement'])->default('Cashless');
-           $table->enum('treatment_category', ['Surgical', 'Medical Management'])->default('Surgical');
-           $table->enum('disease_category', ['Cardiac', 'Dialysis', 'Eye Related', 'Infection', 'Maternity ', 'Neuro Related', 'Trauma'])->default('Cardiac');
-           $table->enum('disease_type', ['PED', 'Non-PED'])->default('PED');
-           $table->string('disease_name')->nullable();    
-           $table->longText('claim_intimation_comments')->nullable();       
-           $table->rememberToken();
+           $table->string('admission_type_1')->nullable();
+           $table->string('admission_type_2')->nullable();
+           $table->string('admission_type_3')->nullable();
+           $table->string('claim_category')->nullable();
+           $table->enum('treatment_category', ['OPD', 'IPD'])->default('OPD');
+           $table->string('disease_category')->nullable();
+           $table->string('disease_name')->nullable();
+           $table->string('disease_type')->nullable();
+           $table->string('estimated_amount')->nullable();
+           $table->text('comments')->nullable();
+           $table->string('claim_intimation_done')->nullable();
+           $table->string('claim_intimation_number_mail')->nullable();
            $table->timestamps();
-           $table->softDeletes();
        });
     }
 

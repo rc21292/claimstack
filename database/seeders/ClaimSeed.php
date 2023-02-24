@@ -22,42 +22,35 @@ class ClaimSeed extends Seeder
     public function run()
     {
         $faker = app(Generator::class);
-        $user  = User::inRandomOrder()->first();
-        $patient  = Patient::inRandomOrder()->first();
-        for ($i = 1; $i < 101; $i++) {
+
+        $patients  = Patient::get();
+        foreach ($patients as $key =>  $patient) {
             Claim::create([
-                'firstname' => $faker->firstname(),
-                'lastname' => $faker->lastname(),
-                'patient_id' => $patient->id,
-                'patient_dob' => Carbon::now()->addMonths(3)->format('Y-m-d'),
-                'patient_gender' => $faker->randomElement(['Male', 'Female']),
-                'patient_address' => $faker->address,
-                'patient_city' => $faker->city,
-                'patient_state' => $faker->state,
-                'patient_pincode' => $faker->postcode,
-                'hospital_id' => $user->id,
-                'hospital_name' => $user->name,
-                'hospital_address' => $faker->address,
-                'hospital_city' => $faker->city,
-                'hospital_state' => $faker->state,
-                'hospital_pincode' => $faker->postcode,
-                'associate_partner_id' => $user->employee_code,
-                'hospital_id' => $user->id,
-                'patient_email' =>  $i == 1 ? 'employee@claimstack.com' : $faker->unique()->safeEmail(),
-                'patient_mobile' => $faker->numerify('9#########'),
-                'patient_referred_by' => $faker->randomElement(['Direct', 'Hospital', 'Associate Partner']),
-                'patient_comments' => $faker->realText($maxNbChars = 100, $indexSize = 2),
-                'probable_date_of_admission' => Carbon::now()->format('Y-m-d'),
-                'probable_date_of_discharge' => Carbon::now()->addMonths(3)->format('Y-m-d'),
-                'lending_required' => $faker->randomElement(['Yes', 'No']),
-                'treatment_type' => $faker->randomElement(['OPD', 'IPD']),
-                'admission_type' => $faker->randomElement(['Day Care', 'Hospitalization']),
-                'claim_category' => $faker->randomElement(['Cashless', 'Reimbursement']),
-                'treatment_category' => $faker->randomElement(['Surgical', 'Medical Management']),
-                'disease_category' => $faker->randomElement(['Cardiac', 'Dialysis', 'Eye Related', 'Infection', 'maternity ', 'Neuro Related', 'Trauma']),
-                'disease_type' => $faker->randomElement(['PED', 'Non-PED']),
-                'disease_name' => $user->name,
-                'claim_intimation_comments' => $faker->realText($maxNbChars = 100, $indexSize = 2),
+                'uid'                           => 'C'.Carbon::now()->format('Y-m-d').$key+1,
+                'patient_id'                    => $patient->id,
+                'admission_date'                => Carbon::now()->subYears(3)->format('Y-m-d'),
+                'admission_time'                => Carbon::now()->subYears(3)->format('H:i:s'),
+                'abha_id'                       => $faker->numerify('99-#2##-####-0###'),
+                'insurance_coverage'            => $faker->randomElement(['Yes', 'No']),
+                'policy_no'                     => 'POL'.$faker->numerify('102####'),
+                'company_tpa_id_card_no'        => 'TPA'.$faker->numerify('926####'),
+                'lending_required'              => $faker->randomElement(['Yes', 'No']),
+                'hospitalization_due_to'        => $faker->randomElement(['Injury', 'Illness', 'Maternity']),
+                'date_of_delivery'              => Carbon::now()->subYears(3)->format('Y-m-d'),
+                'system_of_medicine'            => $faker->randomElement(['Allopathy', 'Ayurveda', 'Siddha', 'Unani', 'AYUSH']),
+                'treatment_type'                => $faker->randomElement(['OPD', 'IPD']),
+                'admission_type_1'              => $faker->randomElement(['Emergency', 'Planned']),
+                'admission_type_2'              => $faker->randomElement(['Day Care', 'Hospitalization']),
+                'admission_type_3'              => $faker->randomElement(['Main', 'Pre-Post']),
+                'claim_category'                => $faker->randomElement(['Cashless', 'Reimbursement']),
+                'treatment_category'            => $faker->randomElement(['OPD', 'IPD']),
+                'disease_category'              => $faker->randomElement(['Cardiac', 'Eye Related', 'Dialysis', 'Infection', 'Maternity', 'Injury']),
+                'disease_name'                  => $faker->randomElement(['Dengue', 'Gonorrhoea', 'Hepatitis', 'HIV infection', 'Ebola', 'Haemophilus infection', 'Measles']),
+                'disease_type'                  => $faker->randomElement(['PED (Pre Existing Disease)', 'Non PED']),
+                'estimated_amount'              => $faker->numerify('9#####'),
+                'comments'                      => $faker->realText($maxNbChars = 200, $indexSize = 2),
+                'claim_intimation_done'         => $faker->randomElement(['Yes', 'No']),
+                'claim_intimation_number_mail'  => $faker->randomElement([$faker->numerify('99#2######'), $faker->unique()->safeEmail(),]),
             ]);
         }
     }

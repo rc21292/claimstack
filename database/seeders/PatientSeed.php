@@ -35,7 +35,7 @@ class PatientSeed extends Seeder
             $state                          = $faker->state;
             $postcode                       = $faker->numerify('1100##');
             Patient::create([
-                'uid'                       => 'P'.$i+1000,
+                'uid'                       => 'P'.$i+10000,
                 'title'                     => $faker->randomElement(['Mr.', 'Ms.']),
                 'firstname'                 => $faker->firstname(),
                 'middlename'                => $faker->lastname(),
@@ -63,7 +63,7 @@ class PatientSeed extends Seeder
                 'registration_number'       => $faker->numerify('4#2#######5#####0###'),
                 'hospital_pincode'          => $hospital->pincode,
                 'associate_partner_id'      => $hospital->linked_associate_partner_id,
-                'email'                     =>  $faker->unique()->safeEmail(),
+                'email'                     => $faker->unique()->safeEmail(),
                 'phone'                     => $faker->numerify('9#########'),
                 'code'                      => '011',
                 'landline'                  => $faker->numerify('272#######'),
@@ -79,3 +79,4 @@ class PatientSeed extends Seeder
         }
     }
 }
+
