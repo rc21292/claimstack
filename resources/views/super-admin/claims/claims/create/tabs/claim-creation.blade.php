@@ -1,4 +1,5 @@
-<form action="{{ route('super-admin.claims.store') }}" method="post" id="claim-form"
+<div class="card-body">
+    <form action="{{ route('super-admin.claims.store') }}" method="post" id="claim-form"
     enctype="multipart/form-data">
     @csrf
     <input type="hidden" name="patient_id" value="{{ request()->query('patient_id') }}">
@@ -431,3 +432,4 @@
         </div>
     </div>
 </form>
+</div>

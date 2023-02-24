@@ -577,16 +577,13 @@
                 @error('co_borrower_comments')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
-            </div>
-
-            
+            </div>            
 
             <div class="col-md-12 text-end mt-3">
                 <button type="submit" class="btn btn-success" form="claims-form">Create
                 Create / Save Borrower ID</button>
             </div>
-
-
+            
         </div>
     </form>
 </div>
