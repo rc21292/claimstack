@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Superadmin\Claims;
 
 use App\Http\Controllers\Controller;
 use App\Models\AssociatePartner;
+use App\Models\Claim;
 use App\Models\Hospital;
 use App\Models\Patient;
 use App\Models\InsurancePolicy;
@@ -55,7 +56,103 @@ class ClaimController extends Controller
      */
     public function store(Request $request)
     {
+        $rules =  [
+            'patient_id'                => 'required',
+            'hospital_name'             => 'required',
+            'hospital_id'               => 'required',
+            'hospital_address'          => 'required',
+            'hospital_city'             => 'required',
+            'hospital_state'            => 'required',
+            'hospital_pincode'          => 'required',
+            'associate_partner_id'      => 'required',
+            'registration_no'           => 'required',
+            'title'                     => 'required',
+            'firstname'                 => 'required',
+            'age'                       => 'required',
+            'gender'                    => 'required',
+            'admission_date'            => 'required',
+            'admission_time'            => 'required',
+            'abha_id'                   => 'required',
+            'insurance_coverage'        => 'required',
+            'policy_no'                 => 'required',
+            'company_tpa_id_card_no'    => 'required',
+            'lending_required'          => 'required',
+            'hospitalization_due_to'    => 'required',
+            'date_of_delivery'          => 'required',
+            'system_of_medicine'        => 'required',
+            'treatment_type'            => 'required',
+            'admission_type_1'          => 'required',
+            'admission_type_2'          => 'required',
+            'admission_type_3'          => 'required',
+            'claim_category'            => 'required',
+            'treatment_category'        => 'required',
+            'disease_category'          => 'required',
+            'disease_name'              => 'required',
+            'disease_type'              => 'required',
+            'estimated_amount'          => 'required',
+        ];
 
+        $messages =  [
+            'patient_id.required'                => 'Please select Patient ID',
+            'hospital_name.required'             => 'Please select Hospital',
+            'hospital_id.required'               => 'Please enter Hospital ID.',
+            'hospital_address.required'          => 'Please enter Hospital address.',
+            'hospital_city.required'             => 'Please enter Hospital city.',
+            'hospital_state.required'            => 'Please enter Hospital state.',
+            'hospital_pincode.required'          => 'Please enter Hospital pincode.',
+            'associate_partner_id.required'      => 'Please enter Associate Partner Id.',
+            'registration_no.required'           => 'Please enter IP (In-patient) Registration No.',
+            'title.required'                     => 'Please select Title',
+            'firstname.required'                 => 'Please enter Firstname',
+            'age.required'                       => 'Please enter Age',
+            'gender.required'                    => 'Please select Gender',
+            'admission_date.required'            => 'Please enter Admission date',
+            'admission_time.required'            => 'Please enter Admission time',
+            'abha_id.required'                   => 'Please enter ABHA ID',
+            'insurance_coverage.required'        => 'Please select Insurance Coverage',
+            'policy_no.required'                 => 'Please enter Policy No.',
+            'company_tpa_id_card_no.required'    => 'Please enter Company / TPA ID Card No.',
+            'lending_required.required'          => 'Please select Lending required',
+            'hospitalization_due_to.required'    => 'Please select Hospitalization due to',
+            'date_of_delivery.required'          => 'Please enter Date of delivery',
+            'system_of_medicine.required'        => 'Please select System of medicine',
+            'treatment_type.required'            => 'Please select Treatment type',
+            'admission_type_1.required'          => 'Please select Admission type 1',
+            'admission_type_2.required'          => 'Please select Admission type 2',
+            'admission_type_3.required'          => 'Please select Admission type 3',
+            'claim_category.required'            => 'Please select claim category',
+            'treatment_category.required'        => 'Please select treatment category',
+            'disease_category.required'          => 'Please select disease category',
+            'disease_name.required'              => 'Please enter disease name',
+            'disease_type.required'              => 'Please select disease type',
+            'estimated_amount.required'          => 'Please enter estimated amount',
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+        $claim = Claim::create( [
+            'patient_id'                => 'required',
+            'admission_date'            => 'required',
+            'admission_time'            => 'required',
+            'abha_id'                   => 'required',
+            'insurance_coverage'        => 'required',
+            'policy_no'                 => 'required',
+            'company_tpa_id_card_no'    => 'required',
+            'lending_required'          => 'required',
+            'hospitalization_due_to'    => 'required',
+            'date_of_delivery'          => 'required',
+            'system_of_medicine'        => 'required',
+            'treatment_type'            => 'required',
+            'admission_type_1'          => 'required',
+            'admission_type_2'          => 'required',
+            'admission_type_3'          => 'required',
+            'claim_category'            => 'required',
+            'treatment_category'        => 'required',
+            'disease_category'          => 'required',
+            'disease_name'              => 'required',
+            'disease_type'              => 'required',
+            'estimated_amount'          => 'required',
+        ]);
     }
 
     public function updateInsurancePolicy(Request $request, $id)
@@ -102,8 +199,10 @@ class ClaimController extends Controller
 
         $this->validate($request, $rules);
 
-        $hospitalT =  InsurancePolicy::updateOrCreate([
-            'patient_id' => $id],
+        $hospitalT =  InsurancePolicy::updateOrCreate(
+            [
+                'patient_id' => $id
+            ],
             [
                 'claim_id' => $request->claim_id,
                 'policy_no' => $request->policy_no,
@@ -141,10 +240,10 @@ class ClaimController extends Controller
                 'date_of_admission_past' => $request->date_of_admission_past,
                 'diagnosis_previous' => $request->diagnosis_previous,
                 'policy_details_comments' => $request->policy_details_comments
-            ]);
+            ]
+        );
 
         return redirect()->back()->with('success', 'Insurance Policy updated successfully');
-
     }
 
     /**
