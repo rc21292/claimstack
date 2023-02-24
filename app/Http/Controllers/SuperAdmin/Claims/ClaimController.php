@@ -83,7 +83,7 @@ class ClaimController extends Controller
             'primary_insured_city' => 'required',
             'primary_insured_state' => 'required',
             'primary_insured_pincode' => 'required',
-            'no_of_insured_person' => 'required|max:2' : 'max:2',
+            'no_of_insured_person' => 'required|max:2',
             'basic_sum_insured' => 'required',
             'cumulative_bonus_cv' => 'required|max:40',
             'agent_broker_code' => 'required',
