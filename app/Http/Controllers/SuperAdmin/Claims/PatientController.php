@@ -73,6 +73,8 @@ class PatientController extends Controller
             'registration_no'                   => 'required|max:20',
             'title'                             => 'required',
             'firstname'                         => 'required|max:25',
+            'lastname'                          => isset($request->lastname) ? 'max:25' :'',
+            'middlename'                        => isset($request->middlename) ? 'max:25' :'',
             'dob'                               => 'required',
             'age'                               => 'required',
             'gender'                            => 'required',
@@ -81,7 +83,7 @@ class PatientController extends Controller
             'patient_current_address'           => 'required|max:100',
             'patient_current_city'              => 'required',
             'patient_current_state'             => 'required',
-            'patient_current_pincode'           => 'required',
+            'patient_current_pincode'           => 'required|numeric',
             'current_permanent_address_same'    => 'required',
             'patient_permanent_address'         => $request->current_permanent_address_same == 'No' ? 'required|max:100' : '',
             'patient_permanent_city'            => $request->current_permanent_address_same == 'No' ? 'required' : '',
@@ -240,24 +242,26 @@ class PatientController extends Controller
             'hospital_city'                     => 'required',
             'hospital_state'                    => 'required',
             'hospital_pincode'                  => 'required',
-            'associate_partner_id'              => 'required',
-            'registration_no'                   => 'required',
+            'associate_partner_id'              => "required_if:$request->associate_partner_id,'!=',null",
+            'registration_no'                   => 'required|max:20',
             'title'                             => 'required',
-            'firstname'                         => 'required',
+            'firstname'                         => 'required|max:25',
+            'lastname'                          => isset($request->lastname) ? 'max:25' :'',
+            'middlename'                        => isset($request->middlename) ? 'max:25' :'',
             'dob'                               => 'required',
             'age'                               => 'required',
             'gender'                            => 'required',
             'occupation'                        => 'required',
             'specify'                           => $request->occupation == 'other' ? 'required' : '',
-            'patient_current_address'           => 'required',
+            'patient_current_address'           => 'required|max:100',
             'patient_current_city'              => 'required',
             'patient_current_state'             => 'required',
-            'patient_current_pincode'           => 'required',
+            'patient_current_pincode'           => 'required|numeric',
             'current_permanent_address_same'    => 'required',
-            'patient_permanent_address'         => 'required',
-            'patient_permanent_city'            => 'required',
-            'patient_permanent_state'           => 'required',
-            'patient_permanent_pincode'         => 'required',
+            'patient_permanent_address'         => $request->current_permanent_address_same == 'No' ? 'required|max:100' : '',
+            'patient_permanent_city'            => $request->current_permanent_address_same == 'No' ? 'required' : '',
+            'patient_permanent_state'           => $request->current_permanent_address_same == 'No' ? 'required' : '',
+            'patient_permanent_pincode'         => $request->current_permanent_address_same == 'No' ? 'required' : '',
             'id_proof'                          => 'required',
             'id_proof_file'                     => 'required',
             'code'                              => 'required|numeric|digits:3',
@@ -265,11 +269,11 @@ class PatientController extends Controller
             'email'                             => 'required|email|min:1|max:45|unique:patients,email',
             'phone'                             => 'required|numeric|digits:10',
             'referred_by'                       => 'required',
-            'referral_name'                     => 'required',
+            'referral_name'                     => 'required|max:45',
             'admitted_by'                       => 'required',
             'admitted_by_title'                 => $request->admitted_by == 'Self' ? '' : 'required',
-            'admitted_by_firstname'             => $request->admitted_by == 'Self' ? '' : 'required',
-            'comments'                          => isset($request->comments) ? '' : 'max:45',
+            'admitted_by_firstname'             => $request->admitted_by == 'Self' ? '' : 'required|max:25',
+            'comments'                          => isset($request->comments) ? '' : 'max:250',
         ];
 
         $messages = [
@@ -331,7 +335,7 @@ class PatientController extends Controller
             'hospital_address'                  => $request->hospital_address,
             'hospital_city'                     => $request->hospital_city,
             'hospital_state'                    => $request->hospital_state,
-            'registration_number'               => $request->registration_number,
+            'registration_number'               => $request->registration_no,
             'hospital_pincode'                  => $request->hospital_pincode,
             'associate_partner_id'              => $request->associate_partner_id,
             'email'                             => $request->email,
@@ -366,7 +370,7 @@ class PatientController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('success', 'Patient updated successfully');
+        return redirect()->route('super-admin.patients.index')->with('success', 'Patient updated successfully');
     }
 
 
