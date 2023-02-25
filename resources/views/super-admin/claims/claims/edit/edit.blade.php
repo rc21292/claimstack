@@ -68,6 +68,8 @@
     $(document).ready(function() {
         setPatient();
         setHospitalId();
+        setInsuranceCoverageOptions();
+        setClaimIntimationNumber();
     });
 
     function setPatient() {
@@ -106,6 +108,44 @@
         $('#hospital_pincode').val(pincode);
         $('#hospital_pincode').val(pincode);
         $('#associate_partner_id').val(associate_partner_id);
+    }
+</script>
+<script>
+    function setInsuranceCoverageOptions(){
+        var insurance_coverage = $('#insurance_coverage').val();
+        switch (insurance_coverage) {
+                case 'Yes':
+                    $("#policy_no").prop("readonly", false);
+                    $("#company_tpa_id_card_no").prop("readonly", false);
+                    $("#claim_intimation_done").prop("disabled", false);
+                    break;
+                case 'No':
+                    $("#policy_no").prop("readonly", true);
+                    $("#company_tpa_id_card_no").prop("readonly", true);
+                    $("#claim_intimation_done").prop("disabled", true);
+                    break;
+                default:
+                    $("#policy_no").prop("readonly", true);
+                    $("#company_tpa_id_card_no").prop("readonly", true);
+                    $("#claim_intimation_done").prop("disabled", true);
+                    break;
+            }
+    }
+</script>
+<script>
+    function setClaimIntimationNumber(){
+        var claim_intimation_done = $('#claim_intimation_done').val();
+        switch (claim_intimation_done) {
+                case 'Yes':
+                    $("#claim_intimation_number_mail").prop("readonly", false);
+                    break;
+                case 'No':
+                    $("#claim_intimation_number_mail").prop("readonly", true);
+                    break;
+                default:
+                    $("#claim_intimation_number_mail").prop("readonly", true);
+                    break;
+            }
     }
 </script>
 @endpush

@@ -198,7 +198,7 @@
             </div>
             <div class="col-md-6 mt-3">
                 <label for="insurance_coverage">Insurance Coverage <span class="text-danger">*</span></label>
-                <select class="form-select" id="insurance_coverage" name="insurance_coverage">
+                <select class="form-select" id="insurance_coverage" name="insurance_coverage" onchange="setInsuranceCoverageOptions()">
                     <option value="">Select</option>
                     <option value="Yes" {{ old('insurance_coverage') == 'Yes' ? 'selected' : '' }}>Yes
                     </option>

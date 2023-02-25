@@ -68,6 +68,7 @@
     $(document).ready(function() {
         setPatient();
         setHospitalId();
+        setInsuranceCoverageOptions();
     });
 
     function setPatient() {
@@ -106,6 +107,25 @@
         $('#hospital_pincode').val(pincode);
         $('#hospital_pincode').val(pincode);
         $('#associate_partner_id').val(associate_partner_id);
+    }
+</script>
+<script>
+    function setInsuranceCoverageOptions(){
+        var insurance_coverage = $('#insurance_coverage').val();
+        switch (insurance_coverage) {
+                case 'Yes':
+                    $("#policy_no").prop("readonly", false);
+                    $("#company_tpa_id_card_no").prop("readonly", false);
+                    break;
+                case 'No':
+                    $("#policy_no").prop("readonly", true);
+                    $("#company_tpa_id_card_no").prop("readonly", true);
+                    break;
+                default:
+                    $("#policy_no").prop("readonly", true);
+                    $("#company_tpa_id_card_no").prop("readonly", true);
+                    break;
+            }
     }
 </script>
 @endpush
