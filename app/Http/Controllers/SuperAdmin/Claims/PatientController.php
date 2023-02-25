@@ -160,7 +160,7 @@ class PatientController extends Controller
             'hospital_address'                  => $request->hospital_address,
             'hospital_city'                     => $request->hospital_city,
             'hospital_state'                    => $request->hospital_state,
-            'registration_number'               => $request->registration_number,
+            'registration_number'               => $request->registration_no,
             'hospital_pincode'                  => $request->hospital_pincode,
             'associate_partner_id'              => $request->associate_partner_id,
             'email'                             => $request->email,
@@ -178,7 +178,7 @@ class PatientController extends Controller
         ]);
 
         Patient::where('id', $patient->id)->update([
-            'uid'      => 'P'.$patient->id + 1000
+            'uid'      => 'P-'.$patient->id + 1000
         ]);
 
         if ($request->hasfile('dobfile')) {

@@ -24,6 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call(HospitalTieUpSeeder::class);
         $this->call(PatientSeed::class);
         $this->call(ClaimSeed::class);
-        $this->call(ClaimantSeed::class);
+        // $this->call(ClaimantSeed::class);
     }
 }

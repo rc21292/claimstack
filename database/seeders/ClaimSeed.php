@@ -26,7 +26,7 @@ class ClaimSeed extends Seeder
         $patients  = Patient::get();
         foreach ($patients as $key =>  $patient) {
             Claim::create([
-                'uid'                           => 'C'.Carbon::now()->format('Y-m-d').$key+1,
+                'uid'                           => 'C-'.Carbon::now()->format('Y-m-d').'-'.$key+1,
                 'patient_id'                    => $patient->id,
                 'admission_date'                => Carbon::now()->subYears(3)->format('Y-m-d'),
                 'admission_time'                => Carbon::now()->subYears(3)->format('H:i:s'),

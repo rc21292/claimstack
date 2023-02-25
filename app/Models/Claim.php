@@ -35,5 +35,11 @@ class Claim extends Model
         'comments',
         'claim_intimation_done',
         'claim_intimation_number_mail'
-];
+    ];
+
+
+    public function patient()
+    {
+        return $this->belongsTo(Patient::class, 'patient_id');
+    }
 }

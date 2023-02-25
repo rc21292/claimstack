@@ -64,4 +64,9 @@ class Patient extends Model
     {
         return $this->belongsTo(Hospital::class, 'hospital_id');
     }
+
+    public function claims()
+    {
+        return $this->hasMany(Claim::class, 'patient_id');
+    }
 }

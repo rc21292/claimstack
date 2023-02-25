@@ -31,31 +31,35 @@
                 <div class="card no-shadow">
                     <div class="card-body p-0">
                         <div class="table-responsive">
-                            @if (count($patients) > 0)
+                            @if (count($claims) > 0)
                                 <table id="basics-datatable" class="table table-hover">
                                     <thead class="thead-grey">
                                         <tr>
-                                            <th scope="col">Hospital UID</th>
+                                            <th scope="col">Patient UID</th>
+                                            <th scope="col">Claim UID</th>
+                                            <th scope="col">Patient Name</th>
                                             <th scope="col">Hospital Name</th>
-                                            <th scope="col">City</th>
                                             <th scope="col">State</th>
+                                            <th scope="col">City</th>
                                             <th scope="col">Pincode</th>
                                             <th scope="col" class="text-center">Create</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($patients as $patient)
+                                        @foreach ($claims as $claim)
                                             <tr>
-                                                <th scope="row">PAT{{ $patient->id }}</th>
-                                                <td>{{ $patient->title }} {{ $patient->firstname }} {{ $patient->middlename }} {{ $patient->lastname }}</td>
-                                                <td>{{ $patient->patient_current_city }}</td>
-                                                <td>{{ $patient->patient_current_state }}</td>
-                                                <td>{{ $patient->patient_current_pincode }}</td>
+                                                <th>{{ $claim->patient->uid }}</th>
+                                                <th>{{ $claim->uid }}</th>
+                                                <td>{{ $claim->patient->title }} {{ $claim->patient->firstname }} {{ $claim->patient->middlename }} {{ $claim->patient->lastname }}</td>
+                                                <td>{{ $claim->patient->hospital->name }}</td>
+                                                <td>{{ $claim->patient->patient_current_city }}</td>
+                                                <td>{{ $claim->patient->patient_current_state }}</td>
+                                                <td>{{ $claim->patient->patient_current_pincode }}</td>
                                                 <td class="text-center">
                                                     <div class="btn-group">
-                                                        <a href="{{ route('super-admin.claimants.create', ['claim_id' => $patient->id]) }}"
+                                                        <a href="{{ route('super-admin.claimants.create', ['patient_id' => $claim->patient->id]) }}"
                                                             class="btn btn-primary"><i class="mdi mdi-plus"></i> New
-                                                            Claimaint</a>
+                                                            Claimant</a>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -63,10 +67,10 @@
                                     </tbody>
                                 </table>
                             @else
-                                <p class="text-center">No Patients found.</p>
+                                <p class="text-center">No Claims found.</p>
                             @endif
                         </div>
-                        {{ $patients->withQueryString()->links('pagination::bootstrap-4') }}
+                        {{ $claims->withQueryString()->links('pagination::bootstrap-4') }}
                     </div>
                 </div>
             </div>

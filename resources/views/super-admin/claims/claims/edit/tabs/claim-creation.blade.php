@@ -1,4 +1,5 @@
-<form action="{{ route('super-admin.claims.store') }}" method="post" id="claim-form"
+<div class="card-body">
+    <form action="{{ route('super-admin.claims.store') }}" method="post" id="claim-form"
     enctype="multipart/form-data">
     @csrf
     <input type="hidden" name="patient_id" value="{{ request()->query('patient_id') }}">
@@ -15,7 +16,7 @@
             <label for="hospital_name">Hospital Name <span class="text-danger">*</span></label>
             <select class="form-control select2" id="hospital_name" name="hospital_name" data-toggle="select2"
                 onchange="setHospitalId()">
-                <option value="">Select Associate Partner</option>
+                <option value="">Select Hospital</option>
                 @foreach ($hospitals as $hospital)
                     <option value="{{ $hospital->id }}" {{ old('hospital_name') == $hospital->id ? 'selected' : '' }}
                         data-name="{{ $hospital->name }}" data-id="{{ $hospital->uid }}"
@@ -35,9 +36,9 @@
         </div>
 
         <div class="col-md-6">
-            <label for="name">Hospital Id <span class="text-danger">*</span></label>
+            <label for="name">Hospital ID <span class="text-danger">*</span></label>
             <input type="text" readonly class="form-control" id="hospital_id" name="hospital_id"
-                placeholder="Enter Hospital name" value="{{ old('hospital_id') }}">
+                placeholder="Enter Hospital ID" value="{{ old('hospital_id') }}">
             @error('hospital_id')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
@@ -431,3 +432,4 @@
         </div>
     </div>
 </form>
+</div>
