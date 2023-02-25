@@ -425,4 +425,66 @@
 
         </div>
     </div>
+    <div class="card-body mb-4">
+        <div class="form-group row">
+            <div class="col-md-12 mb-3">
+                <div class="table-responsive">
+                    <h5>Primary Insured</h5>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Gender</th>
+                                <th>Age</th>
+                                <th>Relation</th>
+                                <th>Sum Insured</th>
+                                <th>Cumulative Bonus</th>
+                                <th>Balance Sum Insured</th>
+                                <th>Comments</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="text" class="form-control"/> <input type="text" class="form-control"/></td>
+                                <td><input type="text" class="form-control"/></td>
+                                <td><input type="text" class="form-control"/></td>
+                                <td><input type="text" class="form-control"/></td>
+                                <td><input type="text" class="form-control"/></td>
+                                <td><input type="text" class="form-control"/></td>
+                                <td><input type="text" class="form-control"/></td>
+                                <td><input type="text" class="form-control"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h5>Dependent Insured</h5>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Gender</th>
+                                <th>Age</th>
+                                <th>Relation</th>
+                                <th>Sum Insured</th>
+                                <th>Cumulative Bonus</th>
+                                <th>Balance Sum Insured</th>
+                                <th>Comments</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="text" class="form-control"/> <input type="text" class="form-control"/></td>
+                                <td><input type="text" class="form-control"/></td>
+                                <td><input type="text" class="form-control"/></td>
+                                <td><input type="text" class="form-control"/></td>
+                                <td><input type="text" class="form-control"/></td>
+                                <td><input type="text" class="form-control"/></td>
+                                <td><input type="text" class="form-control"/></td>
+                                <td><input type="text" class="form-control"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </form>
