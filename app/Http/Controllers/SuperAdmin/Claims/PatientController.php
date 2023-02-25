@@ -69,7 +69,7 @@ class PatientController extends Controller
             'hospital_city'                     => 'required',
             'hospital_state'                    => 'required',
             'hospital_pincode'                  => 'required',
-            'associate_partner_id'              => 'required',
+            'associate_partner_id'              => "required_if:$request->associate_partner_id,'!=',null",
             'registration_no'                   => 'required',
             'title'                             => 'required',
             'firstname'                         => 'required',
