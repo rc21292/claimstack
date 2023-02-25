@@ -32,7 +32,9 @@ return new class extends Migration
             $table->string('middlename')->nullable();
             $table->string('lastname')->nullable();
             $table->string('pan_no')->nullable();
+            $table->string('pan_no_file')->nullable();
             $table->string('aadhar_no')->nullable();
+            $table->string('aadhar_no_file')->nullable();
             $table->string('patients_relation_with_claimant')->nullable();
             $table->string('please_specify')->nullable();
             $table->string('address')->nullable();
@@ -45,7 +47,7 @@ return new class extends Migration
             $table->string('cancel_cheque')->nullable();
             $table->string('cancel_cheque_file')->nullable();
             $table->string('estimated_amount')->nullable();
-            $table->string('bank_name')->unique();
+            $table->string('bank_name')->nullable();
             $table->string('bank_address')->nullable();           
             $table->string('ac_no')->nullable();           
             $table->string('ifs_code')->nullable();           
@@ -62,6 +64,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('claimants')->nullable();
+        Schema::dropIfExists('claimants');
     }
 };
