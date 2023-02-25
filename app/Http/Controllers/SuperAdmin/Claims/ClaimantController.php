@@ -62,34 +62,34 @@ class ClaimantController extends Controller
             'claim_id' => 'required',
             'associate_partner_id' => 'required',
             'hospital_id' => 'required',
-            'patient_title' => 'required|numeric|digits_between:1,2',
-            'patient_firstname' => 'required|numeric|digits_between:1,2',
-            'patient_middlename' => 'required|numeric|digits_between:1,2',
-            'patient_lastname' => 'required|numeric|digits_between:1,2',
+            'patient_title' => 'required|max:25',
+            'patient_firstname' => 'required|max:25',
+            'patient_middlename' => 'required|max:25',
+            'patient_lastname' => 'required|max:25',
             'patient_id_proof' => 'required',
-            'are_patient_and_claimant_same' => 'required|numeric|digits_between:1,2',
+            'are_patient_and_claimant_same' => 'required',
             'title' => 'required',
-            'firstname' => 'required|numeric|digits_between:1,6',
-            'middlename' => 'required||numeric|digits_between:1,6',
+            'firstname' => 'required|max:25',
+            'middlename' => 'required||max:25',
             'lastname' => 'required',
-            'pan_no' => 'required|numeric|digits_between:1,6',
-            'aadhar_no' => 'required',
+            'pan_no' => 'required|digits:10',
+            'aadhar_no' => 'required|digits:12',
             'patients_relation_with_claimant' => 'required|numeric|digits_between:1,6',
             'specify' => 'required',
-            'address' => 'required',
+            'address' => 'required|max:100',
             'city' => 'required',
             'state' => 'required',
             'pincode' => 'required',
-            'personal_email_id' => 'required|max:2',
-            'official_email_id' => 'required',
-            'mobile_no' => 'required|max:40',
+            'personal_email_id' => 'required|email|max:45',
+            'official_email_id' => 'required|email|max:45',
+            'mobile_no' => 'required|digits:10',
             'estimated_amount' => 'required',
             'cancel_cheque' => 'required',
-            'bank_name' => 'required|max:6',
-            'bank_address' => 'required|max:6',
-            'bank_account_no' => 'required|max:6',
-            'bank_ifs_code' => 'required|max:6',
-            'comments' => 'required|max:6',
+            'bank_name' => 'required|max:45',
+            'bank_address' => 'required|max:80',
+            'bank_account_no' => 'required|max:20',
+            'bank_ifs_code' => 'required|max:11',
+            'comments' => 'required|max:250',
         ];
 
         $messages =  [
@@ -129,7 +129,7 @@ class ClaimantController extends Controller
 
         $this->validate($request, $rules, $messages);
 
-        $hospitalT =  Claimant::Create([
+        $claimant =  Claimant::Create([
            'patient_id' => $request->patient_id,
            'claim_id' => $request->claim_id,
            'associate_partner_id' => $request->associate_partner_id,
@@ -163,6 +163,42 @@ class ClaimantController extends Controller
            'bank_ifs_code' => $request->bank_ifs_code,
            'comments' => $request->comments,
        ]);        
+
+        if ($request->hasfile('patient_id_proof')) {
+            $patient_id_proof                    = $request->file('patient_id_proof');
+            $name                       = $patient_id_proof->getClientOriginalName();
+            $patient_id_proof->storeAs('uploads/claimant/' . $claimant->id . '/', $name, 'public');
+            Claimant::where('id', $claimant->id)->update([
+                'patient_id_proof'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('pan_no_file')) {
+            $pan_no_file                    = $request->file('pan_no_file');
+            $rhnname                       = $pan_no_file->getClientOriginalName();
+            $pan_no_file->storeAs('uploads/claimant/' . $claimant->id . '/', $rhnname, 'public');
+            Claimant::where('id', $claimant->id)->update([
+                'pan_no_file'               =>  $rhnname
+            ]);
+        }
+
+        if ($request->hasfile('aadhar_no_file')) {
+            $aadhar_no_file                    = $request->file('aadhar_no_file');
+            $name                       = $aadhar_no_file->getClientOriginalName();
+            $aadhar_no_file->storeAs('uploads/claimant/' . $claimant->id . '/', $name, 'public');
+            Claimant::where('id', $claimant->id)->update([
+                'aadhar_no_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('cancel_cheque_file')) {
+            $cancel_cheque_file                    = $request->file('cancel_cheque_file');
+            $rhnname                       = $cancel_cheque_file->getClientOriginalName();
+            $cancel_cheque_file->storeAs('uploads/claimant/' . $claimant->id . '/', $rhnname, 'public');
+            Claimant::where('id', $claimant->id)->update([
+                'cancel_cheque_file'               =>  $rhnname
+            ]);
+        }
     }
 
     /**
@@ -196,6 +232,43 @@ class ClaimantController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        if ($request->hasfile('patient_id_proof')) {
+            $patient_id_proof                    = $request->file('patient_id_proof');
+            $name                       = $patient_id_proof->getClientOriginalName();
+            $patient_id_proof->storeAs('uploads/claimant/' . $claimant->id . '/', $name, 'public');
+            Claimant::where('id', $claimant->id)->update([
+                'patient_id_proof'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('pan_no_file')) {
+            $pan_no_file                    = $request->file('pan_no_file');
+            $rhnname                       = $pan_no_file->getClientOriginalName();
+            $pan_no_file->storeAs('uploads/claimant/' . $claimant->id . '/', $rhnname, 'public');
+            Claimant::where('id', $claimant->id)->update([
+                'pan_no_file'               =>  $rhnname
+            ]);
+        }
+
+        if ($request->hasfile('aadhar_no_file')) {
+            $aadhar_no_file                    = $request->file('aadhar_no_file');
+            $name                       = $aadhar_no_file->getClientOriginalName();
+            $aadhar_no_file->storeAs('uploads/claimant/' . $claimant->id . '/', $name, 'public');
+            Claimant::where('id', $claimant->id)->update([
+                'aadhar_no_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('cancel_cheque_file')) {
+            $cancel_cheque_file                    = $request->file('cancel_cheque_file');
+            $rhnname                       = $cancel_cheque_file->getClientOriginalName();
+            $cancel_cheque_file->storeAs('uploads/claimant/' . $claimant->id . '/', $rhnname, 'public');
+            Claimant::where('id', $claimant->id)->update([
+                'cancel_cheque_file'               =>  $rhnname
+            ]);
+        }
+
         $rules = [
             'patient_id' => 'required',
             'claim_id' => 'required',
@@ -412,7 +485,7 @@ class ClaimantController extends Controller
 
         $this->validate($request, $rules, $messages);
 
-        $hospitalT =  Borrower::updateOrCreate(
+        $borrower =  Borrower::updateOrCreate(
             [
                 'patient_id' => $id
             ],
@@ -465,6 +538,88 @@ class ClaimantController extends Controller
                 'estimated_amount' => $request->estimated_amount,
                 'co_borrower_comments' => $request->co_borrower_comments,
             ]);        
+
+        if ($request->hasfile('id_proof')) {
+            $id_proof                    = $request->file('id_proof');
+            $name                       = $id_proof->getClientOriginalName();
+            $id_proof->storeAs('uploads/borrower/' . $borrower->id . '/', $name, 'public');
+            Borrower::where('id', $borrower->id)->update([
+                'id_proof'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('pan_no_file')) {
+            $pan_no_file                    = $request->file('pan_no_file');
+            $rhnname                       = $pan_no_file->getClientOriginalName();
+            $pan_no_file->storeAs('uploads/borrower/' . $borrower->id . '/', $rhnname, 'public');
+            Borrower::where('id', $borrower->id)->update([
+                'pan_no_file'               =>  $rhnname
+            ]);
+        }
+
+        if ($request->hasfile('aadhar_no_file')) {
+            $aadhar_no_file                    = $request->file('aadhar_no_file');
+            $name                       = $aadhar_no_file->getClientOriginalName();
+            $aadhar_no_file->storeAs('uploads/borrower/' . $borrower->id . '/', $name, 'public');
+            Borrower::where('id', $borrower->id)->update([
+                'aadhar_no_file'               =>  $name
+            ]);
+        }
+
+         if ($request->hasfile('bank_statement')) {
+            $bank_statement                    = $request->file('bank_statement');
+            $rhnname                       = $bank_statement->getClientOriginalName();
+            $bank_statement->storeAs('uploads/borrower/' . $borrower->id . '/', $rhnname, 'public');
+            Borrower::where('id', $borrower->id)->update([
+                'bank_statement'               =>  $rhnname
+            ]);
+        }
+
+         if ($request->hasfile('itr_file')) {
+            $itr_file                    = $request->file('itr_file');
+            $rhnname                       = $itr_file->getClientOriginalName();
+            $itr_file->storeAs('uploads/borrower/' . $borrower->id . '/', $rhnname, 'public');
+            Borrower::where('id', $borrower->id)->update([
+                'itr_file'               =>  $rhnname
+            ]);
+        }
+
+        if ($request->hasfile('cancel_cheque_file')) {
+            $cancel_cheque_file                    = $request->file('cancel_cheque_file');
+            $rhnname                       = $cancel_cheque_file->getClientOriginalName();
+            $cancel_cheque_file->storeAs('uploads/borrower/' . $borrower->id . '/', $rhnname, 'public');
+            Borrower::where('id', $borrower->id)->update([
+                'cancel_cheque_file'               =>  $rhnname
+            ]);
+        }
+
+        if ($request->hasfile('co_borrower_nominee_dob_file')) {
+            $co_borrower_nominee_dob_file                    = $request->file('co_borrower_nominee_dob_file');
+            $rhnname                       = $co_borrower_nominee_dob_file->getClientOriginalName();
+            $co_borrower_nominee_dob_file->storeAs('uploads/borrower/' . $borrower->id . '/', $rhnname, 'public');
+            Borrower::where('id', $borrower->id)->update([
+                'co_borrower_nominee_dob_file'               =>  $rhnname
+            ]);
+        }
+
+        if ($request->hasfile('co_borrower_nominee_gender_file')) {
+            $co_borrower_nominee_gender_file                    = $request->file('co_borrower_nominee_gender_file');
+            $rhnname                       = $co_borrower_nominee_gender_file->getClientOriginalName();
+            $co_borrower_nominee_gender_file->storeAs('uploads/borrower/' . $borrower->id . '/', $rhnname, 'public');
+            Borrower::where('id', $borrower->id)->update([
+                'co_borrower_nominee_gender_file'               =>  $rhnname
+            ]);
+        }
+
+        if ($request->hasfile('co_borrower_other_documents_file')) {
+            $co_borrower_other_documents_file                    = $request->file('co_borrower_other_documents_file');
+            $rhnname                       = $co_borrower_other_documents_file->getClientOriginalName();
+            $co_borrower_other_documents_file->storeAs('uploads/borrower/' . $borrower->id . '/', $rhnname, 'public');
+            Borrower::where('id', $borrower->id)->update([
+                'co_borrower_other_documents_file'               =>  $rhnname
+            ]);
+        }
+
     }
 
     /**

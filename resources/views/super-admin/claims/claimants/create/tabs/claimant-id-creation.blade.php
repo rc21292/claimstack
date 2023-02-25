@@ -140,7 +140,7 @@
 
             <div class="col-md-3 mt-1">
                 <input type="text" maxlength="25" class="form-control" id="firstname"
-                name="firstname" maxlength="15" placeholder="First name"
+                name="firstname" placeholder="First name"
                 value="{{ old('firstname') }}">
                 @error('firstname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -149,7 +149,7 @@
 
             <div class="col-md-3 mt-1">
                 <input type="text" maxlength="25" class="form-control" id="middlename"
-                name="middlename" maxlength="30" placeholder="Middle name"
+                name="middlename" placeholder="Middle name"
                 value="{{ old('middlename') }}">
                 @error('middlename')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -158,7 +158,7 @@
 
             <div class="col-md-3 mt-1">
                 <input type="text" maxlength="25" class="form-control" id="lastname"
-                name="lastname" maxlength="30" placeholder="Last name"
+                name="lastname" placeholder="Last name"
                 value="{{ old('lastname') }}">
                 @error('lastname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -168,18 +168,34 @@
 
             <div class="col-md-6 mt-3">
                 <label for="pan_no">Claimant Pan No. <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="pan_no" name="pan_no"
-                maxlength="10" placeholder="Enter PAN no." value="{{ old('pan_no') }}">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="pan_no" name="pan_no"
+                    maxlength="10" placeholder="Enter PAN no." value="{{ old('pan_no') }}">
+                    <input type="file" name="pan_no_file" id="pan_no_file" hidden
+                    onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
+                    <label for="pan_no_file" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
+                </div>
                 @error('pan_no')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+                @error('pan_no_file')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="col-md-6 mt-3">
                 <label for="aadhar_no">Claimant Aadhar No. <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="aadhar_no" name="aadhar_no"
-                maxlength="10" placeholder="Enter Aadhar no." value="{{ old('aadhar_no') }}">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="aadhar_no" name="aadhar_no"
+                    maxlength="12" placeholder="Enter Aadhar no." value="{{ old('aadhar_no') }}">
+                    <input type="file" name="aadhar_no_file" id="aadhar_no_file" hidden
+                    onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
+                    <label for="aadhar_no_file" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
+                </div>
                 @error('aadhar_no')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+                @error('aadhar_no_file')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
@@ -211,9 +227,7 @@
 
             <div class="col-md-12 mt-3">
                 <label for="address">Claimant Address <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="address" name="address"
-                placeholder="Address Line"
-                value="{{ old('address') }}">
+                <input type="text" class="form-control" id="address" name="address" placeholder="Address Line" value="{{ old('address') }}" maxlength="100">
                 @error('address')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -333,7 +347,7 @@
 
             <div class="col-md-6 mt-3">
                 <input type="text" class="form-control" id="bank_account_no" name="bank_account_no" maxlength="20"
-                placeholder="Bank Account No." value="{{ old('bank_account_no', @$hospital->bank_account_no) }}">
+                placeholder="Bank Account No." value="{{ old('bank_account_no') }}">
                 @error('bank_account_no')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -341,7 +355,7 @@
 
             <div class="col-md-6 mt-3">
                 <input type="text" class="form-control" id="bank_ifs_code" name="bank_ifs_code" maxlength="11"
-                placeholder="Bank Ifs Code" value="{{ old('bank_ifs_code', @$hospital->bank_ifs_code) }}">
+                placeholder="Bank Ifs Code" value="{{ old('bank_ifs_code') }}">
                 @error('bank_ifs_code')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
