@@ -149,3 +149,7 @@ div.scroll {
     overflow: auto;
     white-space: nowrap;
 }
+
+.bg-white {
+    background-color: #fff !important;
+}

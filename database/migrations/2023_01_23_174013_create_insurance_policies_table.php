@@ -53,6 +53,22 @@ return new class extends Migration
             $table->date('admission_date_past')->nullable();
             $table->text('diagnosis')->nullable();
             $table->text('comments')->nullable();
+            $table->string('primary_insured_firstname')->nullable();
+            $table->string('primary_insured_gender')->nullable();
+            $table->string('primary_insured_age')->nullable();
+            $table->string('primary_insured_relation')->nullable();
+            $table->string('primary_insured_sum_insured')->nullable();
+            $table->string('primary_insured_cumulative_bonus')->nullable();
+            $table->string('primary_insured_balance_sum_insured')->nullable();
+            $table->text('primary_insured_comment')->nullable();
+            $table->string('dependent_insured_firstname')->nullable();
+            $table->string('dependent_insured_gender')->nullable();
+            $table->string('dependent_insured_age')->nullable();
+            $table->string('dependent_insured_relation')->nullable();
+            $table->string('dependent_insured_sum_insured')->nullable();
+            $table->string('dependent_insured_cumulative_bonus')->nullable();
+            $table->string('dependent_insured_balance_sum_insured')->nullable();
+            $table->text('dependent_insured_comment')->nullable();
             $table->timestamps();
         });
     }

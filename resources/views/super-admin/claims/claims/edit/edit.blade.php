@@ -77,6 +77,9 @@
             setHospitalId();
             setInsuranceCoverageOptions();
             setClaimIntimationNumber();
+            $('#addInsured').click(function() {
+                $('.addInsured').toggle("slide");
+            });
         });
 
         @if ($claim->insurance_coverage == 'Yes')
