@@ -10,6 +10,7 @@ use App\Models\Borrower;
 use App\Models\Patient;
 use App\Models\Hospital;
 use App\Models\User;
+use App\Models\Claim;
 
 class ClaimantController extends Controller
 {
@@ -44,11 +45,21 @@ class ClaimantController extends Controller
     public function create(Request $request)
     {
         $patient_id     = $request->patient_id;
+        $claim_id     = $request->claim_id;
         $associates     = AssociatePartner::get();
         $hospitals      = Hospital::get();
-        $patient        = Patient::find($request->patient_id);
+        $patient        = isset($patient_id) ? Patient::find($request->patient_id) : null;
+        $claim        = isset($claim_id) ? Claim::find($request->claim_id) : null;
+        $hospital_id  = isset($patient_id) ? $patient->hospital->id : null;
+        $associate_partner_id  = isset($patient_id) ? $patient->associate_partner_id : null;
+        $patients       = Patient::get();
+        $patient_title   =  isset($patient) ? $patient->title : null;
+        $patient_firstname   =  isset($patient) ? $patient->firstname : null;
+        $patient_lastname   =  isset($patient) ? $patient->lastname : null;
+        $patient_middlename   =  isset($patient) ? $patient->middlename : null;
+        $claims       = Claim::get();
 
-        return view('super-admin.claims.claimants.create',  compact('patient_id', 'associates', 'hospitals', 'patient'));
+        return view('super-admin.claims.claimants.create',  compact('patient_id', 'associates', 'hospitals', 'patient', 'patients', 'claims', 'claim', 'claim_id', 'associate_partner_id', 'hospital_id', 'patient_title', 'patient_firstname', 'patient_lastname', 'patient_middlename'));
     }
 
     /**
@@ -76,7 +87,7 @@ class ClaimantController extends Controller
             'lastname' => 'required',
             'pan_no' => 'required|digits:10',
             'aadhar_no' => 'required|digits:12',
-            'patients_relation_with_claimant' => 'required|numeric|digits_between:1,6',
+            'patients_relation_with_claimant' => 'required',
             'specify' => 'required',
             'address' => 'required|max:100',
             'city' => 'required',
@@ -398,6 +409,7 @@ class ClaimantController extends Controller
 
     public function borrowerDetails(Request $request, $id)
     {
+        echo "<pre>";print_r($request->all());"</pre>";exit;
         $rules = [
             'patient_id' => 'required',
             'claim_id' => 'required',

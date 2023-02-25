@@ -57,7 +57,7 @@
                                                 <td>{{ $claim->patient->patient_current_pincode }}</td>
                                                 <td class="text-center">
                                                     <div class="btn-group">
-                                                        <a href="{{ route('super-admin.claimants.create', ['patient_id' => $claim->patient->id]) }}"
+                                                        <a href="{{ route('super-admin.claimants.create', ['patient_id' => $claim->patient->id, 'claim_id' => $claim->id]) }}"
                                                             class="btn btn-primary"><i class="mdi mdi-plus"></i> New
                                                             Claimant</a>
                                                     </div>

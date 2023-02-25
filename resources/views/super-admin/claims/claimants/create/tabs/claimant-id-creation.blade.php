@@ -1,14 +1,13 @@
 <div class="card-body">
-        <form action="{{ route('super-admin.claimants.update',1) }}" method="post" id="claimant-id-form"
+        <form action="{{ route('super-admin.claimants.store') }}" method="post" id="claimant-id-form"
         enctype="multipart/form-data">
-        @method('PUT')
         @csrf
 
         <div class="form-group row">
             <div class="col-md-6 mb-3">
                 <label for="patient_id">Patient ID <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="patient_id" name="patient_id" maxlength="60"
-                placeholder="Enter Patient Id" value="{{ old('patient_id') }}">
+                <input type="text" @if($patient) readonly @endif class="form-control" id="patient_id" name="patient_id" maxlength="60"
+                placeholder="Enter Patient Id" value="{{ old('patient_id', @$patient->uid) }}">
                 @error('patient_id')
                 <span id="patient-id-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -16,8 +15,8 @@
 
             <div class="col-md-6 mb-3">
                 <label for="claim_id">Cliam ID <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="claim_id" name="claim_id" maxlength="60"
-                placeholder="Enter Claim Id" value="{{ old('claim_id') }}">
+                <input type="text" @if($claim) readonly @endif class="form-control" id="claim_id" name="claim_id" maxlength="60"
+                placeholder="Enter Claim Id" value="{{ old('claim_id', @$claim->uid) }}">
                 @error('claim_id')
                 <span id="claim-id-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -25,9 +24,9 @@
 
             <div class="col-md-6">
                 <label for="associate_partner_id">Associate Partner ID <span  class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="associate_partner_id"
+                <input type="text" @if($associate_partner_id) readonly @endif class="form-control" id="associate_partner_id"
                 name="associate_partner_id" placeholder="Associate Partner ID"
-                value="{{ old('associate_partner_id') }}">
+                value="{{ old('associate_partner_id', @$associate_partner_id  ) }}">
                 @error('associate_partner_id')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -35,8 +34,8 @@
 
             <div class="col-md-6">
                 <label for="name">Hospital Id <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="hospital_id" name="hospital_id"
-                placeholder="Enter Hospital name" value="{{ old('hospital_id') }}">
+                <input type="text" @if($hospital_id) readonly @endif class="form-control" id="hospital_id" name="hospital_id"
+                placeholder="Enter Hospital name" value="{{ old('hospital_id', @$hospital_id) }}">
                 @error('hospital_id')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -50,8 +49,8 @@
             <div class="col-md-3 mt-1">
                 <select class="form-control" id="patient_title" name="patient_title">
                     <option value="">Select</option>
-                    <option value="Mr.">Mr.</option>
-                    <option value="Ms.">Ms.</option>
+                    <option @if(old('patient_title', @$patient_title) == 'Mr.') selected @endif value="Mr.">Mr.</option>
+                    <option @if(old('patient_title', @$patient_title) == 'Ms.') selected @endif value="Ms.">Ms.</option>
                 </select>
                 @error('patient_title')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -59,27 +58,27 @@
             </div>
 
             <div class="col-md-3 mt-1">
-                <input type="text" maxlength="25" class="form-control" id="patient_firstname"
+                <input type="text" @if($patient_firstname) readonly @endif maxlength="25" class="form-control" id="patient_firstname"
                 name="patient_firstname" maxlength="15" placeholder="First name"
-                value="{{ old('patient_firstname') }}">
+                value="{{ old('patient_firstname', @$patient_firstname) }}">
                 @error('patient_firstname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="col-md-3 mt-1">
-                <input type="text" maxlength="25" class="form-control" id="patient_middlename"
+                <input type="text" @if($patient_firstname) readonly @endif maxlength="25" class="form-control" id="patient_middlename"
                 name="patient_middlename" maxlength="30" placeholder="Last name"
-                value="{{ old('patient_middlename') }}">
+                value="{{ old('patient_middlename', @$patient_middlename) }}">
                 @error('patient_middlename')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="col-md-3 mt-1">
-                <input type="text" maxlength="25" class="form-control" id="patient_lastname"
+                <input type="text" @if($patient_firstname) readonly @endif maxlength="25" class="form-control" id="patient_lastname"
                 name="patient_lastname" maxlength="30" placeholder="Last name"
-                value="{{ old('patient_lastname') }}">
+                value="{{ old('patient_lastname', @$patient_lastname) }}">
                 @error('patient_lastname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -130,8 +129,8 @@
             <div class="col-md-3 mt-1">
                 <select class="form-control" id="title" name="title">
                     <option value="">Select</option>
-                    <option value="Mr.">Mr.</option>
-                    <option value="Ms.">Ms.</option>
+                    <option @if(old('title') == 'Mr.') selected @endif value="Mr.">Mr.</option>
+                    <option @if(old('title') == 'Ms.') selected @endif value="Ms.">Ms.</option>
                 </select>
                 @error('title')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -346,17 +345,17 @@
             </div>
 
             <div class="col-md-6 mt-3">
-                <input type="text" class="form-control" id="bank_account_no" name="bank_account_no" maxlength="20"
-                placeholder="Bank Account No." value="{{ old('bank_account_no') }}">
-                @error('bank_account_no')
+                <input type="text" class="form-control" id="acc_no" name="acc_no" maxlength="20"
+                placeholder="Bank Account No." value="{{ old('acc_no') }}">
+                @error('acc_no')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="col-md-6 mt-3">
-                <input type="text" class="form-control" id="bank_ifs_code" name="bank_ifs_code" maxlength="11"
-                placeholder="Bank Ifs Code" value="{{ old('bank_ifs_code') }}">
-                @error('bank_ifs_code')
+                <input type="text" class="form-control" id="ifs_code" name="ifs_code" maxlength="11"
+                placeholder="Bank Ifs Code" value="{{ old('ifs_code') }}">
+                @error('ifs_code')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>

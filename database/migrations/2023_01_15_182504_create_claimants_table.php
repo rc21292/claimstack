@@ -39,6 +39,7 @@ return new class extends Migration
             $table->string('patients_relation_with_claimant')->nullable();
             $table->string('please_specify')->nullable();
             $table->string('address')->nullable();
+            $table->string('specify')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->string('pincode')->nullable();
