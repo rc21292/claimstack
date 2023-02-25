@@ -42,7 +42,7 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->string('pincode')->nullable();
-            $table->integer('personal_email_id')->nullable();
+            $table->string('personal_email_id')->nullable();
             $table->string('official_email_id')->nullable();
             $table->string('mobile_no')->nullable();
             $table->string('cancel_cheque')->nullable();
