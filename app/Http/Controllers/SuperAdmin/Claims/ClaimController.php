@@ -31,7 +31,7 @@ class ClaimController extends Controller
         if ($filter_search) {
             $claims->whereHas('patient', function ($q) use ($filter_search) {
                 $q->where(function ($q) use ($filter_search) {
-                    $q->where(DB::raw("concat(title, ' ', firstname, ' ', middlename, ' ', lastname)"), 'like', '%' . $filter_search . '%');
+                    $q->where('uid', 'like', '%' . $filter_search . '%');
                 });
             });
         }

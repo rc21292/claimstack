@@ -25,7 +25,7 @@ class PatientController extends Controller
         $filter_search = $request->search;
         $patients = Patient::query();
         if ($filter_search) {
-            $patients->where(DB::raw("concat(title, ' ', firstname, ' ', middlename, ' ', lastname)"), 'like','%' . $filter_search . '%');
+            $patients->where('uid', 'like','%' . $filter_search . '%');
         }
         $patients = $patients->orderBy('id', 'desc')->paginate(20);
 
