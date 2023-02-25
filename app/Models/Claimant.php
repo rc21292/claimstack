@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Claim;
 
 class Claimant extends Model
 {
@@ -47,4 +48,9 @@ class Claimant extends Model
         'bank_ifs_code',
         'comments',
     ];
+
+    public function claim()
+    {
+        return $this->belongsTo(claim::class, 'claim_id');
+    }
 }

@@ -35,27 +35,27 @@
                                 <table id="basics-datatable" class="table table-hover">
                                     <thead class="thead-grey">
                                         <tr>
+                                            <th scope="col">Patient UID</th>
+                                            <th scope="col">Claim UID</th>
                                             <th scope="col">Claimant UID</th>
-                                            <th scope="col">Claimant Name</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Mobile</th>
-                                            <th scope="col" class="text-center">Create</th>
+                                            <th scope="col">Patient Name</th>
+                                            <th scope="col">Hospital Name</th>
+                                            <th scope="col">State</th>
+                                            <th scope="col">City</th>
+                                            <th scope="col">Pincode</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($claimants as $claimant)
                                             <tr>
-                                                <th scope="row">CL{{ $claimant->id }}</th>
-                                                <td>{{ $claimant->claimant_firstname }} {{ $claimant->claimant_lastname }}</td>
-                                                <td>{{ $claimant->claimant_email }}</td>
-                                                <td>{{ $claimant->claimant_mobile }}</td>
-                                                <td class="text-center">
-                                                    <div class="btn-group">
-                                                        <a href="{{ route('super-admin.claimants.create', ['claimant_id' => $claimant->id]) }}"
-                                                            class="btn btn-primary"><i class="mdi mdi-plus"></i> New
-                                                            Patient</a>
-                                                    </div>
-                                                </td>
+                                                <th>{{ $claimant->claim->patient->uid }}</th>
+                                                <th scope="row">{{ $claimant->claim->uid }}</th>
+                                                <th scope="row">{{ $claimant->uid }}</th>
+                                                <td>{{ $claimant->claim->patient->middlename }} {{ $claimant->claim->patient->lastname }}</td>
+                                                <td>{{ $claimant->claim->patient->hospital->name }}</td>
+                                                <td>{{ $claimant->state }}</td>
+                                                <td>{{ $claimant->city }}</td>
+                                                <td>{{ $claimant->pincode }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>

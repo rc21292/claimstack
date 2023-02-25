@@ -26,9 +26,11 @@ class ClaimantController extends Controller
     {
         $filter_search = $request->search;
         $claimants = Claimant::query();
+
         if($filter_search){
-            $claimants->where('name', 'like','%' . $filter_search . '%');
+            $claimants->where('patient_id', 'like','%' . $filter_search . '%');
         }
+
         $claimants = $claimants->orderBy('id', 'desc')->paginate(20);
 
         return view('super-admin.claims.claimants.manage',  compact('claimants', 'filter_search'));       

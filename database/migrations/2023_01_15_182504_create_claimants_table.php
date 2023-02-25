@@ -16,6 +16,7 @@ return new class extends Migration
         
         Schema::create('claimants', function (Blueprint $table) {
             $table->id();
+            $table->string('uid')->nullable();
             $table->string('patient_id')->nullable();
             $table->string('claim_id')->nullable();
             $table->string('associate_partner_id')->nullable();
