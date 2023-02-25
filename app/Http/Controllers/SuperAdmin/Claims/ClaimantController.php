@@ -70,6 +70,8 @@ class ClaimantController extends Controller
      */
     public function store(Request $request)
     {
+
+        // echo "<pre>";print_r($request->all());"</pre>";exit;
         $rules = [
             'patient_id' => 'required',
             'claim_id' => 'required',
@@ -100,8 +102,8 @@ class ClaimantController extends Controller
             'cancel_cheque' => 'required',
             'bank_name' => 'required|max:45',
             'bank_address' => 'required|max:80',
-            'bank_account_no' => 'required|max:20',
-            'bank_ifs_code' => 'required|max:11',
+            'ac_no' => 'required|max:20',
+            'ifs_code' => 'required|max:11',
             'comments' => 'required|max:250',
         ];
 
@@ -135,8 +137,8 @@ class ClaimantController extends Controller
             'cancel_cheque.required'          => 'Please Enter Cancel Cheque',
             'bank_name.required'            => 'Please Enter Bank Name',
             'bank_address.required'        => 'Please Enter Bank Address',
-            'bank_account_no.required'          => 'Please Enter Bank Account No',
-            'bank_ifs_code.required'              => 'Please Enter Bank Ifs Code',
+            'ac_no.required'          => 'Please Enter Bank Account No',
+            'ifs_code.required'              => 'Please Enter Bank Ifs Code',
             'comments.required'              => 'Please Enter Comments',
         ];
 
@@ -172,8 +174,8 @@ class ClaimantController extends Controller
            'cancel_cheque' => $request->cancel_cheque,
            'bank_name' => $request->bank_name,
            'bank_address' => $request->bank_address,
-           'bank_account_no' => $request->bank_account_no,
-           'bank_ifs_code' => $request->bank_ifs_code,
+           'ac_no' => $request->ac_no,
+           'ifs_code' => $request->ifs_code,
            'comments' => $request->comments,
        ]);        
 
@@ -212,6 +214,9 @@ class ClaimantController extends Controller
                 'cancel_cheque_file'               =>  $rhnname
             ]);
         }
+
+        return redirect()->route('super-admin.claimants.edit',$claimant->id)->with('success', 'Claimant created successfully');
+
     }
 
     /**
@@ -245,7 +250,7 @@ class ClaimantController extends Controller
         $patient        = Patient::find($claimant->patient_id);
         $patient_id   = $claimant->patient_id;
 
-        return view('super-admin.claims.claimants.edit.edit',  compact('patient_id', 'associates', 'hospitals', 'patient', 'claimant', 'borrower'));
+        return view('super-admin.claims.claimants.edit.edit',  compact('patient_id', 'associates', 'hospitals', 'patient', 'claimant', 'borrower', 'id'));
     
     }
 
@@ -258,7 +263,6 @@ class ClaimantController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         if ($request->hasfile('patient_id_proof')) {
             $patient_id_proof                    = $request->file('patient_id_proof');
             $name                       = $patient_id_proof->getClientOriginalName();
@@ -300,34 +304,33 @@ class ClaimantController extends Controller
             'claim_id' => 'required',
             'associate_partner_id' => 'required',
             'hospital_id' => 'required',
-            'patient_title' => 'required|numeric|digits_between:1,2',
-            'patient_firstname' => 'required|numeric|digits_between:1,2',
-            'patient_middlename' => 'required|numeric|digits_between:1,2',
-            'patient_lastname' => 'required|numeric|digits_between:1,2',
+            'patient_title' => 'required',
+            'patient_firstname' => 'required',
+            'patient_middlename' => 'required',
+            'patient_lastname' => 'required',
             'patient_id_proof' => 'required',
-            'are_patient_and_claimant_same' => 'required|numeric|digits_between:1,2',
+            'are_patient_and_claimant_same' => 'required',
             'title' => 'required',
-            'firstname' => 'required|numeric|digits_between:1,6',
-            'middlename' => 'required||numeric|digits_between:1,6',
+            'firstname' => 'required',
+            'middlename' => 'required|',
             'lastname' => 'required',
-            'pan_no' => 'required|numeric|digits_between:1,6',
+            'pan_no' => 'required',
             'aadhar_no' => 'required',
-            'patients_relation_with_claimant' => 'required|numeric|digits_between:1,6',
+            'patients_relation_with_claimant' => 'required',
             'specify' => 'required',
             'address' => 'required',
             'city' => 'required',
             'state' => 'required',
             'pincode' => 'required',
-            'personal_email_id' => 'required|max:2',
-            'official_email_id' => 'required',
-            'mobile_no' => 'required|max:40',
-            'estimated_amount' => 'required',
+            'personal_email_id' => 'required|email|max:45',
+            'official_email_id' => 'required|email|max:45',
+            'mobile_no' => 'required|digits:10',
             'cancel_cheque' => 'required',
-            'bank_name' => 'required|max:6',
-            'bank_address' => 'required|max:6',
-            'bank_account_no' => 'required|max:6',
-            'bank_ifs_code' => 'required|max:6',
-            'comments' => 'required|max:6',
+            'bank_name' => 'required',
+            'bank_address' => 'required',
+            'ac_no' => 'required',
+            'ifs_code' => 'required',
+            'comments' => 'required',
         ];
 
         $messages =  [
@@ -360,8 +363,8 @@ class ClaimantController extends Controller
             'cancel_cheque.required'          => 'Please Enter Cancel Cheque',
             'bank_name.required'            => 'Please Enter Bank Name',
             'bank_address.required'        => 'Please Enter Bank Address',
-            'bank_account_no.required'          => 'Please Enter Bank Account No',
-            'bank_ifs_code.required'              => 'Please Enter Bank Ifs Code',
+            'ac_no.required'          => 'Please Enter Bank Account No',
+            'ifs_code.required'              => 'Please Enter Bank Ifs Code',
             'comments.required'              => 'Please Enter Comments',
         ];
 
@@ -369,7 +372,7 @@ class ClaimantController extends Controller
 
         $hospitalT =  Claimant::updateOrCreate(
             [
-                'patient_id' => $id
+                'id' => $id
             ],
             [
              'patient_id' => $request->patient_id,
@@ -401,10 +404,12 @@ class ClaimantController extends Controller
              'cancel_cheque' => $request->cancel_cheque,
              'bank_name' => $request->bank_name,
              'bank_address' => $request->bank_address,
-             'bank_account_no' => $request->bank_account_no,
-             'bank_ifs_code' => $request->bank_ifs_code,
+             'ac_no' => $request->ac_no,
+             'ifs_code' => $request->ifs_code,
              'comments' => $request->comments,
          ]);        
+
+        return redirect()->route('super-admin.claimants.edit',$id)->with('success', 'Claimant updated successfully');
     }
 
     public function borrowerDetails(Request $request, $id)
@@ -449,8 +454,8 @@ class ClaimantController extends Controller
             'personal_email_id' => 'required|max:6',
             'bank_name' => 'required',
             'bank_address' => 'required',
-            'bank_account_no' => 'required',
-            'bank_ifs_code' => 'required',
+            'ac_no' => 'required',
+            'ifs_code' => 'required',
             'co_borrower_nominee_name' => 'required',
             'co_borrower_nominee_dob' => 'required',
             'co_borrower_nominee_gender' => 'required',
@@ -499,8 +504,8 @@ class ClaimantController extends Controller
             'personal_email_id.required'          => 'Please Enter Personal Email Id',
             'bank_name.required'          => 'Please Enter Bank Name',
             'bank_address.required'          => 'Please Enter Bank Address',
-            'bank_account_no.required'          => 'Please Enter Bank Account No',
-            'bank_ifs_code.required'          => 'Please Enter Bank Ifs Code',
+            'ac_no.required'          => 'Please Enter Bank Account No',
+            'ifs_code.required'          => 'Please Enter Bank Ifs Code',
             'co_borrower_nominee_name.required'          => 'Please Enter Co Borrower Nominee Name',
             'co_borrower_nominee_dob.required'          => 'Please Enter Co Borrower Nominee Dob',
             'co_borrower_nominee_gender.required'          => 'Please Enter Co Borrower Nominee Gender',
@@ -555,8 +560,8 @@ class ClaimantController extends Controller
                 'personal_email_id' => $request->personal_email_id,
                 'bank_name' => $request->bank_name,
                 'bank_address' => $request->bank_address,
-                'bank_account_no' => $request->bank_account_no,
-                'bank_ifs_code' => $request->bank_ifs_code,
+                'ac_no' => $request->ac_no,
+                'ifs_code' => $request->ifs_code,
                 'co_borrower_nominee_name' => $request->co_borrower_nominee_name,
                 'co_borrower_nominee_dob' => $request->co_borrower_nominee_dob,
                 'co_borrower_nominee_gender' => $request->co_borrower_nominee_gender,

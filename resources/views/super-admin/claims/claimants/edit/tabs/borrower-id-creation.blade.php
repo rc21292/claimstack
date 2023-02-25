@@ -1,4 +1,4 @@
-        <form action="{{ route('super-admin.claimants.update-borrower-details',1) }}" method="post" id="borrower-details-form"
+        <form action="{{ route('super-admin.claimants.update-borrower-details',$id) }}" method="post" id="borrower-details-form"
         enctype="multipart/form-data">
         @csrf
         <div class="card-body mb-4">
@@ -6,7 +6,7 @@
                 <div class="col-md-6 mb-3">
                     <label for="patient_id">Patient ID <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="patient_id" name="patient_id" maxlength="60"
-                    placeholder="Enter Patient Id" value="{{ old('patient_id',$borrower->patient_id) }}">
+                    placeholder="Enter Patient Id" value="{{ old('patient_id',$claimant->patient_id) }}">
                     @error('patient_id')
                     <span id="patient-id-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
@@ -15,7 +15,7 @@
                 <div class="col-md-6 mb-3">
                     <label for="claim_id">Cliam ID <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="claim_id" name="claim_id" maxlength="60"
-                    placeholder="Enter Claim Id" value="{{ old('claim_id',$borrower->claim_id) }}">
+                    placeholder="Enter Claim Id" value="{{ old('claim_id',$claimant->claim_id) }}">
                     @error('claim_id')
                     <span id="claim-id-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
@@ -24,7 +24,7 @@
                 <div class="col-md-4">
                     <label for="claimant_id">Claimant ID <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="claimant_id" name="claimant_id" maxlength="60"
-                    placeholder="Enter Claimant ID" value="{{ old('claimant_id',$borrower->claimant_id) }}">
+                    placeholder="Enter Claimant ID" value="{{ old('claimant_id',$claimant->uid) }}">
                     @error('claimant_id')
                     <span id="claim-id-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
@@ -33,7 +33,7 @@
                 <div class="col-md-4">
                     <label for="hospital_id">Hospital Id <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="hospital_id" name="hospital_id"
-                    placeholder="Enter Hospital Id" value="{{ old('hospital_id',$borrower->hospital_id) }}">
+                    placeholder="Enter Hospital Id" value="{{ old('hospital_id',$claimant->hospital_id) }}">
                     @error('hospital_id')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
@@ -42,7 +42,7 @@
                 <div class="col-md-4">
                     <label for="hospital_name">Hospital Name <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="hospital_name" name="hospital_name"
-                    placeholder="Enter Hospital Name" value="{{ old('hospital_name',$borrower->hospital_name) }}">
+                    placeholder="Enter Hospital Name" value="{{ old('hospital_name',$claimant->hospital_name) }}">
                     @error('hospital_name')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror

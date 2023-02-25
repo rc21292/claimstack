@@ -1,4 +1,4 @@
-<div class="card-body">
+{{-- <div class="card-body">
         <form action="{{ route('super-admin.claimants.update-borrower-details',1) }}" method="post" id="borrower-details-form"
         enctype="multipart/form-data">
         @csrf
@@ -586,7 +586,7 @@
 
         </div>
     </form>
-</div>
+</div> --}}
 @push('scripts')
 <script>
     $(document).on('change', '#is_patient_and_borrower_same', function(event) {

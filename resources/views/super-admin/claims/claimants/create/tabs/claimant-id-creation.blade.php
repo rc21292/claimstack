@@ -345,9 +345,9 @@
             </div>
 
             <div class="col-md-6 mt-3">
-                <input type="text" class="form-control" id="acc_no" name="acc_no" maxlength="20"
-                placeholder="Bank Account No." value="{{ old('acc_no') }}">
-                @error('acc_no')
+                <input type="text" class="form-control" id="ac_no" name="ac_no" maxlength="20"
+                placeholder="Bank Account No." value="{{ old('ac_no') }}">
+                @error('ac_no')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
@@ -371,7 +371,7 @@
 
             
             <div class="col-md-12 text-end mt-3">
-                <button type="submit" class="btn btn-success" form="claimant-id-form">Create / Save Borrower ID</button>
+                <button type="submit" class="btn btn-success" form="claimant-id-form">Create / Save Claimant ID</button>
             </div>
 
         </div>

@@ -44,8 +44,8 @@ class Claimant extends Model
         'cancel_cheque_file',
         'bank_name',
         'bank_address',
-        'bank_account_no',
-        'bank_ifs_code',
+        'ac_no',
+        'ifs_code',
         'comments',
     ];
 
