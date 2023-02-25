@@ -297,7 +297,7 @@ class ClaimController extends Controller
         $hospitals      = Hospital::get();
         $claim          = Claim::with('patient')->find($id);
         $patients       = Patient::get();
-        return view('super-admin.claims.claims.create.edit',  compact('hospitals', 'claim', 'patients'));
+        return view('super-admin.claims.claims.edit.edit',  compact('hospitals', 'claim', 'patients'));
     }
 
     /**

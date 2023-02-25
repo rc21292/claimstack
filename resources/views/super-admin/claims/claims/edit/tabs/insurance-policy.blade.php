@@ -1,5 +1,5 @@
 <div class="card-body">
-    <form action="{{ route('super-admin.claims.update-insurance-policy', $patient_id) }}" method="post" id="claims-form"
+    <form action="{{ route('super-admin.claims.update-insurance-policy', $claim->id) }}" method="post" id="claims-form"
         enctype="multipart/form-data">
         @csrf
 

@@ -64,4 +64,49 @@
     </div>
 @endsection
 @push('scripts')
+<script>
+    $(document).ready(function() {
+        setPatient();
+        setHospitalId();
+    });
+
+    function setPatient() {
+        var title               = $("#patient_id").select2().find(":selected").data("title");
+        var firstname           = $("#patient_id").select2().find(":selected").data("firstname");
+        var middlename          = $("#patient_id").select2().find(":selected").data("middlename");
+        var lastname            = $("#patient_id").select2().find(":selected").data("lastname");
+        var age                 = $("#patient_id").select2().find(":selected").data("age");
+        var gender              = $("#patient_id").select2().find(":selected").data("gender");
+        var hospital            = $("#patient_id").select2().find(":selected").data("hospital");
+        var registrationno      = $("#patient_id").select2().find(":selected").data("registrationno");
+
+
+        $('#title').val(title);
+        $('#firstname').val(firstname);
+        $('#middlename').val(middlename);
+        $('#lastname').val(lastname);
+        $('#age').val(age);
+        $('#gender').val(gender);
+        $('#hospital_name').val(hospital).trigger('change');
+        $('#registration_no').val(registrationno);
+    }
+
+    function setHospitalId() {
+        var uid = $("#hospital_name").select2().find(":selected").data("id");
+        var address = $("#hospital_name").select2().find(":selected").data("address");
+        var city = $("#hospital_name").select2().find(":selected").data("city");
+        var state = $("#hospital_name").select2().find(":selected").data("state");
+        var pincode = $("#hospital_name").select2().find(":selected").data("pincode");
+        var associate_partner_id = $("#hospital_name").select2().find(":selected").data("ap");
+        console.log(address);
+        $('#hospital_id').val(uid);
+        $('#hospital_address').val(address);
+        $('#hospital_city').val(city);
+        $('#hospital_state').val(state);
+        $('#hospital_pincode').val(pincode);
+        $('#hospital_pincode').val(pincode);
+        $('#associate_partner_id').val(associate_partner_id);
+    }
+</script>
 @endpush
+
