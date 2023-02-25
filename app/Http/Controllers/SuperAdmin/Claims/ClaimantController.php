@@ -242,7 +242,7 @@ class ClaimantController extends Controller
     {        
         $claimant     = Claimant::find($id);
         $exists     = Borrower::where('claimant_id', $id)->exists();
-        $hospital      = Hospital::find($claimant->hospital_id);
+        $hospital      = Hospital::where('uid',$claimant->hospital_id)->first();
         $hospitals      = Hospital::get();
         $patient        = Patient::where('uid', $claimant->patient_id)->first();
 

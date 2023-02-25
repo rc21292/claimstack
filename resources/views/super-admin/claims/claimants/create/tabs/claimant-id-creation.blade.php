@@ -4,6 +4,30 @@
         @csrf
 
         <div class="form-group row">
+
+            <div class="col-md-6 mb-3">
+                <label for="claim_id">Cliam ID <span class="text-danger">*</span></label>
+                <select class="form-control select2" id="claim_id" name="claim_id" data-toggle="select2"
+                    onchange="setPatient()">
+                    <option value="">Enter Patient ID</option>
+                    @foreach ($claims as $row)
+                        <option value="{{ $row->id }}" {{ old('claim_id', isset($claim) ? $claim->id : '') == $row->id ? 'selected' : '' }} 
+                            data-patient-id="{{ $row->patient->uid }}" 
+                            data-asp-id={{ $row->patient->associate_partner_id }}
+                            data-title="{{ $row->patient->title }}"
+                            data-firstname="{{ $row->patient->firstname }}"
+                            data-middlename="{{ $row->patient->middlename }}" 
+                            data-lastname="{{ $row->patient->lastname }}" 
+                            data-hospital="{{ $row->patient->hospital->uid }}"
+                            data-id-prof="{{ $row->patient->id_proof }}">
+                            {{ $row->uid }}
+                    @endforeach
+                </select>
+                @error('claim_id')
+                <span id="claim-id-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+
             <div class="col-md-6 mb-3">
                 <label for="patient_id">Patient ID <span class="text-danger">*</span></label>
                 <input type="text" @if($patient) readonly @endif class="form-control" id="patient_id" name="patient_id" maxlength="60"
@@ -13,14 +37,7 @@
                 @enderror
             </div>
 
-            <div class="col-md-6 mb-3">
-                <label for="claim_id">Cliam ID <span class="text-danger">*</span></label>
-                <input type="text" @if($claim) readonly @endif class="form-control" id="claim_id" name="claim_id" maxlength="60"
-                placeholder="Enter Claim Id" value="{{ old('claim_id', @$claim->uid) }}">
-                @error('claim_id')
-                <span id="claim-id-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
+
 
             <div class="col-md-6">
                 <label for="associate_partner_id">Associate Partner ID <span  class="text-danger">*</span></label>
@@ -377,3 +394,31 @@
         </div>
     </form>
 </div>
+@push('scripts')
+<script>
+    $('#are_patient_and_claimant_same').on('change', function () {
+        var idCountry = this.value;
+        if(idCountry == 'Yes'){
+
+            var title            = $("#claim_id").select2().find(":selected").data("title");
+            var firstname           = $("#claim_id").select2().find(":selected").data("firstname");
+            var middlename          = $("#claim_id").select2().find(":selected").data("middlename");
+            var lastname            = $("#claim_id").select2().find(":selected").data("lastname");
+
+            $('#title').val(title).trigger('change');
+            $('#firstname').val(firstname);
+            $('#middlename').val(middlename);
+            $('#lastname').val(lastname);
+
+        }else{
+
+            $('#title').val(title);
+            $('#firstname').val(firstname);
+            $('#middlename').val(middlename);
+            $('#lastname').val(lastname);
+
+        }
+    });
+
+</script>
+@endpush

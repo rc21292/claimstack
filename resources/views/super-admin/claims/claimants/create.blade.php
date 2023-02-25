@@ -66,69 +66,35 @@
 <script>
     $(document).ready(function() {
         setPatient();
-        setClaim();
-        setHospitalId();
-        setInsuranceCoverageOptions();
     });
 
     function setPatient() {
-        var title               = $("#patient_id").select2().find(":selected").data("title");
-        var firstname           = $("#patient_id").select2().find(":selected").data("firstname");
-        var middlename          = $("#patient_id").select2().find(":selected").data("middlename");
-        var lastname            = $("#patient_id").select2().find(":selected").data("lastname");
-        var age                 = $("#patient_id").select2().find(":selected").data("age");
-        var gender              = $("#patient_id").select2().find(":selected").data("gender");
-        var hospital            = $("#patient_id").select2().find(":selected").data("hospital");
-        var registrationno      = $("#patient_id").select2().find(":selected").data("registrationno");
+        var title            = $("#claim_id").select2().find(":selected").data("title");
+        var patient_id               = $("#claim_id").select2().find(":selected").data("patient-id");
+        var firstname           = $("#claim_id").select2().find(":selected").data("firstname");
+        var asp_id           = $("#claim_id").select2().find(":selected").data("asp-id");
+        var middlename          = $("#claim_id").select2().find(":selected").data("middlename");
+        var lastname            = $("#claim_id").select2().find(":selected").data("lastname");
+        var age                 = $("#claim_id").select2().find(":selected").data("age");
+        var gender              = $("#claim_id").select2().find(":selected").data("gender");
+        var hospital            = $("#claim_id").select2().find(":selected").data("hospital");
+        var idprof            = $("#claim_id").select2().find(":selected").data("id-prof");
 
 
-        $('#title').val(title);
-        $('#firstname').val(firstname);
-        $('#middlename').val(middlename);
-        $('#lastname').val(lastname);
-        $('#age').val(age);
-        $('#gender').val(gender);
-        $('#hospital_name').val(hospital).trigger('change');
-        $('#registration_no').val(registrationno);
+        $('#patient_id').val(patient_id);
+        $('#patient_id_proof').val(idprof);
+        $('#associate_partner_id').val(asp_id);
+        $('#patient_title').val(title);
+        $('#patient_title').val(title);
+        $('#patient_firstname').val(firstname);
+        $('#patient_middlename').val(middlename);
+        $('#patient_lastname').val(lastname);
+        $('#patient_age').val(age);
+        $('#patient_gender').val(gender);
+        $('#hospital_id').val(hospital).trigger('change');
     }
 
-    function setClaim() {
-        var title               = $("#patient_id").select2().find(":selected").data("title");
-        var firstname           = $("#patient_id").select2().find(":selected").data("firstname");
-        var middlename          = $("#patient_id").select2().find(":selected").data("middlename");
-        var lastname            = $("#patient_id").select2().find(":selected").data("lastname");
-        var age                 = $("#patient_id").select2().find(":selected").data("age");
-        var gender              = $("#patient_id").select2().find(":selected").data("gender");
-        var hospital            = $("#patient_id").select2().find(":selected").data("hospital");
-        var registrationno      = $("#patient_id").select2().find(":selected").data("registrationno");
-
-
-        $('#title').val(title);
-        $('#firstname').val(firstname);
-        $('#middlename').val(middlename);
-        $('#lastname').val(lastname);
-        $('#age').val(age);
-        $('#gender').val(gender);
-        $('#hospital_name').val(hospital).trigger('change');
-        $('#registration_no').val(registrationno);
-    }
-
-    function setHospitalId() {
-        var uid = $("#hospital_name").select2().find(":selected").data("id");
-        var address = $("#hospital_name").select2().find(":selected").data("address");
-        var city = $("#hospital_name").select2().find(":selected").data("city");
-        var state = $("#hospital_name").select2().find(":selected").data("state");
-        var pincode = $("#hospital_name").select2().find(":selected").data("pincode");
-        var associate_partner_id = $("#hospital_name").select2().find(":selected").data("ap");
-        console.log(address);
-        $('#hospital_id').val(uid);
-        $('#hospital_address').val(address);
-        $('#hospital_city').val(city);
-        $('#hospital_state').val(state);
-        $('#hospital_pincode').val(pincode);
-        $('#hospital_pincode').val(pincode);
-        $('#associate_partner_id').val(associate_partner_id);
-    }
+    
 </script>
 <script>
     function setInsuranceCoverageOptions(){
