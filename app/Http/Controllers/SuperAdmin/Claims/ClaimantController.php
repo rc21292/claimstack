@@ -433,25 +433,24 @@ class ClaimantController extends Controller
 
     public function borrowerDetails(Request $request, $id)
     {
-        echo "<pre>";print_r($request->all());"</pre>";exit;
         $rules = [
             'patient_id' => 'required',
             'claim_id' => 'required',
             'claimant_id' => 'required',
             'hospital_id' => 'required',
-            'hospital_name' => 'required|numeric|digits_between:1,2',
-            'hospital_address' => 'required|numeric|digits_between:1,2',
-            'hospital_city' => 'required|numeric|digits_between:1,2',
-            'hospital_state' => 'required|numeric|digits_between:1,2',
+            'hospital_name' => 'required',
+            'hospital_address' => 'required',
+            'hospital_city' => 'required',
+            'hospital_state' => 'required',
             'hospital_pincode' => 'required',
-            'patient_title' => 'required|numeric|digits_between:1,2',
+            'patient_title' => 'required',
             'patient_firstname' => 'required',
-            'patient_middlename' => 'required|numeric|digits_between:1,6',
-            'patient_lastname' => 'required||numeric|digits_between:1,6',
+            'patient_middlename' => 'required',
+            'patient_lastname' => 'required',
             'is_patient_and_borrower_same' => 'required',
-            'is_claimant_and_borrower_same' => 'required|numeric|digits_between:1,6',
+            'is_claimant_and_borrower_same' => 'required',
             'title' => 'required',
-            'firstname' => 'required|numeric|digits_between:1,6',
+            'firstname' => 'required',
             'middlename' => 'required',
             'lastname' => 'required',
             'borrowers_relation_with_patient' => 'required',
@@ -462,15 +461,15 @@ class ClaimantController extends Controller
             'state' => 'required|max:40',
             'pincode' => 'required',
             'id_proof' => 'required',
-            'mobile_no' => 'required|max:6',
-            'email_id' => 'required|max:6',
-            'official_email_id' => 'required|max:6',
-            'pan_no' => 'required|max:6',
-            'aadhar_no' => 'required|max:6',
-            'bank_statement' => 'required|max:6',
-            'itr' => 'required|max:6',
-            'cancel_cheque' => 'required|max:6',
-            'personal_email_id' => 'required|max:6',
+            'mobile_no' => 'required|digits:10',
+            'email_id' => 'required|email|max:45',
+            'official_email_id' => 'required|email|max:45',
+            'pan_no' => 'required|max:10',
+            'aadhar_no' => 'required|max:12',
+            'bank_statement' => 'required',
+            'itr' => 'required',
+            'cancel_cheque' => 'required',
+            'personal_email_id' => 'required',
             'bank_name' => 'required',
             'bank_address' => 'required',
             'ac_no' => 'required',
@@ -590,6 +589,12 @@ class ClaimantController extends Controller
                 'co_borrower_comments' => $request->co_borrower_comments,
             ]);        
 
+        $claimant = Claimant::find($id);
+
+        Borrower::where('claimant_id', $id)->update([
+            'uid'      => 'BRO' . substr($claimant->pan_no, 0, 2) . substr($borrower->pan_no, -3)
+        ]);
+
         if ($request->hasfile('id_proof')) {
             $id_proof                    = $request->file('id_proof');
             $name                       = $id_proof->getClientOriginalName();
@@ -671,6 +676,18 @@ class ClaimantController extends Controller
             ]);
         }
 
+    }
+
+    public function fetchPaitientData(Request $request, $id)
+    {
+        $data = Patient::where("uid",$id)->first();
+        return response()->json($data);
+    }
+
+    public function fetchClaimentData(Request $request, $id)
+    {
+        $data = Claimant::where("id",$id)->first();
+        return response()->json($data);
     }
 
     /**

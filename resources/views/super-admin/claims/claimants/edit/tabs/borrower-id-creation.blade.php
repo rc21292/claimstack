@@ -6,7 +6,7 @@
                 <div class="col-md-6 mb-3">
                     <label for="patient_id">Patient ID <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="patient_id" name="patient_id" maxlength="60"
-                    placeholder="Enter Patient Id" value="{{ old('patient_id',$claimant->patient_id) }}">
+                    placeholder="Enter Patient Id" value="{{ old('patient_id',$borrower->patient_id) }}">
                     @error('patient_id')
                     <span id="patient-id-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
@@ -15,7 +15,7 @@
                 <div class="col-md-6 mb-3">
                     <label for="claim_id">Cliam ID <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="claim_id" name="claim_id" maxlength="60"
-                    placeholder="Enter Claim Id" value="{{ old('claim_id',$claimant->claim_id) }}">
+                    placeholder="Enter Claim Id" value="{{ old('claim_id',$borrower->claim_id) }}">
                     @error('claim_id')
                     <span id="claim-id-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
@@ -33,7 +33,7 @@
                 <div class="col-md-4">
                     <label for="hospital_id">Hospital Id <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="hospital_id" name="hospital_id"
-                    placeholder="Enter Hospital Id" value="{{ old('hospital_id',$claimant->hospital_id) }}">
+                    placeholder="Enter Hospital Id" value="{{ old('hospital_id',$borrower->hospital_id) }}">
                     @error('hospital_id')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
@@ -42,7 +42,7 @@
                 <div class="col-md-4">
                     <label for="hospital_name">Hospital Name <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="hospital_name" name="hospital_name"
-                    placeholder="Enter Hospital Name" value="{{ old('hospital_name',$claimant->hospital_name) }}">
+                    placeholder="Enter Hospital Name" value="{{ old('hospital_name',$borrower->hospital_name) }}">
                     @error('hospital_name')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
@@ -158,7 +158,7 @@
                 </div>
 
                 <div class="col-md-3 mt-1">
-                    <select class="form-control" id="title" name="title">
+                    <select class="form-control" id="borrower_title" name="title">
                         <option value="">Select</option>
                         <option @if( old('title') == 'Mr.') selected @endif value="Mr.">Mr.</option>
                         <option @if( old('title') == 'Ms.') selected @endif value="Ms.">Ms.</option>
@@ -169,7 +169,7 @@
                 </div>
 
                 <div class="col-md-3 mt-1">
-                    <input type="text" maxlength="25" class="form-control" id="firstname"
+                    <input type="text" maxlength="25" class="form-control" id="borrower_firstname"
                     name="firstname" maxlength="15" placeholder="First name"
                     value="{{ old('firstname',$borrower->firstname) }}">
                     @error('firstname')
@@ -178,7 +178,7 @@
                 </div>
 
                 <div class="col-md-3 mt-1">
-                    <input type="text" maxlength="25" class="form-control" id="middlename"
+                    <input type="text" maxlength="25" class="form-control" id="borrower_middlename"
                     name="middlename" maxlength="30" placeholder="Middle name"
                     value="{{ old('middlename',$borrower->middlename) }}">
                     @error('middlename')
@@ -187,7 +187,7 @@
                 </div>
 
                 <div class="col-md-3 mt-1">
-                    <input type="text" maxlength="25" class="form-control" id="lastname"
+                    <input type="text" maxlength="25" class="form-control" id="borrower_lastname"
                     name="lastname" maxlength="30" placeholder="Last name"  value="{{ old('lastname',$borrower->lastname) }}">
                     @error('lastname')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -237,7 +237,7 @@
 
                 <div class="col-md-12 mt-3">
                     <label for="address">Borrower Address <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="address" name="address"
+                    <input type="text" class="form-control" id="borrower_address" name="address"
                     placeholder="Address Line"
                     value="{{ old('address',$borrower->address) }}">
                     @error('address')
@@ -246,7 +246,7 @@
                 </div>
 
                 <div class="col-md-4 mt-3">
-                    <input type="text" class="form-control" id="city" name="city"
+                    <input type="text" class="form-control" id="borrower_city" name="city"
                     placeholder="City" value="{{ old('city',$borrower->city) }}">
                     @error('city')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -254,7 +254,7 @@
                 </div>
 
                 <div class="col-md-4 mt-3">
-                    <input type="text" class="form-control" id="state" name="state"
+                    <input type="text" class="form-control" id="borrower_state" name="state"
                     placeholder="State" value="{{ old('state',$borrower->state) }}">
                     @error('state')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -262,7 +262,7 @@
                 </div>
 
                 <div class="col-md-4 mt-3">
-                    <input type="number" class="form-control" id="pincode" name="pincode"
+                    <input type="number" class="form-control" id="borrower_pincode" name="pincode"
                     placeholder="Pincode" value="{{ old('pincode',$borrower->pincode) }}">
                     @error('pincode')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -648,5 +648,162 @@
         $('#registration_no').val(registrationno);
     }
 </script>
+
+ <script>
+    var is_patient_and_borrower_same = "{{ old('is_patient_and_borrower_same', $borrower->is_patient_and_borrower_same) }}";
+
+    var is_claimant_and_borrower_same = "{{ old('is_claimant_and_borrower_same', $borrower->is_claimant_and_borrower_same) }}";
+
+    if(is_patient_and_borrower_same == 'Yes'){
+
+        $("#is_claimant_and_borrower_same").attr('disabled', true);
+
+        $.ajax({
+            url: "{{route('super-admin.claimants.fetch-patient', $claimant->patient_id)}}",
+            type: "GET",
+            data: {
+                _token: '{{csrf_token()}}'
+            },
+            dataType: 'json',
+            success: function (result) {
+                $("#borrower_title").val(result.title);
+                $("#borrower_firstname").val(result.firstname);
+                $("#borrower_lastname").val(result.lastname);
+                $("#borrower_middlename").val(result.middlename);
+                $("#borrower_address").val(result.patient_current_address);
+                $("#borrower_city").val(result.patient_current_city);
+                $("#borrower_state").val(result.patient_current_state);
+                $("#borrower_pincode").val(result.patient_current_pincode);
+            }
+        });
+
+
+    }
+
+    if(is_patient_and_borrower_same == 'No'){
+        $("#borrower_title").val('');
+        $("#borrower_firstname").val('');
+        $("#borrower_lastname").val('');
+        $("#borrower_middlename").val('');
+        $("#borrower_address").val('');
+        $("#borrower_city").val('');
+        $("#borrower_state").val('');
+        $("#borrower_pincode").val('');
+
+        $("#is_claimant_and_borrower_same").attr('disabled', false);
+    }
+
+    if(is_claimant_and_borrower_same == 'No'){
+        $("#borrower_title").val('');
+        $("#borrower_firstname").val('');
+        $("#borrower_lastname").val('');
+        $("#borrower_middlename").val('');
+        $("#borrower_address").val('');
+        $("#borrower_city").val('');
+        $("#borrower_state").val('');
+        $("#borrower_pincode").val('');
+
+    }
+
+    if(is_claimant_and_borrower_same == 'Yes'){
+
+
+        $.ajax({
+            url: "{{route('super-admin.claimants.fetch-claimant', $id)}}",
+            type: "GET",
+            data: {
+                _token: '{{csrf_token()}}'
+            },
+            dataType: 'json',
+            success: function (result) {
+                $("#borrower_title").val(result.title);
+                $("#borrower_firstname").val(result.firstname);
+                $("#borrower_lastname").val(result.lastname);
+                $("#borrower_middlename").val(result.middlename);
+                $("#borrower_address").val(result.address);
+                $("#borrower_city").val(result.city);
+                $("#borrower_state").val(result.state);
+                $("#borrower_pincode").val(result.pincode);
+            }
+        });
+
+
+    }
+
+    $(document).ready(function () {
+        $('#is_patient_and_borrower_same').on('change', function () {
+            var idCountry = this.value;
+            if(idCountry == 'Yes'){
+                $("#is_claimant_and_borrower_same").attr('disabled', true);
+
+                $.ajax({
+                    url: "{{route('super-admin.claimants.fetch-patient', $claimant->patient_id)}}",
+                    type: "GET",
+                    data: {
+                        _token: '{{csrf_token()}}'
+                    },
+                    dataType: 'json',
+                    success: function (result) {
+                        $("#borrower_title").val(result.title);
+                        $("#borrower_firstname").val(result.firstname);
+                        $("#borrower_lastname").val(result.lastname);
+                        $("#borrower_middlename").val(result.middlename);
+                        $("#borrower_address").val(result.patient_current_address);
+                        $("#borrower_city").val(result.patient_current_city);
+                        $("#borrower_state").val(result.patient_current_state);
+                        $("#borrower_pincode").val(result.patient_current_pincode);
+                    }
+                });
+
+            }else{
+
+                $("#borrower_title").val('');
+                $("#borrower_firstname").val('');
+                $("#borrower_lastname").val('');
+                $("#borrower_middlename").val('');
+                $("#borrower_address").val('');
+                $("#borrower_city").val('');
+                $("#borrower_state").val('');
+                $("#borrower_pincode").val('');
+
+                $("#is_claimant_and_borrower_same").attr('disabled', false);
+            }
+
+        });
+        $('#is_claimant_and_borrower_same').on('change', function () {
+            var idState = this.value;
+            if(idState == 'Yes'){
+                $.ajax({
+                    url: "{{route('super-admin.claimants.fetch-claimant', $id)}}",
+                    type: "GET",
+                    data: {
+                        _token: '{{csrf_token()}}'
+                    },
+                    dataType: 'json',
+                    success: function (result) {
+                        $("#borrower_title").val(result.title);
+                        $("#borrower_firstname").val(result.firstname);
+                        $("#borrower_lastname").val(result.lastname);
+                        $("#borrower_middlename").val(result.middlename);
+                        $("#borrower_address").val(result.address);
+                        $("#borrower_city").val(result.city);
+                        $("#borrower_state").val(result.state);
+                        $("#borrower_pincode").val(result.pincode);
+                    }
+                });
+            }else{
+                $("#borrower_title").val('');
+                $("#borrower_firstname").val('');
+                $("#borrower_lastname").val('');
+                $("#borrower_middlename").val('');
+                $("#borrower_address").val('');
+                $("#borrower_city").val('');
+                $("#borrower_state").val('');
+                $("#borrower_pincode").val('');
+            }
+
+        });
+    });
+    </script>
 @endpush
 
