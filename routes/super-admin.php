@@ -113,8 +113,8 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     Route::get('hospitals/import-export',[HospitalController::class,'importExport'])->name('hospitals.import-export');
     Route::post('hospitals/import',[HospitalController::class,'import'])->name('hospitals.import');
     Route::get('hospitals/export',[HospitalController::class,'export'])->name('hospitals.export');
-    
-    Route::resource('hospitals', HospitalController::class); 
+
+    Route::resource('hospitals', HospitalController::class);
 
     Route::put('hospitals/tie-ups/{id}', [HospitalController::class, 'updateHospitalTieUps'])->name('hospitals.tie-ups');
 
@@ -125,7 +125,7 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     Route::put('hospitals/department/{id}', [HospitalController::class, 'updateHospitalDepartment'])->name('hospitals.department');
 
     Route::put('hospitals/empanelment-status/{id}', [HospitalController::class, 'updateHospitalEmpanelmentStatus'])->name('hospitals.empanelment-status');
-    
+
     Route::post('hospital/change-pasword', [HospitalController::class, 'changePassword'])->name('hospitals.change-password');
 
 
@@ -149,8 +149,8 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
 
     Route::resource('claims', ClaimController::class);
 
-    Route::post('claims/update-insurance-policy/{id}', [ClaimController::class, 'updateInsurancePolicy'])->name('claims.update-insurance-policy');
-    
+    Route::put('claims/update-insurance-policy/{id}', [ClaimController::class, 'updateInsurancePolicy'])->name('claims.update-insurance-policy');
+
     /*
     |--------------------------------------------------------------------------
     | Claimant Route
