@@ -1,6 +1,9 @@
         <form action="{{ route('super-admin.claimants.update-borrower-details',$id) }}" method="post" id="borrower-details-form"
         enctype="multipart/form-data">
         @csrf
+        @if($errors->any())
+    {{ implode('', $errors->all('<div>:message</div>')) }}
+@endif
         <div class="card-body mb-4">
             <div class="form-group row">
                 <div class="col-md-6 mb-3">
@@ -158,38 +161,38 @@
                 </div>
 
                 <div class="col-md-3 mt-1">
-                    <select class="form-control" id="borrower_title" name="title">
+                    <select class="form-control" id="borrower_title" name="borrower_title">
                         <option value="">Select</option>
-                        <option @if( old('title') == 'Mr.') selected @endif value="Mr.">Mr.</option>
-                        <option @if( old('title') == 'Ms.') selected @endif value="Ms.">Ms.</option>
+                        <option @if( old('borrower_title') == 'Mr.') selected @endif value="Mr.">Mr.</option>
+                        <option @if( old('borrower_title') == 'Ms.') selected @endif value="Ms.">Ms.</option>
                     </select>
-                    @error('title')
+                    @error('borrower_title')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
 
                 <div class="col-md-3 mt-1">
                     <input type="text" maxlength="25" class="form-control" id="borrower_firstname"
-                    name="firstname" maxlength="15" placeholder="First name"
-                    value="{{ old('firstname',$borrower->firstname) }}">
-                    @error('firstname')
+                    name="borrower_firstname" maxlength="15" placeholder="First name"
+                    value="{{ old('borrower_firstname',$borrower->borrower_firstname) }}">
+                    @error('borrower_firstname')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
 
                 <div class="col-md-3 mt-1">
                     <input type="text" maxlength="25" class="form-control" id="borrower_middlename"
-                    name="middlename" maxlength="30" placeholder="Middle name"
-                    value="{{ old('middlename',$borrower->middlename) }}">
-                    @error('middlename')
+                    name="borrower_middlename" maxlength="30" placeholder="Middle name"
+                    value="{{ old('borrower_middlename',$borrower->borrower_middlename) }}">
+                    @error('borrower_middlename')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
 
                 <div class="col-md-3 mt-1">
                     <input type="text" maxlength="25" class="form-control" id="borrower_lastname"
-                    name="lastname" maxlength="30" placeholder="Last name"  value="{{ old('lastname',$borrower->lastname) }}">
-                    @error('lastname')
+                    name="borrower_lastname" maxlength="30" placeholder="Last name"  value="{{ old('borrower_lastname',$borrower->borrower_lastname) }}">
+                    @error('borrower_lastname')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
@@ -236,119 +239,122 @@
                 </div>
 
                 <div class="col-md-12 mt-3">
-                    <label for="address">Borrower Address <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="borrower_address" name="address"
+                    <label for="borrower_address">Borrower Address <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="borrower_address" name="borrower_address"
                     placeholder="Address Line"
-                    value="{{ old('address',$borrower->address) }}">
-                    @error('address')
+                    value="{{ old('borrower_address',$borrower->borrower_address) }}">
+                    @error('borrower_address')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
 
                 <div class="col-md-4 mt-3">
-                    <input type="text" class="form-control" id="borrower_city" name="city"
-                    placeholder="City" value="{{ old('city',$borrower->city) }}">
-                    @error('city')
+                    <input type="text" class="form-control" id="borrower_city" name="borrower_city"
+                    placeholder="City" value="{{ old('borrower_city',$borrower->borrower_city) }}">
+                    @error('borrower_city')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
 
                 <div class="col-md-4 mt-3">
-                    <input type="text" class="form-control" id="borrower_state" name="state"
-                    placeholder="State" value="{{ old('state',$borrower->state) }}">
-                    @error('state')
+                    <input type="text" class="form-control" id="borrower_state" name="borrower_state"
+                    placeholder="State" value="{{ old('borrower_state',$borrower->borrower_state) }}">
+                    @error('borrower_state')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
 
                 <div class="col-md-4 mt-3">
-                    <input type="number" class="form-control" id="borrower_pincode" name="pincode"
-                    placeholder="Pincode" value="{{ old('pincode',$borrower->pincode) }}">
-                    @error('pincode')
+                    <input type="number" class="form-control" id="borrower_pincode" name="borrower_pincode"
+                    placeholder="Pincode" value="{{ old('borrower_pincode',$borrower->borrower_pincode) }}">
+                    @error('borrower_pincode')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
 
                 <div class="col-md-6 mt-3">
-                    <label>Borrower ID Proof</label>
+                    <label>Borrower ID Proof *{{ old('borrower_id_proof', $borrower->borrower_id_proof)  }}</label>
                     <div class="input-group">
-                        <select class="form-select" id="id_proof" name="id_proof">
+                        <select class="form-select" id="borrower_id_proof" name="borrower_id_proof">
                             <option value="">Select Borrower ID Proof</option>
-                            <option value="Yes" {{ old('id_proof') == 'Yes' ? 'selected' : '' }}>Yes  </option>
-                            <option value="No" {{ old('id_proof', @$hospital->id_proof) == 'No' ? 'selected' : '' }}>No </option>
+                            <option value="Aadhar Card" {{ old('borrower_id_proof', $borrower->borrower_id_proof) == 'Aadhar Card' ? 'selected' : '' }}>Aadhar Card </option>
+                            <option value="PAN Card" {{ old('borrower_id_proof', $borrower->borrower_id_proof) == 'PAN Card' ? 'selected' : '' }}>PAN Card  </option>
+                            <option value="Voter's ID" {{ old('borrower_id_proof', $borrower->borrower_id_proof) == "Voter's ID" ? 'selected' : '' }}>Voter's ID</option>
+                            <option value="Driving Licence"{{ old('borrower_id_proof', $borrower->borrower_id_proof) == 'Driving Licence' ? 'selected' : '' }}>Driving Licence </option>
+                            <option value="Passport" {{ old('borrower_id_proof', $borrower->patient_id_proof) == 'Passport' ? 'selected' : '' }}>Passport</option>
                         </select>
-                        <input type="file" name="id_proof_file" id="id_proof_file" hidden />
-                        <label for="id_proof_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
+                        <input type="file" name="borrower_id_proof_file" id="borrower_id_proof_file" hidden />
+                        <label for="borrower_id_proof_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
                     </div>
 
-                    @error('id_proof')
+                    @error('borrower_id_proof')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
-                    @error('id_proof_file')
+                    @error('borrower_id_proof_file')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
 
                 <div class="col-md-6 mt-3">
-                    <label for="mobile_no">Borrower Mobile No. <span class="text-danger">*</span></label>
+                    <label for="borrower_mobile_no">Borrower Mobile No. <span class="text-danger">*</span></label>
                     <div class="input-group">
-                        <label class="input-group-text" for="mobile_no">+91</label>
-                        <input type="number" class="form-control" id="mobile_no" name="mobile_no"
+                        <label class="input-group-text" for="borrower_mobile_no">+91</label>
+                        <input type="number" class="form-control" id="borrower_mobile_no" name="borrower_mobile_no"
                         pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"
                         placeholder="Enter Claimant Mobile No."
-                        value="{{ old('mobile_no',$borrower->mobile_no) }}">
+                        value="{{ old('borrower_mobile_no',$borrower->borrower_mobile_no) }}">
                     </div>
-                    @error('mobile_no')
+                    @error('borrower_mobile_no')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
 
                 <div class="col-md-6 mt-3">
-                    <label for="personal_email_id">Borrower email id <span class="text-danger">*</span></label>
-                    <input type="email" class="form-control" id="email_id" name="email_id" maxlength="45"
-                    placeholder="Enter Borrower email id" value="{{ old('email_id',$borrower->email_id) }}">
-                    @error('email_id')
+                    <label for="borrower_personal_email_id">Borrower Personal email id <span class="text-danger">*</span></label>
+                    <input type="email" class="form-control" id="borrower_personal_email_id" name="borrower_personal_email_id" maxlength="45"
+                    placeholder="Enter Borrower Personal email id" value="{{ old('borrower_personal_email_id',$borrower->borrower_personal_email_id) }}">
+                    @error('borrower_personal_email_id')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
 
                 <div class="col-md-6 mt-3">
-                    <label for="official_email_id">Borrower official email id<span class="text-danger">*</span></label>
-                    <input type="email" class="form-control" id="official_email_id" name="official_email_id" maxlength="45"
-                    placeholder="Enter Borrower official email id" value="{{ old('official_email_id',$borrower->official_email_id) }}">
-                    @error('official_email_id')
+                    <label for="borrower_official_email_id">Borrower official email id<span class="text-danger">*</span></label>
+                    <input type="email" class="form-control" id="borrower_official_email_id" name="borrower_official_email_id" maxlength="45"
+                    placeholder="Enter Borrower official email id" value="{{ old('borrower_official_email_id',$borrower->borrower_official_email_id) }}">
+                    @error('borrower_official_email_id')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
-                </div>          
+                </div>         
 
                 <div class="col-md-6 mt-3">
-                    <label for="pan_no">Borrower Pan No. <span class="text-danger">*</span></label>
+                    <label for="borrower_pan_no">Borrower Pan No. <span class="text-danger">*</span></label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="pan_no" name="pan_no"
-                        maxlength="10" placeholder="Enter PAN no." value="{{ old('pan_no',$borrower->pan_no) }}">
-                        <input type="file" name="pan_no_file" id="pan_no_file" hidden />
-                        <label for="pan_no_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
+                        <input type="text" class="form-control" id="borrower_pan_no" name="borrower_pan_no"
+                        maxlength="10" placeholder="Enter PAN no." value="{{ old('borrower_pan_no',$borrower->borrower_pan_no) }}">
+                        <input type="file" name="borrower_pan_no_file" id="borrower_pan_no_file" hidden />
+                        <label for="borrower_pan_no_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
                     </div>
-                    @error('pan_no')
+                    @error('borrower_pan_no')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
-                    @error('pan_no_file')
+                    @error('borrower_pan_no_file')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
 
                 <div class="col-md-6 mt-3">
-                    <label for="aadhar_no">Borrower Aadhar No. <span class="text-danger">*</span></label>
+                    <label for="borrower_aadhar_no">Borrower Aadhar No. <span class="text-danger">*</span></label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="aadhar_no" name="aadhar_no"
-                        maxlength="10" placeholder="Enter Aadhar no." value="{{ old('aadhar_no',$borrower->aadhar_no) }}">
-                        <input type="file" name="aadhar_no_file" id="aadhar_no_file" hidden />
-                        <label for="aadhar_no_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
+                        <input type="text" class="form-control" id="borrower_aadhar_no" name="borrower_aadhar_no"
+                        maxlength="10" placeholder="Enter Aadhar no." value="{{ old('borrower_aadhar_no',$borrower->borrower_aadhar_no) }}">
+                        <input type="file" name="borrower_aadhar_no_file" id="borrower_aadhar_no_file" hidden />
+                        <label for="borrower_aadhar_no_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
                     </div>
-                    @error('aadhar_no')
+                    @error('borrower_aadhar_no')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
-                    @error('aadhar_no_file')
+                    @error('borrower_aadhar_no_file')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
@@ -397,41 +403,23 @@
                 <div class="col-md-4 mt-3">
                     <label>Borrower Cancel Cheque</label>
                     <div class="input-group">
-                        <select class="form-select" id="cancel_cheque" name="cancel_cheque">
+                        <select class="form-select" id="borrower_cancel_cheque" name="borrower_cancel_cheque">
                             <option value="">Select Borrower Cancel Cheque</option>
-                            <option value="Yes" {{ old('cancel_cheque') == 'Yes' ? 'selected' : '' }}>Yes  </option>
-                            <option value="No" {{ old('cancel_cheque', @$hospital->cancel_cheque) == 'No' ? 'selected' : '' }}>No </option>
+                            <option value="Yes" {{ old('borrower_cancel_cheque') == 'Yes' ? 'selected' : '' }}>Yes  </option>
+                            <option value="No" {{ old('borrower_cancel_cheque', @$hospital->borrower_cancel_cheque) == 'No' ? 'selected' : '' }}>No </option>
                         </select>
-                        <input type="file" name="cancel_cheque_file" id="cancel_cheque_file" hidden />
-                        <label for="cancel_cheque_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
+                        <input type="file" name="borrower_cancel_cheque_file" id="borrower_cancel_cheque_file" hidden />
+                        <label for="borrower_cancel_cheque_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
                     </div>
 
-                    @error('cancel_cheque')
+                    @error('borrower_cancel_cheque')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
-                    @error('cancel_cheque_file')
+                    @error('borrower_cancel_cheque_file')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
-                </div>
-
+                </div>               
                 
-                <div class="col-md-6 mt-3">
-                    <label for="personal_email_id">Claimant Personal email id <span class="text-danger">*</span></label>
-                    <input type="email" class="form-control" id="personal_email_id" name="personal_email_id" maxlength="45"
-                    placeholder="Enter Claimant Personal email id" value="{{ old('personal_email_id',$borrower->personal_email_id) }}">
-                    @error('personal_email_id')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                    @enderror
-                </div>
-
-                <div class="col-md-6 mt-3">
-                    <label for="official_email_id">Claimant official email id<span class="text-danger">*</span></label>
-                    <input type="email" class="form-control" id="official_email_id" name="official_email_id" maxlength="45"
-                    placeholder="Enter Claimant official email id" value="{{ old('official_email_id',$borrower->official_email_id) }}">
-                    @error('official_email_id')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                    @enderror
-                </div>
 
                 <div class="col-md-12 mt-2">
                     <label for="address">Borrower Bank Details <span class="text-danger">*</span></label>
@@ -439,33 +427,33 @@
 
 
                 <div class="col-md-6 mt-2">
-                    <input type="text" class="form-control" id="bank_name" name="bank_name" maxlength="45"
-                    placeholder="Bank Name" value="{{ old('bank_name',$borrower->bank_name) }}">
-                    @error('bank_name')
+                    <input type="text" class="form-control" id="borrower_bank_name" name="borrower_bank_name" maxlength="45"
+                    placeholder="Bank Name" value="{{ old('borrower_bank_name',$borrower->borrower_bank_name) }}">
+                    @error('borrower_bank_name')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>            
 
                 <div class="col-md-6 mt-2">
-                    <input type="text" class="form-control" id="bank_address" name="bank_address" maxlength="80"
-                    placeholder="Bank Address" value="{{ old('bank_address',$borrower->bank_address) }}">
-                    @error('bank_address')
+                    <input type="text" class="form-control" id="borrower_bank_address" name="borrower_bank_address" maxlength="80"
+                    placeholder="Bank Address" value="{{ old('borrower_bank_address',$borrower->borrower_bank_address) }}">
+                    @error('borrower_bank_address')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
 
                 <div class="col-md-6 mt-2">
-                    <input type="text" class="form-control" id="bank_account_no" name="bank_account_no" maxlength="20"
-                    placeholder="Bank Account No." value="{{ old('bank_account_no',$borrower->bank_account_no, @$hospital->bank_account_no) }}">
-                    @error('bank_account_no')
+                    <input type="text" class="form-control" id="borrower_ac_no" name="borrower_ac_no" maxlength="20"
+                    placeholder="Bank Account No." value="{{ old('borrower_ac_no',$borrower->borrower_ac_no, @$hospital->borrower_ac_no) }}">
+                    @error('borrower_ac_no')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
 
                 <div class="col-md-6 mt-2">
-                    <input type="text" class="form-control" id="bank_ifs_code" name="bank_ifs_code" maxlength="11"
-                    placeholder="Bank Ifs Code" value="{{ old('bank_ifs_code',$borrower->bank_ifs_code, @$hospital->bank_ifs_code) }}">
-                    @error('bank_ifs_code')
+                    <input type="text" class="form-control" id="borrower_ifs_code" name="borrower_ifs_code" maxlength="11"
+                    placeholder="Bank Ifs Code" value="{{ old('borrower_ifs_code',$borrower->borrower_ifs_code, @$hospital->borrower_ifs_code) }}">
+                    @error('borrower_ifs_code')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
@@ -559,12 +547,12 @@
                 </div>
 
                 <div class="col-md-6 mt-3">
-                    <label for="estimated_amount">Estimated Amount <span class="text-danger">*</span></label>
-                    <input type="number" class="form-control" id="estimated_amount" name="estimated_amount"
+                    <label for="borrower_estimated_amount">Estimated Amount <span class="text-danger">*</span></label>
+                    <input type="number" class="form-control" id="borrower_estimated_amount" name="borrower_estimated_amount"
                     pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"
                     placeholder="Enter Estimated Amount"
-                    value="{{ old('estimated_amount',$borrower->estimated_amount) }}">
-                    @error('estimated_amount')
+                    value="{{ old('borrower_estimated_amount',$borrower->borrower_estimated_amount) }}">
+                    @error('borrower_estimated_amount')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
@@ -649,7 +637,7 @@
     }
 </script>
 
- <script>
+<script>
     var is_patient_and_borrower_same = "{{ old('is_patient_and_borrower_same', $borrower->is_patient_and_borrower_same) }}";
 
     var is_claimant_and_borrower_same = "{{ old('is_claimant_and_borrower_same', $borrower->is_claimant_and_borrower_same) }}";
@@ -674,6 +662,10 @@
                 $("#borrower_city").val(result.patient_current_city);
                 $("#borrower_state").val(result.patient_current_state);
                 $("#borrower_pincode").val(result.patient_current_pincode);
+                $("#borrower_id_proof").val(result.id_proof);
+                $("#borrower_personal_email_id").val(result.email);
+                $("#borrower_mobile_no").val(result.phone);
+                $("#borrower_id_proof_file").val(result.id_proof_file);
             }
         });
 
@@ -689,6 +681,9 @@
         $("#borrower_city").val('');
         $("#borrower_state").val('');
         $("#borrower_pincode").val('');
+        $("#borrower_personal_email_id").val('');
+        $("#borrower_mobile_no").val('');
+        $("#borrower_id_proof_file").val('');
 
         $("#is_claimant_and_borrower_same").attr('disabled', false);
     }
@@ -702,6 +697,17 @@
         $("#borrower_city").val('');
         $("#borrower_state").val('');
         $("#borrower_pincode").val('');
+        $("#borrower_personal_email_id").val('');
+        $("#borrower_mobile_no").val('');
+        $("#borrower_pan_no").val('');
+        $("#borrower_pan_no_file").val('');
+        $("#borrower_aadhar_no_file").val('');
+        $("#borrower_aadhar_no").val('');
+        $("#borrower_bank_name").val('');
+        $("#borrower_bank_address").val('');
+        $("#borrower_ac_no").val('');
+        $("#borrower_ifs_code").val('');
+        $("#borrower_id_proof_file").val('');
 
     }
 
@@ -724,6 +730,18 @@
                 $("#borrower_city").val(result.city);
                 $("#borrower_state").val(result.state);
                 $("#borrower_pincode").val(result.pincode);
+                $("#borrower_id_proof").val(result.id_proof);
+                $("#borrower_personal_email_id").val(result.personal_email_id);
+                $("#borrower_mobile_no").val(result.mobile_no);
+                $("#borrower_pan_no").val(result.pan_no);
+                $("#borrower_pan_no_file").val(result.pan_no_file);
+                $("#borrower_aadhar_no_file").val(result.aadhar_no_file);
+                $("#borrower_aadhar_no").val(result.aadhar_no);
+                $("#borrower_bank_name").val(result.bank_name);
+                $("#borrower_bank_address").val(result.bank_address);
+                $("#borrower_ac_no").val(result.ac_no);
+                $("#borrower_ifs_code").val(result.ifs_code);
+                $("#borrower_id_proof_file").val(result.id_proof_file);
             }
         });
 
@@ -752,6 +770,10 @@
                         $("#borrower_city").val(result.patient_current_city);
                         $("#borrower_state").val(result.patient_current_state);
                         $("#borrower_pincode").val(result.patient_current_pincode);
+                        $("#borrower_id_proof").val(result.id_proof);
+                        $("#borrower_personal_email_id").val(result.email);
+                        $("#borrower_mobile_no").val(result.phone);
+                        $("#borrower_id_proof_file").val(result.id_proof_file);
                     }
                 });
 
@@ -765,6 +787,10 @@
                 $("#borrower_city").val('');
                 $("#borrower_state").val('');
                 $("#borrower_pincode").val('');
+                $("#borrower_id_proof").val('');
+                $("#borrower_personal_email_id").val('');
+                $("#borrower_mobile_no").val('');
+                $("#borrower_id_proof_file").val('');
 
                 $("#is_claimant_and_borrower_same").attr('disabled', false);
             }
@@ -789,6 +815,19 @@
                         $("#borrower_city").val(result.city);
                         $("#borrower_state").val(result.state);
                         $("#borrower_pincode").val(result.pincode);
+                        $("#borrower_pincode").val(result.pincode);
+                        $("#borrower_id_proof").val(result.id_proof);
+                        $("#borrower_personal_email_id").val(result.personal_email_id);
+                        $("#borrower_mobile_no").val(result.mobile_no);
+                        $("#borrower_pan_no").val(result.pan_no);
+                        $("#borrower_pan_no_file").val(result.pan_no_file);
+                        $("#borrower_aadhar_no_file").val(result.aadhar_no_file);
+                        $("#borrower_aadhar_no").val(result.aadhar_no);
+                        $("#borrower_bank_name").val(result.bank_name);
+                        $("#borrower_bank_address").val(result.bank_address);
+                        $("#borrower_ac_no").val(result.ac_no);
+                        $("#borrower_ifs_code").val(result.ifs_code);
+                        $("#borrower_id_proof_file").val(result.id_proof_file);
                     }
                 });
             }else{
@@ -800,10 +839,35 @@
                 $("#borrower_city").val('');
                 $("#borrower_state").val('');
                 $("#borrower_pincode").val('');
+                $("#borrower_id_proof").val('');
+                $("#borrower_personal_email_id").val('');
+                $("#borrower_mobile_no").val('');
+                $("#borrower_pan_no").val('');
+                $("#borrower_pan_no_file").val('');
+                $("#borrower_aadhar_no_file").val('');
+                $("#borrower_aadhar_no").val('');
+                $("#borrower_bank_name").val('');
+                $("#borrower_bank_address").val('');
+                $("#borrower_ac_no").val('');
+                $("#borrower_ifs_code").val('');
+                $("#borrower_id_proof_file").val('');
             }
 
         });
     });
-    </script>
+</script>
+
+<script>
+    $(document).ready(function(){
+        $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
+            localStorage.setItem('activeTab', $(e.target).attr('href'));
+        });
+
+        var activeTab = localStorage.getItem('activeTab');
+        if(activeTab){
+            $('a[href="' + activeTab + '"]').tab('show');
+        }
+    });
+</script>
 @endpush
 
