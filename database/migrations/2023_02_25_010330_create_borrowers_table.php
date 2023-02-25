@@ -22,6 +22,9 @@ return new class extends Migration
             $table->string('hospital_id')->nullable();
             $table->string('hospital_name')->nullable();
             $table->string('hospital_address')->nullable();
+            $table->string('hospital_city')->nullable();
+            $table->string('hospital_state')->nullable();
+            $table->string('hospital_pincode')->nullable();
             $table->string('patient_title')->nullable();
             $table->string('patient_firstname')->nullable();
             $table->string('patient_middlename')->nullable();

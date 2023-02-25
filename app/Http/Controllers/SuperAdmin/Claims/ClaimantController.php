@@ -70,12 +70,10 @@ class ClaimantController extends Controller
      */
     public function store(Request $request)
     {
-
-        // echo "<pre>";print_r($request->all());"</pre>";exit;
         $rules = [
             'patient_id' => 'required',
             'claim_id' => 'required',
-            'associate_partner_id' => 'required',
+            'associate_partner_id' => "required_if:$request->associate_partner_id,'!=',null",
             'hospital_id' => 'required',
             'patient_title' => 'required|max:25',
             'patient_firstname' => 'required|max:25',
@@ -179,6 +177,10 @@ class ClaimantController extends Controller
            'comments' => $request->comments,
        ]);        
 
+        Claimant::where('id', $claimant->id)->update([
+            'uid'      => 'CLMT' . substr($claimant->pan_no, 0, 2) . substr($claimant->pan_no, -3)
+        ]);
+
         if ($request->hasfile('patient_id_proof')) {
             $patient_id_proof                    = $request->file('patient_id_proof');
             $name                       = $patient_id_proof->getClientOriginalName();
@@ -240,14 +242,31 @@ class ClaimantController extends Controller
     {        
         $claimant     = Claimant::find($id);
         $exists     = Borrower::where('claimant_id', $id)->exists();
+        $hospital      = Hospital::find($claimant->hospital_id);
+        $hospitals      = Hospital::get();
+        $patient        = Patient::where('uid', $claimant->patient_id)->first();
+
         if ($exists) {
             $borrower     = Borrower::where('claimant_id', $id)->first();
         }else{
-            $borrower = Borrower::create(['claimant_id' => $id]);
+            $borrower = Borrower::create([
+                'claimant_id' => $id, 
+                'patient_id' => $claimant->patient_id, 
+                'claim_id' => $claimant->claim_id,
+                'hospital_id' => $claimant->hospital_id,
+                'hospital_name' => $hospital->name,
+                'hospital_address' => $hospital->address,
+                'hospital_city' => $hospital->city,
+                'hospital_state' => $hospital->state,
+                'hospital_pincode' => $hospital->pincode,
+                'patient_title' => @$patient->title,
+                'patient_firstname' => $patient->firstname,
+                'patient_middlename' => $patient->middlename,
+                'patient_lastname' => $patient->lastname,
+            ]);
         }
+
         $associates     = AssociatePartner::get();
-        $hospitals      = Hospital::get();
-        $patient        = Patient::find($claimant->patient_id);
         $patient_id   = $claimant->patient_id;
 
         return view('super-admin.claims.claimants.edit.edit',  compact('patient_id', 'associates', 'hospitals', 'patient', 'claimant', 'borrower', 'id'));

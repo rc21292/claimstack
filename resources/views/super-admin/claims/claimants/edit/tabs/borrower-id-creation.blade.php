@@ -90,8 +90,8 @@
                 <div class="col-md-3 mt-1">
                     <select class="form-control" id="patient_title" name="patient_title">
                         <option value="">Select</option>
-                        <option value="Mr.">Mr.</option>
-                        <option value="Ms.">Ms.</option>
+                        <option @if( old('patient_title', $borrower->patient_title) == 'Mr.') selected @endif value="Mr.">Mr.</option>
+                        <option @if( old('patient_title', $borrower->patient_title) == 'Ms.') selected @endif value="Ms.">Ms.</option>
                     </select>
                     @error('patient_title')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -160,8 +160,8 @@
                 <div class="col-md-3 mt-1">
                     <select class="form-control" id="title" name="title">
                         <option value="">Select</option>
-                        <option value="Mr.">Mr.</option>
-                        <option value="Ms.">Ms.</option>
+                        <option @if( old('title') == 'Mr.') selected @endif value="Mr.">Mr.</option>
+                        <option @if( old('title') == 'Ms.') selected @endif value="Ms.">Ms.</option>
                     </select>
                     @error('title')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
