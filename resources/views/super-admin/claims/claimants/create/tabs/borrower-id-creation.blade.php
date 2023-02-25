@@ -214,9 +214,9 @@
                 <label for="gender">Borrower Gender <span class="text-danger">*</span></label>
                 <select class="form-select" id="gender" name="gender">
                     <option value="">Select Borrower Gender</option>
-                    <option value="Male" {{ old('gender') == 'Male' ? 'selected' : '' }}>Male
+                    <option value="Male" {{ old('gender') == 'Male' ? 'selected' : '' }}>M
                     </option>
-                    <option value="Female" {{ old('gender') == 'Female' ? 'selected' : '' }}>Female
+                    <option value="Female" {{ old('gender') == 'Female' ? 'selected' : '' }}>F
                     </option>
                     <option value="Other" {{ old('gender') == 'Other' ? 'selected' : '' }}>Other
                     </option>
@@ -587,3 +587,67 @@
         </div>
     </form>
 </div>
+@push('scripts')
+<script>
+    $(document).on('change', '#is_patient_and_borrower_same', function(event) {
+        event.preventDefault();
+        if($(this).val() == 'Yes'){
+            setPatient();
+            $("#is_claimant_and_borrower_same").attr('disabled', true);
+        }else{
+            $("#is_claimant_and_borrower_same").attr('disabled', false);
+        }
+    });
+
+    $(document).on('change', '#is_claimant_and_borrower_same', function(event) {
+        event.preventDefault();
+        if($(this).val() == 'Yes'){
+            setClaimant();
+            $("#is_claimant_and_borrower_same").attr('disabled', true);
+        }else{
+            $("#is_claimant_and_borrower_same").attr('disabled', false);
+        }
+    });
+
+    function setPatient() {
+        var title               = $("#title");
+        var firstname           = $("#firstname");
+        var middlename          = $("#middlename");
+        var lastname            = $("#lastname");
+        var age                 = $("#age");
+        var gender              = $("#gender");
+        var hospital            = $("#hospital");
+        var registrationno      = $("#registrationno");
+
+        $('#title').val(title);
+        $('#firstname').val(firstname);
+        $('#middlename').val(middlename);
+        $('#lastname').val(lastname);
+        $('#age').val(age);
+        $('#gender').val(gender);
+        $('#hospital_name').val(hospital).trigger('change');
+        $('#registration_no').val(registrationno);
+    }
+
+    function setPatient() {
+        var title               = $("#title");
+        var firstname           = $("#firstname");
+        var middlename          = $("#middlename");
+        var lastname            = $("#lastname");
+        var age                 = $("#age");
+        var gender              = $("#gender");
+        var hospital            = $("#hospital");
+        var registrationno      = $("#registrationno");
+
+        $('#title').val(title);
+        $('#firstname').val(firstname);
+        $('#middlename').val(middlename);
+        $('#lastname').val(lastname);
+        $('#age').val(age);
+        $('#gender').val(gender);
+        $('#hospital_name').val(hospital).trigger('change');
+        $('#registration_no').val(registrationno);
+    }
+</script>
+@endpush
+

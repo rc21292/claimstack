@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('borrowers', function (Blueprint $table) {
             $table->id();
+            $table->string('uid')->nullable();
             $table->string('patient_id')->nullable();
             $table->string('claim_id')->nullable();
             $table->string('claimant_id')->nullable();
@@ -25,15 +26,15 @@ return new class extends Migration
             $table->string('patient_firstname')->nullable();
             $table->string('patient_middlename')->nullable();
             $table->string('patient_lastname')->nullable();
-            $table->string('is_patient_and_borrower_same')->nullable();
-            $table->string('is_claimant_and_borrower_same')->nullable();
+            $table->enum('is_patient_and_borrower_same',['Yes', 'No'])->nullable();
+            $table->enum('is_claimant_and_borrower_same',['Yes', 'No'])->nullable();
             $table->string('title')->nullable();
             $table->string('firstname')->nullable();
             $table->string('middlename')->nullable();
             $table->string('lastname')->nullable();
-            $table->string('borrowers_relation_with_patient')->nullable();
+            $table->enum('borrowers_relation_with_patient', ['Self', 'Husband', 'Wife', 'Son', 'Daughter', 'Father', 'Mother', 'Other'])->nullable();
             $table->string('dob')->nullable();
-            $table->string('gender')->nullable();
+            $table->enum('gender', ['M', 'F', 'Other'])->nullable();
             $table->string('address')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
@@ -47,11 +48,11 @@ return new class extends Migration
             $table->string('pan_no_file')->nullable();
             $table->string('aadhar_no')->nullable();
             $table->string('aadhar_no_file')->nullable();
-            $table->string('bank_statement')->nullable();
+            $table->enum('bank_statement', ['Yes', 'No'])->nullable();
             $table->string('bank_statement_file')->nullable();
-            $table->string('itr')->nullable();
+            $table->enum('itr', ['Yes', 'No'])->nullable();
             $table->string('itr_file')->nullable();
-            $table->string('cancel_cheque')->nullable();
+            $table->enum('cancel_cheque', ['Yes', 'No'])->nullable();
             $table->string('cancel_cheque_file')->nullable();
             $table->string('bank_name')->nullable();
             $table->string('bank_address')->nullable();
@@ -60,9 +61,9 @@ return new class extends Migration
             $table->string('co_borrower_nominee_name')->nullable();
             $table->string('co_borrower_nominee_dob')->nullable();
             $table->string('co_borrower_nominee_dob_file')->nullable();
-            $table->string('co_borrower_nominee_gender')->nullable();
+            $table->enum('co_borrower_nominee_gender', ['M', 'F', 'Other'])->nullable();
             $table->string('co_borrower_nominee_gender_file')->nullable();
-            $table->string('co_borrower_nominee_relation')->nullable();
+            $table->enum('co_borrower_nominee_relation', ['Husband', 'Wife', 'Son', 'Daughter', 'Father', 'Mother', 'Other'])->nullable();
             $table->string('co_borrower_other_documents')->nullable();
             $table->string('co_borrower_other_documents_file')->nullable();
             $table->string('estimated_amount')->nullable();
