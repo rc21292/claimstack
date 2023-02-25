@@ -221,8 +221,15 @@ class ClaimantController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {        
+        $claimant     = Claimant::find($id);
+        $associates     = AssociatePartner::get();
+        $hospitals      = Hospital::get();
+        $patient        = Patient::find($claimant->patient_id);
+        $patient_id   = $claimant->patient_id;
+
+        return view('super-admin.claims.claimants.edit.edit',  compact('patient_id', 'associates', 'hospitals', 'patient', 'claimant'));
+    
     }
 
     /**
