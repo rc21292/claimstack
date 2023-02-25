@@ -70,7 +70,7 @@ class ClaimController extends Controller
             'hospital_state'            => 'required',
             'hospital_pincode'          => 'required',
             'associate_partner_id'      => 'required',
-            'registration_no'           => 'required',
+            'registration_no'           => 'required|max:20',
             'title'                     => 'required',
             'firstname'                 => 'required',
             'age'                       => 'required',
@@ -79,8 +79,8 @@ class ClaimController extends Controller
             'admission_time'            => 'required',
             'abha_id'                   => 'required',
             'insurance_coverage'        => 'required',
-            'policy_no'                 => 'required',
-            'company_tpa_id_card_no'    => 'required',
+            'policy_no'                 => $request->insurance_coverage == 'yes' ? 'required' : '',
+            'company_tpa_id_card_no'    => $request->insurance_coverage == 'yes' ? 'required' : '',
             'lending_required'          => 'required',
             'hospitalization_due_to'    => 'required',
             'date_of_delivery'          => 'required',
@@ -327,8 +327,8 @@ class ClaimController extends Controller
             'admission_time'                => 'required',
             'abha_id'                       => 'required',
             'insurance_coverage'            => 'required',
-            'policy_no'                     => 'required',
-            'company_tpa_id_card_no'        => 'required',
+            'policy_no'                     => $request->insurance_coverage == 'yes' ? 'required' : '',
+            'company_tpa_id_card_no'        => $request->insurance_coverage == 'yes' ? 'required' : '',
             'lending_required'              => 'required',
             'hospitalization_due_to'        => 'required',
             'date_of_delivery'              => 'required',
@@ -343,8 +343,8 @@ class ClaimController extends Controller
             'disease_name'                  => 'required',
             'disease_type'                  => 'required',
             'estimated_amount'              => 'required',
-            'claim_intimation_done'         => 'required',
-            'claim_intimation_number_mail'  => 'required',
+            'claim_intimation_done'         => $request->insurance_coverage == 'yes' ? 'required' : '',
+            'claim_intimation_number_mail'  => $request->claim_intimation_done == 'yes' ? 'required' : '',
         ];
 
         $messages =  [
@@ -432,7 +432,7 @@ class ClaimController extends Controller
             'associate_partner_id'              => $request->associate_partner_id,
         ]);
 
-        return redirect()->route('super-admin.claims.edit', $id)->with('success', 'Claim created successfully');
+        return redirect()->route('super-admin.claims.edit', $id)->with('success', 'Claim updated successfully');
     }
 
     /**
