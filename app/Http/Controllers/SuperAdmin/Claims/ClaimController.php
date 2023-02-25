@@ -8,6 +8,7 @@ use App\Models\Claim;
 use App\Models\Hospital;
 use App\Models\Patient;
 use App\Models\InsurancePolicy;
+use App\Models\Insurer;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -30,7 +31,7 @@ class ClaimController extends Controller
         if ($filter_search) {
             $claims->whereHas('patient', function ($q) use ($filter_search) {
                 $q->where(function ($q) use ($filter_search) {
-                    $q->where(DB::raw("concat(title, ' ', firstname, ' ', middlename, ' ', lastname)"), 'like','%' . $filter_search . '%');
+                    $q->where(DB::raw("concat(title, ' ', firstname, ' ', middlename, ' ', lastname)"), 'like', '%' . $filter_search . '%');
                 });
             });
         }
@@ -73,8 +74,8 @@ class ClaimController extends Controller
             'registration_no'           => 'required|max:20',
             'title'                     => 'required',
             'firstname'                 => 'required|max:25',
-            'lastname'                  => isset($request->lastname) ? 'max:25' :'',
-            'middlename'                => isset($request->middlename) ? 'max:25' :'',
+            'lastname'                  => isset($request->lastname) ? 'max:25' : '',
+            'middlename'                => isset($request->middlename) ? 'max:25' : '',
             'age'                       => 'required',
             'gender'                    => 'required',
             'admission_date'            => 'required',
@@ -97,7 +98,7 @@ class ClaimController extends Controller
             'disease_name'              => 'required',
             'disease_type'              => 'required',
             'estimated_amount'          => 'required|max:8',
-            'comments'                  => isset($request->comments) ? 'max:250' :'',
+            'comments'                  => isset($request->comments) ? 'max:250' : '',
         ];
 
         $messages =  [
@@ -142,7 +143,7 @@ class ClaimController extends Controller
             'patient_id'                => $request->patient_id,
             'admission_date'            => $request->admission_date,
             'admission_time'            => $request->admission_time,
-            'abha_id'                   => $request->abha_id  ,
+            'abha_id'                   => $request->abha_id,
             'insurance_coverage'        => $request->insurance_coverage,
             'policy_no'                 => $request->policy_no,
             'company_tpa_id_card_no'    => $request->company_tpa_id_card_no,
@@ -164,7 +165,7 @@ class ClaimController extends Controller
         ]);
 
         Claim::where('id', $claim->id)->update([
-            'uid'      => 'C-'.Carbon::parse($claim->created_at)->format('Y-m-d').'-'.$claim->id
+            'uid'      => 'C-' . Carbon::parse($claim->created_at)->format('Y-m-d') . '-' . $claim->id
         ]);
 
         Patient::where('id', $claim->patient_id)->update([
@@ -190,92 +191,129 @@ class ClaimController extends Controller
     public function updateInsurancePolicy(Request $request, $id)
     {
         $rules = [
-            'patient_id' => 'required',
-            'claim_id' => 'required',
-            'policy_no' => 'required',
-            'insurance_company' => 'required',
-            'policy_name' => 'required|numeric|digits_between:1,2',
-            'si_no_or_certificate_no' => 'required|numeric|digits_between:1,2',
-            'company_or_tpa_id_card_no' => 'required|numeric|digits_between:1,2',
-            'tpa_name' => 'required|numeric|digits_between:1,2',
-            'policy_type' => 'required',
-            'group_name' => 'required|numeric|digits_between:1,2',
-            'policy_start_date' => 'required',
-            'policy_expiry_date' => 'required|numeric|digits_between:1,6',
-            'policy_commencement_date_without_break' => 'required||numeric|digits_between:1,6',
-            'proposer_or_primary_insured_sur_name' => 'required',
-            'proposer_or_primary_insured_first_name' => 'required|numeric|digits_between:1,6',
-            'proposer_or_primary_insured_middle_name' => 'required',
-            'proposer_or_primary_insured_last_name' => 'required|numeric|digits_between:1,6',
-            'is_primary_insured_and_patient_same' => 'required',
-            'primary_insured_address' => 'required',
-            'primary_insured_city' => 'required',
-            'primary_insured_state' => 'required',
-            'primary_insured_pincode' => 'required',
-            'no_of_insured_person' => 'required|max:2',
-            'basic_sum_insured' => 'required',
-            'cumulative_bonus_cv' => 'required|max:40',
-            'agent_broker_code' => 'required',
-            'agent_broker_name' => 'required',
-            'are_you_covered_under_any_top_up_or_additional_policy' => 'required|max:6',
-            'currently_covered_by_any_other_mediclaim_or_health_insurance' => 'required|max:6',
-            'other_policy_commencement_date_without_break' => 'required|max:6',
-            'other_policy_insurance_company_name' => 'required|max:6',
-            'other_policy_no' => 'required|max:6',
-            'other_policy_sum_insured' => 'required|max:6',
-            'patient_hospitalized_last_4y_since_inception' => 'required|max:6',
-            'date_of_admission_past' => 'required|max:6',
-            'diagnosis_previous' => 'required|max:6',
-            'policy_details_comments' => 'required|max:6',
+            'patient_id'                                => 'required',
+            'claim_id'                                  => 'required',
+            'policy_no'                                 => 'required',
+            'insurance_company'                         => 'required',
+            'policy_name'                               => 'required',
+            'certificate_no'                            => 'required',
+            'company_tpa_id_card_no'                    => 'required',
+            'tpa_name'                                  => 'required',
+            'policy_type'                               => 'required',
+            'group_name'                                => 'required',
+            'start_date'                                => 'required',
+            'expiry_date'                               => 'required',
+            'commencement_date'                         => 'required',
+            'title'                                     => 'required',
+            'firstname'                                 => 'required',
+            'middlename'                                => 'required',
+            'lastname'                                  => 'required',
+            'is_primary_insured_and_patient_same'       => 'required',
+            'primary_insured_address'                   => 'required',
+            'primary_insured_city'                      => 'required',
+            'primary_insured_state'                     => 'required',
+            'primary_insured_pincode'                   => 'required',
+            'no_of_person_insured'                      => 'required',
+            'basic_sum_insured'                         => 'required',
+            'cumulative_bonus_cv'                       => 'required',
+            'agent_broker_code'                         => 'required',
+            'agent_broker_name'                         => 'required',
+            'additional_policy'                         => 'required',
+            'policy_no_additional'                      => 'required',
+            'currently_covered'                         => 'required',
+            'commencement_date_other'                   => 'required',
+            'insurance_company_other'                   => 'required',
+            'policy_no_other'                           => 'required',
+            'sum_insured_other'                         => 'required',
+            'hospitalized'                              => 'required',
+            'admission_date_past'                       => 'required',
+            'diagnosis'                                 => 'required',
         ];
 
-        $this->validate($request, $rules);
+        $messages = [
+            'patient_id.required'                                => 'Please enter Patient UID',
+            'claim_id.required'                                  => 'Please enter Claim UID',
+            'policy_no.required'                                 => 'Please enter Policy No.',
+            'insurance_company.required'                         => 'Please select Insurance Company',
+            'policy_name.required'                               => 'Please select Policy Name',
+            'certificate_no.required'                            => 'Please enter SI No. / Certificate No.',
+            'company_tpa_id_card_no.required'                    => 'Please enter Company / TPA ID Card No.',
+            'tpa_name.required'                                  => 'Please enter TPA Name.',
+            'policy_type.required'                               => 'Please select Policy Type',
+            'group_name.required'                                => 'Please enter Group Name.',
+            'start_date.required'                                => 'Please enter Policy Start Date.',
+            'expiry_date.required'                               => 'Please enter Policy Expiry Date.',
+            'commencement_date.required'                         => 'Please enter Policy Commencement Date.',
+            'title.required'                                     => 'Please select Title.',
+            'firstname.required'                                 => 'Please select Title.',
+            'is_primary_insured_and_patient_same.required'       => 'Please select If Primary insured and Patient are same.',
+            'primary_insured_address.required'                   => 'Please enter Address.',
+            'primary_insured_city.required'                      => 'Please enter City.',
+            'primary_insured_state.required'                     => 'Please enter State.',
+            'primary_insured_pincode.required'                   => 'Please enter Pincode.',
+            'no_of_person_insured.required'                      => 'Please enter No. of person insured',
+            'basic_sum_insured.required'                         => 'Please enter Basic sum insured.',
+            'cumulative_bonus_cv.required'                       => 'Please enter Cumulative Bonus.',
+            'agent_broker_code.required'                         => 'Please enter Agent Broker Code.',
+            'agent_broker_name.required'                         => 'Please enter Agent Broker Name.',
+            'additional_policy.required'                         => 'Please select if covered under any Top-up/Additional Policy.',
+            'policy_no_additional.required'                      => 'Please enter Policy No. (Top Up / Additional)',
+            'currently_covered.required'                         => 'Please select if currently covered by any other Mediclaim/Health Insurance.',
+            'commencement_date_other.required'                   => 'Please enter Policy Commencement Date (Other Policy).',
+            'insurance_company_other.required'                   => 'Please enter Insurance Company Name (Other Policy).',
+            'policy_no_other.required'                           => 'Please enter Policy No. (Other Policy)',
+            'sum_insured_other.required'                         => 'Please enter Sum Insured (Other Policy)',
+            'hospitalized.required'                              => 'Please select if patient ever been hospitalized in the last 4 years since the inception of the contract',
+            'admission_date_past.required'                       => 'Please enter Admission Date (Past)',
+            'diagnosis.required'                                 => 'Please enter Diagnosis (Previous)',
 
-        $hospitalT =  InsurancePolicy::updateOrCreate(
-            [
-                'patient_id' => $id
-            ],
-            [
-                'claim_id' => $request->claim_id,
-                'policy_no' => $request->policy_no,
-                'insurance_company' => $request->insurance_company,
-                'policy_name' => $request->policy_name,
-                'si_no_or_certificate_no' => $request->si_no_or_certificate_no,
-                'company_or_tpa_id_card_no' => $request->company_or_tpa_id_card_no,
-                'tpa_name' => $request->tpa_name,
-                'policy_type' => $request->policy_type,
-                'group_name' => $request->group_name,
-                'policy_start_date' => $request->policy_start_date,
-                'policy_expiry_date' => $request->policy_expiry_date,
-                'policy_commencement_date_without_break' => $request->policy_commencement_date_without_break,
-                'proposer_or_primary_insured_sur_name' => $request->proposer_or_primary_insured_sur_name,
-                'proposer_or_primary_insured_first_name' => $request->proposer_or_primary_insured_first_name,
-                'proposer_or_primary_insured_middle_name' => $request->proposer_or_primary_insured_middle_name,
-                'proposer_or_primary_insured_last_name' => $request->proposer_or_primary_insured_last_name,
-                'is_primary_insured_and_patient_same' => $request->is_primary_insured_and_patient_same,
-                'primary_insured_address' => $request->primary_insured_address,
-                'primary_insured_city' => $request->primary_insured_city,
-                'primary_insured_state' => $request->primary_insured_state,
-                'primary_insured_pincode' => $request->primary_insured_pincode,
-                'no_of_insured_person' => $request->no_of_insured_person,
-                'basic_sum_insured' => $request->basic_sum_insured,
-                'cumulative_bonus_cv' => $request->cumulative_bonus_cv,
-                'agent_broker_code' => $request->agent_broker_code,
-                'agent_broker_name' => $request->agent_broker_name,
-                'are_you_covered_under_any_top_up_or_additional_policy' => $request->are_you_covered_under_any_top_up_or_additional_policy,
-                'currently_covered_by_any_other_mediclaim_or_health_insurance' => $request->currently_covered_by_any_other_mediclaim_or_health_insurance,
-                'other_policy_commencement_date_without_break' => $request->other_policy_commencement_date_without_break,
-                'other_policy_insurance_company_name' => $request->other_policy_insurance_company_name,
-                'other_policy_no' => $request->other_policy_no,
-                'other_policy_sum_insured' => $request->other_policy_sum_insured,
-                'patient_hospitalized_last_4y_since_inception' => $request->patient_hospitalized_last_4y_since_inception,
-                'date_of_admission_past' => $request->date_of_admission_past,
-                'diagnosis_previous' => $request->diagnosis_previous,
-                'policy_details_comments' => $request->policy_details_comments
-            ]
-        );
+        ];
 
-        return redirect()->back()->with('success', 'Insurance Policy updated successfully');
+        $this->validate($request, $rules, $messages);
+
+        $insurance_policy = InsurancePolicy::create([
+            'patient_id'                                => $request->patient_id,
+            'claim_id'                                  => $request->claim_id,
+            'policy_no'                                 => $request->policy_no,
+            'insurer_id'                                => $request->insurance_company,
+            'policy_id'                                 => $request->policy_name,
+            'certificate_no'                            => $request->certificate_no,
+            'company_tpa_id_card_no'                    => $request->company_tpa_id_card_no,
+            'tpa_name'                                  => $request->tpa_name,
+            'policy_type'                               => $request->policy_type,
+            'group_name'                                => $request->group_name,
+            'start_date'                                => $request->start_date,
+            'expiry_date'                               => $request->expiry_date,
+            'commencement_date'                         => $request->commencement_date,
+            'title'                                     => $request->title,
+            'firstname'                                 => $request->firstname,
+            'middlename'                                => $request->middlename,
+            'lastname'                                  => $request->lastname,
+            'is_primary_insured_and_patient_same'       => $request->is_primary_insured_and_patient_same,
+            'primary_insured_address'                   => $request->primary_insured_address,
+            'primary_insured_city'                      => $request->primary_insured_city,
+            'primary_insured_state'                     => $request->primary_insured_state,
+            'primary_insured_pincode'                   => $request->primary_insured_pincode,
+            'no_of_person_insured'                      => $request->no_of_person_insured,
+            'basic_sum_insured'                         => $request->basic_sum_insured,
+            'cumulative_bonus_cv'                       => $request->cumulative_bonus_cv,
+            'agent_broker_code'                         => $request->agent_broker_code,
+            'agent_broker_name'                         => $request->agent_broker_name,
+            'additional_policy'                         => $request->additional_policy,
+            'policy_no_additional'                      => $request->policy_no_additional,
+            'currently_covered'                         => $request->currently_covered,
+            'commencement_date_other'                   => $request->commencement_date_other,
+            'insurance_company_other'                   => $request->insurance_company_other,
+            'policy_no_other'                           => $request->policy_no_other,
+            'sum_insured_other'                         => $request->sum_insured_other,
+            'hospitalized'                              => $request->hospitalized,
+            'admission_date_past'                       => $request->admission_date_past,
+            'diagnosis'                                 => $request->diagnosis,
+            'comments'                                  => $request->comments,
+        ]);
+
+        return redirect()->route('super-admin.claims.index')->with('success', 'Claim updated successfully');
+
     }
 
     /**
@@ -298,9 +336,10 @@ class ClaimController extends Controller
     public function edit($id)
     {
         $hospitals      = Hospital::get();
+        $insurers       = Insurer::get();
         $claim          = Claim::with('patient')->find($id);
         $patients       = Patient::get();
-        return view('super-admin.claims.claims.edit.edit',  compact('hospitals', 'claim', 'patients'));
+        return view('super-admin.claims.claims.edit.edit',  compact('hospitals', 'claim', 'patients', 'insurers'));
     }
 
     /**
@@ -324,8 +363,8 @@ class ClaimController extends Controller
             'registration_no'           => 'required|max:20',
             'title'                     => 'required',
             'firstname'                 => 'required|max:25',
-            'lastname'                  => isset($request->lastname) ? 'max:25' :'',
-            'middlename'                => isset($request->middlename) ? 'max:25' :'',
+            'lastname'                  => isset($request->lastname) ? 'max:25' : '',
+            'middlename'                => isset($request->middlename) ? 'max:25' : '',
             'age'                       => 'required',
             'gender'                    => 'required',
             'admission_date'            => 'required',
@@ -348,7 +387,7 @@ class ClaimController extends Controller
             'disease_name'              => 'required',
             'disease_type'              => 'required',
             'estimated_amount'          => 'required|max:8',
-            'comments'                  => isset($request->comments) ? 'max:250' :'',
+            'comments'                  => isset($request->comments) ? 'max:250' : '',
             'claim_intimation_done'         => $request->insurance_coverage == 'yes' ? 'required' : '',
             'claim_intimation_number_mail'  => $request->claim_intimation_done == 'yes' ? 'required' : '',
         ];
@@ -397,7 +436,7 @@ class ClaimController extends Controller
             'patient_id'                            => $request->patient_id,
             'admission_date'                        => $request->admission_date,
             'admission_time'                        => $request->admission_time,
-            'abha_id'                               => $request->abha_id  ,
+            'abha_id'                               => $request->abha_id,
             'insurance_coverage'                    => $request->insurance_coverage,
             'policy_no'                             => $request->policy_no,
             'company_tpa_id_card_no'                => $request->company_tpa_id_card_no,

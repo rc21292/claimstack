@@ -27,12 +27,12 @@ return new class extends Migration
             $table->enum('gender', ['Male', 'Female', 'Other'])->default('Male');
             $table->string('occupation')->nullable();
             $table->string('specify')->nullable();
-            $table->longText('patient_current_address')->nullable();
+            $table->string('patient_current_address')->nullable();
             $table->string('patient_current_city')->nullable();
             $table->string('patient_current_state')->nullable();
             $table->string('patient_current_pincode')->nullable();
             $table->string('current_permanent_address_same')->nullable();
-            $table->longText('patient_permanent_address')->nullable();
+            $table->string('patient_permanent_address')->nullable();
             $table->string('patient_permanent_city')->nullable();
             $table->string('patient_permanent_state')->nullable();
             $table->string('patient_permanent_pincode')->nullable();

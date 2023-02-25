@@ -122,7 +122,7 @@ body[data-leftbar-compact-mode="condensed"]:not(.authentication-bg)
 }
 
 .accordion-item {
-     border: 0; 
+     border: 0;
 }
 .accordion-button:not(.collapsed){
     background-color: #fff;
@@ -140,4 +140,12 @@ body[data-leftbar-compact-mode="condensed"]:not(.authentication-bg)
 }
 .accordion-button .header-title{
     margin: 0 !important;
+}
+div.scroll {
+    margin: 4px, 4px;
+    padding: 4px;
+    background-color: white;
+    width: 300px;
+    overflow: auto;
+    white-space: nowrap;
 }
