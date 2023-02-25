@@ -23,8 +23,8 @@
 <div class="alert alert-warning alert-dismissible bg-warning border-0 fade show" role="alert">
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     <strong>Please check error below, some fields are  missing!</strong>
-</div>            
-@endif 
+</div>
+@endif
 
 @if ($message = Session::get('info'))
     <div class="alert alert-primary alert-dismissible bg-primary text-white border-0 fade show" role="alert">

@@ -36,7 +36,7 @@ class PatientController extends Controller
         }
         $patients = $patients->orderBy('id', 'desc')->paginate(20);
 
-        return view('super-admin.claims.manage-patient',  compact('patients', 'filter_search'));       
+        return view('super-admin.claims.manage-patient',  compact('patients', 'filter_search'));
     }
 
     /**

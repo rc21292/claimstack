@@ -13,10 +13,10 @@
                 @enderror
             </div>
             <div class="col-md-6 mb-3">
-                <label for="claim">Claim ID <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="claim" name="claim" maxlength="60"
-                    placeholder="Enter Claim ID" value="{{ old('claim', $claim->uid) }}" readonly>
-                @error('claim')
+                <label for="claim_id">Claim ID <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="claim_id" name="claim_id" maxlength="60"
+                    placeholder="Enter Claim ID" value="{{ old('claim_id', $claim->uid) }}" readonly>
+                @error('claim_id')
                     <span id="patient-id-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
@@ -144,36 +144,36 @@
             </div>
 
             <div class="col-md-3 mb-3">
-                <select class="form-control" id="title" name="title">
+                <select class="form-control" id="proposer_title" name="proposer_title">
                     <option value="">Select</option>
-                    <option value="Mr." {{ old('title') == 'Mr.' ? 'selected' : '' }}>Mr.</option>
-                    <option value="Ms." {{ old('title') == 'Ms.' ? 'selected' : '' }}>Ms.</option>
+                    <option value="Mr." {{ old('proposer_title') == 'Mr.' ? 'selected' : '' }}>Mr.</option>
+                    <option value="Ms." {{ old('proposer_title') == 'Ms.' ? 'selected' : '' }}>Ms.</option>
                 </select>
-                @error('title')
+                @error('proposer_title')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="col-md-3 mb-3">
-                <input type="text" maxlength="25" class="form-control" id="firstname" name="firstname"
-                    maxlength="15" placeholder="First name" value="{{ old('firstname') }}">
-                @error('firstname')
+                <input type="text" maxlength="25" class="form-control" id="proposer_firstname" name="proposer_firstname"
+                    maxlength="15" placeholder="First name" value="{{ old('proposer_firstname') }}">
+                @error('proposer_firstname')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="col-md-3 mb-3">
-                <input type="text" maxlength="25" class="form-control" id="middlename" name="middlename"
-                    maxlength="30" placeholder="Middle name" value="{{ old('middlename') }}">
-                @error('middlename')
+                <input type="text" maxlength="25" class="form-control" id="proposer_middlename" name="proposer_middlename"
+                    maxlength="30" placeholder="Middle name" value="{{ old('proposer_middlename') }}">
+                @error('proposer_middlename')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="col-md-3 mb-3">
-                <input type="text" maxlength="25" class="form-control" id="lastname" name="lastname"
-                    maxlength="30" placeholder="Last name" value="{{ old('lastname') }}">
-                @error('lastname')
+                <input type="text" maxlength="25" class="form-control" id="proposer_lastname" name="proposer_lastname"
+                    maxlength="30" placeholder="Last name" value="{{ old('proposer_lastname') }}">
+                @error('proposer_lastname')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>

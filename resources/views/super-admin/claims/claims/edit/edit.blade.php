@@ -80,6 +80,12 @@
             $('#addInsured').click(function() {
                 $('.addInsured').toggle("slide");
             });
+            $('input[name="proposer_firstname"]').change(function() {
+                $('#primary_insured_firstname').val($(this).val());
+            });
+            $('input[name="proposer_lastname"]').change(function() {
+                $('#primary_insured_lastname').val($(this).val());
+            });
         });
 
         @if ($claim->insurance_coverage == 'Yes')
