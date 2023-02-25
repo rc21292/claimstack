@@ -415,7 +415,7 @@ class ClaimController extends Controller
         ]);
 
 
-        Patient::where('id', $claim->patient_id)->update([
+        Patient::where('id', $request->patient_id)->update([
             'title'                             => $request->title,
             'firstname'                         => $request->firstname,
             'middlename'                        => $request->middlename,

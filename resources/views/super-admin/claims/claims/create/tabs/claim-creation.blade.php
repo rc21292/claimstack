@@ -116,8 +116,8 @@
             <div class="col-md-3 mt-1">
                 <select class="form-control" id="title" name="title">
                     <option value="">Select</option>
-                    <option value="Mr.">Mr.</option>
-                    <option value="Ms.">Ms.</option>
+                    <option value="Mr." {{ old('title') == 'Mr.' ? 'selected' : '' }}>Mr.</option>
+                    <option value="Ms." {{ old('title') == 'Ms.' ? 'selected' : '' }}>Ms.</option>
                 </select>
                 @error('title')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -245,17 +245,17 @@
                 <div class="mt-2">
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" id="injury" value="Injury"
-                            name="hospitalization_due_to">
+                            name="hospitalization_due_to" {{ old('hospitalization_due_to') == 'Injury' ? 'checked' : '' }}>
                         <label class="form-check-label" for="injury">Injury</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" id="illness" value="Illness"
-                            name="hospitalization_due_to">
+                            name="hospitalization_due_to" {{ old('hospitalization_due_to') == 'Illness' ? 'checked' : '' }}>
                         <label class="form-check-label" for="illness">Illness</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" id="maternity"value="Maternity"
-                            name="hospitalization_due_to">
+                        <input class="form-check-input" type="radio" id="maternity" value="Maternity"
+                            name="hospitalization_due_to" {{ old('hospitalization_due_to') == 'Maternity' ? 'checked' : '' }}>
                         <label class="form-check-label" for="maternity">Maternity</label>
                     </div>
                 </div>
@@ -317,12 +317,12 @@
                 <div class="mt-2">
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" id="emergency" value="Emergency"
-                            name="admission_type_1">
+                            name="admission_type_1" {{ old('admission_type_1') == 'Emergency' ? 'checked' : '' }}>
                         <label class="form-check-label" for="emergency">Emergency</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" id="planned" value="Planned"
-                            name="admission_type_1">
+                            name="admission_type_1" {{ old('admission_type_1') == 'Planned' ? 'checked' : '' }}>
                         <label class="form-check-label" for="planned">Planned</label>
                     </div>
                 </div>
@@ -335,12 +335,12 @@
                 <div class="mt-2">
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" id="day_care" value="Day Care"
-                            name="admission_type_2">
+                            name="admission_type_2" {{ old('admission_type_2') == 'Day Care' ? 'checked' : '' }}>
                         <label class="form-check-label" for="day_care">Day Care</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" id="hospitalization" value="Hospitalization"
-                            name="admission_type_2">
+                            name="admission_type_2" {{ old('admission_type_2') == 'Hospitalization' ? 'checked' : '' }}>
                         <label class="form-check-label" for="hospitalization">Hospitalization</label>
                     </div>
                 </div>

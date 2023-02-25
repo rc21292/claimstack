@@ -133,8 +133,8 @@
                                 <div class="col-md-3 mt-1">
                                     <select class="form-control" id="title" name="title">
                                         <option value="">Select</option>
-                                        <option value="Mr.">Mr.</option>
-                                        <option value="Ms.">Ms.</option>
+                                        <option value="Mr." {{ old('title') == 'Mr.' ? 'selected' : '' }}>Mr.</option>
+                                        <option value="Ms." {{ old('title') == 'Ms.' ? 'selected' : '' }}>Ms.</option>
                                     </select>
                                     @error('title')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>

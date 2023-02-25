@@ -465,9 +465,9 @@
                 <label for="claim_intimation_done">Claim Intimation Done <span class="text-danger">*</span></label>
                 <select class="form-select" id="claim_intimation_done" name="claim_intimation_done" onchange="setClaimIntimationNumber()">
                     <option value="">Select</option>
-                    <option value="Yes" {{ old('claim_intimation_done') == 'Yes' ? 'selected' : '' }}>Yes
+                    <option value="Yes" {{ old('claim_intimation_done', $claim->claim_intimation_done) == 'Yes' ? 'selected' : '' }}>Yes
                     </option>
-                    <option value="No" {{ old('claim_intimation_done') == 'No' ? 'selected' : '' }}>No
+                    <option value="No" {{ old('claim_intimation_done', $claim->claim_intimation_done) == 'No' ? 'selected' : '' }}>No
                     </option>
                 </select>
                 @error('claim_intimation_done')
@@ -477,7 +477,7 @@
             <div class="col-md-6 mb-3">
                 <label for="claim_intimation_number_mail">Claim Intimation Number/ Mail <span class="text-danger">*</span></label>
                 <input type="text" maxlength="16" class="form-control" id="claim_intimation_number_mail" name="claim_intimation_number_mail"
-                placeholder="Enter Claim Intimation Number/ Mail" value="{{ old('claim_intimation_number_mail') }}">
+                placeholder="Enter Claim Intimation Number/ Mail" value="{{ old('claim_intimation_number_mail', $claim->claim_intimation_number_mail) }}">
             @error('claim_intimation_number_mail')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
