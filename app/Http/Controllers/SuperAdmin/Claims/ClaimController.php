@@ -432,7 +432,7 @@ class ClaimController extends Controller
             'associate_partner_id'              => $request->associate_partner_id,
         ]);
 
-        return redirect()->route('super-admin.claims.edit', $claim->id)->with('success', 'Claim created successfully');
+        return redirect()->route('super-admin.claims.edit', $id)->with('success', 'Claim created successfully');
     }
 
     /**
