@@ -7,7 +7,7 @@
             <div class="col-md-6 mb-3">
                 <label for="patient_id">Patient ID <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="patient_id" name="patient_id" maxlength="60"
-                placeholder="Enter Patient Id" value="{{ old('patient_id') }}">
+                placeholder="Enter Patient Id" value="{{ old('patient_id',$borrower->patient_id) }}">
                 @error('patient_id')
                 <span id="patient-id-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -16,7 +16,7 @@
             <div class="col-md-6 mb-3">
                 <label for="claim_id">Cliam ID <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="claim_id" name="claim_id" maxlength="60"
-                placeholder="Enter Claim Id" value="{{ old('claim_id') }}">
+                placeholder="Enter Claim Id" value="{{ old('claim_id',$borrower->claim_id) }}">
                 @error('claim_id')
                 <span id="claim-id-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -25,7 +25,7 @@
             <div class="col-md-4">
                 <label for="claimant_id">Claimant ID <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="claimant_id" name="claimant_id" maxlength="60"
-                placeholder="Enter Claimant ID" value="{{ old('claimant_id') }}">
+                placeholder="Enter Claimant ID" value="{{ old('claimant_id',$borrower->claimant_id) }}">
                 @error('claimant_id')
                 <span id="claim-id-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -34,7 +34,7 @@
             <div class="col-md-4">
                 <label for="hospital_id">Hospital Id <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="hospital_id" name="hospital_id"
-                placeholder="Enter Hospital Id" value="{{ old('hospital_id') }}">
+                placeholder="Enter Hospital Id" value="{{ old('hospital_id',$borrower->hospital_id) }}">
                 @error('hospital_id')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -43,7 +43,7 @@
             <div class="col-md-4">
                 <label for="hospital_name">Hospital Name <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="hospital_name" name="hospital_name"
-                placeholder="Enter Hospital Name" value="{{ old('hospital_name') }}">
+                placeholder="Enter Hospital Name" value="{{ old('hospital_name',$borrower->hospital_name) }}">
                 @error('hospital_name')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -53,7 +53,7 @@
                 <label for="hospital_address">Hospital Address <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="hospital_address" name="hospital_address"
                 placeholder="Address Line"
-                value="{{ old('hospital_address') }}">
+                value="{{ old('hospital_address',$borrower->hospital_address) }}">
                 @error('hospital_address')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -61,7 +61,7 @@
 
             <div class="col-md-4 mt-3">
                 <input type="text" class="form-control" id="hospital_city" name="hospital_city"
-                placeholder="City" value="{{ old('hospital_city') }}">
+                placeholder="City" value="{{ old('hospital_city',$borrower->hospital_city) }}">
                 @error('hospital_city')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -69,7 +69,7 @@
 
             <div class="col-md-4 mt-3">
                 <input type="text" class="form-control" id="hospital_state" name="hospital_state"
-                placeholder="State" value="{{ old('hospital_state') }}">
+                placeholder="State" value="{{ old('hospital_state',$borrower->hospital_state) }}">
                 @error('hospital_state')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -77,7 +77,7 @@
 
             <div class="col-md-4 mt-3">
                 <input type="number" class="form-control" id="hospital_pincode" name="hospital_pincode"
-                placeholder="Pincode" value="{{ old('hospital_pincode') }}">
+                placeholder="Pincode" value="{{ old('hospital_pincode',$borrower->hospital_pincode) }}">
                 @error('hospital_pincode')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -102,7 +102,7 @@
             <div class="col-md-3 mt-1">
                 <input type="text" maxlength="25" class="form-control" id="patient_firstname"
                 name="patient_firstname" maxlength="15" placeholder="First name"
-                value="{{ old('patient_firstname') }}">
+                value="{{ old('patient_firstname',$borrower->patient_firstname) }}">
                 @error('patient_firstname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -111,7 +111,7 @@
             <div class="col-md-3 mt-1">
                 <input type="text" maxlength="25" class="form-control" id="patient_middlename"
                 name="patient_middlename" maxlength="30" placeholder="Last name"
-                value="{{ old('patient_middlename') }}">
+                value="{{ old('patient_middlename',$borrower->patient_middlename) }}">
                 @error('patient_middlename')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -120,7 +120,7 @@
             <div class="col-md-3 mt-1">
                 <input type="text" maxlength="25" class="form-control" id="patient_lastname"
                 name="patient_lastname" maxlength="30" placeholder="Last name"
-                value="{{ old('patient_lastname') }}">
+                value="{{ old('patient_lastname',$borrower->patient_lastname) }}">
                 @error('patient_lastname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -172,7 +172,7 @@
             <div class="col-md-3 mt-1">
                 <input type="text" maxlength="25" class="form-control" id="firstname"
                 name="firstname" maxlength="15" placeholder="First name"
-                value="{{ old('firstname') }}">
+                value="{{ old('firstname',$borrower->firstname) }}">
                 @error('firstname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -181,7 +181,7 @@
             <div class="col-md-3 mt-1">
                 <input type="text" maxlength="25" class="form-control" id="middlename"
                 name="middlename" maxlength="30" placeholder="Middle name"
-                value="{{ old('middlename') }}">
+                value="{{ old('middlename',$borrower->middlename) }}">
                 @error('middlename')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -189,7 +189,7 @@
 
             <div class="col-md-3 mt-1">
                 <input type="text" maxlength="25" class="form-control" id="lastname"
-                name="lastname" maxlength="30" placeholder="Last name"  value="{{ old('lastname') }}">
+                name="lastname" maxlength="30" placeholder="Last name"  value="{{ old('lastname',$borrower->lastname) }}">
                 @error('lastname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -229,7 +229,7 @@
             <div class="col-md-4 mt-3">
                 <label for="dob">Borrower DOB <span class="text-danger">*</span></label>
                 <input type="date" class="form-control" id="dob" name="dob"
-                value="{{ old('dob') }}" onchange="calculateAge();">
+                value="{{ old('dob',$borrower->dob) }}" onchange="calculateAge();">
 
                 @error('dob')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -240,7 +240,7 @@
                 <label for="address">Borrower Address <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="address" name="address"
                 placeholder="Address Line"
-                value="{{ old('address') }}">
+                value="{{ old('address',$borrower->address) }}">
                 @error('address')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -248,7 +248,7 @@
 
             <div class="col-md-4 mt-3">
                 <input type="text" class="form-control" id="city" name="city"
-                placeholder="City" value="{{ old('city') }}">
+                placeholder="City" value="{{ old('city',$borrower->city) }}">
                 @error('city')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -256,7 +256,7 @@
 
             <div class="col-md-4 mt-3">
                 <input type="text" class="form-control" id="state" name="state"
-                placeholder="State" value="{{ old('state') }}">
+                placeholder="State" value="{{ old('state',$borrower->state) }}">
                 @error('state')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -264,7 +264,7 @@
 
             <div class="col-md-4 mt-3">
                 <input type="number" class="form-control" id="pincode" name="pincode"
-                placeholder="Pincode" value="{{ old('pincode') }}">
+                placeholder="Pincode" value="{{ old('pincode',$borrower->pincode) }}">
                 @error('pincode')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -297,7 +297,7 @@
                     <input type="number" class="form-control" id="mobile_no" name="mobile_no"
                     pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"
                     placeholder="Enter Claimant Mobile No."
-                    value="{{ old('mobile_no') }}">
+                    value="{{ old('mobile_no',$borrower->mobile_no) }}">
                 </div>
                 @error('mobile_no')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -307,7 +307,7 @@
             <div class="col-md-6 mt-3">
                 <label for="personal_email_id">Borrower email id <span class="text-danger">*</span></label>
                 <input type="email" class="form-control" id="email_id" name="email_id" maxlength="45"
-                placeholder="Enter Borrower email id" value="{{ old('email_id') }}">
+                placeholder="Enter Borrower email id" value="{{ old('email_id',$borrower->email_id) }}">
                 @error('email_id')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -316,7 +316,7 @@
             <div class="col-md-6 mt-3">
                 <label for="official_email_id">Borrower official email id<span class="text-danger">*</span></label>
                 <input type="email" class="form-control" id="official_email_id" name="official_email_id" maxlength="45"
-                placeholder="Enter Borrower official email id" value="{{ old('official_email_id') }}">
+                placeholder="Enter Borrower official email id" value="{{ old('official_email_id',$borrower->official_email_id) }}">
                 @error('official_email_id')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -326,7 +326,7 @@
                 <label for="pan_no">Borrower Pan No. <span class="text-danger">*</span></label>
                 <div class="input-group">
                 <input type="text" class="form-control" id="pan_no" name="pan_no"
-                maxlength="10" placeholder="Enter PAN no." value="{{ old('pan_no') }}">
+                maxlength="10" placeholder="Enter PAN no." value="{{ old('pan_no',$borrower->pan_no) }}">
                 <input type="file" name="pan_no_file" id="pan_no_file" hidden />
                     <label for="pan_no_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
                 </div>
@@ -342,7 +342,7 @@
                 <label for="aadhar_no">Borrower Aadhar No. <span class="text-danger">*</span></label>
                 <div class="input-group">
                 <input type="text" class="form-control" id="aadhar_no" name="aadhar_no"
-                maxlength="10" placeholder="Enter Aadhar no." value="{{ old('aadhar_no') }}">
+                maxlength="10" placeholder="Enter Aadhar no." value="{{ old('aadhar_no',$borrower->aadhar_no) }}">
                 <input type="file" name="aadhar_no_file" id="aadhar_no_file" hidden />
                     <label for="aadhar_no_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
                 </div>
@@ -419,7 +419,7 @@
             <div class="col-md-6 mt-3">
                 <label for="personal_email_id">Claimant Personal email id <span class="text-danger">*</span></label>
                 <input type="email" class="form-control" id="personal_email_id" name="personal_email_id" maxlength="45"
-                placeholder="Enter Claimant Personal email id" value="{{ old('personal_email_id') }}">
+                placeholder="Enter Claimant Personal email id" value="{{ old('personal_email_id',$borrower->personal_email_id) }}">
                 @error('personal_email_id')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -428,7 +428,7 @@
             <div class="col-md-6 mt-3">
                 <label for="official_email_id">Claimant official email id<span class="text-danger">*</span></label>
                 <input type="email" class="form-control" id="official_email_id" name="official_email_id" maxlength="45"
-                placeholder="Enter Claimant official email id" value="{{ old('official_email_id') }}">
+                placeholder="Enter Claimant official email id" value="{{ old('official_email_id',$borrower->official_email_id) }}">
                 @error('official_email_id')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -441,7 +441,7 @@
 
             <div class="col-md-6 mt-2">
                 <input type="text" class="form-control" id="bank_name" name="bank_name" maxlength="45"
-                placeholder="Bank Name" value="{{ old('bank_name') }}">
+                placeholder="Bank Name" value="{{ old('bank_name',$borrower->bank_name) }}">
                 @error('bank_name')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -449,7 +449,7 @@
 
             <div class="col-md-6 mt-2">
                 <input type="text" class="form-control" id="bank_address" name="bank_address" maxlength="80"
-                placeholder="Bank Address" value="{{ old('bank_address') }}">
+                placeholder="Bank Address" value="{{ old('bank_address',$borrower->bank_address) }}">
                 @error('bank_address')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -457,7 +457,7 @@
 
             <div class="col-md-6 mt-2">
                 <input type="text" class="form-control" id="bank_account_no" name="bank_account_no" maxlength="20"
-                placeholder="Bank Account No." value="{{ old('bank_account_no', @$hospital->bank_account_no) }}">
+                placeholder="Bank Account No." value="{{ old('bank_account_no',$borrower->bank_account_no, @$hospital->bank_account_no) }}">
                 @error('bank_account_no')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -465,7 +465,7 @@
 
             <div class="col-md-6 mt-2">
                 <input type="text" class="form-control" id="bank_ifs_code" name="bank_ifs_code" maxlength="11"
-                placeholder="Bank Ifs Code" value="{{ old('bank_ifs_code', @$hospital->bank_ifs_code) }}">
+                placeholder="Bank Ifs Code" value="{{ old('bank_ifs_code',$borrower->bank_ifs_code, @$hospital->bank_ifs_code) }}">
                 @error('bank_ifs_code')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -489,7 +489,7 @@
                 <label for="co_borrower_nominee_dob">Co-Borrower / Nominee DOB <span class="text-danger">*</span></label>
                 <div class="input-group">
                     <input type="date" class="form-control" id="co_borrower_nominee_dob" name="co_borrower_nominee_dob" placeholder="Enter Co-Borrower / Nominee DOB" 
-                    value="{{ old('co_borrower_nominee_dob') }}" >
+                    value="{{ old('co_borrower_nominee_dob',$borrower->co_borrower_nominee_dob) }}" >
                     <input type="file" name="co_borrower_nominee_dob_file" id="co_borrower_nominee_dob_file" hidden />
                     <label for="co_borrower_nominee_dob_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
                 </div>
@@ -564,7 +564,7 @@
                 <input type="number" class="form-control" id="estimated_amount" name="estimated_amount"
                 pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"
                 placeholder="Enter Estimated Amount"
-                value="{{ old('estimated_amount') }}">
+                value="{{ old('estimated_amount',$borrower->estimated_amount) }}">
                 @error('estimated_amount')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror

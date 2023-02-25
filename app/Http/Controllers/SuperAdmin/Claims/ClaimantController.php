@@ -223,12 +223,18 @@ class ClaimantController extends Controller
     public function edit($id)
     {        
         $claimant     = Claimant::find($id);
+        $exists     = Borrower::where('claimant_id', $id)->exists();
+        if ($exists) {
+            $borrower     = Borrower::where('claimant_id', $id)->first();
+        }else{
+            $borrower = Borrower::create(['claimant_id' => $id]);
+        }
         $associates     = AssociatePartner::get();
         $hospitals      = Hospital::get();
         $patient        = Patient::find($claimant->patient_id);
         $patient_id   = $claimant->patient_id;
 
-        return view('super-admin.claims.claimants.edit.edit',  compact('patient_id', 'associates', 'hospitals', 'patient', 'claimant'));
+        return view('super-admin.claims.claimants.edit.edit',  compact('patient_id', 'associates', 'hospitals', 'patient', 'claimant', 'borrower'));
     
     }
 
