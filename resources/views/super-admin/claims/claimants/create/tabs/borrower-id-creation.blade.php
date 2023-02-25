@@ -1,5 +1,5 @@
 <div class="card-body">
-        <form action="{{ route('super-admin.claims.store') }}" method="post" id="associate-partner-form"
+        <form action="{{ route('super-admin.claimants.update-borrower-details',1) }}" method="post" id="borrower-details-form"
         enctype="multipart/form-data">
         @csrf
 
@@ -580,7 +580,7 @@
             </div>            
 
             <div class="col-md-12 text-end mt-3">
-                <button type="submit" class="btn btn-success" form="claims-form">Create
+                <button type="submit" class="btn btn-success" form="borrower-details-form">
                 Create / Save Borrower ID</button>
             </div>
 

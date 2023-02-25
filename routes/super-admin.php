@@ -159,6 +159,8 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
 
     Route::resource('claimants', ClaimantController::class);
 
+    Route::post('claimants/update-borrower-details/{id}', [ClaimantController::class, 'borrowerDetails'])->name('claimants.update-borrower-details');
+
 
 
     /*
