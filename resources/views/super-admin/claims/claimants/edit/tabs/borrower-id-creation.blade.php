@@ -1,9 +1,9 @@
         <form action="{{ route('super-admin.claimants.update-borrower-details',$id) }}" method="post" id="borrower-details-form"
         enctype="multipart/form-data">
         @csrf
-        @if($errors->any())
+     {{--    @if($errors->any())
     {{ implode('', $errors->all('<div>:message</div>')) }}
-@endif
+@endif --}}
         <div class="card-body mb-4">
             <div class="form-group row">
                 <div class="col-md-6 mb-3">
@@ -684,11 +684,11 @@
                 $("#borrower_id_proof_file").val('');
 
                 $("#is_claimant_and_borrower_same").attr('disabled', false);
+                $("#is_claimant_and_borrower_same").val('').trigger('change');
             }
 
         });
         $('#is_claimant_and_borrower_same').on('change', function () {
-            alert('aalal');
             var idState = this.value;
             if(idState == 'Yes'){
                 $.ajax({
@@ -761,9 +761,11 @@
         }
     });
 
-        var is_patient_and_borrower_same = "{{ old('is_patient_and_borrower_same', $borrower->is_patient_and_borrower_same) }}";
+        // var is_patient_and_borrower_same = "{{ old('is_patient_and_borrower_same', $borrower->is_patient_and_borrower_same) }}";
+        var is_patient_and_borrower_same = "{{ old('is_patient_and_borrower_same') }}";
 
-    var is_claimant_and_borrower_same = "{{ old('is_claimant_and_borrower_same', $borrower->is_claimant_and_borrower_same) }}";
+    // var is_claimant_and_borrower_same = "{{ old('is_claimant_and_borrower_same', $borrower->is_claimant_and_borrower_same) }}";
+    var is_claimant_and_borrower_same = "{{ old('is_claimant_and_borrower_same') }}";
 
     if(is_patient_and_borrower_same == 'Yes'){
 
@@ -809,6 +811,7 @@
         $("#borrower_id_proof_file").val('');
 
         $("#is_claimant_and_borrower_same").attr('disabled', false);
+        // $("#is_claimant_and_borrower_same").val('').trigger('change');
     }
 
     if(is_claimant_and_borrower_same == 'No'){

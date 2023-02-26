@@ -44,7 +44,7 @@ return new class extends Migration
             $table->string('borrower_pincode')->nullable();
             $table->string('borrower_id_proof')->nullable();
             $table->string('borrower_id_proof_file')->nullable();
-            $table->string('borrower_email_id')->nullable();
+            $table->string('borrower_personal_email_id')->nullable();
             $table->string('borrower_official_email_id')->nullable();
             $table->string('borrower_mobile_no')->nullable();
             $table->string('borrower_pan_no')->nullable();

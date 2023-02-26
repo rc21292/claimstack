@@ -247,11 +247,11 @@ class ClaimantController extends Controller
     public function edit($id)
     {
         $claimant       = Claimant::find($id);
-        $exists         = Borrower::where('claimant_id', $id)->exists();
         $hospital       = Hospital::where('uid',$claimant->hospital_id)->first();
         $hospitals      = Hospital::get();
         $patient        = Patient::where('uid', $claimant->patient_id)->first();
 
+        $exists         = Borrower::where('claimant_id', $id)->exists();
         if ($exists) {
             $borrower     = Borrower::where('claimant_id', $id)->first();
         }else{
@@ -442,6 +442,7 @@ class ClaimantController extends Controller
 
     public function borrowerDetails(Request $request, $id)
     {
+        // echo "<pre>";print_r($request->all());"</pre>";exit;
         $borrower = Borrower::where('claimant_id',$id)->first();
 
 
@@ -554,13 +555,13 @@ class ClaimantController extends Controller
             'borrower_state' => 'required|max:40',
             'borrower_pincode' => 'required',
             'borrower_id_proof' => 'required',
-            'borrower_id_proof_file' => empty($borrower->borrower_id_proof_file) ? 'required' : [],
+            'borrower_id_proof_file' => ($request->is_patient_and_borrower_same == '' || $request->is_patient_and_borrower_same == 'No' || empty($borrower->borrower_id_proof_file) ) ? 'required' : [],
             'borrower_mobile_no' => 'required|digits:10',
             // 'borrower_email_id' => 'required|email|max:45',
             'borrower_pan_no' => 'required|max:10',
-            'borrower_pan_no_file' => empty($borrower->borrower_pan_no_file) ? 'required' : [],
+            'borrower_pan_no_file' => (($request->is_claimant_and_borrower_same == '' || $request->is_claimant_and_borrower_same == 'No') && empty($borrower->borrower_pan_no_file) ) ? 'required' : [],
             'borrower_aadhar_no' => 'required|max:12',
-            'borrower_aadhar_no_file' => empty($borrower->borrower_aadhar_no_file) ? 'required' : [],
+            'borrower_aadhar_no_file' => (($request->is_claimant_and_borrower_same == '' || $request->is_claimant_and_borrower_same == 'No') && empty($borrower->borrower_aadhar_no_file) ) ? 'required' : [],
             'borrower_cancel_cheque' => 'required',
             'borrower_cancel_cheque_file' => empty($borrower->borrower_cancel_cheque_file) ? 'required' : [],
             'borrower_personal_email_id' => 'required',
@@ -599,7 +600,7 @@ class ClaimantController extends Controller
             'borrower_pincode.required'          => 'Please Enter Pincode',
             'borrower_id_proof.required'          => 'Please Enter Id Proof',
             'borrower_mobile_no.required'            => 'Please Enter Mobile No',
-            'borrower_email_id.required'        => 'Please Enter Email Id',
+            // 'borrower_email_id.required'        => 'Please Enter Email Id',
             'borrower_official_email_id.required'          => 'Please Enter Official Email Id',
             'borrower_pan_no.required'              => 'Please Enter Pan No',
             'borrower_aadhar_no.required'              => 'Please Enter Aadhar No',
@@ -624,12 +625,12 @@ class ClaimantController extends Controller
 
         $borrower =  Borrower::updateOrCreate(
             [
-                'patient_id' => $id
+                'claimant_id' => $id
             ],
             [
                 'patient_id' => $request->patient_id,
                 'claim_id' => $request->claim_id,
-                'claimant_id' => $request->claimant_id,
+                // 'claimant_id' => $request->claimant_id,
                 'hospital_id' => $request->hospital_id,
                 'hospital_name' => $request->hospital_name,
                 'hospital_address' => $request->hospital_address,
@@ -655,7 +656,7 @@ class ClaimantController extends Controller
                 'borrower_pincode' => $request->borrower_pincode,
                 'borrower_id_proof' => $request->borrower_id_proof,
                 'borrower_mobile_no' => $request->borrower_mobile_no,
-                'borrower_email_id' => $request->borrower_email_id,
+                // 'borrower_email_id' => $request->borrower_email_id,
                 'borrower_official_email_id' => $request->borrower_official_email_id,
                 'borrower_pan_no' => $request->borrower_pan_no,
                 'borrower_aadhar_no' => $request->borrower_aadhar_no,
