@@ -34,6 +34,8 @@ class ClaimantController extends Controller
 
         $claimants = $claimants->orderBy('id', 'desc')->paginate(20);
 
+        // echo "<pre>";print_r($claimants);"</pre>";exit;
+
         return view('super-admin.claims.claimants.manage',  compact('claimants', 'filter_search'));
     }
 
@@ -90,7 +92,7 @@ class ClaimantController extends Controller
             'aadhar_no' => 'required|digits:12',
             'aadhar_no_file' => 'required',
             'patients_relation_with_claimant' => 'required',
-            'specify' => 'required',
+            'specify' => ($request->patients_relation_with_claimant == 'Other') ? 'required' : [],
             'address' => 'required|max:100',
             'city' => 'required',
             'state' => 'required',
@@ -98,7 +100,7 @@ class ClaimantController extends Controller
             'personal_email_id' => 'required|email|max:45',
             'official_email_id' => 'required|email|max:45',
             'mobile_no' => 'required|digits:10',
-            'estimated_amount' => 'required',
+            // 'estimated_amount' => 'required',
             'cancel_cheque' => 'required',
             'cancel_cheque_file' => 'required',
             'bank_name' => 'required|max:45',
@@ -144,9 +146,11 @@ class ClaimantController extends Controller
 
         $this->validate($request, $rules, $messages);
 
+        $cliam = Claim::find($request->claim_id);
+
         $claimant =  Claimant::Create([
            'patient_id' => $request->patient_id,
-           'claim_id' => $request->claim_id,
+           'claim_id' => $cliam ? $cliam->uid : $request->claim_id,
            'associate_partner_id' => $request->associate_partner_id,
            'hospital_id' => $request->hospital_id,
            'patient_title' => $request->patient_title,
@@ -256,22 +260,24 @@ class ClaimantController extends Controller
                 'patient_id' => $claimant->patient_id,
                 'claim_id' => $claimant->claim_id,
                 'hospital_id' => $claimant->hospital_id,
-                'hospital_name' => $hospital->name,
-                'hospital_address' => $hospital->address,
-                'hospital_city' => $hospital->city,
-                'hospital_state' => $hospital->state,
-                'hospital_pincode' => $hospital->pincode,
+                'hospital_name' => @$hospital->name,
+                'hospital_address' => @$hospital->address,
+                'hospital_city' => @$hospital->city,
+                'hospital_state' =>@ $hospital->state,
+                'hospital_pincode' => @$hospital->pincode,
                 'patient_title' => @$patient->title,
-                'patient_firstname' => $patient->firstname,
-                'patient_middlename' => $patient->middlename,
-                'patient_lastname' => $patient->lastname,
+                'patient_firstname' => @$patient->firstname,
+                'patient_middlename' => @$patient->middlename,
+                'patient_lastname' => @$patient->lastname,
             ]);
         }
 
         $associates     = AssociatePartner::get();
         $patient_id   = $claimant->patient_id;
 
-        return view('super-admin.claims.claimants.edit.edit',  compact('patient_id', 'associates', 'hospitals', 'patient', 'claimant', 'borrower', 'id'));
+        $claim = $claimant->claim;
+
+        return view('super-admin.claims.claimants.edit.edit',  compact('patient_id', 'associates', 'hospitals', 'patient', 'claimant', 'borrower', 'id', 'claim'));
 
     }
 
@@ -339,7 +345,7 @@ class ClaimantController extends Controller
             'pan_no' => 'required',
             'aadhar_no' => 'required',
             'patients_relation_with_claimant' => 'required',
-            'specify' => 'required',
+            'specify' => ($request->patients_relation_with_claimant == 'Other') ? 'required' : [],
             'address' => 'required',
             'city' => 'required',
             'state' => 'required',
@@ -676,7 +682,7 @@ class ClaimantController extends Controller
             'uid'      => 'BRO' . substr($claimant->pan_no, 0, 2) . substr($borrower->pan_no, -3)
         ]);
 
-        return redirect()->route('super-admin.claimants.edit',$id)->with('success', 'Borrower updated successfully');
+        return redirect()->route('super-admin.claimants.index')->with('success', 'Borrower created successfully');
 
     }
 

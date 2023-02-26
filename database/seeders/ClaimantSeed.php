@@ -32,10 +32,10 @@ public function run()
     $claim  = Claim::inRandomOrder()->first();
     for ($i = 1; $i < 101; $i++) {
         Claimant::create([
-            'patient_id' => $patient->id,
-            'claim_id' => $claim->id,
-            'hospital_id' => $hospital->id,
-            'associate_partner_id' => $associate->id,
+            'patient_id' => $patient->uid,
+            'claim_id' => $claim->uid,
+            'hospital_id' => $hospital->uid,
+            'associate_partner_id' => $associate->associate_partner_id,
             'patient_title' => $faker->randomElement(['Mr.', 'Ms.']),
             'patient_firstname' => $faker->firstname(),
             'patient_middlename' => $faker->lastname(),

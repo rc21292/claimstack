@@ -283,7 +283,7 @@
                             <option value="Driving Licence"{{ old('borrower_id_proof', $borrower->borrower_id_proof) == 'Driving Licence' ? 'selected' : '' }}>Driving Licence </option>
                             <option value="Passport" {{ old('borrower_id_proof', $borrower->patient_id_proof) == 'Passport' ? 'selected' : '' }}>Passport</option>
                         </select>
-                        <input type="file" name="borrower_id_proof_file" id="borrower_id_proof_file" hidden />
+                        <input type="file" name="borrower_id_proof_file" id="borrower_id_proof_file" hidden  onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                         <label for="borrower_id_proof_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
                     </div>
 
@@ -332,7 +332,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control" id="borrower_pan_no" name="borrower_pan_no"
                         maxlength="10" placeholder="Enter PAN no." value="{{ old('borrower_pan_no',$borrower->borrower_pan_no) }}">
-                        <input type="file" name="borrower_pan_no_file" id="borrower_pan_no_file" hidden />
+                        <input type="file" name="borrower_pan_no_file" id="borrower_pan_no_file" hidden  onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                         <label for="borrower_pan_no_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
                     </div>
                     @error('borrower_pan_no')
@@ -348,7 +348,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control" id="borrower_aadhar_no" name="borrower_aadhar_no"
                         maxlength="10" placeholder="Enter Aadhar no." value="{{ old('borrower_aadhar_no',$borrower->borrower_aadhar_no) }}">
-                        <input type="file" name="borrower_aadhar_no_file" id="borrower_aadhar_no_file" hidden />
+                        <input type="file" name="borrower_aadhar_no_file" id="borrower_aadhar_no_file" hidden  onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                         <label for="borrower_aadhar_no_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
                     </div>
                     @error('borrower_aadhar_no')
@@ -367,7 +367,7 @@
                             <option value="Yes" {{ old('bank_statement') == 'Yes' ? 'selected' : '' }}>Yes  </option>
                             <option value="No" {{ old('bank_statement', @$hospital->bank_statement) == 'No' ? 'selected' : '' }}>No </option>
                         </select>
-                        <input type="file" name="bank_statement_file" id="bank_statement_file" hidden />
+                        <input type="file" name="bank_statement_file" id="bank_statement_file" hidden  onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                         <label for="bank_statement_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
                     </div>
 
@@ -387,7 +387,7 @@
                             <option value="Yes" {{ old('itr') == 'Yes' ? 'selected' : '' }}>Yes  </option>
                             <option value="No" {{ old('itr', @$hospital->itr) == 'No' ? 'selected' : '' }}>No </option>
                         </select>
-                        <input type="file" name="itr_file" id="itr_file" hidden />
+                        <input type="file" name="itr_file" id="itr_file" hidden  onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                         <label for="itr_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
                     </div>
 
@@ -408,7 +408,7 @@
                             <option value="Yes" {{ old('borrower_cancel_cheque') == 'Yes' ? 'selected' : '' }}>Yes  </option>
                             <option value="No" {{ old('borrower_cancel_cheque', @$hospital->borrower_cancel_cheque) == 'No' ? 'selected' : '' }}>No </option>
                         </select>
-                        <input type="file" name="borrower_cancel_cheque_file" id="borrower_cancel_cheque_file" hidden />
+                        <input type="file" name="borrower_cancel_cheque_file" id="borrower_cancel_cheque_file" hidden  onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                         <label for="borrower_cancel_cheque_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
                     </div>
 
@@ -477,7 +477,7 @@
                     <div class="input-group">
                         <input type="date" class="form-control" id="co_borrower_nominee_dob" name="co_borrower_nominee_dob" placeholder="Enter Co-Borrower / Nominee DOB" 
                         value="{{ old('co_borrower_nominee_dob',$borrower->co_borrower_nominee_dob) }}" >
-                        <input type="file" name="co_borrower_nominee_dob_file" id="co_borrower_nominee_dob_file" hidden />
+                        <input type="file" name="co_borrower_nominee_dob_file" id="co_borrower_nominee_dob_file" hidden  onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                         <label for="co_borrower_nominee_dob_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
                     </div>
                     @error('co_borrower_nominee_dob')
@@ -500,7 +500,7 @@
                             <option value="Other" {{ old('co_borrower_nominee_gender') == 'Other' ? 'selected' : '' }}>Other
                             </option>
                         </select>
-                        <input type="file" name="co_borrower_nominee_gender_file" id="co_borrower_nominee_gender_file" hidden />
+                        <input type="file" name="co_borrower_nominee_gender_file" id="co_borrower_nominee_gender_file" hidden  onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                         <label for="co_borrower_nominee_gender_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
                     </div>
                     @error('co_borrower_nominee_gender')
@@ -534,7 +534,7 @@
                             <option value="Yes" {{ old('co_borrower_other_documents') == 'Yes' ? 'selected' : '' }}>Yes  </option>
                             <option value="No" {{ old('co_borrower_other_documents', @$hospital->co_borrower_other_documents) == 'No' ? 'selected' : '' }}>No </option>
                         </select>
-                        <input type="file" name="co_borrower_other_documents_file" id="co_borrower_other_documents_file" hidden />
+                        <input type="file" name="co_borrower_other_documents_file" id="co_borrower_other_documents_file" hidden  onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                         <label for="co_borrower_other_documents_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
                     </div>
 
@@ -576,7 +576,7 @@
     </form>
 @push('scripts')
 <script>
-    $(document).on('change', '#is_patient_and_borrower_same', function(event) {
+    /*$(document).on('change', '#is_patient_and_borrower_same', function(event) {
         event.preventDefault();
         if($(this).val() == 'Yes'){
             setPatient();
@@ -594,7 +594,7 @@
         }else{
             $("#is_claimant_and_borrower_same").attr('disabled', false);
         }
-    });
+    });*/
 
     function setPatient() {
         var title               = $("#title");
@@ -616,7 +616,7 @@
         $('#registration_no').val(registrationno);
     }
 
-    function setPatient() {
+    function setClaimant() {
         var title               = $("#title");
         var firstname           = $("#firstname");
         var middlename          = $("#middlename");
@@ -638,7 +638,130 @@
 </script>
 
 <script>
-    var is_patient_and_borrower_same = "{{ old('is_patient_and_borrower_same', $borrower->is_patient_and_borrower_same) }}";
+
+    $(document).ready(function () {
+        $('#is_patient_and_borrower_same').on('change', function () {
+            var idCountry = this.value;
+            if(idCountry == 'Yes'){
+                $("#is_claimant_and_borrower_same").attr('disabled', true);
+
+                $.ajax({
+                    url: "{{route('super-admin.claimants.fetch-patient', $claimant->patient_id)}}",
+                    type: "GET",
+                    data: {
+                        _token: '{{csrf_token()}}'
+                    },
+                    dataType: 'json',
+                    success: function (result) {
+                        $("#borrower_title").val(result.title);
+                        $("#borrower_firstname").val(result.firstname);
+                        $("#borrower_lastname").val(result.lastname);
+                        $("#borrower_middlename").val(result.middlename);
+                        $("#borrower_address").val(result.patient_current_address);
+                        $("#borrower_city").val(result.patient_current_city);
+                        $("#borrower_state").val(result.patient_current_state);
+                        $("#borrower_pincode").val(result.patient_current_pincode);
+                        $("#borrower_id_proof").val(result.id_proof);
+                        $("#borrower_personal_email_id").val(result.email);
+                        $("#borrower_mobile_no").val(result.phone);
+                        $("#borrower_id_proof_file").val(result.id_proof_file);
+                    }
+                });
+
+            }else{
+
+                $("#borrower_title").val('');
+                $("#borrower_firstname").val('');
+                $("#borrower_lastname").val('');
+                $("#borrower_middlename").val('');
+                $("#borrower_address").val('');
+                $("#borrower_city").val('');
+                $("#borrower_state").val('');
+                $("#borrower_pincode").val('');
+                $("#borrower_id_proof").val('');
+                $("#borrower_personal_email_id").val('');
+                $("#borrower_mobile_no").val('');
+                $("#borrower_id_proof_file").val('');
+
+                $("#is_claimant_and_borrower_same").attr('disabled', false);
+            }
+
+        });
+        $('#is_claimant_and_borrower_same').on('change', function () {
+            alert('aalal');
+            var idState = this.value;
+            if(idState == 'Yes'){
+                $.ajax({
+                    url: "{{route('super-admin.claimants.fetch-claimant', $id)}}",
+                    type: "GET",
+                    data: {
+                        _token: '{{csrf_token()}}'
+                    },
+                    dataType: 'json',
+                    success: function (result) {
+                        $("#borrower_title").val(result.title);
+                        $("#borrower_firstname").val(result.firstname);
+                        $("#borrower_lastname").val(result.lastname);
+                        $("#borrower_middlename").val(result.middlename);
+                        $("#borrower_address").val(result.address);
+                        $("#borrower_city").val(result.city);
+                        $("#borrower_state").val(result.state);
+                        $("#borrower_pincode").val(result.pincode);
+                        $("#borrower_pincode").val(result.pincode);
+                        $("#borrower_id_proof").val(result.id_proof);
+                        $("#borrower_personal_email_id").val(result.personal_email_id);
+                        $("#borrower_mobile_no").val(result.mobile_no);
+                        $("#borrower_pan_no").val(result.pan_no);
+                        $("#borrower_aadhar_no").val(result.aadhar_no);
+                        $("#borrower_bank_name").val(result.bank_name);
+                        $("#borrower_bank_address").val(result.bank_address);
+                        $("#borrower_ac_no").val(result.ac_no);
+                        $("#borrower_ifs_code").val(result.ifs_code);
+                        $("#borrower_pan_no_file").val(result.pan_no_file);
+                        $("#borrower_id_proof_file").val(result.id_proof_file);
+                        $("#borrower_aadhar_no_file").val(result.aadhar_no_file);
+                    }
+                });
+            }else{
+                $("#borrower_title").val('');
+                $("#borrower_firstname").val('');
+                $("#borrower_lastname").val('');
+                $("#borrower_middlename").val('');
+                $("#borrower_address").val('');
+                $("#borrower_city").val('');
+                $("#borrower_state").val('');
+                $("#borrower_pincode").val('');
+                $("#borrower_id_proof").val('');
+                $("#borrower_personal_email_id").val('');
+                $("#borrower_mobile_no").val('');
+                $("#borrower_pan_no").val('');
+                $("#borrower_aadhar_no").val('');
+                $("#borrower_bank_name").val('');
+                $("#borrower_bank_address").val('');
+                $("#borrower_ac_no").val('');
+                $("#borrower_ifs_code").val('');
+                $("#borrower_pan_no_file").val('');
+                $("#borrower_aadhar_no_file").val('');
+                $("#borrower_id_proof_file").val('');
+            }
+
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function(){
+        $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
+            localStorage.setItem('activeTab', $(e.target).attr('href'));
+        });
+
+        var activeTab = localStorage.getItem('activeTab');
+        if(activeTab){
+            $('a[href="' + activeTab + '"]').tab('show');
+        }
+    });
+
+        var is_patient_and_borrower_same = "{{ old('is_patient_and_borrower_same', $borrower->is_patient_and_borrower_same) }}";
 
     var is_claimant_and_borrower_same = "{{ old('is_claimant_and_borrower_same', $borrower->is_claimant_and_borrower_same) }}";
 
@@ -700,13 +823,13 @@
         $("#borrower_personal_email_id").val('');
         $("#borrower_mobile_no").val('');
         $("#borrower_pan_no").val('');
-        $("#borrower_pan_no_file").val('');
-        $("#borrower_aadhar_no_file").val('');
         $("#borrower_aadhar_no").val('');
         $("#borrower_bank_name").val('');
         $("#borrower_bank_address").val('');
         $("#borrower_ac_no").val('');
         $("#borrower_ifs_code").val('');
+        $("#borrower_pan_no_file").val('');
+        $("#borrower_aadhar_no_file").val('');
         $("#borrower_id_proof_file").val('');
 
     }
@@ -734,13 +857,13 @@
                 $("#borrower_personal_email_id").val(result.personal_email_id);
                 $("#borrower_mobile_no").val(result.mobile_no);
                 $("#borrower_pan_no").val(result.pan_no);
-                $("#borrower_pan_no_file").val(result.pan_no_file);
-                $("#borrower_aadhar_no_file").val(result.aadhar_no_file);
                 $("#borrower_aadhar_no").val(result.aadhar_no);
                 $("#borrower_bank_name").val(result.bank_name);
                 $("#borrower_bank_address").val(result.bank_address);
                 $("#borrower_ac_no").val(result.ac_no);
                 $("#borrower_ifs_code").val(result.ifs_code);
+                $("#borrower_pan_no_file").val(result.pan_no_file);
+                $("#borrower_aadhar_no_file").val(result.aadhar_no_file);
                 $("#borrower_id_proof_file").val(result.id_proof_file);
             }
         });
@@ -748,126 +871,6 @@
 
     }
 
-    $(document).ready(function () {
-        $('#is_patient_and_borrower_same').on('change', function () {
-            var idCountry = this.value;
-            if(idCountry == 'Yes'){
-                $("#is_claimant_and_borrower_same").attr('disabled', true);
-
-                $.ajax({
-                    url: "{{route('super-admin.claimants.fetch-patient', $claimant->patient_id)}}",
-                    type: "GET",
-                    data: {
-                        _token: '{{csrf_token()}}'
-                    },
-                    dataType: 'json',
-                    success: function (result) {
-                        $("#borrower_title").val(result.title);
-                        $("#borrower_firstname").val(result.firstname);
-                        $("#borrower_lastname").val(result.lastname);
-                        $("#borrower_middlename").val(result.middlename);
-                        $("#borrower_address").val(result.patient_current_address);
-                        $("#borrower_city").val(result.patient_current_city);
-                        $("#borrower_state").val(result.patient_current_state);
-                        $("#borrower_pincode").val(result.patient_current_pincode);
-                        $("#borrower_id_proof").val(result.id_proof);
-                        $("#borrower_personal_email_id").val(result.email);
-                        $("#borrower_mobile_no").val(result.phone);
-                        $("#borrower_id_proof_file").val(result.id_proof_file);
-                    }
-                });
-
-            }else{
-
-                $("#borrower_title").val('');
-                $("#borrower_firstname").val('');
-                $("#borrower_lastname").val('');
-                $("#borrower_middlename").val('');
-                $("#borrower_address").val('');
-                $("#borrower_city").val('');
-                $("#borrower_state").val('');
-                $("#borrower_pincode").val('');
-                $("#borrower_id_proof").val('');
-                $("#borrower_personal_email_id").val('');
-                $("#borrower_mobile_no").val('');
-                $("#borrower_id_proof_file").val('');
-
-                $("#is_claimant_and_borrower_same").attr('disabled', false);
-            }
-
-        });
-        $('#is_claimant_and_borrower_same').on('change', function () {
-            var idState = this.value;
-            if(idState == 'Yes'){
-                $.ajax({
-                    url: "{{route('super-admin.claimants.fetch-claimant', $id)}}",
-                    type: "GET",
-                    data: {
-                        _token: '{{csrf_token()}}'
-                    },
-                    dataType: 'json',
-                    success: function (result) {
-                        $("#borrower_title").val(result.title);
-                        $("#borrower_firstname").val(result.firstname);
-                        $("#borrower_lastname").val(result.lastname);
-                        $("#borrower_middlename").val(result.middlename);
-                        $("#borrower_address").val(result.address);
-                        $("#borrower_city").val(result.city);
-                        $("#borrower_state").val(result.state);
-                        $("#borrower_pincode").val(result.pincode);
-                        $("#borrower_pincode").val(result.pincode);
-                        $("#borrower_id_proof").val(result.id_proof);
-                        $("#borrower_personal_email_id").val(result.personal_email_id);
-                        $("#borrower_mobile_no").val(result.mobile_no);
-                        $("#borrower_pan_no").val(result.pan_no);
-                        $("#borrower_pan_no_file").val(result.pan_no_file);
-                        $("#borrower_aadhar_no_file").val(result.aadhar_no_file);
-                        $("#borrower_aadhar_no").val(result.aadhar_no);
-                        $("#borrower_bank_name").val(result.bank_name);
-                        $("#borrower_bank_address").val(result.bank_address);
-                        $("#borrower_ac_no").val(result.ac_no);
-                        $("#borrower_ifs_code").val(result.ifs_code);
-                        $("#borrower_id_proof_file").val(result.id_proof_file);
-                    }
-                });
-            }else{
-                $("#borrower_title").val('');
-                $("#borrower_firstname").val('');
-                $("#borrower_lastname").val('');
-                $("#borrower_middlename").val('');
-                $("#borrower_address").val('');
-                $("#borrower_city").val('');
-                $("#borrower_state").val('');
-                $("#borrower_pincode").val('');
-                $("#borrower_id_proof").val('');
-                $("#borrower_personal_email_id").val('');
-                $("#borrower_mobile_no").val('');
-                $("#borrower_pan_no").val('');
-                $("#borrower_pan_no_file").val('');
-                $("#borrower_aadhar_no_file").val('');
-                $("#borrower_aadhar_no").val('');
-                $("#borrower_bank_name").val('');
-                $("#borrower_bank_address").val('');
-                $("#borrower_ac_no").val('');
-                $("#borrower_ifs_code").val('');
-                $("#borrower_id_proof_file").val('');
-            }
-
-        });
-    });
-</script>
-
-<script>
-    $(document).ready(function(){
-        $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
-            localStorage.setItem('activeTab', $(e.target).attr('href'));
-        });
-
-        var activeTab = localStorage.getItem('activeTab');
-        if(activeTab){
-            $('a[href="' + activeTab + '"]').tab('show');
-        }
-    });
 </script>
 @endpush
 

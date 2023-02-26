@@ -9,7 +9,7 @@
                 <label for="claim_id">Cliam ID <span class="text-danger">*</span></label>
                 <select class="form-control select2" id="claim_id" name="claim_id" data-toggle="select2"
                     onchange="setPatient()">
-                    <option value="">Enter Patient ID</option>
+                    <option value="">Search Claim ID</option>
                     @foreach ($claims as $row)
                         <option value="{{ $row->id }}" {{ old('claim_id', isset($claim) ? $claim->id : '') == $row->id ? 'selected' : '' }} 
                             data-patient-id="{{ $row->patient->uid }}" 
@@ -17,6 +17,12 @@
                             data-title="{{ $row->patient->title }}"
                             data-firstname="{{ $row->patient->firstname }}"
                             data-middlename="{{ $row->patient->middlename }}" 
+                            data-address="{{ $row->patient->patient_current_address }}" 
+                            data-city="{{ $row->patient->patient_current_city }}" 
+                            data-state="{{ $row->patient->patient_current_state }}" 
+                            data-pincode="{{ $row->patient->patient_current_pincode }}" 
+                            data-email="{{ $row->patient->email }}" 
+                            data-mobile="{{ $row->patient->phone }}" 
                             data-lastname="{{ $row->patient->lastname }}" 
                             data-hospital="{{ $row->patient->hospital->uid }}"
                             data-id-prof="{{ $row->patient->id_proof }}">
@@ -220,6 +226,7 @@
                 <label for="patients_relation_with_claimant">Patient's Relation with Claimant <span class="text-danger">*</span></label>
                 <select class="form-select" id="patients_relation_with_claimant" name="patients_relation_with_claimant">
                     <option value="">Select Patient's Relation with Claimant</option>
+                    <option value="Self" {{ old('patients_relation_with_claimant') == 'Self' ? 'selected' : '' }}>Self </option>
                     <option value="Spouse" {{ old('patients_relation_with_claimant') == 'Spouse' ? 'selected' : '' }}>Spouse </option>
                     <option value="Child" {{ old('patients_relation_with_claimant') == 'Child' ? 'selected' : '' }}>Child</option>
                     <option value="Father" {{ old('patients_relation_with_claimant') == 'Father' ? 'selected' : '' }}>Father</option>
@@ -235,7 +242,7 @@
             <div class="col-md-6 mt-3">
                 <label for="specify">Please Specify <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="specify" name="specify"
-                placeholder="Specify here" value="{{ old('specify') }}">
+                placeholder="Specify here" disabled value="{{ old('specify') }}">
                 @error('specify')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -327,7 +334,7 @@
                         <option value="Yes" {{ old('cancel_cheque') == 'Yes' ? 'selected' : '' }}>Yes  </option>
                         <option value="No" {{ old('cancel_cheque', @$hospital->cancel_cheque) == 'No' ? 'selected' : '' }}>No </option>
                     </select>
-                    <input type="file" name="cancel_cheque_file" id="cancel_cheque_file" hidden />
+                    <input type="file" name="cancel_cheque_file" id="cancel_cheque_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                     <label for="cancel_cheque_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
                 </div>
 
@@ -396,6 +403,12 @@
 </div>
 @push('scripts')
 <script>
+    $('#patients_relation_with_claimant').on('change', function () {
+        if($(this).val() == 'Other'){
+            $('#specify').attr('disabled', false);
+        }
+    });
+
     $('#are_patient_and_claimant_same').on('change', function () {
         var idCountry = this.value;
         if(idCountry == 'Yes'){
@@ -404,18 +417,38 @@
             var firstname           = $("#claim_id").select2().find(":selected").data("firstname");
             var middlename          = $("#claim_id").select2().find(":selected").data("middlename");
             var lastname            = $("#claim_id").select2().find(":selected").data("lastname");
+            var address            = $("#claim_id").select2().find(":selected").data("address");
+            var city            = $("#claim_id").select2().find(":selected").data("city");
+            var state            = $("#claim_id").select2().find(":selected").data("state");
+            var pincode            = $("#claim_id").select2().find(":selected").data("pincode");
+            var email            = $("#claim_id").select2().find(":selected").data("email");
+            var mobile            = $("#claim_id").select2().find(":selected").data("mobile");
 
+            $('#patients_relation_with_claimant').val('Self').trigger('change');
             $('#title').val(title).trigger('change');
             $('#firstname').val(firstname);
             $('#middlename').val(middlename);
             $('#lastname').val(lastname);
+            $('#address').val(address);
+            $('#city').val(city);
+            $('#state').val(state);
+            $('#pincode').val(pincode);
+            $('#personal_email_id').val(email);
+            $('#mobile_no').val(mobile);
 
         }else{
 
-            $('#title').val(title);
-            $('#firstname').val(firstname);
-            $('#middlename').val(middlename);
-            $('#lastname').val(lastname);
+            $('#patients_relation_with_claimant').val('').trigger('change');
+            $('#title').val('').trigger('change');
+            $('#firstname').val('');
+            $('#middlename').val('');
+            $('#lastname').val('');
+            $('#address').val('');
+            $('#city').val('');
+            $('#state').val('');
+            $('#pincode').val('');
+            $('#personal_email_id').val('');
+            $('#mobile_no').val('');
 
         }
     });

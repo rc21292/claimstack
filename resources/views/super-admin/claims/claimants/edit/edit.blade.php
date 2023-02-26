@@ -30,7 +30,7 @@
             <div class="col-12">
                 <div class="card no-shadow">
                     <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
-                        @if ($claim->insurance_coverage == 'Yes' && $claim->lending_required == 'Yes')
+                        @if (@$claim->insurance_coverage == 'Yes' && @$claim->lending_required == 'Yes')
                             <li class="nav-item">
                                 <a href="#claimant_creation_tab" data-bs-toggle="tab" aria-expanded="true"
                                     class="nav-link rounded-0 active">
@@ -48,7 +48,7 @@
                             </li>
                         @endif
 
-                        @if ($claim->insurance_coverage == 'Yes' && $claim->lending_required == 'No')
+                        @if (@$claim->insurance_coverage == 'Yes' && @$claim->lending_required == 'No')
                             <li class="nav-item">
                                 <a href="#claimant_creation_tab" data-bs-toggle="tab" aria-expanded="true"
                                     class="nav-link rounded-0 active">
@@ -66,7 +66,7 @@
                             </li>
                         @endif
 
-                        @if ($claim->insurance_coverage == 'No' && $claim->lending_required == 'Yes')
+                        @if (@$claim->insurance_coverage == 'No' && @$claim->lending_required == 'Yes')
                             <li class="nav-item">
                                 <a href="#claimant_creation_tab" data-bs-toggle="tab" aria-expanded="false"
                                     class="nav-link rounded-0" disabled>
@@ -84,7 +84,7 @@
                             </li>
                         @endif
 
-                        @if ($claim->insurance_coverage == 'No' && $claim->lending_required == 'No')
+                        @if (@$claim->insurance_coverage == 'No' && @$claim->lending_required == 'No')
                             <li class="nav-item">
                                 <a href="#claimant_no_tab" data-bs-toggle="tab" aria-expanded="true"
                                     class="nav-link rounded-0 active">
@@ -99,7 +99,7 @@
                     </ul>
 
                     <div class="tab-content">
-                        @if ($claim->insurance_coverage == 'Yes' && $claim->lending_required == 'Yes')
+                        @if (@$claim->insurance_coverage == 'Yes' && @$claim->lending_required == 'Yes')
                             <div class="tab-pane show active" id="claimant_creation_tab">
                                 @include('super-admin.claims.claimants.edit.tabs.claimant-id-creation')
                             </div>
@@ -108,7 +108,7 @@
                                 @include('super-admin.claims.claimants.edit.tabs.borrower-id-creation')
                             </div>
                         @endif
-                        @if ($claim->insurance_coverage == 'Yes' && $claim->lending_required == 'No')
+                        @if (@$claim->insurance_coverage == 'Yes' && @$claim->lending_required == 'No')
                             <div class="tab-pane show active" id="claimant_creation_tab">
                                 @include('super-admin.claims.claimants.edit.tabs.claimant-id-creation')
                             </div>
@@ -117,7 +117,7 @@
                                 @include('super-admin.claims.claimants.edit.tabs.borrower-id-creation')
                             </div>
                         @endif
-                        @if ($claim->insurance_coverage == 'No' && $claim->lending_required == 'Yes')
+                        @if (@$claim->insurance_coverage == 'No' && @$claim->lending_required == 'Yes')
                             <div class="tab-pane" id="claimant_creation_tab">
                                 @include('super-admin.claims.claimants.edit.tabs.claimant-id-creation')
                             </div>
@@ -126,7 +126,7 @@
                                 @include('super-admin.claims.claimants.edit.tabs.borrower-id-creation')
                             </div>
                         @endif
-                        @if ($claim->insurance_coverage == 'No' && $claim->lending_required == 'No')
+                        @if (@$claim->insurance_coverage == 'No' && @$claim->lending_required == 'No')
                             <div class="tab-pane show active" id="claimant_no_tab">
                                 @include('super-admin.claims.claimants.edit.tabs.notab')
                             </div>

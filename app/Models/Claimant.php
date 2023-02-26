@@ -51,6 +51,6 @@ class Claimant extends Model
 
     public function claim()
     {
-        return $this->belongsTo(claim::class, 'claim_id');
+        return $this->belongsTo(claim::class, 'claim_id', 'uid');
     }
 }

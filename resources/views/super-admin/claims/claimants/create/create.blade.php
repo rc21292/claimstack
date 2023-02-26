@@ -127,7 +127,7 @@
 
             $('#patient_id').val(patient_id);
             $('#patient_id_proof').val(idprof);
-            $('#associate_partner_id').val(asp_id);
+            $('#associate_partner_id').val((asp_id == 'data-title="Ms."')? '' : asp_id);
             $('#patient_title').val(title);
             $('#patient_title').val(title);
             $('#patient_firstname').val(firstname);

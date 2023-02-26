@@ -203,6 +203,7 @@
                     <label for="patients_relation_with_claimant">Patient's Relation with Claimant <span class="text-danger">*</span></label>
                     <select class="form-select" id="patients_relation_with_claimant" name="patients_relation_with_claimant">
                         <option value="">Select Patient's Relation with Claimant</option>
+                        <option value="Self" {{ old('patients_relation_with_claimant', $claimant->patients_relation_with_claimant) == 'Self' ? 'selected' : '' }}>Self </option>
                         <option value="Spouse" {{ old('patients_relation_with_claimant', $claimant->patients_relation_with_claimant) == 'Spouse' ? 'selected' : '' }}>Spouse </option>
                         <option value="Child" {{ old('patients_relation_with_claimant', $claimant->patients_relation_with_claimant) == 'Child' ? 'selected' : '' }}>Child</option>
                         <option value="Father" {{ old('patients_relation_with_claimant', $claimant->patients_relation_with_claimant) == 'Father' ? 'selected' : '' }}>Father</option>
@@ -310,7 +311,7 @@
                             <option value="Yes" {{ old('cancel_cheque', $claimant->cancel_cheque) == 'Yes' ? 'selected' : '' }}>Yes  </option>
                             <option value="No" {{ old('cancel_cheque', $claimant->cancel_cheque) == 'No' ? 'selected' : '' }}>No </option>
                         </select>
-                        <input type="file" name="cancel_cheque_file" id="cancel_cheque_file" hidden />
+                        <input type="file" name="cancel_cheque_file" id="cancel_cheque_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                         <label for="cancel_cheque_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
                     </div>
 
@@ -377,3 +378,58 @@
             </div>
         </div>
     </form>
+
+   @push('scripts')
+<script>
+    $('#patients_relation_with_claimant').on('change', function () {
+        if($(this).val() == 'Other'){
+            $('#specify').attr('disabled', false);
+        }
+    });
+
+    $('#are_patient_and_claimant_same').on('change', function () {
+        var idCountry = this.value;
+        if(idCountry == 'Yes'){
+
+            var title            = $("#claim_id").select2().find(":selected").data("title");
+            var firstname           = $("#claim_id").select2().find(":selected").data("firstname");
+            var middlename          = $("#claim_id").select2().find(":selected").data("middlename");
+            var lastname            = $("#claim_id").select2().find(":selected").data("lastname");
+            var address            = $("#claim_id").select2().find(":selected").data("address");
+            var city            = $("#claim_id").select2().find(":selected").data("city");
+            var state            = $("#claim_id").select2().find(":selected").data("state");
+            var pincode            = $("#claim_id").select2().find(":selected").data("pincode");
+            var email            = $("#claim_id").select2().find(":selected").data("email");
+            var mobile            = $("#claim_id").select2().find(":selected").data("mobile");
+
+            $('#patients_relation_with_claimant').val('Self').trigger('change');
+            $('#title').val(title).trigger('change');
+            $('#firstname').val(firstname);
+            $('#middlename').val(middlename);
+            $('#lastname').val(lastname);
+            $('#address').val(address);
+            $('#city').val(city);
+            $('#state').val(state);
+            $('#pincode').val(pincode);
+            $('#personal_email_id').val(email);
+            $('#mobile_no').val(mobile);
+
+        }else{
+
+            $('#patients_relation_with_claimant').val('').trigger('change');
+            $('#title').val('').trigger('change');
+            $('#firstname').val('');
+            $('#middlename').val('');
+            $('#lastname').val('');
+            $('#address').val('');
+            $('#city').val('');
+            $('#state').val('');
+            $('#pincode').val('');
+            $('#personal_email_id').val('');
+            $('#mobile_no').val('');
+
+        }
+    });
+
+</script>
+@endpush
