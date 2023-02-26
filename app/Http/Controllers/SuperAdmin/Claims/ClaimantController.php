@@ -86,7 +86,9 @@ class ClaimantController extends Controller
             'middlename' => 'required||max:25',
             'lastname' => 'required',
             'pan_no' => 'required|digits:10',
+            'pan_no_file' => 'required',
             'aadhar_no' => 'required|digits:12',
+            'aadhar_no_file' => 'required',
             'patients_relation_with_claimant' => 'required',
             'specify' => 'required',
             'address' => 'required|max:100',
@@ -98,11 +100,11 @@ class ClaimantController extends Controller
             'mobile_no' => 'required|digits:10',
             'estimated_amount' => 'required',
             'cancel_cheque' => 'required',
+            'cancel_cheque_file' => 'required',
             'bank_name' => 'required|max:45',
             'bank_address' => 'required|max:80',
             'ac_no' => 'required|max:20',
             'ifs_code' => 'required|max:11',
-            'comments' => 'required|max:250',
         ];
 
         $messages =  [
@@ -168,7 +170,7 @@ class ClaimantController extends Controller
            'personal_email_id' => $request->personal_email_id,
            'official_email_id' => $request->official_email_id,
            'mobile_no' => $request->mobile_no,
-           'estimated_amount' => $request->estimated_amount,
+           // 'estimated_amount' => $request->estimated_amount,
            'cancel_cheque' => $request->cancel_cheque,
            'bank_name' => $request->bank_name,
            'bank_address' => $request->bank_address,
