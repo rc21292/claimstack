@@ -57,11 +57,12 @@ class ClaimantController extends Controller
         $hospital_id            = isset($patient_id) ? $patient->hospital->id : null;
         $associate_partner_id   = isset($patient_id) ? $patient->associate_partner_id : null;
         $patient_title          = isset($patient) ? $patient->title : null;
+        $patient_id_proof          = isset($patient) ? $patient->id_proof : null;
         $patient_firstname      = isset($patient) ? $patient->firstname : null;
         $patient_lastname       = isset($patient) ? $patient->lastname : null;
         $patient_middlename     = isset($patient) ? $patient->middlename : null;
 
-        return view('super-admin.claims.claimants.create.create',  compact('patient_id', 'associates', 'hospitals', 'patient', 'patients', 'claims', 'claim', 'claim_id', 'associate_partner_id', 'hospital_id', 'patient_title', 'patient_firstname', 'patient_lastname', 'patient_middlename'));
+        return view('super-admin.claims.claimants.create.create',  compact('patient_id', 'associates', 'hospitals', 'patient', 'patients', 'claims', 'claim', 'claim_id', 'associate_partner_id', 'hospital_id', 'patient_title', 'patient_firstname', 'patient_lastname', 'patient_middlename', 'patient_id_proof'));
     }
 
     /**
@@ -77,19 +78,19 @@ class ClaimantController extends Controller
             'claim_id' => 'required',
             'associate_partner_id' => "required_if:$request->associate_partner_id,'!=',null",
             'hospital_id' => 'required',
-            'patient_title' => 'required|max:25',
+            // 'patient_title' => 'required|max:25',
             'patient_firstname' => 'required|max:25',
             'patient_middlename' => 'required|max:25',
             'patient_lastname' => 'required|max:25',
-            'patient_id_proof' => 'required',
+            // 'patient_id_proof' => 'required',
             'are_patient_and_claimant_same' => 'required',
             'title' => 'required',
             'firstname' => 'required|max:25',
             'middlename' => 'required||max:25',
             'lastname' => 'required',
-            'pan_no' => 'required|digits:10',
+            'pan_no' => 'required|alpha_num|size:10|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/u',
             'pan_no_file' => 'required',
-            'aadhar_no' => 'required|digits:12',
+            'aadhar_no' => 'required|alpha_num|size:12',
             'aadhar_no_file' => 'required',
             'patients_relation_with_claimant' => 'required',
             'specify' => ($request->patients_relation_with_claimant == 'Other') ? 'required' : [],
@@ -342,8 +343,8 @@ class ClaimantController extends Controller
             'firstname' => 'required',
             'middlename' => 'required|',
             'lastname' => 'required',
-            'pan_no' => 'required',
-            'aadhar_no' => 'required',
+            'pan_no' => 'required|alpha_num|size:10|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/u',
+            'aadhar_no' => 'required|alpha_num|size:10',
             'patients_relation_with_claimant' => 'required',
             'specify' => ($request->patients_relation_with_claimant == 'Other') ? 'required' : [],
             'address' => 'required',
@@ -558,9 +559,9 @@ class ClaimantController extends Controller
             'borrower_id_proof_file' => ($request->is_patient_and_borrower_same == '' || $request->is_patient_and_borrower_same == 'No' || empty($borrower->borrower_id_proof_file) ) ? 'required' : [],
             'borrower_mobile_no' => 'required|digits:10',
             // 'borrower_email_id' => 'required|email|max:45',
-            'borrower_pan_no' => 'required|max:10',
+            'borrower_pan_no' => 'required|alpha_num|size:10|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/u',
             'borrower_pan_no_file' => (($request->is_claimant_and_borrower_same == '' || $request->is_claimant_and_borrower_same == 'No') && empty($borrower->borrower_pan_no_file) ) ? 'required' : [],
-            'borrower_aadhar_no' => 'required|max:12',
+            'borrower_aadhar_no' => 'required|alpha_num|size:12',
             'borrower_aadhar_no_file' => (($request->is_claimant_and_borrower_same == '' || $request->is_claimant_and_borrower_same == 'No') && empty($borrower->borrower_aadhar_no_file) ) ? 'required' : [],
             'borrower_cancel_cheque' => 'required',
             'borrower_cancel_cheque_file' => empty($borrower->borrower_cancel_cheque_file) ? 'required' : [],

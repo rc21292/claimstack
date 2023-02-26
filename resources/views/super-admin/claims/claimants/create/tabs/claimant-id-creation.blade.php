@@ -36,7 +36,7 @@
 
             <div class="col-md-6 mb-3">
                 <label for="patient_id">Patient ID <span class="text-danger">*</span></label>
-                <input type="text" @if($patient) readonly @endif class="form-control" id="patient_id" name="patient_id" maxlength="60"
+                <input type="text"  readonly class="form-control" id="patient_id" name="patient_id" maxlength="60"
                 placeholder="Enter Patient Id" value="{{ old('patient_id', @$patient->uid) }}">
                 @error('patient_id')
                 <span id="patient-id-error" class="error invalid-feedback">{{ $message }}</span>
@@ -47,7 +47,7 @@
 
             <div class="col-md-6">
                 <label for="associate_partner_id">Associate Partner ID <span  class="text-danger">*</span></label>
-                <input type="text" @if($associate_partner_id) readonly @endif class="form-control" id="associate_partner_id"
+                <input type="text"  readonly class="form-control" id="associate_partner_id"
                 name="associate_partner_id" placeholder="Associate Partner ID"
                 value="{{ old('associate_partner_id', @$associate_partner_id  ) }}">
                 @error('associate_partner_id')
@@ -57,7 +57,7 @@
 
             <div class="col-md-6">
                 <label for="name">Hospital Id <span class="text-danger">*</span></label>
-                <input type="text" @if($hospital_id) readonly @endif class="form-control" id="hospital_id" name="hospital_id"
+                <input type="text" readonly class="form-control" id="hospital_id" name="hospital_id"
                 placeholder="Enter Hospital name" value="{{ old('hospital_id', @$hospital_id) }}">
                 @error('hospital_id')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>

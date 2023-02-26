@@ -188,7 +188,7 @@ class PatientController extends Controller
             $name                       = $dobfile->getClientOriginalName();
             $dobfile->storeAs('uploads/patient/' . $patient->id . '/', $name, 'public');
             Patient::where('id', $patient->id)->update([
-                'panfile'               =>  $name
+                'dobfile'               =>  $name
             ]);
         }
 
@@ -357,7 +357,7 @@ class PatientController extends Controller
             $name                       = $dobfile->getClientOriginalName();
             $dobfile->storeAs('uploads/patient/' . $patient->id . '/', $name, 'public');
             Patient::where('id', $patient->id)->update([
-                'panfile'               =>  $name
+                'dobfile'               =>  $name
             ]);
         }
 
