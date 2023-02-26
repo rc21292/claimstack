@@ -60,14 +60,14 @@
 
 
             <div class="col-md-12 mt-3">
-                <label for="patient_firstname">Patient Name <span class="text-danger">*</span></label>
+                <label for="patient_firstname">Patient Name {{ old('patient_title')}} {{ $patient_title }} <span class="text-danger">*</span></label>
             </div>
 
             <div class="col-md-3 mt-1">
                 <select class="form-control" id="patient_title" name="patient_title">
                     <option value="">Select</option>
-                    <option @if(old('patient_title', @$patient_title) == 'Mr.') selected @endif value="Mr.">Mr.</option>
-                    <option @if(old('patient_title', @$patient_title) == 'Ms.') selected @endif value="Ms.">Ms.</option>
+                    <option @if(old('patient_title', (old('patient_title') ?? $patient_title) ) == 'Mr.') selected @endif value="Mr.">Mr.</option>
+                    <option @if(old('patient_title', (old('patient_title') ?? $patient_title) ) == 'Ms.') selected @endif value="Ms.">Ms.</option>
                 </select>
                 @error('patient_title')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
