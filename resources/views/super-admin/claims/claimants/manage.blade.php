@@ -18,7 +18,7 @@
                             </div>
                         </form>
                     </div>
-                    <h4 class="page-title">Manage Patients</h4>
+                    <h4 class="page-title">Manage Claimants</h4>
                 </div>
             </div>
         </div>
@@ -61,7 +61,7 @@
                                     </tbody>
                                 </table>
                             @else
-                                <p class="text-center">No Patients found.</p>
+                                <p class="text-center mt-5 mb-5">No Claimants found.</p>
                             @endif
                         </div>
                         {{ $claimants->withQueryString()->links('pagination::bootstrap-4') }}

@@ -25,7 +25,7 @@ class PatientController extends Controller
         $filter_search = $request->search;
         $patients = Patient::query();
         if ($filter_search) {
-            $patients->where('uid', 'like','%' . $filter_search . '%');
+            $patients->where('uid', 'like', '%' . $filter_search . '%');
         }
         $patients = $patients->orderBy('id', 'desc')->paginate(20);
 
@@ -63,8 +63,8 @@ class PatientController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'hospital_name'                     => 'required',
             'hospital_id'                       => 'required',
+            'hospital_name'                     => 'required',
             'hospital_address'                  => 'required',
             'hospital_city'                     => 'required',
             'hospital_state'                    => 'required',
@@ -73,8 +73,8 @@ class PatientController extends Controller
             'registration_no'                   => 'required|max:20',
             'title'                             => 'required',
             'firstname'                         => 'required|max:25',
-            'lastname'                          => isset($request->lastname) ? 'max:25' :'',
-            'middlename'                        => isset($request->middlename) ? 'max:25' :'',
+            'lastname'                          => isset($request->lastname) ? 'max:25' : '',
+            'middlename'                        => isset($request->middlename) ? 'max:25' : '',
             'dob'                               => 'required',
             'age'                               => 'required',
             'gender'                            => 'required',
@@ -104,7 +104,7 @@ class PatientController extends Controller
         ];
 
         $messages = [
-            'hospital_name.required'             => 'Please select Hospital',
+            'hospital_name.required'             => 'Please enter Hospital name',
             'hospital_id.required'               => 'Please enter Hospital ID.',
             'hospital_address.required'          => 'Please enter Hospital address.',
             'hospital_city.required'             => 'Please enter Hospital city.',
@@ -137,7 +137,7 @@ class PatientController extends Controller
 
         $this->validate($request, $rules, $messages);
 
-        $patient= Patient::create([
+        $patient = Patient::create([
             'title'                             => $request->title,
             'firstname'                         => $request->firstname,
             'middlename'                        => $request->middlename,
@@ -157,8 +157,8 @@ class PatientController extends Controller
             'patient_permanent_state'           => $request->patient_permanent_state,
             'patient_permanent_pincode'         => $request->patient_permanent_pincode,
             'id_proof'                          => $request->id_proof,
-            'hospital_id'                       => $request->hospital_name,
-            'hospital_name'                     => Hospital::find($request->hospital_name)->name,
+            'hospital_id'                       => $request->hospital_id,
+            'hospital_name'                     => $request->hospital_name,
             'hospital_address'                  => $request->hospital_address,
             'hospital_city'                     => $request->hospital_city,
             'hospital_state'                    => $request->hospital_state,
@@ -180,7 +180,7 @@ class PatientController extends Controller
         ]);
 
         Patient::where('id', $patient->id)->update([
-            'uid'      => 'P-'.$patient->id + 1000
+            'uid'      => 'P-' . $patient->id + 10000
         ]);
 
         if ($request->hasfile('dobfile')) {
@@ -246,8 +246,8 @@ class PatientController extends Controller
             'registration_no'                   => 'required|max:20',
             'title'                             => 'required',
             'firstname'                         => 'required|max:25',
-            'lastname'                          => isset($request->lastname) ? 'max:25' :'',
-            'middlename'                        => isset($request->middlename) ? 'max:25' :'',
+            'lastname'                          => isset($request->lastname) ? 'max:25' : '',
+            'middlename'                        => isset($request->middlename) ? 'max:25' : '',
             'dob'                               => 'required',
             'age'                               => 'required',
             'gender'                            => 'required',
@@ -277,7 +277,7 @@ class PatientController extends Controller
         ];
 
         $messages = [
-            'hospital_name.required'             => 'Please select Hospital',
+            'hospital_name.required'             => 'Please enter Hospital Name',
             'hospital_id.required'               => 'Please enter Hospital ID.',
             'hospital_address.required'          => 'Please enter Hospital address.',
             'hospital_city.required'             => 'Please enter Hospital city.',
@@ -310,7 +310,7 @@ class PatientController extends Controller
 
         $this->validate($request, $rules, $messages);
 
-        $patient= Patient::where('id', $id)->update([
+        $patient = Patient::where('id', $id)->update([
             'title'                             => $request->title,
             'firstname'                         => $request->firstname,
             'middlename'                        => $request->middlename,
@@ -330,8 +330,8 @@ class PatientController extends Controller
             'patient_permanent_state'           => $request->patient_permanent_state,
             'patient_permanent_pincode'         => $request->patient_permanent_pincode,
             'id_proof'                          => $request->id_proof,
-            'hospital_id'                       => $request->hospital_name,
-            'hospital_name'                     => Hospital::find($request->hospital_name)->name,
+            'hospital_id'                       => $request->hospital_id,
+            'hospital_name'                     => $request->hospital_name,
             'hospital_address'                  => $request->hospital_address,
             'hospital_city'                     => $request->hospital_city,
             'hospital_state'                    => $request->hospital_state,

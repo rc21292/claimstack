@@ -23,35 +23,35 @@
                 @enderror
             </div>
             <div class="col-md-6">
-                <label for="hospital_name">Hospital Name <span class="text-danger">*</span></label>
-                <select class="form-control select2" id="hospital_name" name="hospital_name" data-toggle="select2"
+                <label for="hospital_id">Hospital ID <span class="text-danger">*</span></label>
+                <select class="form-control select2" id="hospital_id" name="hospital_id" data-toggle="select2"
                     onchange="setHospitalId()">
                     <option value="">Select Hospital</option>
                     @foreach ($hospitals as $hospital)
                         <option value="{{ $hospital->id }}"
-                            {{ old('hospital_name') == $hospital->id ? 'selected' : '' }}
+                            {{ old('hospital_id') == $hospital->id ? 'selected' : '' }}
                             data-name="{{ $hospital->name }}" data-id="{{ $hospital->uid }}"
                             data-address="{{ $hospital->address }}" data-city="{{ $hospital->city }}"
                             data-state="{{ $hospital->state }}" data-pincode="{{ $hospital->pincode }}"
                             data-ap="{{ $hospital->linked_associate_partner_id }}"
                             data-apname="{{ $hospital->ap_name }}">
-                            {{ $hospital->name }}
-                            [<strong>UID: </strong>{{ $hospital->uid }}]
+                            {{ $hospital->uid }}
+                            [<strong>Name: </strong>{{ $hospital->name }}]
                             [<strong>City: </strong>{{ $hospital->city }}]
                             [<strong>State: </strong>{{ $hospital->state }}]
                         </option>
                     @endforeach
                 </select>
-                @error('hospital_name')
+                @error('hospital_id')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="col-md-6">
-                <label for="name">Hospital ID <span class="text-danger">*</span></label>
-                <input type="text" readonly class="form-control" id="hospital_id" name="hospital_id"
-                    placeholder="Enter Hospital ID" value="{{ old('hospital_id') }}">
-                @error('hospital_id')
+                <label for="hospital_name">Hospital Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="hospital_name" name="hospital_name"
+                    placeholder="Enter Hospital Name" value="{{ old('hospital_name') }}">
+                @error('hospital_name')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>

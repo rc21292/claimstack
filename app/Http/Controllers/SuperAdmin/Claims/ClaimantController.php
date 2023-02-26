@@ -34,7 +34,7 @@ class ClaimantController extends Controller
 
         $claimants = $claimants->orderBy('id', 'desc')->paginate(20);
 
-        return view('super-admin.claims.claimants.manage',  compact('claimants', 'filter_search'));       
+        return view('super-admin.claims.claimants.manage',  compact('claimants', 'filter_search'));
     }
 
     /**
@@ -44,22 +44,22 @@ class ClaimantController extends Controller
      */
     public function create(Request $request)
     {
-        $patient_id     = $request->patient_id;
-        $claim_id     = $request->claim_id;
-        $associates     = AssociatePartner::get();
-        $hospitals      = Hospital::get();
-        $patient        = isset($patient_id) ? Patient::find($request->patient_id) : null;
-        $claim        = isset($claim_id) ? Claim::find($request->claim_id) : null;
-        $hospital_id  = isset($patient_id) ? $patient->hospital->id : null;
-        $associate_partner_id  = isset($patient_id) ? $patient->associate_partner_id : null;
-        $patients       = Patient::get();
-        $patient_title   =  isset($patient) ? $patient->title : null;
-        $patient_firstname   =  isset($patient) ? $patient->firstname : null;
-        $patient_lastname   =  isset($patient) ? $patient->lastname : null;
-        $patient_middlename   =  isset($patient) ? $patient->middlename : null;
-        $claims       = Claim::get();
+        $patient_id             = $request->patient_id;
+        $claim_id               = $request->claim_id;
+        $associates             = AssociatePartner::get();
+        $hospitals              = Hospital::get();
+        $patients               = Patient::get();
+        $claims                 = Claim::get();
+        $patient                = isset($patient_id) ? Patient::find($request->patient_id) : null;
+        $claim                  = isset($claim_id) ? Claim::find($request->claim_id) : null;
+        $hospital_id            = isset($patient_id) ? $patient->hospital->id : null;
+        $associate_partner_id   = isset($patient_id) ? $patient->associate_partner_id : null;
+        $patient_title          = isset($patient) ? $patient->title : null;
+        $patient_firstname      = isset($patient) ? $patient->firstname : null;
+        $patient_lastname       = isset($patient) ? $patient->lastname : null;
+        $patient_middlename     = isset($patient) ? $patient->middlename : null;
 
-        return view('super-admin.claims.claimants.create',  compact('patient_id', 'associates', 'hospitals', 'patient', 'patients', 'claims', 'claim', 'claim_id', 'associate_partner_id', 'hospital_id', 'patient_title', 'patient_firstname', 'patient_lastname', 'patient_middlename'));
+        return view('super-admin.claims.claimants.create.create',  compact('patient_id', 'associates', 'hospitals', 'patient', 'patients', 'claims', 'claim', 'claim_id', 'associate_partner_id', 'hospital_id', 'patient_title', 'patient_firstname', 'patient_lastname', 'patient_middlename'));
     }
 
     /**
@@ -175,7 +175,7 @@ class ClaimantController extends Controller
            'ac_no' => $request->ac_no,
            'ifs_code' => $request->ifs_code,
            'comments' => $request->comments,
-       ]);        
+       ]);
 
         Claimant::where('id', $claimant->id)->update([
             'uid'      => 'CLMT' . substr($claimant->pan_no, 0, 2) . substr($claimant->pan_no, -3)
@@ -239,10 +239,10 @@ class ClaimantController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {        
-        $claimant     = Claimant::find($id);
-        $exists     = Borrower::where('claimant_id', $id)->exists();
-        $hospital      = Hospital::where('uid',$claimant->hospital_id)->first();
+    {
+        $claimant       = Claimant::find($id);
+        $exists         = Borrower::where('claimant_id', $id)->exists();
+        $hospital       = Hospital::where('uid',$claimant->hospital_id)->first();
         $hospitals      = Hospital::get();
         $patient        = Patient::where('uid', $claimant->patient_id)->first();
 
@@ -250,8 +250,8 @@ class ClaimantController extends Controller
             $borrower     = Borrower::where('claimant_id', $id)->first();
         }else{
             $borrower = Borrower::create([
-                'claimant_id' => $id, 
-                'patient_id' => $claimant->patient_id, 
+                'claimant_id' => $id,
+                'patient_id' => $claimant->patient_id,
                 'claim_id' => $claimant->claim_id,
                 'hospital_id' => $claimant->hospital_id,
                 'hospital_name' => $hospital->name,
@@ -270,7 +270,7 @@ class ClaimantController extends Controller
         $patient_id   = $claimant->patient_id;
 
         return view('super-admin.claims.claimants.edit.edit',  compact('patient_id', 'associates', 'hospitals', 'patient', 'claimant', 'borrower', 'id'));
-    
+
     }
 
     /**
@@ -282,6 +282,7 @@ class ClaimantController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $claimant =  Claimant::find($id);
         if ($request->hasfile('patient_id_proof')) {
             $patient_id_proof                    = $request->file('patient_id_proof');
             $name                       = $patient_id_proof->getClientOriginalName();
@@ -426,7 +427,7 @@ class ClaimantController extends Controller
              'ac_no' => $request->ac_no,
              'ifs_code' => $request->ifs_code,
              'comments' => $request->comments,
-         ]);        
+         ]);
 
         return redirect()->route('super-admin.claimants.edit',$id)->with('success', 'Claimant updated successfully');
     }
@@ -665,7 +666,7 @@ class ClaimantController extends Controller
                 'co_borrower_other_documents' => $request->co_borrower_other_documents,
                 'borrower_estimated_amount' => $request->borrower_estimated_amount,
                 'co_borrower_comments' => $request->co_borrower_comments,
-            ]);        
+            ]);
 
         $claimant = Claimant::find($id);
 

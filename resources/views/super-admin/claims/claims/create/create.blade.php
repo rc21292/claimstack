@@ -88,19 +88,19 @@
         $('#lastname').val(lastname);
         $('#age').val(age);
         $('#gender').val(gender);
-        $('#hospital_name').val(hospital).trigger('change');
+        $('#hospital_id').val(hospital).trigger('change');
         $('#registration_no').val(registrationno);
     }
 
     function setHospitalId() {
-        var uid = $("#hospital_name").select2().find(":selected").data("id");
-        var address = $("#hospital_name").select2().find(":selected").data("address");
-        var city = $("#hospital_name").select2().find(":selected").data("city");
-        var state = $("#hospital_name").select2().find(":selected").data("state");
-        var pincode = $("#hospital_name").select2().find(":selected").data("pincode");
-        var associate_partner_id = $("#hospital_name").select2().find(":selected").data("ap");
+        var name = $("#hospital_id").select2().find(":selected").data("name");
+        var address = $("#hospital_id").select2().find(":selected").data("address");
+        var city = $("#hospital_id").select2().find(":selected").data("city");
+        var state = $("#hospital_id").select2().find(":selected").data("state");
+        var pincode = $("#hospital_id").select2().find(":selected").data("pincode");
+        var associate_partner_id = $("#hospital_id").select2().find(":selected").data("ap");
         console.log(address);
-        $('#hospital_id').val(uid);
+        $('#hospital_name').val(name);
         $('#hospital_address').val(address);
         $('#hospital_city').val(city);
         $('#hospital_state').val(state);
