@@ -88,9 +88,9 @@ class ClaimantController extends Controller
             'firstname' => 'required|max:25',
             'middlename' => 'required||max:25',
             'lastname' => 'required',
-            'pan_no' => 'required|alpha_num|size:10|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/u',
+            'pan_no' => 'required|unique:claimants|alpha_num|size:10|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/u',
             'pan_no_file' => 'required',
-            'aadhar_no' => 'required|alpha_num|size:12',
+            'aadhar_no' => 'required|unique:claimants|alpha_num|size:12',
             'aadhar_no_file' => 'required',
             'patients_relation_with_claimant' => 'required',
             'specify' => ($request->patients_relation_with_claimant == 'Other') ? 'required' : [],
@@ -443,7 +443,6 @@ class ClaimantController extends Controller
 
     public function borrowerDetails(Request $request, $id)
     {
-        // echo "<pre>";print_r($request->all());"</pre>";exit;
         $borrower = Borrower::where('claimant_id',$id)->first();
 
 
@@ -559,7 +558,7 @@ class ClaimantController extends Controller
             'borrower_id_proof_file' => ($request->is_patient_and_borrower_same == '' || $request->is_patient_and_borrower_same == 'No' || empty($borrower->borrower_id_proof_file) ) ? 'required' : [],
             'borrower_mobile_no' => 'required|digits:10',
             // 'borrower_email_id' => 'required|email|max:45',
-            'borrower_pan_no' => 'required|alpha_num|size:10|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/u',
+            'borrower_pan_no' => 'required|alpha_num|unique:borrowers|size:10|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/u',
             'borrower_pan_no_file' => (($request->is_claimant_and_borrower_same == '' || $request->is_claimant_and_borrower_same == 'No') && empty($borrower->borrower_pan_no_file) ) ? 'required' : [],
             'borrower_aadhar_no' => 'required|alpha_num|size:12',
             'borrower_aadhar_no_file' => (($request->is_claimant_and_borrower_same == '' || $request->is_claimant_and_borrower_same == 'No') && empty($borrower->borrower_aadhar_no_file) ) ? 'required' : [],
