@@ -30,6 +30,9 @@ class RedirectIfAuthenticated
                      case 'admin':
                         return redirect(RouteServiceProvider::ADMIN);
                         break;
+                    case 'claimant':
+                        return redirect(RouteServiceProvider::CLAIMANT);
+                        break;
                     case 'user':
                         return redirect(RouteServiceProvider::USER);
                         break;

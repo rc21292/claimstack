@@ -44,6 +44,10 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
+        'claimant' => [
+            'driver' => 'session',
+            'provider' => 'claimants',
+        ],
         'super-admin' => [
             'driver' => 'session',
             'provider' => 'super-admins',
@@ -84,6 +88,10 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
+        ],
+        'claimants' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Claimant::class,
         ],
         'users' => [
             'driver' => 'eloquent',
@@ -135,6 +143,12 @@ return [
         ],
         'admins' => [
             'provider' => 'admins',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'claimants' => [
+            'provider' => 'claimants',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

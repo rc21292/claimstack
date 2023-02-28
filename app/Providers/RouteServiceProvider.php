@@ -20,6 +20,7 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = '/home';
 
     public const ADMIN = '/admin';
+    public const CLAIMANT = '/claimant';
     public const SUPERADMIN = '/super-admin';
 
     public const USER = '/user';
@@ -49,6 +50,9 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::middleware('web')
                 ->group(base_path('routes/admin.php'));
+
+            Route::middleware('web')
+                ->group(base_path('routes/claimant.php'));
 
             Route::middleware('web')
                 ->group(base_path('routes/super-admin.php'));

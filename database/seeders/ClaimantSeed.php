@@ -53,6 +53,8 @@ public function run()
             'city' => $faker->city,
             'state' => $faker->state,
             'pincode' => $faker->postcode,
+            'email' => $i == 1 ? 'claimant@claimstack.com' : $faker->unique()->safeEmail(),
+            'password' => Hash::make('password'),
             'personal_email_id' =>  $i == 1 ? 'claimant@claimstack.com' : $faker->unique()->safeEmail(),
             'official_email_id' =>  $i == 1 ? 'claimant1@claimstack.com' : $faker->unique()->safeEmail(),
             'mobile_no' => $faker->numerify('9#########'),

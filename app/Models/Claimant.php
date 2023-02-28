@@ -3,14 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use App\Models\Claim;
+use App\Notifications\Claimant\ResetPasswordNotification;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Claimant extends Model
+class Claimant extends Authenticatable
 {
-    use HasFactory;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     protected $fillable = [
+        'email',
         'patient_id',
         'claim_id',
         'associate_partner_id',
@@ -52,5 +57,10 @@ class Claimant extends Model
     public function claim()
     {
         return $this->belongsTo(claim::class, 'claim_id', 'uid');
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
     }
 }

@@ -44,6 +44,8 @@ return new class extends Migration
             $table->string('state')->nullable();
             $table->string('pincode')->nullable();
             $table->string('personal_email_id')->nullable();
+            $table->string('email')->nullable();
+            $table->string('password')->nullable();
             $table->string('official_email_id')->nullable();
             $table->string('mobile_no')->nullable();
             $table->string('cancel_cheque')->nullable();
