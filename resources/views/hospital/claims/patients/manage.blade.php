@@ -31,31 +31,33 @@
                 <div class="card no-shadow">
                     <div class="card-body p-0">
                         <div class="table-responsive">
-                            @if (count($hospitals) > 0)
+                            @if (count($patients) > 0)
                                 <table id="basics-datatable" class="table table-hover">
                                     <thead class="thead-grey">
                                         <tr>
-                                            <th scope="col">Hospital UID</th>
+                                            <th scope="col">Patient UID</th>
+                                            <th scope="col">Patient Name</th>
                                             <th scope="col">Hospital Name</th>
-                                            <th scope="col">City</th>
                                             <th scope="col">State</th>
+                                            <th scope="col">City</th>
                                             <th scope="col">Pincode</th>
                                             <th scope="col" class="text-center">Create</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($hospitals as $hospital)
+                                        @foreach ($patients as $patient)
                                             <tr>
-                                                <th scope="row">{{ $hospital->uid }}</th>
-                                                <td>{{ $hospital->name }}</td>
-                                                <td>{{ $hospital->city }}</td>
-                                                <td>{{ $hospital->state }}</td>
-                                                <td>{{ $hospital->pincode }}</td>
+                                                <th scope="row">{{ $patient->uid }}</th>
+                                                <td>{{ $patient->title }} {{ $patient->firstname }} {{ $patient->middlename }} {{ $patient->lastname }}</td>
+                                                <td>{{ $patient->hospital->name }}</td>
+                                                <td>{{ $patient->patient_current_city }}</td>
+                                                <td>{{ $patient->patient_current_state }}</td>
+                                                <td>{{ $patient->patient_current_pincode }}</td>
                                                 <td class="text-center">
                                                     <div class="btn-group">
-                                                        <a href="{{ route('hospital.patients.create', ['hospital_id' => $hospital->id]) }}"
+                                                        <a href="{{ route('hospital.claims.create', ['patient_id' => $patient->id]) }}"
                                                             class="btn btn-primary"><i class="mdi mdi-plus"></i> New
-                                                            Patient</a>
+                                                            Claim</a>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -66,7 +68,7 @@
                                 <p class="text-center">No Patients found.</p>
                             @endif
                         </div>
-                        {{ $hospitals->withQueryString()->links('pagination::bootstrap-4') }}
+                        {{ $patients->withQueryString()->links('pagination::bootstrap-4') }}
                     </div>
                 </div>
             </div>

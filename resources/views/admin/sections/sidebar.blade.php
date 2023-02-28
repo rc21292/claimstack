@@ -141,52 +141,6 @@
             </li>
 
             <li class="side-nav-item">
-                <a data-bs-toggle="collapse" href="#insurer" aria-expanded="false" aria-controls="insurer"
-                    class="side-nav-link">
-                    <i class="dripicons-heart"></i>
-                    <span> Insurer </span>
-                    <span class="menu-arrow"></span>
-                </a>
-                @if(auth()->check() && auth()->user()->hasDirectPermission('Insurance Co. Module Creation/Editing Rights'))
-                <div class="collapse" id="insurer">
-                    <ul class="side-nav-second-level">
-                        @if(auth()->check() && auth()->user()->hasDirectPermission('Insurance Co. Login ID Creation Rights'))
-                        <li>
-                            <a href="javascript:Void(0)">Create Insurer</a>
-                        </li>
-                        @endif
-                        <li>
-                            <a href="javascript:Void(0)">Manage Insurer</a>
-                        </li>
-                    </ul>
-                </div>
-                @endif
-            </li>
-
-            <li class="side-nav-item">
-                <a data-bs-toggle="collapse" href="#tpa" aria-expanded="false" aria-controls="tpa"
-                    class="side-nav-link">
-                    <i class="mdi mdi-doctor"></i>
-                    <span> TPA </span>
-                    <span class="menu-arrow"></span>
-                </a>
-                @if(auth()->check() && auth()->user()->hasDirectPermission('TPA Module Creation/Editing Rights'))
-                <div class="collapse" id="tpa">
-                    <ul class="side-nav-second-level">
-                        @if(auth()->check() && auth()->user()->hasDirectPermission('TPA Login ID Creation Rights'))
-                        <li>
-                            <a href="javascript:Void(0)">Create TPA</a>
-                        </li>
-                        @endif
-                        <li>
-                            <a href="javascript:Void(0)">Manage TPA</a>
-                        </li>
-                    </ul>
-                </div>
-                @endif
-            </li>
-
-            <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#claims" aria-expanded="false" aria-controls="claims" class="side-nav-link collapsed">
                     <i class="mdi mdi-doctor"></i>
                     <span> Claims </span>
@@ -238,10 +192,56 @@
                                         <a href="{{ route('admin.claimants.create') }}">Create Claimant</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('admin.claimants.create') }}">Manage Claimants</a>
+                                        <a href="{{ route('admin.claimants.index') }}">Manage Claimants</a>
                                     </li>
                                 </ul>
                             </div>
+                        </li>
+                    </ul>
+                </div>
+                @endif
+            </li>
+
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#insurer" aria-expanded="false" aria-controls="insurer"
+                    class="side-nav-link">
+                    <i class="dripicons-heart"></i>
+                    <span> Insurer </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                @if(auth()->check() && auth()->user()->hasDirectPermission('Insurance Co. Module Creation/Editing Rights'))
+                <div class="collapse" id="insurer">
+                    <ul class="side-nav-second-level">
+                        @if(auth()->check() && auth()->user()->hasDirectPermission('Insurance Co. Login ID Creation Rights'))
+                        <li>
+                            <a href="javascript:Void(0)">Create Insurer</a>
+                        </li>
+                        @endif
+                        <li>
+                            <a href="javascript:Void(0)">Manage Insurer</a>
+                        </li>
+                    </ul>
+                </div>
+                @endif
+            </li>
+
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#tpa" aria-expanded="false" aria-controls="tpa"
+                    class="side-nav-link">
+                    <i class="mdi mdi-doctor"></i>
+                    <span> TPA </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                @if(auth()->check() && auth()->user()->hasDirectPermission('TPA Module Creation/Editing Rights'))
+                <div class="collapse" id="tpa">
+                    <ul class="side-nav-second-level">
+                        @if(auth()->check() && auth()->user()->hasDirectPermission('TPA Login ID Creation Rights'))
+                        <li>
+                            <a href="javascript:Void(0)">Create TPA</a>
+                        </li>
+                        @endif
+                        <li>
+                            <a href="javascript:Void(0)">Manage TPA</a>
                         </li>
                     </ul>
                 </div>

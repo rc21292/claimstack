@@ -99,7 +99,7 @@
                                         <a href="{{ route('hospital.claimants.create') }}">Create Claimant</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('hospital.claimants.create') }}">Manage Claimants</a>
+                                        <a href="{{ route('hospital.claimants.index') }}">Manage Claimants</a>
                                     </li>
                                 </ul>
                             </div>

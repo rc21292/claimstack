@@ -35,36 +35,36 @@
                             @csrf
                             <div class="form-group row">
                                 <div class="col-md-6">
-                                    <label for="hospital_name">Hospital Name <span class="text-danger">*</span></label>
-                                    <select class="form-control select2" id="hospital_name" name="hospital_name"
+                                    <label for="hospital_id">Hospital ID <span class="text-danger">*</span></label>
+                                    <select class="form-control select2" id="hospital_id" name="hospital_id"
                                         data-toggle="select2" onchange="setHospitalId()">
-                                        <option value="">Select Associate Partner</option>
+                                        <option value="">Search Hospital ID</option>
                                         @foreach ($hospitals as $hospital)
                                             <option value="{{ $hospital->id }}"
-                                                {{ old('hospital_name', $hospital_id) == $hospital->id ? 'selected' : '' }}
+                                                {{ old('hospital_id', $hospital_id) == $hospital->id ? 'selected' : '' }}
                                                 data-name="{{ $hospital->name }}" data-id="{{ $hospital->uid }}"
                                                 data-address="{{ $hospital->address }}" data-city="{{ $hospital->city }}"
                                                 data-state="{{ $hospital->state }}"
                                                 data-pincode="{{ $hospital->pincode }}"
                                                 data-ap="{{ $hospital->linked_associate_partner_id }}"
                                                 data-apname="{{ $hospital->ap_name }}">
-                                                {{ $hospital->name }}
-                                                [<strong>UID: </strong>{{ $hospital->uid }}]
+                                                {{ $hospital->uid }}
+                                                [<strong>Name: </strong> {{ $hospital->name }}]
                                                 [<strong>City: </strong>{{ $hospital->city }}]
                                                 [<strong>State: </strong>{{ $hospital->state }}]
                                             </option>
                                         @endforeach
                                     </select>
-                                    @error('hospital_name')
+                                    @error('hospital_id')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="name">Hospital Id <span class="text-danger">*</span></label>
-                                    <input type="text" readonly class="form-control" id="hospital_id" name="hospital_id"
-                                        placeholder="Enter Hospital name" value="{{ old('hospital_id') }}">
-                                    @error('hospital_id')
+                                    <label for="hospital_name">Hospital Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="hospital_name" name="hospital_name"
+                                        placeholder="Enter Hospital Name" value="{{ old('hospital_name') }}">
+                                    @error('hospital_name')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -133,8 +133,8 @@
                                 <div class="col-md-3 mt-1">
                                     <select class="form-control" id="title" name="title">
                                         <option value="">Select</option>
-                                        <option value="Mr.">Mr.</option>
-                                        <option value="Ms.">Ms.</option>
+                                        <option value="Mr." {{ old('title') == 'Mr.' ? 'selected' : '' }}>Mr.</option>
+                                        <option value="Ms." {{ old('title') == 'Ms.' ? 'selected' : '' }}>Ms.</option>
                                     </select>
                                     @error('title')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -143,7 +143,7 @@
 
                                 <div class="col-md-3 mt-1">
                                     <input type="text" maxlength="25" class="form-control" id="firstname"
-                                        name="firstname" maxlength="15" placeholder="First name"
+                                        name="firstname" placeholder="First name"
                                         value="{{ old('firstname') }}">
                                     @error('firstname')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -152,7 +152,7 @@
 
                                 <div class="col-md-3 mt-1">
                                     <input type="text" maxlength="25" class="form-control" id="middlename"
-                                        name="middlename" maxlength="30" placeholder="Middle name"
+                                        name="middlename" placeholder="Middle name"
                                         value="{{ old('middlename') }}">
                                     @error('middlename')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -161,7 +161,7 @@
 
                                 <div class="col-md-3 mt-1">
                                     <input type="text" maxlength="25" class="form-control" id="lastname"
-                                        name="lastname" maxlength="30" placeholder="Last name"
+                                        name="lastname" placeholder="Last name"
                                         value="{{ old('lastname') }}">
                                     @error('lastname')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -505,8 +505,8 @@
                                 <div class="col-md-3 mt-1">
                                     <select class="form-control" id="admitted_by_title" name="admitted_by_title">
                                         <option value="">Select</option>
-                                        <option value="Mr.">Mr.</option>
-                                        <option value="Ms.">Ms.</option>
+                                        <option value="Mr." {{ old('admitted_by_title') == 'Mr.' ? 'selected' : '' }}>Mr.</option>
+                                        <option value="Ms." {{ old('admitted_by_title') == 'Ms.' ? 'selected' : '' }}>Ms.</option>
                                     </select>
                                     @error('admitted_by_title')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -573,14 +573,14 @@
         });
 
         function setHospitalId() {
-            var uid = $("#hospital_name").select2().find(":selected").data("id");
-            var address = $("#hospital_name").select2().find(":selected").data("address");
-            var city = $("#hospital_name").select2().find(":selected").data("city");
-            var state = $("#hospital_name").select2().find(":selected").data("state");
-            var pincode = $("#hospital_name").select2().find(":selected").data("pincode");
-            var associate_partner_id = $("#hospital_name").select2().find(":selected").data("ap");
+            var name = $("#hospital_id").select2().find(":selected").data("name");
+            var address = $("#hospital_id").select2().find(":selected").data("address");
+            var city = $("#hospital_id").select2().find(":selected").data("city");
+            var state = $("#hospital_id").select2().find(":selected").data("state");
+            var pincode = $("#hospital_id").select2().find(":selected").data("pincode");
+            var associate_partner_id = $("#hospital_id").select2().find(":selected").data("ap");
             console.log(address);
-            $('#hospital_id').val(uid);
+            $('#hospital_name').val(name);
             $('#hospital_address').val(address);
             $('#hospital_city').val(city);
             $('#hospital_state').val(state);
@@ -658,10 +658,10 @@
             if(referred_by == "BHC Direct"){
                 $("input[name='referral_name']").val('BHC');
             }else if(referred_by == "Hospital's Direct Patient"){
-                var hospital = $("#hospital_name").select2().find(":selected").data("name");
+                var hospital = $("#hospital_id").select2().find(":selected").data("name");
                         $("input[name='referral_name']").val(hospital);
             }else if(referred_by == "Associate Partner"){
-                var apname = $("#hospital_name").select2().find(":selected").data("apname");
+                var apname = $("#hospital_id").select2().find(":selected").data("apname");
                         $("input[name='referral_name']").val(apname);
             }else{
                 $("input[name='referral_name']").val('');

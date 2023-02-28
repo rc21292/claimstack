@@ -7,6 +7,7 @@ use App\Models\AssociatePartner;
 use App\Models\Hospital;
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PatientController extends Controller
 {
@@ -22,13 +23,13 @@ class PatientController extends Controller
     public function index(Request $request)
     {
         $filter_search = $request->search;
-        $hospitals = Hospital::query();
+        $patients = Patient::query();
         if ($filter_search) {
-            $hospitals->where('name', 'like', '%' . $filter_search . '%');
+            $patients->where('uid', 'like', '%' . $filter_search . '%');
         }
-        $hospitals = $hospitals->orderBy('id', 'desc')->paginate(20);
+        $patients = $patients->orderBy('id', 'desc')->paginate(20);
 
-        return view('hospital.claims.patients.manage',  compact('hospitals', 'filter_search'));
+        return view('hospital.claims.patients.manage',  compact('patients', 'filter_search'));
     }
 
     /**
@@ -62,30 +63,32 @@ class PatientController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'hospital_name'                     => 'required',
             'hospital_id'                       => 'required',
+            'hospital_name'                     => 'required',
             'hospital_address'                  => 'required',
             'hospital_city'                     => 'required',
             'hospital_state'                    => 'required',
             'hospital_pincode'                  => 'required',
-            'associate_partner_id'              => 'required',
-            'registration_no'                   => 'required',
+            'associate_partner_id'              => "required_if:$request->associate_partner_id,'!=',null",
+            'registration_no'                   => 'required|max:20',
             'title'                             => 'required',
-            'firstname'                         => 'required',
+            'firstname'                         => 'required|max:25',
+            'lastname'                          => isset($request->lastname) ? 'max:25' : '',
+            'middlename'                        => isset($request->middlename) ? 'max:25' : '',
             'dob'                               => 'required',
             'age'                               => 'required',
             'gender'                            => 'required',
             'occupation'                        => 'required',
             'specify'                           => $request->occupation == 'other' ? 'required' : '',
-            'patient_current_address'           => 'required',
+            'patient_current_address'           => 'required|max:100',
             'patient_current_city'              => 'required',
             'patient_current_state'             => 'required',
-            'patient_current_pincode'           => 'required',
+            'patient_current_pincode'           => 'required|numeric',
             'current_permanent_address_same'    => 'required',
-            'patient_permanent_address'         => 'required',
-            'patient_permanent_city'            => 'required',
-            'patient_permanent_state'           => 'required',
-            'patient_permanent_pincode'         => 'required',
+            'patient_permanent_address'         => $request->current_permanent_address_same == 'No' ? 'required|max:100' : '',
+            'patient_permanent_city'            => $request->current_permanent_address_same == 'No' ? 'required' : '',
+            'patient_permanent_state'           => $request->current_permanent_address_same == 'No' ? 'required' : '',
+            'patient_permanent_pincode'         => $request->current_permanent_address_same == 'No' ? 'required' : '',
             'id_proof'                          => 'required',
             'id_proof_file'                     => 'required',
             'code'                              => 'required|numeric|digits:3',
@@ -93,15 +96,15 @@ class PatientController extends Controller
             'email'                             => 'required|email|min:1|max:45|unique:patients,email',
             'phone'                             => 'required|numeric|digits:10',
             'referred_by'                       => 'required',
-            'referral_name'                     => 'required',
+            'referral_name'                     => 'required|max:45',
             'admitted_by'                       => 'required',
             'admitted_by_title'                 => $request->admitted_by == 'Self' ? '' : 'required',
-            'admitted_by_firstname'             => $request->admitted_by == 'Self' ? '' : 'required',
-            'comments'                          => isset($request->comments) ? '' : 'max:45',
+            'admitted_by_firstname'             => $request->admitted_by == 'Self' ? '' : 'required|max:25',
+            'comments'                          => isset($request->comments) ? '' : 'max:250',
         ];
 
         $messages = [
-            'hospital_name.required'             => 'Please select Hospital',
+            'hospital_name.required'             => 'Please enter Hospital name',
             'hospital_id.required'               => 'Please enter Hospital ID.',
             'hospital_address.required'          => 'Please enter Hospital address.',
             'hospital_city.required'             => 'Please enter Hospital city.',
@@ -134,7 +137,7 @@ class PatientController extends Controller
 
         $this->validate($request, $rules, $messages);
 
-        $patient= Patient::create([
+        $patient = Patient::create([
             'title'                             => $request->title,
             'firstname'                         => $request->firstname,
             'middlename'                        => $request->middlename,
@@ -154,12 +157,12 @@ class PatientController extends Controller
             'patient_permanent_state'           => $request->patient_permanent_state,
             'patient_permanent_pincode'         => $request->patient_permanent_pincode,
             'id_proof'                          => $request->id_proof,
-            'hospital_id'                       => $request->hospital_name,
-            'hospital_name'                     => Hospital::find($request->hospital_name)->name,
+            'hospital_id'                       => $request->hospital_id,
+            'hospital_name'                     => $request->hospital_name,
             'hospital_address'                  => $request->hospital_address,
             'hospital_city'                     => $request->hospital_city,
             'hospital_state'                    => $request->hospital_state,
-            'registration_number'               => $request->registration_number,
+            'registration_number'               => $request->registration_no,
             'hospital_pincode'                  => $request->hospital_pincode,
             'associate_partner_id'              => $request->associate_partner_id,
             'email'                             => $request->email,
@@ -176,12 +179,16 @@ class PatientController extends Controller
             'comments'                          => $request->comments,
         ]);
 
+        Patient::where('id', $patient->id)->update([
+            'uid'      => 'P-' . $patient->id + 10000
+        ]);
+
         if ($request->hasfile('dobfile')) {
             $dobfile                    = $request->file('dobfile');
             $name                       = $dobfile->getClientOriginalName();
             $dobfile->storeAs('uploads/patient/' . $patient->id . '/', $name, 'public');
             Patient::where('id', $patient->id)->update([
-                'panfile'               =>  $name
+                'dobfile'               =>  $name
             ]);
         }
 
@@ -235,24 +242,26 @@ class PatientController extends Controller
             'hospital_city'                     => 'required',
             'hospital_state'                    => 'required',
             'hospital_pincode'                  => 'required',
-            'associate_partner_id'              => 'required',
-            'registration_no'                   => 'required',
+            'associate_partner_id'              => "required_if:$request->associate_partner_id,'!=',null",
+            'registration_no'                   => 'required|max:20',
             'title'                             => 'required',
-            'firstname'                         => 'required',
+            'firstname'                         => 'required|max:25',
+            'lastname'                          => isset($request->lastname) ? 'max:25' : '',
+            'middlename'                        => isset($request->middlename) ? 'max:25' : '',
             'dob'                               => 'required',
             'age'                               => 'required',
             'gender'                            => 'required',
             'occupation'                        => 'required',
             'specify'                           => $request->occupation == 'other' ? 'required' : '',
-            'patient_current_address'           => 'required',
+            'patient_current_address'           => 'required|max:100',
             'patient_current_city'              => 'required',
             'patient_current_state'             => 'required',
-            'patient_current_pincode'           => 'required',
+            'patient_current_pincode'           => 'required|numeric',
             'current_permanent_address_same'    => 'required',
-            'patient_permanent_address'         => 'required',
-            'patient_permanent_city'            => 'required',
-            'patient_permanent_state'           => 'required',
-            'patient_permanent_pincode'         => 'required',
+            'patient_permanent_address'         => $request->current_permanent_address_same == 'No' ? 'required|max:100' : '',
+            'patient_permanent_city'            => $request->current_permanent_address_same == 'No' ? 'required' : '',
+            'patient_permanent_state'           => $request->current_permanent_address_same == 'No' ? 'required' : '',
+            'patient_permanent_pincode'         => $request->current_permanent_address_same == 'No' ? 'required' : '',
             'id_proof'                          => 'required',
             'id_proof_file'                     => 'required',
             'code'                              => 'required|numeric|digits:3',
@@ -260,15 +269,15 @@ class PatientController extends Controller
             'email'                             => 'required|email|min:1|max:45|unique:patients,email',
             'phone'                             => 'required|numeric|digits:10',
             'referred_by'                       => 'required',
-            'referral_name'                     => 'required',
+            'referral_name'                     => 'required|max:45',
             'admitted_by'                       => 'required',
             'admitted_by_title'                 => $request->admitted_by == 'Self' ? '' : 'required',
-            'admitted_by_firstname'             => $request->admitted_by == 'Self' ? '' : 'required',
-            'comments'                          => isset($request->comments) ? '' : 'max:45',
+            'admitted_by_firstname'             => $request->admitted_by == 'Self' ? '' : 'required|max:25',
+            'comments'                          => isset($request->comments) ? '' : 'max:250',
         ];
 
         $messages = [
-            'hospital_name.required'             => 'Please select Hospital',
+            'hospital_name.required'             => 'Please enter Hospital Name',
             'hospital_id.required'               => 'Please enter Hospital ID.',
             'hospital_address.required'          => 'Please enter Hospital address.',
             'hospital_city.required'             => 'Please enter Hospital city.',
@@ -301,7 +310,7 @@ class PatientController extends Controller
 
         $this->validate($request, $rules, $messages);
 
-        $patient= Patient::where('id', $id)->update([
+        $patient = Patient::where('id', $id)->update([
             'title'                             => $request->title,
             'firstname'                         => $request->firstname,
             'middlename'                        => $request->middlename,
@@ -321,12 +330,12 @@ class PatientController extends Controller
             'patient_permanent_state'           => $request->patient_permanent_state,
             'patient_permanent_pincode'         => $request->patient_permanent_pincode,
             'id_proof'                          => $request->id_proof,
-            'hospital_id'                       => $request->hospital_name,
-            'hospital_name'                     => Hospital::find($request->hospital_name)->name,
+            'hospital_id'                       => $request->hospital_id,
+            'hospital_name'                     => $request->hospital_name,
             'hospital_address'                  => $request->hospital_address,
             'hospital_city'                     => $request->hospital_city,
             'hospital_state'                    => $request->hospital_state,
-            'registration_number'               => $request->registration_number,
+            'registration_number'               => $request->registration_no,
             'hospital_pincode'                  => $request->hospital_pincode,
             'associate_partner_id'              => $request->associate_partner_id,
             'email'                             => $request->email,
@@ -348,7 +357,7 @@ class PatientController extends Controller
             $name                       = $dobfile->getClientOriginalName();
             $dobfile->storeAs('uploads/patient/' . $patient->id . '/', $name, 'public');
             Patient::where('id', $patient->id)->update([
-                'panfile'               =>  $name
+                'dobfile'               =>  $name
             ]);
         }
 
@@ -361,7 +370,7 @@ class PatientController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('success', 'Patient updated successfully');
+        return redirect()->route('hospital.patients.index')->with('success', 'Patient updated successfully');
     }
 
 
