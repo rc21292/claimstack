@@ -142,6 +142,15 @@
                                 </div>
 
                                 <div class="col-md-3 mt-1">
+                                    <input type="text" maxlength="25" class="form-control" id="lastname"
+                                        name="lastname" placeholder="Last name"
+                                        value="{{ old('lastname') }}">
+                                    @error('lastname')
+                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-3 mt-1">
                                     <input type="text" maxlength="25" class="form-control" id="firstname"
                                         name="firstname" placeholder="First name"
                                         value="{{ old('firstname') }}">
@@ -159,14 +168,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="col-md-3 mt-1">
-                                    <input type="text" maxlength="25" class="form-control" id="lastname"
-                                        name="lastname" placeholder="Last name"
-                                        value="{{ old('lastname') }}">
-                                    @error('lastname')
-                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                    @enderror
-                                </div>
+
 
                                 <div class="col-md-12 mt-3">
                                     <label for="dob">Patient DOB <span class="text-danger">*</span></label>
@@ -664,7 +666,7 @@
                 var apname = $("#hospital_id").select2().find(":selected").data("apname");
                         $("input[name='referral_name']").val(apname);
             }else{
-                $("input[name='referral_name']").val('');
+                $("input[name='referral_name']").val({{ old('referral_name') }});
             }
         }
     </script>
