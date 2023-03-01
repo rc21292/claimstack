@@ -32,7 +32,7 @@
                     <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
                         @if (@$claim->insurance_coverage == 'Yes' && @$claim->lending_required == 'Yes')
                             <li class="nav-item">
-                                <a href="#claimant_creation_tab" data-bs-toggle="tab" aria-expanded="true"
+                                <a href="#claimant_creation_tab" disabled data-bs-toggle="tab" aria-expanded="true"
                                     class="nav-link rounded-0 active">
                                     <i class="mdi mdi-home-variant d-md-none d-block"></i>
                                     <span class="d-none d-md-block">Claimant ID Creation / Intimation</span>
@@ -50,7 +50,7 @@
 
                         @if (@$claim->insurance_coverage == 'Yes' && @$claim->lending_required == 'No')
                             <li class="nav-item">
-                                <a href="#claimant_creation_tab" data-bs-toggle="tab" aria-expanded="true"
+                                <a href="#claimant_creation_tab" disabled data-bs-toggle="tab" aria-expanded="true"
                                     class="nav-link rounded-0 active">
                                     <i class="mdi mdi-home-variant d-md-none d-block"></i>
                                     <span class="d-none d-md-block">Claimant ID Creation / Intimation</span>
@@ -68,7 +68,7 @@
 
                         @if (@$claim->insurance_coverage == 'No' && @$claim->lending_required == 'Yes')
                             <li class="nav-item">
-                                <a href="#claimant_creation_tab" data-bs-toggle="tab" aria-expanded="false"
+                                <a href="#claimant_creation_tab" disabled data-bs-toggle="tab" aria-expanded="false"
                                     class="nav-link rounded-0" disabled>
                                     <i class="mdi mdi-home-variant d-md-none d-block"></i>
                                     <span class="d-none d-md-block">Claimant ID Creation / Intimation</span>

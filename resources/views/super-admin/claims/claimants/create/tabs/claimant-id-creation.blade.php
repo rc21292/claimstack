@@ -71,11 +71,20 @@
 
             <div class="col-md-3 mt-1">
                 <select class="form-control" id="patient_title" name="patient_title">
-                    <option value="">Select</option>
-                    <option @if(old('patient_title', (old('patient_title') ?? $patient_title) ) == 'Mr.') selected @endif value="Mr.">Mr.</option>
-                    <option @if(old('patient_title', (old('patient_title') ?? $patient_title) ) == 'Ms.') selected @endif value="Ms.">Ms.</option>
+                    {{-- <option value="">Select</option> --}}
+                    <option disabled @if(old('patient_title', (old('patient_title') ?? $patient_title) ) == 'Mr.') selected disabled @endif value="Mr.">Mr.</option>
+                    <option disabled @if(old('patient_title', (old('patient_title') ?? $patient_title) ) == 'Ms.') selected disabled @endif value="Ms.">Ms.</option>
                 </select>
                 @error('patient_title')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="col-md-3 mt-1">
+                <input type="text" @if($patient_lastname) readonly @endif maxlength="25" class="form-control" id="patient_lastname"
+                name="patient_lastname" maxlength="30" placeholder="Last name"
+                value="{{ old('patient_lastname', @$patient_lastname) }}">
+                @error('patient_lastname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
@@ -90,19 +99,10 @@
             </div>
 
             <div class="col-md-3 mt-1">
-                <input type="text" @if($patient_firstname) readonly @endif maxlength="25" class="form-control" id="patient_middlename"
+                <input type="text" @if($patient_middlename) readonly @endif maxlength="25" class="form-control" id="patient_middlename"
                 name="patient_middlename" maxlength="30" placeholder="Last name"
                 value="{{ old('patient_middlename', @$patient_middlename) }}">
                 @error('patient_middlename')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
-
-            <div class="col-md-3 mt-1">
-                <input type="text" @if($patient_firstname) readonly @endif maxlength="25" class="form-control" id="patient_lastname"
-                name="patient_lastname" maxlength="30" placeholder="Last name"
-                value="{{ old('patient_lastname', @$patient_lastname) }}">
-                @error('patient_lastname')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
@@ -119,6 +119,9 @@
                         <option value="Driving Licence"{{ old('patient_id_proof') == 'Driving Licence' ? 'selected' : '' }}>Driving Licence </option>
                         <option value="Passport" {{ old('patient_id_proof') == 'Passport' ? 'selected' : '' }}>Passport</option>
                     </select>
+                    @isset($patient_id_proof_file)
+                <a href="{{ asset('storage/uploads/patient/'.$patient_id.'/'.$patient_id_proof_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+            @endisset
                     <input type="file" name="patient_id_proof_file" id="upload" hidden
                     onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                     <label for="upload" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
@@ -161,6 +164,15 @@
             </div>
 
             <div class="col-md-3 mt-1">
+                <input type="text" maxlength="25" class="form-control" id="lastname"
+                name="lastname" placeholder="Last name"
+                value="{{ old('lastname') }}">
+                @error('lastname')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="col-md-3 mt-1">
                 <input type="text" maxlength="25" class="form-control" id="firstname"
                 name="firstname" placeholder="First name"
                 value="{{ old('firstname') }}">
@@ -178,14 +190,7 @@
                 @enderror
             </div>
 
-            <div class="col-md-3 mt-1">
-                <input type="text" maxlength="25" class="form-control" id="lastname"
-                name="lastname" placeholder="Last name"
-                value="{{ old('lastname') }}">
-                @error('lastname')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
+            
 
 
             <div class="col-md-6 mt-3">
@@ -208,7 +213,7 @@
             <div class="col-md-6 mt-3">
                 <label for="aadhar_no">Claimant Aadhar No. <span class="text-danger">*</span></label>
                 <div class="input-group">
-                    <input type="text" class="form-control" id="aadhar_no" name="aadhar_no"
+                    <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==12) return false;" class="form-control" id="aadhar_no" name="aadhar_no"
                     maxlength="12" placeholder="Enter Aadhar no." value="{{ old('aadhar_no') }}">
                     <input type="file" name="aadhar_no_file" id="aadhar_no_file" hidden
                     onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
@@ -315,7 +320,7 @@
             <div class="col-md-6 mt-3">
                 <label for="estimated_amount">Estimated Amount <span class="text-danger">*</span></label>
                 <input type="number" class="form-control" id="estimated_amount" name="estimated_amount"
-                pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"
+                pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==8) return false;"
                 placeholder="Enter Estimated Amount"
                 value="{{ old('estimated_amount') }}">
                 @error('estimated_amount')
@@ -403,6 +408,13 @@
 </div>
 @push('scripts')
 <script>
+
+    var patients_relation_with_claimant = "{{ old('patients_relation_with_claimant') }}";
+
+    if(patients_relation_with_claimant == 'Other'){
+        $('#specify').attr('disabled', false);
+    }
+
     $('#patients_relation_with_claimant').on('change', function () {
         if($(this).val() == 'Other'){
             $('#specify').attr('disabled', false);
@@ -453,5 +465,13 @@
         }
     });
 
+    $('select').on('change', function(){
+            var id = $(this).attr('id');
+        if($(this).val() == 'No' || $(this).val() == 'NA'){
+            $("#"+id+"_file").attr('disabled',true);
+        }else{
+            $("#"+id+"_file").attr('disabled',false);
+        }
+    });
 </script>
 @endpush

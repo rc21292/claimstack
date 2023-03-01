@@ -102,6 +102,15 @@
                 </div>
 
                 <div class="col-md-3 mt-1">
+                    <input type="text" maxlength="25" class="form-control" id="patient_lastname"
+                    name="patient_lastname" maxlength="30" placeholder="Last name"
+                    value="{{ old('patient_lastname',$borrower->patient_lastname) }}">
+                    @error('patient_lastname')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="col-md-3 mt-1">
                     <input type="text" maxlength="25" class="form-control" id="patient_firstname"
                     name="patient_firstname" maxlength="15" placeholder="First name"
                     value="{{ old('patient_firstname',$borrower->patient_firstname) }}">
@@ -119,14 +128,7 @@
                     @enderror
                 </div>
 
-                <div class="col-md-3 mt-1">
-                    <input type="text" maxlength="25" class="form-control" id="patient_lastname"
-                    name="patient_lastname" maxlength="30" placeholder="Last name"
-                    value="{{ old('patient_lastname',$borrower->patient_lastname) }}">
-                    @error('patient_lastname')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                    @enderror
-                </div>
+                
 
                 <div class="col-md-6 mt-3">
                     <label for="is_patient_and_borrower_same">Is Patient and Borrower Same <span class="text-danger">*</span></label>
@@ -172,6 +174,14 @@
                 </div>
 
                 <div class="col-md-3 mt-1">
+                    <input type="text" maxlength="25" class="form-control" id="borrower_lastname"
+                    name="borrower_lastname" maxlength="30" placeholder="Last name"  value="{{ old('borrower_lastname',$borrower->borrower_lastname) }}">
+                    @error('borrower_lastname')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="col-md-3 mt-1">
                     <input type="text" maxlength="25" class="form-control" id="borrower_firstname"
                     name="borrower_firstname" maxlength="15" placeholder="First name"
                     value="{{ old('borrower_firstname',$borrower->borrower_firstname) }}">
@@ -189,13 +199,7 @@
                     @enderror
                 </div>
 
-                <div class="col-md-3 mt-1">
-                    <input type="text" maxlength="25" class="form-control" id="borrower_lastname"
-                    name="borrower_lastname" maxlength="30" placeholder="Last name"  value="{{ old('borrower_lastname',$borrower->borrower_lastname) }}">
-                    @error('borrower_lastname')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                    @enderror
-                </div>
+                
 
                 <div class="col-md-4 mt-3">
                     <label for="borrowers_relation_with_patient">Borrower's Relation with Patient <span class="text-danger">*</span></label>
@@ -230,7 +234,7 @@
 
                 <div class="col-md-4 mt-3">
                     <label for="dob">Borrower DOB <span class="text-danger">*</span></label>
-                    <input type="date" class="form-control" id="dob" name="dob"
+                    <input type="date" class="form-control" id="dob" name="dob" max="{{ date('Y-m-d') }}"
                     value="{{ old('dob',$borrower->dob) }}" onchange="calculateAge();">
 
                     @error('dob')
@@ -283,6 +287,7 @@
                             <option value="Driving Licence"{{ old('borrower_id_proof', $borrower->borrower_id_proof) == 'Driving Licence' ? 'selected' : '' }}>Driving Licence </option>
                             <option value="Passport" {{ old('borrower_id_proof', $borrower->patient_id_proof) == 'Passport' ? 'selected' : '' }}>Passport</option>
                         </select>
+                        <a id="borrower_id_proof_file_download" style="display:none;" href="" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
                         <input type="file" name="borrower_id_proof_file" id="borrower_id_proof_file" hidden  onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                         <label for="borrower_id_proof_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
                     </div>
@@ -332,6 +337,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control" id="borrower_pan_no" name="borrower_pan_no"
                         maxlength="10" placeholder="Enter PAN no." value="{{ old('borrower_pan_no',$borrower->borrower_pan_no) }}">
+                        <a id="borrower_pan_no_file_download" style="display:none;" href="" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
                         <input type="file" name="borrower_pan_no_file" id="borrower_pan_no_file" hidden  onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                         <label for="borrower_pan_no_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
                     </div>
@@ -346,8 +352,9 @@
                 <div class="col-md-6 mt-3">
                     <label for="borrower_aadhar_no">Borrower Aadhar No. <span class="text-danger">*</span></label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="borrower_aadhar_no" name="borrower_aadhar_no"
-                        maxlength="10" placeholder="Enter Aadhar no." value="{{ old('borrower_aadhar_no',$borrower->borrower_aadhar_no) }}">
+                        <input type="number" class="form-control" id="borrower_aadhar_no" name="borrower_aadhar_no"
+                        maxlength="12" placeholder="Enter Aadhar no." value="{{ old('borrower_aadhar_no',$borrower->borrower_aadhar_no) }}">
+                        <a id="borrower_aadhar_no_file_download" style="display:none;" href="" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
                         <input type="file" name="borrower_aadhar_no_file" id="borrower_aadhar_no_file" hidden  onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                         <label for="borrower_aadhar_no_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
                     </div>
@@ -475,7 +482,7 @@
                 <div class="col-md-6 mt-3">
                     <label for="co_borrower_nominee_dob">Co-Borrower / Nominee DOB <span class="text-danger">*</span></label>
                     <div class="input-group">
-                        <input type="date" class="form-control" id="co_borrower_nominee_dob" name="co_borrower_nominee_dob" placeholder="Enter Co-Borrower / Nominee DOB" 
+                        <input type="date" class="form-control" id="co_borrower_nominee_dob" max="{{ date('Y-m-d') }}" name="co_borrower_nominee_dob" placeholder="Enter Co-Borrower / Nominee DOB" 
                         value="{{ old('co_borrower_nominee_dob',$borrower->co_borrower_nominee_dob) }}" >
                         <input type="file" name="co_borrower_nominee_dob_file" id="co_borrower_nominee_dob_file" hidden  onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                         <label for="co_borrower_nominee_dob_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
@@ -549,7 +556,7 @@
                 <div class="col-md-6 mt-3">
                     <label for="borrower_estimated_amount">Estimated Amount <span class="text-danger">*</span></label>
                     <input type="number" class="form-control" id="borrower_estimated_amount" name="borrower_estimated_amount"
-                    pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"
+                    pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==8) return false;"
                     placeholder="Enter Estimated Amount"
                     value="{{ old('borrower_estimated_amount',$borrower->borrower_estimated_amount) }}">
                     @error('borrower_estimated_amount')
@@ -664,7 +671,7 @@
                         $("#borrower_id_proof").val(result.id_proof);
                         $("#borrower_personal_email_id").val(result.email);
                         $("#borrower_mobile_no").val(result.phone);
-                        $("#borrower_id_proof_file").val(result.id_proof_file);
+                        $("#borrower_id_proof_file_download").css('display', 'block').attr('href', result.id_proof_file);
                     }
                 });
 
@@ -681,7 +688,7 @@
                 $("#borrower_id_proof").val('');
                 $("#borrower_personal_email_id").val('');
                 $("#borrower_mobile_no").val('');
-                $("#borrower_id_proof_file").val('');
+                $("#borrower_id_proof_file_download").css('display', 'none').attr('href', '');
 
                 $("#is_claimant_and_borrower_same").attr('disabled', false);
                 $("#is_claimant_and_borrower_same").val('').trigger('change');
@@ -717,9 +724,9 @@
                         $("#borrower_bank_address").val(result.bank_address);
                         $("#borrower_ac_no").val(result.ac_no);
                         $("#borrower_ifs_code").val(result.ifs_code);
-                        $("#borrower_pan_no_file").val(result.pan_no_file);
-                        $("#borrower_id_proof_file").val(result.id_proof_file);
-                        $("#borrower_aadhar_no_file").val(result.aadhar_no_file);
+                        $("#borrower_pan_no_file_download").css('display', 'block').attr('href', result.pan_no_file);
+                        // $("#borrower_id_proof_file_download").css('display', 'block').attr('href', result.id_proof_file);
+                        $("#borrower_aadhar_no_file_download").css('display', 'block').attr('href', result.aadhar_no_file);
                     }
                 });
             }else{
@@ -742,7 +749,7 @@
                 $("#borrower_ifs_code").val('');
                 $("#borrower_pan_no_file").val('');
                 $("#borrower_aadhar_no_file").val('');
-                $("#borrower_id_proof_file").val('');
+                $("#borrower_id_proof_file_download").css('display', 'none').attr('href', '');
             }
 
         });
@@ -790,7 +797,7 @@
                 $("#borrower_id_proof").val(result.id_proof);
                 $("#borrower_personal_email_id").val(result.email);
                 $("#borrower_mobile_no").val(result.phone);
-                $("#borrower_id_proof_file").val(result.id_proof_file);
+                $("#borrower_id_proof_file_download").css('display', 'block').attr('href', result.id_proof_file);
             }
         });
 
@@ -808,7 +815,7 @@
         $("#borrower_pincode").val('');
         $("#borrower_personal_email_id").val('');
         $("#borrower_mobile_no").val('');
-        $("#borrower_id_proof_file").val('');
+        $("#borrower_id_proof_file_download").css('display', 'none').attr('href', '');
 
         $("#is_claimant_and_borrower_same").attr('disabled', false);
         // $("#is_claimant_and_borrower_same").val('').trigger('change');
@@ -833,7 +840,7 @@
         $("#borrower_ifs_code").val('');
         $("#borrower_pan_no_file").val('');
         $("#borrower_aadhar_no_file").val('');
-        $("#borrower_id_proof_file").val('');
+        $("#borrower_id_proof_file_download").css('display', 'none').attr('href', '');
 
     }
 
@@ -865,9 +872,9 @@
                 $("#borrower_bank_address").val(result.bank_address);
                 $("#borrower_ac_no").val(result.ac_no);
                 $("#borrower_ifs_code").val(result.ifs_code);
-                $("#borrower_pan_no_file").val(result.pan_no_file);
-                $("#borrower_aadhar_no_file").val(result.aadhar_no_file);
-                $("#borrower_id_proof_file").val(result.id_proof_file);
+                $("#borrower_pan_no_file_download").css('display', 'block').attr('href', result.pan_no_file);
+                $("#borrower_aadhar_no_file_download").css('display', 'block').attr('href', result.aadhar_no_file);
+                // $("#borrower_id_proof_file_download").css('display', 'block').attr('href', result.id_proof_file);
             }
         });
 

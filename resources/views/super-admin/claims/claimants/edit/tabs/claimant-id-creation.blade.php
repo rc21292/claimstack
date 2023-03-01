@@ -48,11 +48,20 @@
 
                 <div class="col-md-3 mt-1">
                     <select class="form-control" id="patient_title" name="patient_title">
-                        <option value="">Select</option>
-                        <option @if(old('patient_title',$claimant->patient_title) == 'Mr.') selected @endif value="Mr.">Mr.</option>
-                        <option @if(old('patient_title',$claimant->patient_title) == 'Ms.') selected @endif value="Ms.">Ms.</option>
+                        {{-- <option value="">Select</option> --}}
+                        <option disabled @if(old('patient_title',$claimant->patient_title) == 'Mr.') selected disabled @endif value="Mr.">Mr.</option>
+                        <option disabled @if(old('patient_title',$claimant->patient_title) == 'Ms.') selected disabled @endif value="Ms.">Ms.</option>
                     </select>
                     @error('patient_title')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="col-md-3 mt-1">
+                    <input type="text" maxlength="25" class="form-control" id="patient_lastname"
+                    name="patient_lastname" maxlength="30" placeholder="Last name"
+                    value="{{ old('patient_lastname',$claimant->patient_lastname) }}">
+                    @error('patient_lastname')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
@@ -71,15 +80,6 @@
                     name="patient_middlename" maxlength="30" placeholder="Last name"
                     value="{{ old('patient_middlename',$claimant->patient_middlename) }}">
                     @error('patient_middlename')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                    @enderror
-                </div>
-
-                <div class="col-md-3 mt-1">
-                    <input type="text" maxlength="25" class="form-control" id="patient_lastname"
-                    name="patient_lastname" maxlength="30" placeholder="Last name"
-                    value="{{ old('patient_lastname',$claimant->patient_lastname) }}">
-                    @error('patient_lastname')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
@@ -185,7 +185,7 @@
                 <div class="col-md-6 mt-3">
                     <label for="aadhar_no">Claimant Aadhar No. <span class="text-danger">*</span></label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="aadhar_no" name="aadhar_no"
+                        <input type="number" class="form-control" id="aadhar_no" name="aadhar_no" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==12) return false;"
                         maxlength="12" placeholder="Enter Aadhar no." value="{{ old('aadhar_no',$claimant->aadhar_no) }}">
                         <input type="file" name="aadhar_no_file" id="aadhar_no_file" hidden
                         onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
@@ -292,7 +292,7 @@
                 <div class="col-md-6 mt-3">
                     <label for="estimated_amount">Estimated Amount <span class="text-danger">*</span></label>
                     <input type="number" class="form-control" id="estimated_amount" name="estimated_amount"
-                    pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"
+                    pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==8) return false;"
                     placeholder="Enter Estimated Amount"
                     value="{{ old('estimated_amount',$claimant->estimated_amount) }}">
                     @error('estimated_amount')
@@ -431,5 +431,14 @@
         }
     });
 
+
+    $('select').on('change', function(){
+            var id = $(this).attr('id');
+        if($(this).val() == 'No' || $(this).val() == 'NA'){
+            $("#"+id+"_file").attr('disabled',true);
+        }else{
+            $("#"+id+"_file").attr('disabled',false);
+        }
+    });
 </script>
 @endpush
