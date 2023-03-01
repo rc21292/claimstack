@@ -202,16 +202,16 @@
                     $("#primary_insured_pincode").val("{{ $claim->patient->patient_current_pincode }}");
                     break;
                 case 'No':
-                    $("#primary_insured_address").val("");
-                    $("#primary_insured_city").val("");
-                    $("#primary_insured_state").val("");
-                    $("#primary_insured_pincode").val("");
+                    $("#primary_insured_address").val({{ old('primary_insured_address') }});
+                    $("#primary_insured_city").val({{ old('primary_insured_city') }});
+                    $("#primary_insured_state").val({{ old('primary_insured_state') }});
+                    $("#primary_insured_pincode").val({{ old('primary_insured_pincode') }});
                     break;
                 default:
-                    $("#primary_insured_address").val("");
-                    $("#primary_insured_city").val("");
-                    $("#primary_insured_state").val("");
-                    $("#primary_insured_pincode").val("");
+                    $("#primary_insured_address").val({{ old('primary_insured_address') }});
+                    $("#primary_insured_city").val({{ old('primary_insured_city') }});
+                    $("#primary_insured_state").val({{ old('primary_insured_state') }});
+                    $("#primary_insured_pincode").val({{ old('primary_insured_pincode') }});
                     break;
             }
         }
@@ -236,26 +236,26 @@
     <script>
         function setCurrentlyCovered() {
             $("#commencement_date_other").prop("readonly", true);
-            $("#insurance_company_other").prop("readonly", true);
+            $("#insurance_company_other").prop("disabled", true);
             $("#policy_no_other").prop("readonly", true);
             $("#sum_insured_other").prop("readonly", true);
             var currentlycovered = $('input[name="currently_covered"]:checked').val();
             switch (currentlycovered) {
                 case 'Yes':
                     $("#commencement_date_other").prop("readonly", false);
-                    $("#insurance_company_other").prop("readonly", false);
+                    $("#insurance_company_other").prop("disabled", false);
                     $("#policy_no_other").prop("readonly", false);
                     $("#sum_insured_other").prop("readonly", false);
                     break;
                 case 'No':
                     $("#commencement_date_other").prop("readonly", true);
-                    $("#insurance_company_other").prop("readonly", true);
+                    $("#insurance_company_other").prop("disabled", true);
                     $("#policy_no_other").prop("readonly", true);
                     $("#sum_insured_other").prop("readonly", true);
                     break;
                 default:
                     $("#commencement_date_other").prop("readonly", true);
-                    $("#insurance_company_other").prop("readonly", true);
+                    $("#insurance_company_other").prop("disabled", true);
                     $("#policy_no_other").prop("readonly", true);
                     $("#sum_insured_other").prop("readonly", true);
                     break;

@@ -155,22 +155,25 @@
             </div>
 
             <div class="col-md-3 mb-3">
-                <input type="text" maxlength="25" class="form-control" id="proposer_firstname" name="proposer_firstname" placeholder="First name" value="{{ old('proposer_firstname') }}">
+                <input type="text" maxlength="25" class="form-control" id="proposer_lastname"
+                    name="proposer_lastname" placeholder="Last name" value="{{ old('proposer_lastname') }}">
+                @error('proposer_lastname')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="col-md-3 mb-3">
+                <input type="text" maxlength="25" class="form-control" id="proposer_firstname"
+                    name="proposer_firstname" placeholder="First name" value="{{ old('proposer_firstname') }}">
                 @error('proposer_firstname')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="col-md-3 mb-3">
-                <input type="text" maxlength="25" class="form-control" id="proposer_middlename" name="proposer_middlename" placeholder="Middle name" value="{{ old('proposer_middlename') }}">
+                <input type="text" maxlength="25" class="form-control" id="proposer_middlename"
+                    name="proposer_middlename" placeholder="Middle name" value="{{ old('proposer_middlename') }}">
                 @error('proposer_middlename')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
-
-            <div class="col-md-3 mb-3">
-                <input type="text" maxlength="25" class="form-control" id="proposer_lastname" name="proposer_lastname" placeholder="Last name" value="{{ old('proposer_lastname') }}">
-                @error('proposer_lastname')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
@@ -283,12 +286,14 @@
                 <div class="mt-2">
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" id="additional_policy_yes" value="Yes"
-                            name="additional_policy" @if (old('additional_policy') == 'Yes') checked @endif onchange="setAdditionalPolicy()">
+                            name="additional_policy" @if (old('additional_policy') == 'Yes') checked @endif
+                            onchange="setAdditionalPolicy()">
                         <label class="form-check-label" for="additional_policy_yes">Yes</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" id="additional_policy_no" value="No"
-                            name="additional_policy" @if (old('additional_policy') == 'No') checked @endif onchange="setAdditionalPolicy()">
+                            name="additional_policy" @if (old('additional_policy') == 'No') checked @endif
+                            onchange="setAdditionalPolicy()">
                         <label class="form-check-label" for="additional_policy_no">No</label>
                     </div>
                 </div>
@@ -314,12 +319,14 @@
                 <div class="mt-2">
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" id="currently_covered_yes" value="Yes"
-                            name="currently_covered" @if (old('currently_covered') == 'Yes') checked @endif onchange="setCurrentlyCovered()">
+                            name="currently_covered" @if (old('currently_covered') == 'Yes') checked @endif
+                            onchange="setCurrentlyCovered()">
                         <label class="form-check-label" for="currently_covered_yes">Yes</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" id="currently_covered_no" value="No"
-                            name="currently_covered" @if (old('currently_covered') == 'No') checked @endif onchange="setCurrentlyCovered()">
+                            name="currently_covered" @if (old('currently_covered') == 'No') checked @endif
+                            onchange="setCurrentlyCovered()">
                         <label class="form-check-label" for="currently_covered_no">No</label>
                     </div>
                 </div>
@@ -342,10 +349,16 @@
             <div class="col-md-6 mb-3">
                 <label for="insurance_company_other">Insurance Company Name (Other Policy)<span
                         class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="insurance_company_other"
-                    name="insurance_company_other" maxlength="60"
-                    placeholder="Enter Insurance Company Name (Other Policy)"
-                    value="{{ old('insurance_company_other', $claim->insurance_company_other) }}">
+                <select class="form-control select2" id="insurance_company_other" name="insurance_company_other"
+                    data-toggle="select2">
+                    <option value="">Select Insurance Company</option>
+                    @foreach ($insurers as $insurer)
+                        <option value="{{ $insurer->id }}"
+                            {{ old('insurance_company_other') == $insurer->id ? 'selected' : '' }}>
+                            {{ $insurer->name }}
+                        </option>
+                    @endforeach
+                </select>
                 @error('insurance_company_other')
                     <span id="policy-id-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -377,13 +390,15 @@
                 <div class="mt-2">
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" id="hospitalized_yes" value="Yes"
-                            name="hospitalized"  onchange="setHospitalizedOption()"  @if (old('hospitalized') == 'Yes') checked @endif>
+                            name="hospitalized" onchange="setHospitalizedOption()"
+                            @if (old('hospitalized') == 'Yes') checked @endif>
 
                         <label class="form-check-label" for="hospitalized_yes">Yes</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" id="hospitalized_no" value="No"
-                            name="hospitalized" @if (old('hospitalized') == 'No') checked @endif  onchange="setHospitalizedOption()">
+                            name="hospitalized" @if (old('hospitalized') == 'No') checked @endif
+                            onchange="setHospitalizedOption()">
                         <label class="form-check-label" for="hospitalized_no">No</label>
                     </div>
                 </div>
@@ -422,255 +437,316 @@
 
         </div>
         <div class="form-group text-end">
-            <button type="button" id="addInsured" class="btn btn-sm btn-success"><i class="mdi mdi-plus"></i>  Add Insured</button>
+            <button type="button" id="addInsured" class="btn btn-sm btn-success"><i class="mdi mdi-plus"></i> Add
+                Insured</button>
         </div>
     </div>
 
     {{-- Primary Insured --}}
     <div class="card-body bg-white mb-4 addInsured" style="display:none">
         <div class="form-group row">
-           <h4>Primary Insured</h4>
-           <div class="form-group row">
-            <div class="col-md-4 mb-2">
-                <label>Name <span class="text-danger">*</span></label>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" placeholder="First name" name="primary_insured_firstname" id="primary_insured_firstname" maxlength="15" value="{{ old('primary_insured_firstname') }}"/>
+            <h4>Primary Insured</h4>
+            <div class="form-group row">
+                <div class="col-md-4 mb-2">
+                    <label>Name <span class="text-danger">*</span></label>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" placeholder="First name"
+                                name="primary_insured_firstname" id="primary_insured_firstname" maxlength="15"
+                                value="{{ old('primary_insured_firstname') }}" />
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" placeholder="Last name"
+                                name="primary_insured_lastname" id="primary_insured_lastname" maxlength="30"
+                                value="{{ old('primary_insured_lastname') }}" />
+                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" placeholder="Last name" name="primary_insured_lastname" id="primary_insured_lastname"  maxlength="30" value="{{ old('primary_insured_lastname') }}"/>
-                    </div>
+                    @error('primary_insured_firstname')
+                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
                 </div>
-                @error('primary_insured_firstname')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
-            <div class="col-md-2 mb-2">
-                <label>Gender <span class="text-danger">*</span></label>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <select class="form-control" name="primary_insured_gender" id="primary_insured_gender">
-                            <option value="">Select</option>
-                            <option value="Male" {{ old('primary_insured_gender') == 'Male' ? 'selected' : '' }}>Male
-                            </option>
-                            <option value="Female" {{ old('primary_insured_gender') == 'Female' ? 'selected' : '' }}>Female
-                            </option>
-                            <option value="Other" {{ old('primary_insured_gender') == 'Other' ? 'selected' : '' }}>Other
-                            </option>
-                        </select>
+                <div class="col-md-2 mb-2">
+                    <label>Gender <span class="text-danger">*</span></label>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <select class="form-control" name="primary_insured_gender" id="primary_insured_gender">
+                                <option value="">Select</option>
+                                <option value="Male"
+                                    {{ old('primary_insured_gender') == 'Male' ? 'selected' : '' }}>Male
+                                </option>
+                                <option value="Female"
+                                    {{ old('primary_insured_gender') == 'Female' ? 'selected' : '' }}>Female
+                                </option>
+                                <option value="Other"
+                                    {{ old('primary_insured_gender') == 'Other' ? 'selected' : '' }}>Other
+                                </option>
+                            </select>
+                        </div>
                     </div>
+                    @error('primary_insured_gender')
+                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
                 </div>
-                @error('primary_insured_gender')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
-            <div class="col-md-2 mb-2">
-                <label>Age <span class="text-danger">*</span></label>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <input type="text" class="form-control" placeholder="Age" name="primary_insured_age" id="primary_insured_age" maxlength="3" onkeypress="return isNumberKey(event)" value="{{ old('primary_insured_age') }}"/>
+                <div class="col-md-2 mb-2">
+                    <label>Age <span class="text-danger">*</span></label>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" placeholder="Age" name="primary_insured_age"
+                                id="primary_insured_age" maxlength="3" onkeypress="return isNumberKey(event)"
+                                value="{{ old('primary_insured_age') }}" />
+                        </div>
                     </div>
+                    @error('primary_insured_age')
+                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
                 </div>
-                @error('primary_insured_age')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
-            <div class="col-md-4 mb-2">
-                <label>Relation <span class="text-danger">*</span></label>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <select class="form-control" name="primary_insured_relation" id="primary_insured_relation">
-                            <option value="">Select</option>
-                            <option value="Self" {{ old('primary_insured_relation') == 'Self' ? 'selected' : '' }}>Self
-                            </option>
-                            <option value="Husband" {{ old('primary_insured_relation') == 'Husband' ? 'selected' : '' }}>Husband
-                            </option>
-                            <option value="Wife" {{ old('primary_insured_relation') == 'Wife' ? 'selected' : '' }}>Wife
-                            </option>
-                            <option value="Son" {{ old('primary_insured_relation') == 'Son' ? 'selected' : '' }}>Son
-                            </option>
-                            <option value="Daughter" {{ old('primary_insured_relation') == 'Daughter' ? 'selected' : '' }}>Daughter
-                            </option>
-                            <option value="Father" {{ old('primary_insured_relation') == 'Father' ? 'selected' : '' }}>Father
-                            </option>
-                            <option value="Mother" {{ old('primary_insured_relation') == 'Mother' ? 'selected' : '' }}>Mother
-                            </option>
-                            <option value="Other" {{ old('primary_insured_relation') == 'Other' ? 'selected' : '' }}>Other
-                            </option>
-                        </select>
+                <div class="col-md-4 mb-2">
+                    <label>Relation <span class="text-danger">*</span></label>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <select class="form-control" name="primary_insured_relation"
+                                id="primary_insured_relation">
+                                <option value="">Select</option>
+                                <option value="Self"
+                                    {{ old('primary_insured_relation') == 'Self' ? 'selected' : '' }}>Self
+                                </option>
+                                <option value="Husband"
+                                    {{ old('primary_insured_relation') == 'Husband' ? 'selected' : '' }}>Husband
+                                </option>
+                                <option value="Wife"
+                                    {{ old('primary_insured_relation') == 'Wife' ? 'selected' : '' }}>Wife
+                                </option>
+                                <option value="Son"
+                                    {{ old('primary_insured_relation') == 'Son' ? 'selected' : '' }}>Son
+                                </option>
+                                <option value="Daughter"
+                                    {{ old('primary_insured_relation') == 'Daughter' ? 'selected' : '' }}>Daughter
+                                </option>
+                                <option value="Father"
+                                    {{ old('primary_insured_relation') == 'Father' ? 'selected' : '' }}>Father
+                                </option>
+                                <option value="Mother"
+                                    {{ old('primary_insured_relation') == 'Mother' ? 'selected' : '' }}>Mother
+                                </option>
+                                <option value="Other"
+                                    {{ old('primary_insured_relation') == 'Other' ? 'selected' : '' }}>Other
+                                </option>
+                            </select>
+                        </div>
                     </div>
+                    @error('primary_insured_relation')
+                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
                 </div>
-                @error('primary_insured_relation')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
 
-            <div class="col-md-4 mb-2">
-                <label>Sum Insured <span class="text-danger">*</span></label>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <input type="text" class="form-control" placeholder="Sum Insured" name="primary_insured_sum_insured" id="primary_insured_sum_insured"  maxlength="8" onkeypress="return isNumberKey(event)" value="{{ old('primary_insured_sum_insured') }}"/>
+                <div class="col-md-4 mb-2">
+                    <label>Sum Insured <span class="text-danger">*</span></label>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" placeholder="Sum Insured"
+                                name="primary_insured_sum_insured" id="primary_insured_sum_insured" maxlength="8"
+                                onkeypress="return isNumberKey(event)"
+                                value="{{ old('primary_insured_sum_insured') }}" />
+                        </div>
+                    </div>
+                    @error('primary_insured_sum_insured')
+                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="col-md-2 mb-2">
+                    <label>Cumulative Bonus <span class="text-danger">*</span></label>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" placeholder="Cumulative Bonus"
+                                name="primary_insured_cumulative_bonus" id="primary_insured_cumulative_bonus"
+                                maxlength="8" onkeypress="return isNumberKey(event)"
+                                value="{{ old('primary_insured_cumulative_bonus') }}" />
+                        </div>
+                    </div>
+                    @error('primary_insured_cumulative_bonus')
+                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="col-md-2 mb-2">
+                    <label>Balance Sum Insured <span class="text-danger">*</span></label>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" placeholder="Balance Sum Insured"
+                                name="primary_insured_balance_sum_insured" id="primary_insured_balance_sum_insured"
+                                maxlength="8" onkeypress="return isNumberKey(event)"
+                                value="{{ old('primary_insured_balance_sum_insured') }}" />
+                        </div>
+                    </div>
+                    @error('primary_insured_balance_sum_insured')
+                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="col-md-4 mb-2">
+                    <label>Comment <span class="text-danger">*</span></label>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input type="text" maxlength="250" class="form-control"
+                                name="primary_insured_comment" id="primary_insured_comment"
+                                placeholder="Enter Comment" value="{{ old('primary_insured_comment') }}">
+                        </div>
                     </div>
                 </div>
-                @error('primary_insured_sum_insured')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
             </div>
-            <div class="col-md-2 mb-2">
-                <label>Cumulative Bonus <span class="text-danger">*</span></label>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <input type="text" class="form-control" placeholder="Cumulative Bonus" name="primary_insured_cumulative_bonus" id="primary_insured_cumulative_bonus" maxlength="8" onkeypress="return isNumberKey(event)" value="{{ old('primary_insured_cumulative_bonus') }}"/>
-                    </div>
-                </div>
-                @error('primary_insured_cumulative_bonus')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
-            <div class="col-md-2 mb-2">
-                <label>Balance Sum Insured <span class="text-danger">*</span></label>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <input type="text" class="form-control" placeholder="Balance Sum Insured" name="primary_insured_balance_sum_insured" id="primary_insured_balance_sum_insured" maxlength="8" onkeypress="return isNumberKey(event)" value="{{ old('primary_insured_balance_sum_insured') }}"/>
-                    </div>
-                </div>
-                @error('primary_insured_balance_sum_insured')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
-            <div class="col-md-4 mb-2">
-                <label>Comment <span class="text-danger">*</span></label>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <input type="text" maxlength="250" class="form-control" name="primary_insured_comment" id="primary_insured_comment" placeholder="Enter Comment" value="{{ old('primary_insured_comment') }}">
-                    </div>
-                </div>
-            </div>
-           </div>
         </div>
     </div>
 
     {{-- Dependent Insured --}}
     <div class="card-body bg-white mb-4 addInsured" style="display:none">
         <div class="form-group row">
-           <h4>Dependent Insured</h4>
-           <div class="form-group row">
-            <div class="col-md-4 mb-2">
-                <label>Name <span class="text-danger">*</span></label>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" placeholder="First name" name="dependent_insured_firstname" id="dependent_insured_firstname" maxlength="15"  value="{{ old('dependent_insured_firstname') }}"/>
+            <h4>Dependent Insured</h4>
+            <div class="form-group row">
+                <div class="col-md-4 mb-2">
+                    <label>Name <span class="text-danger">*</span></label>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" placeholder="First name"
+                                name="dependent_insured_firstname" id="dependent_insured_firstname" maxlength="15"
+                                value="{{ old('dependent_insured_firstname') }}" />
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" placeholder="Last name"
+                                name="dependent_insured_lastname" id="dependent_insured_lastname" maxlength="30"
+                                value="{{ old('dependent_insured_lastname') }}" />
+                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" placeholder="Last name" name="dependent_insured_lastname" id="dependent_insured_lastname"  maxlength="30"  value="{{ old('dependent_insured_lastname') }}"/>
-                    </div>
+                    @error('dependent_insured_firstname')
+                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
                 </div>
-                @error('dependent_insured_firstname')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
-            <div class="col-md-2 mb-2">
-                <label>Gender <span class="text-danger">*</span></label>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <select class="form-control" name="dependent_insured_gender" id="dependent_insured_gender">
-                            <option value="">Select</option>
-                            <option value="Male" {{ old('dependent_insured_gender') == 'Male' ? 'selected' : '' }}>Male
-                            </option>
-                            <option value="Female" {{ old('dependent_insured_gender') == 'Female' ? 'selected' : '' }}>Female
-                            </option>
-                            <option value="Other" {{ old('dependent_insured_gender') == 'Other' ? 'selected' : '' }}>Other
-                            </option>
-                        </select>
+                <div class="col-md-2 mb-2">
+                    <label>Gender <span class="text-danger">*</span></label>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <select class="form-control" name="dependent_insured_gender"
+                                id="dependent_insured_gender">
+                                <option value="">Select</option>
+                                <option value="Male"
+                                    {{ old('dependent_insured_gender') == 'Male' ? 'selected' : '' }}>Male
+                                </option>
+                                <option value="Female"
+                                    {{ old('dependent_insured_gender') == 'Female' ? 'selected' : '' }}>Female
+                                </option>
+                                <option value="Other"
+                                    {{ old('dependent_insured_gender') == 'Other' ? 'selected' : '' }}>Other
+                                </option>
+                            </select>
+                        </div>
                     </div>
+                    @error('dependent_insured_gender')
+                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
                 </div>
-                @error('dependent_insured_gender')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
-            <div class="col-md-2 mb-2">
-                <label>Age <span class="text-danger">*</span></label>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <input type="text" class="form-control" placeholder="Age" name="dependent_insured_age" id="dependent_insured_age" maxlength="3" onkeypress="return isNumberKey(event)" value="{{ old('dependent_insured_age') }}"/>
+                <div class="col-md-2 mb-2">
+                    <label>Age <span class="text-danger">*</span></label>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" placeholder="Age"
+                                name="dependent_insured_age" id="dependent_insured_age" maxlength="3"
+                                onkeypress="return isNumberKey(event)" value="{{ old('dependent_insured_age') }}" />
+                        </div>
                     </div>
+                    @error('dependent_insured_age')
+                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
                 </div>
-                @error('dependent_insured_age')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
-            <div class="col-md-4 mb-2">
-                <label>Relation <span class="text-danger">*</span></label>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <select class="form-control" name="dependent_insured_relation" id="dependent_insured_relation">
-                            <option value="">Select</option>
-                            <option value="Self" {{ old('dependent_insured_relation') == 'Self' ? 'selected' : '' }}>Self
-                            </option>
-                            <option value="Husband" {{ old('dependent_insured_relation') == 'Husband' ? 'selected' : '' }}>Husband
-                            </option>
-                            <option value="Wife" {{ old('dependent_insured_relation') == 'Wife' ? 'selected' : '' }}>Wife
-                            </option>
-                            <option value="Son" {{ old('dependent_insured_relation') == 'Son' ? 'selected' : '' }}>Son
-                            </option>
-                            <option value="Daughter" {{ old('dependent_insured_relation') == 'Daughter' ? 'selected' : '' }}>Daughter
-                            </option>
-                            <option value="Father" {{ old('dependent_insured_relation') == 'Father' ? 'selected' : '' }}>Father
-                            </option>
-                            <option value="Mother" {{ old('dependent_insured_relation') == 'Mother' ? 'selected' : '' }}>Mother
-                            </option>
-                            <option value="Other" {{ old('dependent_insured_relation') == 'Other' ? 'selected' : '' }}>Other
-                            </option>
-                        </select>
+                <div class="col-md-4 mb-2">
+                    <label>Relation <span class="text-danger">*</span></label>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <select class="form-control" name="dependent_insured_relation"
+                                id="dependent_insured_relation">
+                                <option value="">Select</option>
+                                <option value="Self"
+                                    {{ old('dependent_insured_relation') == 'Self' ? 'selected' : '' }}>Self
+                                </option>
+                                <option value="Husband"
+                                    {{ old('dependent_insured_relation') == 'Husband' ? 'selected' : '' }}>Husband
+                                </option>
+                                <option value="Wife"
+                                    {{ old('dependent_insured_relation') == 'Wife' ? 'selected' : '' }}>Wife
+                                </option>
+                                <option value="Son"
+                                    {{ old('dependent_insured_relation') == 'Son' ? 'selected' : '' }}>Son
+                                </option>
+                                <option value="Daughter"
+                                    {{ old('dependent_insured_relation') == 'Daughter' ? 'selected' : '' }}>Daughter
+                                </option>
+                                <option value="Father"
+                                    {{ old('dependent_insured_relation') == 'Father' ? 'selected' : '' }}>Father
+                                </option>
+                                <option value="Mother"
+                                    {{ old('dependent_insured_relation') == 'Mother' ? 'selected' : '' }}>Mother
+                                </option>
+                                <option value="Other"
+                                    {{ old('dependent_insured_relation') == 'Other' ? 'selected' : '' }}>Other
+                                </option>
+                            </select>
+                        </div>
                     </div>
+                    @error('dependent_insured_relation')
+                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
                 </div>
-                @error('dependent_insured_relation')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
 
-            <div class="col-md-4 mb-2">
-                <label>Sum Insured <span class="text-danger">*</span></label>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <input type="text" class="form-control" placeholder="Sum Insured" name="dependent_insured_sum_insured" id="dependent_insured_sum_insured"  maxlength="8" onkeypress="return isNumberKey(event)"  value="{{ old('dependent_insured_sum_insured') }}"/>
+                <div class="col-md-4 mb-2">
+                    <label>Sum Insured <span class="text-danger">*</span></label>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" placeholder="Sum Insured"
+                                name="dependent_insured_sum_insured" id="dependent_insured_sum_insured"
+                                maxlength="8" onkeypress="return isNumberKey(event)"
+                                value="{{ old('dependent_insured_sum_insured') }}" />
+                        </div>
+                    </div>
+                    @error('dependent_insured_sum_insured')
+                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="col-md-2 mb-2">
+                    <label>Cumulative Bonus <span class="text-danger">*</span></label>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" placeholder="Cumulative Bonus"
+                                name="dependent_insured_cumulative_bonus" id="dependent_insured_cumulative_bonus"
+                                maxlength="8" onkeypress="return isNumberKey(event)"
+                                value="{{ old('dependent_insured_cumulative_bonus') }}" />
+                        </div>
+                    </div>
+                    @error('dependent_insured_cumulative_bonus')
+                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="col-md-2 mb-2">
+                    <label>Balance Sum Insured <span class="text-danger">*</span></label>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" placeholder="Balance Sum Insured"
+                                name="dependent_insured_balance_sum_insured"
+                                id="dependent_insured_balance_sum_insured" maxlength="8"
+                                onkeypress="return isNumberKey(event)"
+                                value="{{ old('dependent_insured_balance_sum_insured') }}" />
+                        </div>
+                    </div>
+                    @error('dependent_insured_balance_sum_insured')
+                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="col-md-4 mb-2">
+                    <label>Comment <span class="text-danger">*</span></label>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input type="text" maxlength="250" class="form-control"
+                                name="dependent_insured_comment" id="dependent_insured_comment"
+                                placeholder="Enter Comment" value="{{ old('dependent_insured_comment') }}">
+                        </div>
                     </div>
                 </div>
-                @error('dependent_insured_sum_insured')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
             </div>
-            <div class="col-md-2 mb-2">
-                <label>Cumulative Bonus <span class="text-danger">*</span></label>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <input type="text" class="form-control" placeholder="Cumulative Bonus" name="dependent_insured_cumulative_bonus" id="dependent_insured_cumulative_bonus" maxlength="8" onkeypress="return isNumberKey(event)" value="{{ old('dependent_insured_cumulative_bonus') }}"/>
-                    </div>
-                </div>
-                @error('dependent_insured_cumulative_bonus')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
-            <div class="col-md-2 mb-2">
-                <label>Balance Sum Insured <span class="text-danger">*</span></label>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <input type="text" class="form-control" placeholder="Balance Sum Insured" name="dependent_insured_balance_sum_insured" id="dependent_insured_balance_sum_insured" maxlength="8" onkeypress="return isNumberKey(event)" value="{{ old('dependent_insured_balance_sum_insured') }}"/>
-                    </div>
-                </div>
-                @error('dependent_insured_balance_sum_insured')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
-            <div class="col-md-4 mb-2">
-                <label>Comment <span class="text-danger">*</span></label>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <input type="text" maxlength="250" class="form-control" name="dependent_insured_comment" id="dependent_insured_comment" placeholder="Enter Comment" value="{{ old('dependent_insured_comment') }}">
-                    </div>
-                </div>
-            </div>
-           </div>
         </div>
     </div>
 
