@@ -78,15 +78,15 @@ class ClaimController extends Controller
             'middlename'                => isset($request->middlename) ? 'max:25' : '',
             'age'                       => 'required',
             'gender'                    => 'required',
-            'admission_date'            => 'required',
+            'admission_date'            => 'required|before:today',
             'admission_time'            => 'required',
-            'abha_id'                   => 'required|max:45',
+            'abha_id'                   => isset($request->abha_id) ? 'max:45' : '',
             'insurance_coverage'        => 'required',
-            'policy_no'                 => $request->insurance_coverage == 'yes' ? 'required|max:16' : '',
-            'company_tpa_id_card_no'    => $request->insurance_coverage == 'yes' ? 'required|max:16' : '',
+            'policy_no'                 => $request->insurance_coverage == 'Yes' ? 'required|max:16' : '',
+            'company_tpa_id_card_no'    => $request->insurance_coverage == 'Yes' ? 'required|max:16' : '',
             'lending_required'          => 'required',
             'hospitalization_due_to'    => 'required',
-            'date_of_delivery'          => 'required',
+            'date_of_delivery'          => 'required|before:today',
             'system_of_medicine'        => 'required',
             'treatment_type'            => 'required',
             'admission_type_1'          => 'required',
@@ -167,6 +167,15 @@ class ClaimController extends Controller
         Claim::where('id', $claim->id)->update([
             'uid'      => 'C-' . Carbon::parse($claim->created_at)->format('Y-m-d') . '-' . $claim->id
         ]);
+
+        if ($request->hasfile('abhafile')) {
+            $abhafile                    = $request->file('abhafile');
+            $name                       = $abhafile->getClientOriginalName();
+            $abhafile->storeAs('uploads/claims/' . $claim->id . '/', $name, 'public');
+            Claim::where('id', $claim->id)->update([
+                'abhafile'               =>  $name
+            ]);
+        }
 
         Patient::where('id', $claim->patient_id)->update([
             'title'                             => $request->title,
@@ -413,13 +422,13 @@ class ClaimController extends Controller
             'gender'                    => 'required',
             'admission_date'            => 'required',
             'admission_time'            => 'required',
-            'abha_id'                   => 'required|max:45',
+            'abha_id'                   => isset($request->abha_id) ? 'max:45' : '',
             'insurance_coverage'        => 'required',
-            'policy_no'                 => $request->insurance_coverage == 'yes' ? 'required|max:16' : '',
-            'company_tpa_id_card_no'    => $request->insurance_coverage == 'yes' ? 'required|max:16' : '',
+            'policy_no'                 => $request->insurance_coverage == 'Yes' ? 'required|max:16' : '',
+            'company_tpa_id_card_no'    => $request->insurance_coverage == 'Yes' ? 'required|max:16' : '',
             'lending_required'          => 'required',
             'hospitalization_due_to'    => 'required',
-            'date_of_delivery'          => 'required',
+            'date_of_delivery'          => 'required|before:today',
             'system_of_medicine'        => 'required',
             'treatment_type'            => 'required',
             'admission_type_1'          => 'required',
@@ -520,6 +529,15 @@ class ClaimController extends Controller
             'hospital_pincode'                  => $request->hospital_pincode,
             'associate_partner_id'              => $request->associate_partner_id,
         ]);
+
+        if ($request->hasfile('abhafile')) {
+            $abhafile                    = $request->file('abhafile');
+            $name                       = $abhafile->getClientOriginalName();
+            $abhafile->storeAs('uploads/claims/' . $claim->id . '/', $name, 'public');
+            Claim::where('id', $claim->id)->update([
+                'abhafile'               =>  $name
+            ]);
+        }
 
         return redirect()->route('super-admin.claims.edit', $id)->with('success', 'Claim updated successfully');
     }

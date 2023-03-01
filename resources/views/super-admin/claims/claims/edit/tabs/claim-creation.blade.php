@@ -190,9 +190,20 @@
                 </div>
                 <div class="col-md-12 mt-3">
                     <label for="abha_id">ABHA ID <span class="text-danger">*</span></label>
+                    <div class="input-group">
                     <input type="text" maxlength="45" class="form-control" id="abha_id" name="abha_id"
-                        placeholder="ABHA ID" value="{{ old('abha_id', $claim->abha_id) }}">
+                        placeholder="ABHA ID" value="{{ old('abha_id', $claim->Abha_id) }}">
+                        @isset($claim->abhafile)
+                            <a href="{{ asset('storage/uploads/claims/'.$claim->id.'/'.$claim->abhafile) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+                        @endisset
+                        <input type="file" name="abhafile" id="abhafile" hidden
+                                                onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
+                        <label for="abhafile" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
+                    </div>
                     @error('abha_id')
+                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                    @error('abhafile')
                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>

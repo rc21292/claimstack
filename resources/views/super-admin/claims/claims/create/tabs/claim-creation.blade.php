@@ -125,6 +125,14 @@
             </div>
 
             <div class="col-md-3 mt-1">
+                <input type="text" maxlength="25" class="form-control" id="lastname" name="lastname"
+                    maxlength="30" placeholder="Last name" value="{{ old('lastname') }}">
+                @error('lastname')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="col-md-3 mt-1">
                 <input type="text" maxlength="25" class="form-control" id="firstname" name="firstname"
                     maxlength="15" placeholder="First name" value="{{ old('firstname') }}">
                 @error('firstname')
@@ -136,14 +144,6 @@
                 <input type="text" maxlength="25" class="form-control" id="middlename" name="middlename"
                     maxlength="30" placeholder="Middle name" value="{{ old('middlename') }}">
                 @error('middlename')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
-
-            <div class="col-md-3 mt-1">
-                <input type="text" maxlength="25" class="form-control" id="lastname" name="lastname"
-                    maxlength="30" placeholder="Last name" value="{{ old('lastname') }}">
-                @error('lastname')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
@@ -190,9 +190,17 @@
             </div>
             <div class="col-md-12 mt-3">
                 <label for="abha_id">ABHA ID <span class="text-danger">*</span></label>
+                <div class="input-group">
                 <input type="text" maxlength="45" class="form-control" id="abha_id" name="abha_id"
                     placeholder="ABHA ID" value="{{ old('abha_id') }}">
+                    <input type="file" name="abhafile" id="abhafile" hidden
+                                            onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
+                    <label for="abhafile" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
+                </div>
                 @error('abha_id')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+                @error('abhafile')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>

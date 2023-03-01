@@ -15,6 +15,7 @@ class Claim extends Model
         'admission_date',
         'admission_time',
         'abha_id',
+        'abhafile',
         'insurance_coverage',
         'policy_no',
         'company_tpa_id_card_no',

@@ -21,6 +21,7 @@ return new class extends Migration
            $table->date('admission_date')->nullable();
            $table->time('admission_time')->nullable();
            $table->string('abha_id')->nullable();
+           $table->string('abhafile')->nullable();
            $table->enum('insurance_coverage', ['Yes', 'No'])->default('No');
            $table->string('policy_no')->nullable();
            $table->string('company_tpa_id_card_no')->nullable();
