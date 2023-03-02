@@ -100,7 +100,7 @@
 
             <div class="col-md-3 mt-1">
                 <input type="text" @if($patient_middlename) readonly @endif maxlength="25" class="form-control" id="patient_middlename"
-                name="patient_middlename" maxlength="30" placeholder="Last name"
+                name="patient_middlename" maxlength="30" placeholder="Middle name"
                 value="{{ old('patient_middlename', @$patient_middlename) }}">
                 @error('patient_middlename')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -473,5 +473,10 @@
             $("#"+id+"_file").attr('disabled',false);
         }
     });
+
+    var cancel_cheque = "{{ old('cancel_cheque') }}";
+    if(cancel_cheque == 'No'){
+        $("#cancel_cheque_file").attr('disabled',true);
+    }
 </script>
 @endpush

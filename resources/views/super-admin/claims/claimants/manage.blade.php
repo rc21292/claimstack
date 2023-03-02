@@ -51,8 +51,8 @@
                                                 <th>{{ $claimant->patient_id }}</th>
                                                 <th scope="row">{{ $claimant->claim_id }}</th>
                                                 <th scope="row">{{ $claimant->uid }}</th>
-                                                <td>{{ $claimant->claim->patient->middlename }} {{ $claimant->claim->patient->lastname }}</td>
-                                                <td>{{ $claimant->claim->patient->hospital->name }}</td>
+                                                <td>{{ @$claimant->claim->patient->middlename }} {{ @$claimant->claim->patient->lastname }}</td>
+                                                <td>{{ @$claimant->claim->patient->hospital->name }}</td>
                                                 <td>{{ $claimant->state }}</td>
                                                 <td>{{ $claimant->city }}</td>
                                                 <td>{{ $claimant->pincode }}</td>

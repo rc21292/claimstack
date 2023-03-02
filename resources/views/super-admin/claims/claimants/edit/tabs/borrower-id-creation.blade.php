@@ -8,7 +8,7 @@
             <div class="form-group row">
                 <div class="col-md-6 mb-3">
                     <label for="patient_id">Patient ID <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="patient_id" name="patient_id" maxlength="60"
+                    <input type="text" readonly class="form-control" id="patient_id" name="patient_id" maxlength="60"
                     placeholder="Enter Patient Id" value="{{ old('patient_id',$borrower->patient_id) }}">
                     @error('patient_id')
                     <span id="patient-id-error" class="error invalid-feedback">{{ $message }}</span>
@@ -17,7 +17,7 @@
 
                 <div class="col-md-6 mb-3">
                     <label for="claim_id">Cliam ID <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="claim_id" name="claim_id" maxlength="60"
+                    <input type="text" readonly class="form-control" id="claim_id" name="claim_id" maxlength="60"
                     placeholder="Enter Claim Id" value="{{ old('claim_id',$borrower->claim_id) }}">
                     @error('claim_id')
                     <span id="claim-id-error" class="error invalid-feedback">{{ $message }}</span>
@@ -26,7 +26,7 @@
 
                 <div class="col-md-4">
                     <label for="claimant_id">Claimant ID <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="claimant_id" name="claimant_id" maxlength="60"
+                    <input type="text" readonly class="form-control" id="claimant_id" name="claimant_id" maxlength="60"
                     placeholder="Enter Claimant ID" value="{{ old('claimant_id',$claimant->uid) }}">
                     @error('claimant_id')
                     <span id="claim-id-error" class="error invalid-feedback">{{ $message }}</span>
@@ -35,7 +35,7 @@
 
                 <div class="col-md-4">
                     <label for="hospital_id">Hospital Id <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="hospital_id" name="hospital_id"
+                    <input type="text" readonly class="form-control" id="hospital_id" name="hospital_id"
                     placeholder="Enter Hospital Id" value="{{ old('hospital_id',$borrower->hospital_id) }}">
                     @error('hospital_id')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -352,7 +352,7 @@
                 <div class="col-md-6 mt-3">
                     <label for="borrower_aadhar_no">Borrower Aadhar No. <span class="text-danger">*</span></label>
                     <div class="input-group">
-                        <input type="number" class="form-control" id="borrower_aadhar_no" name="borrower_aadhar_no"
+                        <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==12) return false;" class="form-control" id="borrower_aadhar_no" name="borrower_aadhar_no"
                         maxlength="12" placeholder="Enter Aadhar no." value="{{ old('borrower_aadhar_no',$borrower->borrower_aadhar_no) }}">
                         <a id="borrower_aadhar_no_file_download" style="display:none;" href="" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
                         <input type="file" name="borrower_aadhar_no_file" id="borrower_aadhar_no_file" hidden  onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
@@ -840,7 +840,7 @@
         $("#borrower_ifs_code").val('');
         $("#borrower_pan_no_file").val('');
         $("#borrower_aadhar_no_file").val('');
-        $("#borrower_id_proof_file_download").css('display', 'none').attr('href', '');
+        // $("#borrower_id_proof_file_download").css('display', 'none').attr('href', '');
 
     }
 
@@ -863,7 +863,7 @@
                 $("#borrower_city").val(result.city);
                 $("#borrower_state").val(result.state);
                 $("#borrower_pincode").val(result.pincode);
-                $("#borrower_id_proof").val(result.id_proof);
+                // $("#borrower_id_proof").val(result.id_proof);
                 $("#borrower_personal_email_id").val(result.personal_email_id);
                 $("#borrower_mobile_no").val(result.mobile_no);
                 $("#borrower_pan_no").val(result.pan_no);
@@ -880,6 +880,25 @@
 
 
     }
+
+
+    var bank_statement = "{{ old('bank_statement') }}";
+    var itr = "{{ old('itr') }}";
+    var borrower_cancel_cheque = "{{ old('borrower_cancel_cheque') }}";
+
+    if(bank_statement == 'No'){
+        $("#bank_statement_file").attr('disabled',true);
+    }
+
+
+    if(itr == 'No'){
+        $("#itr_file").attr('disabled',true);
+    }
+
+    if(borrower_cancel_cheque == 'No'){
+        $("#borrower_cancel_cheque_file").attr('disabled',true);
+    }
+
 
 </script>
 @endpush
