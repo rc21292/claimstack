@@ -111,7 +111,7 @@
 
             <div class="col-md-6 mb-3">
                 <label for="start_date">Policy Start Date <span class="text-danger">*</span></label>
-                <input type="date" placeholder="Enter Policy Start Date" class="form-control" id="start_date"
+                <input type="date" max="{{ date('Y-m-d') }}" placeholder="Enter Policy Start Date" class="form-control" id="start_date"
                     name="start_date" value="{{ old('start_date') }}">
                 @error('start_date')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>

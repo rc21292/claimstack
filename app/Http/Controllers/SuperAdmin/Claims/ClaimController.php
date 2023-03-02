@@ -24,6 +24,16 @@ class ClaimController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function processing(Request $request)
+    {
+        $patient_id     = $request->patient_id;
+        $hospitals      = Hospital::get();
+        $patient        = isset($patient_id) ? Patient::find($request->patient_id) : null;
+        $patients       = Patient::get();
+        return view('super-admin.claims.claims.create.processing',  compact('hospitals', 'patient_id', 'patient', 'patients'));
+    }
+
     public function index(Request $request)
     {
         $filter_search = $request->search;

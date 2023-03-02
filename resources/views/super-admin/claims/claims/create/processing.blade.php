@@ -1,102 +1,309 @@
-<div class="card-body">
+@extends('layouts.super-admin')
+@section('title', 'New Claim')
+@section('content')
+    <!-- Start Content-->
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="{{ url('/') }}">Claim Stack</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('super-admin.dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Claims</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('super-admin.claims.index') }}">Claims</a>
+                            </li>
+                            <li class="breadcrumb-item active">New Claim</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">Claim Processing</h4>
+                </div>
+            </div>
+        </div>
+        @include('super-admin.sections.flash-message')
+        <!-- end page title -->
+
+        <!-- start page content -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card no-shadow">
+                    <div class="card-body">
     <form action="{{ route('super-admin.claims.store') }}" method="post" id="claim-form" enctype="multipart/form-data">
         @csrf
 
         <div class="form-group row">
-            <div class="col-md-12 mb-3">
-                <label for="patient_id">Patient ID <span class="text-danger">*</span></label>
-                <select class="form-control select2" id="patient_id" name="patient_id" data-toggle="select2"
-                    onchange="setPatient()">
-                    <option value="">Enter Patient ID</option>
-                    @foreach ($patients as $row)
-                        <option value="{{ $row->id }}" {{ old('patient_id', isset($patient) ? $patient->id : '') == $row->id ? 'selected' : '' }}
-                            data-title="{{ $row->title }}" data-firstname="{{ $row->firstname }}"
-                            data-middlename="{{ $row->middlename }}" data-lastname="{{ $row->lastname }}"
-                            data-age="{{ $row->age }}" data-gender="{{ $row->gender }}"
-                            data-hospital="{{ $row->hospital_id }}"
-                            data-registrationno="{{ $row->registration_number }}">
-                            {{ $row->uid }}
-                    @endforeach
-                </select>
-                @error('patient_id')
+                <div class="col-md-6 mb-3">
+                    <label for="patient_id">Patient ID <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="patient_id" name="patient_id" maxlength="60"
+                    placeholder="Enter Patient Id" value="{{ old('patient_id') }}">
+                    @error('patient_id')
                     <span id="patient-id-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
-            <div class="col-md-6">
-                <label for="hospital_id">Hospital ID <span class="text-danger">*</span></label>
-                <select class="form-control select2" id="hospital_id" name="hospital_id" data-toggle="select2"
-                    onchange="setHospitalId()">
-                    <option value="">Select Hospital</option>
-                    @foreach ($hospitals as $hospital)
-                        <option value="{{ $hospital->id }}"
-                            {{ old('hospital_id') == $hospital->id ? 'selected' : '' }}
-                            data-name="{{ $hospital->name }}" data-id="{{ $hospital->uid }}"
-                            data-address="{{ $hospital->address }}" data-city="{{ $hospital->city }}"
-                            data-state="{{ $hospital->state }}" data-pincode="{{ $hospital->pincode }}"
-                            data-ap="{{ $hospital->linked_associate_partner_id }}"
-                            data-apname="{{ $hospital->ap_name }}">
-                            {{ $hospital->uid }}
-                            [<strong>Name: </strong>{{ $hospital->name }}]
-                            [<strong>City: </strong>{{ $hospital->city }}]
-                            [<strong>State: </strong>{{ $hospital->state }}]
+                    @enderror
+                </div>
+
+                <div class="col-md-12 mt-3">
+                    <label for="firstname">Patient Name <span class="text-danger">*</span></label>
+                </div>
+
+                <div class="col-md-3 mt-1">
+                    <select class="form-control" id="title" name="title">
+                        <option value="">Select</option>
+                        <option value="Mr." {{ old('title') == 'Mr.' ? 'selected' : '' }}>Mr.</option>
+                        <option value="Ms." {{ old('title') == 'Ms.' ? 'selected' : '' }}>Ms.</option>
+                    </select>
+                    @error('title')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="col-md-3 mt-1">
+                    <input type="text" maxlength="25" class="form-control" id="lastname"
+                    name="lastname" placeholder="Last name"
+                    value="{{ old('lastname') }}">
+                    @error('lastname')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="col-md-3 mt-1">
+                    <input type="text" maxlength="25" class="form-control" id="firstname"
+                    name="firstname" placeholder="First name"
+                    value="{{ old('firstname') }}">
+                    @error('firstname')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="col-md-3 mt-1">
+                    <input type="text" maxlength="25" class="form-control" id="middlename"
+                    name="middlename" placeholder="Middle name"
+                    value="{{ old('middlename') }}">
+                    @error('middlename')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+
+
+                <div class="col-md-6 mt-3">
+                    <label for="age">Patient Age <span class="text-danger">*</span></label>
+                    <input type="text" onkeypress="return isNumberKey(event)" class="form-control"
+                    id="age" name="age" placeholder="Patient Age"
+                    value="{{ old('age') }}">
+                    @error('age')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="col-md-6 mt-3">
+                    <label for="gender">Patient Gender <span class="text-danger">*</span></label>
+                    <select class="form-select" id="gender" name="gender">
+                        <option value="">Select gender</option>
+                        <option value="Male" {{ old('gender') == 'Male' ? 'selected' : '' }}>Male
                         </option>
-                    @endforeach
-                </select>
-                @error('hospital_id')
+                        <option value="Female" {{ old('gender') == 'Female' ? 'selected' : '' }}>Female
+                        </option>
+                        <option value="Other" {{ old('gender') == 'Other' ? 'selected' : '' }}>Other
+                        </option>
+                    </select>
+                    @error('gender')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
+                    @enderror
+                </div>
 
-            <div class="col-md-6">
-                <label for="hospital_name">Hospital Name <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="hospital_name" name="hospital_name"
-                    placeholder="Enter Hospital Name" value="{{ old('hospital_name') }}">
-                @error('hospital_name')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
 
-            <div class="col-md-12 mt-3">
-                <label for="hospital_address">Hospital Address <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="hospital_address" name="hospital_address"
-                    placeholder="Address Line" value="{{ old('hospital_address') }}">
-                @error('hospital_address')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
+                <div class="col-md-12 mt-3">
+                    <label for="patient_current_address">Patient Current Resedential Address <span
+                        class="text-danger">*</span></label>
+                        <input type="text" maxlength="100" class="form-control"
+                        id="patient_current_address" name="patient_current_address"
+                        placeholder="Address Line" value="{{ old('patient_current_address') }}">
+                        @error('patient_current_address')
+                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
 
-            <div class="col-md-4 mt-2">
-                <input type="text" class="form-control" id="hospital_city" name="hospital_city" placeholder="City"
-                    value="{{ old('hospital_city') }}">
-                @error('hospital_city')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
+                    <div class="col-md-4 mt-2">
+                        <input type="text" class="form-control" id="patient_current_city"
+                        name="patient_current_city" placeholder="City"
+                        value="{{ old('patient_current_city') }}">
+                        @error('patient_current_city')
+                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
 
-            <div class="col-md-4 mt-2">
-                <input type="text" class="form-control" id="hospital_state" name="hospital_state" placeholder="State"
-                    value="{{ old('hospital_state') }}">
-                @error('hospital_state')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
+                    <div class="col-md-4 mt-2">
+                        <input type="text" class="form-control" id="patient_current_state"
+                        name="patient_current_state" placeholder="State"
+                        value="{{ old('patient_current_state') }}">
+                        @error('patient_current_state')
+                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
 
-            <div class="col-md-4 mt-2">
-                <input type="number" class="form-control" id="hospital_pincode" name="hospital_pincode"
-                    placeholder="Pincode" value="{{ old('hospital_pincode') }}">
-                @error('hospital_pincode')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
+                    <div class="col-md-4 mt-2">
+                        <input type="number" class="form-control" id="patient_current_pincode"
+                        name="patient_current_pincode" pattern="/^-?\d+\.?\d*$/"
+                        onKeyPress="if(this.value.length==6) return false;" placeholder="Pincode"
+                        value="{{ old('patient_current_pincode') }}">
+                        @error('patient_current_pincode')
+                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
 
-            <div class="col-md-6 mt-3">
-                <label for="associate_partner_id">Associate Partner ID <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="associate_partner_id" name="associate_partner_id"
-                    placeholder="Associate Partner ID" value="{{ old('associate_partner_id') }}">
-                @error('associate_partner_id')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
+
+
+
+                    <div class="col-md-4">
+                        <label for="hospital_id">Hospital Id <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="hospital_id" name="hospital_id"
+                        placeholder="Enter Hospital Id" value="{{ old('hospital_id') }}">
+                        @error('hospital_id')
+                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="hospital_name">Hospital Name <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="hospital_name" name="hospital_name"
+                        placeholder="Enter Hospital Name" value="{{ old('hospital_name') }}">
+                        @error('hospital_name')
+                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-12 mt-3">
+                        <label for="hospital_address">Hospital Address <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="hospital_address" name="hospital_address"
+                        placeholder="Address Line"
+                        value="{{ old('hospital_address') }}">
+                        @error('hospital_address')
+                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+
+                    <div class="col-md-4 mt-2">
+                        <input type="text" class="form-control" id="hospital_city" name="hospital_city" placeholder="City"
+                        value="{{ old('hospital_city') }}">
+                        @error('hospital_city')
+                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-4 mt-2">
+                        <input type="text" class="form-control" id="hospital_state" name="hospital_state" placeholder="State"
+                        value="{{ old('hospital_state') }}">
+                        @error('hospital_state')
+                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-4 mt-2">
+                        <input type="number" class="form-control" id="hospital_pincode" name="hospital_pincode"
+                        placeholder="Pincode" value="{{ old('hospital_pincode') }}">
+                        @error('hospital_pincode')
+                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label for="policy_no">Policy No. <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="policy_no" name="policy_no" maxlength="16"
+                        placeholder="Enter Policy No." value="{{ old('policy_no') }}">
+                        @error('policy_no')
+                        <span id="policy-id-error" class="error invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label for="policy_no">Policy No. <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="policy_no" name="policy_no" maxlength="16"
+                        placeholder="Enter Policy No." value="{{ old('policy_no') }}">
+                        @error('policy_no')
+                        <span id="policy-id-error" class="error invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="start_date">Policy Start Date <span class="text-danger">*</span></label>
+                        <input type="date" placeholder="Enter Policy Start Date" class="form-control" id="start_date"
+                        name="start_date" value="{{ old('start_date') }}">
+                        @error('start_date')
+                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="expiry_date">Policy Expiry Date <span class="text-danger">*</span></label>
+                        <input type="date" placeholder="Enter Policy Expiry Date" class="form-control" id="expiry_date"
+                        name="expiry_date" value="{{ old('expiry_date') }}">
+                        @error('expiry_date')
+                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="commencement_date">Policy Commencement Date (without Break) <span
+                            class="text-danger">*</span></label>
+                            <input type="date" placeholder="Enter Policy Commencement Date (without Break)"
+                            class="form-control" id="commencement_date" name="commencement_date"
+                            value="{{ old('commencement_date') }}">
+                            @error('commencement_date')
+                            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6 mt-3">
+                            <label for="probable_date_of_admission">Probable Date of Admission</label>
+                            <input class="form-control" value="{{ old('probable_date_of_admission') }}" id="probable_date_of_admission" name="probable_date_of_admission"  placeholder="Probable Date of Admission"></input>
+                            @error('probable_date_of_admission')
+                            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6 mt-3">
+                            <label for="probable_date_of_discharge">Probable Date of Discharge </label>
+                            <input class="form-control" {{ old('probable_date_of_discharge') }} id="probable_date_of_discharge" name="probable_date_of_discharge"  placeholder="Probable Date of Discharge"></input>
+                            @error('probable_date_of_discharge')
+                            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>                         
+
+                        <div class="col-md-6 mt-3">
+                            <label for="associate_partner_id">Associate Partner ID <span class="text-danger">*</span></label>
+                            <input type="number" class="form-control" id="associate_partner_id" name="associate_partner_id"
+                            placeholder="Associate Partner ID" value="{{ old('associate_partner_id') }}">
+                            @error('associate_partner_id')
+                            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6 mt-3">
+                            <label for="associate_partner_id">Associate Partner ID <span class="text-danger">*</span></label>
+                            <input type="number" class="form-control" id="associate_partner_id" name="associate_partner_id"
+                            placeholder="Associate Partner ID" value="{{ old('associate_partner_id') }}">
+                            @error('associate_partner_id')
+                            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6 mt-3">
+                            <label for="probable_date_of_discharge">Probable Date of Discharge </label>
+                            <input class="form-control" {{ old('probable_date_of_discharge') }} id="probable_date_of_discharge" name="probable_date_of_discharge"  placeholder="Probable Date of Discharge"></input>
+                            @error('probable_date_of_discharge')
+                            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>     
+
+                        <div class="col-md-6 mt-3">
+                            <label for="probable_date_of_discharge">Probable Date of Discharge </label>
+                            <input class="form-control" {{ old('probable_date_of_discharge') }} id="probable_date_of_discharge" name="probable_date_of_discharge"  placeholder="Probable Date of Discharge"></input>
+                            @error('probable_date_of_discharge')
+                            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>     
 
             <div class="col-md-6 mt-3">
                 <label for="registration_no">IP (In-patient) Registration No. <span
@@ -174,7 +381,7 @@
             </div>
             <div class="col-md-6 mt-3">
                 <label for="admission_date">Date of Admission (DD-MM-YYYY) <span class="text-danger">*</span></label>
-                <input type="date" class="form-control" id="admission_date" max="{{ date('Y-m-d') }}" name="admission_date"
+                <input type="date" class="form-control" id="admission_date" name="admission_date"
                     value="{{ old('admission_date') }}">
                 @error('admission_date')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -193,7 +400,8 @@
                 <div class="input-group">
                 <input type="text" maxlength="45" class="form-control" id="abha_id" name="abha_id"
                     placeholder="ABHA ID" value="{{ old('abha_id') }}">
-                    <input type="file" name="abhafile" id="abhafile" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
+                    <input type="file" name="abhafile" id="abhafile" hidden
+                                            onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                     <label for="abhafile" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
                 </div>
                 @error('abha_id')
@@ -273,7 +481,7 @@
             <div class="col-md-6 mt-3">
                 <label for="date_of_delivery">Date of Injury / Date Disease first detected / Date of delivery
                     (DD-MM-YYYY) <span class="text-danger">*</span></label>
-                <input type="date" class="form-control" id="date_of_delivery" max="{{ date('Y-m-d') }}" name="date_of_delivery"
+                <input type="date" class="form-control" id="date_of_delivery" name="date_of_delivery"
                     value="{{ old('date_of_delivery') }}"
                     placeholder="Date of Injury / Date Disease first detected / Date of delivery (DD-MM-YYYY)">
                 @error('date_of_delivery')
@@ -470,3 +678,75 @@
         </div>
     </form>
 </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+@push('scripts')
+<script>
+    $(document).ready(function() {
+        setPatient();
+        setHospitalId();
+        setInsuranceCoverageOptions();
+    });
+
+    function setPatient() {
+        var title               = $("#patient_id").select2().find(":selected").data("title");
+        var firstname           = $("#patient_id").select2().find(":selected").data("firstname");
+        var middlename          = $("#patient_id").select2().find(":selected").data("middlename");
+        var lastname            = $("#patient_id").select2().find(":selected").data("lastname");
+        var age                 = $("#patient_id").select2().find(":selected").data("age");
+        var gender              = $("#patient_id").select2().find(":selected").data("gender");
+        var hospital            = $("#patient_id").select2().find(":selected").data("hospital");
+        var registrationno      = $("#patient_id").select2().find(":selected").data("registrationno");
+
+
+        $('#title').val(title);
+        $('#firstname').val(firstname);
+        $('#middlename').val(middlename);
+        $('#lastname').val(lastname);
+        $('#age').val(age);
+        $('#gender').val(gender);
+        $('#hospital_id').val(hospital).trigger('change');
+        $('#registration_no').val(registrationno);
+    }
+
+    function setHospitalId() {
+        var name = $("#hospital_id").select2().find(":selected").data("name");
+        var address = $("#hospital_id").select2().find(":selected").data("address");
+        var city = $("#hospital_id").select2().find(":selected").data("city");
+        var state = $("#hospital_id").select2().find(":selected").data("state");
+        var pincode = $("#hospital_id").select2().find(":selected").data("pincode");
+        var associate_partner_id = $("#hospital_id").select2().find(":selected").data("ap");
+        console.log(address);
+        $('#hospital_name').val(name);
+        $('#hospital_address').val(address);
+        $('#hospital_city').val(city);
+        $('#hospital_state').val(state);
+        $('#hospital_pincode').val(pincode);
+        $('#hospital_pincode').val(pincode);
+        $('#associate_partner_id').val(associate_partner_id);
+    }
+</script>
+<script>
+    function setInsuranceCoverageOptions(){
+        var insurance_coverage = $('#insurance_coverage').val();
+        switch (insurance_coverage) {
+                case 'Yes':
+                    $("#policy_no").prop("readonly", false);
+                    $("#company_tpa_id_card_no").prop("readonly", false);
+                    break;
+                case 'No':
+                    $("#policy_no").prop("readonly", true);
+                    $("#company_tpa_id_card_no").prop("readonly", true);
+                    break;
+                default:
+                    $("#policy_no").prop("readonly", true);
+                    $("#company_tpa_id_card_no").prop("readonly", true);
+                    break;
+            }
+    }
+</script>
+@endpush

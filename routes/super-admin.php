@@ -147,8 +147,10 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     */
 
 
+    Route::get('claims/processing', [ClaimController::class, 'processing'])->name('claims.processing');
     Route::resource('claims', ClaimController::class);
 
+    
     Route::put('claims/update-insurance-policy/{id}', [ClaimController::class, 'updateInsurancePolicy'])->name('claims.update-insurance-policy');
 
     /*
