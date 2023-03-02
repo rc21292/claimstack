@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('patient_id')->nullable();
             $table->string('claim_id')->nullable();
+            $table->string('claimant_id')->nullable();
+            $table->string('hospital_id')->nullable();
             $table->string('doctors_1st_consultation')->nullable();
             $table->string('doctors_1st_consultation_file')->nullable();
             $table->string('treatment_documents_prescriptions')->nullable();

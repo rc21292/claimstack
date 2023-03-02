@@ -27,6 +27,9 @@ return new class extends Migration
             $table->string('patient_lastname')->nullable();
             $table->string('patient_id_proof')->nullable();
             $table->string('patient_id_proof_file')->nullable();
+            $table->string('policy_type')->nullable();
+            $table->string('group_name')->nullable();
+            $table->string('employee_id_or_member_id')->nullable();
             $table->string('are_patient_and_claimant_same')->nullable();
             $table->string('title')->nullable();
             $table->string('firstname')->nullable();
