@@ -171,7 +171,7 @@ Route::post('api/fetch-cities', [DropdownController::class, 'fetchCity']);
 
     Route::post('claimants/update-borrower-details/{id}', [ClaimantController::class, 'borrowerDetails'])->name('claimants.update-borrower-details');
 
-
+    Route::post('claims/save_assesment_status',[ClaimController::class,'saveAssesmentStatus'])->name('claims.save_assesment_status');
 
     /*
     |--------------------------------------------------------------------------

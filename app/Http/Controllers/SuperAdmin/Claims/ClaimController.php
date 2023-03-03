@@ -9,6 +9,7 @@ use App\Models\Hospital;
 use App\Models\Patient;
 use App\Models\InsurancePolicy;
 use App\Models\Insurer;
+use App\Models\AssessmentStatus;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -27,6 +28,7 @@ class ClaimController extends Controller
 
     public function assessmentStatus(Request $request)
     {
+       
         $patient_id     = $request->patient_id;
         $hospitals      = Hospital::get();
         $insurers       = Insurer::get();
@@ -83,6 +85,7 @@ class ClaimController extends Controller
      */
     public function store(Request $request)
     {
+       
         $rules =  [
             'patient_id'                => 'required',
             'hospital_name'             => 'required',
@@ -216,6 +219,50 @@ class ClaimController extends Controller
         ]);
 
         return redirect()->route('super-admin.claims.edit', $claim->id)->with('success', 'Claim created successfully');
+    }
+
+    public function saveAssesmentStatus(Request $request)
+    {
+        
+        $rules =  [
+            'patient_id'                => 'required',
+            'claim_id'                  => 'required',
+            'claimant_id'               => 'required',
+            'hospital_id'               => 'required',
+            'hospital_name'             => 'required',
+            'hospital_address'          => 'required',
+            'hospital_city'             => 'required',
+            'hospital_state'            => 'required',
+            'hospital_pincode'          => 'required|numeric',
+            'patient_title'             => 'required',
+            'patient_lastname'          => 'required',
+            'patient_firstname'         => 'required',
+            'policy_no'                 => 'required'
+        ];
+
+        $messages =  [
+            'patient_id.required'                => 'Please select Patient ID',
+            'claim_id.required'                  => 'please enter claim ID',
+            'claimant_id.required'               => 'please enter claimant ID',
+            'hospital_name.required'             => 'Please enter Hospital Name',
+            'hospital_id.required'               => 'Please enter Hospital ID.',
+            'hospital_address.required'          => 'Please enter Hospital address.',
+            'hospital_city.required'             => 'Please enter Hospital city.',
+            'hospital_state.required'            => 'Please enter Hospital state.',
+            'hospital_pincode.required'          => 'Please enter Hospital pincode.',
+            'patient_title.required'             => 'Please select patient title',
+            'patient_lastname.required'          => 'please enter patient lastname',
+            'patient_firstname.required'         => 'please enter patient firstname',
+            'policy_no'                          => 'please enter policy number'
+        ];
+
+        $this->validate($request, $rules, $messages);
+        
+        $request = $request->except('_token');
+        $request['patient_name'] = $request['patient_firstname']." ".$request['patient_middlename']." ".$request['patient_lastname'];
+        AssessmentStatus::create($request);
+        return redirect()->route('super-admin.claims.claims.create.assessment-status')->with('success', 'Assessment status saved successfully');
+       
     }
 
     public function updateInsurancePolicy(Request $request, $id)

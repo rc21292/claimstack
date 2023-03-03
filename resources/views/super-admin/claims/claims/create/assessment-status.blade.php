@@ -30,7 +30,7 @@
             <div class="col-12">
                 <div class="card no-shadow">
                     <div class="card-body">
-                        <form action="{{ route('super-admin.claims.store') }}" method="post" id="claim-form" enctype="multipart/form-data">
+                        <form action="{{ route('super-admin.claims.save_assesment_status') }}" method="post" id="claim-form" enctype="multipart/form-data">
                             @csrf
 
 
