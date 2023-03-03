@@ -290,7 +290,7 @@ class ClaimController extends Controller
         $request = $request->except('_token');
         $request['patient_name'] = $request['patient_firstname']." ".$request['patient_middlename']." ".$request['patient_lastname'];
         AssessmentStatus::create($request);
-        return redirect()->route('claims.assessment-status')->with('success', 'Assessment status saved successfully');
+        return redirect()->route('super-admin.claims.assessment-status')->with('success', 'Assessment status saved successfully');
        
     }
 
