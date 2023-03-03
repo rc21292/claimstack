@@ -225,35 +225,64 @@ class ClaimController extends Controller
     {
         
         $rules =  [
-            'patient_id'                => 'required',
-            'claim_id'                  => 'required',
-            'claimant_id'               => 'required',
-            'hospital_id'               => 'required',
-            'hospital_name'             => 'required',
-            'hospital_address'          => 'required',
-            'hospital_city'             => 'required',
-            'hospital_state'            => 'required',
-            'hospital_pincode'          => 'required|numeric',
-            'patient_title'             => 'required',
-            'patient_lastname'          => 'required',
-            'patient_firstname'         => 'required',
-            'policy_no'                 => 'required'
+            'patient_id'                                 => 'required|max:255',
+            'claim_id'                                   => 'required|max:255',
+            'claimant_id'                                => 'required|max:255',
+            'hospital_id'                                => 'required|max:255',
+            'hospital_name'                              => 'required|max:255',
+            'hospital_address'                           => 'required|max:255',
+            'hospital_city'                              => 'required|max:255',
+            'hospital_state'                             => 'required|max:255',
+            'hospital_pincode'                           => 'required|numeric',
+            'patient_title'                              => 'required|max:20',
+            'patient_lastname'                           => 'required|max:255',
+            'patient_firstname'                          => 'required|max:255',
+            'policy_no'                                  => 'required|max:255',
+            'start_date'                                 => 'required',
+            'expiry_date'                                => 'required',
+            'commencement_date'                          => 'required',
+            'hospital_on_the_panel_of_insurance_co'      => 'required',
+            'hospital_id_insurance_co'                   => 'required',
+            'pre_assessment_status'                      => 'required',
+            'query_pre_assessment'                       => 'required|max:255',
+            'pre_assessment_amount'                      => 'required|max:255',
+            'pre_assessment_suspected_fraud'             => 'required',
+            'final_assessment_status'                    => 'required',
+            'query_final_assessment'                     => 'required',
+            'final_assessment_amount'                    => 'required|max:255',
+            'final_assessment_suspected_fraud'           => 'required',
+           
+
         ];
 
         $messages =  [
-            'patient_id.required'                => 'Please select Patient ID',
-            'claim_id.required'                  => 'please enter claim ID',
-            'claimant_id.required'               => 'please enter claimant ID',
-            'hospital_name.required'             => 'Please enter Hospital Name',
-            'hospital_id.required'               => 'Please enter Hospital ID.',
-            'hospital_address.required'          => 'Please enter Hospital address.',
-            'hospital_city.required'             => 'Please enter Hospital city.',
-            'hospital_state.required'            => 'Please enter Hospital state.',
-            'hospital_pincode.required'          => 'Please enter Hospital pincode.',
-            'patient_title.required'             => 'Please select patient title',
-            'patient_lastname.required'          => 'please enter patient lastname',
-            'patient_firstname.required'         => 'please enter patient firstname',
-            'policy_no'                          => 'please enter policy number'
+            'patient_id.required'                         => 'Please select Patient ID',
+            'claim_id.required'                           => 'please enter claim ID',
+            'claimant_id.required'                        => 'please enter claimant ID',
+            'hospital_name.required'                      => 'Please enter Hospital Name',
+            'hospital_id.required'                        => 'Please enter Hospital ID.',
+            'hospital_address.required'                   => 'Please enter Hospital address.',
+            'hospital_city.required'                      => 'Please enter Hospital city.',
+            'hospital_state.required'                     => 'Please enter Hospital state.',
+            'hospital_pincode.required'                   => 'Please enter Hospital pincode.',
+            'patient_title.required'                      => 'Please select patient title',
+            'patient_lastname.required'                   => 'please enter patient lastname',
+            'patient_firstname.required'                  => 'please enter patient firstname',
+            'policy_no.required'                          => 'please enter policy number',
+            'start_date.required'                         => 'please enter start date',
+            'expiry_date.required'                        => 'please enter expiry date',
+            'commencement_date.required'                  => 'please enter commencement date',
+            'hospital_on_the_panel_of_insurance_co.required'   => 'please enter hospital on the panel',
+            'hospital_id_insurance_co.required'           => 'please enter hospital id insurance co',
+            'pre_assessment_status.required'              => 'please enter pre assessment status',
+            'query_pre_assessment.required'               => 'please enter query pre assessment',
+            'pre_assessment_amount.required'              => 'please enter pre assessment amount',
+            'pre_assessment_suspected_fraud.required'     => 'please enter pre assessment suspected fraud',
+            'final_assessment_status.required'            => 'please enter final assessment status',
+            'final_assessment_amount.required'            => 'please enter final assessment amount',
+            'final_assessment_suspected_fraud.required'   => 'please enter final assessment suspected fraud',
+            
+
         ];
 
         $this->validate($request, $rules, $messages);
@@ -261,7 +290,7 @@ class ClaimController extends Controller
         $request = $request->except('_token');
         $request['patient_name'] = $request['patient_firstname']." ".$request['patient_middlename']." ".$request['patient_lastname'];
         AssessmentStatus::create($request);
-        return redirect()->route('super-admin.claims.claims.create.assessment-status')->with('success', 'Assessment status saved successfully');
+        return redirect()->route('claims.assessment-status')->with('success', 'Assessment status saved successfully');
        
     }
 
