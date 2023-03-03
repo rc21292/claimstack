@@ -37,7 +37,6 @@ return new class extends Migration
             $table->enum('pre_assessment_suspected_fraud', ['Yes', 'No'])->nullable();
             $table->string('pre_assessment_suspected_fraud_file')->nullable();
             $table->string('pre_assessment_status_comments')->nullable();
-            $table->string('final_assessment')->nullable();
             $table->enum('final_assessment_status', ['Waiting for Pre-Assessment', 'Query Raised by BHC Team', 'Non Admissible as per the Policy TC', 'Non Admissible as per the Treatment Received', 'Admissible'])->nullable();
             $table->string('query_final_assessment')->nullable();
             $table->string('final_assessment_amount')->nullable();
