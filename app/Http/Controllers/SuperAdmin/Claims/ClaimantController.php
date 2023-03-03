@@ -246,6 +246,44 @@ class ClaimantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function lendingStatus($id)
+    {
+        $claimant       = Claimant::find($id);
+        $hospital       = Hospital::where('uid',$claimant->hospital_id)->first();
+        $hospitals      = Hospital::get();
+        $patient        = Patient::where('uid', $claimant->patient_id)->first();
+
+        $exists         = Borrower::where('claimant_id', $id)->exists();
+        if ($exists) {
+            $borrower     = Borrower::where('claimant_id', $id)->first();
+        }else{
+            $borrower = Borrower::create([
+                'claimant_id' => $id,
+                'patient_id' => $claimant->patient_id,
+                'claim_id' => $claimant->claim_id,
+                'hospital_id' => $claimant->hospital_id,
+                'hospital_name' => @$hospital->name,
+                'hospital_address' => @$hospital->address,
+                'hospital_city' => @$hospital->city,
+                'hospital_state' =>@ $hospital->state,
+                'hospital_pincode' => @$hospital->pincode,
+                'patient_title' => @$patient->title,
+                'patient_firstname' => @$patient->firstname,
+                'patient_middlename' => @$patient->middlename,
+                'patient_lastname' => @$patient->lastname,
+            ]);
+        }
+
+        $associates     = AssociatePartner::get();
+        $patient_id   = $claimant->patient_id;
+
+        $claim = $claimant->claim;
+
+        return view('super-admin.claims.claimants.edit.lending-status',  compact('patient_id', 'associates', 'hospitals', 'patient', 'claimant', 'borrower', 'id', 'claim'));
+    }
+
+
     public function edit($id)
     {
         $claimant       = Claimant::find($id);

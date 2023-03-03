@@ -160,6 +160,8 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     |--------------------------------------------------------------------------
     */
 
+    Route::get('claimants/lending-status/{id}', [ClaimantController::class, 'lendingStatus']);
+
     Route::resource('claimants', ClaimantController::class);
 
     Route::post('api/fetch-states', [DropdownController::class, 'fetchState']);
