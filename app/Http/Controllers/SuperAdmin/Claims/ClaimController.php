@@ -25,13 +25,24 @@ class ClaimController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function processing(Request $request)
+    public function assessmentStatus(Request $request)
     {
         $patient_id     = $request->patient_id;
         $hospitals      = Hospital::get();
+        $insurers       = Insurer::get();
         $patient        = isset($patient_id) ? Patient::find($request->patient_id) : null;
         $patients       = Patient::get();
-        return view('super-admin.claims.claims.create.processing',  compact('hospitals', 'patient_id', 'patient', 'patients'));
+        return view('super-admin.claims.claims.create.assessment-status',  compact('hospitals', 'patient_id', 'patient', 'patients', 'insurers'));
+    }
+
+    public function assisment(Request $request)
+    {
+        $patient_id     = $request->patient_id;
+        $hospitals      = Hospital::get();
+        $insurers       = Insurer::get();
+        $patient        = isset($patient_id) ? Patient::find($request->patient_id) : null;
+        $patients       = Patient::get();
+        return view('super-admin.claims.claims.create.processing',  compact('hospitals', 'patient_id', 'patient', 'patients', 'insurers'));
     }
 
     public function index(Request $request)
