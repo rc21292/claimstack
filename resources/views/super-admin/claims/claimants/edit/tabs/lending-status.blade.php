@@ -3,6 +3,19 @@
         @csrf
         <div class="card-body mb-4">
             <div class="form-group row">
+
+                <div class="col-md-12 bg-secondary text-white" style="line-height: 30px; margin-left: 2px; ;">  Loan Application  </div>
+
+
+                <div class="col-md-6 mb-3">
+                    <label for="patient_id">Borrower  ID <span class="text-danger">*</span></label>
+                    <input type="text" readonly class="form-control" id="patient_id" name="patient_id" maxlength="60"
+                    placeholder="Enter Patient Id" value="{{ old('patient_id',$borrower->patient_id) }}">
+                    @error('patient_id')
+                    <span id="patient-id-error" class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+
                 <div class="col-md-6 mb-3">
                     <label for="patient_id">Patient ID <span class="text-danger">*</span></label>
                     <input type="text" readonly class="form-control" id="patient_id" name="patient_id" maxlength="60"

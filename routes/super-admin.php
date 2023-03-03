@@ -161,6 +161,7 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     */
 
     Route::get('claimants/lending-status/{id}', [ClaimantController::class, 'lendingStatus']);
+    Route::post('claimants/lending-status/{id}', [ClaimantController::class, 'saveLendingStatus'])->name('claimants.save-lending-tatus');
 
     Route::resource('claimants', ClaimantController::class);
 
