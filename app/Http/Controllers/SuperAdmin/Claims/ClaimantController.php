@@ -37,8 +37,6 @@ class ClaimantController extends Controller
 
         $claimants = $claimants->orderBy('id', 'desc')->paginate(20);
 
-        // echo "<pre>";print_r($claimants);"</pre>";exit;
-
         return view('super-admin.claims.claimants.manage',  compact('claimants', 'filter_search'));
     }
 
@@ -352,7 +350,7 @@ class ClaimantController extends Controller
             ]);
         }
 
-        $associates     = AssociatePartner::get();
+        $associates  = AssociatePartner::get();
         $patient_id   = $claimant->patient_id;
 
         $claim = $claimant->claim;
