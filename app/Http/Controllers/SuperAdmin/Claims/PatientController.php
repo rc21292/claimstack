@@ -46,18 +46,24 @@ class PatientController extends Controller
             }
         }
 
+        $exists = ReimbursementDocument::where('patient_id', 'P-10001')->exists();
 
-        return view('super-admin.claims.patients.documents-reimbursement',  compact('hospital_id', 'associates', 'hospitals'));
+        if (!$exists) {
+            ReimbursementDocument::create(['patient_id' => 'P-10001']);
+            $reimbursementdocument = ReimbursementDocument::where('patient_id', 'P-10001')->first();
+        }else{
+            $reimbursementdocument = ReimbursementDocument::where('patient_id', 'P-10001')->first();
+        }
+
+        return view('super-admin.claims.patients.documents-reimbursement',  compact('hospital_id', 'associates', 'hospitals', 'reimbursementdocument'));
     }
 
 
     public function saveDocumentsReimbursement(Request $request)
     {
+        $reimbursementdocument = ReimbursementDocument::where('patient_id', 'P-10001')->first();
 
-       $reimbursementdocument =  ReimbursementDocument::create($request->except('_token'));
-
-       $id = $reimbursementdocument->id;
-
+        $id = $reimbursementdocument->id;
 
         if ($request->hasfile('patient_id_proof_file')) {
             $patient_id_proof_file = $request->file('patient_id_proof_file');
@@ -88,7 +94,7 @@ class PatientController extends Controller
 
 
         if ($request->hasfile('tpa_card_file')) {
-            $tpa_card_file = $request->file('tpa_card_filebfile');
+            $tpa_card_file = $request->file('tpa_card_file');
             $name = $tpa_card_file->getClientOriginalName();
             $tpa_card_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
             ReimbursementDocument::where('id', $id)->update([
@@ -436,6 +442,108 @@ class PatientController extends Controller
                 'co_borrower_other_documents_file' =>  $name
             ]);
         }
+
+        $rules = [
+            'patient_id' => empty($reimbursementdocument->patient_id) ? 'required' : [],
+            'patient_title' => empty($reimbursementdocument->patient_title) ? 'required' : [],
+            'patient_firstname' => empty($reimbursementdocument->patient_firstname) ? 'required' : [],
+            'patient_middlename' => empty($reimbursementdocument->patient_middlename) ? 'required' : [],
+            'patient_lastname' => empty($reimbursementdocument->patient_lastname) ? 'required' : [],
+            'patient_id_proof_file' => empty($reimbursementdocument->patient_id_proof_file) ? 'required' : [],
+            'doctor_prescriptions_or_consultation_papers_file' => empty($reimbursementdocument->doctor_prescriptions_or_consultation_papers_file) ? 'required'  : [],
+            'insurance_policy_copy_file' => empty($reimbursementdocument->insurance_policy_copy_file) ? 'required' : [],
+            'tpa_card_file' => empty($reimbursementdocument->tpa_card_file) ? 'required' : [],
+            'employee_or_member_id_group_file' => empty($reimbursementdocument->employee_or_member_id_group_file) ? 'required' : [],
+            'photograph_of_the_patient_file' => empty($reimbursementdocument->photograph_of_the_patient_file) ? 'required' : [],
+            // 'indoor_care_paper_file' => empty($reimbursementdocument->indoor_care_paper_file) ? 'required' : [],
+            // 'ecg_report_file' => empty($reimbursementdocument->ecg_report_file) ? 'required' : [],
+            // 'ct_mri_usg_hpe_investigation_report_file' => empty($reimbursementdocument->ct_mri_usg_hpe_investigation_report_file) ? 'required' : [],
+            'diagnostic_or_investigation_reports_file' => empty($reimbursementdocument->diagnostic_or_investigation_reports_file) ? 'required' : [],
+            // 'doctor’s_reference_slip_for_investigation_file' => empty($reimbursementdocument->doctor’s_reference_slip_for_investigation_file) ? 'required' : [],
+            // 'operation_theatre_notes_file' => empty($reimbursementdocument->operation_theatre_notes_file) ? 'required' : [],
+            'pharmacy_bills_file' => empty($reimbursementdocument->pharmacy_bills_file) ? 'required' : [],
+            // 'implant_sticker_invoice_file' => empty($reimbursementdocument->implant_sticker_invoice_file) ? 'required' : [],
+            'hospital_break_up_bills_file' => empty($reimbursementdocument->hospital_break_up_bills_file) ? 'required' : [],
+            'hospital_main_final_bill_file' => empty($reimbursementdocument->hospital_main_final_bill_file) ? 'required' : [],
+            'discharge_or_day_care_summary_file' => empty($reimbursementdocument->discharge_or_day_care_summary_file) ? 'required' : [],
+            // 'death_summary_from_hospital_where_applicable_file' => empty($reimbursementdocument->death_summary_from_hospital_where_applicable_file) ? 'required' : [],
+            'payment_receipts_of_the_hospital_file' => empty($reimbursementdocument->payment_receipts_of_the_hospital_file) ? 'required' : [],
+            // 'other_documents_file' => empty($reimbursementdocument->other_documents_file) ? 'required' : [],
+            'claimant_pan_card_file' => empty($reimbursementdocument->claimant_pan_card_file) ? 'required' : [],
+            'claimant_aadhar_card_file' => empty($reimbursementdocument->claimant_aadhar_card_file) ? 'required' : [],
+            'claimant_current_address_proof_file' => empty($reimbursementdocument->claimant_current_address_proof_file) ? 'required' : [],
+            'claimant_cancel_cheque_file' => empty($reimbursementdocument->claimant_cancel_cheque_file) ? 'required' : [],
+            // 'abha_id_proof_file' => empty($reimbursementdocument->abha_id_proof_file) ? 'required' : [],
+            // 'mlc_report_and_police_fir_document_file' => empty($reimbursementdocument->mlc_report_and_police_fir_document_file) ? 'required' : [],
+            'borrower_current_address_proof_file' => empty($reimbursementdocument->borrower_current_address_proof_file) ? 'required' : [],
+            'borrower_pan_card_file' => empty($reimbursementdocument->borrower_pan_card_file) ? 'required' : [],
+            'borrower_aadhar_card_file' => empty($reimbursementdocument->borrower_aadhar_card_file) ? 'required' : [],
+            'borrower_bank_statement_3_months_file' => empty($reimbursementdocument->borrower_bank_statement_3_months_file) ? 'required' : [],
+            // 'borrower_itr_income_tax_return_file' => empty($reimbursementdocument->borrower_itr_income_tax_return_file) ? 'required' : [],
+            'borrower_cancel_cheque_file' => empty($reimbursementdocument->borrower_cancel_cheque_file) ? 'required' : [],
+            'borrower_other_documents_file' => empty($reimbursementdocument->borrower_other_documents_file) ? 'required' : [],
+            'co_borrower_current_address_proof_file' => empty($reimbursementdocument->co_borrower_current_address_proof_file) ? 'required' : [],
+            'co_borrower_pan_card_file' => empty($reimbursementdocument->co_borrower_pan_card_file) ? 'required' : [],
+            'co_borrower_aadhar_card_file' => empty($reimbursementdocument->co_borrower_aadhar_card_file) ? 'required' : [],
+            'co_borrower_bank_statement_3_months_file' => empty($reimbursementdocument->co_borrower_bank_statement_3_months_file) ? 'required' : [],
+            // 'co_borrower_itr_income_tax_return_file' => empty($reimbursementdocument->co_borrower_itr_income_tax_return_file) ? 'required' : [],
+            'co_borrower_cancel_cheque_file' => empty($reimbursementdocument->co_borrower_cancel_cheque_file) ? 'required' : [],
+            'co_borrower_other_documents_file' => empty($reimbursementdocument->co_borrower_other_documents_file) ? 'required' : [],
+            
+        ];
+
+        $messages = [
+            'patient_id.required' => 'Please select Patient Id',
+            'patient_title.required' => 'Please select Patient Title',
+            'patient_firstname.required' => 'Please select Patient Firstname',
+            'patient_middlename.required' => 'Please select Patient Middlename',
+            'patient_lastname.required' => 'Please select Patient Lastname',
+            'patient_id_proof_file.required' => 'Please select Patient Id Proof File',
+            'doctor_prescriptions_or_consultation_papers_file.required' => 'Please select Doctor Prescriptions Or Consultation Papers File',
+            'insurance_policy_copy_file.required' => 'Please select Insurance Policy Copy File',
+            'tpa_card_file.required' => 'Please select Tpa Card File',
+            'employee_or_member_id_group_file.required' => 'Please select Employee Or Member Id Group File',
+            'photograph_of_the_patient_file.required' => 'Please select Photograph Of The Patient File',
+            'indoor_care_paper_file.required' => 'Please select Indoor Care Paper File',
+            'ecg_report_file.required' => 'Please select Ecg Report File',
+            'ct_mri_usg_hpe_investigation_report_file.required' => 'Please select Ct Mri Usg Hpe Investigation Report File',
+            'diagnostic_or_investigation_reports_file.required' => 'Please select Diagnostic Or Investigation Reports File',
+            'doctor’s_reference_slip_for_investigation_file.required' => 'Please select Doctor’s Reference Slip For Investigation File',
+            'operation_theatre_notes_file.required' => 'Please select Operation Theatre Notes File',
+            'pharmacy_bills_file.required' => 'Please select Pharmacy Bills File',
+            'implant_sticker_invoice_file.required' => 'Please select Implant Sticker Invoice File',
+            'hospital_break_up_bills_file.required' => 'Please select Hospital Break Up Bills File',
+            'hospital_main_final_bill_file.required' => 'Please select Hospital Main Final Bill File',
+            'discharge_or_day_care_summary_file.required' => 'Please select Discharge Or Day Care Summary File',
+            'death_summary_from_hospital_where_applicable_file.required' => 'Please select Death Summary From Hospital Where Applicable File',
+            'payment_receipts_of_the_hospital_file.required' => 'Please select Payment Receipts Of The Hospital File',
+            'other_documents_file.required' => 'Please select Other Documents File',
+            'claimant_pan_card_file.required' => 'Please select Claimant Pan Card File',
+            'claimant_aadhar_card_file.required' => 'Please select Claimant Aadhar Card File',
+            'claimant_current_address_proof_file.required' => 'Please select Claimant Current Address Proof File',
+            'claimant_cancel_cheque_file.required' => 'Please select Claimant Cancel Cheque File',
+            'abha_id_proof_file.required' => 'Please select Abha Id Proof File',
+            'mlc_report_and_police_fir_document_file.required' => 'Please select Mlc Report And Police Fir Document File',
+            'borrower_current_address_proof_file.required' => 'Please select Borrower Current Address Proof File',
+            'borrower_pan_card_file.required' => 'Please select Borrower Pan Card File',
+            'borrower_aadhar_card_file.required' => 'Please select Borrower Aadhar Card File',
+            'borrower_bank_statement_3_months_file.required' => 'Please select Borrower Bank Statement 3 Months File',
+            'borrower_itr_income_tax_return_file.required' => 'Please select Borrower Itr Income Tax Return File',
+            'borrower_cancel_cheque_file.required' => 'Please select Borrower Cancel Cheque File',
+            'borrower_other_documents_file.required' => 'Please select Borrower Other Documents File',
+            'co_borrower_current_address_proof_file.required' => 'Please select Co Borrower Current Address Proof File',
+            'co_borrower_pan_card_file.required' => 'Please select Co Borrower Pan Card File',
+            'co_borrower_aadhar_card_file.required' => 'Please select Co Borrower Aadhar Card File',
+            'co_borrower_bank_statement_3_months_file.required' => 'Please select Co Borrower Bank Statement 3 Months File',
+            'co_borrower_itr_income_tax_return_file.required' => 'Please select Co Borrower Itr Income Tax Return File',
+            'co_borrower_cancel_cheque_file.required' => 'Please select Co Borrower Cancel Cheque File',
+            'co_borrower_other_documents_file.required' => 'Please select Co Borrower Other Documents File',
+
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+       $reimbursementdocument =  ReimbursementDocument::where('patient_id', 'P-10001')->update($request->except('_token','patient_id'));
 
         return redirect()->back()->with('success', 'Patient added successfully');
 
