@@ -94,6 +94,13 @@
                             </li>
                         @endif
 
+                        <li class="nav-item">
+                            <a href="#documents_reimbursement_creation_tab" data-bs-toggle="tab" aria-expanded="false"
+                            class="nav-link rounded-0">
+                                <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                                <span class="d-none d-md-block">Documents Reimbursement</span>
+                            </a>
+                        </li>
 
                         <li class="nav-item">
                             <a href="#assessment_status_creation_tab" data-bs-toggle="tab" aria-expanded="false"
@@ -163,6 +170,10 @@
                                 @include('super-admin.claims.claimants.edit.tabs.notab')
                             </div>
                         @endif
+
+                        <div class="tab-pane" id="documents_reimbursement_creation_tab">
+                            @include('super-admin.claims.claimants.edit.tabs.documents-reimbursement')
+                        </div>
 
                         <div class="tab-pane" id="assessment_status_creation_tab">
                             @include('super-admin.claims.claimants.edit.tabs.assessment-status')
