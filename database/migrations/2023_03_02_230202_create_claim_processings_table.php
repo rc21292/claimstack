@@ -108,7 +108,7 @@ return new class extends Migration
             $table->string('procedure_iii_pcs_code')->nullable();
             $table->string('procedure_iii_pcs_long_name')->nullable();
             $table->enum('final_assessment_status', ['Waiting for Pre-Assessment', 'Query Raised by BHC Team', 'Non Admissible as per the Policy TC', 'Non Admissible as per the Treatment Received', 'Admissible'])->nullable();
-            $table->text('query')->nullable();
+            $table->text('processing_query')->nullable();
             $table->double('final_assessment_amount')->nullable();
             $table->text('final_assessment_comments')->nullable();
 

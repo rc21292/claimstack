@@ -30,7 +30,7 @@
             <div class="col-12">
                 <div class="card no-shadow">
                     <div class="card-body">
-                        <form action="{{ route('super-admin.claims.store') }}" method="post" id="claim-form" enctype="multipart/form-data">
+                        <form action="{{ route('super-admin.claims.processing') }}" method="post" id="claim-form" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group row">
@@ -1115,11 +1115,11 @@
                                 </div>
 
                                 <div class="col-md-6 mt-3">
-                                    <label for="query">Query <span class="text-danger">*</span></label>
+                                    <label for="processing_query">Query <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="250" class="form-control"
-                                    id="query" placeholder="Estimated Amount" name="query"
-                                    value="{{ old('query') }}">
-                                    @error('query')
+                                    id="processing_query" placeholder="Estimated Amount" name="processing_query"
+                                    value="{{ old('processing_query') }}">
+                                    @error('processing_query')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>

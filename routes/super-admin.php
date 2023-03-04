@@ -148,6 +148,7 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
 
 
     Route::get('claims/processing', [ClaimController::class, 'processing'])->name('claims.processing');
+    Route::post('claims/processing', [ClaimController::class, 'saveClaimProcessing'])->name('claims.processing');
     Route::get('claims/assessment-status', [ClaimController::class, 'assessmentStatus'])->name('claims.assessment-status');
     Route::resource('claims', ClaimController::class);
 
