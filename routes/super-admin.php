@@ -182,6 +182,9 @@ Route::post('api/fetch-cities', [DropdownController::class, 'fetchCity']);
     | Patients Route
     |--------------------------------------------------------------------------
     */
+    Route::get('patients/documents-reimbursement', [PatientController::class, 'documentsReimbursement']);
+    
+    Route::post('patients/documents-reimbursement', [PatientController::class, 'saveDocumentsReimbursement'])->name('patients.save-documents-reimbursement');
     Route::resource('patients', PatientController::class);
 
     /*
