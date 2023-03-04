@@ -95,6 +95,38 @@
                         @endif
 
 
+                        <li class="nav-item">
+                            <a href="#assessment_status_creation_tab" data-bs-toggle="tab" aria-expanded="false"
+                            class="nav-link rounded-0">
+                                <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                                <span class="d-none d-md-block">Assessment Status</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#lending_status_creation_tab" data-bs-toggle="tab" aria-expanded="false"
+                                class="nav-link rounded-0">
+                                <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                                <span class="d-none d-md-block">Lending Status</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#discharge_status_creation_tab" data-bs-toggle="tab" aria-expanded="false"
+                            class="nav-link rounded-0">
+                                <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                                <span class="d-none d-md-block">Discharge Status</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#claim_processing_tab" data-bs-toggle="tab" aria-expanded="false"
+                            class="nav-link rounded-0">
+                                <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                                <span class="d-none d-md-block">Claim Processing</span>
+                            </a>
+                        </li>
+
 
                     </ul>
 
@@ -131,6 +163,23 @@
                                 @include('super-admin.claims.claimants.edit.tabs.notab')
                             </div>
                         @endif
+
+                        <div class="tab-pane show active" id="assessment_status_creation_tab">
+                            @include('super-admin.claims.claimants.edit.tabs.assessment-status')
+                        </div>
+
+                        <div class="tab-pane" id="lending_status_creation_tab">
+                            @include('super-admin.claims.claimants.edit.tabs.lending-status')
+                        </div>
+
+                        <div class="tab-pane show active" id="discharge_status_creation_tab">
+                            @include('super-admin.claims.claimants.edit.tabs.discharge-status')
+                        </div>
+
+                        <div class="tab-pane" id="claim_processing_tab">
+                            @include('super-admin.claims.claimants.edit.tabs.processing')
+                        </div>
+
                     </div>
                 </div>
             </div>

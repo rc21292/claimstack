@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Models\Claim;
 use App\Models\LendingStatus;
 use App\Models\DischargeStatus;
+use App\Models\Insurer;
 
 class ClaimantController extends Controller
 {
@@ -329,7 +330,7 @@ class ClaimantController extends Controller
         $hospital       = Hospital::where('uid',$claimant->hospital_id)->first();
         $hospitals      = Hospital::get();
         $patient        = Patient::where('uid', $claimant->patient_id)->first();
-
+        $insurers       = Insurer::get();
         $exists         = Borrower::where('claimant_id', $id)->exists();
         if ($exists) {
             $borrower     = Borrower::where('claimant_id', $id)->first();
@@ -356,7 +357,7 @@ class ClaimantController extends Controller
 
         $claim = $claimant->claim;
 
-        return view('super-admin.claims.claimants.edit.edit',  compact('patient_id', 'associates', 'hospitals', 'patient', 'claimant', 'borrower', 'id', 'claim'));
+        return view('super-admin.claims.claimants.edit.edit',  compact('patient_id', 'associates', 'hospitals', 'patient', 'claimant', 'borrower', 'id', 'claim', 'insurers'));
 
     }
 
@@ -953,6 +954,7 @@ class ClaimantController extends Controller
          $this->validate($request,$rules,$messages);
 
          $input  = $request->except('_token');
+         
          DischargeStatus::create($input);
 
         return redirect()->route('super-admin.claimants.discharge-status',$id)->with('success', 'Discharge status added successfully');

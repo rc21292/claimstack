@@ -1,3 +1,34 @@
+@extends('layouts.super-admin')
+@section('title', 'New Claim')
+@section('content')
+    <!-- Start Content-->
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="{{ url('/') }}">Claimant Stack</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('super-admin.dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Claimants</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('super-admin.claims.index') }}">Claimants</a>
+                            </li>
+                            <li class="breadcrumb-item active">New Claimant</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">Lending Status</h4>
+                </div>
+            </div>
+        </div>
+        @include('super-admin.sections.flash-message')
+        <!-- end page title -->
+
+        <!-- start page content -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card no-shadow">
                     <form action="{{ route('super-admin.claimants.save-lending-tatus',$id) }}" method="post" id="lending-status-form"
                     enctype="multipart/form-data">
                     @csrf
@@ -524,6 +555,12 @@
                         </div>
                     </div>
                 </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
 @push('scripts')
     
 </script>
