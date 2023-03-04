@@ -100,10 +100,10 @@ return new class extends Migration
             $table->text('procedure_ii_pcs_short_name')->nullable();
             $table->text('procedure_ii_pcs_code')->nullable();
             $table->text('procedure_ii_pcs_long_name')->nullable();
-            $table->string('procedure_iii_pcs_group_name')->nullable();
-            $table->string('procedure_iii_pcs_group_code')->nullable();
-            $table->string('procedure_iii_pcs_sub_group_name')->nullable();
-            $table->string('procedure_iii_pcs_sub_group_code')->nullable();
+            $table->text('procedure_iii_pcs_group_name')->nullable();
+            $table->text('procedure_iii_pcs_group_code')->nullable();
+            $table->text('procedure_iii_pcs_sub_group_name')->nullable();
+            $table->text('procedure_iii_pcs_sub_group_code')->nullable();
             $table->string('procedure_iii_pcs_short_name')->nullable();
             $table->string('procedure_iii_pcs_code')->nullable();
             $table->string('procedure_iii_pcs_long_name')->nullable();

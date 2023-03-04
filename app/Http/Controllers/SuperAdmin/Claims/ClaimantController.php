@@ -769,9 +769,7 @@ class ClaimantController extends Controller
 
     public function saveLendingStatus(Request $request, $id)
     {
-        echo "<pre>";print_r($request->all());"</pre>";exit;
         $borrower = Borrower::where('claimant_id',$id)->first();
-
 
         if ($request->hasfile('borrower_id_proof_file')) {
             $borrower_id_proof_file                    = $request->file('borrower_id_proof_file');
