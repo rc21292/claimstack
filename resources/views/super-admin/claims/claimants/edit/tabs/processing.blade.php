@@ -6,7 +6,7 @@
                                     <label for="patient_id">Patient ID <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="patient_id" name="patient_id" maxlength="60"
                                     placeholder="Enter Patient Id" value="{{ old('patient_id') }}">
-                                    @error('patient_id')
+                                    @error('patient_id', 'claim-processing-form')
                                     <span id="patient-id-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -21,7 +21,7 @@
                                         <option value="Mr." {{ old('patient_title') == 'Mr.' ? 'selected' : '' }}>Mr.</option>
                                         <option value="Ms." {{ old('patient_title') == 'Ms.' ? 'selected' : '' }}>Ms.</option>
                                     </select>
-                                    @error('patient_title')
+                                    @error('patient_title', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -30,7 +30,7 @@
                                     <input type="text" maxlength="25" class="form-control" id="patient_lastname"
                                     name="patient_lastname" placeholder="Last name"
                                     value="{{ old('patient_lastname') }}">
-                                    @error('patient_lastname')
+                                    @error('patient_lastname', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -39,7 +39,7 @@
                                     <input type="text" maxlength="25" class="form-control" id="patient_firstname"
                                     name="patient_firstname" placeholder="First name"
                                     value="{{ old('patient_firstname') }}">
-                                    @error('patient_firstname')
+                                    @error('patient_firstname', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -48,7 +48,7 @@
                                     <input type="text" maxlength="25" class="form-control" id="patient_middlename"
                                     name="patient_middlename" placeholder="Middle name"
                                     value="{{ old('patient_middlename') }}">
-                                    @error('patient_middlename')
+                                    @error('patient_middlename', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -59,7 +59,7 @@
                                     <input type="number" class="form-control"
                                     id="patient_age" name="patient_age" placeholder="Patient Age"
                                     value="{{ old('patient_age') }}">
-                                    @error('patient_age')
+                                    @error('patient_age', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -75,7 +75,7 @@
                                         <option value="Other" {{ old('patient_gender') == 'Other' ? 'selected' : '' }}>Other
                                         </option>
                                     </select>
-                                    @error('patient_gender')
+                                    @error('patient_gender', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -86,7 +86,7 @@
                                     <input type="text" maxlength="100" class="form-control"
                                     id="patient_current_residential_address" name="patient_current_residential_address"
                                     placeholder="Address Line" value="{{ old('patient_current_residential_address') }}">
-                                    @error('patient_current_residential_address')
+                                    @error('patient_current_residential_address', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -95,7 +95,7 @@
                                     <input type="text" class="form-control" id="patient_current_city"
                                     name="patient_current_city" placeholder="City"
                                     value="{{ old('patient_current_city') }}">
-                                    @error('patient_current_city')
+                                    @error('patient_current_city', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -104,7 +104,7 @@
                                     <input type="text" class="form-control" id="patient_current_state"
                                     name="patient_current_state" placeholder="State"
                                     value="{{ old('patient_current_state') }}">
-                                    @error('patient_current_state')
+                                    @error('patient_current_state', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -114,7 +114,7 @@
                                     name="patient_current_pincode" pattern="/^-?\d+\.?\d*$/"
                                     onKeyPress="if(this.value.length==6) return false;" placeholder="Pincode"
                                     value="{{ old('patient_current_pincode') }}">
-                                    @error('patient_current_pincode')
+                                    @error('patient_current_pincode', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -123,7 +123,7 @@
                                     <label for="hospital_id">Hospital Id <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="hospital_id" name="hospital_id"
                                     placeholder="Enter Hospital Id" value="{{ old('hospital_id') }}">
-                                    @error('hospital_id')
+                                    @error('hospital_id', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -132,7 +132,7 @@
                                     <label for="hospital_name">Hospital Name <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="hospital_name" name="hospital_name"
                                     placeholder="Enter Hospital Name" value="{{ old('hospital_name') }}">
-                                    @error('hospital_name')
+                                    @error('hospital_name', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -142,7 +142,7 @@
                                     <input type="text" class="form-control" id="hospital_address" name="hospital_address"
                                     placeholder="Address Line"
                                     value="{{ old('hospital_address') }}">
-                                    @error('hospital_address')
+                                    @error('hospital_address', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -151,7 +151,7 @@
                                 <div class="col-md-4 mt-2">
                                     <input type="text" class="form-control" id="hospital_city" name="hospital_city" placeholder="City"
                                     value="{{ old('hospital_city') }}">
-                                    @error('hospital_city')
+                                    @error('hospital_city', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -159,7 +159,7 @@
                                 <div class="col-md-4 mt-2">
                                     <input type="text" class="form-control" id="hospital_state" name="hospital_state" placeholder="State"
                                     value="{{ old('hospital_state') }}">
-                                    @error('hospital_state')
+                                    @error('hospital_state', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -167,7 +167,7 @@
                                 <div class="col-md-4 mt-2">
                                     <input type="number" class="form-control" id="hospital_pincode" name="hospital_pincode"
                                     placeholder="Pincode" value="{{ old('hospital_pincode') }}">
-                                    @error('hospital_pincode')
+                                    @error('hospital_pincode', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -182,7 +182,7 @@
                                         </option>
                                         @endforeach
                                     </select>
-                                    @error('insurance_company')
+                                    @error('insurance_company', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -196,7 +196,7 @@
                                         <option value="Retail" {{ old('policy_type') == 'Retail' ? 'selected' : '' }}>Retail
                                         </option>
                                     </select>
-                                    @error('policy_type')
+                                    @error('policy_type', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -213,7 +213,7 @@
                                         </option>
                                         @endforeach
                                     </select>
-                                    @error('policy_name')
+                                    @error('policy_name', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -222,7 +222,7 @@
                                     <label for="policy_start_date">Policy Start Date <span class="text-danger">*</span></label>
                                     <input type="date" placeholder="Enter Policy Start Date" class="form-control" id="policy_start_date"
                                     name="policy_start_date" value="{{ old('policy_start_date') }}">
-                                    @error('policy_start_date')
+                                    @error('policy_start_date', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -231,7 +231,7 @@
                                     <label for="policy_expiry_date">Policy Expiry Date <span class="text-danger">*</span></label>
                                     <input type="date" placeholder="Enter Policy Expiry Date" class="form-control" id="policy_expiry_date"
                                     name="policy_expiry_date" value="{{ old('policy_expiry_date') }}">
-                                    @error('policy_expiry_date')
+                                    @error('policy_expiry_date', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -241,7 +241,7 @@
                                     <input type="date" placeholder="Enter Policy Commencement Date (without Break)"
                                     class="form-control" id="policy_commencement_date_without_break" name="policy_commencement_date_without_break"
                                     value="{{ old('policy_commencement_date_without_break') }}">
-                                    @error('policy_commencement_date_without_break')
+                                    @error('policy_commencement_date_without_break', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -250,7 +250,7 @@
                                     <label for="date_of_admission">Date of Admission (DD-MM-YYYY) <span class="text-danger">*</span></label>
                                     <input type="date" class="form-control" id="date_of_admission" name="date_of_admission"
                                     value="{{ old('date_of_admission') }}">
-                                    @error('date_of_admission')
+                                    @error('date_of_admission', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -259,7 +259,7 @@
                                     <label for="time_of_admission">Time of Admission (HH:MM) <span class="text-danger">*</span></label>
                                     <input type="time" class="form-control" id="time_of_admission" name="time_of_admission"
                                     value="{{ old('time_of_admission') }}">
-                                    @error('time_of_admission')
+                                    @error('time_of_admission', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -267,7 +267,7 @@
                                 <div class="col-md-6 mb-3">
                                     <label for="expected_date_of_discharge">Expected Date of Discharge </label>
                                     <input class="form-control" {{ old('expected_date_of_discharge') }} id="expected_date_of_discharge" name="expected_date_of_discharge"  placeholder="Probable Date of Discharge"></input>
-                                    @error('expected_date_of_discharge')
+                                    @error('expected_date_of_discharge', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>   
@@ -275,7 +275,7 @@
                                 <div class="col-md-6 mb-3">
                                     <label for="expected_no_of_days_in_hospital">Expected No. of Days in Hospital </label>
                                     <input type="number" class="form-control" {{ old('expected_no_of_days_in_hospital') }} id="expected_no_of_days_in_hospital" name="expected_no_of_days_in_hospital"  placeholder="Probable Date of Discharge"></input>
-                                    @error('expected_no_of_days_in_hospital')
+                                    @error('expected_no_of_days_in_hospital', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>   
@@ -299,7 +299,7 @@
                                             <label class="form-check-label" for="maternity">Maternity</label>
                                         </div>
                                     </div>
-                                    @error('hospitalization_due_to')
+                                    @error('hospitalization_due_to', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -309,7 +309,7 @@
                                     <input type="date" class="form-control" id="date_of_delivery" name="date_of_delivery"
                                     value="{{ old('date_of_delivery') }}"
                                     placeholder="Date of Injury / Date Disease first detected / Date of delivery (DD-MM-YYYY)">
-                                    @error('date_of_delivery')
+                                    @error('date_of_delivery', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -320,7 +320,7 @@
                                     <input type="date" class="form-control" id="date_of_first_consultation" name="date_of_first_consultation"
                                     value="{{ old('date_of_first_consultation') }}"
                                     placeholder="Date of Injury / Date Disease first detected / Date of delivery (DD-MM-YYYY)">
-                                    @error('date_of_first_consultation')
+                                    @error('date_of_first_consultation', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -348,7 +348,7 @@
                                         <option value="AYUSH" {{ old('system_of_medicine') == 'AYUSH' ? 'selected' : '' }}>AYUSH
                                         </option>
                                     </select>
-                                    @error('system_of_medicine')
+                                    @error('system_of_medicine', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -363,7 +363,7 @@
                                         <option value="IPD" {{ old('treatment_type') == 'IPD' ? 'selected' : '' }}>IPD
                                         </option>
                                     </select>
-                                    @error('treatment_type')
+                                    @error('treatment_type', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -383,7 +383,7 @@
                                             <label class="form-check-label" for="planned">Planned</label>
                                         </div>
                                     </div>
-                                    @error('admission_type_1')
+                                    @error('admission_type_1', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -401,7 +401,7 @@
                                             <label class="form-check-label" for="hospitalization">Hospitalization</label>
                                         </div>
                                     </div>
-                                    @error('admission_type_2')
+                                    @error('admission_type_2', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -414,7 +414,7 @@
                                         <option value="Pre-Post" {{ old('admission_type_3') == 'Pre-Post' ? 'selected' : '' }}>Pre-Post
                                         </option>
                                     </select>
-                                    @error('admission_type_3')
+                                    @error('admission_type_3', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -428,7 +428,7 @@
                                             Reimbursement
                                         </option>
                                     </select>
-                                    @error('claim_category')
+                                    @error('claim_category', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -441,7 +441,7 @@
                                         <option value="IPD" {{ old('treatment_category') == 'IPD' ? 'selected' : '' }}>IPD
                                         </option>
                                     </select>
-                                    @error('treatment_category')
+                                    @error('treatment_category', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -469,7 +469,7 @@
                                         <option value="Other" {{ old('disease_category') == 'Other' ? 'selected' : '' }}>Other
                                         </option>
                                     </select>
-                                    @error('disease_category')
+                                    @error('disease_category', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -477,7 +477,7 @@
                                     <label for="disease_name">Disease Name. <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="100" class="form-control" id="disease_name" name="disease_name"
                                     value="{{ old('disease_name') }}" placeholder="Disease Name">
-                                    @error('disease_name')
+                                    @error('disease_name', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -488,7 +488,7 @@
                                         <option value="PED (Pre Existing Disease)"  {{ old('disease_type') == 'PED (Pre Existing Disease)' ? 'selected' : '' }}>PED (Pre Existing Disease)  </option>
                                         <option value="Non PED" {{ old('disease_type') == 'Non PED' ? 'selected' : '' }}>Non PED </option>
                                     </select>
-                                    @error('disease_type')
+                                    @error('disease_type', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -497,7 +497,7 @@
                                     <label for="nature_of_illness_disease_with_presenting_complaints">Nature of Illness/Disease with presenting complaints <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="nature_of_illness_disease_with_presenting_complaints" name="nature_of_illness_disease_with_presenting_complaints"
                                     placeholder="Associate Partner ID" value="{{ old('nature_of_illness_disease_with_presenting_complaints') }}">
-                                    @error('nature_of_illness_disease_with_presenting_complaints')
+                                    @error('nature_of_illness_disease_with_presenting_complaints', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -506,7 +506,7 @@
                                     <label for="relevant_clinical_findings">Relevant Clinical Findings <span class="text-danger">*</span></label>
                                     <input type="number" class="form-control" id="relevant_clinical_findings" name="relevant_clinical_findings"
                                     placeholder="Associate Partner ID" value="{{ old('relevant_clinical_findings') }}">
-                                    @error('relevant_clinical_findings')
+                                    @error('relevant_clinical_findings', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -514,7 +514,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="past_history_of_any_chronic_illness">Past history of any chronic illness </label>
                                     <input class="form-control" {{ old('past_history_of_any_chronic_illness') }} id="past_history_of_any_chronic_illness" name="past_history_of_any_chronic_illness"  placeholder="Probable Date of Discharge"></input>
-                                    @error('past_history_of_any_chronic_illness')
+                                    @error('past_history_of_any_chronic_illness', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>     
@@ -522,7 +522,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="any_other_aliment_details">Any other aliment details</label>
                                     <input type="text" class="form-control" {{ old('any_other_aliment_details') }} id="any_other_aliment_details" name="any_other_aliment_details"  placeholder="Probable Date of Discharge"></input>
-                                    @error('any_other_aliment_details')
+                                    @error('any_other_aliment_details', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>     
@@ -538,7 +538,7 @@
                                         <option value="Female" {{ old('primary_diagnosis_icd_leveli_disease') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('primary_diagnosis_icd_leveli_disease') == 'Other' ? 'selected' : '' }}>Other </option>
                                     </select>
-                                    @error('primary_diagnosis_icd_leveli_disease')
+                                    @error('primary_diagnosis_icd_leveli_disease', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -546,7 +546,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="primary_diagnosis_icd_leveli_code">ICD - Level - I - Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="primary_diagnosis_icd_leveli_code" name="primary_diagnosis_icd_leveli_code" placeholder="Enter ICD - Level - I - Code" value="{{ old('primary_diagnosis_icd_leveli_code') }}">
-                                    @error('primary_diagnosis_icd_leveli_code')
+                                    @error('primary_diagnosis_icd_leveli_code', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -559,7 +559,7 @@
                                         <option value="Female" {{ old('primary_diagnosis_icd_levelii_disease') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('primary_diagnosis_icd_levelii_disease') == 'Other' ? 'selected' : '' }}>Other </option>
                                     </select>
-                                    @error('primary_diagnosis_icd_levelii_disease')
+                                    @error('primary_diagnosis_icd_levelii_disease', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -567,7 +567,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="primary_diagnosis_icd_levelii_code">ICD - Level - II - Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="primary_diagnosis_icd_levelii_code" name="primary_diagnosis_icd_levelii_code"  placeholder="Enter ICD - Level - II - Code" value="{{ old('primary_diagnosis_icd_levelii_code') }}">
-                                    @error('primary_diagnosis_icd_levelii_code')
+                                    @error('primary_diagnosis_icd_levelii_code', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -581,7 +581,7 @@
                                         <option value="Female" {{ old('primary_diagnosis_icd_leveliii_disease') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('primary_diagnosis_icd_leveliii_disease') == 'Other' ? 'selected' : '' }}>Other </option>
                                     </select>
-                                    @error('primary_diagnosis_icd_leveliii_disease')
+                                    @error('primary_diagnosis_icd_leveliii_disease', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -589,7 +589,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="primary_diagnosis_icd_leveliii_code">ICD - Level - III - Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="primary_diagnosis_icd_leveliii_code" name="primary_diagnosis_icd_leveliii_code"  placeholder="Enter ICD - Level - III - Code" value="{{ old('primary_diagnosis_icd_leveliii_code') }}">
-                                    @error('primary_diagnosis_icd_leveliii_code')
+                                    @error('primary_diagnosis_icd_leveliii_code', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -603,7 +603,7 @@
                                         <option value="Female" {{ old('primary_diagnosis_icd_leveliv_disease') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('primary_diagnosis_icd_leveliv_disease') == 'Other' ? 'selected' : '' }}>Other </option>
                                     </select>
-                                    @error('primary_diagnosis_icd_leveliv_disease')
+                                    @error('primary_diagnosis_icd_leveliv_disease', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -612,7 +612,7 @@
                                     <label for="primary_diagnosis_icd_leveliv_code">ICD - Level - IV - Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="primary_diagnosis_icd_leveliv_code" name="primary_diagnosis_icd_leveliv_code"
                                     placeholder="Enter ICD - Level - IV - Code" value="{{ old('primary_diagnosis_icd_leveliv_code') }}">
-                                    @error('primary_diagnosis_icd_leveliv_code')
+                                    @error('primary_diagnosis_icd_leveliv_code', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -629,7 +629,7 @@
                                         <option value="Female" {{ old('additional_diagnosis_icd_leveli_disease') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('additional_diagnosis_icd_leveli_disease') == 'Other' ? 'selected' : '' }}>Other </option>
                                     </select>
-                                    @error('additional_diagnosis_icd_leveli_disease')
+                                    @error('additional_diagnosis_icd_leveli_disease', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -638,7 +638,7 @@
                                     <label for="additional_diagnosis_icd_leveli_code">ICD - Level - I - Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="additional_diagnosis_icd_leveli_code" name="additional_diagnosis_icd_leveli_code"
                                     placeholder="Enter ICD - Level - I - Code" value="{{ old('additional_diagnosis_icd_leveli_code') }}">
-                                    @error('additional_diagnosis_icd_leveli_code')
+                                    @error('additional_diagnosis_icd_leveli_code', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -651,7 +651,7 @@
                                         <option value="Female" {{ old('additional_diagnosis_icd_levelii_disease') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('additional_diagnosis_icd_levelii_disease') == 'Other' ? 'selected' : '' }}>Other </option>
                                     </select>
-                                    @error('additional_diagnosis_icd_levelii_disease')
+                                    @error('additional_diagnosis_icd_levelii_disease', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -659,7 +659,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="additional_diagnosis_icd_levelii_code">ICD - Level - II - Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="additional_diagnosis_icd_levelii_code" name="additional_diagnosis_icd_levelii_code"  placeholder="Enter ICD - Level - II - Code" value="{{ old('additional_diagnosis_icd_levelii_code') }}">
-                                    @error('additional_diagnosis_icd_levelii_code')
+                                    @error('additional_diagnosis_icd_levelii_code', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -673,7 +673,7 @@
                                         <option value="Female" {{ old('additional_diagnosis_icd_leveliii_disease') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('additional_diagnosis_icd_leveliii_disease') == 'Other' ? 'selected' : '' }}>Other </option>
                                     </select>
-                                    @error('additional_diagnosis_icd_leveliii_disease')
+                                    @error('additional_diagnosis_icd_leveliii_disease', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -681,7 +681,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="additional_diagnosis_icd_leveliii_code">ICD - Level - III - Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="additional_diagnosis_icd_leveliii_code" name="additional_diagnosis_icd_leveliii_code"  placeholder="Enter ICD - Level - III - Code" value="{{ old('additional_diagnosis_icd_leveliii_code') }}">
-                                    @error('additional_diagnosis_icd_leveliii_code')
+                                    @error('additional_diagnosis_icd_leveliii_code', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -695,7 +695,7 @@
                                         <option value="Female" {{ old('additional_diagnosis_icd_leveliv_disease') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('additional_diagnosis_icd_leveliv_disease') == 'Other' ? 'selected' : '' }}>Other </option>
                                     </select>
-                                    @error('additional_diagnosis_icd_leveliv_disease')
+                                    @error('additional_diagnosis_icd_leveliv_disease', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -703,7 +703,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="additional_diagnosis_icd_leveliv_code">ICD - Level - IV - Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="additional_diagnosis_icd_leveliv_code" name="additional_diagnosis_icd_leveliv_code"  placeholder="Enter ICD - Level - IV - Code" value="{{ old('additional_diagnosis_icd_leveliv_code') }}">
-                                    @error('additional_diagnosis_icd_leveliv_code')
+                                    @error('additional_diagnosis_icd_leveliv_code', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -720,7 +720,7 @@
                                         <option value="Female" {{ old('co_morbidities_icd_leveli_disease') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('co_morbidities_icd_leveli_disease') == 'Other' ? 'selected' : '' }}>Other </option>
                                     </select>
-                                    @error('co_morbidities_icd_leveli_disease')
+                                    @error('co_morbidities_icd_leveli_disease', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -729,7 +729,7 @@
                                     <label for="co_morbidities_icd_leveli_code">ICD - Level - I - Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="co_morbidities_icd_leveli_code" name="co_morbidities_icd_leveli_code"
                                     placeholder="Enter ICD - Level - I - Code" value="{{ old('co_morbidities_icd_leveli_code') }}">
-                                    @error('co_morbidities_icd_leveli_code')
+                                    @error('co_morbidities_icd_leveli_code', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -742,7 +742,7 @@
                                         <option value="Female" {{ old('co_morbidities_icd_levelii_disease') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('co_morbidities_icd_levelii_disease') == 'Other' ? 'selected' : '' }}>Other </option>
                                     </select>
-                                    @error('co_morbidities_icd_levelii_disease')
+                                    @error('co_morbidities_icd_levelii_disease', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -751,7 +751,7 @@
                                     <label for="co_morbidities_icd_levelii_code">ICD - Level - II - Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="co_morbidities_icd_levelii_code" name="co_morbidities_icd_levelii_code"
                                     placeholder="Enter ICD - Level - II - Code" value="{{ old('co_morbidities_icd_levelii_code') }}">
-                                    @error('co_morbidities_icd_levelii_code')
+                                    @error('co_morbidities_icd_levelii_code', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -765,7 +765,7 @@
                                         <option value="Female" {{ old('co_morbidities_icd_leveliii_disease') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('co_morbidities_icd_leveliii_disease') == 'Other' ? 'selected' : '' }}>Other </option>
                                     </select>
-                                    @error('co_morbidities_icd_leveliii_disease')
+                                    @error('co_morbidities_icd_leveliii_disease', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -774,7 +774,7 @@
                                     <label for="co_morbidities_icd_leveliii_code">ICD - Level - III - Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="co_morbidities_icd_leveliii_code" name="co_morbidities_icd_leveliii_code"
                                     placeholder="Enter ICD - Level - III - Code" value="{{ old('co_morbidities_icd_leveliii_code') }}">
-                                    @error('co_morbidities_icd_leveliii_code')
+                                    @error('co_morbidities_icd_leveliii_code', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -788,7 +788,7 @@
                                         <option value="Female" {{ old('co_morbidities_icd_leveliv_disease') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('co_morbidities_icd_leveliv_disease') == 'Other' ? 'selected' : '' }}>Other </option>
                                     </select>
-                                    @error('co_morbidities_icd_leveliv_disease')
+                                    @error('co_morbidities_icd_leveliv_disease', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -797,7 +797,7 @@
                                     <label for="co_morbidities_icd_leveliv_code">ICD - Level - IV - Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="co_morbidities_icd_leveliv_code" name="co_morbidities_icd_leveliv_code"
                                     placeholder="Enter ICD - Level - IV - Code" value="{{ old('co_morbidities_icd_leveliv_code') }}">
-                                    @error('co_morbidities_icd_leveliv_code')
+                                    @error('co_morbidities_icd_leveliv_code', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -806,7 +806,7 @@
                                 <div class="col-md-12 mt-3">
                                     <label for="co_morbidities_comments">Co-Morbidities - Comments </label>
                                     <textarea class="form-control" id="co_morbidities_comments" name="co_morbidities_comments" maxlength="250" placeholder="Comments"  rows="5">{{ old('co_morbidities_comments') }}</textarea>
-                                    @error('co_morbidities_comments')
+                                    @error('co_morbidities_comments', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -819,7 +819,7 @@
                                     <label for="procedure_name">Procedure Name <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="100" class="form-control" id="procedure_name" name="procedure_name"
                                     placeholder="Enter Procedure Name" value="{{ old('procedure_name') }}">
-                                    @error('procedure_name')
+                                    @error('procedure_name', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -836,7 +836,7 @@
                                         <option value="Female" {{ old('procedure_i_pcs_group_name') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('procedure_i_pcs_group_name') == 'Other' ? 'selected' : '' }}>Other </option>
                                     </select>
-                                    @error('procedure_i_pcs_group_name')
+                                    @error('procedure_i_pcs_group_name', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -845,7 +845,7 @@
                                     <label for="procedure_i_pcs_group_code">PCS Group - Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="procedure_i_pcs_group_code" name="procedure_i_pcs_group_code"
                                     placeholder="Enter PCS Group - Code" value="{{ old('procedure_i_pcs_group_code') }}">
-                                    @error('procedure_i_pcs_group_code')
+                                    @error('procedure_i_pcs_group_code', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -858,7 +858,7 @@
                                         <option value="Female" {{ old('procedure_i_pcs_sub_group_name') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('procedure_i_pcs_sub_group_name') == 'Other' ? 'selected' : '' }}>Other </option>
                                     </select>
-                                    @error('procedure_i_pcs_sub_group_name')
+                                    @error('procedure_i_pcs_sub_group_name', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -867,7 +867,7 @@
                                     <label for="procedure_i_pcs_sub_group_code">PCS Sub-Group - Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="procedure_i_pcs_sub_group_code" name="procedure_i_pcs_sub_group_code"
                                     placeholder="Enter PCS Group - Code" value="{{ old('procedure_i_pcs_sub_group_code') }}">
-                                    @error('procedure_i_pcs_sub_group_code')
+                                    @error('procedure_i_pcs_sub_group_code', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -881,7 +881,7 @@
                                         <option value="Female" {{ old('procedure_i_pcs_short_name') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('procedure_i_pcs_short_name') == 'Other' ? 'selected' : '' }}>Other </option>
                                     </select>
-                                    @error('procedure_i_pcs_short_name')
+                                    @error('procedure_i_pcs_short_name', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -890,7 +890,7 @@
                                     <label for="procedure_i_pcs_code">PCS Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="procedure_i_pcs_code" name="procedure_i_pcs_code"
                                     placeholder="Enter PCS Code" value="{{ old('procedure_i_pcs_code') }}">
-                                    @error('procedure_i_pcs_code')
+                                    @error('procedure_i_pcs_code', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -899,7 +899,7 @@
                                     <label for="procedure_i_pcs_long_name">PCS Long Name <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="procedure_i_pcs_long_name" name="procedure_i_pcs_long_name"
                                     placeholder="Enter PCS Long Name" value="{{ old('procedure_i_pcs_long_name') }}">
-                                    @error('procedure_i_pcs_long_name')
+                                    @error('procedure_i_pcs_long_name', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -915,7 +915,7 @@
                                         <option value="Female" {{ old('procedure_ii_pcs_group_name') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('procedure_ii_pcs_group_name') == 'Other' ? 'selected' : '' }}>Other </option>
                                     </select>
-                                    @error('procedure_ii_pcs_group_name')
+                                    @error('procedure_ii_pcs_group_name', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -924,7 +924,7 @@
                                     <label for="procedure_ii_pcs_group_code">PCS Group - Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="procedure_ii_pcs_group_code" name="procedure_ii_pcs_group_code"
                                     placeholder="Enter PCS Group - Code" value="{{ old('procedure_ii_pcs_group_code') }}">
-                                    @error('procedure_ii_pcs_group_code')
+                                    @error('procedure_ii_pcs_group_code', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -937,7 +937,7 @@
                                         <option value="Female" {{ old('procedure_ii_pcs_sub_group_name') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('procedure_ii_pcs_sub_group_name') == 'Other' ? 'selected' : '' }}>Other </option>
                                     </select>
-                                    @error('procedure_ii_pcs_sub_group_name')
+                                    @error('procedure_ii_pcs_sub_group_name', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -946,7 +946,7 @@
                                     <label for="procedure_ii_pcs_sub_group_code">PCS Sub-Group - Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="procedure_ii_pcs_sub_group_code" name="procedure_ii_pcs_sub_group_code"
                                     placeholder="Enter PCS Sub-Group - Code " value="{{ old('procedure_ii_pcs_sub_group_code') }}">
-                                    @error('procedure_ii_pcs_sub_group_code')
+                                    @error('procedure_ii_pcs_sub_group_code', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -960,7 +960,7 @@
                                         <option value="Female" {{ old('procedure_ii_pcs_short_name') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('procedure_ii_pcs_short_name') == 'Other' ? 'selected' : '' }}>Other </option>
                                     </select>
-                                    @error('procedure_ii_pcs_short_name')
+                                    @error('procedure_ii_pcs_short_name', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -969,7 +969,7 @@
                                     <label for="procedure_ii_pcs_code">PCS Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="procedure_ii_pcs_code" name="procedure_ii_pcs_code"
                                     placeholder="Enter PCS Code " value="{{ old('procedure_ii_pcs_code') }}">
-                                    @error('procedure_ii_pcs_code')
+                                    @error('procedure_ii_pcs_code', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -978,7 +978,7 @@
                                     <label for="procedure_ii_pcs_long_name">PCS Long Name <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="procedure_ii_pcs_long_name" name="procedure_ii_pcs_long_name"
                                     placeholder="Enter PCS Long Name" value="{{ old('procedure_ii_pcs_long_name') }}">
-                                    @error('procedure_ii_pcs_long_name')
+                                    @error('procedure_ii_pcs_long_name', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -994,7 +994,7 @@
                                         <option value="Female" {{ old('procedure_iii_pcs_group_name') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('procedure_iii_pcs_group_name') == 'Other' ? 'selected' : '' }}>Other </option>
                                     </select>
-                                    @error('procedure_iii_pcs_group_name')
+                                    @error('procedure_iii_pcs_group_name', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -1003,7 +1003,7 @@
                                     <label for="procedure_iii_pcs_group_code">PCS Group - Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="procedure_iii_pcs_group_code" name="procedure_iii_pcs_group_code"
                                     placeholder="Enter PCS Group - Code" value="{{ old('procedure_iii_pcs_group_code') }}">
-                                    @error('procedure_iii_pcs_group_code')
+                                    @error('procedure_iii_pcs_group_code', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -1016,7 +1016,7 @@
                                         <option value="Female" {{ old('procedure_iii_pcs_sub_group_name') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('procedure_iii_pcs_sub_group_name') == 'Other' ? 'selected' : '' }}>Other </option>
                                     </select>
-                                    @error('procedure_iii_pcs_sub_group_name')
+                                    @error('procedure_iii_pcs_sub_group_name', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -1025,7 +1025,7 @@
                                     <label for="procedure_iii_pcs_sub_group_code">PCS Sub-Group - Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="procedure_iii_pcs_sub_group_code" name="procedure_iii_pcs_sub_group_code"
                                     placeholder="Enter PCS Sub-Group - Code" value="{{ old('procedure_iii_pcs_sub_group_code') }}">
-                                    @error('procedure_iii_pcs_sub_group_code')
+                                    @error('procedure_iii_pcs_sub_group_code', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -1039,7 +1039,7 @@
                                         <option value="Female" {{ old('procedure_iii_pcs_short_name') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('procedure_iii_pcs_short_name') == 'Other' ? 'selected' : '' }}>Other </option>
                                     </select>
-                                    @error('procedure_iii_pcs_short_name')
+                                    @error('procedure_iii_pcs_short_name', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -1048,7 +1048,7 @@
                                     <label for="procedure_iii_pcs_code">PCS Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="procedure_iii_pcs_code" name="procedure_iii_pcs_code"
                                     placeholder="Enter PCS Code" value="{{ old('procedure_iii_pcs_code') }}">
-                                    @error('procedure_iii_pcs_code')
+                                    @error('procedure_iii_pcs_code', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -1057,7 +1057,7 @@
                                     <label for="procedure_iii_pcs_long_name">PCS Long Name <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="procedure_iii_pcs_long_name" name="procedure_iii_pcs_long_name"
                                     placeholder="Enter PCS Long Name" value="{{ old('procedure_iii_pcs_long_name') }}">
-                                    @error('procedure_iii_pcs_long_name')
+                                    @error('procedure_iii_pcs_long_name', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -1073,7 +1073,7 @@
                                         <option value="Non Admissible as per the Treatment Received" {{ old('final_assessment_status') == 'Non Admissible as per the Treatment Received' ? 'selected' : '' }}>Non Admissible as per the Treatment Received </option>
                                         <option value="Admissible" {{ old('final_assessment_status') == 'Admissible' ? 'selected' : '' }}>Admissible </option>
                                     </select>
-                                    @error('final_assessment_status')
+                                    @error('final_assessment_status', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -1087,7 +1087,7 @@
                                     <input type="text" maxlength="250" class="form-control"
                                     id="processing_query" placeholder="Estimated Amount" name="processing_query"
                                     value="{{ old('processing_query') }}">
-                                    @error('processing_query')
+                                    @error('processing_query', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -1097,7 +1097,7 @@
                                     <label for="final_assessment_amount">Final Assessment Amount <span class="text-danger">*</span></label>
                                     <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==8) return false;" class="form-control"  id="final_assessment_amount" placeholder="Estimated Amount" name="final_assessment_amount"
                                     value="{{ old('final_assessment_amount') }}">
-                                    @error('final_assessment_amount')
+                                    @error('final_assessment_amount', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -1105,7 +1105,7 @@
                                 <div class="col-md-12 mt-3">
                                     <label for="final_assessment_comments">Final Assessment Comments </label>
                                     <textarea class="form-control" id="final_assessment_comments" name="final_assessment_comments" maxlength="250" placeholder="Comments"  rows="5">{{ old('final_assessment_comments') }}</textarea>
-                                    @error('final_assessment_comments')
+                                    @error('final_assessment_comments', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>

@@ -259,7 +259,7 @@ class ClaimController extends Controller
             'final_assessment_comments.required' => 'Please enter Final Assessment Comments',
         ];
 
-        $this->validate($request, $rules, $messages);
+        $this->validateWithBag('claim-processing-form', $request, $rules, $messages);
 
         $details = ClaimProcessing::create([
             'patient_id' => $request->patient_id,
