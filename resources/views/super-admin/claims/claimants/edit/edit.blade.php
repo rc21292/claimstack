@@ -12,7 +12,7 @@
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Claimant Stack</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('super-admin.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="javascript:void(0);">Claimants</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Claims</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('super-admin.claims.index') }}">Claimants</a>
                             </li>
                             <li class="breadcrumb-item active">New Claimant</li>

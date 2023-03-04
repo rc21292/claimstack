@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\AssociatePartner;
 use App\Models\Claimant;
+use App\Models\IcdCode;
+use App\Models\PcsCode;
 use App\Models\Borrower;
 use App\Models\Patient;
 use App\Models\Hospital;
@@ -327,6 +329,8 @@ class ClaimantController extends Controller
         $claimant       = Claimant::find($id);
         $hospital       = Hospital::where('uid',$claimant->hospital_id)->first();
         $hospitals      = Hospital::get();
+        $icd_codes      = IcdCode::get();
+        $ipcs_codes      = PcsCode::get();
         $patient        = Patient::where('uid', $claimant->patient_id)->first();
         $insurers       = Insurer::get();
         $exists         = Borrower::where('claimant_id', $id)->exists();
