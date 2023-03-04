@@ -24,12 +24,12 @@
         </div>
         @include('super-admin.sections.flash-message')
         <!-- end page title -->
-
+       
         <!-- start page content -->
         <div class="row">
             <div class="col-12">
                 <div class="card no-shadow">
-                    <form action="{{ route('super-admin.claimants.save-lending-tatus',$id) }}" method="post" id="lending-status-form"
+                    <form action="{{ route('super-admin.claimants.save-discharge-status',$id) }}" method="post" id="lending-status-form"
                     enctype="multipart/form-data">
                     @csrf
 
@@ -374,11 +374,11 @@
                             </div>
                             
                             <div class="col-md-12 mt-1">
-                                <label for="loan_re_application_status_comments">Discharge Status Comments<span class="text-danger">*</span></label>
-                                <textarea class="form-control" id="loan_application_comments" name="loan_application_comments" maxlength="250" placeholder="Claimant Comments"
-                                rows="5">{{ old('loan_application_comments') }}</textarea>
+                                <label for="discharge_status_comments">Discharge Status Comments<span class="text-danger">*</span></label>
+                                <textarea class="form-control" id="discharge_status_comments" name="discharge_status_comments" maxlength="250" placeholder="Claimant Comments"
+                                rows="5">{{ old('discharge_status_comments') }}</textarea>
 
-                                @error('loan_re_application_status_comments')
+                                @error('discharge_status_comments')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>

@@ -8,4 +8,37 @@ use Illuminate\Database\Eloquent\Model;
 class DischargeStatus extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'hospital_id',
+        'hospital_name',
+        'patient_id',
+        'claim_id',
+        'insurance_coverage',
+        'lending_required',
+        'date_of_admission',
+        'time_of_admission',
+        'hospitalization_due_to',
+        'date_of_delivery',
+        'injury_reason',
+        'injury_due_to_substance_abuse_alcohol_consumption',
+        'injury_due_to_substance_abuse_alcohol_consumption_file',
+        'if_medico_legal_case_mlc',
+        'reported_to_police',
+        'mlc_report_and_police_fir_attached',
+        'mlc_report_and_police_fir_attached_file',
+        'fir_or_mlc_no',
+        'not_reported_to_police_reason',
+        'maternity_date_of_delivery',
+        'maternity_gravida_status_g',
+        'maternity_gravida_status_p',
+        'maternity_gravida_status_l',
+        'maternity_gravida_status_a',
+        'premature_baby',
+        'date_of_discharge',
+        'time_of_discharge',
+        'discharge_status',
+        'death_summary',
+        'death_summary_file',
+        'discharge_status_comments'
+    ];
 }

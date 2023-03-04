@@ -160,8 +160,9 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     |--------------------------------------------------------------------------
     */
 
-    Route::get('claimants/lending-status/{id}', [ClaimantController::class, 'lendingStatus']);
-    Route::get('claimants/discharge-status/{id}', [ClaimantController::class, 'dischargeStatus']);
+    Route::get('claimants/lending-status/{id}', [ClaimantController::class, 'lendingStatus'])->name('claimants.lending-status');
+    Route::get('claimants/discharge-status/{id}', [ClaimantController::class, 'dischargeStatus'])->name('claimants.discharge-status');
+    Route::post('claimants/discharge-status/{id}', [ClaimantController::class, 'saveDischargeStatus'])->name('claimants.save-discharge-status');
     Route::post('claimants/lending-status/{id}', [ClaimantController::class, 'saveLendingStatus'])->name('claimants.save-lending-tatus');
 
     Route::resource('claimants', ClaimantController::class);

@@ -158,10 +158,10 @@
 
                             <div class="col-md-6 mt-3">
                                 <label for="firstname">Borrower Name<span class="text-danger">*</span></label>
-                                <input type="text" maxlength="25" class="form-control" id="borrower_middlename"
-                                name="borrower_middlename" maxlength="30" placeholder="Middle name"
-                                value="{{ old('borrower_middlename',$borrower->borrower_middlename) }}">
-                                @error('borrower_middlename')
+                                <input type="text" maxlength="25" class="form-control" id="borrower_name"
+                                name="borrower_name" maxlength="30" placeholder="Middle name"
+                                value="{{ old('borrower_name',$borrower->borrower_name) }}">
+                                @error('borrower_name')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -496,14 +496,14 @@
                                 <div class="input-group">
                                 <input type="date" class="form-control" id="insurance_claim_amount_disbursement_date" name="insurance_claim_amount_disbursement_date" 
                                 value="{{ old('insurance_claim_amount_disbursement_date',$borrower->insurance_claim_amount_disbursement_date) }}">
-                                <a id="insurance_claim_settled_amount_file" style="display:none;" href="" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-                                    <input type="file" name="insurance_claim_settled_amount_file" id="insurance_claim_settled_amount_file" hidden  onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                                    <label for="insurance_claim_settled_amount_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
+                                <a id="insurance_claim_disbursement_amount_file" style="display:none;" href="" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+                                    <input type="file" name="insurance_claim_disbursement_amount_file" id="insurance_claim_disbursement_amount_file" hidden  onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
+                                    <label for="insurance_claim_disbursement_amount_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
                                 </div>
                                 @error('insurance_claim_amount_disbursement_date')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
-                                @error('insurance_claim_settled_amount_file')
+                                @error('insurance_claim_disbursement_amount_file')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
