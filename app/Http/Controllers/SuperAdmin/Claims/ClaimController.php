@@ -601,7 +601,7 @@ class ClaimController extends Controller
 
         ];
 
-        $this->validate($request, $rules, $messages);
+        $this->validateWithBag('assisment-status-form', $request, $rules, $messages);
         
         $request = $request->except('_token');
         $request['patient_name'] = $request['patient_firstname']." ".$request['patient_middlename']." ".$request['patient_lastname'];

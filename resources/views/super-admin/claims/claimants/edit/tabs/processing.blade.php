@@ -266,7 +266,7 @@
 
                                 <div class="col-md-6 mb-3">
                                     <label for="expected_date_of_discharge">Expected Date of Discharge </label>
-                                    <input class="form-control" {{ old('expected_date_of_discharge') }} id="expected_date_of_discharge" name="expected_date_of_discharge"  placeholder="Probable Date of Discharge"></input>
+                                    <input type="date" class="form-control" {{ old('expected_date_of_discharge') }} id="expected_date_of_discharge" name="expected_date_of_discharge"  placeholder="Probable Date of Discharge"></input>
                                     @error('expected_date_of_discharge', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror

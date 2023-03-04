@@ -9,7 +9,7 @@
                                 <label for="hospital_id">Hospital ID <span class="text-danger">*</span></label>
                                 <input type="text" readonly class="form-control" id="hospital_id" name="hospital_id" maxlength="60"
                                 placeholder="Enter Borrower Id" value="{{ old('hospital_id',$borrower->hospital_id) }}">
-                                @error('hospital_id')
+                                @error('hospital_id', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -18,7 +18,7 @@
                                 <label for="hospital_name">Hospital Name <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="hospital_name" name="hospital_name"
                                 placeholder="Enter Hospital Name" value="{{ old('hospital_name',$borrower->hospital_name) }}">
-                                @error('hospital_name')
+                                @error('hospital_name', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -27,7 +27,7 @@
                                 <label for="patient_id">Patient ID <span class="text-danger">*</span></label>
                                 <input type="text" readonly class="form-control" id="patient_id" name="patient_id" maxlength="60"
                                 placeholder="Enter Patient Id" value="{{ old('patient_id',$borrower->patient_id) }}">
-                                @error('patient_id')
+                                @error('patient_id', 'discharge-status-form')
                                 <span id="patient-id-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -36,7 +36,7 @@
                                 <label for="claim_id">Cliam ID <span class="text-danger">*</span></label>
                                 <input type="text" readonly class="form-control" id="claim_id" name="claim_id" maxlength="60"
                                 placeholder="Enter Claim Id" value="{{ old('claim_id',$borrower->claim_id) }}">
-                                @error('claim_id')
+                                @error('claim_id', 'discharge-status-form')
                                 <span id="claim-id-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -50,7 +50,7 @@
                                     <option value="No" {{ old('insurance_coverage') == 'No' ? 'selected' : '' }}>No
                                     </option>
                                 </select>
-                                @error('insurance_coverage')
+                                @error('insurance_coverage', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -64,7 +64,7 @@
                                     <option value="No" {{ old('lending_required') == 'No' ? 'selected' : '' }}>No
                                     </option>
                                 </select>
-                                @error('lending_required')
+                                @error('lending_required', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -73,7 +73,7 @@
                                 <label for="date_of_admission">Date of Admission (DD-MM-YYYY) <span class="text-danger">*</span></label>
                                 <input type="date" class="form-control" id="date_of_admission" name="date_of_admission"
                                 value="{{ old('date_of_admission', $claim->date_of_admission) }}">
-                                @error('date_of_admission')
+                                @error('date_of_admission', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -81,7 +81,7 @@
                                 <label for="time_of_admission">Time of Admission (HH:MM) <span class="text-danger">*</span></label>
                                 <input type="time" class="form-control" id="time_of_admission" name="time_of_admission"
                                 value="{{ old('time_of_admission', $claim->time_of_admission) }}">
-                                @error('time_of_admission')
+                                @error('time_of_admission', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -105,7 +105,7 @@
                                         <label class="form-check-label" for="maternity">Maternity</label>
                                     </div>
                                 </div>
-                                @error('hospitalization_due_to')
+                                @error('hospitalization_due_to', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -115,7 +115,7 @@
                                     <input type="date" class="form-control" id="date_of_delivery" name="date_of_delivery"
                                     value="{{ old('date_of_delivery', $claim->date_of_delivery) }}"
                                     placeholder="Date of Injury / Date Disease first detected / Date of delivery (DD-MM-YYYY)">
-                                    @error('date_of_delivery')
+                                    @error('date_of_delivery', 'discharge-status-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -132,7 +132,7 @@
                                     <option value="Substance Abuse-Alcohol Consumption" {{ old('injury_reason') == 'Substance Abuse-Alcohol Consumption' ? 'selected' : '' }}>Substance Abuse-Alcohol Consumption
                                     </option>
                                 </select>
-                                @error('injury_reason')
+                                @error('injury_reason', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -150,10 +150,10 @@
                                 <input type="file" name="injury_due_to_substance_abuse_alcohol_consumption_file" id="injury_due_to_substance_abuse_alcohol_consumption_file" hidden  onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                                     <label for="injury_due_to_substance_abuse_alcohol_consumption_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
                                 </div>
-                                @error('injury_due_to_substance_abuse_alcohol_consumption')
+                                @error('injury_due_to_substance_abuse_alcohol_consumption', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
-                                @error('injury_due_to_substance_abuse_alcohol_consumption_file')
+                                @error('injury_due_to_substance_abuse_alcohol_consumption_file', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -167,7 +167,7 @@
                                     <option value="No" {{ old('if_medico_legal_case_mlc') == 'No' ? 'selected' : '' }}>No
                                     </option>
                                 </select>
-                                @error('if_medico_legal_case_mlc')
+                                @error('if_medico_legal_case_mlc', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -181,7 +181,7 @@
                                     <option value="No" {{ old('reported_to_police') == 'No' ? 'selected' : '' }}>No
                                     </option>
                                 </select>
-                                @error('reported_to_police')
+                                @error('reported_to_police', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -199,10 +199,10 @@
                                     <input type="file" name="mlc_report_and_police_fir_attached_file" id="mlc_report_and_police_fir_attached_file" hidden  onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                                     <label for="mlc_report_and_police_fir_attached_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
                                 </div>
-                                @error('mlc_report_and_police_fir_attached')
+                                @error('mlc_report_and_police_fir_attached', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
-                                @error('mlc_report_and_police_fir_attached_file')
+                                @error('mlc_report_and_police_fir_attached_file', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -211,7 +211,7 @@
                                 <label for="fir_or_mlc_no">FIR No. / MLC No.<span class="text-danger">*</span></label>
                                 <input type="text" maxlength="27" class="form-control" id="fir_or_mlc_no"
                                 name="fir_or_mlc_no" placeholder="Last name"  value="{{ old('fir_or_mlc_no',$borrower->fir_or_mlc_no) }}">
-                                @error('fir_or_mlc_no')
+                                @error('fir_or_mlc_no', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>                
@@ -220,7 +220,7 @@
                                 <label for="not_reported_to_police_reason">If not reported to Police, give reason </label>
                                 <textarea class="form-control" id="not_reported_to_police_reason" name="not_reported_to_police_reason" maxlength="100" placeholder="Claimant Comments"
                                 rows="5">{{ old('not_reported_to_police_reason') }}</textarea>
-                                @error('not_reported_to_police_reason')
+                                @error('not_reported_to_police_reason', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>            
@@ -231,7 +231,7 @@
                                 <input type="date" class="form-control" id="maternity_date_of_delivery" name="maternity_date_of_delivery" 
                                 value="{{ old('maternity_date_of_delivery',$borrower->maternity_date_of_delivery) }}">
 
-                                @error('maternity_date_of_delivery')
+                                @error('maternity_date_of_delivery', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -242,7 +242,7 @@
                                 <label for="maternity_gravida_status_g">G<span class="text-danger">*</span></label>
                                 <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==2) return false;" class="form-control" id="maternity_gravida_status_g"
                                 name="maternity_gravida_status_g" placeholder="Enter G"  value="{{ old('maternity_gravida_status_g',$borrower->maternity_gravida_status_g) }}">
-                                @error('maternity_gravida_status_g')
+                                @error('maternity_gravida_status_g', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -251,7 +251,7 @@
                                 <label for="maternity_gravida_status_p">P<span class="text-danger">*</span></label>
                                 <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==2) return false;" class="form-control" id="maternity_gravida_status_p"
                                 name="maternity_gravida_status_p" placeholder="Enter P"  value="{{ old('maternity_gravida_status_p',$borrower->maternity_gravida_status_p) }}">
-                                @error('maternity_gravida_status_p')
+                                @error('maternity_gravida_status_p', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -260,7 +260,7 @@
                                 <label for="maternity_gravida_status_l">L<span class="text-danger">*</span></label>
                                 <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==2) return false;" class="form-control" id="maternity_gravida_status_l"
                                 name="maternity_gravida_status_l" placeholder="Enter L"  value="{{ old('maternity_gravida_status_l',$borrower->maternity_gravida_status_l) }}">
-                                @error('maternity_gravida_status_l')
+                                @error('maternity_gravida_status_l', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -269,7 +269,7 @@
                                 <label for="maternity_gravida_status_a">A<span class="text-danger">*</span></label>
                                 <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==2) return false;" class="form-control" id="maternity_gravida_status_a"
                                 name="maternity_gravida_status_a" placeholder="Enter A"  value="{{ old('maternity_gravida_status_a',$borrower->maternity_gravida_status_a) }}">
-                                @error('maternity_gravida_status_a')
+                                @error('maternity_gravida_status_a', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -283,7 +283,7 @@
                                     <option value="No" {{ old('premature_baby') == 'No' ? 'selected' : '' }}>No
                                     </option>
                                 </select>
-                                @error('premature_baby')
+                                @error('premature_baby', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -293,7 +293,7 @@
                                 <input type="date" class="form-control" id="date_of_discharge" name="date_of_discharge" 
                                 value="{{ old('date_of_discharge',$borrower->date_of_discharge) }}">
 
-                                @error('date_of_discharge')
+                                @error('date_of_discharge', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -303,7 +303,7 @@
                                 <input type="time" class="form-control" id="time_of_discharge" name="time_of_discharge" 
                                 value="{{ old('time_of_discharge',$borrower->time_of_discharge) }}">
 
-                                @error('time_of_discharge')
+                                @error('time_of_discharge', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -321,7 +321,7 @@
                                     <option value="LAMA" {{ old('discharge_status') == 'LAMA' ? 'selected' : '' }}>LAMA
                                     </option>
                                 </select>
-                                @error('discharge_status')
+                                @error('discharge_status', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -334,10 +334,10 @@
                                 <input type="file" name="death_summary_file" id="death_summary_file" hidden  onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                                     <label for="death_summary_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
                                 </div>
-                                @error('death_summary')
+                                @error('death_summary', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
-                                @error('death_summary_file')
+                                @error('death_summary_file', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -347,7 +347,7 @@
                                 <textarea class="form-control" id="discharge_status_comments" name="discharge_status_comments" maxlength="250" placeholder="Claimant Comments"
                                 rows="5">{{ old('discharge_status_comments') }}</textarea>
 
-                                @error('discharge_status_comments')
+                                @error('discharge_status_comments', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>

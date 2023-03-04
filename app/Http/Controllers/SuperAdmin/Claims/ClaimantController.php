@@ -703,7 +703,9 @@ class ClaimantController extends Controller
             'co_borrower_comments.required'          => 'Please Enter Co Borrower Comments',
         ];
 
-        $this->validate($request, $rules, $messages);
+        // $this->validate($request, $rules, $messages);
+
+        $this->validateWithBag('borrower-details-form', $request, $rules, $messages);
 
         $borrower =  Borrower::updateOrCreate(
             [
@@ -871,7 +873,7 @@ class ClaimantController extends Controller
             
         ];
 
-        $this->validate($request, $rules, $messages);
+        $this->validateWithBag('lending-status-form', $request, $rules, $messages);
        
         $input  = $request->except('_token');
         $input['borrower_id'] = $id;
@@ -951,7 +953,8 @@ class ClaimantController extends Controller
             'death_summary_file.required'=>'Please upload death summary file'
             
         ];
-         $this->validate($request,$rules,$messages);
+
+         $this->validateWithBag('discharge-status-form', $request, $rules, $messages);
 
          $input  = $request->except('_token');
          

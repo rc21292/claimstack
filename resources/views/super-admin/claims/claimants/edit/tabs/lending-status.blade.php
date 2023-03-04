@@ -16,7 +16,7 @@
                                 <label for="borrower_id">Borrower  ID <span class="text-danger">*</span></label>
                                 <input type="text" readonly class="form-control" id="borrower_id" name="borrower_id" maxlength="60"
                                 placeholder="Enter Borrower Id" value="{{ old('borrower_id',$borrower->borrower_id) }}">
-                                @error('borrower_id')
+                                @error('borrower_id', 'lending-status-form')
                                 <span id="patient-id-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -25,7 +25,7 @@
                                 <label for="patient_id">Patient ID <span class="text-danger">*</span></label>
                                 <input type="text" readonly class="form-control" id="patient_id" name="patient_id" maxlength="60"
                                 placeholder="Enter Patient Id" value="{{ old('patient_id',$borrower->patient_id) }}">
-                                @error('patient_id')
+                                @error('patient_id', 'lending-status-form')
                                 <span id="patient-id-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -34,7 +34,7 @@
                                 <label for="claim_id">Cliam ID <span class="text-danger">*</span></label>
                                 <input type="text" readonly class="form-control" id="claim_id" name="claim_id" maxlength="60"
                                 placeholder="Enter Claim Id" value="{{ old('claim_id',$borrower->claim_id) }}">
-                                @error('claim_id')
+                                @error('claim_id', 'lending-status-form')
                                 <span id="claim-id-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -43,7 +43,7 @@
                                 <label for="hospital_name">Hospital Name <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="hospital_name" name="hospital_name"
                                 placeholder="Enter Hospital Name" value="{{ old('hospital_name',$borrower->hospital_name) }}">
-                                @error('hospital_name')
+                                @error('hospital_name', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -53,7 +53,7 @@
                                 <input type="text" class="form-control" id="hospital_address" name="hospital_address"
                                 placeholder="Address Line"
                                 value="{{ old('hospital_address',$borrower->hospital_address) }}">
-                                @error('hospital_address')
+                                @error('hospital_address', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -61,7 +61,7 @@
                             <div class="col-md-4 mt-3">
                                 <input type="text" class="form-control" id="hospital_city" name="hospital_city"
                                 placeholder="City" value="{{ old('hospital_city',$borrower->hospital_city) }}">
-                                @error('hospital_city')
+                                @error('hospital_city', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -69,7 +69,7 @@
                             <div class="col-md-4 mt-3">
                                 <input type="text" class="form-control" id="hospital_state" name="hospital_state"
                                 placeholder="State" value="{{ old('hospital_state',$borrower->hospital_state) }}">
-                                @error('hospital_state')
+                                @error('hospital_state', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -77,7 +77,7 @@
                             <div class="col-md-4 mt-3">
                                 <input type="number" class="form-control" id="hospital_pincode" name="hospital_pincode"
                                 placeholder="Pincode" value="{{ old('hospital_pincode',$borrower->hospital_pincode) }}">
-                                @error('hospital_pincode')
+                                @error('hospital_pincode', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -93,7 +93,7 @@
                                     <option @if( old('patient_title', $borrower->patient_title) == 'Mr.') selected @endif value="Mr.">Mr.</option>
                                     <option @if( old('patient_title', $borrower->patient_title) == 'Ms.') selected @endif value="Ms.">Ms.</option>
                                 </select>
-                                @error('patient_title')
+                                @error('patient_title', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -102,7 +102,7 @@
                                 <input type="text" maxlength="25" class="form-control" id="patient_lastname"
                                 name="patient_lastname" maxlength="30" placeholder="Last name"
                                 value="{{ old('patient_lastname',$borrower->patient_lastname) }}">
-                                @error('patient_lastname')
+                                @error('patient_lastname', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -111,7 +111,7 @@
                                 <input type="text" maxlength="25" class="form-control" id="patient_firstname"
                                 name="patient_firstname" maxlength="15" placeholder="First name"
                                 value="{{ old('patient_firstname',$borrower->patient_firstname) }}">
-                                @error('patient_firstname')
+                                @error('patient_firstname', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -120,7 +120,7 @@
                                 <input type="text" maxlength="25" class="form-control" id="patient_middlename"
                                 name="patient_middlename" maxlength="30" placeholder="Last name"
                                 value="{{ old('patient_middlename',$borrower->patient_middlename) }}">
-                                @error('patient_middlename')
+                                @error('patient_middlename', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -130,7 +130,7 @@
                                 <input type="text" maxlength="25" class="form-control" id="borrower_name"
                                 name="borrower_name" maxlength="30" placeholder="Middle name"
                                 value="{{ old('borrower_name',$borrower->borrower_name) }}">
-                                @error('borrower_name')
+                                @error('borrower_name', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -139,7 +139,7 @@
                                 <label for="borrower_email_id">Borrower Personal email id <span class="text-danger">*</span></label>
                                 <input type="email" class="form-control" id="borrower_email_id" name="borrower_email_id" maxlength="45"
                                 placeholder="Enter Borrower Personal email id" value="{{ old('borrower_email_id',$borrower->borrower_email_id) }}">
-                                @error('borrower_email_id')
+                                @error('borrower_email_id', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -148,7 +148,7 @@
                                 <label for="borrower_official_email_id">Borrower official email id<span class="text-danger">*</span></label>
                                 <input type="email" class="form-control" id="borrower_official_email_id" name="borrower_official_email_id" maxlength="45"
                                 placeholder="Enter Borrower official email id" value="{{ old('borrower_official_email_id',$borrower->borrower_official_email_id) }}">
-                                @error('borrower_official_email_id')
+                                @error('borrower_official_email_id', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -162,7 +162,7 @@
                                     placeholder="Enter Claimant Mobile No."
                                     value="{{ old('borrower_mobile_no',$borrower->borrower_mobile_no) }}">
                                 </div>
-                                @error('borrower_mobile_no')
+                                @error('borrower_mobile_no', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -176,10 +176,10 @@
                                     <input type="file" name="borrower_pan_no_file" id="borrower_pan_no_file" hidden  onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                                     <label for="borrower_pan_no_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
                                 </div>
-                                @error('borrower_pan_no')
+                                @error('borrower_pan_no', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
-                                @error('borrower_pan_no_file')
+                                @error('borrower_pan_no_file', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -193,10 +193,10 @@
                                     <input type="file" name="borrower_aadhar_no_file" id="borrower_aadhar_no_file" hidden  onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                                     <label for="borrower_aadhar_no_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
                                 </div>
-                                @error('borrower_aadhar_no')
+                                @error('borrower_aadhar_no', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
-                                @error('borrower_aadhar_no_file')
+                                @error('borrower_aadhar_no_file', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -208,7 +208,7 @@
                                 pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==8) return false;"
                                 placeholder="Enter Estimated Amount"
                                 value="{{ old('estimated_amount',$borrower->estimated_amount) }}">
-                                @error('estimated_amount')
+                                @error('estimated_amount', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -219,7 +219,7 @@
                                 pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==8) return false;"
                                 placeholder="Enter Estimated Amount"
                                 value="{{ old('final_assessment_amount',$borrower->final_assessment_amount) }}">
-                                @error('final_assessment_amount')
+                                @error('final_assessment_amount', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -234,7 +234,7 @@
                                     <option value="Term" {{ old('medical_lending_type') == 'Term' ? 'selected' : '' }}>Term
                                     </option>
                                 </select>
-                                @error('medical_lending_type')
+                                @error('medical_lending_type', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -248,7 +248,7 @@
                                     <option value="No" {{ old('vendor_partner_name_nbfc_or_bank') == 'No' ? 'selected' : '' }}>No
                                     </option>
                                 </select>
-                                @error('vendor_partner_name_nbfc_or_bank')
+                                @error('vendor_partner_name_nbfc_or_bank', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -257,7 +257,7 @@
                                 <label for="vendor_partner_id">Vendor Partner ID<span class="text-danger">*</span></label>
                                 <input type="text" maxlength="25" class="form-control" id="vendor_partner_id"
                                 name="vendor_partner_id" maxlength="30" placeholder="Last name"  value="{{ old('vendor_partner_id',$borrower->vendor_partner_id) }}">
-                                @error('vendor_partner_id')
+                                @error('vendor_partner_id', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>                
@@ -266,7 +266,7 @@
                                 <label for="loan_application_comments">Loan application Comments </label>
                                 <textarea class="form-control" id="loan_application_comments" name="loan_application_comments" maxlength="250" placeholder="Claimant Comments"
                                 rows="5">{{ old('loan_application_comments') }}</textarea>
-                                @error('loan_application_comments')
+                                @error('loan_application_comments', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>            
@@ -287,7 +287,7 @@
                                 <input type="date" class="form-control" id="date_of_loan_application" name="date_of_loan_application" 
                                 value="{{ old('date_of_loan_application',$borrower->date_of_loan_application) }}">
 
-                                @error('date_of_loan_application')
+                                @error('date_of_loan_application', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -297,7 +297,7 @@
                                 <input type="time" class="form-control" id="time_of_loan_application" name="time_of_loan_application" 
                                 value="{{ old('time_of_loan_application',$borrower->time_of_loan_application) }}">
 
-                                @error('time_of_loan_application')
+                                @error('time_of_loan_application', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -307,7 +307,7 @@
                                 <input type="date" class="form-control" id="date_of_loan_re_application" name="date_of_loan_re_application" 
                                 value="{{ old('date_of_loan_re_application',$borrower->date_of_loan_re_application) }}">
 
-                                @error('date_of_loan_re_application')
+                                @error('date_of_loan_re_application', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -317,7 +317,7 @@
                                 <input type="time" class="form-control" id="time_of_loan_re_application" name="time_of_loan_re_application" 
                                 value="{{ old('time_of_loan_re_application',$borrower->time_of_loan_re_application) }}">
 
-                                @error('time_of_loan_re_application')
+                                @error('time_of_loan_re_application', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -330,10 +330,10 @@
                                     <input type="file" name="loan_id_or_no_file" id="loan_id_or_no_file" hidden  onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                                     <label for="loan_id_or_no_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
                                 </div>
-                                @error('loan_id_or_no')
+                                @error('loan_id_or_no', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
-                                @error('loan_id_or_no_file')
+                                @error('loan_id_or_no_file', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -347,7 +347,7 @@
                                     <option value="Rejected" {{ old('loan_status') == 'Rejected' ? 'selected' : '' }}>Rejected </option>
                                     <option value="Re-applied" {{ old('loan_status') == 'Re-applied' ? 'selected' : '' }}>Re-applied </option>
                                 </select>
-                                @error('loan_status')
+                                @error('loan_status', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -361,10 +361,10 @@
                                     <input type="file" name="loan_approved_amount_file" id="loan_approved_amount_file" hidden  onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                                     <label for="loan_approved_amount_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
                                 </div>
-                                @error('loan_approved_amount')
+                                @error('loan_approved_amount', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
-                                @error('loan_approved_amount_file')
+                                @error('loan_approved_amount_file', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -373,7 +373,7 @@
                                 <label for="loan_disbursed_amount">Loan Disbursed Amount<span class="text-danger">*</span></label>
                                 <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==8) return false;" class="form-control" id="loan_disbursed_amount"
                                 name="loan_disbursed_amount" maxlength="30" placeholder="Loan Disbursed Amount"  value="{{ old('loan_disbursed_amount',$borrower->loan_disbursed_amount) }}">
-                                @error('loan_disbursed_amount')
+                                @error('loan_disbursed_amount', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -383,7 +383,7 @@
                                 <input type="date" class="form-control" id="date_of_loan_disbursement" name="date_of_loan_disbursement" 
                                 value="{{ old('date_of_loan_disbursement',$borrower->date_of_loan_disbursement) }}">
 
-                                @error('date_of_loan_disbursement')
+                                @error('date_of_loan_disbursement', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -394,7 +394,7 @@
                                 <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==2) return false;" placeholder="Loan Tenure" class="form-control" id="loan_tenure" name="loan_tenure" 
                                 value="{{ old('loan_tenure',$borrower->loan_tenure) }}">
 
-                                @error('loan_tenure')
+                                @error('loan_tenure', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -404,7 +404,7 @@
                                 <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==2) return false;" class="form-control" placeholder="Enter Loan Installments" id="loan_instalments" name="loan_instalments" 
                                 value="{{ old('loan_instalments',$borrower->loan_instalments) }}">
 
-                                @error('loan_instalments')
+                                @error('loan_instalments', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -416,7 +416,7 @@
                                 <input type="date" class="form-control" id="loan_start_date" name="loan_start_date" 
                                 value="{{ old('loan_start_date',$borrower->loan_start_date) }}">
 
-                                @error('loan_start_date')
+                                @error('loan_start_date', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -426,7 +426,7 @@
                                 <input type="date" class="form-control" id="loan_end_date" name="loan_end_date" 
                                 value="{{ old('loan_end_date',$borrower->loan_end_date) }}">
 
-                                @error('loan_end_date')
+                                @error('loan_end_date', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -436,7 +436,7 @@
                                 <input type="date" class="form-control" id="insurance_claim_settlement_date" name="insurance_claim_settlement_date" 
                                 value="{{ old('insurance_claim_settlement_date',$borrower->insurance_claim_settlement_date) }}">
 
-                                @error('insurance_claim_settlement_date')
+                                @error('insurance_claim_settlement_date', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -450,10 +450,10 @@
                                     <input type="file" name="insurance_claim_settled_amount_file" id="insurance_claim_settled_amount_file" hidden  onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                                     <label for="insurance_claim_settled_amount_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
                                 </div>
-                                @error('insurance_claim_settled_amount')
+                                @error('insurance_claim_settled_amount', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
-                                @error('insurance_claim_settled_amount_file')
+                                @error('insurance_claim_settled_amount_file', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -469,10 +469,10 @@
                                     <input type="file" name="insurance_claim_disbursement_amount_file" id="insurance_claim_disbursement_amount_file" hidden  onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                                     <label for="insurance_claim_disbursement_amount_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
                                 </div>
-                                @error('insurance_claim_amount_disbursement_date')
+                                @error('insurance_claim_amount_disbursement_date', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
-                                @error('insurance_claim_disbursement_amount_file')
+                                @error('insurance_claim_disbursement_amount_file', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -482,7 +482,7 @@
                                 <label for="loan_application_status_comments">Loan Application Status comments </label>
                                 <textarea class="form-control" id="loan_application_status_comments" name="loan_application_status_comments" maxlength="250" placeholder="Loan Application Status comments"
                                 rows="5">{{ old('loan_application_status_comments') }}</textarea>
-                                @error('loan_application_status_comments')
+                                @error('loan_application_status_comments', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div> 
@@ -501,7 +501,7 @@
                                 <input type="number" class="form-control" id="re_apply_loan_amount" name="re_apply_loan_amount" 
                                 value="{{ old('re_apply_loan_amount',$borrower->re_apply_loan_amount) }}">
 
-                                @error('re_apply_loan_amount')
+                                @error('re_apply_loan_amount', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -511,7 +511,7 @@
                                 <input type="text" class="form-control" id="loan_re_application_status_comments" name="loan_re_application_status_comments" 
                                 value="{{ old('loan_re_application_status_comments',$borrower->loan_re_application_status_comments) }}">
 
-                                @error('loan_re_application_status_comments')
+                                @error('loan_re_application_status_comments', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>

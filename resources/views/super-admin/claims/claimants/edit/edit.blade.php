@@ -164,7 +164,7 @@
                             </div>
                         @endif
 
-                        <div class="tab-pane show active" id="assessment_status_creation_tab">
+                        <div class="tab-pane" id="assessment_status_creation_tab">
                             @include('super-admin.claims.claimants.edit.tabs.assessment-status')
                         </div>
 
@@ -172,7 +172,7 @@
                             @include('super-admin.claims.claimants.edit.tabs.lending-status')
                         </div>
 
-                        <div class="tab-pane show active" id="discharge_status_creation_tab">
+                        <div class="tab-pane" id="discharge_status_creation_tab">
                             @include('super-admin.claims.claimants.edit.tabs.discharge-status')
                         </div>
 
