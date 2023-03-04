@@ -30,7 +30,7 @@
             <div class="col-12">
                 <div class="card no-shadow">
                     <div class="card-body">
-                        <form action="{{ route('super-admin.claims.store') }}" method="post" id="claim-form" enctype="multipart/form-data">
+                        <form action="{{ route('super-admin.claims.processing') }}" method="post" id="claim-form" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group row">
@@ -88,7 +88,7 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="patient_age">Patient Age <span class="text-danger">*</span></label>
-                                    <input type="number" onkeypress="return isNumberKey(event)" class="form-control"
+                                    <input type="number" class="form-control"
                                     id="patient_age" name="patient_age" placeholder="Patient Age"
                                     value="{{ old('patient_age') }}">
                                     @error('patient_age')
@@ -99,7 +99,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="patient_gender">Patient Gender <span class="text-danger">*</span></label>
                                     <select class="form-select" id="patient_gender" name="patient_gender">
-                                        <option value="">Select patient_gender</option>
+                                        <option value="">Please Select</option>
                                         <option value="Male" {{ old('patient_gender') == 'Male' ? 'selected' : '' }}>Male
                                         </option>
                                         <option value="Female" {{ old('patient_gender') == 'Female' ? 'selected' : '' }}>Female
@@ -180,7 +180,7 @@
                                 </div>
 
 
-                                <div class="col-md-4 mt-1">
+                                <div class="col-md-4 mt-2">
                                     <input type="text" class="form-control" id="hospital_city" name="hospital_city" placeholder="City"
                                     value="{{ old('hospital_city') }}">
                                     @error('hospital_city')
@@ -204,10 +204,10 @@
                                     @enderror
                                 </div>
 
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-6 mb-3 mt-2">
                                     <label for="insurance_company">Insurance Company<span class="text-danger">*</span></label>
                                     <select class="form-control select2" id="insurance_company" name="insurance_company" data-toggle="select2">
-                                        <option value="">Select Insurance Company</option>
+                                        <option value="">Please Select</option>
                                         @foreach ($insurers as $insurer)
                                         <option value="{{ $insurer->id }}"
                                             {{ old('insurance_company') == $insurer->id ? 'selected' : '' }}> {{ $insurer->name }}
@@ -219,10 +219,10 @@
                                     @enderror
                                 </div>
 
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-6 mb-3 mt-2">
                                     <label for="policy_type">Policy Type <span class="text-danger">*</span></label>
                                     <select class="form-select" id="policy_type" name="policy_type" onchange="setGroupName();">
-                                        <option value="">Select Policy Type</option>
+                                        <option value="">Please Select</option>
                                         <option value="Group" {{ old('policy_type') == 'Group' ? 'selected' : '' }}>Group
                                         </option>
                                         <option value="Retail" {{ old('policy_type') == 'Retail' ? 'selected' : '' }}>Retail
@@ -237,7 +237,7 @@
                                 <div class="col-md-6 mb-3">
                                     <label for="policy_name">Policy Name <span class="text-danger">*</span></label>
                                     <select class="form-control select2" id="policy_name" name="policy_name" data-toggle="select2">
-                                        <option value="">Select Policy</option>
+                                        <option value="">Please Select</option>
                                         @foreach ($insurers as $insurer)
                                         <option value="{{ $insurer->id }}"
                                             {{ old('policy_name') == $insurer->id ? 'selected' : '' }}>
@@ -503,12 +503,11 @@
                                     </select>
                                     @error('disease_category')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                    @e
-                                    nderror
+                                    @enderror
                                 </div>
                                 <div class="col-md-6 mt-3">
                                     <label for="disease_name">Disease Name. <span class="text-danger">*</span></label>
-                                    <input type="text" maxlength="45" class="form-control" id="disease_name" name="disease_name"
+                                    <input type="text" maxlength="100" class="form-control" id="disease_name" name="disease_name"
                                     value="{{ old('disease_name') }}" placeholder="Disease Name">
                                     @error('disease_name')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -566,7 +565,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="primary_diagnosis_icd_leveli_disease">ICD - Level - I - Disease <span class="text-danger">*</span></label>
                                     <select class="form-select" id="primary_diagnosis_icd_leveli_disease" name="primary_diagnosis_icd_leveli_disease">
-                                        <option value="">Select primary_diagnosis_icd_leveli_disease</option>
+                                        <option value="">Please Select</option>
                                         <option value="Male" {{ old('primary_diagnosis_icd_leveli_disease') == 'Male' ? 'selected' : '' }}>Male </option>
                                         <option value="Female" {{ old('primary_diagnosis_icd_leveli_disease') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('primary_diagnosis_icd_leveli_disease') == 'Other' ? 'selected' : '' }}>Other </option>
@@ -578,8 +577,7 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="primary_diagnosis_icd_leveli_code">ICD - Level - I - Code <span class="text-danger">*</span></label>
-                                    <input type="text" maxlength="16" class="form-control" id="primary_diagnosis_icd_leveli_code" name="primary_diagnosis_icd_leveli_code"
-                                    placeholder="Policy No." value="{{ old('primary_diagnosis_icd_leveli_code') }}">
+                                    <input type="text" maxlength="16" class="form-control" id="primary_diagnosis_icd_leveli_code" name="primary_diagnosis_icd_leveli_code" placeholder="Enter ICD - Level - I - Code" value="{{ old('primary_diagnosis_icd_leveli_code') }}">
                                     @error('primary_diagnosis_icd_leveli_code')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -588,7 +586,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="primary_diagnosis_icd_levelii_disease">ICD - Level - II - Disease <span class="text-danger">*</span></label>
                                     <select class="form-select" id="primary_diagnosis_icd_levelii_disease" name="primary_diagnosis_icd_levelii_disease">
-                                        <option value="">Select primary_diagnosis_icd_levelii_disease</option>
+                                        <option value="">Please Select</option>
                                         <option value="Male" {{ old('primary_diagnosis_icd_levelii_disease') == 'Male' ? 'selected' : '' }}>Male </option>
                                         <option value="Female" {{ old('primary_diagnosis_icd_levelii_disease') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('primary_diagnosis_icd_levelii_disease') == 'Other' ? 'selected' : '' }}>Other </option>
@@ -600,8 +598,7 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="primary_diagnosis_icd_levelii_code">ICD - Level - II - Code <span class="text-danger">*</span></label>
-                                    <input type="text" maxlength="16" class="form-control" id="primary_diagnosis_icd_levelii_code" name="primary_diagnosis_icd_levelii_code"
-                                    placeholder="Policy No." value="{{ old('primary_diagnosis_icd_levelii_code') }}">
+                                    <input type="text" maxlength="16" class="form-control" id="primary_diagnosis_icd_levelii_code" name="primary_diagnosis_icd_levelii_code"  placeholder="Enter ICD - Level - II - Code" value="{{ old('primary_diagnosis_icd_levelii_code') }}">
                                     @error('primary_diagnosis_icd_levelii_code')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -611,7 +608,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="primary_diagnosis_icd_leveliii_disease">ICD - Level - III - Disease <span class="text-danger">*</span></label>
                                     <select class="form-select" id="primary_diagnosis_icd_leveliii_disease" name="primary_diagnosis_icd_leveliii_disease">
-                                        <option value="">Select primary_diagnosis_icd_leveliii_disease</option>
+                                        <option value="">Please Select</option>
                                         <option value="Male" {{ old('primary_diagnosis_icd_leveliii_disease') == 'Male' ? 'selected' : '' }}>Male </option>
                                         <option value="Female" {{ old('primary_diagnosis_icd_leveliii_disease') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('primary_diagnosis_icd_leveliii_disease') == 'Other' ? 'selected' : '' }}>Other </option>
@@ -623,8 +620,7 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="primary_diagnosis_icd_leveliii_code">ICD - Level - III - Code <span class="text-danger">*</span></label>
-                                    <input type="text" maxlength="16" class="form-control" id="primary_diagnosis_icd_leveliii_code" name="primary_diagnosis_icd_leveliii_code"
-                                    placeholder="Policy No." value="{{ old('primary_diagnosis_icd_leveliii_code') }}">
+                                    <input type="text" maxlength="16" class="form-control" id="primary_diagnosis_icd_leveliii_code" name="primary_diagnosis_icd_leveliii_code"  placeholder="Enter ICD - Level - III - Code" value="{{ old('primary_diagnosis_icd_leveliii_code') }}">
                                     @error('primary_diagnosis_icd_leveliii_code')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -634,7 +630,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="primary_diagnosis_icd_leveliv_disease">ICD - Level - IV - Disease <span class="text-danger">*</span></label>
                                     <select class="form-select" id="primary_diagnosis_icd_leveliv_disease" name="primary_diagnosis_icd_leveliv_disease">
-                                        <option value="">Select primary_diagnosis_icd_leveliv_disease</option>
+                                        <option value="">Please Select</option>
                                         <option value="Male" {{ old('primary_diagnosis_icd_leveliv_disease') == 'Male' ? 'selected' : '' }}>Male </option>
                                         <option value="Female" {{ old('primary_diagnosis_icd_leveliv_disease') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('primary_diagnosis_icd_leveliv_disease') == 'Other' ? 'selected' : '' }}>Other </option>
@@ -647,7 +643,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="primary_diagnosis_icd_leveliv_code">ICD - Level - IV - Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="primary_diagnosis_icd_leveliv_code" name="primary_diagnosis_icd_leveliv_code"
-                                    placeholder="Policy No." value="{{ old('primary_diagnosis_icd_leveliv_code') }}">
+                                    placeholder="Enter ICD - Level - IV - Code" value="{{ old('primary_diagnosis_icd_leveliv_code') }}">
                                     @error('primary_diagnosis_icd_leveliv_code')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -660,7 +656,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="additional_diagnosis_icd_leveli_disease">ICD - Level - I - Disease <span class="text-danger">*</span></label>
                                     <select class="form-select" id="additional_diagnosis_icd_leveli_disease" name="additional_diagnosis_icd_leveli_disease">
-                                        <option value="">Select additional_diagnosis_icd_leveli_disease</option>
+                                        <option value="">Please Select</option>
                                         <option value="Male" {{ old('additional_diagnosis_icd_leveli_disease') == 'Male' ? 'selected' : '' }}>Male </option>
                                         <option value="Female" {{ old('additional_diagnosis_icd_leveli_disease') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('additional_diagnosis_icd_leveli_disease') == 'Other' ? 'selected' : '' }}>Other </option>
@@ -673,7 +669,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="additional_diagnosis_icd_leveli_code">ICD - Level - I - Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="additional_diagnosis_icd_leveli_code" name="additional_diagnosis_icd_leveli_code"
-                                    placeholder="Policy No." value="{{ old('additional_diagnosis_icd_leveli_code') }}">
+                                    placeholder="Enter ICD - Level - I - Code" value="{{ old('additional_diagnosis_icd_leveli_code') }}">
                                     @error('additional_diagnosis_icd_leveli_code')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -682,7 +678,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="additional_diagnosis_icd_levelii_disease">ICD - Level - II - Disease <span class="text-danger">*</span></label>
                                     <select class="form-select" id="additional_diagnosis_icd_levelii_disease" name="additional_diagnosis_icd_levelii_disease">
-                                        <option value="">Select additional_diagnosis_icd_levelii_disease</option>
+                                        <option value="">Please Select</option>
                                         <option value="Male" {{ old('additional_diagnosis_icd_levelii_disease') == 'Male' ? 'selected' : '' }}>Male </option>
                                         <option value="Female" {{ old('additional_diagnosis_icd_levelii_disease') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('additional_diagnosis_icd_levelii_disease') == 'Other' ? 'selected' : '' }}>Other </option>
@@ -694,8 +690,7 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="additional_diagnosis_icd_levelii_code">ICD - Level - II - Code <span class="text-danger">*</span></label>
-                                    <input type="text" maxlength="16" class="form-control" id="additional_diagnosis_icd_levelii_code" name="additional_diagnosis_icd_levelii_code"
-                                    placeholder="Policy No." value="{{ old('additional_diagnosis_icd_levelii_code') }}">
+                                    <input type="text" maxlength="16" class="form-control" id="additional_diagnosis_icd_levelii_code" name="additional_diagnosis_icd_levelii_code"  placeholder="Enter ICD - Level - II - Code" value="{{ old('additional_diagnosis_icd_levelii_code') }}">
                                     @error('additional_diagnosis_icd_levelii_code')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -705,7 +700,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="additional_diagnosis_icd_leveliii_disease">ICD - Level - III - Disease <span class="text-danger">*</span></label>
                                     <select class="form-select" id="additional_diagnosis_icd_leveliii_disease" name="additional_diagnosis_icd_leveliii_disease">
-                                        <option value="">Select additional_diagnosis_icd_leveliii_disease</option>
+                                        <option value="">Please Select</option>
                                         <option value="Male" {{ old('additional_diagnosis_icd_leveliii_disease') == 'Male' ? 'selected' : '' }}>Male </option>
                                         <option value="Female" {{ old('additional_diagnosis_icd_leveliii_disease') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('additional_diagnosis_icd_leveliii_disease') == 'Other' ? 'selected' : '' }}>Other </option>
@@ -717,8 +712,7 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="additional_diagnosis_icd_leveliii_code">ICD - Level - III - Code <span class="text-danger">*</span></label>
-                                    <input type="text" maxlength="16" class="form-control" id="additional_diagnosis_icd_leveliii_code" name="additional_diagnosis_icd_leveliii_code"
-                                    placeholder="Policy No." value="{{ old('additional_diagnosis_icd_leveliii_code') }}">
+                                    <input type="text" maxlength="16" class="form-control" id="additional_diagnosis_icd_leveliii_code" name="additional_diagnosis_icd_leveliii_code"  placeholder="Enter ICD - Level - III - Code" value="{{ old('additional_diagnosis_icd_leveliii_code') }}">
                                     @error('additional_diagnosis_icd_leveliii_code')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -728,7 +722,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="additional_diagnosis_icd_leveliv_disease">ICD - Level - IV - Disease <span class="text-danger">*</span></label>
                                     <select class="form-select" id="additional_diagnosis_icd_leveliv_disease" name="additional_diagnosis_icd_leveliv_disease">
-                                        <option value="">Select additional_diagnosis_icd_leveliv_disease</option>
+                                        <option value="">Please Select</option>
                                         <option value="Male" {{ old('additional_diagnosis_icd_leveliv_disease') == 'Male' ? 'selected' : '' }}>Male </option>
                                         <option value="Female" {{ old('additional_diagnosis_icd_leveliv_disease') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('additional_diagnosis_icd_leveliv_disease') == 'Other' ? 'selected' : '' }}>Other </option>
@@ -740,8 +734,7 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="additional_diagnosis_icd_leveliv_code">ICD - Level - IV - Code <span class="text-danger">*</span></label>
-                                    <input type="text" maxlength="16" class="form-control" id="additional_diagnosis_icd_leveliv_code" name="additional_diagnosis_icd_leveliv_code"
-                                    placeholder="Policy No." value="{{ old('additional_diagnosis_icd_leveliv_code') }}">
+                                    <input type="text" maxlength="16" class="form-control" id="additional_diagnosis_icd_leveliv_code" name="additional_diagnosis_icd_leveliv_code"  placeholder="Enter ICD - Level - IV - Code" value="{{ old('additional_diagnosis_icd_leveliv_code') }}">
                                     @error('additional_diagnosis_icd_leveliv_code')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -754,7 +747,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="co_morbidities_icd_leveli_disease">ICD - Level - I - Disease <span class="text-danger">*</span></label>
                                     <select class="form-select" id="co_morbidities_icd_leveli_disease" name="co_morbidities_icd_leveli_disease">
-                                        <option value="">Select co_morbidities_icd_leveli_disease</option>
+                                        <option value="">Please Select</option>
                                         <option value="Male" {{ old('co_morbidities_icd_leveli_disease') == 'Male' ? 'selected' : '' }}>Male </option>
                                         <option value="Female" {{ old('co_morbidities_icd_leveli_disease') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('co_morbidities_icd_leveli_disease') == 'Other' ? 'selected' : '' }}>Other </option>
@@ -767,7 +760,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="co_morbidities_icd_leveli_code">ICD - Level - I - Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="co_morbidities_icd_leveli_code" name="co_morbidities_icd_leveli_code"
-                                    placeholder="Policy No." value="{{ old('co_morbidities_icd_leveli_code') }}">
+                                    placeholder="Enter ICD - Level - I - Code" value="{{ old('co_morbidities_icd_leveli_code') }}">
                                     @error('co_morbidities_icd_leveli_code')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -776,7 +769,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="co_morbidities_icd_levelii_disease">ICD - Level - II - Disease <span class="text-danger">*</span></label>
                                     <select class="form-select" id="co_morbidities_icd_levelii_disease" name="co_morbidities_icd_levelii_disease">
-                                        <option value="">Select co_morbidities_icd_levelii_disease</option>
+                                        <option value="">Please Select</option>
                                         <option value="Male" {{ old('co_morbidities_icd_levelii_disease') == 'Male' ? 'selected' : '' }}>Male </option>
                                         <option value="Female" {{ old('co_morbidities_icd_levelii_disease') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('co_morbidities_icd_levelii_disease') == 'Other' ? 'selected' : '' }}>Other </option>
@@ -789,7 +782,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="co_morbidities_icd_levelii_code">ICD - Level - II - Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="co_morbidities_icd_levelii_code" name="co_morbidities_icd_levelii_code"
-                                    placeholder="Policy No." value="{{ old('co_morbidities_icd_levelii_code') }}">
+                                    placeholder="Enter ICD - Level - II - Code" value="{{ old('co_morbidities_icd_levelii_code') }}">
                                     @error('co_morbidities_icd_levelii_code')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -799,7 +792,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="co_morbidities_icd_leveliii_disease">ICD - Level - III - Disease <span class="text-danger">*</span></label>
                                     <select class="form-select" id="co_morbidities_icd_leveliii_disease" name="co_morbidities_icd_leveliii_disease">
-                                        <option value="">Select co_morbidities_icd_leveliii_disease</option>
+                                        <option value="">Please Select</option>
                                         <option value="Male" {{ old('co_morbidities_icd_leveliii_disease') == 'Male' ? 'selected' : '' }}>Male </option>
                                         <option value="Female" {{ old('co_morbidities_icd_leveliii_disease') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('co_morbidities_icd_leveliii_disease') == 'Other' ? 'selected' : '' }}>Other </option>
@@ -812,7 +805,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="co_morbidities_icd_leveliii_code">ICD - Level - III - Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="co_morbidities_icd_leveliii_code" name="co_morbidities_icd_leveliii_code"
-                                    placeholder="Policy No." value="{{ old('co_morbidities_icd_leveliii_code') }}">
+                                    placeholder="Enter ICD - Level - III - Code" value="{{ old('co_morbidities_icd_leveliii_code') }}">
                                     @error('co_morbidities_icd_leveliii_code')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -822,7 +815,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="co_morbidities_icd_leveliv_disease">ICD - Level - IV - Disease <span class="text-danger">*</span></label>
                                     <select class="form-select" id="co_morbidities_icd_leveliv_disease" name="co_morbidities_icd_leveliv_disease">
-                                        <option value="">Select co_morbidities_icd_leveliv_disease</option>
+                                        <option value="">Please Select</option>
                                         <option value="Male" {{ old('co_morbidities_icd_leveliv_disease') == 'Male' ? 'selected' : '' }}>Male </option>
                                         <option value="Female" {{ old('co_morbidities_icd_leveliv_disease') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('co_morbidities_icd_leveliv_disease') == 'Other' ? 'selected' : '' }}>Other </option>
@@ -835,7 +828,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="co_morbidities_icd_leveliv_code">ICD - Level - IV - Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="co_morbidities_icd_leveliv_code" name="co_morbidities_icd_leveliv_code"
-                                    placeholder="Policy No." value="{{ old('co_morbidities_icd_leveliv_code') }}">
+                                    placeholder="Enter ICD - Level - IV - Code" value="{{ old('co_morbidities_icd_leveliv_code') }}">
                                     @error('co_morbidities_icd_leveliv_code')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -844,8 +837,7 @@
 
                                 <div class="col-md-12 mt-3">
                                     <label for="co_morbidities_comments">Co-Morbidities - Comments </label>
-                                    <textarea class="form-control" id="co_morbidities_comments" name="co_morbidities_comments" maxlength="250" placeholder="Comments"
-                                    rows="5">{{ old('co_morbidities_comments') }}</textarea>
+                                    <textarea class="form-control" id="co_morbidities_comments" name="co_morbidities_comments" maxlength="250" placeholder="Comments"  rows="5">{{ old('co_morbidities_comments') }}</textarea>
                                     @error('co_morbidities_comments')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -857,8 +849,8 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="procedure_name">Procedure Name <span class="text-danger">*</span></label>
-                                    <input type="text" maxlength="16" class="form-control" id="procedure_name" name="procedure_name"
-                                    placeholder="Policy No." value="{{ old('procedure_name') }}">
+                                    <input type="text" maxlength="100" class="form-control" id="procedure_name" name="procedure_name"
+                                    placeholder="Enter Procedure Name" value="{{ old('procedure_name') }}">
                                     @error('procedure_name')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -871,7 +863,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="procedure_i_pcs_group_name">PCS Group - Name <span class="text-danger">*</span></label>
                                     <select class="form-select" id="procedure_i_pcs_group_name" name="procedure_i_pcs_group_name">
-                                        <option value="">Select procedure_i_pcs_group_name</option>
+                                        <option value="">Please Select</option>
                                         <option value="Male" {{ old('procedure_i_pcs_group_name') == 'Male' ? 'selected' : '' }}>Male </option>
                                         <option value="Female" {{ old('procedure_i_pcs_group_name') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('procedure_i_pcs_group_name') == 'Other' ? 'selected' : '' }}>Other </option>
@@ -884,7 +876,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="procedure_i_pcs_group_code">PCS Group - Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="procedure_i_pcs_group_code" name="procedure_i_pcs_group_code"
-                                    placeholder="Policy No." value="{{ old('procedure_i_pcs_group_code') }}">
+                                    placeholder="Enter PCS Group - Code" value="{{ old('procedure_i_pcs_group_code') }}">
                                     @error('procedure_i_pcs_group_code')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -893,7 +885,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="procedure_i_pcs_sub_group_name">PCS Sub-Group - Name <span class="text-danger">*</span></label>
                                     <select class="form-select" id="procedure_i_pcs_sub_group_name" name="procedure_i_pcs_sub_group_name">
-                                        <option value="">Select procedure_i_pcs_sub_group_name</option>
+                                        <option value="">Please Select</option>
                                         <option value="Male" {{ old('procedure_i_pcs_sub_group_name') == 'Male' ? 'selected' : '' }}>Male </option>
                                         <option value="Female" {{ old('procedure_i_pcs_sub_group_name') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('procedure_i_pcs_sub_group_name') == 'Other' ? 'selected' : '' }}>Other </option>
@@ -906,7 +898,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="procedure_i_pcs_sub_group_code">PCS Sub-Group - Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="procedure_i_pcs_sub_group_code" name="procedure_i_pcs_sub_group_code"
-                                    placeholder="Policy No." value="{{ old('procedure_i_pcs_sub_group_code') }}">
+                                    placeholder="Enter PCS Group - Code" value="{{ old('procedure_i_pcs_sub_group_code') }}">
                                     @error('procedure_i_pcs_sub_group_code')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -916,7 +908,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="procedure_i_pcs_short_name">PCS Short Name <span class="text-danger">*</span></label>
                                     <select class="form-select" id="procedure_i_pcs_short_name" name="procedure_i_pcs_short_name">
-                                        <option value="">Select procedure_i_pcs_short_name</option>
+                                        <option value="">Please Select</option>
                                         <option value="Male" {{ old('procedure_i_pcs_short_name') == 'Male' ? 'selected' : '' }}>Male </option>
                                         <option value="Female" {{ old('procedure_i_pcs_short_name') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('procedure_i_pcs_short_name') == 'Other' ? 'selected' : '' }}>Other </option>
@@ -929,7 +921,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="procedure_i_pcs_code">PCS Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="procedure_i_pcs_code" name="procedure_i_pcs_code"
-                                    placeholder="Policy No." value="{{ old('procedure_i_pcs_code') }}">
+                                    placeholder="Enter PCS Code" value="{{ old('procedure_i_pcs_code') }}">
                                     @error('procedure_i_pcs_code')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -938,7 +930,7 @@
                                 <div class="col-md-12 mt-3">
                                     <label for="procedure_i_pcs_long_name">PCS Long Name <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="procedure_i_pcs_long_name" name="procedure_i_pcs_long_name"
-                                    placeholder="Policy No." value="{{ old('procedure_i_pcs_long_name') }}">
+                                    placeholder="Enter PCS Long Name" value="{{ old('procedure_i_pcs_long_name') }}">
                                     @error('procedure_i_pcs_long_name')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -950,7 +942,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="procedure_ii_pcs_group_name">PCS Group - Name <span class="text-danger">*</span></label>
                                     <select class="form-select" id="procedure_ii_pcs_group_name" name="procedure_ii_pcs_group_name">
-                                        <option value="">Select procedure_ii_pcs_group_name</option>
+                                        <option value="">Please Select</option>
                                         <option value="Male" {{ old('procedure_ii_pcs_group_name') == 'Male' ? 'selected' : '' }}>Male </option>
                                         <option value="Female" {{ old('procedure_ii_pcs_group_name') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('procedure_ii_pcs_group_name') == 'Other' ? 'selected' : '' }}>Other </option>
@@ -963,7 +955,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="procedure_ii_pcs_group_code">PCS Group - Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="procedure_ii_pcs_group_code" name="procedure_ii_pcs_group_code"
-                                    placeholder="Policy No." value="{{ old('procedure_ii_pcs_group_code') }}">
+                                    placeholder="Enter PCS Group - Code" value="{{ old('procedure_ii_pcs_group_code') }}">
                                     @error('procedure_ii_pcs_group_code')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -972,7 +964,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="procedure_ii_pcs_sub_group_name">PCS Sub-Group - Name <span class="text-danger">*</span></label>
                                     <select class="form-select" id="procedure_ii_pcs_sub_group_name" name="procedure_ii_pcs_sub_group_name">
-                                        <option value="">Select procedure_ii_pcs_sub_group_name</option>
+                                        <option value="">Please Select</option>
                                         <option value="Male" {{ old('procedure_ii_pcs_sub_group_name') == 'Male' ? 'selected' : '' }}>Male </option>
                                         <option value="Female" {{ old('procedure_ii_pcs_sub_group_name') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('procedure_ii_pcs_sub_group_name') == 'Other' ? 'selected' : '' }}>Other </option>
@@ -985,7 +977,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="procedure_ii_pcs_sub_group_code">PCS Sub-Group - Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="procedure_ii_pcs_sub_group_code" name="procedure_ii_pcs_sub_group_code"
-                                    placeholder="Policy No." value="{{ old('procedure_ii_pcs_sub_group_code') }}">
+                                    placeholder="Enter PCS Sub-Group - Code " value="{{ old('procedure_ii_pcs_sub_group_code') }}">
                                     @error('procedure_ii_pcs_sub_group_code')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -995,7 +987,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="procedure_ii_pcs_short_name">PCS Short Name <span class="text-danger">*</span></label>
                                     <select class="form-select" id="procedure_ii_pcs_short_name" name="procedure_ii_pcs_short_name">
-                                        <option value="">Select procedure_ii_pcs_short_name</option>
+                                        <option value="">Please Select</option>
                                         <option value="Male" {{ old('procedure_ii_pcs_short_name') == 'Male' ? 'selected' : '' }}>Male </option>
                                         <option value="Female" {{ old('procedure_ii_pcs_short_name') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('procedure_ii_pcs_short_name') == 'Other' ? 'selected' : '' }}>Other </option>
@@ -1008,7 +1000,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="procedure_ii_pcs_code">PCS Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="procedure_ii_pcs_code" name="procedure_ii_pcs_code"
-                                    placeholder="Policy No." value="{{ old('procedure_ii_pcs_code') }}">
+                                    placeholder="Enter PCS Code " value="{{ old('procedure_ii_pcs_code') }}">
                                     @error('procedure_ii_pcs_code')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -1017,7 +1009,7 @@
                                 <div class="col-md-12 mt-3">
                                     <label for="procedure_ii_pcs_long_name">PCS Long Name <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="procedure_ii_pcs_long_name" name="procedure_ii_pcs_long_name"
-                                    placeholder="Policy No." value="{{ old('procedure_ii_pcs_long_name') }}">
+                                    placeholder="Enter PCS Long Name" value="{{ old('procedure_ii_pcs_long_name') }}">
                                     @error('procedure_ii_pcs_long_name')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -1029,7 +1021,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="procedure_iii_pcs_group_name">PCS Group - Name <span class="text-danger">*</span></label>
                                     <select class="form-select" id="procedure_iii_pcs_group_name" name="procedure_iii_pcs_group_name">
-                                        <option value="">Select procedure_iii_pcs_group_name</option>
+                                        <option value="">Please Select</option>
                                         <option value="Male" {{ old('procedure_iii_pcs_group_name') == 'Male' ? 'selected' : '' }}>Male </option>
                                         <option value="Female" {{ old('procedure_iii_pcs_group_name') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('procedure_iii_pcs_group_name') == 'Other' ? 'selected' : '' }}>Other </option>
@@ -1042,7 +1034,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="procedure_iii_pcs_group_code">PCS Group - Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="procedure_iii_pcs_group_code" name="procedure_iii_pcs_group_code"
-                                    placeholder="Policy No." value="{{ old('procedure_iii_pcs_group_code') }}">
+                                    placeholder="Enter PCS Group - Code" value="{{ old('procedure_iii_pcs_group_code') }}">
                                     @error('procedure_iii_pcs_group_code')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -1051,7 +1043,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="procedure_iii_pcs_sub_group_name">PCS Sub-Group - Name <span class="text-danger">*</span></label>
                                     <select class="form-select" id="procedure_iii_pcs_sub_group_name" name="procedure_iii_pcs_sub_group_name">
-                                        <option value="">Select procedure_iii_pcs_sub_group_name</option>
+                                        <option value="">Please Select</option>
                                         <option value="Male" {{ old('procedure_iii_pcs_sub_group_name') == 'Male' ? 'selected' : '' }}>Male </option>
                                         <option value="Female" {{ old('procedure_iii_pcs_sub_group_name') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('procedure_iii_pcs_sub_group_name') == 'Other' ? 'selected' : '' }}>Other </option>
@@ -1064,7 +1056,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="procedure_iii_pcs_sub_group_code">PCS Sub-Group - Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="procedure_iii_pcs_sub_group_code" name="procedure_iii_pcs_sub_group_code"
-                                    placeholder="Policy No." value="{{ old('procedure_iii_pcs_sub_group_code') }}">
+                                    placeholder="Enter PCS Sub-Group - Code" value="{{ old('procedure_iii_pcs_sub_group_code') }}">
                                     @error('procedure_iii_pcs_sub_group_code')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -1074,7 +1066,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="procedure_iii_pcs_short_name">PCS Short Name <span class="text-danger">*</span></label>
                                     <select class="form-select" id="procedure_iii_pcs_short_name" name="procedure_iii_pcs_short_name">
-                                        <option value="">Select procedure_iii_pcs_short_name</option>
+                                        <option value="">Please Select</option>
                                         <option value="Male" {{ old('procedure_iii_pcs_short_name') == 'Male' ? 'selected' : '' }}>Male </option>
                                         <option value="Female" {{ old('procedure_iii_pcs_short_name') == 'Female' ? 'selected' : '' }}>Female </option>
                                         <option value="Other" {{ old('procedure_iii_pcs_short_name') == 'Other' ? 'selected' : '' }}>Other </option>
@@ -1087,7 +1079,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="procedure_iii_pcs_code">PCS Code <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="procedure_iii_pcs_code" name="procedure_iii_pcs_code"
-                                    placeholder="Policy No." value="{{ old('procedure_iii_pcs_code') }}">
+                                    placeholder="Enter PCS Code" value="{{ old('procedure_iii_pcs_code') }}">
                                     @error('procedure_iii_pcs_code')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -1096,7 +1088,7 @@
                                 <div class="col-md-12 mt-3">
                                     <label for="procedure_iii_pcs_long_name">PCS Long Name <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="16" class="form-control" id="procedure_iii_pcs_long_name" name="procedure_iii_pcs_long_name"
-                                    placeholder="Policy No." value="{{ old('procedure_iii_pcs_long_name') }}">
+                                    placeholder="Enter PCS Long Name" value="{{ old('procedure_iii_pcs_long_name') }}">
                                     @error('procedure_iii_pcs_long_name')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -1106,10 +1098,12 @@
                                 <div class="col-md-12 mt-3">
                                     <label for="final_assessment_status">Final Assessment Status <span class="text-danger">*</span></label>
                                     <select class="form-select" id="final_assessment_status" name="final_assessment_status">
-                                        <option value="">Select final_assessment_status</option>
-                                        <option value="Male" {{ old('final_assessment_status') == 'Male' ? 'selected' : '' }}>Male </option>
-                                        <option value="Female" {{ old('final_assessment_status') == 'Female' ? 'selected' : '' }}>Female </option>
-                                        <option value="Other" {{ old('final_assessment_status') == 'Other' ? 'selected' : '' }}>Other </option>
+                                        <option value="">Please Select</option>
+                                        <option value="Waiting for Pre-Assessment" {{ old('final_assessment_status') == 'Waiting for Pre-Assessment' ? 'selected' : '' }}>Waiting for Pre-Assessment </option>
+                                        <option value="Query Raised by BHC Team" {{ old('final_assessment_status') == 'Query Raised by BHC Team' ? 'selected' : '' }}>Query Raised by BHC Team </option>
+                                        <option value="Non Admissible as per the Policy TC" {{ old('final_assessment_status') == 'Non Admissible as per the Policy TC' ? 'selected' : '' }}>Non Admissible as per the Policy TC </option>
+                                        <option value="Non Admissible as per the Treatment Received" {{ old('final_assessment_status') == 'Non Admissible as per the Treatment Received' ? 'selected' : '' }}>Non Admissible as per the Treatment Received </option>
+                                        <option value="Admissible" {{ old('final_assessment_status') == 'Admissible' ? 'selected' : '' }}>Admissible </option>
                                     </select>
                                     @error('final_assessment_status')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -1121,11 +1115,11 @@
                                 </div>
 
                                 <div class="col-md-6 mt-3">
-                                    <label for="query">Query <span class="text-danger">*</span></label>
-                                    <input type="text" maxlength="8" onkeypress="return isNumberKey(event)" class="form-control"
-                                    id="query" placeholder="Estimated Amount" name="query"
-                                    value="{{ old('query') }}">
-                                    @error('query')
+                                    <label for="processing_query">Query <span class="text-danger">*</span></label>
+                                    <input type="text" maxlength="250" class="form-control"
+                                    id="processing_query" placeholder="Estimated Amount" name="processing_query"
+                                    value="{{ old('processing_query') }}">
+                                    @error('processing_query')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -1133,8 +1127,7 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="final_assessment_amount">Final Assessment Amount <span class="text-danger">*</span></label>
-                                    <input type="number" maxlength="8" onkeypress="return isNumberKey(event)" class="form-control"
-                                    id="final_assessment_amount" placeholder="Estimated Amount" name="final_assessment_amount"
+                                    <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==8) return false;" class="form-control"  id="final_assessment_amount" placeholder="Estimated Amount" name="final_assessment_amount"
                                     value="{{ old('final_assessment_amount') }}">
                                     @error('final_assessment_amount')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -1143,8 +1136,7 @@
 
                                 <div class="col-md-12 mt-3">
                                     <label for="final_assessment_comments">Final Assessment Comments </label>
-                                    <textarea class="form-control" id="final_assessment_comments" name="final_assessment_comments" maxlength="250" placeholder="Comments"
-                                    rows="5">{{ old('final_assessment_comments') }}</textarea>
+                                    <textarea class="form-control" id="final_assessment_comments" name="final_assessment_comments" maxlength="250" placeholder="Comments"  rows="5">{{ old('final_assessment_comments') }}</textarea>
                                     @error('final_assessment_comments')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -1166,6 +1158,67 @@
 @endsection
 @push('scripts')
 <script>
-  
+    $(document).ready(function() {
+        setPatient();
+        setHospitalId();
+        setInsuranceCoverageOptions();
+    });
+
+    function setPatient() {
+        var title               = $("#patient_id").select2().find(":selected").data("title");
+        var firstname           = $("#patient_id").select2().find(":selected").data("firstname");
+        var middlename          = $("#patient_id").select2().find(":selected").data("middlename");
+        var lastname            = $("#patient_id").select2().find(":selected").data("lastname");
+        var age                 = $("#patient_id").select2().find(":selected").data("age");
+        var gender              = $("#patient_id").select2().find(":selected").data("gender");
+        var hospital            = $("#patient_id").select2().find(":selected").data("hospital");
+        var registrationno      = $("#patient_id").select2().find(":selected").data("registrationno");
+
+
+        $('#title').val(title);
+        $('#firstname').val(firstname);
+        $('#middlename').val(middlename);
+        $('#lastname').val(lastname);
+        $('#age').val(age);
+        $('#gender').val(gender);
+        $('#hospital_id').val(hospital).trigger('change');
+        $('#registration_no').val(registrationno);
+    }
+
+    function setHospitalId() {
+        var name = $("#hospital_id").select2().find(":selected").data("name");
+        var address = $("#hospital_id").select2().find(":selected").data("address");
+        var city = $("#hospital_id").select2().find(":selected").data("city");
+        var state = $("#hospital_id").select2().find(":selected").data("state");
+        var pincode = $("#hospital_id").select2().find(":selected").data("pincode");
+        var associate_partner_id = $("#hospital_id").select2().find(":selected").data("ap");
+        console.log(address);
+        $('#hospital_name').val(name);
+        $('#hospital_address').val(address);
+        $('#hospital_city').val(city);
+        $('#hospital_state').val(state);
+        $('#hospital_pincode').val(pincode);
+        $('#hospital_pincode').val(pincode);
+        $('#associate_partner_id').val(associate_partner_id);
+    }
+</script>
+<script>
+    function setInsuranceCoverageOptions(){
+        var insurance_coverage = $('#insurance_coverage').val();
+        switch (insurance_coverage) {
+                case 'Yes':
+                    $("#policy_no").prop("readonly", false);
+                    $("#company_tpa_id_card_no").prop("readonly", false);
+                    break;
+                case 'No':
+                    $("#policy_no").prop("readonly", true);
+                    $("#company_tpa_id_card_no").prop("readonly", true);
+                    break;
+                default:
+                    $("#policy_no").prop("readonly", true);
+                    $("#company_tpa_id_card_no").prop("readonly", true);
+                    break;
+            }
+    }
 </script>
 @endpush
