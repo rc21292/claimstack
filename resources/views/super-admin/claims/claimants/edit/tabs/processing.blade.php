@@ -1,7 +1,10 @@
                         <form action="{{ route('super-admin.claims.processing') }}" method="post" id="claim-processing-form" enctype="multipart/form-data">
                             @csrf
-<div class="card-body mb-4">
+                            <div class="card-body mb-4">
                             <div class="form-group row">
+
+                                <div class="col-md-12 mb-2 bg-primary text-white" style="line-height: 30px; margin-left: 2px; ;"> All Information </div>
+
                                 <div class="col-md-12 mb-3">
                                     <label for="patient_id">Patient ID <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="patient_id" name="patient_id" maxlength="60"
@@ -527,6 +530,19 @@
                                     @enderror
                                 </div>     
 
+                                
+
+                                <div class="col-md-12 mt-3 bg-primary text-white" style="line-height: 30px; margin-left: 2px; ;"> Disease & ICD </div>
+
+                                <div class="col-md-6 mt-3">
+                                    <label for="disease_name">Disease Name. <span class="text-danger">*</span></label>
+                                    <input type="text" maxlength="100" class="form-control" id="disease_name" name="disease_name"
+                                    value="{{ old('disease_name') }}" placeholder="Disease Name">
+                                    @error('disease_name', 'claim-processing-form')
+                                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
                                 <div class="col-md-12 mt-3 bg-secondary text-white" style="line-height: 30px; margin-left: 2px; ;"> Primary Diagnosis - ICD </div>
 
 
@@ -811,6 +827,8 @@
                                     @enderror
                                 </div>
 
+                                 <div class="col-md-12 mt-3 bg-primary text-white" style="line-height: 30px; margin-left: 2px; ;"> Procedure & PCS Code </div>
+
                                 <div class="col-md-12 mt-3 bg-secondary text-white" style="line-height: 30px; margin-left: 2px; ;"> Details of Procedure Done  </div>
 
 
@@ -1066,8 +1084,7 @@
                                 <div class="col-md-12 mt-3">
                                     <label for="final_assessment_status">Final Assessment Status <span class="text-danger">*</span></label>
                                     <select class="form-select" id="final_assessment_status" name="final_assessment_status">
-                                        <option value="">Please Select</option>
-                                        <option value="Waiting for Pre-Assessment" {{ old('final_assessment_status') == 'Waiting for Pre-Assessment' ? 'selected' : '' }}>Waiting for Pre-Assessment </option>
+                                        <option value="Waiting for Final Assessment" {{ old('final_assessment_status') == 'Waiting for Final Assessment' ? 'selected' : '' }}>Waiting for Final Assessment </option>
                                         <option value="Query Raised by BHC Team" {{ old('final_assessment_status') == 'Query Raised by BHC Team' ? 'selected' : '' }}>Query Raised by BHC Team </option>
                                         <option value="Non Admissible as per the Policy TC" {{ old('final_assessment_status') == 'Non Admissible as per the Policy TC' ? 'selected' : '' }}>Non Admissible as per the Policy TC </option>
                                         <option value="Non Admissible as per the Treatment Received" {{ old('final_assessment_status') == 'Non Admissible as per the Treatment Received' ? 'selected' : '' }}>Non Admissible as per the Treatment Received </option>
@@ -1078,13 +1095,16 @@
                                     @enderror
                                 </div>
 
+                                <div class="col-md-12 mt-3 bg-primary text-white" style="line-height: 30px; margin-left: 2px; ;"> Add Query </div>
+
                                 <div class="col-md-12 text-end mt-3">
-                                    <button type="submit" class="btn btn-success" form="claim-processing-form">Add Query</button>
+                                    <button type="button" class="btn btn-success add-query" disabled >Add Query</button>
+                                    <input type="hidden" name="add_query_clicked" id="add_query_clicked" value="0">
                                 </div>
 
                                 <div class="col-md-6 mt-3">
                                     <label for="processing_query">Query <span class="text-danger">*</span></label>
-                                    <input type="text" maxlength="250" class="form-control"
+                                    <input type="text" readonly maxlength="250" class="form-control"
                                     id="processing_query" placeholder="Estimated Amount" name="processing_query"
                                     value="{{ old('processing_query') }}">
                                     @error('processing_query', 'claim-processing-form')
@@ -1092,10 +1112,11 @@
                                     @enderror
                                 </div>
 
+                                <div class="col-md-12 mt-3 bg-primary text-white" style="line-height: 30px; margin-left: 2px; ;"> Assessment </div>
 
                                 <div class="col-md-6 mt-3">
                                     <label for="final_assessment_amount">Final Assessment Amount <span class="text-danger">*</span></label>
-                                    <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==8) return false;" class="form-control"  id="final_assessment_amount" placeholder="Estimated Amount" name="final_assessment_amount"
+                                    <input type="number" readonly pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==8) return false;" class="form-control final_assessment_amount"  id="final_assessment_amount" placeholder="Estimated Amount" name="final_assessment_amount"
                                     value="{{ old('final_assessment_amount') }}">
                                     @error('final_assessment_amount', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -1104,7 +1125,7 @@
 
                                 <div class="col-md-12 mt-3">
                                     <label for="final_assessment_comments">Final Assessment Comments </label>
-                                    <textarea class="form-control" id="final_assessment_comments" name="final_assessment_comments" maxlength="250" placeholder="Comments"  rows="5">{{ old('final_assessment_comments') }}</textarea>
+                                    <textarea readonly class="form-control" id="final_assessment_comments" name="final_assessment_comments" maxlength="250" placeholder="Comments"  rows="5">{{ old('final_assessment_comments') }}</textarea>
                                     @error('final_assessment_comments', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -1120,5 +1141,42 @@
                         </form>
 @push('scripts')
 <script>
+
+    var final_assessment_status = "{{ old('final_assessment_status') }}";
+    var add_query_clicked = "{{ old('add_query_clicked') }}";
+
+    if(add_query_clicked == 1){
+        $(".final_assessment_amount").attr('readonly', false);
+            $("#final_assessment_comments").attr('readonly', false);
+            $("#processing_query").attr('readonly', false);
+    }
+
+    if(final_assessment_status == 'Query Raised by BHC Team'){
+            $(".add-query").attr('disabled', false);
+        }else{
+            $(".add-query").attr('disabled', true);
+            $(".final_assessment_amount").attr('readonly', true);
+            $("#final_assessment_comments").attr('readonly', true);
+            $("#processing_query").attr('readonly', true);
+        }
+
+    $(document).on('change', '#final_assessment_status', function(event) {
+        if($(this).val() == 'Query Raised by BHC Team'){
+            $(".add-query").attr('disabled', false);
+        }else{
+            $(".add-query").attr('disabled', true);
+            $(".final_assessment_amount").attr('readonly', true);
+            $("#final_assessment_comments").attr('readonly', true);
+            $("#processing_query").attr('readonly', true);
+        }
+    });
+
+    $(document).on('click', '.add-query', function(event) {
+        $("#add_query_clicked").val(1);
+        $(".final_assessment_amount").attr('readonly', false);
+        $("#final_assessment_comments").attr('readonly', false);
+        $("#processing_query").attr('readonly', false);
+    });    
+    
 </script>
 @endpush

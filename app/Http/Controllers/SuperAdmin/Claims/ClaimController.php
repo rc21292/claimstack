@@ -61,8 +61,6 @@ class ClaimController extends Controller
 
     public function saveClaimProcessing(Request $request)
     {
-
-
         $rules = [
             'patient_id' => 'required',
             'patient_title' => 'required',
@@ -156,9 +154,9 @@ class ClaimController extends Controller
             'procedure_iii_pcs_code' => 'required',
             'procedure_iii_pcs_long_name' => 'required',*/
             'final_assessment_status' => 'required',
-            'processing_query' => 'required',
-            'final_assessment_amount' => 'required',
-            'final_assessment_comments' => 'required',
+            'processing_query' => ($request->final_assessment_status == 'Query Raised by BHC Team') ? 'required' : [],
+            'final_assessment_amount' => ($request->final_assessment_status == 'Query Raised by BHC Team') ? 'required' : [],
+            // 'final_assessment_comments' => ($request->final_assessment_status == 'Query Raised by BHC Team') ? 'required' : [],
         ];
 
         $messages = [
