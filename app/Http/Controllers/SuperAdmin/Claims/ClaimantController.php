@@ -775,7 +775,7 @@ class ClaimantController extends Controller
         
 
         $rules = [
-            'patient_id' => 'required',
+            //'patient_id' => 'required',
             'claim_id' => 'required',
             'hospital_name' => 'required',
             'hospital_address' => 'required',
@@ -798,33 +798,25 @@ class ClaimantController extends Controller
             'medical_lending_type'=>'required',
             'vendor_partner_name_nbfc_or_bank'=>'required',
             'vendor_partner_id'=>'required|max:40',
+            'loan_application_comments'=>'max:250',
             'date_of_loan_application'=>'required',
             'time_of_loan_application'=>'required',
-            'date_of_loan_re_application'=>'required',
-            'time_of_loan_re_application'=>'required',
-            'loan_id_or_no'=>'required|max:40',
+            'loan_id_or_no'=>'required|max:20',
             'loan_id_or_no_file' => 'required',
-            'loan_approved_amount_file'=>'required',
             //'insurance_claim_settled_amount_file'=>'required',
             //'insurance_claim_disbursement_amount_file'=>'required',
             'loan_status'=>'required',
-            'loan_approved_amount'=>'required|max:20',
-            'loan_disbursed_amount'=>'required|max:20',
-            'date_of_loan_disbursement'=>'required',
-            'loan_tenure'=>'required|max:2',
-            'loan_instalments'=>'required|max:2',
-            'loan_start_date'=>'required',
-            'loan_end_date'=>'required',
-            'insurance_claim_settlement_date'=>'required',
-            'insurance_claim_settled_amount'=>'required|max:20',
-            'insurance_claim_amount_disbursement_date'=>'required',
-            're_apply_loan_amount'=>'required|max:20',
-            'loan_re_application_status_comments'=>'required|max:255',
+            'loan_approved_amount'=>($request->loan_approved_amount) ? 'digits_between:1,8':[],
+            'loan_disbursed_amount'=>($request->loan_disbursed_amount) ? 'digits_between:1,8' : [],
+            'loan_tenure'=>'max:2',
+            'loan_instalments'=>'max:2',
+            'insurance_claim_settled_amount'=>'digits_between:1,8',
+            're_apply_loan_amount'=>'digits_between:1,8',
            
         ];
 
         $messages =  [
-            'patient_id.required'                     => 'Please Enter Patient Id',
+            //'patient_id.required'                     => 'Please Enter Patient Id',
             'claim_id.required'                       => 'Please Enter Claim Id',
             'hospital_name.required'                  => 'Please Enter Hospital Name',
             'hospital_address.required'               => 'Please Enter Hospital Address',
@@ -847,37 +839,22 @@ class ClaimantController extends Controller
             'vendor_partner_id.required'              =>'Please Enter vendor partner id',
             'date_of_loan_application.required'       =>'Please Enter date of loan application',
             'time_of_loan_application.required'       =>'Please Enter time of loan application',
-            'date_of_loan_re_application.required'    =>'Please Enter date of loan re application',
-            'time_of_loan_re_application.required'    =>'Please Enter time of loan re application',
             'loan_id_or_no.required'                  =>'Please Enter loan id or no',
             'loan_id_or_no_file.required'             =>'Please upload loan id or number file',
-            'loan_approved_amount_file.required'=>'Please upload loan approved amount file',
             //'insurance_claim_settled_amount_file.required'=>'Please upload insurance claim settled amount file',
             //'insurance_claim_disbursement_amount_file.required'=>'Please upload insurance claim disbursement amount file',
             'loan_status.required'                    =>'Please Enter loan status',
-            'loan_approved_amount.required'           =>'Please Enter loan approved amount',
-            'loan_disbursed_amount.required'          =>'Please Enter loan disbursed amount',
-            'date_of_loan_disbursement.required'      =>'Please Enter date of loan disbursement',
-            'loan_tenure.required'                    =>'Please Enter loan tenure',
-            'loan_instalments.required'               =>'Please Enter loan instalments',  
-            'loan_start_date.required'                =>'Please Enter loan start date',
-            'loan_end_date.required'                  =>'Please Enter loan end date',
-            'insurance_claim_settlement_date.required'=>'Please Enter insurance claim settlement date',
-            'insurance_claim_settled_amount.required' =>'Please Enter insurance claim settled amount',
-            'insurance_claim_amount_disbursement_date.required'=>'Please Enter insurance claim amount disbursement date',
-            're_apply_loan_amount.required'           =>'Please Enter re apply loan amount',
-            'loan_re_application_status_comments.required'=>'Please Enter loan re application status comments',
-            
+           
             
         ];
 
         $this->validateWithBag('lending-status-form', $request, $rules, $messages);
        
         $input  = $request->except('_token');
-        $input['borrower_id'] = $id;
+        //$input['borrower_id'] = $id;
         LendingStatus::create($input);
 
-        return redirect()->route('super-admin.claimants.lending-status',$id)->with('success', 'Lending status added successfully');
+        return redirect()->back()->with('success', 'Lending status added successfully');
 
     }
 
@@ -958,7 +935,7 @@ class ClaimantController extends Controller
          
          DischargeStatus::create($input);
 
-        return redirect()->route('super-admin.claimants.discharge-status',$id)->with('success', 'Discharge status added successfully');
+        return redirect()->back()->with('success', 'Discharge status added successfully');
 
 
     }
