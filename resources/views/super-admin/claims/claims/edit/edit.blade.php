@@ -77,6 +77,9 @@
             setHospitalId();
             setInsuranceCoverageOptions();
             setClaimIntimationNumber();
+            setMedicineOption();
+            setPhysicinOptions();
+            ailnessOptions();
             $('#addInsured').click(function() {
                 $('.addInsured').toggle("slide");
             });
@@ -300,4 +303,49 @@
         }
     });
     </script>
+    <script>
+    function setMedicineOption(){
+        var category_option = $('#system_of_medicine').val();
+        switch (category_option) {
+                case 'Allopathy':
+                    $("#treatment_category").val("");                   
+                    break;                
+                default:
+                    $("#treatment_category").val("Non Allopathic");                   
+                    break;
+            }
+    }
+</script>
+<script>
+    function setPhysicinOptions(){
+        var category_option = $('#has_family_physician').val();
+        switch (category_option) {
+                case 'Yes':
+                   $("#family_physician").prop("readonly", false);       
+                    $("#family_physician_contact_no").prop("readonly", false);                   
+                    break;  
+                case 'No':
+                   $("#family_physician").prop("readonly", true);   
+                    $("#family_physician_contact_no").prop("readonly", true);                       
+                    break;             
+                default:
+                     $("#family_physician").prop("readonly", false);  
+                      $("#family_physician_contact_no").prop("readonly", false);                                
+                    break;
+            }
+    }
+</script>
+<script>
+    function ailnessOptions(){
+        var category_option = $('#chronic_illness').val();
+        switch (category_option) {
+                case 'Any other ailment':
+                    $("#ailment_details").prop("readonly", false);            
+                    break;                
+                default:
+                     $("#ailment_details").prop("readonly", true);                           
+                    break;
+            }
+    }
+</script>
 @endpush

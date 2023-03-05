@@ -377,7 +377,7 @@
             </div>
             <div class="col-md-6 mt-3">
                 <label for="system_of_medicine">System of Medicine <span class="text-danger">*</span></label>
-                <select class="form-select" id="system_of_medicine" name="system_of_medicine">
+                <select class="form-select" id="system_of_medicine" name="system_of_medicine" onchange=setMedicineOption();>
                     <option value="">Select</option>
                     <option value="Allopathy"
                         {{ old('system_of_medicine', $claim->system_of_medicine) == 'Allopathy' ? 'selected' : '' }}>
@@ -607,7 +607,7 @@
             <div class="col-md-6 mt-3">
                 <label for="chronic_illness">Past history of any chronic illness <span
                         class="text-danger">*</span></label>
-                <select class="form-select" id="chronic_illness" name="chronic_illness">
+                <select class="form-select" id="chronic_illness" name="chronic_illness" onchange="ailnessOptions();">
                     <option value="">Select</option>
                     <option value="N/A"
                         {{ old('chronic_illness', $claim->chronic_illness) == 'N/A' ? 'selected' : '' }}>N/A
@@ -669,7 +669,7 @@
             <div class="col-md-6 mt-3">
                 <label for="has_family_physician">Does the patient has a family physician <span
                         class="text-danger">*</span></label>
-                <select class="form-select" id="has_family_physician" name="has_family_physician">
+                <select class="form-select" id="has_family_physician" name="has_family_physician" onchange="setPhysicinOptions();">
                     <option value="">Select</option>
                     <option value="Yes"
                         {{ old('has_family_physician', $claim->has_family_physician) == 'Yes' ? 'selected' : '' }}>Yes
