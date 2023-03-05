@@ -228,6 +228,15 @@ class ClaimantController extends Controller
             ]);
         }
 
+        $claim = $claimant->claim;
+
+        if ($claim->lending_required == 'Yes') {
+
+            return redirect()->route('super-admin.claimants.edit',$claimant->id)->with('success', 'Claimant created successfully');
+        }else{
+            return redirect()->route('super-admin.claimants.index')->with('success', 'Claimant created successfully');
+        }
+
         return redirect()->route('super-admin.claimants.edit',$claimant->id)->with('success', 'Claimant created successfully');
 
     }
