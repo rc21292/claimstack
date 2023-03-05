@@ -192,7 +192,7 @@
                     <label for="abha_id">ABHA ID <span class="text-danger">*</span></label>
                     <div class="input-group">
                     <input type="text" maxlength="45" class="form-control" id="abha_id" name="abha_id"
-                        placeholder="ABHA ID" value="{{ old('abha_id', $claim->Abha_id) }}">
+                        placeholder="ABHA ID" value="{{ old('abha_id', $claim->abha_id) }}">
                         @isset($claim->abhafile)
                             <a href="{{ asset('storage/uploads/claims/'.$claim->id.'/'.$claim->abhafile) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
                         @endisset
