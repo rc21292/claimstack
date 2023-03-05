@@ -80,7 +80,7 @@
                             <div class="col-md-6 mt-3">
                                 <label for="time_of_admission">Time of Admission (HH:MM) <span class="text-danger">*</span></label>
                                 <input type="time" class="form-control" id="time_of_admission" name="time_of_admission"
-                                value="{{ old('time_of_admission', \Carbon\Carbon::parse($claim->time_of_admission)->format('HH:MM a')) }}">
+                                value="{{ old('time_of_admission', $claim->time_of_admission) }}">
                                 @error('time_of_admission', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
@@ -123,7 +123,7 @@
                             
                             <div class="col-md-12 mt-3">
                                 <label for="injury_reason">If Injury, give Cause/Reason <span class="text-danger">*</span></label>
-                                <select class="form-select" id="injury_reason" name="injury_reason">
+                                <select class="form-select" id="injury_reason" name="injury_reason" disabled>
                                     <option value="">Select</option>
                                     <option value="Self Inflected" {{ old('injury_reason') == 'Self Inflected' ? 'selected' : '' }}>Self Inflected
                                     </option>
@@ -140,7 +140,7 @@
                             <div class="col-md-12 mt-3">
                                 <label for="injury_due_to_substance_abuse_alcohol_consumption">If Injury due to Substance Abuse-Alcohol Consumption, Test conducted to establish this <span class="text-danger">*</span></label>
                                 <div class="input-group">
-                                <select class="form-select" id="injury_due_to_substance_abuse_alcohol_consumption" name="injury_due_to_substance_abuse_alcohol_consumption">
+                                <select class="form-select" id="injury_due_to_substance_abuse_alcohol_consumption" disabled name="injury_due_to_substance_abuse_alcohol_consumption">
                                     <option value="">Select</option>
                                     <option value="Yes" {{ old('injury_due_to_substance_abuse_alcohol_consumption') == 'Yes' ? 'selected' : '' }}>Yes
                                     </option>
@@ -160,7 +160,7 @@
 
                             <div class="col-md-4 mt-3">
                                 <label for="if_medico_legal_case_mlc">If Medico Legal Case (MLC) <span class="text-danger">*</span></label>
-                                <select class="form-select" id="if_medico_legal_case_mlc" name="if_medico_legal_case_mlc">
+                                <select class="form-select" id="if_medico_legal_case_mlc" disabled name="if_medico_legal_case_mlc">
                                     <option value="">Select</option>
                                     <option value="Yes" {{ old('if_medico_legal_case_mlc') == 'Yes' ? 'selected' : '' }}>Yes
                                     </option>
@@ -174,7 +174,7 @@
 
                             <div class="col-md-4 mt-3">
                                 <label for="reported_to_police">Reported to Police <span class="text-danger">*</span></label>
-                                <select class="form-select" id="reported_to_police" name="reported_to_police">
+                                <select class="form-select" id="reported_to_police" disabled name="reported_to_police">
                                     <option value="">Select</option>
                                     <option value="Yes" {{ old('reported_to_police') == 'Yes' ? 'selected' : '' }}>Yes
                                     </option>
@@ -189,7 +189,7 @@
                             <div class="col-md-4 mt-3">
                                 <label for="mlc_report_and_police_fir_attached">MLC Report & Police FIR attached<span class="text-danger">*</span></label>
                                 <div class="input-group">
-                                    <select class="form-select" id="mlc_report_and_police_fir_attached" name="mlc_report_and_police_fir_attached">
+                                    <select class="form-select" id="mlc_report_and_police_fir_attached" disabled name="mlc_report_and_police_fir_attached">
                                         <option value="">Select</option>
                                         <option value="Yes" {{ old('mlc_report_and_police_fir_attached') == 'Yes' ? 'selected' : '' }}>Yes
                                         </option>
@@ -209,8 +209,8 @@
 
                             <div class="col-md-6 mt-3">
                                 <label for="fir_or_mlc_no">FIR No. / MLC No.<span class="text-danger">*</span></label>
-                                <input type="text" maxlength="27" class="form-control" id="fir_or_mlc_no"
-                                name="fir_or_mlc_no" placeholder="Last name"  value="{{ old('fir_or_mlc_no',$borrower->fir_or_mlc_no) }}">
+                                <input type="text" maxlength="27" class="form-control" id="fir_or_mlc_no" disabled
+                                name="fir_or_mlc_no" placeholder="FIR No. / MLC No."  value="{{ old('fir_or_mlc_no',$borrower->fir_or_mlc_no) }}">
                                 @error('fir_or_mlc_no', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
@@ -218,7 +218,7 @@
 
                             <div class="col-md-12 mt-3">
                                 <label for="not_reported_to_police_reason">If not reported to Police, give reason </label>
-                                <textarea class="form-control" id="not_reported_to_police_reason" name="not_reported_to_police_reason" maxlength="100" placeholder="Claimant Comments"
+                                <textarea class="form-control" id="not_reported_to_police_reason" disabled name="not_reported_to_police_reason" maxlength="100" placeholder="Claimant Comments"
                                 rows="5">{{ old('not_reported_to_police_reason') }}</textarea>
                                 @error('not_reported_to_police_reason', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -228,7 +228,7 @@
 
                             <div class="col-md-6 mt-3">
                                 <label for="maternity_date_of_delivery">If Maternity - Date of Delivery<span class="text-danger">*</span></label>
-                                <input type="date" class="form-control" id="maternity_date_of_delivery" name="maternity_date_of_delivery" 
+                                <input type="date" class="form-control" disabled id="maternity_date_of_delivery" name="maternity_date_of_delivery" 
                                 value="{{ old('maternity_date_of_delivery',$borrower->maternity_date_of_delivery) }}">
 
                                 @error('maternity_date_of_delivery', 'discharge-status-form')
@@ -241,7 +241,7 @@
                             <div class="col-md-3 mt-1">
                                 <label for="maternity_gravida_status_g">G<span class="text-danger">*</span></label>
                                 <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==2) return false;" class="form-control" id="maternity_gravida_status_g"
-                                name="maternity_gravida_status_g" placeholder="Enter G"  value="{{ old('maternity_gravida_status_g',$borrower->maternity_gravida_status_g) }}">
+                                name="maternity_gravida_status_g" disabled placeholder="Enter G"  value="{{ old('maternity_gravida_status_g',$borrower->maternity_gravida_status_g) }}">
                                 @error('maternity_gravida_status_g', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
@@ -250,7 +250,7 @@
                             <div class="col-md-3 mt-1">
                                 <label for="maternity_gravida_status_p">P<span class="text-danger">*</span></label>
                                 <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==2) return false;" class="form-control" id="maternity_gravida_status_p"
-                                name="maternity_gravida_status_p" placeholder="Enter P"  value="{{ old('maternity_gravida_status_p',$borrower->maternity_gravida_status_p) }}">
+                                name="maternity_gravida_status_p" disabled placeholder="Enter P"  value="{{ old('maternity_gravida_status_p',$borrower->maternity_gravida_status_p) }}">
                                 @error('maternity_gravida_status_p', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
@@ -259,7 +259,7 @@
                             <div class="col-md-3 mt-1">
                                 <label for="maternity_gravida_status_l">L<span class="text-danger">*</span></label>
                                 <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==2) return false;" class="form-control" id="maternity_gravida_status_l"
-                                name="maternity_gravida_status_l" placeholder="Enter L"  value="{{ old('maternity_gravida_status_l',$borrower->maternity_gravida_status_l) }}">
+                                name="maternity_gravida_status_l" disabled placeholder="Enter L"  value="{{ old('maternity_gravida_status_l',$borrower->maternity_gravida_status_l) }}">
                                 @error('maternity_gravida_status_l', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
@@ -268,7 +268,7 @@
                             <div class="col-md-3 mt-1">
                                 <label for="maternity_gravida_status_a">A<span class="text-danger">*</span></label>
                                 <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==2) return false;" class="form-control" id="maternity_gravida_status_a"
-                                name="maternity_gravida_status_a" placeholder="Enter A"  value="{{ old('maternity_gravida_status_a',$borrower->maternity_gravida_status_a) }}">
+                                name="maternity_gravida_status_a" disabled placeholder="Enter A"  value="{{ old('maternity_gravida_status_a',$borrower->maternity_gravida_status_a) }}">
                                 @error('maternity_gravida_status_a', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
@@ -276,7 +276,7 @@
 
                             <div class="col-md-4 mt-3">
                                 <label for="premature_baby">Premature Baby<span class="text-danger">*</span></label>
-                                <select class="form-select" id="premature_baby" name="premature_baby">
+                                <select class="form-select" id="premature_baby" disabled name="premature_baby">
                                     <option value="">Select</option>
                                     <option value="Yes" {{ old('premature_baby') == 'Yes' ? 'selected' : '' }}>Yes
                                     </option>
@@ -329,7 +329,7 @@
                             <div class="col-md-12 mt-1">
                                 <label for="death_summary">Death Summary<span class="text-danger">*</span></label>
                                 <div class="input-group">
-                                <textarea rows="1" class="form-control" id="death_summary" name="death_summary" maxlength="250" placeholder="Claimant Comments"
+                                <textarea rows="1" class="form-control" disabled id="death_summary" name="death_summary" maxlength="250" placeholder="Claimant Comments"
                                 rows="5">{{ old('death_summary') }}</textarea>
                                 <input type="file" name="death_summary_file" id="death_summary_file" hidden  onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                                     <label for="death_summary_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
@@ -362,5 +362,89 @@
                 </form>
 @push('scripts')
     
+</script>
+<script>
+    jQuery(document).ready(function($){
+       
+        //on load
+        let hdt = $('input[name="hospitalization_due_to"]:checked').val();
+          if(hdt == "Injury") { 
+            $('#injury_reason').removeAttr('disabled');
+            $('#injury_due_to_substance_abuse_alcohol_consumption').removeAttr('disabled');
+            $('#if_medico_legal_case_mlc').removeAttr('disabled');
+
+         };
+         
+         //after change
+        $('input[name="hospitalization_due_to"]').on('change',function(e){
+            if($(this).val() == 'Injury'){
+                $('#injury_reason').removeAttr('disabled');
+                $('#injury_due_to_substance_abuse_alcohol_consumption').removeAttr('disabled');
+                $('#if_medico_legal_case_mlc').removeAttr('disabled');
+                
+            } else if($(this).val() == 'Maternity'){
+               
+                $('#maternity_date_of_delivery').removeAttr('disabled');
+                $('#maternity_gravida_status_g').removeAttr('disabled');
+                $('#maternity_gravida_status_p').removeAttr('disabled');
+                $('#maternity_gravida_status_l').removeAttr('disabled');
+                $('#maternity_gravida_status_a').removeAttr('disabled');
+                $('#premature_baby').removeAttr('disabled');
+                
+            }
+            else {
+                $('#injury_reason').attr('disabled',true);
+                $('#injury_due_to_substance_abuse_alcohol_consumption').attr('disabled',true);
+                $('#if_medico_legal_case_mlc').attr('disabled',true);
+                $('#maternity_date_of_delivery').attr('disabled',true);
+                $('#maternity_gravida_status_g').attr('disabled',true);
+                $('#maternity_gravida_status_p').attr('disabled',true);
+                $('#maternity_gravida_status_l').attr('disabled',true);
+                $('#maternity_gravida_status_a').attr('disabled',true);
+                $('#premature_baby').removeAttr('disabled');
+            }
+        });
+        $('#if_medico_legal_case_mlc').on('change',function(){
+            if($(this).val() == 'Yes'){
+               $('#reported_to_police').removeAttr('disabled');
+            } else {
+               $('#reported_to_police').attr('disabled',true);
+            }
+        });
+        $('#reported_to_police').on('change',function(){
+            if($(this).val() == 'Yes'){
+                $('#mlc_report_and_police_fir_attached').removeAttr('disabled');
+            } else {
+                $('#mlc_report_and_police_fir_attached').attr('disabled',true);
+            }
+        });
+
+        $('#mlc_report_and_police_fir_attached').on('change',function(){
+            if($(this).val() == 'Yes'){
+                $('#fir_or_mlc_no').removeAttr('disabled');
+            } else {
+                $('#fir_or_mlc_no').attr('disabled',true);
+            }
+        });
+
+        $('#if_medico_legal_case_mlc, #reported_to_police').on('change',function(){
+            if($('#if_medico_legal_case_mlc').val() == 'Yes' && $('#reported_to_police').val() == 'No'){
+               $('#not_reported_to_police_reason').removeAttr('disabled');
+            } else {
+               $('#not_reported_to_police_reason').attr('disabled',true);
+            }
+        });
+
+        $('#discharge_status').on('change',function(){
+            if($(this).val()=="Deceased"){
+                $('#death_summary').removeAttr('disabled');
+            } else {
+                $('#death_summary').attr('disabled',true);
+            }
+        });
+
+    
+    
+    });
 </script>
 @endpush
