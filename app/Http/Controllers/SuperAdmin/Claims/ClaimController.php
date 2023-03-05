@@ -837,6 +837,33 @@ class ClaimController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $claim = Claim::find($id);
+        if ($request->hasfile('abhafile')) {
+            $abhafile                    = $request->file('abhafile');
+            $name                       = $abhafile->getClientOriginalName();
+            $abhafile->storeAs('uploads/claims/' . $claim->id . '/', $name, 'public');
+            Claim::where('id', $claim->id)->update([
+                'abhafile'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('policy_file')) {
+            $policy_file                    = $request->file('policy_file');
+            $name                       = $policy_file->getClientOriginalName();
+            $policy_file->storeAs('uploads/claims/' . $claim->id . '/policies', $name, 'public');
+            Claim::where('id', $claim->id)->update([
+                'policy_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('company_tpa_id_card_file')) {
+            $company_tpa_id_card_file                    = $request->file('company_tpa_id_card_file');
+            $name                       = $company_tpa_id_card_file->getClientOriginalName();
+            $company_tpa_id_card_file->storeAs('uploads/claims/' . $claim->id . '/tpa_file', $name, 'public');
+            Claim::where('id', $claim->id)->update([
+                'company_tpa_id_card_file'               =>  $name
+            ]);
+        }
         $rules =  [
             'patient_id'                => 'required',
             'hospital_name'             => 'required',
@@ -967,32 +994,7 @@ class ClaimController extends Controller
             'associate_partner_id'              => $request->associate_partner_id,
         ]);
 
-        if ($request->hasfile('abhafile')) {
-            $abhafile                    = $request->file('abhafile');
-            $name                       = $abhafile->getClientOriginalName();
-            $abhafile->storeAs('uploads/claims/' . $claim->id . '/', $name, 'public');
-            Claim::where('id', $claim->id)->update([
-                'abhafile'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('policy_file')) {
-            $policy_file                    = $request->file('policy_file');
-            $name                       = $policy_file->getClientOriginalName();
-            $policy_file->storeAs('uploads/claims/' . $claim->id . '/policies', $name, 'public');
-            Claim::where('id', $claim->id)->update([
-                'policy_file'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('company_tpa_id_card_file')) {
-            $company_tpa_id_card_file                    = $request->file('company_tpa_id_card_file');
-            $name                       = $company_tpa_id_card_file->getClientOriginalName();
-            $company_tpa_id_card_file->storeAs('uploads/claims/' . $claim->id . '/tpa_file', $name, 'public');
-            Claim::where('id', $claim->id)->update([
-                'company_tpa_id_card_file'               =>  $name
-            ]);
-        }
+       
 
         return redirect()->route('super-admin.claims.edit', $id)->with('success', 'Claim updated successfully');
     }
