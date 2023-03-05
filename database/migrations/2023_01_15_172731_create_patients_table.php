@@ -46,6 +46,7 @@ return new class extends Migration
             $table->string('hospital_pincode')->nullable();
             $table->string('associate_partner_id')->nullable();
             $table->string('registration_number')->nullable();
+            $table->integer('treating_doctor')->nullable();
             $table->string('email')->unique();
             $table->string('phone')->nullable();
             $table->string('code')->nullable();

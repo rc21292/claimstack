@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\AssociatePartner;
 use App\Models\Hospital;
+use App\Models\HospitalDepartment;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -85,6 +86,19 @@ class HospitalSeeder extends Seeder
                 'hrms_software'                         => 'No',
                 'iso_status'                            => 'No',
                 'comments'                              => $faker->realText($maxNbChars = 200, $indexSize = 2)
+            ]);
+        }
+
+        $hospitals = Hospital::get();
+        foreach($hospitals as $hospital){
+            HospitalDepartment::create([
+                'hospital_id' => $hospital->id,
+                'specialization' => $faker->randomElement(['ENT', 'Dental', 'Neonatology', 'Cardiac', 'Ophthalmology']),
+                'doctors_firstname' =>$faker->firstname(),
+                'doctors_lastname' =>$faker->lastname(),
+                'registration_no' => Str::upper(Str::random(15)),
+                'email_id' => $faker->unique()->safeEmail(),
+                'doctors_mobile_no' => $faker->numerify('9#######8#')          
             ]);
         }
     }

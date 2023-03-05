@@ -125,6 +125,53 @@
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
+                                <div class="col-md-6 mt-3">
+                                    <label for="treating_doctor">Name of the Treating Doctor <span class="text-danger">*</span></label>
+                                    <select class="form-control select2" id="treating_doctor" name="treating_doctor"
+                                        data-toggle="select2" onchange="setTreatingDoctorOptions()">
+                                        <option value="">Search Treating Doctor</option>
+                                        @foreach ($doctors as $doctor)
+                                            <option value="{{ $doctor->id }}"
+                                                {{ old('treating_doctor') == $doctor->id ? 'selected' : '' }}
+                                                 data-specialization="{{ $doctor->specialization }}"  data-registration="{{ $doctor->registration_no }}"  data-mobile="{{ $doctor->doctors_mobile_no }}" > 
+                                               {{$doctor->doctors_firstname}} {{$doctor->doctors_lastname}}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('treating_doctor')
+                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6 mt-3">
+                                 <label for="qualification">Qualification / Specilization <span class="text-danger">*</span></label>
+                                    <input type="text" maxlength="25" class="form-control" id="qualification"
+                                        name="qualification" placeholder="Qualification / Specilization"
+                                        value="{{ old('qualification') }}">
+                                    @error('qualification')
+                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6 mt-3">
+                                 <label for="doctor_registration_no">Registration No. with State Code <span class="text-danger">*</span></label>
+                                    <input type="text" maxlength="20" class="form-control" id="doctor_registration_no"
+                                        name="doctor_registration_no" placeholder="Registration No. with State Code"
+                                        value="{{ old('doctor_registration_no') }}">
+                                    @error('doctor_registration_no')
+                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6 mt-3">
+                                 <label for="doctor_mobile_no">Contat No.(Mobile No.) <span class="text-danger">*</span></label>
+                                    <input maxlength="10" onkeypress="return isNumberKey(event)" class="form-control" id="doctor_mobile_no"
+                                        name="doctor_mobile_no" placeholder="Contat No.(Mobile No.)"
+                                        value="{{ old('doctor_mobile_no') }}">
+                                    @error('doctor_mobile_no')
+                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
 
                                 <div class="col-md-12 mt-3">
                                     <label for="firstname">Patient Name <span class="text-danger">*</span></label>
@@ -577,6 +624,7 @@
             currentPermanentAddressSame();
             setNameField();
             setReferral();
+            setTreatingDoctorOptions();
         });
 
         function setHospitalId() {
@@ -586,7 +634,7 @@
             var state = $("#hospital_id").select2().find(":selected").data("state");
             var pincode = $("#hospital_id").select2().find(":selected").data("pincode");
             var associate_partner_id = $("#hospital_id").select2().find(":selected").data("ap");
-            console.log(address);
+       
             $('#hospital_name').val(name);
             $('#hospital_address').val(address);
             $('#hospital_city').val(city);
@@ -674,5 +722,17 @@
                 $("input[name='referral_name']").val({{ old('referral_name') }});
             }
         }
+    </script>
+    <script>
+    function setTreatingDoctorOptions(){
+            var specialization = $("#treating_doctor").select2().find(":selected").data("specialization");
+            var registration = $("#treating_doctor").select2().find(":selected").data("registration");
+            var mobile = $("#treating_doctor").select2().find(":selected").data("mobile");            
+
+            $('#qualification').val(specialization);
+            $('#doctor_registration_no').val(registration);
+            $('#doctor_mobile_no').val(mobile);           
+    }
+    
     </script>
 @endpush

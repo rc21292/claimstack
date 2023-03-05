@@ -38,6 +38,7 @@ class Patient extends Model
         'hospital_city',
         'hospital_state',
         'registration_number',
+        'treating_doctor',
         'hospital_pincode',
         'associate_partner_id',
         'email',
