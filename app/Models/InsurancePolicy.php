@@ -21,6 +21,7 @@ class InsurancePolicy extends Model
         'tpa_name',
         'policy_type',
         'group_name',
+        'previous_policy_no',
         'start_date',
         'expiry_date',
         'commencement_date',

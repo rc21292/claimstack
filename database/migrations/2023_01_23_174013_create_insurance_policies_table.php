@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('tpa_name')->nullable();
             $table->enum('policy_type',['Group','Retail'])->nullable();
             $table->string('group_name')->nullable();
+            $table->string('previous_policy_no')->nullable();
             $table->date('start_date')->nullable();
             $table->date('expiry_date')->nullable();
             $table->date('commencement_date')->nullable();
