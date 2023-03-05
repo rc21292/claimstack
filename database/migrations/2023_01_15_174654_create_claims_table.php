@@ -36,7 +36,7 @@ return new class extends Migration
            $table->string('admission_type_2')->nullable();
            $table->string('admission_type_3')->nullable();
            $table->string('claim_category')->nullable();
-           $table->enum('treatment_category', ['OPD', 'IPD'])->default('OPD');
+           $table->enum('treatment_category', ['Surgical', 'Medical Management', 'Intensive Care', 'Investigation', 'Non Allopathic'])->default('Surgical');
            $table->string('disease_category')->nullable();
            $table->string('disease_name')->nullable();
            $table->string('disease_type')->nullable();
@@ -44,6 +44,17 @@ return new class extends Migration
            $table->text('comments')->nullable();
            $table->string('claim_intimation_done')->nullable();
            $table->string('claim_intimation_number_mail')->nullable();
+           $table->date('discharge_date')->nullable();
+           $table->string('days_in_hospital')->nullable();
+           $table->string('room_category')->nullable();
+           $table->date('consultation_date')->nullable();                     
+           $table->string('nature_of_illness')->nullable();
+           $table->string('clinical_finding')->nullable();
+           $table->text('chronic_illness')->nullable();
+           $table->text('ailment_details')->nullable();
+           $table->string('has_family_physician')->nullable();
+           $table->string('family_physician')->nullable();
+           $table->string('family_physician_contact_no')->nullable();
            $table->timestamps();
        });
     }

@@ -183,12 +183,15 @@
             switch (policy_type) {
                 case 'Group':
                     $("#group_name").prop("readonly", false);
+                    $("#previous_policy_no").prop("readonly", true);
                     break;
                 case 'Retail':
                     $("#group_name").prop("readonly", true);
+                    $("#previous_policy_no").prop("readonly", false);
                     break;
                 default:
                     $("#group_name").prop("readonly", true);
+                    $("#previous_policy_no").prop("readonly", true);
                     break;
             }
         }
