@@ -243,6 +243,23 @@
                                     </li>
                                 </ul>
                             </div>
+                        </li>   
+
+                        <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#borrowers-management" aria-expanded="true" aria-controls="borrowers-management" class="">
+                                <span> Borrowers </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse show" id="borrowers-management" style="">
+                                <ul class="side-nav-third-level">
+                                    <li>
+                                        <a href="{{ route('super-admin.borrowers.create') }}">Create Borrower</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('super-admin.borrowers.index') }}">Manage Borrowers</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </li>                      
                     </ul>
                 </div>

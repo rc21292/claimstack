@@ -53,4 +53,9 @@ class Borrower extends Model
         'borrower_ifs_code'
 
     ];
+
+    public function claimant()
+    {
+        return $this->belongsTo(Claimant::class, 'claim_id', 'uid');
+    }
 }
