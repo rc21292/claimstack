@@ -28,5 +28,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ClaimantSeed::class);
         $this->call(IcdCodesTableSeeder::class);
         $this->call(PcsCodesTableSeeder::class);
+        $this->call(BorrowerSeed::class);
     }
 }

@@ -18,7 +18,7 @@
                             <li class="breadcrumb-item active">New Claimant</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">New Claimant</h4>
+                    <h4 class="page-title">Edit Borower</h4>
                 </div>
             </div>
         </div>
@@ -30,13 +30,6 @@
             <div class="col-12">
                 <div class="card no-shadow">
                     <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
-                            <li class="nav-item">
-                                <a href="#claimant_creation_tab" disabled data-bs-toggle="tab" aria-expanded="true"
-                                    class="nav-link rounded-0 active">
-                                    <i class="mdi mdi-home-variant d-md-none d-block"></i>
-                                    <span class="d-none d-md-block">Claimant ID Creation / Intimation</span>
-                                </a>
-                            </li>
 
                             <li class="nav-item">
                                 <a href="#borrower_id_creation_tab" data-bs-toggle="tab" aria-expanded="false"
@@ -91,33 +84,30 @@
                     </ul>
 
                     <div class="tab-content">
-                            <div class="tab-pane show" disabled id="claimant_creation_tab">
-                                @include('super-admin.claims.claimants.edit.tabs.claimant-id-creation')
-                            </div>
 
                             <div class="tab-pane active" id="borrower_id_creation_tab">
-                                @include('super-admin.claims.claimants.edit.tabs.borrower-id-creation')
+                                @include('super-admin.claims.borrowers.edit.tabs.borrower-id-creation')
                             </div>
                         
 
                         <div class="tab-pane" id="documents_reimbursement_creation_tab">
-                            @include('super-admin.claims.claimants.edit.tabs.documents-reimbursement')
+                            @include('super-admin.claims.borrowers.edit.tabs.documents-reimbursement')
                         </div>
 
                         <div class="tab-pane" id="assessment_status_creation_tab">
-                            @include('super-admin.claims.claimants.edit.tabs.assessment-status')
+                            @include('super-admin.claims.borrowers.edit.tabs.assessment-status')
                         </div>
 
                         <div class="tab-pane" id="lending_status_creation_tab">
-                            @include('super-admin.claims.claimants.edit.tabs.lending-status')
+                            @include('super-admin.claims.borrowers.edit.tabs.lending-status')
                         </div>
 
                         <div class="tab-pane" id="discharge_status_creation_tab">
-                            @include('super-admin.claims.claimants.edit.tabs.discharge-status')
+                            @include('super-admin.claims.borrowers.edit.tabs.discharge-status')
                         </div>
 
                         <div class="tab-pane" id="claim_processing_tab">
-                            @include('super-admin.claims.claimants.edit.tabs.processing')
+                            @include('super-admin.claims.borrowers.edit.tabs.processing')
                         </div>
 
                     </div>
