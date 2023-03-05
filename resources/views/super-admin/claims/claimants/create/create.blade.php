@@ -107,76 +107,75 @@
     </div>
 @endsection
 @push('scripts')
-<script>
+    <script>
+        var patients_relation_with_claimant = "{{ old('patients_relation_with_claimant') }}";
 
-    var patients_relation_with_claimant = "{{ old('patients_relation_with_claimant') }}";
-
-    if(patients_relation_with_claimant == 'Other'){
-        $('#specify').attr('disabled', false);
-    }
-
-    $('#patients_relation_with_claimant').on('change', function () {
-        if($(this).val() == 'Other'){
+        if (patients_relation_with_claimant == 'Other') {
             $('#specify').attr('disabled', false);
         }
-    });
 
-    $('#are_patient_and_claimant_same').on('change', function () {
-        var idCountry = this.value;
-        if(idCountry == 'Yes'){
+        $('#patients_relation_with_claimant').on('change', function() {
+            if ($(this).val() == 'Other') {
+                $('#specify').attr('disabled', false);
+            }
+        });
 
-            var title            = $("#claim_id").select2().find(":selected").data("title");
-            var firstname           = $("#claim_id").select2().find(":selected").data("firstname");
-            var middlename          = $("#claim_id").select2().find(":selected").data("middlename");
-            var lastname            = $("#claim_id").select2().find(":selected").data("lastname");
-            var address            = $("#claim_id").select2().find(":selected").data("address");
-            var city            = $("#claim_id").select2().find(":selected").data("city");
-            var state            = $("#claim_id").select2().find(":selected").data("state");
-            var pincode            = $("#claim_id").select2().find(":selected").data("pincode");
-            var email            = $("#claim_id").select2().find(":selected").data("email");
-            var mobile            = $("#claim_id").select2().find(":selected").data("mobile");
+        $('#are_patient_and_claimant_same').on('change', function() {
+            var idCountry = this.value;
+            if (idCountry == 'Yes') {
 
-            $('#patients_relation_with_claimant').val('Self').trigger('change');
-            $('#title').val(title);
-            $('#firstname').val(firstname);
-            $('#middlename').val(middlename);
-            $('#lastname').val(lastname);
-            $('#address').val(address);
-            $('#city').val(city);
-            $('#state').val(state);
-            $('#pincode').val(pincode);
-            $('#personal_email_id').val(email);
-            $('#mobile_no').val(mobile);
+                var title = $("#claim_id").select2().find(":selected").data("title");
+                var firstname = $("#claim_id").select2().find(":selected").data("firstname");
+                var middlename = $("#claim_id").select2().find(":selected").data("middlename");
+                var lastname = $("#claim_id").select2().find(":selected").data("lastname");
+                var address = $("#claim_id").select2().find(":selected").data("address");
+                var city = $("#claim_id").select2().find(":selected").data("city");
+                var state = $("#claim_id").select2().find(":selected").data("state");
+                var pincode = $("#claim_id").select2().find(":selected").data("pincode");
+                var email = $("#claim_id").select2().find(":selected").data("email");
+                var mobile = $("#claim_id").select2().find(":selected").data("mobile");
+                console.log(firstname);
+                $('#patients_relation_with_claimant').val('Self');
+                $('#title').val(title).trigger('change');
+                $('#firstname').val(firstname);
+                $('#middlename').val(middlename);
+                $('#lastname').val(lastname);
+                $('#address').val(address);
+                $('#city').val(city);
+                $('#state').val(state);
+                $('#pincode').val(pincode);
+                $('#personal_email_id').val(email);
+                $('#mobile_no').val(mobile);
 
-        }else{
+            } else {
 
-            $('#patients_relation_with_claimant').val('').trigger('change');
-            $('#title').val('').trigger('change');
-            $('#firstname').val('');
-            $('#middlename').val('');
-            $('#lastname').val('');
-            $('#address').val('');
-            $('#city').val('');
-            $('#state').val('');
-            $('#pincode').val('');
-            $('#personal_email_id').val('');
-            $('#mobile_no').val('');
+                $('#patients_relation_with_claimant').val('').trigger('change');
+                $('#title').val('').trigger('change');
+                $('#firstname').val('');
+                $('#middlename').val('');
+                $('#lastname').val('');
+                $('#address').val('');
+                $('#city').val('');
+                $('#state').val('');
+                $('#pincode').val('');
+                $('#personal_email_id').val('');
+                $('#mobile_no').val('');
 
-        }
-    });
+            }
+        });
 
-    $('select').on('change', function(){
+        $('select').on('change', function() {
             var id = $(this).attr('id');
-        if($(this).val() == 'No' || $(this).val() == 'NA'){
-            $("#"+id+"_file").attr('disabled',true);
-        }else{
-            $("#"+id+"_file").attr('disabled',false);
-        }
-    });
+            if ($(this).val() == 'No' || $(this).val() == 'NA') {
+                $("#" + id + "_file").attr('disabled', true);
+            } else {
+                $("#" + id + "_file").attr('disabled', false);
+            }
+        });
 
-    var cancel_cheque = "{{ old('cancel_cheque') }}";
-    if(cancel_cheque == 'No'){
-        $("#cancel_cheque_file").attr('disabled',true);
-    }
-</script>
+        var cancel_cheque = "{{ old('cancel_cheque') }}";
+        if (cancel_cheque == 'No') {
+            $("#cancel_cheque_file").attr('disabled', true);
+        }
+    </script>
 @endpush
