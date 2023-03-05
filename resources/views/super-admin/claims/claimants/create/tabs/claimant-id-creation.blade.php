@@ -437,7 +437,7 @@
             var mobile            = $("#claim_id").select2().find(":selected").data("mobile");
 
             $('#patients_relation_with_claimant').val('Self').trigger('change');
-            $('#title').val(title).trigger('change');
+            $('#title').val(title);
             $('#firstname').val(firstname);
             $('#middlename').val(middlename);
             $('#lastname').val(lastname);
