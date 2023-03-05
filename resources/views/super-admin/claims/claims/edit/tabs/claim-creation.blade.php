@@ -366,7 +366,7 @@
                     <div class="mt-2">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" id="day_care" value="Day Care"
-                                name="admission_type_2">  @if(old('admission_type_2' , $claim->admission_type_2) == 'Day Care') checked @endif
+                                name="admission_type_2"  @if(old('admission_type_2' , $claim->admission_type_2) == 'Day Care') checked @endif> 
                             <label class="form-check-label" for="day_care">Day Care</label>
                         </div>
                         <div class="form-check form-check-inline">
