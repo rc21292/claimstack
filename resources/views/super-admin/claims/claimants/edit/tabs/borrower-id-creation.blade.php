@@ -277,7 +277,7 @@
                 </div>
 
                 <div class="col-md-6 mt-3">
-                    <label>Borrower ID Proof *{{ old('borrower_id_proof', $borrower->borrower_id_proof)  }}</label>
+                    <label>Borrower ID Proof *</label>
                     <div class="input-group">
                         <select class="form-select" id="borrower_id_proof" name="borrower_id_proof">
                             <option value="">Select Borrower ID Proof</option>

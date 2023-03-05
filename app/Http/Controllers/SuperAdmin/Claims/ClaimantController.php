@@ -57,7 +57,7 @@ class ClaimantController extends Controller
         $claims                 = Claim::get();
         $patient                = isset($patient_id) ? Patient::find($request->patient_id) : null;
         $claim                  = isset($claim_id) ? Claim::find($request->claim_id) : null;
-        $hospital_id            = isset($patient_id) ? $patient->hospital->id : null;
+        $hospital_id            = isset($patient_id) ? $patient->hospital->uid : null;
         $associate_partner_id   = isset($patient_id) ? $patient->associate_partner_id : null;
         $patient_title          = isset($patient) ? $patient->title : null;
         $patient_id_proof          = isset($patient) ? $patient->id_proof : null;
@@ -226,6 +226,15 @@ class ClaimantController extends Controller
             Claimant::where('id', $claimant->id)->update([
                 'cancel_cheque_file'               =>  $rhnname
             ]);
+        }
+
+        $claim = $claimant->claim;
+
+        if ($claim->lending_required == 'Yes') {
+
+            return redirect()->route('super-admin.claimants.edit',$claimant->id)->with('success', 'Claimant created successfully');
+        }else{
+            return redirect()->route('super-admin.claimants.index')->with('success', 'Claimant created successfully');
         }
 
         return redirect()->route('super-admin.claimants.edit',$claimant->id)->with('success', 'Claimant created successfully');
