@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Superadmin\Claims;
 use App\Http\Controllers\Controller;
 use App\Models\AssociatePartner;
 use App\Models\Hospital;
+use App\Models\HospitalDepartment;
 use App\Models\Patient;
 use App\Models\ReimbursementDocument;
 use Illuminate\Http\Request;
@@ -560,6 +561,7 @@ class PatientController extends Controller
         $hospital_id = $request->hospital_id;
         $associates = AssociatePartner::get();
         $hospitals = Hospital::get();
+        $doctors = HospitalDepartment::get();
         foreach ($hospitals as $hospital) {
             if (isset($hospital->linked_associate_partner_id)) {
                 $hospital->ap_name = AssociatePartner::where('associate_partner_id', $hospital->linked_associate_partner_id)->value('name');
@@ -569,7 +571,7 @@ class PatientController extends Controller
         }
 
 
-        return view('super-admin.claims.patients.create',  compact('hospital_id', 'associates', 'hospitals'));
+        return view('super-admin.claims.patients.create',  compact('hospital_id', 'doctors','associates', 'hospitals'));
     }
 
     /**
@@ -589,6 +591,10 @@ class PatientController extends Controller
             'hospital_pincode'                  => 'required',
             'associate_partner_id'              => "required_if:$request->associate_partner_id,'!=',null",
             'registration_no'                   => 'required|max:20',
+            'treating_doctor'                   => 'required',
+            'qualification'                     => 'required',
+            'doctor_registration_no'            => 'required|max:20',
+            'doctor_mobile_no'                  => 'required|numeric|digits:10',
             'title'                             => 'required',
             'firstname'                         => 'required|max:25',
             'lastname'                          => isset($request->lastname) ? 'max:25' : '',
@@ -683,6 +689,7 @@ class PatientController extends Controller
             'hospital_city'                     => $request->hospital_city,
             'hospital_state'                    => $request->hospital_state,
             'registration_number'               => $request->registration_no,
+            'treating_doctor'                   => $request->treating_doctor,
             'hospital_pincode'                  => $request->hospital_pincode,
             'associate_partner_id'              => $request->associate_partner_id,
             'email'                             => $request->email,
@@ -718,6 +725,15 @@ class PatientController extends Controller
             $id_proof_file->storeAs('uploads/patient/' . $patient->id . '/', $name, 'public');
             Patient::where('id', $patient->id)->update([
                 'id_proof_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('address_file')) {
+            $address_file                    = $request->file('address_file');
+            $name                       = $address_file->getClientOriginalName();
+            $address_file->storeAs('uploads/patient/' . $patient->id . '/', $name, 'public');
+            Patient::where('id', $patient->id)->update([
+                'address_file'               =>  $name
             ]);
         }
 
@@ -764,6 +780,10 @@ class PatientController extends Controller
             'hospital_pincode'                  => 'required',
             'associate_partner_id'              => "required_if:$request->associate_partner_id,'!=',null",
             'registration_no'                   => 'required|max:20',
+            'treating_doctor'                   => 'required',
+            'qualification'                     => 'required',
+            'doctor_registration_no'            => 'required|max:20',
+            'doctor_mobile_no'                  => 'required|numeric|digits:10',
             'title'                             => 'required',
             'firstname'                         => 'required|max:25',
             'lastname'                          => isset($request->lastname) ? 'max:25' : '',
@@ -856,6 +876,7 @@ class PatientController extends Controller
             'hospital_city'                     => $request->hospital_city,
             'hospital_state'                    => $request->hospital_state,
             'registration_number'               => $request->registration_no,
+            'treating_doctor'                   => $request->treating_doctor,
             'hospital_pincode'                  => $request->hospital_pincode,
             'associate_partner_id'              => $request->associate_partner_id,
             'email'                             => $request->email,

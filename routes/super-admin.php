@@ -12,6 +12,7 @@ use App\Http\Controllers\SuperAdmin\DashboardController;
 use App\Http\Controllers\SuperAdmin\HospitalController;
 use App\Http\Controllers\SuperAdmin\Claims\ClaimController;
 use App\Http\Controllers\SuperAdmin\Claims\ClaimantController;
+use App\Http\Controllers\SuperAdmin\Claims\BorrowerController;
 use App\Http\Controllers\SuperAdmin\Claims\PatientController;
 use App\Http\Controllers\SuperAdmin\UtilityController;
 use App\Http\Controllers\SuperAdmin\BillEntryController;
@@ -169,7 +170,7 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     Route::resource('claimants', ClaimantController::class);
 
     Route::post('api/fetch-states', [DropdownController::class, 'fetchState']);
-Route::post('api/fetch-cities', [DropdownController::class, 'fetchCity']);
+    Route::post('api/fetch-cities', [DropdownController::class, 'fetchCity']);
 
     Route::get('claimants/patient/{id}', [ClaimantController::class, 'fetchPaitientData'])->name('claimants.fetch-patient');
     
@@ -179,6 +180,7 @@ Route::post('api/fetch-cities', [DropdownController::class, 'fetchCity']);
 
     Route::post('claims/save_assesment_status',[ClaimController::class,'saveAssesmentStatus'])->name('claims.save_assesment_status');
 
+    Route::resource('borrowers', BorrowerController::class);
     /*
     |--------------------------------------------------------------------------
     | Patients Route

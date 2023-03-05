@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\AssociatePartner;
 use App\Models\Claimant;
+use App\Models\IcdCode;
+use App\Models\PcsCode;
 use App\Models\Borrower;
 use App\Models\Patient;
 use App\Models\Hospital;
@@ -55,7 +57,7 @@ class ClaimantController extends Controller
         $claims                 = Claim::get();
         $patient                = isset($patient_id) ? Patient::find($request->patient_id) : null;
         $claim                  = isset($claim_id) ? Claim::find($request->claim_id) : null;
-        $hospital_id            = isset($patient_id) ? $patient->hospital->id : null;
+        $hospital_id            = isset($patient_id) ? $patient->hospital->uid : null;
         $associate_partner_id   = isset($patient_id) ? $patient->associate_partner_id : null;
         $patient_title          = isset($patient) ? $patient->title : null;
         $patient_id_proof          = isset($patient) ? $patient->id_proof : null;
@@ -226,6 +228,15 @@ class ClaimantController extends Controller
             ]);
         }
 
+        $claim = $claimant->claim;
+
+        if ($claim->lending_required == 'Yes') {
+
+            return redirect()->route('super-admin.claimants.edit',$claimant->id)->with('success', 'Claimant created successfully');
+        }else{
+            return redirect()->route('super-admin.claimants.index')->with('success', 'Claimant created successfully');
+        }
+
         return redirect()->route('super-admin.claimants.edit',$claimant->id)->with('success', 'Claimant created successfully');
 
     }
@@ -327,6 +338,19 @@ class ClaimantController extends Controller
         $claimant       = Claimant::find($id);
         $hospital       = Hospital::where('uid',$claimant->hospital_id)->first();
         $hospitals      = Hospital::get();
+        $icd_codes_level1      = IcdCode::where('level1', '!=', '#N/A')->where('level1', '!=', 'Level-1')->distinct('level1_code')->get(['level1','level1_code']);
+        $icd_codes_level2      = IcdCode::where('level2', '!=', '#N/A')->where('level2', '!=', 'Level-2')->distinct('level2_code')->get(['level2','level2_code']);
+        $icd_codes_level3      = IcdCode::where('level3', '!=', '#N/A')->where('level3', '!=', 'Level-3')->distinct('level3_code')->get(['level3','level3_code']);
+        $icd_codes_level4      = IcdCode::where('level4', '!=', '#N/A')->where('level4', '!=', 'Level-4')->distinct('level4_code')->get(['level4','level4_code']);
+
+        $pcs_group_name  = PcsCode::distinct('pcs_group_code')->get(['pcs_group_name','pcs_group_code']);
+
+        $pcs_sub_group_name  = PcsCode::distinct('pcs_sub_group_code')->get(['pcs_sub_group_name','pcs_sub_group_code']);
+
+        $pcs_short_name = PcsCode::distinct('pcs_code')->get(['pcs_short_name', 'pcs_long_name', 'pcs_code']);
+
+
+        $pcs_codes      = PcsCode::get();
         $patient        = Patient::where('uid', $claimant->patient_id)->first();
         $insurers       = Insurer::get();
         $exists         = Borrower::where('claimant_id', $id)->exists();
@@ -352,10 +376,28 @@ class ClaimantController extends Controller
 
         $associates  = AssociatePartner::get();
         $patient_id   = $claimant->patient_id;
+        $hospital_id   = $claimant->hospital_id;
 
         $claim = $claimant->claim;
+        $policy_no = $claim->policy_no;
 
-        return view('super-admin.claims.claimants.edit.edit',  compact('patient_id', 'associates', 'hospitals', 'patient', 'claimant', 'borrower', 'id', 'claim', 'insurers'));
+        $claim_id = $claimant->claim_id;
+        $claimant_id = $claimant->uid;
+
+        $hospital_name = $hospital->name;
+        $hospital_address = $hospital->address;
+        $hospital_city = $hospital->city;
+        $hospital_state = $hospital->state;
+        $hospital_pincode = $hospital->pincode;
+        $patient_title = $patient->title;
+        $patient_firstname = $patient->firstname;
+        $patient_middlename = $patient->middlename;
+        $patient_lastname = $patient->lastname;
+
+
+
+
+        return view('super-admin.claims.claimants.edit.edit',  compact('patient_id', 'claim_id', 'claimant_id', 'hospital_id', 'associates', 'hospitals', 'patient', 'claimant', 'borrower', 'hospital_name', 'policy_no', 'hospital_address', 'hospital_city', 'hospital_state', 'hospital_pincode', 'patient_title', 'patient_firstname', 'patient_middlename', 'patient_lastname', 'id', 'claim', 'insurers', 'icd_codes_level1', 'pcs_codes', 'icd_codes_level2', 'icd_codes_level3' , 'icd_codes_level4', 'pcs_group_name', 'pcs_sub_group_name', 'pcs_short_name'));
 
     }
 

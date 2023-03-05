@@ -26,5 +26,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ClaimSeed::class);
         $this->call(InsurerSeed::class);
         $this->call(ClaimantSeed::class);
+        $this->call(IcdCodesTableSeeder::class);
+        $this->call(PcsCodesTableSeeder::class);
     }
 }

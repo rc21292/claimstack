@@ -6,6 +6,7 @@ use App\Models\Patient;
 use App\Models\User;
 use App\Models\AssociatePartner;
 use App\Models\Hospital;
+use App\Models\HospitalDepartment;
 use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -61,6 +62,7 @@ class PatientSeed extends Seeder
                 'hospital_city'             => $hospital->city,
                 'hospital_state'            => $hospital->state,
                 'registration_number'       => $faker->numerify('4#2#######5#####0###'),
+                'treating_doctor'           => HospitalDepartment::where('id', $hospital->id)->first()->id,
                 'hospital_pincode'          => $hospital->pincode,
                 'associate_partner_id'      => $hospital->linked_associate_partner_id,
                 'email'                     => $faker->unique()->safeEmail(),

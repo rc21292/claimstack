@@ -18,7 +18,9 @@ class Claim extends Model
         'abhafile',
         'insurance_coverage',
         'policy_no',
+        'policy_file',
         'company_tpa_id_card_no',
+        'company_tpa_id_card_file',
         'lending_required',
         'hospitalization_due_to',
         'date_of_delivery',
@@ -35,7 +37,18 @@ class Claim extends Model
         'estimated_amount',
         'comments',
         'claim_intimation_done',
-        'claim_intimation_number_mail'
+        'claim_intimation_number_mail',
+        'discharge_date',
+        'days_in_hospital',
+        'room_category',
+        'consultation_date',
+        'nature_of_illness',
+        'clinical_finding',
+        'chronic_illness',
+        'ailment_details',
+        'has_family_physician',
+        'family_physician',
+        'family_physician_contact_no',
     ];
 
 

@@ -416,15 +416,17 @@ class ClaimController extends Controller
             'middlename'                => isset($request->middlename) ? 'max:25' : '',
             'age'                       => 'required',
             'gender'                    => 'required',
-            'admission_date'            => 'required|before:today',
+            'admission_date'            => 'required|before_or_equal:' . now()->format('Y-m-d'),
             'admission_time'            => 'required',
             'abha_id'                   => isset($request->abha_id) ? 'max:45' : '',
             'insurance_coverage'        => 'required',
             'policy_no'                 => $request->insurance_coverage == 'Yes' ? 'required|max:16' : '',
+            'policy_file'               => $request->insurance_coverage == 'Yes' ? 'required' : '',
             'company_tpa_id_card_no'    => $request->insurance_coverage == 'Yes' ? 'required|max:16' : '',
+            'company_tpa_id_card_file'  => $request->insurance_coverage == 'Yes' ? 'required' : '',
             'lending_required'          => 'required',
             'hospitalization_due_to'    => 'required',
-            'date_of_delivery'          => 'required|before:today',
+            'date_of_delivery'          => 'required|before_or_equal:' . now()->format('Y-m-d'),
             'system_of_medicine'        => 'required',
             'treatment_type'            => 'required',
             'admission_type_1'          => 'required',
@@ -437,6 +439,17 @@ class ClaimController extends Controller
             'disease_type'              => 'required',
             'estimated_amount'          => 'required|max:8',
             'comments'                  => isset($request->comments) ? 'max:250' : '',
+            'discharge_date'            => 'required',
+            'days_in_hospital'          => 'required',
+            'room_category'             => 'required',
+            'consultation_date'         => 'required|before_or_equal:' . now()->format('Y-m-d'),
+            'nature_of_illness'         => 'required',
+            'clinical_finding'          => 'required',
+            'chronic_illness'           => 'required',
+            'ailment_details'           => $request->chronic_illness == 'Any other ailment' ? 'required' : '',
+            'has_family_physician'      => $request->claim_category == 'Cashless' ? 'required' : '',
+            'family_physician'          => $request->has_family_physician == 'Yes' ? 'required' : '',
+            'family_physician_contact_no'=> $request->has_family_physician == 'Yes' ? 'required' : '',
         ];
 
         $messages =  [
@@ -458,7 +471,9 @@ class ClaimController extends Controller
             'abha_id.required'                   => 'Please enter ABHA ID',
             'insurance_coverage.required'        => 'Please select Insurance Coverage',
             'policy_no.required'                 => 'Please enter Policy No.',
+            'policy_file.required'               => 'Please upload Policy',
             'company_tpa_id_card_no.required'    => 'Please enter Company / TPA ID Card No.',
+            'company_tpa_id_card_file.required'  => 'Please upload Company / TPA ID Card.',
             'lending_required.required'          => 'Please select Lending required',
             'hospitalization_due_to.required'    => 'Please select Hospitalization due to',
             'date_of_delivery.required'          => 'Please enter Date of delivery',
@@ -500,6 +515,17 @@ class ClaimController extends Controller
             'disease_type'              => $request->disease_type,
             'estimated_amount'          => $request->estimated_amount,
             'comments'                  => $request->comments,
+            'discharge_date'            => $request->discharge_date,
+            'days_in_hospital'          => $request->days_in_hospital,
+            'room_category'             => $request->room_category,
+            'consultation_date'         => $request->consultation_date,
+            'nature_of_illness'         => $request->nature_of_illness,
+            'clinical_finding'          => $request->clinical_finding,
+            'chronic_illness'           => $request->chronic_illness,
+            'ailment_details'           => $request->ailment_details,
+            'has_family_physician'      => $request->has_family_physician,
+            'family_physician'          => $request->family_physician,
+            'family_physician_contact_no' => $request->family_physician_contact_no,
         ]);
 
         Claim::where('id', $claim->id)->update([
@@ -512,6 +538,24 @@ class ClaimController extends Controller
             $abhafile->storeAs('uploads/claims/' . $claim->id . '/', $name, 'public');
             Claim::where('id', $claim->id)->update([
                 'abhafile'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('policy_file')) {
+            $policy_file                    = $request->file('policy_file');
+            $name                       = $policy_file->getClientOriginalName();
+            $policy_file->storeAs('uploads/claims/' . $claim->id . '/policies', $name, 'public');
+            Claim::where('id', $claim->id)->update([
+                'policy_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('company_tpa_id_card_file')) {
+            $company_tpa_id_card_file                    = $request->file('company_tpa_id_card_file');
+            $name                       = $company_tpa_id_card_file->getClientOriginalName();
+            $company_tpa_id_card_file->storeAs('uploads/claims/' . $claim->id . '/tpa_file', $name, 'public');
+            Claim::where('id', $claim->id)->update([
+                'company_tpa_id_card_file'               =>  $name
             ]);
         }
 
@@ -621,7 +665,8 @@ class ClaimController extends Controller
             'tpa_name'                                  => 'required|max:75',
             'policy_type'                               => 'required',
             'group_name'                                => $request->policy_type == 'Group' ? 'required|max:75' : '',
-            'start_date'                                => 'required|before:today',
+            'previous_policy_no'                        => $request->policy_type == 'Retail' ? 'required|max:16' : '',
+            'start_date'                                => 'required|before_or_equal:' . now()->format('Y-m-d'),
             'expiry_date'                               => 'required|after:start_date',
             'commencement_date'                         => 'required',
             'proposer_title'                            => 'required',
@@ -675,6 +720,7 @@ class ClaimController extends Controller
             'tpa_name.required'                                  => 'Please enter TPA Name.',
             'policy_type.required'                               => 'Please select Policy Type',
             'group_name.required'                                => 'Please enter Group Name.',
+            'previous_policy_no.required'                        => 'Please enter Previous Policy No.',
             'start_date.required'                                => 'Please enter Policy Start Date.',
             'expiry_date.required'                               => 'Please enter Policy Expiry Date.',
             'commencement_date.required'                         => 'Please enter Policy Commencement Date.',
@@ -730,6 +776,7 @@ class ClaimController extends Controller
             'tpa_name'                                  => $request->tpa_name,
             'policy_type'                               => $request->policy_type,
             'group_name'                                => $request->group_name,
+            'previous_policy_no'                        => $request->previous_policy_no,
             'start_date'                                => $request->start_date,
             'expiry_date'                               => $request->expiry_date,
             'commencement_date'                         => $request->commencement_date,
@@ -815,6 +862,33 @@ class ClaimController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $claim = Claim::find($id);
+        if ($request->hasfile('abhafile')) {
+            $abhafile                    = $request->file('abhafile');
+            $name                       = $abhafile->getClientOriginalName();
+            $abhafile->storeAs('uploads/claims/' . $claim->id . '/', $name, 'public');
+            Claim::where('id', $claim->id)->update([
+                'abhafile'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('policy_file')) {
+            $policy_file                    = $request->file('policy_file');
+            $name                       = $policy_file->getClientOriginalName();
+            $policy_file->storeAs('uploads/claims/' . $claim->id . '/policies', $name, 'public');
+            Claim::where('id', $claim->id)->update([
+                'policy_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('company_tpa_id_card_file')) {
+            $company_tpa_id_card_file                    = $request->file('company_tpa_id_card_file');
+            $name                       = $company_tpa_id_card_file->getClientOriginalName();
+            $company_tpa_id_card_file->storeAs('uploads/claims/' . $claim->id . '/tpa_file', $name, 'public');
+            Claim::where('id', $claim->id)->update([
+                'company_tpa_id_card_file'               =>  $name
+            ]);
+        }
         $rules =  [
             'patient_id'                => 'required',
             'hospital_name'             => 'required',
@@ -836,10 +910,12 @@ class ClaimController extends Controller
             'abha_id'                   => isset($request->abha_id) ? 'max:45' : '',
             'insurance_coverage'        => 'required',
             'policy_no'                 => $request->insurance_coverage == 'Yes' ? 'required|max:16' : '',
+            'policy_file'               => ($request->insurance_coverage == 'Yes' && empty($claim->policy_file)) ? 'required' : '',
             'company_tpa_id_card_no'    => $request->insurance_coverage == 'Yes' ? 'required|max:16' : '',
+            'company_tpa_id_card_file'  => ($request->insurance_coverage == 'Yes' && empty($claim->company_tpa_id_card_file))? 'required' : '',
             'lending_required'          => 'required',
             'hospitalization_due_to'    => 'required',
-            'date_of_delivery'          => 'required|before:today',
+            'date_of_delivery'          => 'required|before_or_equal:' . now()->format('Y-m-d'),
             'system_of_medicine'        => 'required',
             'treatment_type'            => 'required',
             'admission_type_1'          => 'required',
@@ -851,6 +927,17 @@ class ClaimController extends Controller
             'disease_name'              => 'required',
             'disease_type'              => 'required',
             'estimated_amount'          => 'required|max:8',
+            'discharge_date'            => 'required',
+            'days_in_hospital'          => 'required',
+            'room_category'             => 'required',
+            'consultation_date'         => 'required|before_or_equal:' . now()->format('Y-m-d'),
+            'nature_of_illness'         => 'required',
+            'clinical_finding'          => 'required',
+            'chronic_illness'           => 'required',
+            'ailment_details'           => $request->chronic_illness == 'Any other ailment' ? 'required' : '',
+            'has_family_physician'      => $request->claim_category == 'Cashless' ? 'required' : '',
+            'family_physician'          => $request->has_family_physician == 'Yes' ? 'required' : '',
+            'family_physician_contact_no'=> $request->has_family_physician == 'Yes' ? 'required' : '',
             'comments'                  => isset($request->comments) ? 'max:250' : '',
             'claim_intimation_done'         => $request->insurance_coverage == 'Yes' ? 'required' : '',
             'claim_intimation_number_mail'  => $request->claim_intimation_done == 'Yes' ? 'required' : '',
@@ -874,8 +961,10 @@ class ClaimController extends Controller
             'admission_time.required'               => 'Please enter Admission time',
             'abha_id.required'                      => 'Please enter ABHA ID',
             'insurance_coverage.required'           => 'Please select Insurance Coverage',
-            'policy_no.required'                    => 'Please enter Policy No.',
-            'company_tpa_id_card_no.required'       => 'Please enter Company / TPA ID Card No.',
+            'policy_no.required'                 => 'Please enter Policy No.',
+            'policy_file.required'               => 'Please upload Policy',
+            'company_tpa_id_card_no.required'    => 'Please enter Company / TPA ID Card No.',
+            'company_tpa_id_card_file.required'  => 'Please upload Company / TPA ID Card.',
             'lending_required.required'             => 'Please select Lending required',
             'hospitalization_due_to.required'       => 'Please select Hospitalization due to',
             'date_of_delivery.required'             => 'Please enter Date of delivery',
@@ -919,6 +1008,17 @@ class ClaimController extends Controller
             'disease_type'                          => $request->disease_type,
             'estimated_amount'                      => $request->estimated_amount,
             'comments'                              => $request->comments,
+            'discharge_date'                        => $request->discharge_date,
+            'days_in_hospital'                      => $request->days_in_hospital,
+            'room_category'                         => $request->room_category,
+            'consultation_date'                     => $request->consultation_date,
+            'nature_of_illness'                     => $request->nature_of_illness,
+            'clinical_finding'                      => $request->clinical_finding,
+            'chronic_illness'                       => $request->chronic_illness,
+            'ailment_details'                       => $request->ailment_details,
+            'has_family_physician'                  => $request->has_family_physician,
+            'family_physician'                      => $request->family_physician,
+            'family_physician_contact_no'           => $request->family_physician_contact_no,
             'claim_intimation_done'                 => $request->claim_intimation_done,
             'claim_intimation_number_mail'          => $request->claim_intimation_number_mail,
         ]);
@@ -941,14 +1041,7 @@ class ClaimController extends Controller
             'associate_partner_id'              => $request->associate_partner_id,
         ]);
 
-        if ($request->hasfile('abhafile')) {
-            $abhafile                    = $request->file('abhafile');
-            $name                       = $abhafile->getClientOriginalName();
-            $abhafile->storeAs('uploads/claims/' . $claim->id . '/', $name, 'public');
-            Claim::where('id', $claim->id)->update([
-                'abhafile'               =>  $name
-            ]);
-        }
+       
 
         return redirect()->route('super-admin.claims.edit', $id)->with('success', 'Claim updated successfully');
     }

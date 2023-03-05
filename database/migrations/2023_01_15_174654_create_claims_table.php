@@ -24,7 +24,9 @@ return new class extends Migration
            $table->string('abhafile')->nullable();
            $table->enum('insurance_coverage', ['Yes', 'No'])->default('No');
            $table->string('policy_no')->nullable();
+           $table->string('policy_file')->nullable();
            $table->string('company_tpa_id_card_no')->nullable();
+           $table->string('company_tpa_id_card_file')->nullable();
            $table->enum('lending_required', ['Yes', 'No'])->default('No');
            $table->string('hospitalization_due_to')->nullable();
            $table->date('date_of_delivery')->nullable();
@@ -34,7 +36,7 @@ return new class extends Migration
            $table->string('admission_type_2')->nullable();
            $table->string('admission_type_3')->nullable();
            $table->string('claim_category')->nullable();
-           $table->enum('treatment_category', ['OPD', 'IPD'])->default('OPD');
+           $table->enum('treatment_category', ['Surgical', 'Medical Management', 'Intensive Care', 'Investigation', 'Non Allopathic'])->default('Surgical');
            $table->string('disease_category')->nullable();
            $table->string('disease_name')->nullable();
            $table->string('disease_type')->nullable();
@@ -42,6 +44,17 @@ return new class extends Migration
            $table->text('comments')->nullable();
            $table->string('claim_intimation_done')->nullable();
            $table->string('claim_intimation_number_mail')->nullable();
+           $table->date('discharge_date')->nullable();
+           $table->string('days_in_hospital')->nullable();
+           $table->string('room_category')->nullable();
+           $table->date('consultation_date')->nullable();                     
+           $table->string('nature_of_illness')->nullable();
+           $table->string('clinical_finding')->nullable();
+           $table->text('chronic_illness')->nullable();
+           $table->text('ailment_details')->nullable();
+           $table->string('has_family_physician')->nullable();
+           $table->string('family_physician')->nullable();
+           $table->string('family_physician_contact_no')->nullable();
            $table->timestamps();
        });
     }

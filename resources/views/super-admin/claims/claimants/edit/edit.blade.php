@@ -12,7 +12,7 @@
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Claimant Stack</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('super-admin.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="javascript:void(0);">Claimants</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Claims</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('super-admin.claims.index') }}">Claimants</a>
                             </li>
                             <li class="breadcrumb-item active">New Claimant</li>
@@ -30,7 +30,6 @@
             <div class="col-12">
                 <div class="card no-shadow">
                     <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
-                        @if (@$claim->insurance_coverage == 'Yes' && @$claim->lending_required == 'Yes')
                             <li class="nav-item">
                                 <a href="#claimant_creation_tab" disabled data-bs-toggle="tab" aria-expanded="true"
                                     class="nav-link rounded-0 active">
@@ -46,54 +45,15 @@
                                     <span class="d-none d-md-block">Borrower ID Creation</span>
                                 </a>
                             </li>
-                        @endif
+                        
 
-                        @if (@$claim->insurance_coverage == 'Yes' && @$claim->lending_required == 'No')
-                            <li class="nav-item">
-                                <a href="#claimant_creation_tab" disabled data-bs-toggle="tab" aria-expanded="true"
-                                    class="nav-link rounded-0 active">
-                                    <i class="mdi mdi-home-variant d-md-none d-block"></i>
-                                    <span class="d-none d-md-block">Claimant ID Creation / Intimation</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="#borrower_id_creation_tab" data-bs-toggle="tab" aria-expanded="false"
-                                    class="nav-link rounded-0" disabled>
-                                    <i class="mdi mdi-account-circle d-md-none d-block"></i>
-                                    <span class="d-none d-md-block">Borrower ID Creation</span>
-                                </a>
-                            </li>
-                        @endif
-
-                        @if (@$claim->insurance_coverage == 'No' && @$claim->lending_required == 'Yes')
-                            <li class="nav-item">
-                                <a href="#claimant_creation_tab" disabled data-bs-toggle="tab" aria-expanded="false"
-                                    class="nav-link rounded-0" disabled>
-                                    <i class="mdi mdi-home-variant d-md-none d-block"></i>
-                                    <span class="d-none d-md-block">Claimant ID Creation / Intimation</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="#borrower_id_creation_tab" data-bs-toggle="tab" aria-expanded="true"
-                                    class="nav-link rounded-0 active">
-                                    <i class="mdi mdi-account-circle d-md-none d-block"></i>
-                                    <span class="d-none d-md-block">Borrower ID Creation</span>
-                                </a>
-                            </li>
-                        @endif
-
-                        @if (@$claim->insurance_coverage == 'No' && @$claim->lending_required == 'No')
-                            <li class="nav-item">
-                                <a href="#claimant_no_tab" data-bs-toggle="tab" aria-expanded="true"
-                                    class="nav-link rounded-0 active">
-                                    <i class="mdi mdi-home-variant d-md-none d-block"></i>
-                                    <span class="d-none d-md-block">No Tab Found</span>
-                                </a>
-                            </li>
-                        @endif
-
+                        <li class="nav-item">
+                            <a href="#documents_reimbursement_creation_tab" data-bs-toggle="tab" aria-expanded="false"
+                            class="nav-link rounded-0">
+                                <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                                <span class="d-none d-md-block">Documents Reimbursement</span>
+                            </a>
+                        </li>
 
                         <li class="nav-item">
                             <a href="#assessment_status_creation_tab" data-bs-toggle="tab" aria-expanded="false"
@@ -131,38 +91,18 @@
                     </ul>
 
                     <div class="tab-content">
-                        @if (@$claim->insurance_coverage == 'Yes' && @$claim->lending_required == 'Yes')
-                            <div class="tab-pane show active" id="claimant_creation_tab">
+                            <div class="tab-pane show" disabled id="claimant_creation_tab">
                                 @include('super-admin.claims.claimants.edit.tabs.claimant-id-creation')
                             </div>
 
-                            <div class="tab-pane" id="borrower_id_creation_tab">
+                            <div class="tab-pane active" id="borrower_id_creation_tab">
                                 @include('super-admin.claims.claimants.edit.tabs.borrower-id-creation')
                             </div>
-                        @endif
-                        @if (@$claim->insurance_coverage == 'Yes' && @$claim->lending_required == 'No')
-                            <div class="tab-pane show active" id="claimant_creation_tab">
-                                @include('super-admin.claims.claimants.edit.tabs.claimant-id-creation')
-                            </div>
+                        
 
-                            <div class="tab-pane" id="borrower_id_creation_tab">
-                                @include('super-admin.claims.claimants.edit.tabs.borrower-id-creation')
-                            </div>
-                        @endif
-                        @if (@$claim->insurance_coverage == 'No' && @$claim->lending_required == 'Yes')
-                            <div class="tab-pane" id="claimant_creation_tab">
-                                @include('super-admin.claims.claimants.edit.tabs.claimant-id-creation')
-                            </div>
-
-                            <div class="tab-pane show active" id="borrower_id_creation_tab">
-                                @include('super-admin.claims.claimants.edit.tabs.borrower-id-creation')
-                            </div>
-                        @endif
-                        @if (@$claim->insurance_coverage == 'No' && @$claim->lending_required == 'No')
-                            <div class="tab-pane show active" id="claimant_no_tab">
-                                @include('super-admin.claims.claimants.edit.tabs.notab')
-                            </div>
-                        @endif
+                        <div class="tab-pane" id="documents_reimbursement_creation_tab">
+                            @include('super-admin.claims.claimants.edit.tabs.documents-reimbursement')
+                        </div>
 
                         <div class="tab-pane" id="assessment_status_creation_tab">
                             @include('super-admin.claims.claimants.edit.tabs.assessment-status')
@@ -390,4 +330,70 @@
             }
         }
     </script>
+    <script>
+    $('#patients_relation_with_claimant').on('change', function () {
+        if($(this).val() == 'Other'){
+            $('#specify').attr('disabled', false);
+        }
+    });
+
+    $('#are_patient_and_claimant_same').on('change', function () {
+        var idCountry = this.value;
+        if(idCountry == 'Yes'){
+
+            var title            = $("#claim_id").select2().find(":selected").data("title");
+            var firstname           = $("#claim_id").select2().find(":selected").data("firstname");
+            var middlename          = $("#claim_id").select2().find(":selected").data("middlename");
+            var lastname            = $("#claim_id").select2().find(":selected").data("lastname");
+            var address            = $("#claim_id").select2().find(":selected").data("address");
+            var city            = $("#claim_id").select2().find(":selected").data("city");
+            var state            = $("#claim_id").select2().find(":selected").data("state");
+            var pincode            = $("#claim_id").select2().find(":selected").data("pincode");
+            var email            = $("#claim_id").select2().find(":selected").data("email");
+            var mobile            = $("#claim_id").select2().find(":selected").data("mobile");
+
+            $('#patients_relation_with_claimant').val('Self').trigger('change');
+            $('#title').val(title).trigger('change');
+            $('#firstname').val(firstname);
+            $('#middlename').val(middlename);
+            $('#lastname').val(lastname);
+            $('#address').val(address);
+            $('#city').val(city);
+            $('#state').val(state);
+            $('#pincode').val(pincode);
+            $('#personal_email_id').val(email);
+            $('#mobile_no').val(mobile);
+
+        }else{
+
+            $('#patients_relation_with_claimant').val('').trigger('change');
+            $('#title').val('').trigger('change');
+            $('#firstname').val('');
+            $('#middlename').val('');
+            $('#lastname').val('');
+            $('#address').val('');
+            $('#city').val('');
+            $('#state').val('');
+            $('#pincode').val('');
+            $('#personal_email_id').val('');
+            $('#mobile_no').val('');
+
+        }
+    });
+
+
+    $('select').on('change', function(){
+            var id = $(this).attr('id');
+        if($(this).val() == 'No' || $(this).val() == 'NA'){
+            $("#"+id+"_file").attr('disabled',true);
+        }else{
+            $("#"+id+"_file").attr('disabled',false);
+        }
+    });
+
+    var cancel_cheque = "{{ old('cancel_cheque') }}";
+    if(cancel_cheque == 'No'){
+        $("#cancel_cheque_file").attr('disabled',true);
+    }
+</script>
 @endpush

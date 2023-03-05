@@ -9,7 +9,8 @@
                     onchange="setPatient()">
                     <option value="">Enter Patient ID</option>
                     @foreach ($patients as $row)
-                        <option value="{{ $row->id }}" {{ old('patient_id', isset($patient) ? $patient->id : '') == $row->id ? 'selected' : '' }}
+                        <option value="{{ $row->id }}"
+                            {{ old('patient_id', isset($patient) ? $patient->id : '') == $row->id ? 'selected' : '' }}
                             data-title="{{ $row->title }}" data-firstname="{{ $row->firstname }}"
                             data-middlename="{{ $row->middlename }}" data-lastname="{{ $row->lastname }}"
                             data-age="{{ $row->age }}" data-gender="{{ $row->gender }}"
@@ -174,8 +175,8 @@
             </div>
             <div class="col-md-6 mt-3">
                 <label for="admission_date">Date of Admission (DD-MM-YYYY) <span class="text-danger">*</span></label>
-                <input type="date" class="form-control" id="admission_date" max="{{ date('Y-m-d') }}" name="admission_date"
-                    value="{{ old('admission_date') }}">
+                <input type="date" class="form-control" id="admission_date" max="{{ date('Y-m-d') }}"
+                    name="admission_date" value="{{ old('admission_date') }}">
                 @error('admission_date')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -188,12 +189,32 @@
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
+            <div class="col-md-6 mt-3">
+                <label for="discharge_date">Expected Date of Discharge (DD-MM-YYYY) <span
+                        class="text-danger">*</span></label>
+                <input type="date" class="form-control" id="discharge_date" name="discharge_date"
+                    value="{{ old('discharge_date') }}">
+                @error('discharge_date')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="col-md-6 mt-3">
+                <label for="days_in_hospital">Expected No. of Days in Hospital <span
+                        class="text-danger">*</span></label>
+                <input type="text" maxlength="3" onkeypress="return isNumberKey(event)" class="form-control"
+                    id="days_in_hospital" placeholder="Expected No. of Days in Hospital" name="days_in_hospital"
+                    value="{{ old('days_in_hospital') }}">
+                @error('days_in_hospital')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
             <div class="col-md-12 mt-3">
                 <label for="abha_id">ABHA ID <span class="text-danger">*</span></label>
                 <div class="input-group">
-                <input type="text" maxlength="45" class="form-control" id="abha_id" name="abha_id"
-                    placeholder="ABHA ID" value="{{ old('abha_id') }}">
-                    <input type="file" name="abhafile" id="abhafile" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
+                    <input type="text" maxlength="45" class="form-control" id="abha_id" name="abha_id"
+                        placeholder="ABHA ID" value="{{ old('abha_id') }}">
+                    <input type="file" name="abhafile" id="abhafile" hidden
+                        onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                     <label for="abhafile" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
                 </div>
                 @error('abha_id')
@@ -205,7 +226,8 @@
             </div>
             <div class="col-md-6 mt-3">
                 <label for="insurance_coverage">Insurance Coverage <span class="text-danger">*</span></label>
-                <select class="form-select" id="insurance_coverage" name="insurance_coverage" onchange="setInsuranceCoverageOptions()">
+                <select class="form-select" id="insurance_coverage" name="insurance_coverage"
+                    onchange="setInsuranceCoverageOptions()">
                     <option value="">Select</option>
                     <option value="Yes" {{ old('insurance_coverage') == 'Yes' ? 'selected' : '' }}>Yes
                     </option>
@@ -218,19 +240,37 @@
             </div>
             <div class="col-md-6 mt-3">
                 <label for="policy_no">Policy No. <span class="text-danger">*</span></label>
-                <input type="text" maxlength="16" class="form-control" id="policy_no" name="policy_no"
-                    placeholder="Policy No." value="{{ old('policy_no') }}">
+                <div class="input-group">
+                    <input type="text" maxlength="16" class="form-control" id="policy_no" name="policy_no"
+                        placeholder="Policy No." value="{{ old('policy_no') }}">
+                    <input type="file" name="policy_file" id="policy_file" hidden
+                        onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
+                    <label for="policy_file" class="btn btn-primary upload-label"><i
+                            class="mdi mdi-upload"></i></label>
+                </div>
                 @error('policy_no')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+                @error('policy_file')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
             <div class="col-md-6 mt-3">
                 <label for="company_tpa_id_card_no">Company / TPA ID Card No. <span
                         class="text-danger">*</span></label>
-                <input type="text" maxlength="16" class="form-control" id="company_tpa_id_card_no"
-                    placeholder="Company / TPA ID Card No." name="company_tpa_id_card_no"
-                    value="{{ old('company_tpa_id_card_no') }}">
+                <div class="input-group">
+                    <input type="text" maxlength="16" class="form-control" id="company_tpa_id_card_no"
+                        placeholder="Company / TPA ID Card No." name="company_tpa_id_card_no"
+                        value="{{ old('company_tpa_id_card_no') }}">
+                    <input type="file" name="company_tpa_id_card_file" id="company_tpa_id_card_file" hidden
+                        onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
+                    <label for="company_tpa_id_card_file" class="btn btn-primary upload-label"><i
+                            class="mdi mdi-upload"></i></label>
+                </div>
                 @error('company_tpa_id_card_no')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+                @error('company_tpa_id_card_file')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
@@ -247,22 +287,46 @@
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
-            <div class="col-md-12 mt-3">
+            <div class="col-md-6 mt-3">
+                <label for="room_category">Room Category <span class="text-danger">*</span></label>
+                <select class="form-select" id="room_category" name="room_category">
+                    <option value="">Select</option>
+                    <option value="Daycare" {{ old('room_category') == 'Daycare' ? 'selected' : '' }}>Daycare
+                    </option>
+                    <option value="Single  Occupancy"
+                        {{ old('room_category') == 'Single  Occupancy' ? 'selected' : '' }}>Single Occupancy
+                    </option>
+                    <option value="Twin Sharing" {{ old('room_category') == 'Twin Sharing' ? 'selected' : '' }}>Twin
+                        Sharing
+                    </option>
+                    <option value="3 or more beds per room"
+                        {{ old('room_category') == '3 or more beds per room' ? 'selected' : '' }}>3 or more beds per
+                        room
+                    </option>
+                </select>
+                @error('room_category')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="col-md-6 mt-3">
                 <label for="hospitalization_due_to">Hospitalization Due To <span class="text-danger">*</span></label>
                 <div class="mt-2">
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" id="injury" value="Injury"
-                            name="hospitalization_due_to" {{ old('hospitalization_due_to') == 'Injury' ? 'checked' : '' }}>
+                            name="hospitalization_due_to"
+                            {{ old('hospitalization_due_to') == 'Injury' ? 'checked' : '' }}>
                         <label class="form-check-label" for="injury">Injury</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" id="illness" value="Illness"
-                            name="hospitalization_due_to" {{ old('hospitalization_due_to') == 'Illness' ? 'checked' : '' }}>
+                            name="hospitalization_due_to"
+                            {{ old('hospitalization_due_to') == 'Illness' ? 'checked' : '' }}>
                         <label class="form-check-label" for="illness">Illness</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" id="maternity" value="Maternity"
-                            name="hospitalization_due_to" {{ old('hospitalization_due_to') == 'Maternity' ? 'checked' : '' }}>
+                            name="hospitalization_due_to"
+                            {{ old('hospitalization_due_to') == 'Maternity' ? 'checked' : '' }}>
                         <label class="form-check-label" for="maternity">Maternity</label>
                     </div>
                 </div>
@@ -271,10 +335,19 @@
                 @enderror
             </div>
             <div class="col-md-6 mt-3">
-                <label for="date_of_delivery">Date of Injury / Date Disease first detected / Date of delivery
-                    (DD-MM-YYYY) <span class="text-danger">*</span></label>
-                <input type="date" class="form-control" id="date_of_delivery" max="{{ date('Y-m-d') }}" name="date_of_delivery"
-                    value="{{ old('date_of_delivery') }}"
+                <label for="consultation_date">Date of First Consultation (DD-MM-YYYY) <span
+                        class="text-danger">*</span></label>
+                <input type="date" class="form-control" id="consultation_date" max="{{ date('Y-m-d') }}"
+                    name="consultation_date" value="{{ old('consultation_date') }}">
+                @error('consultation_date')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="col-md-6 mt-3">
+                <label for="date_of_delivery">Date of Injury / Date Disease first detected / Date of delivery<span
+                        class="text-danger">*</span></label>
+                <input type="date" class="form-control" id="date_of_delivery" max="{{ date('Y-m-d') }}"
+                    name="date_of_delivery" value="{{ old('date_of_delivery') }}"
                     placeholder="Date of Injury / Date Disease first detected / Date of delivery (DD-MM-YYYY)">
                 @error('date_of_delivery')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -282,7 +355,7 @@
             </div>
             <div class="col-md-6 mt-3">
                 <label for="system_of_medicine">System of Medicine <span class="text-danger">*</span></label>
-                <select class="form-select" id="system_of_medicine" name="system_of_medicine">
+                <select class="form-select" id="system_of_medicine" name="system_of_medicine" onchange=setMedicineOption();>
                     <option value="">Select</option>
                     <option value="Allopathy" {{ old('system_of_medicine') == 'Allopathy' ? 'selected' : '' }}>
                         Allopathy
@@ -347,7 +420,8 @@
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" id="hospitalization" value="Hospitalization"
-                            name="admission_type_2" {{ old('admission_type_2') == 'Hospitalization' ? 'checked' : '' }}>
+                            name="admission_type_2"
+                            {{ old('admission_type_2') == 'Hospitalization' ? 'checked' : '' }}>
                         <label class="form-check-label" for="hospitalization">Hospitalization</label>
                     </div>
                 </div>
@@ -361,7 +435,9 @@
                     <option value="">Select</option>
                     <option value="Main" {{ old('admission_type_3') == 'Main' ? 'selected' : '' }}>Main
                     </option>
-                    <option value="Pre-Post" {{ old('admission_type_3') == 'Pre-Post' ? 'selected' : '' }}>Pre-Post
+                    <option value="Pre" {{ old('admission_type_3') == 'Pre' ? 'selected' : '' }}>Pre
+                    </option>
+                    <option value="Post" {{ old('admission_type_3') == 'Post' ? 'selected' : '' }}>Post
                     </option>
                 </select>
                 @error('admission_type_3')
@@ -386,9 +462,19 @@
                 <label for="treatment_category">Treatment Category <span class="text-danger">*</span></label>
                 <select class="form-select" id="treatment_category" name="treatment_category">
                     <option value="">Select</option>
-                    <option value="OPD" {{ old('treatment_category') == 'OPD' ? 'selected' : '' }}>OPD
+                    <option value="Surgical" {{ old('treatment_category') == 'Surgical' ? 'selected' : '' }}>Surgical
                     </option>
-                    <option value="IPD" {{ old('treatment_category') == 'IPD' ? 'selected' : '' }}>IPD
+                    <option value="Medical Management"
+                        {{ old('treatment_category') == 'Medical Management' ? 'selected' : '' }}>Medical Management
+                    </option>
+                    <option value="Intensive Care"
+                        {{ old('treatment_category') == 'Intensive Care' ? 'selected' : '' }}>Intensive Care
+                    </option>
+                    <option value="Investigation"
+                        {{ old('treatment_category') == 'Investigation' ? 'selected' : '' }}>Investigation
+                    </option>
+                    <option value="Non Allopathic"
+                        {{ old('treatment_category') == 'Non Allopathic' ? 'selected' : '' }}>Non Allopathic
                     </option>
                 </select>
                 @error('treatment_category')
@@ -403,10 +489,11 @@
                     </option>
                     <option value="Dialysis" {{ old('disease_category') == 'Dialysis' ? 'selected' : '' }}>Dialysis
                     </option>
-                    <option value="Eye Related" {{ old('disease_category') == 'Eye Related' ? 'selected' : '' }}>Eye
+                    <option value="Hear Disease" {{ old('disease_category') == 'Eye Related' ? 'selected' : '' }}>Eye
                         Related
                     </option>
-                    <option value="Infection" {{ old('disease_category') == 'Infection' ? 'selected' : '' }}>Infection
+                    <option value="Infection" {{ old('disease_category') == 'Infection' ? 'selected' : '' }}>
+                        Infection
                     </option>
                     <option value="Maternity" {{ old('disease_category') == 'Maternity' ? 'selected' : '' }}>
                         Maternity
@@ -443,6 +530,116 @@
                     </option>
                 </select>
                 @error('disease_type')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="col-md-6 mt-3">
+                <label for="nature_of_illness">Nature of Illness / Disease with presenting complaints <span
+                        class="text-danger">*</span></label>
+                <input type="text" maxlength="100" class="form-control" id="nature_of_illness"
+                    name="nature_of_illness" value="{{ old('nature_of_illness') }}"
+                    placeholder="Nature of Illness / Disease with presenting complaints">
+                @error('nature_of_illness')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="col-md-6 mt-3">
+                <label for="clinical_finding">Relevant Clinical Findings <span class="text-danger">*</span></label>
+                <input type="text" maxlength="45" class="form-control" id="clinical_finding"
+                    name="clinical_finding" value="{{ old('clinical_finding') }}"
+                    placeholder="Relevant Clinical Findings">
+                @error('clinical_finding')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="col-md-6 mt-3">
+                <label for="chronic_illness">Past history of any chronic illness <span
+                        class="text-danger">*</span></label>
+                <select class="form-select" id="chronic_illness" name="chronic_illness" onchange="ailnessOptions();">
+                    <option value="">Select</option>
+                    <option value="N/A" selected>N/A
+                    </option>
+                    <option value="Diabetes" {{ old('chronic_illness') == 'Diabetes' ? 'selected' : '' }}>Diabetes
+                    </option>
+                    <option value="Hear Disease" {{ old('chronic_illness') == 'Hear Disease' ? 'selected' : '' }}>
+                        Hear Disease
+                    </option>
+                    <option value="Hypertension" {{ old('chronic_illness') == 'Hypertension' ? 'selected' : '' }}>
+                        Hypertension
+                    </option>
+                    <option value="Hyperlipidaemias"
+                        {{ old('chronic_illness') == 'Hyperlipidaemias' ? 'selected' : '' }}>
+                        Hyperlipidaemias
+                    </option>
+                    <option value="Osteoarthritis"
+                        {{ old('chronic_illness') == 'Osteoarthritis' ? 'selected' : '' }}>
+                        Osteoarthritis
+                    </option>
+                    <option value="Asthma-COPD-Bronchitis"
+                        {{ old('chronic_illness') == 'Asthma-COPD-Bronchitis' ? 'selected' : '' }}>
+                        Asthma-COPD-Bronchitis
+                    </option>
+                    <option value="Cancer" {{ old('chronic_illness') == 'Cancer' ? 'selected' : '' }}>Cancer
+                    </option>
+                    <option value="Alcohol or Drug Abuse"
+                        {{ old('chronic_illness') == 'Alcohol or Drug Abuse' ? 'selected' : '' }}>Alcohol or Drug
+                        Abuse
+                    </option>
+                    <option value="Any HIV or STD related ailments"
+                        {{ old('chronic_illness') == 'Any HIV or STD related ailments' ? 'selected' : '' }}>Any HIV or
+                        STD related ailments
+                    </option>
+                    <option value="Any other ailment"
+                        {{ old('chronic_illness') == 'Any other ailment' ? 'selected' : '' }}>Any other ailment
+                    </option>
+                </select>
+                @error('chronic_illness')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="col-md-6 mt-3">
+                <label for="ailment_details">Any other aliment details <span class="text-danger">*</span></label>
+                <input type="text" maxlength="45" class="form-control" id="ailment_details"
+                    name="ailment_details" value="{{ old('ailment_details') }}"
+                    placeholder="Any other aliment details">
+                @error('ailment_details')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="col-md-6 mt-3">
+                <label for="has_family_physician">Does the patient has a family physician <span
+                        class="text-danger">*</span></label>
+                <select class="form-select" id="has_family_physician" name="has_family_physician" onchange="setPhysicinOptions();">
+                    <option value="">Select</option>
+                    <option value="Yes" {{ old('has_family_physician') == 'Yes' ? 'selected' : '' }}>Yes
+                    </option>
+                    <option value="No" {{ old('has_family_physician') == 'No' ? 'selected' : '' }}>No
+                    </option>
+                </select>
+                @error('has_family_physician')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="col-md-6 mt-3">
+                <label for="family_physician">Name of the family physician <span class="text-danger">*</span></label>
+                <input type="text" maxlength="45" class="form-control" id="family_physician"
+                    name="family_physician" value="{{ old('family_physician') }}"
+                    placeholder="Name of the family physician">
+                @error('family_physician')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="col-md-6 mt-3">
+                <label for="family_physician_contact_no">Contact No. of the family physician, if any <span
+                        class="text-danger">*</span></label>
+                <div class="input-group">
+                    <label class="input-group-text" for="family_physician_contact_no">+91</label>
+                    <input type="text" maxlength="10" onkeypress="return isNumberKey(event)" class="form-control"
+                        id="family_physician_contact_no" name="family_physician_contact_no"
+                        placeholder="Contact No. of the family physician, if any"
+                        value="{{ old('family_physician_contact_no') }}">
+                </div>
+                @error('family_physician_contact_no')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>

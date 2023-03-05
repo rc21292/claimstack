@@ -77,6 +77,9 @@
             setHospitalId();
             setInsuranceCoverageOptions();
             setClaimIntimationNumber();
+            setMedicineOption();
+            setPhysicinOptions();
+            ailnessOptions();
             $('#addInsured').click(function() {
                 $('.addInsured').toggle("slide");
             });
@@ -137,27 +140,30 @@
         }
     </script>
     <script>
-        function setInsuranceCoverageOptions() {
-            var insurance_coverage = $('#insurance_coverage').val();
-            switch (insurance_coverage) {
+    function setInsuranceCoverageOptions(){
+        var insurance_coverage = $('#insurance_coverage').val();
+        switch (insurance_coverage) {
                 case 'Yes':
                     $("#policy_no").prop("readonly", false);
                     $("#company_tpa_id_card_no").prop("readonly", false);
-                    $("#claim_intimation_done").prop("disabled", false);
+                    $("#policy_file").prop("disabled", false);
+                    $("#company_tpa_id_card_file").prop("disabled", false);
                     break;
                 case 'No':
                     $("#policy_no").prop("readonly", true);
                     $("#company_tpa_id_card_no").prop("readonly", true);
-                    $("#claim_intimation_done").prop("disabled", true);
+                    $("#policy_file").prop("disabled", true);
+                    $("#company_tpa_id_card_file").prop("disabled", true);
                     break;
                 default:
                     $("#policy_no").prop("readonly", true);
                     $("#company_tpa_id_card_no").prop("readonly", true);
-                    $("#claim_intimation_done").prop("disabled", true);
+                    $("#policy_file").prop("disabled", true);
+                    $("#company_tpa_id_card_file").prop("disabled", true);
                     break;
             }
-        }
-    </script>
+    }
+</script>
     <script>
         function setClaimIntimationNumber() {
             var claim_intimation_done = $('#claim_intimation_done').val();
@@ -180,12 +186,15 @@
             switch (policy_type) {
                 case 'Group':
                     $("#group_name").prop("readonly", false);
+                    $("#previous_policy_no").prop("readonly", true);
                     break;
                 case 'Retail':
                     $("#group_name").prop("readonly", true);
+                    $("#previous_policy_no").prop("readonly", false);
                     break;
                 default:
                     $("#group_name").prop("readonly", true);
+                    $("#previous_policy_no").prop("readonly", true);
                     break;
             }
         }
@@ -294,4 +303,49 @@
         }
     });
     </script>
+    <script>
+    function setMedicineOption(){
+        var category_option = $('#system_of_medicine').val();
+        switch (category_option) {
+                case 'Allopathy':
+                    $("#treatment_category").val("");                   
+                    break;                
+                default:
+                    $("#treatment_category").val("Non Allopathic");                   
+                    break;
+            }
+    }
+</script>
+<script>
+    function setPhysicinOptions(){
+        var category_option = $('#has_family_physician').val();
+        switch (category_option) {
+                case 'Yes':
+                   $("#family_physician").prop("readonly", false);       
+                    $("#family_physician_contact_no").prop("readonly", false);                   
+                    break;  
+                case 'No':
+                   $("#family_physician").prop("readonly", true);   
+                    $("#family_physician_contact_no").prop("readonly", true);                       
+                    break;             
+                default:
+                     $("#family_physician").prop("readonly", false);  
+                      $("#family_physician_contact_no").prop("readonly", false);                                
+                    break;
+            }
+    }
+</script>
+<script>
+    function ailnessOptions(){
+        var category_option = $('#chronic_illness').val();
+        switch (category_option) {
+                case 'Any other ailment':
+                    $("#ailment_details").prop("readonly", false);            
+                    break;                
+                default:
+                     $("#ailment_details").prop("readonly", true);                           
+                    break;
+            }
+    }
+</script>
 @endpush

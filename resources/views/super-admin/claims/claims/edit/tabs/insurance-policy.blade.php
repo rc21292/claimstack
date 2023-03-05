@@ -110,6 +110,15 @@
             </div>
 
             <div class="col-md-6 mb-3">
+                <label for="previous_policy_no">Previous Policy No. <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="previous_policy_no" name="previous_policy_no" maxlength="16"
+                    placeholder="Enter Policy No." value="{{ old('previous_policy_no', $claim->previous_policy_no) }}">
+                @error('previous_policy_no')
+                    <span id="policy-id-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="col-md-6 mb-3">
                 <label for="start_date">Policy Start Date <span class="text-danger">*</span></label>
                 <input type="date" max="{{ date('Y-m-d') }}" placeholder="Enter Policy Start Date" class="form-control" id="start_date"
                     name="start_date" value="{{ old('start_date') }}">

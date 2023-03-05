@@ -16,7 +16,7 @@
 
                             <div class="col-md-6">
                                 <label for="hospital_name">Hospital Name <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="hospital_name" name="hospital_name"
+                                <input type="text" readonly class="form-control" id="hospital_name" name="hospital_name"
                                 placeholder="Enter Hospital Name" value="{{ old('hospital_name',$borrower->hospital_name) }}">
                                 @error('hospital_name', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
