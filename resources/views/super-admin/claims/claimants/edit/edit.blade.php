@@ -30,21 +30,19 @@
             <div class="col-12">
                 <div class="card no-shadow">
                     <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
-                            <li class="nav-item">
-                                <a href="#claimant_creation_tab" disabled data-bs-toggle="tab" aria-expanded="true"
-                                    class="nav-link rounded-0 active">
-                                    <i class="mdi mdi-home-variant d-md-none d-block"></i>
-                                    <span class="d-none d-md-block">Claimant ID Creation / Intimation</span>
-                                </a>
-                            </li>
+                        <li class="nav-item">
+                            <a href="#claimant_creation_tab" data-bs-toggle="tab" aria-expanded="true"  class="nav-link rounded-0 active">
+                                <i class="mdi mdi-home-variant d-md-none d-block"></i>
+                                <span class="d-none d-md-block">Claimant ID Creation / Intimation</span>
+                            </a>
+                        </li>
 
-                            <li class="nav-item">
-                                <a href="#borrower_id_creation_tab" data-bs-toggle="tab" aria-expanded="false"
-                                    class="nav-link rounded-0">
-                                    <i class="mdi mdi-account-circle d-md-none d-block"></i>
-                                    <span class="d-none d-md-block">Borrower ID Creation</span>
-                                </a>
-                            </li>
+                        <li class="nav-item">
+                            <a href="#borrower_id_creation_tab" data-bs-toggle="tab" aria-expanded="false"  class="nav-link rounded-0">
+                                <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                                <span class="d-none d-md-block">Borrower ID Creation</span>
+                            </a>
+                        </li>
                         
 
                         <li class="nav-item">
@@ -91,13 +89,13 @@
                     </ul>
 
                     <div class="tab-content">
-                            <div class="tab-pane show" disabled id="claimant_creation_tab">
-                                @include('super-admin.claims.claimants.edit.tabs.claimant-id-creation')
-                            </div>
+                        <div class="tab-pane show" disabled id="claimant_creation_tab">
+                            @include('super-admin.claims.claimants.edit.tabs.claimant-id-creation')
+                        </div>
 
-                            <div class="tab-pane active" id="borrower_id_creation_tab">
-                                @include('super-admin.claims.claimants.edit.tabs.borrower-id-creation')
-                            </div>
+                        <div class="tab-pane active" id="borrower_id_creation_tab">
+                            @include('super-admin.claims.claimants.edit.tabs.borrower-id-creation')
+                        </div>
                         
 
                         <div class="tab-pane" id="documents_reimbursement_creation_tab">

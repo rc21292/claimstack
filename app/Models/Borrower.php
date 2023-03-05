@@ -31,12 +31,18 @@ class Borrower extends Model
         'borrower_lastname',
         'borrowers_relation_with_patient',
         'gender',
+        'bank_statement',
+        'bank_statement_file',
+        'itr',
+        'itr_file',
         'dob',
         'borrower_address',
+        'borrower_official_email_id',
         'borrower_city',
         'borrower_state',
         'borrower_pincode',
         'borrower_id_proof',
+        'borrower_dob',
         'borrower_id_proof_file',
         'borrower_mobile_no',
         'borrower_email_id',
@@ -49,6 +55,7 @@ class Borrower extends Model
         'borrower_personal_email_id',
         'borrower_bank_name',
         'borrower_bank_address',
+        'borrower_estimated_amount',
         'borrower_ac_no',
         'borrower_ifs_code'
 
@@ -57,5 +64,15 @@ class Borrower extends Model
     public function claimant()
     {
         return $this->belongsTo(Claimant::class, 'claimant_id', 'uid');
+    }
+
+    public function claim()
+    {
+        return $this->belongsTo(Claim::class, 'claim_id', 'uid');
+    }
+
+    public function patient()
+    {
+        return $this->belongsTo(Patient::class, 'patient_id', 'uid');
     }
 }

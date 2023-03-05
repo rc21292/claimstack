@@ -43,6 +43,7 @@
                                             <th scope="col">State</th>
                                             <th scope="col">City</th>
                                             <th scope="col">Pincode</th>
+                                            <th scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -56,6 +57,12 @@
                                                 <td>{{ $claimant->state }}</td>
                                                 <td>{{ $claimant->city }}</td>
                                                 <td>{{ $claimant->pincode }}</td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <a href="{{ route('super-admin.claimants.edit', @$claimant->id) }}"
+                                                            class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>

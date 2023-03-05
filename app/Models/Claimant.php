@@ -59,6 +59,11 @@ class Claimant extends Authenticatable
         return $this->belongsTo(Claim::class, 'claim_id', 'uid');
     }
 
+     public function patient()
+    {
+        return $this->belongsTo(Patient::class, 'patient_id', 'uid');
+    }
+
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token));

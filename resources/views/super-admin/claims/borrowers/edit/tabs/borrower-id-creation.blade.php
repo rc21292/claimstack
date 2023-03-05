@@ -1,9 +1,7 @@
-        <form action="{{ route('super-admin.claimants.update-borrower-details',$id) }}" method="post" id="borrower-details-form"
+        <form action="{{ route('super-admin.borrowers.update',$id) }}" method="POST" id="borrower-details-form"
         enctype="multipart/form-data">
         @csrf
-     {{--    @if($errors->any())
-    {{ implode('', $errors->all('<div>:message</div>')) }}
-@endif --}}
+        @method('PUT')
         <div class="card-body mb-4">
             <div class="form-group row">
                 <div class="col-md-6 mb-3">
@@ -134,9 +132,9 @@
                     <label for="is_patient_and_borrower_same">Is Patient and Borrower Same <span class="text-danger">*</span></label>
                     <select class="form-select" id="is_patient_and_borrower_same" name="is_patient_and_borrower_same">
                         <option value="">Select Is Patient and Borrower Same</option>
-                        <option value="Yes" {{ old('is_patient_and_borrower_same') == 'Yes' ? 'selected' : '' }}>Yes
+                        <option value="Yes" {{ old('is_patient_and_borrower_same', $borrower->is_patient_and_borrower_same) == 'Yes' ? 'selected' : '' }}>Yes
                         </option>
-                        <option value="No" {{ old('is_patient_and_borrower_same') == 'No' ? 'selected' : '' }}>No
+                        <option value="No" {{ old('is_patient_and_borrower_same', $borrower->is_patient_and_borrower_same) == 'No' ? 'selected' : '' }}>No
                         </option>
                     </select>
                     @error('is_patient_and_borrower_same', 'borrower-details-form')
@@ -148,9 +146,9 @@
                     <label for="is_claimant_and_borrower_same">Is Claimant and Borrower Same <span class="text-danger">*</span></label>
                     <select class="form-select" id="is_claimant_and_borrower_same" name="is_claimant_and_borrower_same">
                         <option value="">Select Is Claimant and Borrower Same</option>
-                        <option value="Yes" {{ old('is_claimant_and_borrower_same') == 'Yes' ? 'selected' : '' }}>Yes
+                        <option value="Yes" {{ old('is_claimant_and_borrower_same', $borrower->is_claimant_and_borrower_same ) == 'Yes' ? 'selected' : '' }}>Yes
                         </option>
-                        <option value="No" {{ old('is_claimant_and_borrower_same') == 'No' ? 'selected' : '' }}>No
+                        <option value="No" {{ old('is_claimant_and_borrower_same', $borrower->is_claimant_and_borrower_same ) == 'No' ? 'selected' : '' }}>No
                         </option>
                     </select>
                     @error('is_claimant_and_borrower_same', 'borrower-details-form')
@@ -165,8 +163,8 @@
                 <div class="col-md-3 mt-1">
                     <select class="form-control" id="borrower_title" name="borrower_title">
                         <option value="">Select</option>
-                        <option @if( old('borrower_title') == 'Mr.') selected @endif value="Mr.">Mr.</option>
-                        <option @if( old('borrower_title') == 'Ms.') selected @endif value="Ms.">Ms.</option>
+                        <option @if( old('borrower_title', $borrower->borrower_title) == 'Mr.') selected @endif value="Mr.">Mr.</option>
+                        <option @if( old('borrower_title', $borrower->borrower_title) == 'Ms.') selected @endif value="Ms.">Ms.</option>
                     </select>
                     @error('borrower_title', 'borrower-details-form')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -205,11 +203,11 @@
                     <label for="borrowers_relation_with_patient">Borrower's Relation with Patient <span class="text-danger">*</span></label>
                     <select class="form-select" id="borrowers_relation_with_patient" name="borrowers_relation_with_patient">
                         <option value="">Select Borrower's Relation with Patient</option>
-                        <option value="Spouse" {{ old('borrowers_relation_with_patient') == 'Spouse' ? 'selected' : '' }}>Spouse </option>
-                        <option value="Child" {{ old('borrowers_relation_with_patient') == 'Child' ? 'selected' : '' }}>Child</option>
-                        <option value="Father" {{ old('borrowers_relation_with_patient') == 'Father' ? 'selected' : '' }}>Father</option>
-                        <option value="Mother" {{ old('borrowers_relation_with_patient') == 'Mother' ? 'selected' : '' }}>Mother</option>
-                        <option value="Other" {{ old('borrowers_relation_with_patient') == 'Other' ? 'selected' : '' }}>Other</option>
+                        <option value="Spouse" {{ old('borrowers_relation_with_patient', $borrower->borrowers_relation_with_patient) == 'Spouse' ? 'selected' : '' }}>Spouse </option>
+                        <option value="Child" {{ old('borrowers_relation_with_patient', $borrower->borrowers_relation_with_patient) == 'Child' ? 'selected' : '' }}>Child</option>
+                        <option value="Father" {{ old('borrowers_relation_with_patient', $borrower->borrowers_relation_with_patient) == 'Father' ? 'selected' : '' }}>Father</option>
+                        <option value="Mother" {{ old('borrowers_relation_with_patient', $borrower->borrowers_relation_with_patient) == 'Mother' ? 'selected' : '' }}>Mother</option>
+                        <option value="Other" {{ old('borrowers_relation_with_patient', $borrower->borrowers_relation_with_patient) == 'Other' ? 'selected' : '' }}>Other</option>
                     </select>
                     @error('borrowers_relation_with_patient', 'borrower-details-form')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -220,11 +218,11 @@
                     <label for="gender">Borrower Gender <span class="text-danger">*</span></label>
                     <select class="form-select" id="gender" name="gender">
                         <option value="">Select Borrower Gender</option>
-                        <option value="Male" {{ old('gender') == 'Male' ? 'selected' : '' }}>M
+                        <option value="M" {{ old('gender', $borrower->gender) == 'M' ? 'selected' : '' }}>M
                         </option>
-                        <option value="Female" {{ old('gender') == 'Female' ? 'selected' : '' }}>F
+                        <option value="F" {{ old('gender', $borrower->gender) == 'F' ? 'selected' : '' }}>F
                         </option>
-                        <option value="Other" {{ old('gender') == 'Other' ? 'selected' : '' }}>Other
+                        <option value="Other" {{ old('gender', $borrower->gender) == 'Other' ? 'selected' : '' }}>Other
                         </option>
                     </select>
                     @error('gender', 'borrower-details-form')
@@ -371,8 +369,8 @@
                     <div class="input-group">
                         <select class="form-select" id="bank_statement" name="bank_statement">
                             <option value="">Select Borrower Bank Statement</option>
-                            <option value="Yes" {{ old('bank_statement') == 'Yes' ? 'selected' : '' }}>Yes  </option>
-                            <option value="No" {{ old('bank_statement', @$hospital->bank_statement) == 'No' ? 'selected' : '' }}>No </option>
+                            <option value="Yes" {{ old('bank_statement', $borrower->bank_statement) == 'Yes' ? 'selected' : '' }}>Yes  </option>
+                            <option value="No" {{ old('bank_statement', $borrower->bank_statement) == 'No' ? 'selected' : '' }}>No </option>
                         </select>
                         <input type="file" name="bank_statement_file" id="bank_statement_file" hidden  onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                         <label for="bank_statement_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
@@ -391,8 +389,8 @@
                     <div class="input-group">
                         <select class="form-select" id="itr" name="itr">
                             <option value="">Select Borrower  ITR (Income Tax Return)</option>
-                            <option value="Yes" {{ old('itr') == 'Yes' ? 'selected' : '' }}>Yes  </option>
-                            <option value="No" {{ old('itr', @$hospital->itr) == 'No' ? 'selected' : '' }}>No </option>
+                            <option value="Yes" {{ old('itr', $borrower->itr) == 'Yes' ? 'selected' : '' }}>Yes  </option>
+                            <option value="No" {{ old('itr', $borrower->itr) == 'No' ? 'selected' : '' }}>No </option>
                         </select>
                         <input type="file" name="itr_file" id="itr_file" hidden  onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                         <label for="itr_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
@@ -412,8 +410,8 @@
                     <div class="input-group">
                         <select class="form-select" id="borrower_cancel_cheque" name="borrower_cancel_cheque">
                             <option value="">Select Borrower Cancel Cheque</option>
-                            <option value="Yes" {{ old('borrower_cancel_cheque') == 'Yes' ? 'selected' : '' }}>Yes  </option>
-                            <option value="No" {{ old('borrower_cancel_cheque', @$hospital->borrower_cancel_cheque) == 'No' ? 'selected' : '' }}>No </option>
+                            <option value="Yes" {{ old('borrower_cancel_cheque', $borrower->borrower_cancel_cheque) == 'Yes' ? 'selected' : '' }}>Yes  </option>
+                            <option value="No" {{ old('borrower_cancel_cheque', $borrower->borrower_cancel_cheque) == 'No' ? 'selected' : '' }}>No </option>
                         </select>
                         <input type="file" name="borrower_cancel_cheque_file" id="borrower_cancel_cheque_file" hidden  onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                         <label for="borrower_cancel_cheque_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
@@ -451,7 +449,7 @@
 
                 <div class="col-md-6 mt-2">
                     <input type="text" class="form-control" id="borrower_ac_no" name="borrower_ac_no" maxlength="20"
-                    placeholder="Bank Account No." value="{{ old('borrower_ac_no',$borrower->borrower_ac_no, @$hospital->borrower_ac_no) }}">
+                    placeholder="Bank Account No." value="{{ old('borrower_ac_no',$borrower->borrower_ac_no, @$borrower->borrower_ac_no) }}">
                     @error('borrower_ac_no', 'borrower-details-form')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
@@ -459,7 +457,7 @@
 
                 <div class="col-md-6 mt-2">
                     <input type="text" class="form-control" id="borrower_ifs_code" name="borrower_ifs_code" maxlength="11"
-                    placeholder="Bank Ifs Code" value="{{ old('borrower_ifs_code',$borrower->borrower_ifs_code, @$hospital->borrower_ifs_code) }}">
+                    placeholder="Bank Ifs Code" value="{{ old('borrower_ifs_code',$borrower->borrower_ifs_code, @$borrower->borrower_ifs_code) }}">
                     @error('borrower_ifs_code', 'borrower-details-form')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
@@ -500,11 +498,11 @@
                     <div class="input-group">
                         <select class="form-select" id="co_borrower_nominee_gender" name="co_borrower_nominee_gender">
                             <option value="">Select Co-Borrower / Nominee Gender</option>
-                            <option value="Male" {{ old('co_borrower_nominee_gender') == 'Male' ? 'selected' : '' }}>Male
+                            <option value="Male" {{ old('co_borrower_nominee_gender', $borrower->co_borrower_nominee_gender) == 'Male' ? 'selected' : '' }}>Male
                             </option>
-                            <option value="Female" {{ old('co_borrower_nominee_gender') == 'Female' ? 'selected' : '' }}>Female
+                            <option value="Female" {{ old('co_borrower_nominee_gender', $borrower->co_borrower_nominee_gender) == 'Female' ? 'selected' : '' }}>Female
                             </option>
-                            <option value="Other" {{ old('co_borrower_nominee_gender') == 'Other' ? 'selected' : '' }}>Other
+                            <option value="Other" {{ old('co_borrower_nominee_gender', $borrower->co_borrower_nominee_gender) == 'Other' ? 'selected' : '' }}>Other
                             </option>
                         </select>
                         <input type="file" name="co_borrower_nominee_gender_file" id="co_borrower_nominee_gender_file" hidden  onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
@@ -522,11 +520,11 @@
                     <label for="co_borrower_nominee_relation">Co-Borrower / Nominee Relation <span class="text-danger">*</span></label>
                     <select class="form-select" id="co_borrower_nominee_relation" name="co_borrower_nominee_relation">
                         <option value="">Select Co-Borrower / Nominee Relation</option>
-                        <option value="Spouse" {{ old('co_borrower_nominee_relation') == 'Spouse' ? 'selected' : '' }}>Spouse </option>
-                        <option value="Child" {{ old('co_borrower_nominee_relation') == 'Child' ? 'selected' : '' }}>Child</option>
-                        <option value="Father" {{ old('co_borrower_nominee_relation') == 'Father' ? 'selected' : '' }}>Father</option>
-                        <option value="Mother" {{ old('co_borrower_nominee_relation') == 'Mother' ? 'selected' : '' }}>Mother</option>
-                        <option value="Other" {{ old('co_borrower_nominee_relation') == 'Other' ? 'selected' : '' }}>Other</option>
+                        <option value="Spouse" {{ old('co_borrower_nominee_relation', $borrower->co_borrower_nominee_relation) == 'Spouse' ? 'selected' : '' }}>Spouse </option>
+                        <option value="Child" {{ old('co_borrower_nominee_relation', $borrower->co_borrower_nominee_relation) == 'Child' ? 'selected' : '' }}>Child</option>
+                        <option value="Father" {{ old('co_borrower_nominee_relation', $borrower->co_borrower_nominee_relation) == 'Father' ? 'selected' : '' }}>Father</option>
+                        <option value="Mother" {{ old('co_borrower_nominee_relation', $borrower->co_borrower_nominee_relation) == 'Mother' ? 'selected' : '' }}>Mother</option>
+                        <option value="Other" {{ old('co_borrower_nominee_relation', $borrower->co_borrower_nominee_relation) == 'Other' ? 'selected' : '' }}>Other</option>
                     </select>
                     @error('co_borrower_nominee_relation', 'borrower-details-form')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -538,8 +536,8 @@
                     <div class="input-group">
                         <select class="form-select" id="co_borrower_other_documents" name="co_borrower_other_documents">
                             <option value="">Select Co-Borrower / Borrower Other Documents</option>
-                            <option value="Yes" {{ old('co_borrower_other_documents') == 'Yes' ? 'selected' : '' }}>Yes  </option>
-                            <option value="No" {{ old('co_borrower_other_documents', @$hospital->co_borrower_other_documents) == 'No' ? 'selected' : '' }}>No </option>
+                            <option value="Yes" {{ old('co_borrower_other_documents', $borrower->co_borrower_other_documents) == 'Yes' ? 'selected' : '' }}>Yes  </option>
+                            <option value="No" {{ old('co_borrower_other_documents', $borrower->co_borrower_other_documents) == 'No' ? 'selected' : '' }}>No </option>
                         </select>
                         <input type="file" name="co_borrower_other_documents_file" id="co_borrower_other_documents_file" hidden  onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                         <label for="co_borrower_other_documents_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
@@ -582,67 +580,6 @@
         </div>
     </form>
 @push('scripts')
-<script>
-    /*$(document).on('change', '#is_patient_and_borrower_same', function(event) {
-        event.preventDefault();
-        if($(this).val() == 'Yes'){
-            setPatient();
-            $("#is_claimant_and_borrower_same").attr('disabled', true);
-        }else{
-            $("#is_claimant_and_borrower_same").attr('disabled', false);
-        }
-    });
-
-    $(document).on('change', '#is_claimant_and_borrower_same', function(event) {
-        event.preventDefault();
-        if($(this).val() == 'Yes'){
-            setClaimant();
-            $("#is_claimant_and_borrower_same").attr('disabled', true);
-        }else{
-            $("#is_claimant_and_borrower_same").attr('disabled', false);
-        }
-    });*/
-
-    function setPatient() {
-        var title               = $("#title");
-        var firstname           = $("#firstname");
-        var middlename          = $("#middlename");
-        var lastname            = $("#lastname");
-        var age                 = $("#age");
-        var gender              = $("#gender");
-        var hospital            = $("#hospital");
-        var registrationno      = $("#registrationno");
-
-        $('#title').val(title);
-        $('#firstname').val(firstname);
-        $('#middlename').val(middlename);
-        $('#lastname').val(lastname);
-        $('#age').val(age);
-        $('#gender').val(gender);
-        $('#hospital_name').val(hospital).trigger('change');
-        $('#registration_no').val(registrationno);
-    }
-
-    function setClaimant() {
-        var title               = $("#title");
-        var firstname           = $("#firstname");
-        var middlename          = $("#middlename");
-        var lastname            = $("#lastname");
-        var age                 = $("#age");
-        var gender              = $("#gender");
-        var hospital            = $("#hospital");
-        var registrationno      = $("#registrationno");
-
-        $('#title').val(title);
-        $('#firstname').val(firstname);
-        $('#middlename').val(middlename);
-        $('#lastname').val(lastname);
-        $('#age').val(age);
-        $('#gender').val(gender);
-        $('#hospital_name').val(hospital).trigger('change');
-        $('#registration_no').val(registrationno);
-    }
-</script>
 
 <script>
 
@@ -725,7 +662,7 @@
                         $("#borrower_ac_no").val(result.ac_no);
                         $("#borrower_ifs_code").val(result.ifs_code);
                         $("#borrower_pan_no_file_download").css('display', 'block').attr('href', result.pan_no_file);
-                        // $("#borrower_id_proof_file_download").css('display', 'block').attr('href', result.id_proof_file);
+// $("#borrower_id_proof_file_download").css('display', 'block').attr('href', result.id_proof_file);
                         $("#borrower_aadhar_no_file_download").css('display', 'block').attr('href', result.aadhar_no_file);
                     }
                 });
@@ -754,152 +691,144 @@
 
         });
     });
-</script>
 
-<script>
-    $(document).ready(function(){
-        $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
-            localStorage.setItem('activeTab', $(e.target).attr('href'));
+        $(document).ready(function(){
+            $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
+                localStorage.setItem('activeTab', $(e.target).attr('href'));
+            });
+
+            var activeTab = localStorage.getItem('activeTab');
+            if(activeTab){
+                $('a[href="' + activeTab + '"]').tab('show');
+            }
         });
 
-        var activeTab = localStorage.getItem('activeTab');
-        if(activeTab){
-            $('a[href="' + activeTab + '"]').tab('show');
+        /*var is_patient_and_borrower_same = "{{ old('is_patient_and_borrower_same', $borrower->is_patient_and_borrower_same) }}";
+
+        var is_claimant_and_borrower_same = "{{ old('is_claimant_and_borrower_same', $borrower->is_claimant_and_borrower_same ) }}";
+
+        if(is_patient_and_borrower_same == 'Yes'){
+
+            $("#is_claimant_and_borrower_same").attr('disabled', true);
+
+            $.ajax({
+                url: "{{route('super-admin.claimants.fetch-patient', $borrower->patient_id)}}",
+                type: "GET",
+                data: {
+                    _token: '{{csrf_token()}}'
+                },
+                dataType: 'json',
+                success: function (result) {
+                    $("#borrower_title").val(result.title);
+                    $("#borrower_firstname").val(result.firstname);
+                    $("#borrower_lastname").val(result.lastname);
+                    $("#borrower_middlename").val(result.middlename);
+                    $("#borrower_address").val(result.patient_current_address);
+                    $("#borrower_city").val(result.patient_current_city);
+                    $("#borrower_state").val(result.patient_current_state);
+                    $("#borrower_pincode").val(result.patient_current_pincode);
+                    $("#borrower_id_proof").val(result.id_proof);
+                    $("#borrower_personal_email_id").val(result.email);
+                    $("#borrower_mobile_no").val(result.phone);
+                    $("#borrower_id_proof_file_download").css('display', 'block').attr('href', result.id_proof_file);
+                }
+            });
+
+
         }
-    });
 
-        // var is_patient_and_borrower_same = "{{ old('is_patient_and_borrower_same', $borrower->is_patient_and_borrower_same) }}";
-        var is_patient_and_borrower_same = "{{ old('is_patient_and_borrower_same') }}";
+        if(is_patient_and_borrower_same == 'No'){
+            $("#borrower_title").val('');
+            $("#borrower_firstname").val('');
+            $("#borrower_lastname").val('');
+            $("#borrower_middlename").val('');
+            $("#borrower_address").val('');
+            $("#borrower_city").val('');
+            $("#borrower_state").val('');
+            $("#borrower_pincode").val('');
+            $("#borrower_personal_email_id").val('');
+            $("#borrower_mobile_no").val('');
+            $("#borrower_id_proof_file_download").css('display', 'none').attr('href', '');
 
-    // var is_claimant_and_borrower_same = "{{ old('is_claimant_and_borrower_same', $borrower->is_claimant_and_borrower_same) }}";
-    var is_claimant_and_borrower_same = "{{ old('is_claimant_and_borrower_same') }}";
+            $("#is_claimant_and_borrower_same").attr('disabled', false);
+        }
 
-    if(is_patient_and_borrower_same == 'Yes'){
+        if(is_claimant_and_borrower_same == 'No'){
+            $("#borrower_title").val('');
+            $("#borrower_firstname").val('');
+            $("#borrower_lastname").val('');
+            $("#borrower_middlename").val('');
+            $("#borrower_address").val('');
+            $("#borrower_city").val('');
+            $("#borrower_state").val('');
+            $("#borrower_pincode").val('');
+            $("#borrower_personal_email_id").val('');
+            $("#borrower_mobile_no").val('');
+            $("#borrower_pan_no").val('');
+            $("#borrower_aadhar_no").val('');
+            $("#borrower_bank_name").val('');
+            $("#borrower_bank_address").val('');
+            $("#borrower_ac_no").val('');
+            $("#borrower_ifs_code").val('');
+            $("#borrower_pan_no_file").val('');
+            $("#borrower_aadhar_no_file").val('');
 
-        $("#is_claimant_and_borrower_same").attr('disabled', true);
+        }
 
-        $.ajax({
-            url: "{{route('super-admin.claimants.fetch-patient', $claimant->patient_id)}}",
-            type: "GET",
-            data: {
-                _token: '{{csrf_token()}}'
-            },
-            dataType: 'json',
-            success: function (result) {
-                $("#borrower_title").val(result.title);
-                $("#borrower_firstname").val(result.firstname);
-                $("#borrower_lastname").val(result.lastname);
-                $("#borrower_middlename").val(result.middlename);
-                $("#borrower_address").val(result.patient_current_address);
-                $("#borrower_city").val(result.patient_current_city);
-                $("#borrower_state").val(result.patient_current_state);
-                $("#borrower_pincode").val(result.patient_current_pincode);
-                $("#borrower_id_proof").val(result.id_proof);
-                $("#borrower_personal_email_id").val(result.email);
-                $("#borrower_mobile_no").val(result.phone);
-                $("#borrower_id_proof_file_download").css('display', 'block').attr('href', result.id_proof_file);
-            }
-        });
-
-
-    }
-
-    if(is_patient_and_borrower_same == 'No'){
-        $("#borrower_title").val('');
-        $("#borrower_firstname").val('');
-        $("#borrower_lastname").val('');
-        $("#borrower_middlename").val('');
-        $("#borrower_address").val('');
-        $("#borrower_city").val('');
-        $("#borrower_state").val('');
-        $("#borrower_pincode").val('');
-        $("#borrower_personal_email_id").val('');
-        $("#borrower_mobile_no").val('');
-        $("#borrower_id_proof_file_download").css('display', 'none').attr('href', '');
-
-        $("#is_claimant_and_borrower_same").attr('disabled', false);
-        // $("#is_claimant_and_borrower_same").val('').trigger('change');
-    }
-
-    if(is_claimant_and_borrower_same == 'No'){
-        $("#borrower_title").val('');
-        $("#borrower_firstname").val('');
-        $("#borrower_lastname").val('');
-        $("#borrower_middlename").val('');
-        $("#borrower_address").val('');
-        $("#borrower_city").val('');
-        $("#borrower_state").val('');
-        $("#borrower_pincode").val('');
-        $("#borrower_personal_email_id").val('');
-        $("#borrower_mobile_no").val('');
-        $("#borrower_pan_no").val('');
-        $("#borrower_aadhar_no").val('');
-        $("#borrower_bank_name").val('');
-        $("#borrower_bank_address").val('');
-        $("#borrower_ac_no").val('');
-        $("#borrower_ifs_code").val('');
-        $("#borrower_pan_no_file").val('');
-        $("#borrower_aadhar_no_file").val('');
-        // $("#borrower_id_proof_file_download").css('display', 'none').attr('href', '');
-
-    }
-
-    if(is_claimant_and_borrower_same == 'Yes'){
+        if(is_claimant_and_borrower_same == 'Yes'){
 
 
-        $.ajax({
-            url: "{{route('super-admin.claimants.fetch-claimant', $id)}}",
-            type: "GET",
-            data: {
-                _token: '{{csrf_token()}}'
-            },
-            dataType: 'json',
-            success: function (result) {
-                $("#borrower_title").val(result.title);
-                $("#borrower_firstname").val(result.firstname);
-                $("#borrower_lastname").val(result.lastname);
-                $("#borrower_middlename").val(result.middlename);
-                $("#borrower_address").val(result.address);
-                $("#borrower_city").val(result.city);
-                $("#borrower_state").val(result.state);
-                $("#borrower_pincode").val(result.pincode);
-                // $("#borrower_id_proof").val(result.id_proof);
-                $("#borrower_personal_email_id").val(result.personal_email_id);
-                $("#borrower_mobile_no").val(result.mobile_no);
-                $("#borrower_pan_no").val(result.pan_no);
-                $("#borrower_aadhar_no").val(result.aadhar_no);
-                $("#borrower_bank_name").val(result.bank_name);
-                $("#borrower_bank_address").val(result.bank_address);
-                $("#borrower_ac_no").val(result.ac_no);
-                $("#borrower_ifs_code").val(result.ifs_code);
-                $("#borrower_pan_no_file_download").css('display', 'block').attr('href', result.pan_no_file);
-                $("#borrower_aadhar_no_file_download").css('display', 'block').attr('href', result.aadhar_no_file);
-                // $("#borrower_id_proof_file_download").css('display', 'block').attr('href', result.id_proof_file);
-            }
-        });
+            $.ajax({
+                url: "{{route('super-admin.claimants.fetch-claimant', $claimantId)}}",
+                type: "GET",
+                data: {
+                    _token: '{{csrf_token()}}'
+                },
+                dataType: 'json',
+                success: function (result) {
+                    $("#borrower_title").val(result.title);
+                    $("#borrower_firstname").val(result.firstname);
+                    $("#borrower_lastname").val(result.lastname);
+                    $("#borrower_middlename").val(result.middlename);
+                    $("#borrower_address").val(result.address);
+                    $("#borrower_city").val(result.city);
+                    $("#borrower_state").val(result.state);
+                    $("#borrower_pincode").val(result.pincode);
+                    $("#borrower_personal_email_id").val(result.personal_email_id);
+                    $("#borrower_mobile_no").val(result.mobile_no);
+                    $("#borrower_pan_no").val(result.pan_no);
+                    $("#borrower_aadhar_no").val(result.aadhar_no);
+                    $("#borrower_bank_name").val(result.bank_name);
+                    $("#borrower_bank_address").val(result.bank_address);
+                    $("#borrower_ac_no").val(result.ac_no);
+                    $("#borrower_ifs_code").val(result.ifs_code);
+                    $("#borrower_pan_no_file_download").css('display', 'block').attr('href', result.pan_no_file);
+                    $("#borrower_aadhar_no_file_download").css('display', 'block').attr('href', result.aadhar_no_file);
+                }
+            });
 
 
-    }
+        }*/
 
 
-    var bank_statement = "{{ old('bank_statement') }}";
-    var itr = "{{ old('itr') }}";
-    var borrower_cancel_cheque = "{{ old('borrower_cancel_cheque') }}";
+        var bank_statement = "{{ old('bank_statement', $borrower->bank_statement) }}";
+        var itr = "{{ old('itr', $borrower->itr) }}";
+        var borrower_cancel_cheque = "{{ old('borrower_cancel_cheque', $borrower->borrower_cancel_cheque) }}";
 
-    if(bank_statement == 'No'){
-        $("#bank_statement_file").attr('disabled',true);
-    }
-
-
-    if(itr == 'No'){
-        $("#itr_file").attr('disabled',true);
-    }
-
-    if(borrower_cancel_cheque == 'No'){
-        $("#borrower_cancel_cheque_file").attr('disabled',true);
-    }
+        if(bank_statement == 'No'){
+            $("#bank_statement_file").attr('disabled',true);
+        }
 
 
-</script>
+        if(itr == 'No'){
+            $("#itr_file").attr('disabled',true);
+        }
+
+        if(borrower_cancel_cheque == 'No'){
+            $("#borrower_cancel_cheque_file").attr('disabled',true);
+        }
+
+
+    </script>
 @endpush
 

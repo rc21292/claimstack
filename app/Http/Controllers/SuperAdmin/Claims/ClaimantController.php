@@ -594,12 +594,12 @@ class ClaimantController extends Controller
             ]);
         }
 
-         if ($request->hasfile('bank_statement')) {
-            $bank_statement                    = $request->file('bank_statement');
-            $rhnname                       = $bank_statement->getClientOriginalName();
-            $bank_statement->storeAs('uploads/borrower/' . $borrower->id . '/', $rhnname, 'public');
+         if ($request->hasfile('bank_statement_file')) {
+            $bank_statement_file                    = $request->file('bank_statement_file');
+            $rhnname                       = $bank_statement_file->getClientOriginalName();
+            $bank_statement_file->storeAs('uploads/borrower/' . $borrower->id . '/', $rhnname, 'public');
             Borrower::where('id', $borrower->id)->update([
-                'bank_statement'               =>  $rhnname
+                'bank_statement_file'               =>  $rhnname
             ]);
         }
 
