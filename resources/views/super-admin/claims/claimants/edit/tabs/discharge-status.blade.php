@@ -374,6 +374,14 @@
             $('#if_medico_legal_case_mlc').removeAttr('disabled');
 
          };
+         if(hdt == "Maternity"){
+                $('#maternity_date_of_delivery').removeAttr('disabled');
+                $('#maternity_gravida_status_g').removeAttr('disabled');
+                $('#maternity_gravida_status_p').removeAttr('disabled');
+                $('#maternity_gravida_status_l').removeAttr('disabled');
+                $('#maternity_gravida_status_a').removeAttr('disabled');
+                $('#premature_baby').removeAttr('disabled');
+         }
          
          //after change
         $('input[name="hospitalization_due_to"]').on('change',function(e){
