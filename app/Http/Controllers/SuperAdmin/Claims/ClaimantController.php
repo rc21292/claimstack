@@ -57,7 +57,7 @@ class ClaimantController extends Controller
         $claims                 = Claim::get();
         $patient                = isset($patient_id) ? Patient::find($request->patient_id) : null;
         $claim                  = isset($claim_id) ? Claim::find($request->claim_id) : null;
-        $hospital_id            = isset($patient_id) ? $patient->hospital->id : null;
+        $hospital_id            = isset($patient_id) ? $patient->hospital->uid : null;
         $associate_partner_id   = isset($patient_id) ? $patient->associate_partner_id : null;
         $patient_title          = isset($patient) ? $patient->title : null;
         $patient_id_proof          = isset($patient) ? $patient->id_proof : null;
