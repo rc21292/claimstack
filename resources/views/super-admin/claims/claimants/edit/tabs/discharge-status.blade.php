@@ -72,7 +72,7 @@
                             <div class="col-md-6 mt-3">
                                 <label for="date_of_admission">Date of Admission (DD-MM-YYYY) <span class="text-danger">*</span></label>
                                 <input type="date" class="form-control" id="date_of_admission" name="date_of_admission"
-                                value="{{ old('date_of_admission', $claim->date_of_admission) }}">
+                                value="{{ old('date_of_admission', \Carbon\Carbon::parse($claim->date_of_admission)->format('Y-m-d') ) }}">
                                 @error('date_of_admission', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
@@ -80,7 +80,7 @@
                             <div class="col-md-6 mt-3">
                                 <label for="time_of_admission">Time of Admission (HH:MM) <span class="text-danger">*</span></label>
                                 <input type="time" class="form-control" id="time_of_admission" name="time_of_admission"
-                                value="{{ old('time_of_admission', $claim->time_of_admission) }}">
+                                value="{{ old('time_of_admission', \Carbon\Carbon::parse($claim->time_of_admission)->format('HH:MM a')) }}">
                                 @error('time_of_admission', 'discharge-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
