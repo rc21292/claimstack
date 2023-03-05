@@ -43,6 +43,7 @@
                                             <th scope="col">State</th>
                                             <th scope="col">City</th>
                                             <th scope="col">Pincode</th>
+                                            <th scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -51,11 +52,17 @@
                                                 <th>{{ $borrower->patient_id }}</th>
                                                 <th scope="row">{{ $borrower->claim_id }}</th>
                                                 <th scope="row">{{ $borrower->uid }}</th>
-                                                <td>{{ @$borrower->claim->patient->middlename }} {{ @$borrower->claim->patient->lastname }}</td>
-                                                <td>{{ @$borrower->claim->patient->hospital->name }}</td>
-                                                <td>{{ $borrower->state }}</td>
-                                                <td>{{ $borrower->city }}</td>
-                                                <td>{{ $borrower->pincode }}</td>
+                                                <td>{{ @$borrower->patient_middlename }} {{ @$borrower->patient_lastname }}</td>
+                                                <td>{{ @$borrower->hospital_name }}</td>
+                                                <td>{{ $borrower->borrower_state }}</td>
+                                                <td>{{ $borrower->borrower_city }}</td>
+                                                <td>{{ $borrower->borrower_pincode }}</td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <a href="{{ route('super-admin.borrowers.edit', @$borrower->id) }}"
+                                                            class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
