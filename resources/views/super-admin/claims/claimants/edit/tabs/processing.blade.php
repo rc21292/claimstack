@@ -547,13 +547,19 @@
 
 
                                 <div class="col-md-6 mt-3">
-                                    <label for="primary_diagnosis_icd_leveli_disease">ICD - Level - I - Disease <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="primary_diagnosis_icd_leveli_disease" name="primary_diagnosis_icd_leveli_disease">
+                                    <label for="primary_diagnosis_icd_leveli_disease">ICD - Level - I - Disease <span class="text-danger">*</span></label>                                  
+
+                                    <select class="form-control select2" data-toggle="select2" id="primary_diagnosis_icd_leveli_disease" name="primary_diagnosis_icd_leveli_disease">
                                         <option value="">Please Select</option>
-                                        <option value="Male" {{ old('primary_diagnosis_icd_leveli_disease') == 'Male' ? 'selected' : '' }}>Male </option>
-                                        <option value="Female" {{ old('primary_diagnosis_icd_leveli_disease') == 'Female' ? 'selected' : '' }}>Female </option>
-                                        <option value="Other" {{ old('primary_diagnosis_icd_leveli_disease') == 'Other' ? 'selected' : '' }}>Other </option>
+                                        @foreach ($icd_codes_level1 as $icd_code)
+                                            <option value="{{ $icd_code->level1 }}"
+                                                {{ old('primary_diagnosis_icd_leveli_disease') == $icd_code->level1 ? 'selected' : '' }}
+                                                data-code="{{ $icd_code->level1_code }}">
+                                                {{ $icd_code->level1 }}
+                                            </option>
+                                        @endforeach
                                     </select>
+
                                     @error('primary_diagnosis_icd_leveli_disease', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -569,12 +575,18 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="primary_diagnosis_icd_levelii_disease">ICD - Level - II - Disease <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="primary_diagnosis_icd_levelii_disease" name="primary_diagnosis_icd_levelii_disease">
+
+                                    <select class="form-control select2" data-toggle="select2" id="primary_diagnosis_icd_levelii_disease" name="primary_diagnosis_icd_levelii_disease">
                                         <option value="">Please Select</option>
-                                        <option value="Male" {{ old('primary_diagnosis_icd_levelii_disease') == 'Male' ? 'selected' : '' }}>Male </option>
-                                        <option value="Female" {{ old('primary_diagnosis_icd_levelii_disease') == 'Female' ? 'selected' : '' }}>Female </option>
-                                        <option value="Other" {{ old('primary_diagnosis_icd_levelii_disease') == 'Other' ? 'selected' : '' }}>Other </option>
+                                        @foreach ($icd_codes_level2 as $icd_code)
+                                            <option value="{{ $icd_code->level2 }}"
+                                                {{ old('primary_diagnosis_icd_levelii_disease') == $icd_code->level2 ? 'selected' : '' }}
+                                                data-code="{{ $icd_code->level2_code }}">
+                                                {{ $icd_code->level2 }}
+                                            </option>
+                                        @endforeach
                                     </select>
+
                                     @error('primary_diagnosis_icd_levelii_disease', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -591,12 +603,18 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="primary_diagnosis_icd_leveliii_disease">ICD - Level - III - Disease <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="primary_diagnosis_icd_leveliii_disease" name="primary_diagnosis_icd_leveliii_disease">
+
+                                    <select class="form-control select2" data-toggle="select2" id="primary_diagnosis_icd_leveliii_disease" name="primary_diagnosis_icd_leveliii_disease">
                                         <option value="">Please Select</option>
-                                        <option value="Male" {{ old('primary_diagnosis_icd_leveliii_disease') == 'Male' ? 'selected' : '' }}>Male </option>
-                                        <option value="Female" {{ old('primary_diagnosis_icd_leveliii_disease') == 'Female' ? 'selected' : '' }}>Female </option>
-                                        <option value="Other" {{ old('primary_diagnosis_icd_leveliii_disease') == 'Other' ? 'selected' : '' }}>Other </option>
+                                        @foreach ($icd_codes_level3 as $icd_code)
+                                            <option value="{{ $icd_code->level3 }}"
+                                                {{ old('primary_diagnosis_icd_leveliii_disease') == $icd_code->level3 ? 'selected' : '' }}
+                                                data-code="{{ $icd_code->level3_code }}">
+                                                {{ $icd_code->level3 }}
+                                            </option>
+                                        @endforeach
                                     </select>
+
                                     @error('primary_diagnosis_icd_leveliii_disease', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -613,12 +631,18 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="primary_diagnosis_icd_leveliv_disease">ICD - Level - IV - Disease <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="primary_diagnosis_icd_leveliv_disease" name="primary_diagnosis_icd_leveliv_disease">
+
+                                    <select class="form-control select2" data-toggle="select2" id="primary_diagnosis_icd_leveliv_disease" name="primary_diagnosis_icd_leveliv_disease">
                                         <option value="">Please Select</option>
-                                        <option value="Male" {{ old('primary_diagnosis_icd_leveliv_disease') == 'Male' ? 'selected' : '' }}>Male </option>
-                                        <option value="Female" {{ old('primary_diagnosis_icd_leveliv_disease') == 'Female' ? 'selected' : '' }}>Female </option>
-                                        <option value="Other" {{ old('primary_diagnosis_icd_leveliv_disease') == 'Other' ? 'selected' : '' }}>Other </option>
+                                        @foreach ($icd_codes_level4 as $icd_code)
+                                            <option value="{{ $icd_code->level4 }}"
+                                                {{ old('primary_diagnosis_icd_leveliv_disease') == $icd_code->level4 ? 'selected' : '' }}
+                                                data-code="{{ $icd_code->level4_code }}">
+                                                {{ $icd_code->level4 }}
+                                            </option>
+                                        @endforeach
                                     </select>
+
                                     @error('primary_diagnosis_icd_leveliv_disease', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -639,12 +663,18 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="additional_diagnosis_icd_leveli_disease">ICD - Level - I - Disease <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="additional_diagnosis_icd_leveli_disease" name="additional_diagnosis_icd_leveli_disease">
+
+                                    <select class="form-control select2" data-toggle="select2" id="additional_diagnosis_icd_leveli_disease" name="additional_diagnosis_icd_leveli_disease">
                                         <option value="">Please Select</option>
-                                        <option value="Male" {{ old('additional_diagnosis_icd_leveli_disease') == 'Male' ? 'selected' : '' }}>Male </option>
-                                        <option value="Female" {{ old('additional_diagnosis_icd_leveli_disease') == 'Female' ? 'selected' : '' }}>Female </option>
-                                        <option value="Other" {{ old('additional_diagnosis_icd_leveli_disease') == 'Other' ? 'selected' : '' }}>Other </option>
+                                        @foreach ($icd_codes_level1 as $icd_code)
+                                            <option value="{{ $icd_code->level1 }}"
+                                                {{ old('additional_diagnosis_icd_leveli_disease') == $icd_code->level1 ? 'selected' : '' }}
+                                                data-code="{{ $icd_code->level1_code }}">
+                                                {{ $icd_code->level1 }}
+                                            </option>
+                                        @endforeach
                                     </select>
+
                                     @error('additional_diagnosis_icd_leveli_disease', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -661,12 +691,18 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="additional_diagnosis_icd_levelii_disease">ICD - Level - II - Disease <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="additional_diagnosis_icd_levelii_disease" name="additional_diagnosis_icd_levelii_disease">
+
+                                    <select class="form-control select2" data-toggle="select2" id="additional_diagnosis_icd_levelii_disease" name="additional_diagnosis_icd_levelii_disease">
                                         <option value="">Please Select</option>
-                                        <option value="Male" {{ old('additional_diagnosis_icd_levelii_disease') == 'Male' ? 'selected' : '' }}>Male </option>
-                                        <option value="Female" {{ old('additional_diagnosis_icd_levelii_disease') == 'Female' ? 'selected' : '' }}>Female </option>
-                                        <option value="Other" {{ old('additional_diagnosis_icd_levelii_disease') == 'Other' ? 'selected' : '' }}>Other </option>
+                                        @foreach ($icd_codes_level2 as $icd_code)
+                                            <option value="{{ $icd_code->level2 }}"
+                                                {{ old('additional_diagnosis_icd_levelii_disease') == $icd_code->level2 ? 'selected' : '' }}
+                                                data-code="{{ $icd_code->level2_code }}">
+                                                {{ $icd_code->level2 }}
+                                            </option>
+                                        @endforeach
                                     </select>
+
                                     @error('additional_diagnosis_icd_levelii_disease', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -683,12 +719,18 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="additional_diagnosis_icd_leveliii_disease">ICD - Level - III - Disease <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="additional_diagnosis_icd_leveliii_disease" name="additional_diagnosis_icd_leveliii_disease">
+
+                                    <select class="form-control select2" data-toggle="select2" id="additional_diagnosis_icd_leveliii_disease" name="additional_diagnosis_icd_leveliii_disease">
                                         <option value="">Please Select</option>
-                                        <option value="Male" {{ old('additional_diagnosis_icd_leveliii_disease') == 'Male' ? 'selected' : '' }}>Male </option>
-                                        <option value="Female" {{ old('additional_diagnosis_icd_leveliii_disease') == 'Female' ? 'selected' : '' }}>Female </option>
-                                        <option value="Other" {{ old('additional_diagnosis_icd_leveliii_disease') == 'Other' ? 'selected' : '' }}>Other </option>
+                                        @foreach ($icd_codes_level3 as $icd_code)
+                                            <option value="{{ $icd_code->level3 }}"
+                                                {{ old('additional_diagnosis_icd_leveliii_disease') == $icd_code->level3 ? 'selected' : '' }}
+                                                data-code="{{ $icd_code->level3_code }}">
+                                                {{ $icd_code->level3 }}
+                                            </option>
+                                        @endforeach
                                     </select>
+
                                     @error('additional_diagnosis_icd_leveliii_disease', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -705,11 +747,15 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="additional_diagnosis_icd_leveliv_disease">ICD - Level - IV - Disease <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="additional_diagnosis_icd_leveliv_disease" name="additional_diagnosis_icd_leveliv_disease">
+                                    <select class="form-control select2" data-toggle="select2" id="additional_diagnosis_icd_leveliv_disease" name="additional_diagnosis_icd_leveliv_disease">
                                         <option value="">Please Select</option>
-                                        <option value="Male" {{ old('additional_diagnosis_icd_leveliv_disease') == 'Male' ? 'selected' : '' }}>Male </option>
-                                        <option value="Female" {{ old('additional_diagnosis_icd_leveliv_disease') == 'Female' ? 'selected' : '' }}>Female </option>
-                                        <option value="Other" {{ old('additional_diagnosis_icd_leveliv_disease') == 'Other' ? 'selected' : '' }}>Other </option>
+                                        @foreach ($icd_codes_level4 as $icd_code)
+                                            <option value="{{ $icd_code->level4 }}"
+                                                {{ old('additional_diagnosis_icd_leveliv_disease') == $icd_code->level4 ? 'selected' : '' }}
+                                                data-code="{{ $icd_code->level4_code }}">
+                                                {{ $icd_code->level4 }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                     @error('additional_diagnosis_icd_leveliv_disease', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -730,12 +776,18 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="co_morbidities_icd_leveli_disease">ICD - Level - I - Disease <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="co_morbidities_icd_leveli_disease" name="co_morbidities_icd_leveli_disease">
+
+                                    <select class="form-control select2" data-toggle="select2" id="co_morbidities_icd_leveli_disease" name="co_morbidities_icd_leveli_disease">
                                         <option value="">Please Select</option>
-                                        <option value="Male" {{ old('co_morbidities_icd_leveli_disease') == 'Male' ? 'selected' : '' }}>Male </option>
-                                        <option value="Female" {{ old('co_morbidities_icd_leveli_disease') == 'Female' ? 'selected' : '' }}>Female </option>
-                                        <option value="Other" {{ old('co_morbidities_icd_leveli_disease') == 'Other' ? 'selected' : '' }}>Other </option>
+                                        @foreach ($icd_codes_level1 as $icd_code)
+                                            <option value="{{ $icd_code->level1 }}"
+                                                {{ old('co_morbidities_icd_leveli_disease') == $icd_code->level1 ? 'selected' : '' }}
+                                                data-code="{{ $icd_code->level1_code }}">
+                                                {{ $icd_code->level1 }}
+                                            </option>
+                                        @endforeach
                                     </select>
+
                                     @error('co_morbidities_icd_leveli_disease', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -752,12 +804,18 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="co_morbidities_icd_levelii_disease">ICD - Level - II - Disease <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="co_morbidities_icd_levelii_disease" name="co_morbidities_icd_levelii_disease">
+
+                                    <select class="form-control select2" data-toggle="select2" id="co_morbidities_icd_levelii_disease" name="co_morbidities_icd_levelii_disease">
                                         <option value="">Please Select</option>
-                                        <option value="Male" {{ old('co_morbidities_icd_levelii_disease') == 'Male' ? 'selected' : '' }}>Male </option>
-                                        <option value="Female" {{ old('co_morbidities_icd_levelii_disease') == 'Female' ? 'selected' : '' }}>Female </option>
-                                        <option value="Other" {{ old('co_morbidities_icd_levelii_disease') == 'Other' ? 'selected' : '' }}>Other </option>
+                                        @foreach ($icd_codes_level2 as $icd_code)
+                                            <option value="{{ $icd_code->level2 }}"
+                                                {{ old('co_morbidities_icd_levelii_disease') == $icd_code->level2 ? 'selected' : '' }}
+                                                data-code="{{ $icd_code->level2_code }}">
+                                                {{ $icd_code->level2 }}
+                                            </option>
+                                        @endforeach
                                     </select>
+
                                     @error('co_morbidities_icd_levelii_disease', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -775,11 +833,16 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="co_morbidities_icd_leveliii_disease">ICD - Level - III - Disease <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="co_morbidities_icd_leveliii_disease" name="co_morbidities_icd_leveliii_disease">
+
+                                   <select class="form-control select2" data-toggle="select2" id="co_morbidities_icd_leveliii_disease" name="co_morbidities_icd_leveliii_disease">
                                         <option value="">Please Select</option>
-                                        <option value="Male" {{ old('co_morbidities_icd_leveliii_disease') == 'Male' ? 'selected' : '' }}>Male </option>
-                                        <option value="Female" {{ old('co_morbidities_icd_leveliii_disease') == 'Female' ? 'selected' : '' }}>Female </option>
-                                        <option value="Other" {{ old('co_morbidities_icd_leveliii_disease') == 'Other' ? 'selected' : '' }}>Other </option>
+                                        @foreach ($icd_codes_level3 as $icd_code)
+                                            <option value="{{ $icd_code->level3 }}"
+                                                {{ old('co_morbidities_icd_leveliii_disease') == $icd_code->level3 ? 'selected' : '' }}
+                                                data-code="{{ $icd_code->level3_code }}">
+                                                {{ $icd_code->level3 }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                     @error('co_morbidities_icd_leveliii_disease', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -798,11 +861,15 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="co_morbidities_icd_leveliv_disease">ICD - Level - IV - Disease <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="co_morbidities_icd_leveliv_disease" name="co_morbidities_icd_leveliv_disease">
+                                    <select class="form-control select2" data-toggle="select2" id="co_morbidities_icd_leveliv_disease" name="co_morbidities_icd_leveliv_disease">
                                         <option value="">Please Select</option>
-                                        <option value="Male" {{ old('co_morbidities_icd_leveliv_disease') == 'Male' ? 'selected' : '' }}>Male </option>
-                                        <option value="Female" {{ old('co_morbidities_icd_leveliv_disease') == 'Female' ? 'selected' : '' }}>Female </option>
-                                        <option value="Other" {{ old('co_morbidities_icd_leveliv_disease') == 'Other' ? 'selected' : '' }}>Other </option>
+                                        @foreach ($icd_codes_level4 as $icd_code)
+                                            <option value="{{ $icd_code->level4 }}"
+                                                {{ old('co_morbidities_icd_leveliv_disease') == $icd_code->level4 ? 'selected' : '' }}
+                                                data-code="{{ $icd_code->level4_code }}">
+                                                {{ $icd_code->level4 }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                     @error('co_morbidities_icd_leveliv_disease', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -848,12 +915,18 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="procedure_i_pcs_group_name">PCS Group - Name <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="procedure_i_pcs_group_name" name="procedure_i_pcs_group_name">
+
+                                    <select class="form-control select2" data-toggle="select2" id="procedure_i_pcs_group_name" name="procedure_i_pcs_group_name">
                                         <option value="">Please Select</option>
-                                        <option value="Male" {{ old('procedure_i_pcs_group_name') == 'Male' ? 'selected' : '' }}>Male </option>
-                                        <option value="Female" {{ old('procedure_i_pcs_group_name') == 'Female' ? 'selected' : '' }}>Female </option>
-                                        <option value="Other" {{ old('procedure_i_pcs_group_name') == 'Other' ? 'selected' : '' }}>Other </option>
+                                        @foreach ($pcs_group_name as $pcs_group)
+                                            <option value="{{ $pcs_group->pcs_group_name }}"
+                                                {{ old('procedure_i_pcs_group_name') == $pcs_group->pcs_group_name ? 'selected' : '' }}
+                                                data-code="{{ $pcs_group->pcs_group_code }}">
+                                                {{ $pcs_group->pcs_group_name }}
+                                            </option>
+                                        @endforeach
                                     </select>
+
                                     @error('procedure_i_pcs_group_name', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -870,11 +943,15 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="procedure_i_pcs_sub_group_name">PCS Sub-Group - Name <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="procedure_i_pcs_sub_group_name" name="procedure_i_pcs_sub_group_name">
+                                    <select class="form-control select2" data-toggle="select2" id="procedure_i_pcs_sub_group_name" name="procedure_i_pcs_sub_group_name">
                                         <option value="">Please Select</option>
-                                        <option value="Male" {{ old('procedure_i_pcs_sub_group_name') == 'Male' ? 'selected' : '' }}>Male </option>
-                                        <option value="Female" {{ old('procedure_i_pcs_sub_group_name') == 'Female' ? 'selected' : '' }}>Female </option>
-                                        <option value="Other" {{ old('procedure_i_pcs_sub_group_name') == 'Other' ? 'selected' : '' }}>Other </option>
+                                        @foreach ($pcs_sub_group_name as $pcs_group)
+                                            <option value="{{ $pcs_group->pcs_sub_group_name }}"
+                                                {{ old('procedure_i_pcs_sub_group_name') == $pcs_group->pcs_sub_group_name ? 'selected' : '' }}
+                                                data-code="{{ $pcs_group->pcs_sub_group_code }}">
+                                                {{ $pcs_group->pcs_sub_group_name }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                     @error('procedure_i_pcs_sub_group_name', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -893,11 +970,15 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="procedure_i_pcs_short_name">PCS Short Name <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="procedure_i_pcs_short_name" name="procedure_i_pcs_short_name">
+                                    <select class="form-control select2" data-toggle="select2" id="procedure_i_pcs_short_name" name="procedure_i_pcs_short_name">
                                         <option value="">Please Select</option>
-                                        <option value="Male" {{ old('procedure_i_pcs_short_name') == 'Male' ? 'selected' : '' }}>Male </option>
-                                        <option value="Female" {{ old('procedure_i_pcs_short_name') == 'Female' ? 'selected' : '' }}>Female </option>
-                                        <option value="Other" {{ old('procedure_i_pcs_short_name') == 'Other' ? 'selected' : '' }}>Other </option>
+                                        @foreach ($pcs_short_name as $pcs_group)
+                                            <option value="{{ $pcs_group->pcs_short_name }}"
+                                                {{ old('procedure_i_pcs_short_name') == $pcs_group->pcs_short_name ? 'selected' : '' }}
+                                                data-code="{{ $pcs_group->pcs_code }}" data-long_name="{{ $pcs_group->pcs_long_name }}">
+                                                {{ $pcs_group->pcs_short_name }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                     @error('procedure_i_pcs_short_name', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -927,11 +1008,15 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="procedure_ii_pcs_group_name">PCS Group - Name <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="procedure_ii_pcs_group_name" name="procedure_ii_pcs_group_name">
+                                    <select class="form-control select2" data-toggle="select2" id="procedure_ii_pcs_group_name" name="procedure_ii_pcs_group_name">
                                         <option value="">Please Select</option>
-                                        <option value="Male" {{ old('procedure_ii_pcs_group_name') == 'Male' ? 'selected' : '' }}>Male </option>
-                                        <option value="Female" {{ old('procedure_ii_pcs_group_name') == 'Female' ? 'selected' : '' }}>Female </option>
-                                        <option value="Other" {{ old('procedure_ii_pcs_group_name') == 'Other' ? 'selected' : '' }}>Other </option>
+                                        @foreach ($pcs_group_name as $pcs_group)
+                                            <option value="{{ $pcs_group->pcs_group_name }}"
+                                                {{ old('procedure_ii_pcs_group_name') == $pcs_group->pcs_group_name ? 'selected' : '' }}
+                                                data-code="{{ $pcs_group->pcs_group_code }}">
+                                                {{ $pcs_group->pcs_group_name }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                     @error('procedure_ii_pcs_group_name', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -949,11 +1034,15 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="procedure_ii_pcs_sub_group_name">PCS Sub-Group - Name <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="procedure_ii_pcs_sub_group_name" name="procedure_ii_pcs_sub_group_name">
+                                    <select class="form-control select2" data-toggle="select2" id="procedure_ii_pcs_sub_group_name" name="procedure_ii_pcs_sub_group_name">
                                         <option value="">Please Select</option>
-                                        <option value="Male" {{ old('procedure_ii_pcs_sub_group_name') == 'Male' ? 'selected' : '' }}>Male </option>
-                                        <option value="Female" {{ old('procedure_ii_pcs_sub_group_name') == 'Female' ? 'selected' : '' }}>Female </option>
-                                        <option value="Other" {{ old('procedure_ii_pcs_sub_group_name') == 'Other' ? 'selected' : '' }}>Other </option>
+                                        @foreach ($pcs_sub_group_name as $pcs_group)
+                                            <option value="{{ $pcs_group->pcs_sub_group_name }}"
+                                                {{ old('procedure_ii_pcs_sub_group_name') == $pcs_group->pcs_sub_group_name ? 'selected' : '' }}
+                                                data-code="{{ $pcs_group->pcs_sub_group_code }}">
+                                                {{ $pcs_group->pcs_sub_group_name }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                     @error('procedure_ii_pcs_sub_group_name', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -972,11 +1061,15 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="procedure_ii_pcs_short_name">PCS Short Name <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="procedure_ii_pcs_short_name" name="procedure_ii_pcs_short_name">
+                                    <select class="form-control select2" data-toggle="select2" id="procedure_ii_pcs_short_name" name="procedure_ii_pcs_short_name">
                                         <option value="">Please Select</option>
-                                        <option value="Male" {{ old('procedure_ii_pcs_short_name') == 'Male' ? 'selected' : '' }}>Male </option>
-                                        <option value="Female" {{ old('procedure_ii_pcs_short_name') == 'Female' ? 'selected' : '' }}>Female </option>
-                                        <option value="Other" {{ old('procedure_ii_pcs_short_name') == 'Other' ? 'selected' : '' }}>Other </option>
+                                        @foreach ($pcs_short_name as $pcs_group)
+                                            <option value="{{ $pcs_group->pcs_short_name }}"
+                                                {{ old('procedure_ii_pcs_short_name') == $pcs_group->pcs_short_name ? 'selected' : '' }}
+                                                data-code="{{ $pcs_group->pcs_code }}" data-long_name="{{ $pcs_group->pcs_long_name }}">
+                                                {{ $pcs_group->pcs_short_name }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                     @error('procedure_ii_pcs_short_name', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -1006,11 +1099,15 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="procedure_iii_pcs_group_name">PCS Group - Name <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="procedure_iii_pcs_group_name" name="procedure_iii_pcs_group_name">
+                                    <select class="form-control select2" data-toggle="select2" id="procedure_iii_pcs_group_name" name="procedure_iii_pcs_group_name">
                                         <option value="">Please Select</option>
-                                        <option value="Male" {{ old('procedure_iii_pcs_group_name') == 'Male' ? 'selected' : '' }}>Male </option>
-                                        <option value="Female" {{ old('procedure_iii_pcs_group_name') == 'Female' ? 'selected' : '' }}>Female </option>
-                                        <option value="Other" {{ old('procedure_iii_pcs_group_name') == 'Other' ? 'selected' : '' }}>Other </option>
+                                        @foreach ($pcs_group_name as $pcs_group)
+                                            <option value="{{ $pcs_group->pcs_group_name }}"
+                                                {{ old('procedure_iii_pcs_group_name') == $pcs_group->pcs_group_name ? 'selected' : '' }}
+                                                data-code="{{ $pcs_group->pcs_group_code }}">
+                                                {{ $pcs_group->pcs_group_name }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                     @error('procedure_iii_pcs_group_name', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -1028,11 +1125,15 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="procedure_iii_pcs_sub_group_name">PCS Sub-Group - Name <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="procedure_iii_pcs_sub_group_name" name="procedure_iii_pcs_sub_group_name">
+                                    <select class="form-control select2" data-toggle="select2" id="procedure_iii_pcs_sub_group_name" name="procedure_iii_pcs_sub_group_name">
                                         <option value="">Please Select</option>
-                                        <option value="Male" {{ old('procedure_iii_pcs_sub_group_name') == 'Male' ? 'selected' : '' }}>Male </option>
-                                        <option value="Female" {{ old('procedure_iii_pcs_sub_group_name') == 'Female' ? 'selected' : '' }}>Female </option>
-                                        <option value="Other" {{ old('procedure_iii_pcs_sub_group_name') == 'Other' ? 'selected' : '' }}>Other </option>
+                                        @foreach ($pcs_sub_group_name as $pcs_group)
+                                            <option value="{{ $pcs_group->pcs_sub_group_name }}"
+                                                {{ old('procedure_iii_pcs_sub_group_name') == $pcs_group->pcs_sub_group_name ? 'selected' : '' }}
+                                                data-code="{{ $pcs_group->pcs_sub_group_code }}">
+                                                {{ $pcs_group->pcs_sub_group_name }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                     @error('procedure_iii_pcs_sub_group_name', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -1051,11 +1152,15 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="procedure_iii_pcs_short_name">PCS Short Name <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="procedure_iii_pcs_short_name" name="procedure_iii_pcs_short_name">
+                                    <select class="form-control select2" data-toggle="select2" id="procedure_iii_pcs_short_name" name="procedure_iii_pcs_short_name">
                                         <option value="">Please Select</option>
-                                        <option value="Male" {{ old('procedure_iii_pcs_short_name') == 'Male' ? 'selected' : '' }}>Male </option>
-                                        <option value="Female" {{ old('procedure_iii_pcs_short_name') == 'Female' ? 'selected' : '' }}>Female </option>
-                                        <option value="Other" {{ old('procedure_iii_pcs_short_name') == 'Other' ? 'selected' : '' }}>Other </option>
+                                        @foreach ($pcs_short_name as $pcs_group)
+                                            <option value="{{ $pcs_group->pcs_short_name }}"
+                                                {{ old('procedure_iii_pcs_short_name') == $pcs_group->pcs_short_name ? 'selected' : '' }}
+                                                data-code="{{ $pcs_group->pcs_code }}" data-long_name="{{ $pcs_group->pcs_long_name }}">
+                                                {{ $pcs_group->pcs_short_name }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                     @error('procedure_iii_pcs_short_name', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -1177,6 +1282,29 @@
         $("#final_assessment_comments").attr('readonly', false);
         $("#processing_query").attr('readonly', false);
     });    
+
+    $('select').change(function(event) {
+
+        var id = $(this).attr('id');
+
+        if(id.includes("disease")){
+        var new_id = id.replace("disease", "code");            
+        }
+
+        if(id.includes("procedure_i_pcs")){
+        var new_id = id.replace("name", "code");            
+        }
+
+        if(id.includes("short_name")){
+        var new_id = id.replace("short_name", "code");         
+        var new_id_id = id.replace("short_name", "long_name");         
+        }
+
+        $("#"+new_id).attr('readonly', true);;
+        $("#"+new_id_id).attr('readonly', true);;
+        $("#"+new_id).val($(this).select2().find(":selected").data("code"));
+        $("#"+new_id_id).val($(this).select2().find(":selected").data("long_name"));
+    });
     
 </script>
 @endpush
