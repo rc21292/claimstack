@@ -8,7 +8,7 @@
             <div class="col-md-6 mt-3">
                 <label for="patient_id">Patient ID <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="patient_id" name="patient_id" maxlength="60"
-                placeholder="Enter Patient Id" value="{{ old('patient_id') }}">
+                placeholder="Enter Patient Id" value="{{ old('patient_id', $patient_id) }}">
                 @error('patient_id', 'assisment-status-form')
                 <span id="patient-id-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -17,7 +17,7 @@
             <div class="col-md-6 mt-3">
                 <label for="claim_id">Cliam ID <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="claim_id" name="claim_id" maxlength="60"
-                placeholder="Enter Claim Id" value="{{ old('claim_id') }}">
+                placeholder="Enter Claim Id" value="{{ old('claim_id', $claim_id) }}">
                 @error('claim_id', 'assisment-status-form')
                 <span id="claim-id-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -26,7 +26,7 @@
             <div class="col-md-4 mt-3">
                 <label for="claimant_id">Claimant ID <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="claimant_id" name="claimant_id" maxlength="60"
-                placeholder="Enter Claimant ID" value="{{ old('claimant_id') }}">
+                placeholder="Enter Claimant ID" value="{{ old('claimant_id', $claimant_id) }}">
                 @error('claimant_id', 'assisment-status-form')
                 <span id="claim-id-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -35,7 +35,7 @@
             <div class="col-md-4 mt-3">
                 <label for="hospital_id">Hospital Id <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="hospital_id" name="hospital_id"
-                placeholder="Enter Hospital Id" value="{{ old('hospital_id') }}">
+                placeholder="Enter Hospital Id" value="{{ old('hospital_id', $hospital_id) }}">
                 @error('hospital_id', 'assisment-status-form')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -44,7 +44,7 @@
             <div class="col-md-4 mt-3">
                 <label for="hospital_name">Hospital Name <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="hospital_name" name="hospital_name"
-                placeholder="Enter Hospital Name" value="{{ old('hospital_name') }}">
+                placeholder="Enter Hospital Name" value="{{ old('hospital_name', $hospital_name) }}">
                 @error('hospital_name', 'assisment-status-form')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -54,7 +54,7 @@
                 <label for="hospital_address">Hospital Address <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="hospital_address" name="hospital_address"
                 placeholder="Address Line"
-                value="{{ old('hospital_address') }}">
+                value="{{ old('hospital_address', $hospital_address) }}">
                 @error('hospital_address', 'assisment-status-form')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -62,7 +62,7 @@
 
             <div class="col-md-4 mt-3">
                 <input type="text" class="form-control" id="hospital_city" name="hospital_city"
-                placeholder="City" value="{{ old('hospital_city') }}">
+                placeholder="City" value="{{ old('hospital_city', $hospital_city) }}">
                 @error('hospital_city', 'assisment-status-form')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -70,7 +70,7 @@
 
             <div class="col-md-4 mt-3">
                 <input type="text" class="form-control" id="hospital_state" name="hospital_state"
-                placeholder="State" value="{{ old('hospital_state') }}">
+                placeholder="State" value="{{ old('hospital_state', $hospital_state) }}">
                 @error('hospital_state', 'assisment-status-form')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -78,7 +78,7 @@
 
             <div class="col-md-4 mt-3">
                 <input type="number" class="form-control" id="hospital_pincode" name="hospital_pincode"
-                placeholder="Pincode" value="{{ old('hospital_pincode') }}">
+                placeholder="Pincode" value="{{ old('hospital_pincode', $hospital_pincode) }}">
                 @error('hospital_pincode', 'assisment-status-form')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -92,8 +92,8 @@
             <div class="col-md-3 mt-1">
                 <select class="form-control" id="patient_title" name="patient_title">
                     <option value="">Select</option>
-                    <option @if( old('patient_title') == 'Mr.') selected @endif value="Mr.">Mr.</option>
-                    <option @if( old('patient_title') == 'Ms.') selected @endif value="Ms.">Ms.</option>
+                    <option @if( old('patient_title', $patient_title) == 'Mr.') selected @endif value="Mr.">Mr.</option>
+                    <option @if( old('patient_title', $patient_title) == 'Ms.') selected @endif value="Ms.">Ms.</option>
                 </select>
                 @error('patient_title', 'assisment-status-form')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -103,7 +103,7 @@
             <div class="col-md-3 mt-1">
                 <input type="text" maxlength="25" class="form-control" id="patient_lastname"
                 name="patient_lastname" maxlength="30" placeholder="Last name"
-                value="{{ old('patient_lastname') }}">
+                value="{{ old('patient_lastname', $patient_lastname) }}">
                 @error('patient_lastname', 'assisment-status-form')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -112,7 +112,7 @@
             <div class="col-md-3 mt-1">
                 <input type="text" maxlength="25" class="form-control" id="patient_firstname"
                 name="patient_firstname" maxlength="15" placeholder="First name"
-                value="{{ old('patient_firstname') }}">
+                value="{{ old('patient_firstname', $patient_firstname) }}">
                 @error('patient_firstname', 'assisment-status-form')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -121,7 +121,7 @@
             <div class="col-md-3 mt-1">
                 <input type="text" maxlength="25" class="form-control" id="patient_middlename"
                 name="patient_middlename" maxlength="30" placeholder="Last name"
-                value="{{ old('patient_middlename') }}">
+                value="{{ old('patient_middlename', $patient_middlename) }}">
                 @error('patient_middlename', 'assisment-status-form')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
