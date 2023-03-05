@@ -221,23 +221,43 @@
                     @enderror
                 </div>
                 <div class="col-md-6 mt-3">
-                    <label for="policy_no">Policy No. <span class="text-danger">*</span></label>
+                <label for="policy_no">Policy No. <span class="text-danger">*</span></label>
+                <div class="input-group">
                     <input type="text" maxlength="16" class="form-control" id="policy_no" name="policy_no"
-                        placeholder="Policy No." value="{{ old('policy_no', $claim->policy_no) }}">
-                    @error('policy_no')
-                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                    @enderror
+                    placeholder="Policy No." value="{{ old('policy_no', $claim->policy_no) }}">
+                    @isset($claim->policy_file)
+                            <a href="{{ asset('storage/uploads/claims/'.$claim->id.'/policies'.'/'.$claim->policy_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+                    @endisset
+                    <input type="file" name="policy_file" id="policy_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
+                    <label for="policy_file" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
                 </div>
-                <div class="col-md-6 mt-3">
-                    <label for="company_tpa_id_card_no">Company / TPA ID Card No. <span
-                            class="text-danger">*</span></label>
-                    <input type="text" maxlength="16" class="form-control" id="company_tpa_id_card_no"
-                        placeholder="Company / TPA ID Card No." name="company_tpa_id_card_no"
-                        value="{{ old('company_tpa_id_card_no', $claim->company_tpa_id_card_no) }}">
-                    @error('company_tpa_id_card_no')
-                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                    @enderror
+                @error('policy_no')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+                @error('policy_file')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="col-md-6 mt-3">
+                <label for="company_tpa_id_card_no">Company / TPA ID Card No. <span
+                        class="text-danger">*</span></label>
+                    <div class="input-group">
+                        <input type="text" maxlength="16" class="form-control" id="company_tpa_id_card_no"
+                    placeholder="Company / TPA ID Card No." name="company_tpa_id_card_no"
+                    value="{{ old('company_tpa_id_card_no', $claim->company_tpa_id_card_no) }}">
+                    @isset($claim->company_tpa_id_card_file)
+                            <a href="{{ asset('storage/uploads/claims/'.$claim->id.'/tpa_card'.'/'.$claim->company_tpa_id_card_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+                    @endisset
+                        <input type="file" name="company_tpa_id_card_file" id="company_tpa_id_card_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
+                        <label for="company_tpa_id_card_file" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
                 </div>
+                @error('company_tpa_id_card_no')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+                @error('company_tpa_id_card_file')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
                 <div class="col-md-6 mt-3">
                     <label for="lending_required">Lending Required <span class="text-danger">*</span></label>
                     <select class="form-select" id="lending_required" name="lending_required">

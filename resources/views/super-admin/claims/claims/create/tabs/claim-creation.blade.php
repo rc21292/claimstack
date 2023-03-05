@@ -218,19 +218,33 @@
             </div>
             <div class="col-md-6 mt-3">
                 <label for="policy_no">Policy No. <span class="text-danger">*</span></label>
-                <input type="text" maxlength="16" class="form-control" id="policy_no" name="policy_no"
+                <div class="input-group">
+                    <input type="text" maxlength="16" class="form-control" id="policy_no" name="policy_no"
                     placeholder="Policy No." value="{{ old('policy_no') }}">
+                    <input type="file" name="policy_file" id="policy_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
+                    <label for="policy_file" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
+                </div>
                 @error('policy_no')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+                @error('policy_file')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
             <div class="col-md-6 mt-3">
                 <label for="company_tpa_id_card_no">Company / TPA ID Card No. <span
                         class="text-danger">*</span></label>
-                <input type="text" maxlength="16" class="form-control" id="company_tpa_id_card_no"
+                    <div class="input-group">
+                        <input type="text" maxlength="16" class="form-control" id="company_tpa_id_card_no"
                     placeholder="Company / TPA ID Card No." name="company_tpa_id_card_no"
                     value="{{ old('company_tpa_id_card_no') }}">
+                        <input type="file" name="company_tpa_id_card_file" id="company_tpa_id_card_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
+                        <label for="company_tpa_id_card_file" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
+                </div>
                 @error('company_tpa_id_card_no')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+                @error('company_tpa_id_card_file')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>

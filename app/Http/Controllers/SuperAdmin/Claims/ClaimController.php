@@ -416,15 +416,17 @@ class ClaimController extends Controller
             'middlename'                => isset($request->middlename) ? 'max:25' : '',
             'age'                       => 'required',
             'gender'                    => 'required',
-            'admission_date'            => 'required|before:today',
+            'admission_date'            => 'required|before_or_equal:' . now()->format('Y-m-d'),
             'admission_time'            => 'required',
             'abha_id'                   => isset($request->abha_id) ? 'max:45' : '',
             'insurance_coverage'        => 'required',
             'policy_no'                 => $request->insurance_coverage == 'Yes' ? 'required|max:16' : '',
+            'policy_file'               => $request->insurance_coverage == 'Yes' ? 'required' : '',
             'company_tpa_id_card_no'    => $request->insurance_coverage == 'Yes' ? 'required|max:16' : '',
+            'company_tpa_id_card_file'  => $request->insurance_coverage == 'Yes' ? 'required' : '',
             'lending_required'          => 'required',
             'hospitalization_due_to'    => 'required',
-            'date_of_delivery'          => 'required|before:today',
+            'date_of_delivery'          => 'required|before_or_equal:' . now()->format('Y-m-d'),
             'system_of_medicine'        => 'required',
             'treatment_type'            => 'required',
             'admission_type_1'          => 'required',
@@ -458,7 +460,9 @@ class ClaimController extends Controller
             'abha_id.required'                   => 'Please enter ABHA ID',
             'insurance_coverage.required'        => 'Please select Insurance Coverage',
             'policy_no.required'                 => 'Please enter Policy No.',
+            'policy_file.required'               => 'Please upload Policy',
             'company_tpa_id_card_no.required'    => 'Please enter Company / TPA ID Card No.',
+            'company_tpa_id_card_file.required'  => 'Please upload Company / TPA ID Card.',
             'lending_required.required'          => 'Please select Lending required',
             'hospitalization_due_to.required'    => 'Please select Hospitalization due to',
             'date_of_delivery.required'          => 'Please enter Date of delivery',
@@ -512,6 +516,24 @@ class ClaimController extends Controller
             $abhafile->storeAs('uploads/claims/' . $claim->id . '/', $name, 'public');
             Claim::where('id', $claim->id)->update([
                 'abhafile'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('policy_file')) {
+            $policy_file                    = $request->file('policy_file');
+            $name                       = $policy_file->getClientOriginalName();
+            $policy_file->storeAs('uploads/claims/' . $claim->id . '/policies', $name, 'public');
+            Claim::where('id', $claim->id)->update([
+                'policy_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('company_tpa_id_card_file')) {
+            $company_tpa_id_card_file                    = $request->file('company_tpa_id_card_file');
+            $name                       = $company_tpa_id_card_file->getClientOriginalName();
+            $company_tpa_id_card_file->storeAs('uploads/claims/' . $claim->id . '/tpa_file', $name, 'public');
+            Claim::where('id', $claim->id)->update([
+                'company_tpa_id_card_file'               =>  $name
             ]);
         }
 
@@ -621,7 +643,7 @@ class ClaimController extends Controller
             'tpa_name'                                  => 'required|max:75',
             'policy_type'                               => 'required',
             'group_name'                                => $request->policy_type == 'Group' ? 'required|max:75' : '',
-            'start_date'                                => 'required|before:today',
+            'start_date'                                => 'required|before_or_equal:' . now()->format('Y-m-d'),
             'expiry_date'                               => 'required|after:start_date',
             'commencement_date'                         => 'required',
             'proposer_title'                            => 'required',
@@ -836,10 +858,12 @@ class ClaimController extends Controller
             'abha_id'                   => isset($request->abha_id) ? 'max:45' : '',
             'insurance_coverage'        => 'required',
             'policy_no'                 => $request->insurance_coverage == 'Yes' ? 'required|max:16' : '',
+            'policy_file'               => $request->insurance_coverage == 'Yes' ? 'required' : '',
             'company_tpa_id_card_no'    => $request->insurance_coverage == 'Yes' ? 'required|max:16' : '',
+            'company_tpa_id_card_file'  => $request->insurance_coverage == 'Yes' ? 'required' : '',
             'lending_required'          => 'required',
             'hospitalization_due_to'    => 'required',
-            'date_of_delivery'          => 'required|before:today',
+            'date_of_delivery'          => 'required|before_or_equal:' . now()->format('Y-m-d'),
             'system_of_medicine'        => 'required',
             'treatment_type'            => 'required',
             'admission_type_1'          => 'required',
@@ -874,8 +898,10 @@ class ClaimController extends Controller
             'admission_time.required'               => 'Please enter Admission time',
             'abha_id.required'                      => 'Please enter ABHA ID',
             'insurance_coverage.required'           => 'Please select Insurance Coverage',
-            'policy_no.required'                    => 'Please enter Policy No.',
-            'company_tpa_id_card_no.required'       => 'Please enter Company / TPA ID Card No.',
+            'policy_no.required'                 => 'Please enter Policy No.',
+            'policy_file.required'               => 'Please upload Policy',
+            'company_tpa_id_card_no.required'    => 'Please enter Company / TPA ID Card No.',
+            'company_tpa_id_card_file.required'  => 'Please upload Company / TPA ID Card.',
             'lending_required.required'             => 'Please select Lending required',
             'hospitalization_due_to.required'       => 'Please select Hospitalization due to',
             'date_of_delivery.required'             => 'Please enter Date of delivery',
@@ -947,6 +973,24 @@ class ClaimController extends Controller
             $abhafile->storeAs('uploads/claims/' . $claim->id . '/', $name, 'public');
             Claim::where('id', $claim->id)->update([
                 'abhafile'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('policy_file')) {
+            $policy_file                    = $request->file('policy_file');
+            $name                       = $policy_file->getClientOriginalName();
+            $policy_file->storeAs('uploads/claims/' . $claim->id . '/policies', $name, 'public');
+            Claim::where('id', $claim->id)->update([
+                'policy_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('company_tpa_id_card_file')) {
+            $company_tpa_id_card_file                    = $request->file('company_tpa_id_card_file');
+            $name                       = $company_tpa_id_card_file->getClientOriginalName();
+            $company_tpa_id_card_file->storeAs('uploads/claims/' . $claim->id . '/tpa_file', $name, 'public');
+            Claim::where('id', $claim->id)->update([
+                'company_tpa_id_card_file'               =>  $name
             ]);
         }
 

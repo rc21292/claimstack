@@ -116,14 +116,20 @@
                 case 'Yes':
                     $("#policy_no").prop("readonly", false);
                     $("#company_tpa_id_card_no").prop("readonly", false);
+                    $("#policy_file").prop("disabled", false);
+                    $("#company_tpa_id_card_file").prop("disabled", false);
                     break;
                 case 'No':
                     $("#policy_no").prop("readonly", true);
                     $("#company_tpa_id_card_no").prop("readonly", true);
+                    $("#policy_file").prop("disabled", true);
+                    $("#company_tpa_id_card_file").prop("disabled", true);
                     break;
                 default:
                     $("#policy_no").prop("readonly", true);
                     $("#company_tpa_id_card_no").prop("readonly", true);
+                    $("#policy_file").prop("disabled", true);
+                    $("#company_tpa_id_card_file").prop("disabled", true);
                     break;
             }
     }

@@ -516,6 +516,15 @@
                                 </div>
 
                                 <div class="col-md-3 mt-1">
+                                    <input type="text" maxlength="25" class="form-control" id="admitted_by_lastname"
+                                        name="admitted_by_lastname" maxlength="30" placeholder="Last name"
+                                        value="{{ old('admitted_by_lastname') }}">
+                                    @error('admitted_by_lastname')
+                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-3 mt-1">
                                     <input type="text" maxlength="25" class="form-control" id="admitted_by_firstname"
                                         name="admitted_by_firstname" maxlength="15" placeholder="First name"
                                         value="{{ old('admitted_by_firstname') }}">
@@ -532,15 +541,7 @@
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
-
-                                <div class="col-md-3 mt-1">
-                                    <input type="text" maxlength="25" class="form-control" id="admitted_by_lastname"
-                                        name="admitted_by_lastname" maxlength="30" placeholder="Last name"
-                                        value="{{ old('admitted_by_lastname') }}">
-                                    @error('admitted_by_lastname')
-                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                    @enderror
-                                </div>
+                               
 
                                 <div class="col-md-12 mt-3">
                                     <label for="comments">Patient Comments </label>
