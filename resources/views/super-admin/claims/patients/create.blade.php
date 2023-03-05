@@ -311,9 +311,13 @@
                                 <div class="col-md-12 mt-3">
                                     <label for="patient_permanent_address">Patient Permanent Address <span
                                             class="text-danger">*</span></label>
-                                    <input type="text" maxlength="100" class="form-control"
-                                        id="patient_permanent_address" name="patient_permanent_address"
-                                        placeholder="Address Line" value="{{ old('patient_permanent_address') }}">
+                                            <div class="input-group">
+                                                <input type="text" maxlength="100" class="form-control"
+                                                    id="patient_permanent_address" name="patient_permanent_address"
+                                                    placeholder="Address Line" value="{{ old('patient_permanent_address') }}">
+                                                <input type="file" name="address_file" id="address_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
+                                                <label for="address_file" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
+                                            </div>
                                     @error('patient_permanent_address')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
