@@ -56,4 +56,9 @@ class Claim extends Model
     {
         return $this->belongsTo(Patient::class, 'patient_id');
     }
+
+    public function policy()
+    {
+        return $this->hasOne(InsurancePolicy::class, 'claim_id');
+    }
 }

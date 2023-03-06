@@ -67,4 +67,9 @@ class InsurancePolicy extends Model
         'dependent_insured_balance_sum_insured',
         'dependent_insured_comment',
     ];
+
+    public function claim()
+    {
+        return $this->belongsTo(Claim::class);
+    }
 }

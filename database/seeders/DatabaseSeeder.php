@@ -23,8 +23,8 @@ class DatabaseSeeder extends Seeder
         $this->call(HospitalSeeder::class);
         $this->call(HospitalTieUpSeeder::class);
         $this->call(PatientSeed::class);
-        $this->call(ClaimSeed::class);
         $this->call(InsurerSeed::class);
+        $this->call(ClaimSeed::class);       
         $this->call(ClaimantSeed::class);
         $this->call(IcdCodesTableSeeder::class);
         $this->call(PcsCodesTableSeeder::class);

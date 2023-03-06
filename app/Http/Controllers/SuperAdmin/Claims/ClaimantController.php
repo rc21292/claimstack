@@ -15,6 +15,7 @@ use App\Models\User;
 use App\Models\Claim;
 use App\Models\LendingStatus;
 use App\Models\DischargeStatus;
+use App\Models\InsurancePolicy;
 use App\Models\Insurer;
 
 class ClaimantController extends Controller
@@ -382,7 +383,7 @@ class ClaimantController extends Controller
         $hospital_id   = $claimant->hospital_id;
 
         $claim = $claimant->claim;
-        $policy = $claimant->policy;
+        $policy = $claimant->claim->policy;       
         $policy_no = $claim->policy_no;
 
         $claim_id = $claimant->claim_id;
@@ -397,8 +398,9 @@ class ClaimantController extends Controller
         $patient_firstname = $patient->firstname;
         $patient_middlename = $patient->middlename;
         $patient_lastname = $patient->lastname;
+        $insurance = InsurancePolicy::where('claim_id', $claimant->claim_id)->first();
 
-        return view('super-admin.claims.claimants.edit.edit',  compact('patient_id', 'policy', 'claim_id', 'claimant_id', 'hospital_id', 'associates', 'hospitals', 'patient', 'claimant', 'borrower', 'hospital_name', 'policy_no', 'hospital_address', 'hospital_city', 'hospital_state', 'hospital_pincode', 'patient_title', 'patient_firstname', 'patient_middlename', 'patient_lastname', 'id', 'claim', 'insurers', 'icd_codes_level1', 'pcs_codes', 'icd_codes_level2', 'icd_codes_level3' , 'icd_codes_level4', 'pcs_group_name', 'pcs_sub_group_name', 'pcs_short_name'));
+        return view('super-admin.claims.claimants.edit.edit',  compact('patient_id', 'policy', 'claim_id', 'claimant_id', 'hospital_id', 'associates', 'hospitals', 'patient', 'claimant', 'borrower', 'hospital_name', 'policy_no', 'hospital_address', 'hospital_city', 'hospital_state', 'hospital_pincode', 'patient_title', 'patient_firstname', 'patient_middlename', 'patient_lastname', 'id', 'claim', 'insurers', 'icd_codes_level1', 'pcs_codes', 'icd_codes_level2', 'icd_codes_level3' , 'icd_codes_level4', 'pcs_group_name', 'pcs_sub_group_name', 'pcs_short_name', 'insurance'));
 
     }
 
