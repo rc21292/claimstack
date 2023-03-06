@@ -59,6 +59,11 @@ class Claimant extends Authenticatable
         return $this->belongsTo(Claim::class, 'claim_id', 'uid');
     }
 
+    public function policy()
+    {
+        return $this->belongsTo(InsurancePolicy::class, 'claim_id', 'claim_id');
+    }
+
      public function patient()
     {
         return $this->belongsTo(Patient::class, 'patient_id', 'uid');
