@@ -257,8 +257,11 @@
                     <label for="borrowers_relation_with_patient">Borrower's Relation with Patient <span class="text-danger">*</span></label>
                     <select class="form-select" id="borrowers_relation_with_patient" name="borrowers_relation_with_patient">
                         <option value="">Select Borrower's Relation with Patient</option>
-                        <option value="Spouse" {{ old('borrowers_relation_with_patient') == 'Spouse' ? 'selected' : '' }}>Spouse </option>
-                        <option value="Child" {{ old('borrowers_relation_with_patient') == 'Child' ? 'selected' : '' }}>Child</option>
+                        <option value="Self" {{ old('borrowers_relation_with_patient') == 'Self' ? 'selected' : '' }}>Self </option>
+                        <option value="Husband" {{ old('borrowers_relation_with_patient') == 'Husband' ? 'selected' : '' }}>Husband </option>
+                        <option value="Wife" {{ old('borrowers_relation_with_patient') == 'Wife' ? 'selected' : '' }}>Wife </option>
+                        <option value="Son" {{ old('borrowers_relation_with_patient') == 'Son' ? 'selected' : '' }}>Son</option>
+                        <option value="Daughter" {{ old('borrowers_relation_with_patient') == 'Daughter' ? 'selected' : '' }}>Daughter</option>
                         <option value="Father" {{ old('borrowers_relation_with_patient') == 'Father' ? 'selected' : '' }}>Father</option>
                         <option value="Mother" {{ old('borrowers_relation_with_patient') == 'Mother' ? 'selected' : '' }}>Mother</option>
                         <option value="Other" {{ old('borrowers_relation_with_patient') == 'Other' ? 'selected' : '' }}>Other</option>
