@@ -633,7 +633,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="disease_name">Disease Name. <span class="text-danger">*</span></label>
                                     <input type="text" readonly maxlength="100" class="form-control" id="disease_name" name="disease_name"
-                                    value="{{ old('disease_name', @$disease_name) }}" placeholder="Disease Name">
+                                    value="{{ old('disease_name', $claim->disease_name) }}" placeholder="Disease Name">
                                     @error('disease_name', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
