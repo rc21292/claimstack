@@ -62,7 +62,7 @@ class ClaimController extends Controller
     public function saveClaimProcessing(Request $request)
     {
         $rules = [
-            'patient_id' => 'required',
+            /*'patient_id' => 'required',
             'patient_title' => 'required',
             'patient_lastname' => 'required',
             'patient_firstname' => 'required',
@@ -105,7 +105,7 @@ class ClaimController extends Controller
             'nature_of_illness_disease_with_presenting_complaints' => 'required',
             'relevant_clinical_findings' => 'required',
             'past_history_of_any_chronic_illness' => 'required',
-            'any_other_aliment_details' => 'required',
+            'any_other_aliment_details' => 'required',*/
             /*'primary_diagnosis_icd_leveli_disease' => 'required',
             'primary_diagnosis_icd_leveli_code' => 'required',
             'primary_diagnosis_icd_levelii_disease' => 'required',

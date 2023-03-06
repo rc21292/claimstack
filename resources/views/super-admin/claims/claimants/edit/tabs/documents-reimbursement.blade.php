@@ -373,7 +373,7 @@ $reimbursementdocument = ReimbursementDocument::where('patient_id', $patient->ui
     <div class="col-md-12 text-end mt-3">
         <button type="submit" class="btn btn-success" form="final-assessment-form">Save Documents for Final Assessment</button>
     </div>
-</div>s
+</div>
 
 </form>
 

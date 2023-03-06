@@ -7,7 +7,7 @@
 
                                 <div class="col-md-12 mb-3">
                                     <label for="patient_id">Patient ID <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="patient_id" name="patient_id" maxlength="60"
+                                    <input type="text" readonly class="form-control" id="patient_id" name="patient_id" maxlength="60"
                                     placeholder="Enter Patient Id" value="{{ old('patient_id', $patient->uid) }}">
                                     @error('patient_id', 'claim-processing-form')
                                     <span id="patient-id-error" class="error invalid-feedback">{{ $message }}</span>
@@ -20,9 +20,9 @@
 
                                 <div class="col-md-3">
                                     <select class="form-control" id="patient_title" name="patient_title">
-                                        <option value="">Select</option>
-                                        <option value="Mr." {{ old('patient_title', $patient_title) == 'Mr.' ? 'selected' : '' }}>Mr.</option>
-                                        <option value="Ms." {{ old('patient_title', $patient_title) == 'Ms.' ? 'selected' : '' }}>Ms.</option>
+                                        <option disabled value="">Select</option>
+                                        <option disabled value="Mr." {{ old('patient_title', $patient_title) == 'Mr.' ? 'selected' : '' }}>Mr.</option>
+                                        <option disabled value="Ms." {{ old('patient_title', $patient_title) == 'Ms.' ? 'selected' : '' }}>Ms.</option>
                                     </select>
                                     @error('patient_title', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -30,7 +30,7 @@
                                 </div>
 
                                 <div class="col-md-3">
-                                    <input type="text" maxlength="25" class="form-control" id="patient_lastname"
+                                    <input type="text" readonly maxlength="25" class="form-control" id="patient_lastname"
                                     name="patient_lastname" placeholder="Last name"
                                     value="{{ old('patient_lastname', $patient->lastname) }}">
                                     @error('patient_lastname', 'claim-processing-form')
@@ -39,7 +39,7 @@
                                 </div>
 
                                 <div class="col-md-3">
-                                    <input type="text" maxlength="25" class="form-control" id="patient_firstname"
+                                    <input type="text" readonly maxlength="25" class="form-control" id="patient_firstname"
                                     name="patient_firstname" placeholder="First name"
                                     value="{{ old('patient_firstname', $patient->firstname) }}">
                                     @error('patient_firstname', 'claim-processing-form')
@@ -48,7 +48,7 @@
                                 </div>
 
                                 <div class="col-md-3">
-                                    <input type="text" maxlength="25" class="form-control" id="patient_middlename"
+                                    <input type="text" readonly maxlength="25" class="form-control" id="patient_middlename"
                                     name="patient_middlename" placeholder="Middle name"
                                     value="{{ old('patient_middlename', $patient->middlename) }}">
                                     @error('patient_middlename', 'claim-processing-form')
@@ -59,7 +59,7 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="patient_age">Patient Age <span class="text-danger">*</span></label>
-                                    <input type="number" class="form-control"
+                                    <input type="number" class="form-control" readonly 
                                     id="patient_age" name="patient_age" placeholder="Patient Age"
                                     value="{{ old('patient_age', $patient->age) }}">
                                     @error('patient_age', 'claim-processing-form')
@@ -70,12 +70,12 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="patient_gender">Patient Gender <span class="text-danger">*</span></label>
                                     <select class="form-select" id="patient_gender" name="patient_gender">
-                                        <option value="">Please Select</option>
-                                        <option value="Male" {{ old('patient_gender', $patient->gender) == 'Male' ? 'selected' : '' }}>Male
+                                        <option disabled value="">Please Select</option>
+                                        <option disabled value="Male" {{ old('patient_gender', $patient->gender) == 'Male' ? 'selected' : '' }}>Male
                                         </option>
-                                        <option value="Female" {{ old('patient_gender', $patient->gender) == 'Female' ? 'selected' : '' }}>Female
+                                        <option disabled value="Female" {{ old('patient_gender', $patient->gender) == 'Female' ? 'selected' : '' }}>Female
                                         </option>
-                                        <option value="Other" {{ old('patient_gender', $patient->gender) == 'Other' ? 'selected' : '' }}>Other
+                                        <option disabled value="Other" {{ old('patient_gender', $patient->gender) == 'Other' ? 'selected' : '' }}>Other
                                         </option>
                                     </select>
                                     @error('patient_gender', 'claim-processing-form')
@@ -86,7 +86,7 @@
 
                                 <div class="col-md-12 mt-3">
                                     <label for="patient_current_residential_address">Patient Current Resedential Address <span class="text-danger">*</span></label>
-                                    <input type="text" maxlength="100" class="form-control"
+                                    <input type="text" readonly maxlength="100" class="form-control"
                                     id="patient_current_residential_address" name="patient_current_residential_address"
                                     placeholder="Address Line" value="{{ old('patient_current_residential_address', $patient->patient_current_address) }}">
                                     @error('patient_current_residential_address', 'claim-processing-form')
@@ -95,7 +95,7 @@
                                 </div>
 
                                 <div class="col-md-4 mt-2">
-                                    <input type="text" class="form-control" id="patient_current_city"
+                                    <input type="text" readonly class="form-control" id="patient_current_city"
                                     name="patient_current_city" placeholder="City"
                                     value="{{ old('patient_current_city', $patient->patient_current_city) }}">
                                     @error('patient_current_city', 'claim-processing-form')
@@ -104,7 +104,7 @@
                                 </div>
 
                                 <div class="col-md-4 mt-2">
-                                    <input type="text" class="form-control" id="patient_current_state"
+                                    <input type="text" readonly class="form-control" id="patient_current_state"
                                     name="patient_current_state" placeholder="State"
                                     value="{{ old('patient_current_state', $patient->patient_current_state) }}">
                                     @error('patient_current_state', 'claim-processing-form')
@@ -113,7 +113,7 @@
                                 </div>
 
                                 <div class="col-md-4 mt-2">
-                                    <input type="number" class="form-control" id="patient_current_pincode"
+                                    <input type="number" readonly class="form-control" id="patient_current_pincode"
                                     name="patient_current_pincode" pattern="/^-?\d+\.?\d*$/"
                                     onKeyPress="if(this.value.length==6) return false;" placeholder="Pincode"
                                     value="{{ old('patient_current_pincode', $patient->patient_current_pincode) }}">
@@ -124,7 +124,7 @@
 
                                 <div class="col-md-6 mt-2">
                                     <label for="hospital_id">Hospital Id <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="hospital_id" name="hospital_id"
+                                    <input type="text" readonly class="form-control" id="hospital_id" name="hospital_id"
                                     placeholder="Enter Hospital Id" value="{{ old('hospital_id', $hospital_id) }}">
                                     @error('hospital_id', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -133,7 +133,7 @@
 
                                 <div class="col-md-6 mt-2">
                                     <label for="hospital_name">Hospital Name <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="hospital_name" name="hospital_name"
+                                    <input type="text" readonly class="form-control" id="hospital_name" name="hospital_name"
                                     placeholder="Enter Hospital Name" value="{{ old('hospital_name', $hospital_name) }}">
                                     @error('hospital_name', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -142,7 +142,7 @@
 
                                 <div class="col-md-12 mt-2 mb-1">
                                     <label for="hospital_address">Hospital Address <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="hospital_address" name="hospital_address"
+                                    <input type="text" readonly class="form-control" id="hospital_address" name="hospital_address"
                                     placeholder="Address Line"
                                     value="{{ old('hospital_address', $hospital_address) }}">
                                     @error('hospital_address', 'claim-processing-form')
@@ -152,7 +152,7 @@
 
 
                                 <div class="col-md-4 mt-2">
-                                    <input type="text" class="form-control" id="hospital_city" name="hospital_city" placeholder="City"
+                                    <input type="text" readonly class="form-control" id="hospital_city" name="hospital_city" placeholder="City"
                                     value="{{ old('hospital_city', $hospital_city) }}">
                                     @error('hospital_city', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -160,7 +160,7 @@
                                 </div>
 
                                 <div class="col-md-4 mt-2">
-                                    <input type="text" class="form-control" id="hospital_state" name="hospital_state" placeholder="State"
+                                    <input type="text" readonly class="form-control" id="hospital_state" name="hospital_state" placeholder="State"
                                     value="{{ old('hospital_state', $hospital_state) }}">
                                     @error('hospital_state', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -168,7 +168,7 @@
                                 </div>
 
                                 <div class="col-md-4 mt-2">
-                                    <input type="number" class="form-control" id="hospital_pincode" name="hospital_pincode"
+                                    <input type="number" readonly class="form-control" id="hospital_pincode" name="hospital_pincode"
                                     placeholder="Pincode" value="{{ old('hospital_pincode', $hospital_pincode) }}">
                                     @error('hospital_pincode', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -176,8 +176,8 @@
                                 </div>
 
                                 <div class="col-md-6 mb-3 mt-2">
-                                    <label for="insurance_company">Insurance Companys {{@$policy->insurer_id}}<span class="text-danger">*</span></label>
-                                    <select class="form-control select2" id="insurance_company" name="insurance_company" data-toggle="select2">
+                                    <label for="insurance_company">Insurance Companies<span class="text-danger">*</span></label>
+                                    <select disabled class="form-control select2" id="insurance_company" name="insurance_company" data-toggle="select2">
                                         <option value="">Please Select</option>
                                         @foreach ($insurers as $insurer)
                                         <option value="{{ $insurer->id }}"
@@ -192,7 +192,7 @@
 
                                 <div class="col-md-6 mb-3 mt-2">
                                     <label for="policy_type">Policy Type <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="policy_type" name="policy_type" onchange="setGroupName();">
+                                    <select disabled class="form-select" id="policy_type" name="policy_type" onchange="setGroupName();">
                                         <option value="">Please Select</option>
                                         <option value="Group" {{ old('policy_type', @$policy->policy_type) == 'Group' ? 'selected' : '' }}>Group
                                         </option>
@@ -207,7 +207,7 @@
 
                                 <div class="col-md-6 mb-3">
                                     <label for="policy_name">Policy Name <span class="text-danger">*</span></label>
-                                    <select class="form-control select2" id="policy_name" name="policy_name" data-toggle="select2">
+                                    <select disabled class="form-control select2" id="policy_name" name="policy_name" data-toggle="select2">
                                         <option value="">Please Select</option>
                                         @foreach ($insurers as $insurer)
                                         <option value="{{ $insurer->id }}"
@@ -223,7 +223,7 @@
 
                                 <div class="col-md-6 mb-3">
                                     <label for="policy_start_date">Policy Start Date <span class="text-danger">*</span></label>
-                                    <input type="date" placeholder="Enter Policy Start Date" class="form-control" id="policy_start_date"
+                                    <input type="date" readonly placeholder="Enter Policy Start Date" class="form-control" id="policy_start_date"
                                     name="policy_start_date" value="{{ old('policy_start_date', @$policy->start_date) }}">
                                     @error('policy_start_date', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -232,7 +232,7 @@
 
                                 <div class="col-md-6 mb-3">
                                     <label for="policy_expiry_date">Policy Expiry Date <span class="text-danger">*</span></label>
-                                    <input type="date" placeholder="Enter Policy Expiry Date" class="form-control" id="policy_expiry_date"
+                                    <input type="date" readonly placeholder="Enter Policy Expiry Date" class="form-control" id="policy_expiry_date"
                                     name="policy_expiry_date" value="{{ old('policy_expiry_date', @$policy->expiry_date) }}">
                                     @error('policy_expiry_date', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -241,7 +241,7 @@
 
                                 <div class="col-md-6 mb-3">
                                     <label for="policy_commencement_date_without_break">Policy Commencement Date (without Break) <span  class="text-danger">*</span></label>
-                                    <input type="date" placeholder="Enter Policy Commencement Date (without Break)"
+                                    <input type="date" readonly placeholder="Enter Policy Commencement Date (without Break)"
                                     class="form-control" id="policy_commencement_date_without_break" name="policy_commencement_date_without_break"
                                     value="{{ old('policy_commencement_date_without_break', @$policy->commencement_date) }}">
                                     @error('policy_commencement_date_without_break', 'claim-processing-form')
@@ -251,7 +251,7 @@
 
                                 <div class="col-md-6 mb-3">
                                     <label for="date_of_admission">Date of Admission (DD-MM-YYYY) <span class="text-danger">*</span></label>
-                                    <input type="date" class="form-control" id="date_of_admission" name="date_of_admission"
+                                    <input type="date" readonly class="form-control" id="date_of_admission" name="date_of_admission"
                                     value="{{ old('date_of_admission', @$claim->admission_date) }}">
                                     @error('date_of_admission', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -260,7 +260,7 @@
 
                                 <div class="col-md-6 mb-3">
                                     <label for="time_of_admission">Time of Admission (HH:MM) <span class="text-danger">*</span></label>
-                                    <input type="time" class="form-control" id="time_of_admission" name="time_of_admission"
+                                    <input type="time" readonly class="form-control" id="time_of_admission" name="time_of_admission"
                                     value="{{ old('time_of_admission', @$claim->admission_time) }}">
                                     @error('time_of_admission', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -270,7 +270,7 @@
                                 <div class="col-md-6 mb-3">
                                     <label for="discharge_date">Expected Date of Discharge (DD-MM-YYYY) <span
                                             class="text-danger">*</span></label>
-                                    <input type="date" class="form-control" id="discharge_date" name="discharge_date"
+                                    <input type="date" readonly class="form-control" id="discharge_date" name="discharge_date"
                                         value="{{ old('discharge_date', $claim->discharge_date) }}">
                                     @error('discharge_date')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -280,7 +280,7 @@
                                 <div class="col-md-6 mb-3">
                                     <label for="days_in_hospital">Expected No. of Days in Hospital <span
                                             class="text-danger">*</span></label>
-                                    <input type="text" maxlength="3" onkeypress="return isNumberKey(event)" class="form-control"
+                                    <input type="text" readonly maxlength="3" onkeypress="return isNumberKey(event)" class="form-control"
                                         id="days_in_hospital" placeholder="Expected No. of Days in Hospital" name="days_in_hospital"
                                         value="{{ old('days_in_hospital', $claim->days_in_hospital) }}">
                                     @error('days_in_hospital')
@@ -292,17 +292,17 @@
                                     <label for="hospitalization_due_to">Hospitalization Due To <span class="text-danger">*</span></label>
                                     <div class="mt-2">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" id="injury" value="Injury"
+                                            <input class="form-check-input" type="radio" disabled id="injury" value="Injury"
                                                 name="hospitalization_due_to" @if (old('hospitalzation_due_to', $claim->hospitalization_due_to) == 'Injury') checked @endif>
                                             <label class="form-check-label" for="injury">Injury</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" id="illness" value="Illness"
+                                            <input class="form-check-input" type="radio" disabled id="illness" value="Illness"
                                                 name="hospitalization_due_to" @if (old('hospitalzation_due_to', $claim->hospitalization_due_to) == 'Illness') checked @endif>
                                             <label class="form-check-label" for="illness">Illness</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" id="maternity"value="Maternity"
+                                            <input class="form-check-input" type="radio" disabled id="maternity"value="Maternity"
                                                 name="hospitalization_due_to" @if (old('hospitalzation_due_to', $claim->hospitalization_due_to) == 'Maternity') checked @endif>
                                             <label class="form-check-label" for="maternity">Maternity</label>
                                         </div>
@@ -314,7 +314,7 @@
 
                                 <div class="col-md-6 mb-3">
                                     <label for="date_of_delivery">Date of Injury / Date Disease first detected / Date of delivery <span class="text-danger">*</span></label>
-                                    <input type="date" class="form-control" id="date_of_delivery" name="date_of_delivery"
+                                    <input type="date" readonly class="form-control" id="date_of_delivery" name="date_of_delivery"
                                         value="{{ old('date_of_delivery', $claim->date_of_delivery) }}"
                                         placeholder="Date of Injury / Date Disease first detected / Date of delivery (DD-MM-YYYY)">
                                     @error('date_of_delivery')
@@ -326,7 +326,7 @@
                                 <div class="col-md-6 mb-3">
                                     <label for="consultation_date">Date of First Consultation (DD-MM-YYYY) <span
                                             class="text-danger">*</span></label>
-                                    <input type="date" class="form-control" id="consultation_date" max="{{ date('Y-m-d') }}"
+                                    <input type="date" readonly class="form-control" id="consultation_date" max="{{ date('Y-m-d') }}"
                                         name="consultation_date" value="{{ old('consultation_date', $claim->consultation_date) }}">
                                     @error('consultation_date')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -336,7 +336,7 @@
 
                                 <div class="col-md-6 mb-3">
                                     <label for="system_of_medicine">System of Medicine <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="system_of_medicine" name="system_of_medicine" onchange=setMedicineOption();>
+                                    <select disabled class="form-select" id="system_of_medicine" name="system_of_medicine" onchange=setMedicineOption();>
                                         <option value="">Select</option>
                                         <option value="Allopathy"
                                             {{ old('system_of_medicine', $claim->system_of_medicine) == 'Allopathy' ? 'selected' : '' }}>
@@ -371,7 +371,7 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="treatment_type">Treatment Type <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="treatment_type" name="treatment_type">
+                                    <select disabled class="form-select" id="treatment_type" name="treatment_type">
                                         <option value="">Select</option>
                                         <option value="OPD"
                                             {{ old('treatment_type', $claim->treatment_type) == 'OPD' ? 'selected' : '' }}>OPD
@@ -388,12 +388,12 @@
                                     <label for="admission_type_1">Admission Type - 1 <span class="text-danger">*</span></label>
                                     <div class="mt-2">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" id="emergency" value="Emergency"
+                                            <input class="form-check-input" type="radio" disabled id="emergency" value="Emergency"
                                                 name="admission_type_1" @if (old('admission_type_1', $claim->admission_type_1) == 'Emergency') checked @endif>
                                             <label class="form-check-label" for="emergency">Emergency</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" id="planned" value="Planned"
+                                            <input class="form-check-input" type="radio" disabled id="planned" value="Planned"
                                                 name="admission_type_1" @if (old('admission_type_1', $claim->admission_type_1) == 'Planned') checked @endif>
                                             <label class="form-check-label" for="planned">Planned</label>
                                         </div>
@@ -406,12 +406,12 @@
                                     <label for="admission_type_2">Admission Type - 2 <span class="text-danger">*</span></label>
                                     <div class="mt-2">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" id="day_care" value="Day Care"
+                                            <input class="form-check-input" type="radio" disabled id="day_care" value="Day Care"
                                                 name="admission_type_2" @if (old('admission_type_2', $claim->admission_type_2) == 'Day Care') checked @endif>
                                             <label class="form-check-label" for="day_care">Day Care</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" id="hospitalization" value="Hospitalization"
+                                            <input class="form-check-input" type="radio" disabled id="hospitalization" value="Hospitalization"
                                                 name="admission_type_2" @if (old('admission_type_2', $claim->admission_type_2) == 'Hospitalization') checked @endif>
                                             <label class="form-check-label" for="hospitalization">Hospitalization</label>
                                         </div>
@@ -422,7 +422,7 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="admission_type_3">Admission Type - 3 <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="admission_type_3" name="admission_type_3">
+                                    <select disabled class="form-select" id="admission_type_3" name="admission_type_3">
                                         <option value="">Select</option>
                                         <option value="Main"
                                             {{ old('admission_type_3', $claim->admission_type_3) == 'Main' ? 'selected' : '' }}>Main
@@ -442,7 +442,7 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="claim_category">Claim Category <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="claim_category" name="claim_category">
+                                    <select disabled class="form-select" id="claim_category" name="claim_category">
                                         <option value="">Select</option>
                                         <option value="Cashless"
                                             {{ old('claim_category', $claim->claim_category) == 'Cashless' ? 'selected' : '' }}>Cashless
@@ -458,7 +458,7 @@
                                 </div>
                                <div class="col-md-6 mb-3">
                                     <label for="treatment_category">Treatment Category <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="treatment_category" name="treatment_category">
+                                    <select disabled class="form-select" id="treatment_category" name="treatment_category">
                                         <option value="">Select</option>
                                         <option value="Surgical" {{ old('treatment_category', $claim->treatment_category) == 'Surgical' ? 'selected' : '' }}>Surgical
                                         </option>
@@ -481,7 +481,7 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="disease_category">Disease Category <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="disease_category" name="disease_category">
+                                    <select disabled class="form-select" id="disease_category" name="disease_category">
                                         <option value="">Select</option>
                                         <option value="Cardiac"
                                             {{ old('disease_category', $claim->disease_category) == 'Cardiac' ? 'selected' : '' }}>
@@ -521,7 +521,7 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="disease_name">Disease Name. <span class="text-danger">*</span></label>
-                                    <input type="text" maxlength="45" class="form-control" id="disease_name" name="disease_name"
+                                    <input type="text" readonly maxlength="45" class="form-control" id="disease_name" name="disease_name"
                                         value="{{ old('disease_name', $claim->disease_name) }}" placeholder="Disease Name">
                                     @error('disease_name')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -529,7 +529,7 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="disease_type">Disease Type <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="disease_type" name="disease_type">
+                                    <select disabled class="form-select" id="disease_type" name="disease_type">
                                         <option value="">Select</option>
                                         <option value="PED (Pre Existing Disease)"
                                             {{ old('disease_type', $claim->disease_type) == 'PED (Pre Existing Disease)' ? 'selected' : '' }}>
@@ -547,7 +547,7 @@
                                 <div class="col-md-6 mb-3">
                                     <label for="nature_of_illness">Nature of Illness / Disease with presenting complaints <span
                                             class="text-danger">*</span></label>
-                                    <input type="text" maxlength="100" class="form-control" id="nature_of_illness"
+                                    <input type="text" readonly maxlength="100" class="form-control" id="nature_of_illness"
                                         name="nature_of_illness" value="{{ old('nature_of_illness', $claim->nature_of_illness) }}"
                                         placeholder="Nature of Illness / Disease with presenting complaints">
                                     @error('nature_of_illness')
@@ -556,7 +556,7 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="clinical_finding">Relevant Clinical Findings <span class="text-danger">*</span></label>
-                                    <input type="text" maxlength="45" class="form-control" id="clinical_finding"
+                                    <input type="text" readonly maxlength="45" class="form-control" id="clinical_finding"
                                         name="clinical_finding" value="{{ old('clinical_finding', $claim->clinical_finding) }}"
                                         placeholder="Relevant Clinical Findings">
                                     @error('clinical_finding')
@@ -566,7 +566,7 @@
                                 <div class="col-md-6 mb-3">
                                     <label for="chronic_illness">Past history of any chronic illness <span
                                             class="text-danger">*</span></label>
-                                    <select class="form-select" id="chronic_illness" name="chronic_illness" onchange="ailnessOptions();">
+                                    <select disabled class="form-select" id="chronic_illness" name="chronic_illness" onchange="ailnessOptions();">
                                         <option value="">Select</option>
                                         <option value="N/A"
                                             {{ old('chronic_illness', $claim->chronic_illness) == 'N/A' ? 'selected' : '' }}>N/A
@@ -618,7 +618,7 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="ailment_details">Any other aliment details <span class="text-danger">*</span></label>
-                                    <input type="text" maxlength="45" class="form-control" id="ailment_details"
+                                    <input type="text" readonly maxlength="45" class="form-control" id="ailment_details"
                                         name="ailment_details" value="{{ old('ailment_details', $claim->ailment_details) }}"
                                         placeholder="Any other aliment details">
                                     @error('ailment_details')
@@ -632,7 +632,7 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="disease_name">Disease Name. <span class="text-danger">*</span></label>
-                                    <input type="text" maxlength="100" class="form-control" id="disease_name" name="disease_name"
+                                    <input type="text" readonly maxlength="100" class="form-control" id="disease_name" name="disease_name"
                                     value="{{ old('disease_name', @$disease_name) }}" placeholder="Disease Name">
                                     @error('disease_name', 'claim-processing-form')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
