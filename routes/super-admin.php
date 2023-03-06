@@ -188,7 +188,7 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     */
     Route::get('patients/documents-reimbursement', [PatientController::class, 'documentsReimbursement']);
     
-    Route::post('patients/documents-reimbursement', [PatientController::class, 'saveDocumentsReimbursement'])->name('patients.save-documents-reimbursement');
+    Route::post('patients/documents-reimbursement/{id}', [PatientController::class, 'saveDocumentsReimbursement'])->name('patients.save-documents-reimbursement');
     Route::resource('patients', PatientController::class);
 
     /*
