@@ -1,4 +1,8 @@
-                            <form action="{{ route('super-admin.patients.save-documents-reimbursement') }}" method="post" id="hospital-form"
+@php
+use App\Models\ReimbursementDocument;
+$reimbursementdocument = ReimbursementDocument::where('patient_id', $patient->uid)->first();
+@endphp
+                            <form action="{{ route('super-admin.patients.save-documents-reimbursement', $id) }}" method="post" id="hospital-form"
                             enctype="multipart/form-data">
                             @csrf
                             <div class="card-body mb-4">
@@ -23,8 +27,8 @@
                                 <div class="col-md-3 mt-1">
                                     <select class="form-control" id="title" name="title">
                                         <option disabled value="">Select</option>
-                                        <option disabled value="Mr." {{ old('title') == 'Mr.' ? 'selected' : '' }}>Mr.</option>
-                                        <option disabled value="Ms." {{ old('title') == 'Ms.' ? 'selected' : '' }}>Ms.</option>
+                                        <option disabled value="Mr." {{ old('title', $patient->title) == 'Mr.' ? 'selected' : '' }}>Mr.</option>
+                                        <option disabled value="Ms." {{ old('title', $patient->title) == 'Ms.' ? 'selected' : '' }}>Ms.</option>
                                     </select>
                                     @error('title')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -34,7 +38,7 @@
                                 <div class="col-md-3 mt-1">
                                     <input type="text" readonly maxlength="25" class="form-control" id="lastname"
                                     name="lastname" placeholder="Last name"
-                                    value="{{ old('lastname') }}">
+                                    value="{{ old('lastname', $patient->lastname) }}">
                                     @error('lastname')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -43,7 +47,7 @@
                                 <div class="col-md-3 mt-1">
                                     <input type="text" readonly maxlength="25" class="form-control" id="firstname"
                                     name="firstname" placeholder="First name"
-                                    value="{{ old('firstname') }}">
+                                    value="{{ old('firstname', $patient->firstname) }}">
                                     @error('firstname')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -52,7 +56,7 @@
                                 <div class="col-md-3 mt-1">
                                     <input type="text" readonly maxlength="25" class="form-control" id="middlename"
                                     name="middlename" placeholder="Middle name"
-                                    value="{{ old('middlename') }}">
+                                    value="{{ old('middlename', $patient->middlename) }}">
                                     @error('middlename')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror

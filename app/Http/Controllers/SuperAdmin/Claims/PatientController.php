@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Superadmin\Claims;
 use App\Http\Controllers\Controller;
 use App\Models\AssociatePartner;
 use App\Models\Hospital;
+use App\Models\Claimant;
 use App\Models\HospitalDepartment;
 use App\Models\Patient;
 use App\Models\ReimbursementDocument;
@@ -60,11 +61,19 @@ class PatientController extends Controller
     }
 
 
-    public function saveDocumentsReimbursement(Request $request)
+    public function saveDocumentsReimbursement(Request $request, $id)
     {
-        $reimbursementdocument = ReimbursementDocument::where('patient_id', 'P-10001')->first();
+        $claimant = Claimant::find($id);
 
-        $id = $reimbursementdocument->id;
+        $exists = ReimbursementDocument::where('patient_id', $claimant->patient_id)->exists();
+
+        if (!$exists) {
+           ReimbursementDocument::create(['patient_id' => $claimant->patient_id]);
+       }
+
+       $reimbursementdocument = ReimbursementDocument::where('patient_id', $claimant->patient_id)->first();
+       
+       $id = $reimbursementdocument->id;
 
         if ($request->hasfile('patient_id_proof_file')) {
             $patient_id_proof_file = $request->file('patient_id_proof_file');
