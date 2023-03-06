@@ -109,7 +109,39 @@
                 </div>
 
                 <div class="col-md-6 mt-3">
-                    <label for="are_patient_and_claimant_same">Are Patient and Claimant Same <span class="text-danger">*</span></label>
+                    <label for="policy_type">Policy Type <span class="text-danger">*</span></label>
+                    <select class="form-select" id="policy_type" name="policy_type" onchange="setGroupName();">
+                        <option value="">Select Policy Type</option>
+                        <option value="Group" {{ old('policy_type', $claimant->policy_type) == 'Group' ? 'selected' : '' }}>Group
+                        </option>
+                        <option value="Retail" {{ old('policy_type', $claimant->policy_type) == 'Retail' ? 'selected' : '' }}>Retail
+                        </option>
+                    </select>
+                    @error('policy_type')
+                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="col-md-6 mt-3">
+                    <label for="group_name">Group Name <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="group_name" name="group_name"
+                        placeholder="Enter Group Name" value="{{ old('group_name', $claimant->group_name) }}" maxlength="75">
+                    @error('group_name')
+                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="col-md-6 mt-3">
+                    <label for="employee_id_or_member_id">Employee ID / Member ID <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="employee_id_or_member_id" name="employee_id_or_member_id"
+                        placeholder="Enter Employee ID / Member ID" value="{{ old('employee_id_or_member_id', $claimant->employee_id_or_member_id) }}" maxlength="75">
+                    @error('employee_id_or_member_id')
+                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="col-md-12 mt-3">
+                    <label for="are_patient_and_claimant_same">Is Patient and Claimant Same <span class="text-danger">*</span></label>
                     <select class="form-select" id="are_patient_and_claimant_same" name="are_patient_and_claimant_same">
                         <option value="">Select Are Patient and Claimant Same</option>
                         <option value="Yes" {{ old('are_patient_and_claimant_same', $claimant->are_patient_and_claimant_same) == 'Yes' ? 'selected' : '' }}>Yes
