@@ -449,7 +449,7 @@
 
                 <div class="col-md-6 mt-2">
                     <input type="text" class="form-control" id="borrower_ac_no" name="borrower_ac_no" maxlength="20"
-                    placeholder="Bank Account No." value="{{ old('borrower_ac_no',$borrower->borrower_ac_no, @$borrower->borrower_ac_no) }}">
+                    placeholder="Bank Account No." value="{{ old('borrower_ac_no',$borrower->borrower_ac_no) }}">
                     @error('borrower_ac_no', 'borrower-details-form')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
@@ -457,7 +457,7 @@
 
                 <div class="col-md-6 mt-2">
                     <input type="text" class="form-control" id="borrower_ifs_code" name="borrower_ifs_code" maxlength="11"
-                    placeholder="Bank Ifs Code" value="{{ old('borrower_ifs_code',$borrower->borrower_ifs_code, @$borrower->borrower_ifs_code) }}">
+                    placeholder="Bank Ifs Code" value="{{ old('borrower_ifs_code',$borrower->borrower_ifs_code) }}">
                     @error('borrower_ifs_code', 'borrower-details-form')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
@@ -467,9 +467,9 @@
                     <label for="co_borrower_nominee_name">Co-Borrower / Nominee Name <span class="text-danger">*</span></label>
                     <select class="form-select" id="co_borrower_nominee_name" name="co_borrower_nominee_name">
                         <option value="">Select Co-Borrower / Nominee Name</option>
-                        <option value="Self" {{ old('co_borrower_nominee_name') == 'Self' ? 'selected' : '' }}>Self
+                        <option value="Self" {{ old('co_borrower_nominee_name', $borrower->co_borrower_nominee_name) == 'Self' ? 'selected' : '' }}>Self
                         </option>
-                        <option value="Relations" {{ old('co_borrower_nominee_name') == 'Relations' ? 'selected' : '' }}>Relations
+                        <option value="Relations" {{ old('co_borrower_nominee_name', $borrower->co_borrower_nominee_name) == 'Relations' ? 'selected' : '' }}>Relations
                         </option>
                     </select>
                     @error('co_borrower_nominee_name', 'borrower-details-form')
@@ -498,9 +498,9 @@
                     <div class="input-group">
                         <select class="form-select" id="co_borrower_nominee_gender" name="co_borrower_nominee_gender">
                             <option value="">Select Co-Borrower / Nominee Gender</option>
-                            <option value="Male" {{ old('co_borrower_nominee_gender', $borrower->co_borrower_nominee_gender) == 'Male' ? 'selected' : '' }}>Male
+                            <option value="M" {{ old('co_borrower_nominee_gender', $borrower->co_borrower_nominee_gender) == 'M' ? 'selected' : '' }}>M
                             </option>
-                            <option value="Female" {{ old('co_borrower_nominee_gender', $borrower->co_borrower_nominee_gender) == 'Female' ? 'selected' : '' }}>Female
+                            <option value="F" {{ old('co_borrower_nominee_gender', $borrower->co_borrower_nominee_gender) == 'F' ? 'selected' : '' }}>F
                             </option>
                             <option value="Other" {{ old('co_borrower_nominee_gender', $borrower->co_borrower_nominee_gender) == 'Other' ? 'selected' : '' }}>Other
                             </option>
@@ -520,8 +520,10 @@
                     <label for="co_borrower_nominee_relation">Co-Borrower / Nominee Relation <span class="text-danger">*</span></label>
                     <select class="form-select" id="co_borrower_nominee_relation" name="co_borrower_nominee_relation">
                         <option value="">Select Co-Borrower / Nominee Relation</option>
-                        <option value="Spouse" {{ old('co_borrower_nominee_relation', $borrower->co_borrower_nominee_relation) == 'Spouse' ? 'selected' : '' }}>Spouse </option>
-                        <option value="Child" {{ old('co_borrower_nominee_relation', $borrower->co_borrower_nominee_relation) == 'Child' ? 'selected' : '' }}>Child</option>
+                        <option value="Husband" {{ old('co_borrower_nominee_relation', $borrower->co_borrower_nominee_relation) == 'Husband' ? 'selected' : '' }}>Husband </option>
+                        <option value="Wife" {{ old('co_borrower_nominee_relation', $borrower->co_borrower_nominee_relation) == 'Wife' ? 'selected' : '' }}>Wife</option>
+                        <option value="Son" {{ old('co_borrower_nominee_relation', $borrower->co_borrower_nominee_relation) == 'Son' ? 'selected' : '' }}>Son</option>
+                        <option value="Daughter" {{ old('co_borrower_nominee_relation', $borrower->co_borrower_nominee_relation) == 'Daughter' ? 'selected' : '' }}>Daughter</option>
                         <option value="Father" {{ old('co_borrower_nominee_relation', $borrower->co_borrower_nominee_relation) == 'Father' ? 'selected' : '' }}>Father</option>
                         <option value="Mother" {{ old('co_borrower_nominee_relation', $borrower->co_borrower_nominee_relation) == 'Mother' ? 'selected' : '' }}>Mother</option>
                         <option value="Other" {{ old('co_borrower_nominee_relation', $borrower->co_borrower_nominee_relation) == 'Other' ? 'selected' : '' }}>Other</option>
@@ -565,7 +567,7 @@
                 <div class="col-md-12 mt-3">
                     <label for="co_borrower_comments">Co-Borrower / Borrower Comments </label>
                     <textarea class="form-control" id="co_borrower_comments" name="co_borrower_comments" maxlength="250" placeholder="Claimant Comments"
-                    rows="5">{{ old('co_borrower_comments') }}</textarea>
+                    rows="5">{{ old('co_borrower_comments', $borrower->co_borrower_comments) }}</textarea>
                     @error('co_borrower_comments', 'borrower-details-form')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror

@@ -56,8 +56,17 @@ class Borrower extends Model
         'borrower_bank_name',
         'borrower_bank_address',
         'borrower_estimated_amount',
+        'co_borrower_nominee_name',
+        'co_borrower_nominee_dob',
+        'co_borrower_nominee_dob_file',
+        'co_borrower_nominee_gender',
+        'co_borrower_nominee_gender_file',
+        'co_borrower_nominee_relation',
+        'co_borrower_other_documents',
+        'co_borrower_other_documents_file',
         'borrower_ac_no',
-        'borrower_ifs_code'
+        'borrower_ifs_code'.
+        'co_borrower_comments'
 
     ];
 
