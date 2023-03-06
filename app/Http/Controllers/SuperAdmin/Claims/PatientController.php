@@ -72,6 +72,506 @@ class PatientController extends Controller
        }
 
        $reimbursementdocument = ReimbursementDocument::where('patient_id', $claimant->patient_id)->first();
+
+       $id = $reimbursementdocument->id;
+
+        if ($request->hasfile('patient_id_proof_file')) {
+            $patient_id_proof_file = $request->file('patient_id_proof_file');
+            $name = $patient_id_proof_file->getClientOriginalName();
+            $patient_id_proof_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'patient_id_proof_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('doctor_prescriptions_or_consultation_papers_file')) {
+            $doctor_prescriptions_or_consultation_papers_file = $request->file('doctor_prescriptions_or_consultation_papers_file');
+            $name = $doctor_prescriptions_or_consultation_papers_file->getClientOriginalName();
+            $doctor_prescriptions_or_consultation_papers_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'doctor_prescriptions_or_consultation_papers_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('insurance_policy_copy_file')) {
+            $insurance_policy_copy_file = $request->file('insurance_policy_copy_file');
+            $name = $insurance_policy_copy_file->getClientOriginalName();
+            $insurance_policy_copy_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'insurance_policy_copy_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('tpa_card_file')) {
+            $tpa_card_file = $request->file('tpa_card_file');
+            $name = $tpa_card_file->getClientOriginalName();
+            $tpa_card_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'tpa_card_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('employee_or_member_id_group_file')) {
+            $employee_or_member_id_group_file = $request->file('employee_or_member_id_group_file');
+            $name = $employee_or_member_id_group_file->getClientOriginalName();
+            $employee_or_member_id_group_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'employee_or_member_id_group_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('photograph_of_the_patient_file')) {
+            $photograph_of_the_patient_file = $request->file('photograph_of_the_patient_file');
+            $name = $photograph_of_the_patient_file->getClientOriginalName();
+            $photograph_of_the_patient_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'photograph_of_the_patient_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('indoor_care_paper_file')) {
+            $indoor_care_paper_file = $request->file('indoor_care_paper_file');
+            $name = $indoor_care_paper_file->getClientOriginalName();
+            $indoor_care_paper_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'indoor_care_paper_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('ecg_report_file')) {
+            $ecg_report_file = $request->file('ecg_report_fileile');
+            $name = $ecg_report_file->getClientOriginalName();
+            $ecg_report_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'ecg_report_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('ct_mri_usg_hpe_investigation_report_file')) {
+            $ct_mri_usg_hpe_investigation_report_file = $request->file('ct_mri_usg_hpe_investigation_report_file');
+            $name = $ct_mri_usg_hpe_investigation_report_file->getClientOriginalName();
+            $ct_mri_usg_hpe_investigation_report_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'ct_mri_usg_hpe_investigation_report_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('diagnostic_or_investigation_reports_file')) {
+            $diagnostic_or_investigation_reports_file = $request->file('diagnostic_or_investigation_reports_file');
+            $name = $diagnostic_or_investigation_reports_file->getClientOriginalName();
+            $diagnostic_or_investigation_reports_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'diagnostic_or_investigation_reports_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('doctor’s_reference_slip_for_investigation_file')) {
+            $doctor’s_reference_slip_for_investigation_file = $request->file('doctor’s_reference_slip_for_investigation_file');
+            $name = $doctor’s_reference_slip_for_investigation_file->getClientOriginalName();
+            $doctor’s_reference_slip_for_investigation_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'doctor’s_reference_slip_for_investigation_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('operation_theatre_notes_file')) {
+            $operation_theatre_notes_file = $request->file('operation_theatre_notes_file');
+            $name = $operation_theatre_notes_file->getClientOriginalName();
+            $operation_theatre_notes_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'operation_theatre_notes_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('pharmacy_bills_file')) {
+            $pharmacy_bills_file = $request->file('pharmacy_bills_file');
+            $name = $pharmacy_bills_file->getClientOriginalName();
+            $pharmacy_bills_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'pharmacy_bills_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('implant_sticker_invoice_file')) {
+            $implant_sticker_invoice_file = $request->file('implant_sticker_invoice_file');
+            $name = $implant_sticker_invoice_file->getClientOriginalName();
+            $implant_sticker_invoice_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'implant_sticker_invoice_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('hospital_break_up_bills_file')) {
+            $hospital_break_up_bills_file = $request->file('hospital_break_up_bills_file');
+            $name = $hospital_break_up_bills_file->getClientOriginalName();
+            $hospital_break_up_bills_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'hospital_break_up_bills_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('hospital_main_final_bill_file')) {
+            $hospital_main_final_bill_file = $request->file('hospital_main_final_bill_file');
+            $name = $hospital_main_final_bill_file->getClientOriginalName();
+            $hospital_main_final_bill_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'hospital_main_final_bill_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('discharge_or_day_care_summary_file')) {
+            $discharge_or_day_care_summary_file = $request->file('discharge_or_day_care_summary_file');
+            $name = $discharge_or_day_care_summary_file->getClientOriginalName();
+            $discharge_or_day_care_summary_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'discharge_or_day_care_summary_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('death_summary_from_hospital_where_applicable_file')) {
+            $death_summary_from_hospital_where_applicable_file = $request->file('death_summary_from_hospital_where_applicable_file');
+            $name = $death_summary_from_hospital_where_applicable_file->getClientOriginalName();
+            $death_summary_from_hospital_where_applicable_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'death_summary_from_hospital_where_applicable_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('payment_receipts_of_the_hospital_file')) {
+            $payment_receipts_of_the_hospital_file = $request->file('payment_receipts_of_the_hospital_file');
+            $name = $payment_receipts_of_the_hospital_file->getClientOriginalName();
+            $payment_receipts_of_the_hospital_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'payment_receipts_of_the_hospital_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('other_documents_file')) {
+            $other_documents_file = $request->file('other_documents_file');
+            $name = $other_documents_file->getClientOriginalName();
+            $other_documents_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'other_documents_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('claimant_pan_card_file')) {
+            $claimant_pan_card_file = $request->file('claimant_pan_card_file');
+            $name = $claimant_pan_card_file->getClientOriginalName();
+            $claimant_pan_card_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'claimant_pan_card_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('claimant_aadhar_card_file')) {
+            $claimant_aadhar_card_file = $request->file('claimant_aadhar_card_file');
+            $name = $claimant_aadhar_card_file->getClientOriginalName();
+            $claimant_aadhar_card_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'claimant_aadhar_card_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('claimant_current_address_proof_file')) {
+            $claimant_current_address_proof_file = $request->file('claimant_current_address_proof_file');
+            $name = $claimant_current_address_proof_file->getClientOriginalName();
+            $claimant_current_address_proof_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'claimant_current_address_proof_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('claimant_cancel_cheque_file')) {
+            $claimant_cancel_cheque_file = $request->file('claimant_cancel_cheque_file');
+            $name = $claimant_cancel_cheque_file->getClientOriginalName();
+            $claimant_cancel_cheque_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'claimant_cancel_cheque_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('abha_id_proof_file')) {
+            $abha_id_proof_file = $request->file('abha_id_proof_file');
+            $name = $abha_id_proof_file->getClientOriginalName();
+            $abha_id_proof_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'abha_id_proof_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('mlc_report_and_police_fir_document_file')) {
+            $mlc_report_and_police_fir_document_file = $request->file('mlc_report_and_police_fir_document_file');
+            $name = $mlc_report_and_police_fir_document_file->getClientOriginalName();
+            $mlc_report_and_police_fir_document_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'mlc_report_and_police_fir_document_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('borrower_current_address_proof_file')) {
+            $borrower_current_address_proof_file = $request->file('borrower_current_address_proof_file');
+            $name = $borrower_current_address_proof_file->getClientOriginalName();
+            $borrower_current_address_proof_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'borrower_current_address_proof_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('borrower_pan_card_file')) {
+            $borrower_pan_card_file = $request->file('borrower_pan_card_file');
+            $name = $borrower_pan_card_file->getClientOriginalName();
+            $borrower_pan_card_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'borrower_pan_card_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('borrower_aadhar_card_file')) {
+            $borrower_aadhar_card_file = $request->file('borrower_aadhar_card_file');
+            $name = $borrower_aadhar_card_file->getClientOriginalName();
+            $borrower_aadhar_card_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'borrower_aadhar_card_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('borrower_bank_statement_3_months_file')) {
+            $borrower_bank_statement_3_months_file = $request->file('borrower_bank_statement_3_months_file');
+            $name = $borrower_bank_statement_3_months_file->getClientOriginalName();
+            $borrower_bank_statement_3_months_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'borrower_bank_statement_3_months_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('borrower_itr_income_tax_return_file')) {
+            $borrower_itr_income_tax_return_file = $request->file('borrower_itr_income_tax_return_file');
+            $name = $borrower_itr_income_tax_return_file->getClientOriginalName();
+            $borrower_itr_income_tax_return_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'borrower_itr_income_tax_return_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('borrower_cancel_cheque_file')) {
+            $borrower_cancel_cheque_file = $request->file('borrower_cancel_cheque_file');
+            $name = $borrower_cancel_cheque_file->getClientOriginalName();
+            $borrower_cancel_cheque_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'borrower_cancel_cheque_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('borrower_other_documents_file')) {
+            $borrower_other_documents_file = $request->file('borrower_other_documents_file');
+            $name = $borrower_other_documents_file->getClientOriginalName();
+            $borrower_other_documents_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'borrower_other_documents_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('co_borrower_current_address_proof_file')) {
+            $co_borrower_current_address_proof_file = $request->file('co_borrower_current_address_proof_file');
+            $name = $co_borrower_current_address_proof_file->getClientOriginalName();
+            $co_borrower_current_address_proof_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'co_borrower_current_address_proof_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('co_borrower_pan_card_file')) {
+            $co_borrower_pan_card_file = $request->file('co_borrower_pan_card_file');
+            $name = $co_borrower_pan_card_file->getClientOriginalName();
+            $co_borrower_pan_card_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'co_borrower_pan_card_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('co_borrower_aadhar_card_file')) {
+            $co_borrower_aadhar_card_file = $request->file('co_borrower_aadhar_card_file');
+            $name = $co_borrower_aadhar_card_file->getClientOriginalName();
+            $co_borrower_aadhar_card_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'co_borrower_aadhar_card_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('co_borrower_bank_statement_3_months_file')) {
+            $co_borrower_bank_statement_3_months_file = $request->file('co_borrower_bank_statement_3_months_file');
+            $name = $co_borrower_bank_statement_3_months_file->getClientOriginalName();
+            $co_borrower_bank_statement_3_months_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'co_borrower_bank_statement_3_months_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('co_borrower_itr_income_tax_return_file')) {
+            $co_borrower_itr_income_tax_return_file = $request->file('co_borrower_itr_income_tax_return_file');
+            $name = $co_borrower_itr_income_tax_return_file->getClientOriginalName();
+            $co_borrower_itr_income_tax_return_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'co_borrower_itr_income_tax_return_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('co_borrower_cancel_cheque_file')) {
+            $co_borrower_cancel_cheque_file = $request->file('co_borrower_cancel_cheque_file');
+            $name = $co_borrower_cancel_cheque_file->getClientOriginalName();
+            $co_borrower_cancel_cheque_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'co_borrower_cancel_cheque_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('co_borrower_other_documents_file')) {
+            $co_borrower_other_documents_file = $request->file('co_borrower_other_documents_file');
+            $name = $co_borrower_other_documents_file->getClientOriginalName();
+            $co_borrower_other_documents_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'co_borrower_other_documents_file' =>  $name
+            ]);
+        }
+
+        $rules = [
+            'patient_id' => empty($reimbursementdocument->patient_id) ? 'required' : [],
+            'patient_title' => empty($reimbursementdocument->patient_title) ? 'required' : [],
+            'patient_firstname' => empty($reimbursementdocument->patient_firstname) ? 'required' : [],
+            'patient_middlename' => empty($reimbursementdocument->patient_middlename) ? 'required' : [],
+            'patient_lastname' => empty($reimbursementdocument->patient_lastname) ? 'required' : [],
+            'patient_id_proof_file' => empty($reimbursementdocument->patient_id_proof_file) ? 'required' : [],
+            'doctor_prescriptions_or_consultation_papers_file' => empty($reimbursementdocument->doctor_prescriptions_or_consultation_papers_file) ? 'required'  : [],
+            'insurance_policy_copy_file' => empty($reimbursementdocument->insurance_policy_copy_file) ? 'required' : [],
+            'tpa_card_file' => empty($reimbursementdocument->tpa_card_file) ? 'required' : [],
+            'employee_or_member_id_group_file' => empty($reimbursementdocument->employee_or_member_id_group_file) ? 'required' : [],
+            'photograph_of_the_patient_file' => empty($reimbursementdocument->photograph_of_the_patient_file) ? 'required' : [],
+            // 'indoor_care_paper_file' => empty($reimbursementdocument->indoor_care_paper_file) ? 'required' : [],
+            // 'ecg_report_file' => empty($reimbursementdocument->ecg_report_file) ? 'required' : [],
+            // 'ct_mri_usg_hpe_investigation_report_file' => empty($reimbursementdocument->ct_mri_usg_hpe_investigation_report_file) ? 'required' : [],
+            'diagnostic_or_investigation_reports_file' => empty($reimbursementdocument->diagnostic_or_investigation_reports_file) ? 'required' : [],
+            // 'doctor’s_reference_slip_for_investigation_file' => empty($reimbursementdocument->doctor’s_reference_slip_for_investigation_file) ? 'required' : [],
+            // 'operation_theatre_notes_file' => empty($reimbursementdocument->operation_theatre_notes_file) ? 'required' : [],
+            'pharmacy_bills_file' => empty($reimbursementdocument->pharmacy_bills_file) ? 'required' : [],
+            // 'implant_sticker_invoice_file' => empty($reimbursementdocument->implant_sticker_invoice_file) ? 'required' : [],
+            'hospital_break_up_bills_file' => empty($reimbursementdocument->hospital_break_up_bills_file) ? 'required' : [],
+            'hospital_main_final_bill_file' => empty($reimbursementdocument->hospital_main_final_bill_file) ? 'required' : [],
+            'discharge_or_day_care_summary_file' => empty($reimbursementdocument->discharge_or_day_care_summary_file) ? 'required' : [],
+            // 'death_summary_from_hospital_where_applicable_file' => empty($reimbursementdocument->death_summary_from_hospital_where_applicable_file) ? 'required' : [],
+            'payment_receipts_of_the_hospital_file' => empty($reimbursementdocument->payment_receipts_of_the_hospital_file) ? 'required' : [],
+            // 'other_documents_file' => empty($reimbursementdocument->other_documents_file) ? 'required' : [],
+            'claimant_pan_card_file' => empty($reimbursementdocument->claimant_pan_card_file) ? 'required' : [],
+            'claimant_aadhar_card_file' => empty($reimbursementdocument->claimant_aadhar_card_file) ? 'required' : [],
+            'claimant_current_address_proof_file' => empty($reimbursementdocument->claimant_current_address_proof_file) ? 'required' : [],
+            'claimant_cancel_cheque_file' => empty($reimbursementdocument->claimant_cancel_cheque_file) ? 'required' : [],
+            // 'abha_id_proof_file' => empty($reimbursementdocument->abha_id_proof_file) ? 'required' : [],
+            // 'mlc_report_and_police_fir_document_file' => empty($reimbursementdocument->mlc_report_and_police_fir_document_file) ? 'required' : [],
+            'borrower_current_address_proof_file' => empty($reimbursementdocument->borrower_current_address_proof_file) ? 'required' : [],
+            'borrower_pan_card_file' => empty($reimbursementdocument->borrower_pan_card_file) ? 'required' : [],
+            'borrower_aadhar_card_file' => empty($reimbursementdocument->borrower_aadhar_card_file) ? 'required' : [],
+            'borrower_bank_statement_3_months_file' => empty($reimbursementdocument->borrower_bank_statement_3_months_file) ? 'required' : [],
+            // 'borrower_itr_income_tax_return_file' => empty($reimbursementdocument->borrower_itr_income_tax_return_file) ? 'required' : [],
+            'borrower_cancel_cheque_file' => empty($reimbursementdocument->borrower_cancel_cheque_file) ? 'required' : [],
+            'borrower_other_documents_file' => empty($reimbursementdocument->borrower_other_documents_file) ? 'required' : [],
+            'co_borrower_current_address_proof_file' => empty($reimbursementdocument->co_borrower_current_address_proof_file) ? 'required' : [],
+            'co_borrower_pan_card_file' => empty($reimbursementdocument->co_borrower_pan_card_file) ? 'required' : [],
+            'co_borrower_aadhar_card_file' => empty($reimbursementdocument->co_borrower_aadhar_card_file) ? 'required' : [],
+            'co_borrower_bank_statement_3_months_file' => empty($reimbursementdocument->co_borrower_bank_statement_3_months_file) ? 'required' : [],
+            // 'co_borrower_itr_income_tax_return_file' => empty($reimbursementdocument->co_borrower_itr_income_tax_return_file) ? 'required' : [],
+            'co_borrower_cancel_cheque_file' => empty($reimbursementdocument->co_borrower_cancel_cheque_file) ? 'required' : [],
+            'co_borrower_other_documents_file' => empty($reimbursementdocument->co_borrower_other_documents_file) ? 'required' : [],
+            
+        ];
+
+        $messages = [
+            'patient_id.required' => 'Please select Patient Id',
+            'patient_title.required' => 'Please select Patient Title',
+            'patient_firstname.required' => 'Please select Patient Firstname',
+            'patient_middlename.required' => 'Please select Patient Middlename',
+            'patient_lastname.required' => 'Please select Patient Lastname',
+            'patient_id_proof_file.required' => 'Please select Patient Id Proof File',
+            'doctor_prescriptions_or_consultation_papers_file.required' => 'Please select Doctor Prescriptions Or Consultation Papers File',
+            'insurance_policy_copy_file.required' => 'Please select Insurance Policy Copy File',
+            'tpa_card_file.required' => 'Please select Tpa Card File',
+            'employee_or_member_id_group_file.required' => 'Please select Employee Or Member Id Group File',
+            'photograph_of_the_patient_file.required' => 'Please select Photograph Of The Patient File',
+            'indoor_care_paper_file.required' => 'Please select Indoor Care Paper File',
+            'ecg_report_file.required' => 'Please select Ecg Report File',
+            'ct_mri_usg_hpe_investigation_report_file.required' => 'Please select Ct Mri Usg Hpe Investigation Report File',
+            'diagnostic_or_investigation_reports_file.required' => 'Please select Diagnostic Or Investigation Reports File',
+            'doctor’s_reference_slip_for_investigation_file.required' => 'Please select Doctor’s Reference Slip For Investigation File',
+            'operation_theatre_notes_file.required' => 'Please select Operation Theatre Notes File',
+            'pharmacy_bills_file.required' => 'Please select Pharmacy Bills File',
+            'implant_sticker_invoice_file.required' => 'Please select Implant Sticker Invoice File',
+            'hospital_break_up_bills_file.required' => 'Please select Hospital Break Up Bills File',
+            'hospital_main_final_bill_file.required' => 'Please select Hospital Main Final Bill File',
+            'discharge_or_day_care_summary_file.required' => 'Please select Discharge Or Day Care Summary File',
+            'death_summary_from_hospital_where_applicable_file.required' => 'Please select Death Summary From Hospital Where Applicable File',
+            'payment_receipts_of_the_hospital_file.required' => 'Please select Payment Receipts Of The Hospital File',
+            'other_documents_file.required' => 'Please select Other Documents File',
+            'claimant_pan_card_file.required' => 'Please select Claimant Pan Card File',
+            'claimant_aadhar_card_file.required' => 'Please select Claimant Aadhar Card File',
+            'claimant_current_address_proof_file.required' => 'Please select Claimant Current Address Proof File',
+            'claimant_cancel_cheque_file.required' => 'Please select Claimant Cancel Cheque File',
+            'abha_id_proof_file.required' => 'Please select Abha Id Proof File',
+            'mlc_report_and_police_fir_document_file.required' => 'Please select Mlc Report And Police Fir Document File',
+            'borrower_current_address_proof_file.required' => 'Please select Borrower Current Address Proof File',
+            'borrower_pan_card_file.required' => 'Please select Borrower Pan Card File',
+            'borrower_aadhar_card_file.required' => 'Please select Borrower Aadhar Card File',
+            'borrower_bank_statement_3_months_file.required' => 'Please select Borrower Bank Statement 3 Months File',
+            'borrower_itr_income_tax_return_file.required' => 'Please select Borrower Itr Income Tax Return File',
+            'borrower_cancel_cheque_file.required' => 'Please select Borrower Cancel Cheque File',
+            'borrower_other_documents_file.required' => 'Please select Borrower Other Documents File',
+            'co_borrower_current_address_proof_file.required' => 'Please select Co Borrower Current Address Proof File',
+            'co_borrower_pan_card_file.required' => 'Please select Co Borrower Pan Card File',
+            'co_borrower_aadhar_card_file.required' => 'Please select Co Borrower Aadhar Card File',
+            'co_borrower_bank_statement_3_months_file.required' => 'Please select Co Borrower Bank Statement 3 Months File',
+            'co_borrower_itr_income_tax_return_file.required' => 'Please select Co Borrower Itr Income Tax Return File',
+            'co_borrower_cancel_cheque_file.required' => 'Please select Co Borrower Cancel Cheque File',
+            'co_borrower_other_documents_file.required' => 'Please select Co Borrower Other Documents File',
+
+        ];
+
+        $this->validateWithBag('initial-assessment-form', $request, $rules, $messages);
+
+       $reimbursementdocument =  ReimbursementDocument::where('patient_id', 'P-10001')->update($request->except('_token','patient_id'));
+
+        return redirect()->back()->with('success', 'Patient added successfully');
+
+        return view('super-admin.claims.patients.documents-reimbursement',  compact('hospital_id', 'associates', 'hospitals'));
+    }
+
+
+    public function saveDocumentsReimbursement1(Request $request, $id)
+    {
+        $claimant = Claimant::find($id);
+
+        $exists = ReimbursementDocument::where('patient_id', $claimant->patient_id)->exists();
+
+        if (!$exists) {
+           ReimbursementDocument::create(['patient_id' => $claimant->patient_id]);
+       }
+
+       $reimbursementdocument = ReimbursementDocument::where('patient_id', $claimant->patient_id)->first();
        
        $id = $reimbursementdocument->id;
 
@@ -551,7 +1051,1507 @@ class PatientController extends Controller
 
         ];
 
-        $this->validate($request, $rules, $messages);
+        $this->validateWithBag('final-assessment-form',$request, $rules, $messages);
+
+       $reimbursementdocument =  ReimbursementDocument::where('patient_id', 'P-10001')->update($request->except('_token','patient_id'));
+
+        return redirect()->back()->with('success', 'Patient added successfully');
+
+        return view('super-admin.claims.patients.documents-reimbursement',  compact('hospital_id', 'associates', 'hospitals'));
+    }
+
+
+    public function saveDocumentsReimbursement2(Request $request, $id)
+    {
+        $claimant = Claimant::find($id);
+
+        $exists = ReimbursementDocument::where('patient_id', $claimant->patient_id)->exists();
+
+        if (!$exists) {
+           ReimbursementDocument::create(['patient_id' => $claimant->patient_id]);
+       }
+
+       $reimbursementdocument = ReimbursementDocument::where('patient_id', $claimant->patient_id)->first();
+       
+       $id = $reimbursementdocument->id;
+
+        if ($request->hasfile('patient_id_proof_file')) {
+            $patient_id_proof_file = $request->file('patient_id_proof_file');
+            $name = $patient_id_proof_file->getClientOriginalName();
+            $patient_id_proof_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'patient_id_proof_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('doctor_prescriptions_or_consultation_papers_file')) {
+            $doctor_prescriptions_or_consultation_papers_file = $request->file('doctor_prescriptions_or_consultation_papers_file');
+            $name = $doctor_prescriptions_or_consultation_papers_file->getClientOriginalName();
+            $doctor_prescriptions_or_consultation_papers_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'doctor_prescriptions_or_consultation_papers_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('insurance_policy_copy_file')) {
+            $insurance_policy_copy_file = $request->file('insurance_policy_copy_file');
+            $name = $insurance_policy_copy_file->getClientOriginalName();
+            $insurance_policy_copy_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'insurance_policy_copy_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('tpa_card_file')) {
+            $tpa_card_file = $request->file('tpa_card_file');
+            $name = $tpa_card_file->getClientOriginalName();
+            $tpa_card_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'tpa_card_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('employee_or_member_id_group_file')) {
+            $employee_or_member_id_group_file = $request->file('employee_or_member_id_group_file');
+            $name = $employee_or_member_id_group_file->getClientOriginalName();
+            $employee_or_member_id_group_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'employee_or_member_id_group_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('photograph_of_the_patient_file')) {
+            $photograph_of_the_patient_file = $request->file('photograph_of_the_patient_file');
+            $name = $photograph_of_the_patient_file->getClientOriginalName();
+            $photograph_of_the_patient_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'photograph_of_the_patient_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('indoor_care_paper_file')) {
+            $indoor_care_paper_file = $request->file('indoor_care_paper_file');
+            $name = $indoor_care_paper_file->getClientOriginalName();
+            $indoor_care_paper_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'indoor_care_paper_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('ecg_report_file')) {
+            $ecg_report_file = $request->file('ecg_report_fileile');
+            $name = $ecg_report_file->getClientOriginalName();
+            $ecg_report_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'ecg_report_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('ct_mri_usg_hpe_investigation_report_file')) {
+            $ct_mri_usg_hpe_investigation_report_file = $request->file('ct_mri_usg_hpe_investigation_report_file');
+            $name = $ct_mri_usg_hpe_investigation_report_file->getClientOriginalName();
+            $ct_mri_usg_hpe_investigation_report_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'ct_mri_usg_hpe_investigation_report_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('diagnostic_or_investigation_reports_file')) {
+            $diagnostic_or_investigation_reports_file = $request->file('diagnostic_or_investigation_reports_file');
+            $name = $diagnostic_or_investigation_reports_file->getClientOriginalName();
+            $diagnostic_or_investigation_reports_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'diagnostic_or_investigation_reports_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('doctor’s_reference_slip_for_investigation_file')) {
+            $doctor’s_reference_slip_for_investigation_file = $request->file('doctor’s_reference_slip_for_investigation_file');
+            $name = $doctor’s_reference_slip_for_investigation_file->getClientOriginalName();
+            $doctor’s_reference_slip_for_investigation_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'doctor’s_reference_slip_for_investigation_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('operation_theatre_notes_file')) {
+            $operation_theatre_notes_file = $request->file('operation_theatre_notes_file');
+            $name = $operation_theatre_notes_file->getClientOriginalName();
+            $operation_theatre_notes_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'operation_theatre_notes_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('pharmacy_bills_file')) {
+            $pharmacy_bills_file = $request->file('pharmacy_bills_file');
+            $name = $pharmacy_bills_file->getClientOriginalName();
+            $pharmacy_bills_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'pharmacy_bills_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('implant_sticker_invoice_file')) {
+            $implant_sticker_invoice_file = $request->file('implant_sticker_invoice_file');
+            $name = $implant_sticker_invoice_file->getClientOriginalName();
+            $implant_sticker_invoice_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'implant_sticker_invoice_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('hospital_break_up_bills_file')) {
+            $hospital_break_up_bills_file = $request->file('hospital_break_up_bills_file');
+            $name = $hospital_break_up_bills_file->getClientOriginalName();
+            $hospital_break_up_bills_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'hospital_break_up_bills_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('hospital_main_final_bill_file')) {
+            $hospital_main_final_bill_file = $request->file('hospital_main_final_bill_file');
+            $name = $hospital_main_final_bill_file->getClientOriginalName();
+            $hospital_main_final_bill_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'hospital_main_final_bill_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('discharge_or_day_care_summary_file')) {
+            $discharge_or_day_care_summary_file = $request->file('discharge_or_day_care_summary_file');
+            $name = $discharge_or_day_care_summary_file->getClientOriginalName();
+            $discharge_or_day_care_summary_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'discharge_or_day_care_summary_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('death_summary_from_hospital_where_applicable_file')) {
+            $death_summary_from_hospital_where_applicable_file = $request->file('death_summary_from_hospital_where_applicable_file');
+            $name = $death_summary_from_hospital_where_applicable_file->getClientOriginalName();
+            $death_summary_from_hospital_where_applicable_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'death_summary_from_hospital_where_applicable_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('payment_receipts_of_the_hospital_file')) {
+            $payment_receipts_of_the_hospital_file = $request->file('payment_receipts_of_the_hospital_file');
+            $name = $payment_receipts_of_the_hospital_file->getClientOriginalName();
+            $payment_receipts_of_the_hospital_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'payment_receipts_of_the_hospital_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('other_documents_file')) {
+            $other_documents_file = $request->file('other_documents_file');
+            $name = $other_documents_file->getClientOriginalName();
+            $other_documents_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'other_documents_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('claimant_pan_card_file')) {
+            $claimant_pan_card_file = $request->file('claimant_pan_card_file');
+            $name = $claimant_pan_card_file->getClientOriginalName();
+            $claimant_pan_card_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'claimant_pan_card_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('claimant_aadhar_card_file')) {
+            $claimant_aadhar_card_file = $request->file('claimant_aadhar_card_file');
+            $name = $claimant_aadhar_card_file->getClientOriginalName();
+            $claimant_aadhar_card_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'claimant_aadhar_card_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('claimant_current_address_proof_file')) {
+            $claimant_current_address_proof_file = $request->file('claimant_current_address_proof_file');
+            $name = $claimant_current_address_proof_file->getClientOriginalName();
+            $claimant_current_address_proof_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'claimant_current_address_proof_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('claimant_cancel_cheque_file')) {
+            $claimant_cancel_cheque_file = $request->file('claimant_cancel_cheque_file');
+            $name = $claimant_cancel_cheque_file->getClientOriginalName();
+            $claimant_cancel_cheque_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'claimant_cancel_cheque_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('abha_id_proof_file')) {
+            $abha_id_proof_file = $request->file('abha_id_proof_file');
+            $name = $abha_id_proof_file->getClientOriginalName();
+            $abha_id_proof_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'abha_id_proof_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('mlc_report_and_police_fir_document_file')) {
+            $mlc_report_and_police_fir_document_file = $request->file('mlc_report_and_police_fir_document_file');
+            $name = $mlc_report_and_police_fir_document_file->getClientOriginalName();
+            $mlc_report_and_police_fir_document_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'mlc_report_and_police_fir_document_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('borrower_current_address_proof_file')) {
+            $borrower_current_address_proof_file = $request->file('borrower_current_address_proof_file');
+            $name = $borrower_current_address_proof_file->getClientOriginalName();
+            $borrower_current_address_proof_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'borrower_current_address_proof_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('borrower_pan_card_file')) {
+            $borrower_pan_card_file = $request->file('borrower_pan_card_file');
+            $name = $borrower_pan_card_file->getClientOriginalName();
+            $borrower_pan_card_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'borrower_pan_card_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('borrower_aadhar_card_file')) {
+            $borrower_aadhar_card_file = $request->file('borrower_aadhar_card_file');
+            $name = $borrower_aadhar_card_file->getClientOriginalName();
+            $borrower_aadhar_card_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'borrower_aadhar_card_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('borrower_bank_statement_3_months_file')) {
+            $borrower_bank_statement_3_months_file = $request->file('borrower_bank_statement_3_months_file');
+            $name = $borrower_bank_statement_3_months_file->getClientOriginalName();
+            $borrower_bank_statement_3_months_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'borrower_bank_statement_3_months_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('borrower_itr_income_tax_return_file')) {
+            $borrower_itr_income_tax_return_file = $request->file('borrower_itr_income_tax_return_file');
+            $name = $borrower_itr_income_tax_return_file->getClientOriginalName();
+            $borrower_itr_income_tax_return_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'borrower_itr_income_tax_return_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('borrower_cancel_cheque_file')) {
+            $borrower_cancel_cheque_file = $request->file('borrower_cancel_cheque_file');
+            $name = $borrower_cancel_cheque_file->getClientOriginalName();
+            $borrower_cancel_cheque_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'borrower_cancel_cheque_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('borrower_other_documents_file')) {
+            $borrower_other_documents_file = $request->file('borrower_other_documents_file');
+            $name = $borrower_other_documents_file->getClientOriginalName();
+            $borrower_other_documents_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'borrower_other_documents_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('co_borrower_current_address_proof_file')) {
+            $co_borrower_current_address_proof_file = $request->file('co_borrower_current_address_proof_file');
+            $name = $co_borrower_current_address_proof_file->getClientOriginalName();
+            $co_borrower_current_address_proof_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'co_borrower_current_address_proof_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('co_borrower_pan_card_file')) {
+            $co_borrower_pan_card_file = $request->file('co_borrower_pan_card_file');
+            $name = $co_borrower_pan_card_file->getClientOriginalName();
+            $co_borrower_pan_card_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'co_borrower_pan_card_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('co_borrower_aadhar_card_file')) {
+            $co_borrower_aadhar_card_file = $request->file('co_borrower_aadhar_card_file');
+            $name = $co_borrower_aadhar_card_file->getClientOriginalName();
+            $co_borrower_aadhar_card_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'co_borrower_aadhar_card_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('co_borrower_bank_statement_3_months_file')) {
+            $co_borrower_bank_statement_3_months_file = $request->file('co_borrower_bank_statement_3_months_file');
+            $name = $co_borrower_bank_statement_3_months_file->getClientOriginalName();
+            $co_borrower_bank_statement_3_months_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'co_borrower_bank_statement_3_months_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('co_borrower_itr_income_tax_return_file')) {
+            $co_borrower_itr_income_tax_return_file = $request->file('co_borrower_itr_income_tax_return_file');
+            $name = $co_borrower_itr_income_tax_return_file->getClientOriginalName();
+            $co_borrower_itr_income_tax_return_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'co_borrower_itr_income_tax_return_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('co_borrower_cancel_cheque_file')) {
+            $co_borrower_cancel_cheque_file = $request->file('co_borrower_cancel_cheque_file');
+            $name = $co_borrower_cancel_cheque_file->getClientOriginalName();
+            $co_borrower_cancel_cheque_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'co_borrower_cancel_cheque_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('co_borrower_other_documents_file')) {
+            $co_borrower_other_documents_file = $request->file('co_borrower_other_documents_file');
+            $name = $co_borrower_other_documents_file->getClientOriginalName();
+            $co_borrower_other_documents_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'co_borrower_other_documents_file' =>  $name
+            ]);
+        }
+
+        $rules = [
+            'patient_id' => empty($reimbursementdocument->patient_id) ? 'required' : [],
+            'patient_title' => empty($reimbursementdocument->patient_title) ? 'required' : [],
+            'patient_firstname' => empty($reimbursementdocument->patient_firstname) ? 'required' : [],
+            'patient_middlename' => empty($reimbursementdocument->patient_middlename) ? 'required' : [],
+            'patient_lastname' => empty($reimbursementdocument->patient_lastname) ? 'required' : [],
+            'patient_id_proof_file' => empty($reimbursementdocument->patient_id_proof_file) ? 'required' : [],
+            'doctor_prescriptions_or_consultation_papers_file' => empty($reimbursementdocument->doctor_prescriptions_or_consultation_papers_file) ? 'required'  : [],
+            'insurance_policy_copy_file' => empty($reimbursementdocument->insurance_policy_copy_file) ? 'required' : [],
+            'tpa_card_file' => empty($reimbursementdocument->tpa_card_file) ? 'required' : [],
+            'employee_or_member_id_group_file' => empty($reimbursementdocument->employee_or_member_id_group_file) ? 'required' : [],
+            'photograph_of_the_patient_file' => empty($reimbursementdocument->photograph_of_the_patient_file) ? 'required' : [],
+            // 'indoor_care_paper_file' => empty($reimbursementdocument->indoor_care_paper_file) ? 'required' : [],
+            // 'ecg_report_file' => empty($reimbursementdocument->ecg_report_file) ? 'required' : [],
+            // 'ct_mri_usg_hpe_investigation_report_file' => empty($reimbursementdocument->ct_mri_usg_hpe_investigation_report_file) ? 'required' : [],
+            'diagnostic_or_investigation_reports_file' => empty($reimbursementdocument->diagnostic_or_investigation_reports_file) ? 'required' : [],
+            // 'doctor’s_reference_slip_for_investigation_file' => empty($reimbursementdocument->doctor’s_reference_slip_for_investigation_file) ? 'required' : [],
+            // 'operation_theatre_notes_file' => empty($reimbursementdocument->operation_theatre_notes_file) ? 'required' : [],
+            'pharmacy_bills_file' => empty($reimbursementdocument->pharmacy_bills_file) ? 'required' : [],
+            // 'implant_sticker_invoice_file' => empty($reimbursementdocument->implant_sticker_invoice_file) ? 'required' : [],
+            'hospital_break_up_bills_file' => empty($reimbursementdocument->hospital_break_up_bills_file) ? 'required' : [],
+            'hospital_main_final_bill_file' => empty($reimbursementdocument->hospital_main_final_bill_file) ? 'required' : [],
+            'discharge_or_day_care_summary_file' => empty($reimbursementdocument->discharge_or_day_care_summary_file) ? 'required' : [],
+            // 'death_summary_from_hospital_where_applicable_file' => empty($reimbursementdocument->death_summary_from_hospital_where_applicable_file) ? 'required' : [],
+            'payment_receipts_of_the_hospital_file' => empty($reimbursementdocument->payment_receipts_of_the_hospital_file) ? 'required' : [],
+            // 'other_documents_file' => empty($reimbursementdocument->other_documents_file) ? 'required' : [],
+            'claimant_pan_card_file' => empty($reimbursementdocument->claimant_pan_card_file) ? 'required' : [],
+            'claimant_aadhar_card_file' => empty($reimbursementdocument->claimant_aadhar_card_file) ? 'required' : [],
+            'claimant_current_address_proof_file' => empty($reimbursementdocument->claimant_current_address_proof_file) ? 'required' : [],
+            'claimant_cancel_cheque_file' => empty($reimbursementdocument->claimant_cancel_cheque_file) ? 'required' : [],
+            // 'abha_id_proof_file' => empty($reimbursementdocument->abha_id_proof_file) ? 'required' : [],
+            // 'mlc_report_and_police_fir_document_file' => empty($reimbursementdocument->mlc_report_and_police_fir_document_file) ? 'required' : [],
+            'borrower_current_address_proof_file' => empty($reimbursementdocument->borrower_current_address_proof_file) ? 'required' : [],
+            'borrower_pan_card_file' => empty($reimbursementdocument->borrower_pan_card_file) ? 'required' : [],
+            'borrower_aadhar_card_file' => empty($reimbursementdocument->borrower_aadhar_card_file) ? 'required' : [],
+            'borrower_bank_statement_3_months_file' => empty($reimbursementdocument->borrower_bank_statement_3_months_file) ? 'required' : [],
+            // 'borrower_itr_income_tax_return_file' => empty($reimbursementdocument->borrower_itr_income_tax_return_file) ? 'required' : [],
+            'borrower_cancel_cheque_file' => empty($reimbursementdocument->borrower_cancel_cheque_file) ? 'required' : [],
+            'borrower_other_documents_file' => empty($reimbursementdocument->borrower_other_documents_file) ? 'required' : [],
+            'co_borrower_current_address_proof_file' => empty($reimbursementdocument->co_borrower_current_address_proof_file) ? 'required' : [],
+            'co_borrower_pan_card_file' => empty($reimbursementdocument->co_borrower_pan_card_file) ? 'required' : [],
+            'co_borrower_aadhar_card_file' => empty($reimbursementdocument->co_borrower_aadhar_card_file) ? 'required' : [],
+            'co_borrower_bank_statement_3_months_file' => empty($reimbursementdocument->co_borrower_bank_statement_3_months_file) ? 'required' : [],
+            // 'co_borrower_itr_income_tax_return_file' => empty($reimbursementdocument->co_borrower_itr_income_tax_return_file) ? 'required' : [],
+            'co_borrower_cancel_cheque_file' => empty($reimbursementdocument->co_borrower_cancel_cheque_file) ? 'required' : [],
+            'co_borrower_other_documents_file' => empty($reimbursementdocument->co_borrower_other_documents_file) ? 'required' : [],
+            
+        ];
+
+        $messages = [
+            'patient_id.required' => 'Please select Patient Id',
+            'patient_title.required' => 'Please select Patient Title',
+            'patient_firstname.required' => 'Please select Patient Firstname',
+            'patient_middlename.required' => 'Please select Patient Middlename',
+            'patient_lastname.required' => 'Please select Patient Lastname',
+            'patient_id_proof_file.required' => 'Please select Patient Id Proof File',
+            'doctor_prescriptions_or_consultation_papers_file.required' => 'Please select Doctor Prescriptions Or Consultation Papers File',
+            'insurance_policy_copy_file.required' => 'Please select Insurance Policy Copy File',
+            'tpa_card_file.required' => 'Please select Tpa Card File',
+            'employee_or_member_id_group_file.required' => 'Please select Employee Or Member Id Group File',
+            'photograph_of_the_patient_file.required' => 'Please select Photograph Of The Patient File',
+            'indoor_care_paper_file.required' => 'Please select Indoor Care Paper File',
+            'ecg_report_file.required' => 'Please select Ecg Report File',
+            'ct_mri_usg_hpe_investigation_report_file.required' => 'Please select Ct Mri Usg Hpe Investigation Report File',
+            'diagnostic_or_investigation_reports_file.required' => 'Please select Diagnostic Or Investigation Reports File',
+            'doctor’s_reference_slip_for_investigation_file.required' => 'Please select Doctor’s Reference Slip For Investigation File',
+            'operation_theatre_notes_file.required' => 'Please select Operation Theatre Notes File',
+            'pharmacy_bills_file.required' => 'Please select Pharmacy Bills File',
+            'implant_sticker_invoice_file.required' => 'Please select Implant Sticker Invoice File',
+            'hospital_break_up_bills_file.required' => 'Please select Hospital Break Up Bills File',
+            'hospital_main_final_bill_file.required' => 'Please select Hospital Main Final Bill File',
+            'discharge_or_day_care_summary_file.required' => 'Please select Discharge Or Day Care Summary File',
+            'death_summary_from_hospital_where_applicable_file.required' => 'Please select Death Summary From Hospital Where Applicable File',
+            'payment_receipts_of_the_hospital_file.required' => 'Please select Payment Receipts Of The Hospital File',
+            'other_documents_file.required' => 'Please select Other Documents File',
+            'claimant_pan_card_file.required' => 'Please select Claimant Pan Card File',
+            'claimant_aadhar_card_file.required' => 'Please select Claimant Aadhar Card File',
+            'claimant_current_address_proof_file.required' => 'Please select Claimant Current Address Proof File',
+            'claimant_cancel_cheque_file.required' => 'Please select Claimant Cancel Cheque File',
+            'abha_id_proof_file.required' => 'Please select Abha Id Proof File',
+            'mlc_report_and_police_fir_document_file.required' => 'Please select Mlc Report And Police Fir Document File',
+            'borrower_current_address_proof_file.required' => 'Please select Borrower Current Address Proof File',
+            'borrower_pan_card_file.required' => 'Please select Borrower Pan Card File',
+            'borrower_aadhar_card_file.required' => 'Please select Borrower Aadhar Card File',
+            'borrower_bank_statement_3_months_file.required' => 'Please select Borrower Bank Statement 3 Months File',
+            'borrower_itr_income_tax_return_file.required' => 'Please select Borrower Itr Income Tax Return File',
+            'borrower_cancel_cheque_file.required' => 'Please select Borrower Cancel Cheque File',
+            'borrower_other_documents_file.required' => 'Please select Borrower Other Documents File',
+            'co_borrower_current_address_proof_file.required' => 'Please select Co Borrower Current Address Proof File',
+            'co_borrower_pan_card_file.required' => 'Please select Co Borrower Pan Card File',
+            'co_borrower_aadhar_card_file.required' => 'Please select Co Borrower Aadhar Card File',
+            'co_borrower_bank_statement_3_months_file.required' => 'Please select Co Borrower Bank Statement 3 Months File',
+            'co_borrower_itr_income_tax_return_file.required' => 'Please select Co Borrower Itr Income Tax Return File',
+            'co_borrower_cancel_cheque_file.required' => 'Please select Co Borrower Cancel Cheque File',
+            'co_borrower_other_documents_file.required' => 'Please select Co Borrower Other Documents File',
+
+        ];
+
+        $this->validateWithBag('insurance-claim-form', $request, $rules, $messages);
+
+       $reimbursementdocument =  ReimbursementDocument::where('patient_id', 'P-10001')->update($request->except('_token','patient_id'));
+
+        return redirect()->back()->with('success', 'Patient added successfully');
+
+        return view('super-admin.claims.patients.documents-reimbursement',  compact('hospital_id', 'associates', 'hospitals'));
+    }
+
+
+    public function saveDocumentsReimbursement3(Request $request, $id)
+    {
+        $claimant = Claimant::find($id);
+
+        $exists = ReimbursementDocument::where('patient_id', $claimant->patient_id)->exists();
+
+        if (!$exists) {
+           ReimbursementDocument::create(['patient_id' => $claimant->patient_id]);
+       }
+
+       $reimbursementdocument = ReimbursementDocument::where('patient_id', $claimant->patient_id)->first();
+       
+       $id = $reimbursementdocument->id;
+
+        if ($request->hasfile('patient_id_proof_file')) {
+            $patient_id_proof_file = $request->file('patient_id_proof_file');
+            $name = $patient_id_proof_file->getClientOriginalName();
+            $patient_id_proof_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'patient_id_proof_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('doctor_prescriptions_or_consultation_papers_file')) {
+            $doctor_prescriptions_or_consultation_papers_file = $request->file('doctor_prescriptions_or_consultation_papers_file');
+            $name = $doctor_prescriptions_or_consultation_papers_file->getClientOriginalName();
+            $doctor_prescriptions_or_consultation_papers_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'doctor_prescriptions_or_consultation_papers_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('insurance_policy_copy_file')) {
+            $insurance_policy_copy_file = $request->file('insurance_policy_copy_file');
+            $name = $insurance_policy_copy_file->getClientOriginalName();
+            $insurance_policy_copy_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'insurance_policy_copy_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('tpa_card_file')) {
+            $tpa_card_file = $request->file('tpa_card_file');
+            $name = $tpa_card_file->getClientOriginalName();
+            $tpa_card_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'tpa_card_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('employee_or_member_id_group_file')) {
+            $employee_or_member_id_group_file = $request->file('employee_or_member_id_group_file');
+            $name = $employee_or_member_id_group_file->getClientOriginalName();
+            $employee_or_member_id_group_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'employee_or_member_id_group_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('photograph_of_the_patient_file')) {
+            $photograph_of_the_patient_file = $request->file('photograph_of_the_patient_file');
+            $name = $photograph_of_the_patient_file->getClientOriginalName();
+            $photograph_of_the_patient_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'photograph_of_the_patient_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('indoor_care_paper_file')) {
+            $indoor_care_paper_file = $request->file('indoor_care_paper_file');
+            $name = $indoor_care_paper_file->getClientOriginalName();
+            $indoor_care_paper_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'indoor_care_paper_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('ecg_report_file')) {
+            $ecg_report_file = $request->file('ecg_report_fileile');
+            $name = $ecg_report_file->getClientOriginalName();
+            $ecg_report_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'ecg_report_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('ct_mri_usg_hpe_investigation_report_file')) {
+            $ct_mri_usg_hpe_investigation_report_file = $request->file('ct_mri_usg_hpe_investigation_report_file');
+            $name = $ct_mri_usg_hpe_investigation_report_file->getClientOriginalName();
+            $ct_mri_usg_hpe_investigation_report_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'ct_mri_usg_hpe_investigation_report_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('diagnostic_or_investigation_reports_file')) {
+            $diagnostic_or_investigation_reports_file = $request->file('diagnostic_or_investigation_reports_file');
+            $name = $diagnostic_or_investigation_reports_file->getClientOriginalName();
+            $diagnostic_or_investigation_reports_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'diagnostic_or_investigation_reports_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('doctor’s_reference_slip_for_investigation_file')) {
+            $doctor’s_reference_slip_for_investigation_file = $request->file('doctor’s_reference_slip_for_investigation_file');
+            $name = $doctor’s_reference_slip_for_investigation_file->getClientOriginalName();
+            $doctor’s_reference_slip_for_investigation_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'doctor’s_reference_slip_for_investigation_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('operation_theatre_notes_file')) {
+            $operation_theatre_notes_file = $request->file('operation_theatre_notes_file');
+            $name = $operation_theatre_notes_file->getClientOriginalName();
+            $operation_theatre_notes_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'operation_theatre_notes_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('pharmacy_bills_file')) {
+            $pharmacy_bills_file = $request->file('pharmacy_bills_file');
+            $name = $pharmacy_bills_file->getClientOriginalName();
+            $pharmacy_bills_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'pharmacy_bills_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('implant_sticker_invoice_file')) {
+            $implant_sticker_invoice_file = $request->file('implant_sticker_invoice_file');
+            $name = $implant_sticker_invoice_file->getClientOriginalName();
+            $implant_sticker_invoice_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'implant_sticker_invoice_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('hospital_break_up_bills_file')) {
+            $hospital_break_up_bills_file = $request->file('hospital_break_up_bills_file');
+            $name = $hospital_break_up_bills_file->getClientOriginalName();
+            $hospital_break_up_bills_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'hospital_break_up_bills_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('hospital_main_final_bill_file')) {
+            $hospital_main_final_bill_file = $request->file('hospital_main_final_bill_file');
+            $name = $hospital_main_final_bill_file->getClientOriginalName();
+            $hospital_main_final_bill_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'hospital_main_final_bill_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('discharge_or_day_care_summary_file')) {
+            $discharge_or_day_care_summary_file = $request->file('discharge_or_day_care_summary_file');
+            $name = $discharge_or_day_care_summary_file->getClientOriginalName();
+            $discharge_or_day_care_summary_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'discharge_or_day_care_summary_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('death_summary_from_hospital_where_applicable_file')) {
+            $death_summary_from_hospital_where_applicable_file = $request->file('death_summary_from_hospital_where_applicable_file');
+            $name = $death_summary_from_hospital_where_applicable_file->getClientOriginalName();
+            $death_summary_from_hospital_where_applicable_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'death_summary_from_hospital_where_applicable_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('payment_receipts_of_the_hospital_file')) {
+            $payment_receipts_of_the_hospital_file = $request->file('payment_receipts_of_the_hospital_file');
+            $name = $payment_receipts_of_the_hospital_file->getClientOriginalName();
+            $payment_receipts_of_the_hospital_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'payment_receipts_of_the_hospital_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('other_documents_file')) {
+            $other_documents_file = $request->file('other_documents_file');
+            $name = $other_documents_file->getClientOriginalName();
+            $other_documents_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'other_documents_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('claimant_pan_card_file')) {
+            $claimant_pan_card_file = $request->file('claimant_pan_card_file');
+            $name = $claimant_pan_card_file->getClientOriginalName();
+            $claimant_pan_card_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'claimant_pan_card_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('claimant_aadhar_card_file')) {
+            $claimant_aadhar_card_file = $request->file('claimant_aadhar_card_file');
+            $name = $claimant_aadhar_card_file->getClientOriginalName();
+            $claimant_aadhar_card_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'claimant_aadhar_card_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('claimant_current_address_proof_file')) {
+            $claimant_current_address_proof_file = $request->file('claimant_current_address_proof_file');
+            $name = $claimant_current_address_proof_file->getClientOriginalName();
+            $claimant_current_address_proof_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'claimant_current_address_proof_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('claimant_cancel_cheque_file')) {
+            $claimant_cancel_cheque_file = $request->file('claimant_cancel_cheque_file');
+            $name = $claimant_cancel_cheque_file->getClientOriginalName();
+            $claimant_cancel_cheque_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'claimant_cancel_cheque_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('abha_id_proof_file')) {
+            $abha_id_proof_file = $request->file('abha_id_proof_file');
+            $name = $abha_id_proof_file->getClientOriginalName();
+            $abha_id_proof_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'abha_id_proof_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('mlc_report_and_police_fir_document_file')) {
+            $mlc_report_and_police_fir_document_file = $request->file('mlc_report_and_police_fir_document_file');
+            $name = $mlc_report_and_police_fir_document_file->getClientOriginalName();
+            $mlc_report_and_police_fir_document_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'mlc_report_and_police_fir_document_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('borrower_current_address_proof_file')) {
+            $borrower_current_address_proof_file = $request->file('borrower_current_address_proof_file');
+            $name = $borrower_current_address_proof_file->getClientOriginalName();
+            $borrower_current_address_proof_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'borrower_current_address_proof_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('borrower_pan_card_file')) {
+            $borrower_pan_card_file = $request->file('borrower_pan_card_file');
+            $name = $borrower_pan_card_file->getClientOriginalName();
+            $borrower_pan_card_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'borrower_pan_card_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('borrower_aadhar_card_file')) {
+            $borrower_aadhar_card_file = $request->file('borrower_aadhar_card_file');
+            $name = $borrower_aadhar_card_file->getClientOriginalName();
+            $borrower_aadhar_card_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'borrower_aadhar_card_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('borrower_bank_statement_3_months_file')) {
+            $borrower_bank_statement_3_months_file = $request->file('borrower_bank_statement_3_months_file');
+            $name = $borrower_bank_statement_3_months_file->getClientOriginalName();
+            $borrower_bank_statement_3_months_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'borrower_bank_statement_3_months_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('borrower_itr_income_tax_return_file')) {
+            $borrower_itr_income_tax_return_file = $request->file('borrower_itr_income_tax_return_file');
+            $name = $borrower_itr_income_tax_return_file->getClientOriginalName();
+            $borrower_itr_income_tax_return_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'borrower_itr_income_tax_return_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('borrower_cancel_cheque_file')) {
+            $borrower_cancel_cheque_file = $request->file('borrower_cancel_cheque_file');
+            $name = $borrower_cancel_cheque_file->getClientOriginalName();
+            $borrower_cancel_cheque_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'borrower_cancel_cheque_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('borrower_other_documents_file')) {
+            $borrower_other_documents_file = $request->file('borrower_other_documents_file');
+            $name = $borrower_other_documents_file->getClientOriginalName();
+            $borrower_other_documents_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'borrower_other_documents_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('co_borrower_current_address_proof_file')) {
+            $co_borrower_current_address_proof_file = $request->file('co_borrower_current_address_proof_file');
+            $name = $co_borrower_current_address_proof_file->getClientOriginalName();
+            $co_borrower_current_address_proof_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'co_borrower_current_address_proof_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('co_borrower_pan_card_file')) {
+            $co_borrower_pan_card_file = $request->file('co_borrower_pan_card_file');
+            $name = $co_borrower_pan_card_file->getClientOriginalName();
+            $co_borrower_pan_card_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'co_borrower_pan_card_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('co_borrower_aadhar_card_file')) {
+            $co_borrower_aadhar_card_file = $request->file('co_borrower_aadhar_card_file');
+            $name = $co_borrower_aadhar_card_file->getClientOriginalName();
+            $co_borrower_aadhar_card_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'co_borrower_aadhar_card_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('co_borrower_bank_statement_3_months_file')) {
+            $co_borrower_bank_statement_3_months_file = $request->file('co_borrower_bank_statement_3_months_file');
+            $name = $co_borrower_bank_statement_3_months_file->getClientOriginalName();
+            $co_borrower_bank_statement_3_months_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'co_borrower_bank_statement_3_months_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('co_borrower_itr_income_tax_return_file')) {
+            $co_borrower_itr_income_tax_return_file = $request->file('co_borrower_itr_income_tax_return_file');
+            $name = $co_borrower_itr_income_tax_return_file->getClientOriginalName();
+            $co_borrower_itr_income_tax_return_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'co_borrower_itr_income_tax_return_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('co_borrower_cancel_cheque_file')) {
+            $co_borrower_cancel_cheque_file = $request->file('co_borrower_cancel_cheque_file');
+            $name = $co_borrower_cancel_cheque_file->getClientOriginalName();
+            $co_borrower_cancel_cheque_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'co_borrower_cancel_cheque_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('co_borrower_other_documents_file')) {
+            $co_borrower_other_documents_file = $request->file('co_borrower_other_documents_file');
+            $name = $co_borrower_other_documents_file->getClientOriginalName();
+            $co_borrower_other_documents_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'co_borrower_other_documents_file' =>  $name
+            ]);
+        }
+
+        $rules = [
+            'patient_id' => empty($reimbursementdocument->patient_id) ? 'required' : [],
+            'patient_title' => empty($reimbursementdocument->patient_title) ? 'required' : [],
+            'patient_firstname' => empty($reimbursementdocument->patient_firstname) ? 'required' : [],
+            'patient_middlename' => empty($reimbursementdocument->patient_middlename) ? 'required' : [],
+            'patient_lastname' => empty($reimbursementdocument->patient_lastname) ? 'required' : [],
+            'patient_id_proof_file' => empty($reimbursementdocument->patient_id_proof_file) ? 'required' : [],
+            'doctor_prescriptions_or_consultation_papers_file' => empty($reimbursementdocument->doctor_prescriptions_or_consultation_papers_file) ? 'required'  : [],
+            'insurance_policy_copy_file' => empty($reimbursementdocument->insurance_policy_copy_file) ? 'required' : [],
+            'tpa_card_file' => empty($reimbursementdocument->tpa_card_file) ? 'required' : [],
+            'employee_or_member_id_group_file' => empty($reimbursementdocument->employee_or_member_id_group_file) ? 'required' : [],
+            'photograph_of_the_patient_file' => empty($reimbursementdocument->photograph_of_the_patient_file) ? 'required' : [],
+            // 'indoor_care_paper_file' => empty($reimbursementdocument->indoor_care_paper_file) ? 'required' : [],
+            // 'ecg_report_file' => empty($reimbursementdocument->ecg_report_file) ? 'required' : [],
+            // 'ct_mri_usg_hpe_investigation_report_file' => empty($reimbursementdocument->ct_mri_usg_hpe_investigation_report_file) ? 'required' : [],
+            'diagnostic_or_investigation_reports_file' => empty($reimbursementdocument->diagnostic_or_investigation_reports_file) ? 'required' : [],
+            // 'doctor’s_reference_slip_for_investigation_file' => empty($reimbursementdocument->doctor’s_reference_slip_for_investigation_file) ? 'required' : [],
+            // 'operation_theatre_notes_file' => empty($reimbursementdocument->operation_theatre_notes_file) ? 'required' : [],
+            'pharmacy_bills_file' => empty($reimbursementdocument->pharmacy_bills_file) ? 'required' : [],
+            // 'implant_sticker_invoice_file' => empty($reimbursementdocument->implant_sticker_invoice_file) ? 'required' : [],
+            'hospital_break_up_bills_file' => empty($reimbursementdocument->hospital_break_up_bills_file) ? 'required' : [],
+            'hospital_main_final_bill_file' => empty($reimbursementdocument->hospital_main_final_bill_file) ? 'required' : [],
+            'discharge_or_day_care_summary_file' => empty($reimbursementdocument->discharge_or_day_care_summary_file) ? 'required' : [],
+            // 'death_summary_from_hospital_where_applicable_file' => empty($reimbursementdocument->death_summary_from_hospital_where_applicable_file) ? 'required' : [],
+            'payment_receipts_of_the_hospital_file' => empty($reimbursementdocument->payment_receipts_of_the_hospital_file) ? 'required' : [],
+            // 'other_documents_file' => empty($reimbursementdocument->other_documents_file) ? 'required' : [],
+            'claimant_pan_card_file' => empty($reimbursementdocument->claimant_pan_card_file) ? 'required' : [],
+            'claimant_aadhar_card_file' => empty($reimbursementdocument->claimant_aadhar_card_file) ? 'required' : [],
+            'claimant_current_address_proof_file' => empty($reimbursementdocument->claimant_current_address_proof_file) ? 'required' : [],
+            'claimant_cancel_cheque_file' => empty($reimbursementdocument->claimant_cancel_cheque_file) ? 'required' : [],
+            // 'abha_id_proof_file' => empty($reimbursementdocument->abha_id_proof_file) ? 'required' : [],
+            // 'mlc_report_and_police_fir_document_file' => empty($reimbursementdocument->mlc_report_and_police_fir_document_file) ? 'required' : [],
+            'borrower_current_address_proof_file' => empty($reimbursementdocument->borrower_current_address_proof_file) ? 'required' : [],
+            'borrower_pan_card_file' => empty($reimbursementdocument->borrower_pan_card_file) ? 'required' : [],
+            'borrower_aadhar_card_file' => empty($reimbursementdocument->borrower_aadhar_card_file) ? 'required' : [],
+            'borrower_bank_statement_3_months_file' => empty($reimbursementdocument->borrower_bank_statement_3_months_file) ? 'required' : [],
+            // 'borrower_itr_income_tax_return_file' => empty($reimbursementdocument->borrower_itr_income_tax_return_file) ? 'required' : [],
+            'borrower_cancel_cheque_file' => empty($reimbursementdocument->borrower_cancel_cheque_file) ? 'required' : [],
+            'borrower_other_documents_file' => empty($reimbursementdocument->borrower_other_documents_file) ? 'required' : [],
+            'co_borrower_current_address_proof_file' => empty($reimbursementdocument->co_borrower_current_address_proof_file) ? 'required' : [],
+            'co_borrower_pan_card_file' => empty($reimbursementdocument->co_borrower_pan_card_file) ? 'required' : [],
+            'co_borrower_aadhar_card_file' => empty($reimbursementdocument->co_borrower_aadhar_card_file) ? 'required' : [],
+            'co_borrower_bank_statement_3_months_file' => empty($reimbursementdocument->co_borrower_bank_statement_3_months_file) ? 'required' : [],
+            // 'co_borrower_itr_income_tax_return_file' => empty($reimbursementdocument->co_borrower_itr_income_tax_return_file) ? 'required' : [],
+            'co_borrower_cancel_cheque_file' => empty($reimbursementdocument->co_borrower_cancel_cheque_file) ? 'required' : [],
+            'co_borrower_other_documents_file' => empty($reimbursementdocument->co_borrower_other_documents_file) ? 'required' : [],
+            
+        ];
+
+        $messages = [
+            'patient_id.required' => 'Please select Patient Id',
+            'patient_title.required' => 'Please select Patient Title',
+            'patient_firstname.required' => 'Please select Patient Firstname',
+            'patient_middlename.required' => 'Please select Patient Middlename',
+            'patient_lastname.required' => 'Please select Patient Lastname',
+            'patient_id_proof_file.required' => 'Please select Patient Id Proof File',
+            'doctor_prescriptions_or_consultation_papers_file.required' => 'Please select Doctor Prescriptions Or Consultation Papers File',
+            'insurance_policy_copy_file.required' => 'Please select Insurance Policy Copy File',
+            'tpa_card_file.required' => 'Please select Tpa Card File',
+            'employee_or_member_id_group_file.required' => 'Please select Employee Or Member Id Group File',
+            'photograph_of_the_patient_file.required' => 'Please select Photograph Of The Patient File',
+            'indoor_care_paper_file.required' => 'Please select Indoor Care Paper File',
+            'ecg_report_file.required' => 'Please select Ecg Report File',
+            'ct_mri_usg_hpe_investigation_report_file.required' => 'Please select Ct Mri Usg Hpe Investigation Report File',
+            'diagnostic_or_investigation_reports_file.required' => 'Please select Diagnostic Or Investigation Reports File',
+            'doctor’s_reference_slip_for_investigation_file.required' => 'Please select Doctor’s Reference Slip For Investigation File',
+            'operation_theatre_notes_file.required' => 'Please select Operation Theatre Notes File',
+            'pharmacy_bills_file.required' => 'Please select Pharmacy Bills File',
+            'implant_sticker_invoice_file.required' => 'Please select Implant Sticker Invoice File',
+            'hospital_break_up_bills_file.required' => 'Please select Hospital Break Up Bills File',
+            'hospital_main_final_bill_file.required' => 'Please select Hospital Main Final Bill File',
+            'discharge_or_day_care_summary_file.required' => 'Please select Discharge Or Day Care Summary File',
+            'death_summary_from_hospital_where_applicable_file.required' => 'Please select Death Summary From Hospital Where Applicable File',
+            'payment_receipts_of_the_hospital_file.required' => 'Please select Payment Receipts Of The Hospital File',
+            'other_documents_file.required' => 'Please select Other Documents File',
+            'claimant_pan_card_file.required' => 'Please select Claimant Pan Card File',
+            'claimant_aadhar_card_file.required' => 'Please select Claimant Aadhar Card File',
+            'claimant_current_address_proof_file.required' => 'Please select Claimant Current Address Proof File',
+            'claimant_cancel_cheque_file.required' => 'Please select Claimant Cancel Cheque File',
+            'abha_id_proof_file.required' => 'Please select Abha Id Proof File',
+            'mlc_report_and_police_fir_document_file.required' => 'Please select Mlc Report And Police Fir Document File',
+            'borrower_current_address_proof_file.required' => 'Please select Borrower Current Address Proof File',
+            'borrower_pan_card_file.required' => 'Please select Borrower Pan Card File',
+            'borrower_aadhar_card_file.required' => 'Please select Borrower Aadhar Card File',
+            'borrower_bank_statement_3_months_file.required' => 'Please select Borrower Bank Statement 3 Months File',
+            'borrower_itr_income_tax_return_file.required' => 'Please select Borrower Itr Income Tax Return File',
+            'borrower_cancel_cheque_file.required' => 'Please select Borrower Cancel Cheque File',
+            'borrower_other_documents_file.required' => 'Please select Borrower Other Documents File',
+            'co_borrower_current_address_proof_file.required' => 'Please select Co Borrower Current Address Proof File',
+            'co_borrower_pan_card_file.required' => 'Please select Co Borrower Pan Card File',
+            'co_borrower_aadhar_card_file.required' => 'Please select Co Borrower Aadhar Card File',
+            'co_borrower_bank_statement_3_months_file.required' => 'Please select Co Borrower Bank Statement 3 Months File',
+            'co_borrower_itr_income_tax_return_file.required' => 'Please select Co Borrower Itr Income Tax Return File',
+            'co_borrower_cancel_cheque_file.required' => 'Please select Co Borrower Cancel Cheque File',
+            'co_borrower_other_documents_file.required' => 'Please select Co Borrower Other Documents File',
+
+        ];
+
+        $this->validateWithBag('medical-loan-form', $request, $rules, $messages);
+
+       $reimbursementdocument =  ReimbursementDocument::where('patient_id', 'P-10001')->update($request->except('_token','patient_id'));
+
+        return redirect()->back()->with('success', 'Patient added successfully');
+
+        return view('super-admin.claims.patients.documents-reimbursement',  compact('hospital_id', 'associates', 'hospitals'));
+    }
+
+
+    public function saveDocumentsReimbursement4(Request $request, $id)
+    {
+        $claimant = Claimant::find($id);
+
+        $exists = ReimbursementDocument::where('patient_id', $claimant->patient_id)->exists();
+
+        if (!$exists) {
+           ReimbursementDocument::create(['patient_id' => $claimant->patient_id]);
+       }
+
+       $reimbursementdocument = ReimbursementDocument::where('patient_id', $claimant->patient_id)->first();
+       
+       $id = $reimbursementdocument->id;
+
+        if ($request->hasfile('patient_id_proof_file')) {
+            $patient_id_proof_file = $request->file('patient_id_proof_file');
+            $name = $patient_id_proof_file->getClientOriginalName();
+            $patient_id_proof_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'patient_id_proof_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('doctor_prescriptions_or_consultation_papers_file')) {
+            $doctor_prescriptions_or_consultation_papers_file = $request->file('doctor_prescriptions_or_consultation_papers_file');
+            $name = $doctor_prescriptions_or_consultation_papers_file->getClientOriginalName();
+            $doctor_prescriptions_or_consultation_papers_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'doctor_prescriptions_or_consultation_papers_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('insurance_policy_copy_file')) {
+            $insurance_policy_copy_file = $request->file('insurance_policy_copy_file');
+            $name = $insurance_policy_copy_file->getClientOriginalName();
+            $insurance_policy_copy_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'insurance_policy_copy_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('tpa_card_file')) {
+            $tpa_card_file = $request->file('tpa_card_file');
+            $name = $tpa_card_file->getClientOriginalName();
+            $tpa_card_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'tpa_card_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('employee_or_member_id_group_file')) {
+            $employee_or_member_id_group_file = $request->file('employee_or_member_id_group_file');
+            $name = $employee_or_member_id_group_file->getClientOriginalName();
+            $employee_or_member_id_group_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'employee_or_member_id_group_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('photograph_of_the_patient_file')) {
+            $photograph_of_the_patient_file = $request->file('photograph_of_the_patient_file');
+            $name = $photograph_of_the_patient_file->getClientOriginalName();
+            $photograph_of_the_patient_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'photograph_of_the_patient_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('indoor_care_paper_file')) {
+            $indoor_care_paper_file = $request->file('indoor_care_paper_file');
+            $name = $indoor_care_paper_file->getClientOriginalName();
+            $indoor_care_paper_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'indoor_care_paper_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('ecg_report_file')) {
+            $ecg_report_file = $request->file('ecg_report_fileile');
+            $name = $ecg_report_file->getClientOriginalName();
+            $ecg_report_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'ecg_report_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('ct_mri_usg_hpe_investigation_report_file')) {
+            $ct_mri_usg_hpe_investigation_report_file = $request->file('ct_mri_usg_hpe_investigation_report_file');
+            $name = $ct_mri_usg_hpe_investigation_report_file->getClientOriginalName();
+            $ct_mri_usg_hpe_investigation_report_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'ct_mri_usg_hpe_investigation_report_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('diagnostic_or_investigation_reports_file')) {
+            $diagnostic_or_investigation_reports_file = $request->file('diagnostic_or_investigation_reports_file');
+            $name = $diagnostic_or_investigation_reports_file->getClientOriginalName();
+            $diagnostic_or_investigation_reports_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'diagnostic_or_investigation_reports_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('doctor’s_reference_slip_for_investigation_file')) {
+            $doctor’s_reference_slip_for_investigation_file = $request->file('doctor’s_reference_slip_for_investigation_file');
+            $name = $doctor’s_reference_slip_for_investigation_file->getClientOriginalName();
+            $doctor’s_reference_slip_for_investigation_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'doctor’s_reference_slip_for_investigation_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('operation_theatre_notes_file')) {
+            $operation_theatre_notes_file = $request->file('operation_theatre_notes_file');
+            $name = $operation_theatre_notes_file->getClientOriginalName();
+            $operation_theatre_notes_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'operation_theatre_notes_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('pharmacy_bills_file')) {
+            $pharmacy_bills_file = $request->file('pharmacy_bills_file');
+            $name = $pharmacy_bills_file->getClientOriginalName();
+            $pharmacy_bills_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'pharmacy_bills_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('implant_sticker_invoice_file')) {
+            $implant_sticker_invoice_file = $request->file('implant_sticker_invoice_file');
+            $name = $implant_sticker_invoice_file->getClientOriginalName();
+            $implant_sticker_invoice_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'implant_sticker_invoice_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('hospital_break_up_bills_file')) {
+            $hospital_break_up_bills_file = $request->file('hospital_break_up_bills_file');
+            $name = $hospital_break_up_bills_file->getClientOriginalName();
+            $hospital_break_up_bills_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'hospital_break_up_bills_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('hospital_main_final_bill_file')) {
+            $hospital_main_final_bill_file = $request->file('hospital_main_final_bill_file');
+            $name = $hospital_main_final_bill_file->getClientOriginalName();
+            $hospital_main_final_bill_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'hospital_main_final_bill_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('discharge_or_day_care_summary_file')) {
+            $discharge_or_day_care_summary_file = $request->file('discharge_or_day_care_summary_file');
+            $name = $discharge_or_day_care_summary_file->getClientOriginalName();
+            $discharge_or_day_care_summary_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'discharge_or_day_care_summary_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('death_summary_from_hospital_where_applicable_file')) {
+            $death_summary_from_hospital_where_applicable_file = $request->file('death_summary_from_hospital_where_applicable_file');
+            $name = $death_summary_from_hospital_where_applicable_file->getClientOriginalName();
+            $death_summary_from_hospital_where_applicable_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'death_summary_from_hospital_where_applicable_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('payment_receipts_of_the_hospital_file')) {
+            $payment_receipts_of_the_hospital_file = $request->file('payment_receipts_of_the_hospital_file');
+            $name = $payment_receipts_of_the_hospital_file->getClientOriginalName();
+            $payment_receipts_of_the_hospital_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'payment_receipts_of_the_hospital_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('other_documents_file')) {
+            $other_documents_file = $request->file('other_documents_file');
+            $name = $other_documents_file->getClientOriginalName();
+            $other_documents_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'other_documents_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('claimant_pan_card_file')) {
+            $claimant_pan_card_file = $request->file('claimant_pan_card_file');
+            $name = $claimant_pan_card_file->getClientOriginalName();
+            $claimant_pan_card_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'claimant_pan_card_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('claimant_aadhar_card_file')) {
+            $claimant_aadhar_card_file = $request->file('claimant_aadhar_card_file');
+            $name = $claimant_aadhar_card_file->getClientOriginalName();
+            $claimant_aadhar_card_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'claimant_aadhar_card_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('claimant_current_address_proof_file')) {
+            $claimant_current_address_proof_file = $request->file('claimant_current_address_proof_file');
+            $name = $claimant_current_address_proof_file->getClientOriginalName();
+            $claimant_current_address_proof_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'claimant_current_address_proof_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('claimant_cancel_cheque_file')) {
+            $claimant_cancel_cheque_file = $request->file('claimant_cancel_cheque_file');
+            $name = $claimant_cancel_cheque_file->getClientOriginalName();
+            $claimant_cancel_cheque_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'claimant_cancel_cheque_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('abha_id_proof_file')) {
+            $abha_id_proof_file = $request->file('abha_id_proof_file');
+            $name = $abha_id_proof_file->getClientOriginalName();
+            $abha_id_proof_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'abha_id_proof_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('mlc_report_and_police_fir_document_file')) {
+            $mlc_report_and_police_fir_document_file = $request->file('mlc_report_and_police_fir_document_file');
+            $name = $mlc_report_and_police_fir_document_file->getClientOriginalName();
+            $mlc_report_and_police_fir_document_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'mlc_report_and_police_fir_document_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('borrower_current_address_proof_file')) {
+            $borrower_current_address_proof_file = $request->file('borrower_current_address_proof_file');
+            $name = $borrower_current_address_proof_file->getClientOriginalName();
+            $borrower_current_address_proof_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'borrower_current_address_proof_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('borrower_pan_card_file')) {
+            $borrower_pan_card_file = $request->file('borrower_pan_card_file');
+            $name = $borrower_pan_card_file->getClientOriginalName();
+            $borrower_pan_card_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'borrower_pan_card_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('borrower_aadhar_card_file')) {
+            $borrower_aadhar_card_file = $request->file('borrower_aadhar_card_file');
+            $name = $borrower_aadhar_card_file->getClientOriginalName();
+            $borrower_aadhar_card_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'borrower_aadhar_card_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('borrower_bank_statement_3_months_file')) {
+            $borrower_bank_statement_3_months_file = $request->file('borrower_bank_statement_3_months_file');
+            $name = $borrower_bank_statement_3_months_file->getClientOriginalName();
+            $borrower_bank_statement_3_months_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'borrower_bank_statement_3_months_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('borrower_itr_income_tax_return_file')) {
+            $borrower_itr_income_tax_return_file = $request->file('borrower_itr_income_tax_return_file');
+            $name = $borrower_itr_income_tax_return_file->getClientOriginalName();
+            $borrower_itr_income_tax_return_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'borrower_itr_income_tax_return_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('borrower_cancel_cheque_file')) {
+            $borrower_cancel_cheque_file = $request->file('borrower_cancel_cheque_file');
+            $name = $borrower_cancel_cheque_file->getClientOriginalName();
+            $borrower_cancel_cheque_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'borrower_cancel_cheque_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('borrower_other_documents_file')) {
+            $borrower_other_documents_file = $request->file('borrower_other_documents_file');
+            $name = $borrower_other_documents_file->getClientOriginalName();
+            $borrower_other_documents_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'borrower_other_documents_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('co_borrower_current_address_proof_file')) {
+            $co_borrower_current_address_proof_file = $request->file('co_borrower_current_address_proof_file');
+            $name = $co_borrower_current_address_proof_file->getClientOriginalName();
+            $co_borrower_current_address_proof_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'co_borrower_current_address_proof_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('co_borrower_pan_card_file')) {
+            $co_borrower_pan_card_file = $request->file('co_borrower_pan_card_file');
+            $name = $co_borrower_pan_card_file->getClientOriginalName();
+            $co_borrower_pan_card_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'co_borrower_pan_card_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('co_borrower_aadhar_card_file')) {
+            $co_borrower_aadhar_card_file = $request->file('co_borrower_aadhar_card_file');
+            $name = $co_borrower_aadhar_card_file->getClientOriginalName();
+            $co_borrower_aadhar_card_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'co_borrower_aadhar_card_file' =>  $name
+            ]);
+        }
+
+
+        if ($request->hasfile('co_borrower_bank_statement_3_months_file')) {
+            $co_borrower_bank_statement_3_months_file = $request->file('co_borrower_bank_statement_3_months_file');
+            $name = $co_borrower_bank_statement_3_months_file->getClientOriginalName();
+            $co_borrower_bank_statement_3_months_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'co_borrower_bank_statement_3_months_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('co_borrower_itr_income_tax_return_file')) {
+            $co_borrower_itr_income_tax_return_file = $request->file('co_borrower_itr_income_tax_return_file');
+            $name = $co_borrower_itr_income_tax_return_file->getClientOriginalName();
+            $co_borrower_itr_income_tax_return_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'co_borrower_itr_income_tax_return_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('co_borrower_cancel_cheque_file')) {
+            $co_borrower_cancel_cheque_file = $request->file('co_borrower_cancel_cheque_file');
+            $name = $co_borrower_cancel_cheque_file->getClientOriginalName();
+            $co_borrower_cancel_cheque_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'co_borrower_cancel_cheque_file' =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('co_borrower_other_documents_file')) {
+            $co_borrower_other_documents_file = $request->file('co_borrower_other_documents_file');
+            $name = $co_borrower_other_documents_file->getClientOriginalName();
+            $co_borrower_other_documents_file->storeAs('uploads/reimbursement/documents/' . $id . '/', $name, 'public');
+            ReimbursementDocument::where('id', $id)->update([
+                'co_borrower_other_documents_file' =>  $name
+            ]);
+        }
+
+        $rules = [
+            'patient_id' => empty($reimbursementdocument->patient_id) ? 'required' : [],
+            'patient_title' => empty($reimbursementdocument->patient_title) ? 'required' : [],
+            'patient_firstname' => empty($reimbursementdocument->patient_firstname) ? 'required' : [],
+            'patient_middlename' => empty($reimbursementdocument->patient_middlename) ? 'required' : [],
+            'patient_lastname' => empty($reimbursementdocument->patient_lastname) ? 'required' : [],
+            'patient_id_proof_file' => empty($reimbursementdocument->patient_id_proof_file) ? 'required' : [],
+            'doctor_prescriptions_or_consultation_papers_file' => empty($reimbursementdocument->doctor_prescriptions_or_consultation_papers_file) ? 'required'  : [],
+            'insurance_policy_copy_file' => empty($reimbursementdocument->insurance_policy_copy_file) ? 'required' : [],
+            'tpa_card_file' => empty($reimbursementdocument->tpa_card_file) ? 'required' : [],
+            'employee_or_member_id_group_file' => empty($reimbursementdocument->employee_or_member_id_group_file) ? 'required' : [],
+            'photograph_of_the_patient_file' => empty($reimbursementdocument->photograph_of_the_patient_file) ? 'required' : [],
+            // 'indoor_care_paper_file' => empty($reimbursementdocument->indoor_care_paper_file) ? 'required' : [],
+            // 'ecg_report_file' => empty($reimbursementdocument->ecg_report_file) ? 'required' : [],
+            // 'ct_mri_usg_hpe_investigation_report_file' => empty($reimbursementdocument->ct_mri_usg_hpe_investigation_report_file) ? 'required' : [],
+            'diagnostic_or_investigation_reports_file' => empty($reimbursementdocument->diagnostic_or_investigation_reports_file) ? 'required' : [],
+            // 'doctor’s_reference_slip_for_investigation_file' => empty($reimbursementdocument->doctor’s_reference_slip_for_investigation_file) ? 'required' : [],
+            // 'operation_theatre_notes_file' => empty($reimbursementdocument->operation_theatre_notes_file) ? 'required' : [],
+            'pharmacy_bills_file' => empty($reimbursementdocument->pharmacy_bills_file) ? 'required' : [],
+            // 'implant_sticker_invoice_file' => empty($reimbursementdocument->implant_sticker_invoice_file) ? 'required' : [],
+            'hospital_break_up_bills_file' => empty($reimbursementdocument->hospital_break_up_bills_file) ? 'required' : [],
+            'hospital_main_final_bill_file' => empty($reimbursementdocument->hospital_main_final_bill_file) ? 'required' : [],
+            'discharge_or_day_care_summary_file' => empty($reimbursementdocument->discharge_or_day_care_summary_file) ? 'required' : [],
+            // 'death_summary_from_hospital_where_applicable_file' => empty($reimbursementdocument->death_summary_from_hospital_where_applicable_file) ? 'required' : [],
+            'payment_receipts_of_the_hospital_file' => empty($reimbursementdocument->payment_receipts_of_the_hospital_file) ? 'required' : [],
+            // 'other_documents_file' => empty($reimbursementdocument->other_documents_file) ? 'required' : [],
+            'claimant_pan_card_file' => empty($reimbursementdocument->claimant_pan_card_file) ? 'required' : [],
+            'claimant_aadhar_card_file' => empty($reimbursementdocument->claimant_aadhar_card_file) ? 'required' : [],
+            'claimant_current_address_proof_file' => empty($reimbursementdocument->claimant_current_address_proof_file) ? 'required' : [],
+            'claimant_cancel_cheque_file' => empty($reimbursementdocument->claimant_cancel_cheque_file) ? 'required' : [],
+            // 'abha_id_proof_file' => empty($reimbursementdocument->abha_id_proof_file) ? 'required' : [],
+            // 'mlc_report_and_police_fir_document_file' => empty($reimbursementdocument->mlc_report_and_police_fir_document_file) ? 'required' : [],
+            'borrower_current_address_proof_file' => empty($reimbursementdocument->borrower_current_address_proof_file) ? 'required' : [],
+            'borrower_pan_card_file' => empty($reimbursementdocument->borrower_pan_card_file) ? 'required' : [],
+            'borrower_aadhar_card_file' => empty($reimbursementdocument->borrower_aadhar_card_file) ? 'required' : [],
+            'borrower_bank_statement_3_months_file' => empty($reimbursementdocument->borrower_bank_statement_3_months_file) ? 'required' : [],
+            // 'borrower_itr_income_tax_return_file' => empty($reimbursementdocument->borrower_itr_income_tax_return_file) ? 'required' : [],
+            'borrower_cancel_cheque_file' => empty($reimbursementdocument->borrower_cancel_cheque_file) ? 'required' : [],
+            'borrower_other_documents_file' => empty($reimbursementdocument->borrower_other_documents_file) ? 'required' : [],
+            'co_borrower_current_address_proof_file' => empty($reimbursementdocument->co_borrower_current_address_proof_file) ? 'required' : [],
+            'co_borrower_pan_card_file' => empty($reimbursementdocument->co_borrower_pan_card_file) ? 'required' : [],
+            'co_borrower_aadhar_card_file' => empty($reimbursementdocument->co_borrower_aadhar_card_file) ? 'required' : [],
+            'co_borrower_bank_statement_3_months_file' => empty($reimbursementdocument->co_borrower_bank_statement_3_months_file) ? 'required' : [],
+            // 'co_borrower_itr_income_tax_return_file' => empty($reimbursementdocument->co_borrower_itr_income_tax_return_file) ? 'required' : [],
+            'co_borrower_cancel_cheque_file' => empty($reimbursementdocument->co_borrower_cancel_cheque_file) ? 'required' : [],
+            'co_borrower_other_documents_file' => empty($reimbursementdocument->co_borrower_other_documents_file) ? 'required' : [],
+            
+        ];
+
+        $messages = [
+            'patient_id.required' => 'Please select Patient Id',
+            'patient_title.required' => 'Please select Patient Title',
+            'patient_firstname.required' => 'Please select Patient Firstname',
+            'patient_middlename.required' => 'Please select Patient Middlename',
+            'patient_lastname.required' => 'Please select Patient Lastname',
+            'patient_id_proof_file.required' => 'Please select Patient Id Proof File',
+            'doctor_prescriptions_or_consultation_papers_file.required' => 'Please select Doctor Prescriptions Or Consultation Papers File',
+            'insurance_policy_copy_file.required' => 'Please select Insurance Policy Copy File',
+            'tpa_card_file.required' => 'Please select Tpa Card File',
+            'employee_or_member_id_group_file.required' => 'Please select Employee Or Member Id Group File',
+            'photograph_of_the_patient_file.required' => 'Please select Photograph Of The Patient File',
+            'indoor_care_paper_file.required' => 'Please select Indoor Care Paper File',
+            'ecg_report_file.required' => 'Please select Ecg Report File',
+            'ct_mri_usg_hpe_investigation_report_file.required' => 'Please select Ct Mri Usg Hpe Investigation Report File',
+            'diagnostic_or_investigation_reports_file.required' => 'Please select Diagnostic Or Investigation Reports File',
+            'doctor’s_reference_slip_for_investigation_file.required' => 'Please select Doctor’s Reference Slip For Investigation File',
+            'operation_theatre_notes_file.required' => 'Please select Operation Theatre Notes File',
+            'pharmacy_bills_file.required' => 'Please select Pharmacy Bills File',
+            'implant_sticker_invoice_file.required' => 'Please select Implant Sticker Invoice File',
+            'hospital_break_up_bills_file.required' => 'Please select Hospital Break Up Bills File',
+            'hospital_main_final_bill_file.required' => 'Please select Hospital Main Final Bill File',
+            'discharge_or_day_care_summary_file.required' => 'Please select Discharge Or Day Care Summary File',
+            'death_summary_from_hospital_where_applicable_file.required' => 'Please select Death Summary From Hospital Where Applicable File',
+            'payment_receipts_of_the_hospital_file.required' => 'Please select Payment Receipts Of The Hospital File',
+            'other_documents_file.required' => 'Please select Other Documents File',
+            'claimant_pan_card_file.required' => 'Please select Claimant Pan Card File',
+            'claimant_aadhar_card_file.required' => 'Please select Claimant Aadhar Card File',
+            'claimant_current_address_proof_file.required' => 'Please select Claimant Current Address Proof File',
+            'claimant_cancel_cheque_file.required' => 'Please select Claimant Cancel Cheque File',
+            'abha_id_proof_file.required' => 'Please select Abha Id Proof File',
+            'mlc_report_and_police_fir_document_file.required' => 'Please select Mlc Report And Police Fir Document File',
+            'borrower_current_address_proof_file.required' => 'Please select Borrower Current Address Proof File',
+            'borrower_pan_card_file.required' => 'Please select Borrower Pan Card File',
+            'borrower_aadhar_card_file.required' => 'Please select Borrower Aadhar Card File',
+            'borrower_bank_statement_3_months_file.required' => 'Please select Borrower Bank Statement 3 Months File',
+            'borrower_itr_income_tax_return_file.required' => 'Please select Borrower Itr Income Tax Return File',
+            'borrower_cancel_cheque_file.required' => 'Please select Borrower Cancel Cheque File',
+            'borrower_other_documents_file.required' => 'Please select Borrower Other Documents File',
+            'co_borrower_current_address_proof_file.required' => 'Please select Co Borrower Current Address Proof File',
+            'co_borrower_pan_card_file.required' => 'Please select Co Borrower Pan Card File',
+            'co_borrower_aadhar_card_file.required' => 'Please select Co Borrower Aadhar Card File',
+            'co_borrower_bank_statement_3_months_file.required' => 'Please select Co Borrower Bank Statement 3 Months File',
+            'co_borrower_itr_income_tax_return_file.required' => 'Please select Co Borrower Itr Income Tax Return File',
+            'co_borrower_cancel_cheque_file.required' => 'Please select Co Borrower Cancel Cheque File',
+            'co_borrower_other_documents_file.required' => 'Please select Co Borrower Other Documents File',
+
+        ];
+
+        $this->validateWithBag('borrower-loan-form', $request, $rules, $messages);
 
        $reimbursementdocument =  ReimbursementDocument::where('patient_id', 'P-10001')->update($request->except('_token','patient_id'));
 
