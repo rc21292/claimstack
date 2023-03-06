@@ -1,6 +1,7 @@
                             <form action="{{ route('super-admin.patients.save-documents-reimbursement') }}" method="post" id="hospital-form"
                             enctype="multipart/form-data">
                             @csrf
+                            <div class="card-body mb-4">
                             <div class="form-group row">
 
                                 <div class="col-md-12 mb-2 bg-secondary text-white" style="line-height: 30px; margin-left: 2px; ;">  Documents for Initial Assessment  </div>
@@ -657,6 +658,7 @@
                                     <button type="submit" class="btn btn-success" form="hospital-form">Save Documents of Co-Borrower</button>
                                 </div>
 
+                            </div>
                             </div>
                         </form>
                     
