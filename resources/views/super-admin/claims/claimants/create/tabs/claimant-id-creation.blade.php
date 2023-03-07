@@ -7,8 +7,7 @@
 
             <div class="col-md-6 mb-3">
                 <label for="claim_id">Cliam ID <span class="text-danger">*</span></label>
-                <select class="form-control select2" id="claim_id" name="claim_id" data-toggle="select2"
-                    onchange="setPatient()">
+                <select class="form-control select2" id="claim_id" name="claim_id" data-toggle="select2" >
                     <option value="">Search Claim ID</option>
                     @foreach ($claims as $row)
                         <option value="{{ $row->id }}" {{ old('claim_id', isset($claim) ? $claim->id : '') == $row->id ? 'selected' : '' }} 
@@ -17,13 +16,15 @@
                             data-title="{{ $row->patient->title }}"
                             data-firstname="{{ $row->patient->firstname }}"
                             data-middlename="{{ $row->patient->middlename }}" 
+                            data-lastname="{{ $row->patient->lastname }}" 
+                            data-policy_type="{{ $row->policy->policy_type }}" 
+                            data-group_name="{{ $row->policy->group_name }}" 
                             data-address="{{ $row->patient->patient_current_address }}" 
                             data-city="{{ $row->patient->patient_current_city }}" 
                             data-state="{{ $row->patient->patient_current_state }}" 
                             data-pincode="{{ $row->patient->patient_current_pincode }}" 
                             data-email="{{ $row->patient->email }}" 
                             data-mobile="{{ $row->patient->phone }}" 
-                            data-lastname="{{ $row->patient->lastname }}" 
                             data-hospital="{{ $row->patient->hospital->uid }}"
                             data-id-prof="{{ $row->patient->id_proof }}">
                             {{ $row->uid }}
@@ -81,7 +82,7 @@
             </div>
 
             <div class="col-md-3 mt-1">
-                <input type="text" @if($patient_lastname) readonly @endif maxlength="25" class="form-control" id="patient_lastname"
+                <input type="text" readonly maxlength="25" class="form-control" id="patient_lastname"
                 name="patient_lastname" maxlength="30" placeholder="Last name"
                 value="{{ old('patient_lastname', @$patient_lastname) }}">
                 @error('patient_lastname')
@@ -90,7 +91,7 @@
             </div>
 
             <div class="col-md-3 mt-1">
-                <input type="text" @if($patient_firstname) readonly @endif maxlength="25" class="form-control" id="patient_firstname"
+                <input type="text" readonly maxlength="25" class="form-control" id="patient_firstname"
                 name="patient_firstname" maxlength="15" placeholder="First name"
                 value="{{ old('patient_firstname', @$patient_firstname) }}">
                 @error('patient_firstname')
@@ -99,7 +100,7 @@
             </div>
 
             <div class="col-md-3 mt-1">
-                <input type="text" @if($patient_middlename) readonly @endif maxlength="25" class="form-control" id="patient_middlename"
+                <input type="text" readonly maxlength="25" class="form-control" id="patient_middlename"
                 name="patient_middlename" maxlength="30" placeholder="Middle name"
                 value="{{ old('patient_middlename', @$patient_middlename) }}">
                 @error('patient_middlename')
@@ -112,17 +113,17 @@
                 <label for="patient_id_proof">Patient ID Proof <span class="text-danger">*</span></label>
                 <div class="input-group">
                     <select class="form-select" id="patient_id_proof" name="patient_id_proof">
-                        <option value="">Select</option>
-                        <option value="Aadhar Card" {{ old('patient_id_proof') == 'Aadhar Card' ? 'selected' : '' }}>Aadhar Card </option>
-                        <option value="PAN Card" {{ old('patient_id_proof') == 'PAN Card' ? 'selected' : '' }}>PAN Card  </option>
-                        <option value="Voter's ID" {{ old('patient_id_proof') == "Voter's ID" ? 'selected' : '' }}>Voter's ID</option>
-                        <option value="Driving Licence"{{ old('patient_id_proof') == 'Driving Licence' ? 'selected' : '' }}>Driving Licence </option>
-                        <option value="Passport" {{ old('patient_id_proof') == 'Passport' ? 'selected' : '' }}>Passport</option>
+                        <option disabled value="">Select</option>
+                        <option disabled value="Aadhar Card" {{ old('patient_id_proof') == 'Aadhar Card' ? 'selected' : '' }}>Aadhar Card </option>
+                        <option disabled value="PAN Card" {{ old('patient_id_proof') == 'PAN Card' ? 'selected' : '' }}>PAN Card  </option>
+                        <option disabled value="Voter's ID" {{ old('patient_id_proof') == "Voter's ID" ? 'selected' : '' }}>Voter's ID</option>
+                        <option disabled value="Driving Licence"{{ old('patient_id_proof') == 'Driving Licence' ? 'selected' : '' }}>Driving Licence </option>
+                        <option disabled value="Passport" {{ old('patient_id_proof') == 'Passport' ? 'selected' : '' }}>Passport</option>
                     </select>
                     @isset($patient_id_proof_file)
                 <a href="{{ asset('storage/uploads/patient/'.$patient_id.'/'.$patient_id_proof_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
             @endisset
-                    <input type="file" name="patient_id_proof_file" id="upload" hidden
+                    <input type="file" disabled name="patient_id_proof_file" id="upload" hidden
                     onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                     <label for="upload" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
                 </div>
@@ -137,10 +138,10 @@
             <div class="col-md-6 mt-3">
                     <label for="policy_type">Policy Type <span class="text-danger">*</span></label>
                     <select class="form-select" id="policy_type" name="policy_type" onchange="setGroupName();">
-                        <option value="">Select Policy Type</option>
-                        <option value="Group" {{ old('policy_type') == 'Group' ? 'selected' : '' }}>Group
+                        <option disabled value="">Select Policy Type</option>
+                        <option disabled value="Group" {{ old('policy_type') == 'Group' ? 'selected' : '' }}>Group
                         </option>
-                        <option value="Retail" {{ old('policy_type') == 'Retail' ? 'selected' : '' }}>Retail
+                        <option disabled value="Retail" {{ old('policy_type') == 'Retail' ? 'selected' : '' }}>Retail
                         </option>
                     </select>
                     @error('policy_type')
@@ -150,7 +151,7 @@
 
                 <div class="col-md-6 mt-3">
                     <label for="group_name">Group Name <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="group_name" name="group_name"
+                    <input readonly type="text" class="form-control" id="group_name" name="group_name"
                         placeholder="Enter Group Name" value="{{ old('group_name') }}" maxlength="75">
                     @error('group_name')
                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>

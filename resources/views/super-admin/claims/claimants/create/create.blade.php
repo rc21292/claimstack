@@ -177,5 +177,61 @@
         if (cancel_cheque == 'No') {
             $("#cancel_cheque_file").attr('disabled', true);
         }
+
+        $('#claim_id').on('change', function() {
+            var title = $("#claim_id").select2().find(":selected").data("title");
+            var firstname = $("#claim_id").select2().find(":selected").data("firstname");
+            var middlename = $("#claim_id").select2().find(":selected").data("middlename");
+            var lastname = $("#claim_id").select2().find(":selected").data("lastname");
+            var address = $("#claim_id").select2().find(":selected").data("address");
+            var city = $("#claim_id").select2().find(":selected").data("city");
+            var state = $("#claim_id").select2().find(":selected").data("state");
+            var policy_type = $("#claim_id").select2().find(":selected").data("policy_type");
+            var group_name = $("#claim_id").select2().find(":selected").data("group_name");
+            var pincode = $("#claim_id").select2().find(":selected").data("pincode");
+            var email = $("#claim_id").select2().find(":selected").data("email");
+            var patient_id = $("#claim_id").select2().find(":selected").data("patient-id");
+            var hospital_id = $("#claim_id").select2().find(":selected").data("hospital");
+            var patient_id_proof = $("#claim_id").select2().find(":selected").data("id-prof");
+            var mobile = $("#claim_id").select2().find(":selected").data("mobile");
+            var associate_partner_id = $("#claim_id").select2().find(":selected").data("asp-id");
+
+            $('#patients_relation_with_claimant').val('Self').trigger('change');
+            $('#patient_title').val(title);
+            $('#patient_firstname').val(firstname);
+            $('#patient_middlename').val(middlename);
+            $('#patient_lastname').val(lastname);
+            $('#address').val(address);
+            $('#city').val(city);
+            $('#state').val(state);
+            $('#policy_type').val(policy_type).trigger('change');
+            $('#group_name').val(group_name);
+            $('#pincode').val(pincode);
+            $('#personal_email_id').val(email);
+            $('#mobile_no').val(mobile);
+            if(associate_partner_id && title){
+            $('#associate_partner_id').val(associate_partner_id);
+        }else{
+            $('#associate_partner_id').val('');
+        }
+            $('#hospital_id').val(hospital_id);
+            $('#patient_id').val(patient_id);
+            $('#patient_id_proof').val(patient_id_proof);
+        });
+
+        function setGroupName() {
+            var policy_type = $('#policy_type').val();
+            switch (policy_type) {
+                case 'Group':
+                    $("#group_name").prop("readonly", false);
+                    break;
+                case 'Retail':
+                    $("#group_name").prop("readonly", true);
+                    break;
+                default:
+                    $("#group_name").prop("readonly", true);
+                    break;
+            }
+        }
     </script>
 @endpush
