@@ -340,7 +340,7 @@ class ClaimantController extends Controller
     public function edit($id)
     {
         $claimant       = Claimant::find($id);
-        $hospital       = Hospital::where('uid',$claimant->hospital_id)->first();
+        $hospital       = Hospital::where('id',$claimant->hospital_id)->first();
         $hospitals      = Hospital::get();
         $icd_codes_level1      = IcdCode::where('level1', '!=', '#N/A')->where('level1', '!=', 'Level-1')->distinct('level1_code')->get(['level1','level1_code']);
         $icd_codes_level2      = IcdCode::where('level2', '!=', '#N/A')->where('level2', '!=', 'Level-2')->distinct('level2_code')->get(['level2','level2_code']);
@@ -355,7 +355,7 @@ class ClaimantController extends Controller
 
 
         $pcs_codes      = PcsCode::get();
-        $patient        = Patient::where('uid', $claimant->patient_id)->first();
+        $patient        = Patient::where('id', $claimant->patient_id)->first();
         $insurers       = Insurer::get();
         $exists         = Borrower::where('claimant_id', $id)->exists();
         if ($exists) {

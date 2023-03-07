@@ -18,48 +18,72 @@ use Illuminate\Support\Facades\Hash;
 
 class BorrowerSeed extends Seeder
 {
-/**
-* Run the database seeds.
-*
-* @return void
-*/
-public function run()
-{
-    $faker = app(Generator::class);
-    $user  = User::inRandomOrder()->first();
-    $hospital  = Hospital::inRandomOrder()->first();
-    $associate  = AssociatePartner::inRandomOrder()->first();
-    $patient  = Patient::inRandomOrder()->first();
-    $claim  = Claim::inRandomOrder()->first();
-    $claimant  = Claimant::inRandomOrder()->first();
-    for ($i = 1; $i < 101; $i++) {
-        Borrower::create([
-            'patient_id' => $patient->uid,
-            'claim_id' => $claim->uid,
-            'claimant_id' => $claimant->uid,
-            'hospital_id' => $hospital->uid,
-            'hospital_name' => $hospital->name,
-            'hospital_address' => $hospital->address,
-            'hospital_city' => $hospital->city,
-            'hospital_state' => $hospital->state,
-            'hospital_pincode' => $hospital->hospital_pincode,
-            'patient_title' => $faker->randomElement(['Mr.', 'Ms.']),
-            'patient_firstname' => $faker->firstname(),
-            'patient_middlename' => $faker->lastname(),
-            'patient_lastname' => $faker->lastname(),     
-            'borrower_pan_no' => 'CCZPP'.$faker->numerify('####').'B',
-            'borrower_address' => $faker->address,
-            'borrower_city' => $faker->city,
-            'borrower_state' => $faker->state,
-            'borrower_pincode' => $faker->postcode,
-        ]);
-    }
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $claimants = Claimant::get();
+        $faker = app(Generator::class);
+        foreach ($claimants as $claimant) {
+            Borrower::create([
+                'patient_id'        => $claimant->patient_id,
+                'claim_id'          => $claimant->claim_id,
+                'claimant_id'       => $claimant->id,
+                'hospital_id'       => $claimant->hospital_id,
+                'hospital_name'     => $claimant->patient->hospital_name,
+                'hospital_address'  => $claimant->patient->hospital_name,
+                'hospital_city'     => $claimant->patient->hospital_city,
+                'hospital_state'    => $claimant->patient->hospital_state,
+                'hospital_pincode'  => $claimant->patient->hospital_pincode,
+                'patient_title'     => $claimant->patient->title,
+                'patient_firstname' => $claimant->patient->firstname,
+                'patient_middlename' => $claimant->patient->middlename,
+                'patient_lastname'  => $claimant->patient->lastname,
+                'is_patient_and_borrower_same' => "Yes",
+                'is_claimant_and_borrower_same' => "Yes",
+                'borrower_title'     => $claimant->patient->title,
+                'borrower_firstname' => $claimant->patient->firstname,
+                'borrower_middlename' => $claimant->patient->middlename,
+                'borrower_lastname'  => $claimant->patient->lastname,
+                'borrowers_relation_with_patient' => 'Self',
+                'gender'             => "M",
+                'bank_statement'     => "No",
+                'itr'                => "No",
+                'borrower_personal_email_id' => $claimant->personal_email_id,
+                'borrower_official_email_id' => $claimant->official_email_id,
+                'borrower_address'            =>  $claimant->patient->patient_current_address,
+                'borrower_city'               =>  $claimant->patient->patient_current_city,
+                'borrower_state'              =>  $claimant->patient->patient_current_state,
+                'borrower_pincode'            =>  $claimant->patient->patient_current_pincode,
+                'borrower_id_proof'           =>  $claimant->patient->id_proof,
+                'borrower_dob'                =>  $claimant->patient->dob,
+                'borrower_mobile_no'          => $claimant->mobile_no,
+                'borrower_pan_no'             => $claimant->pan_no,
+                'borrower_aadhar_no'          => $claimant->aadhar_no,
+                'borrower_cancel_cheque'      => $claimant->cancel_cheque,
+                'borrower_bank_name'            => $claimant->bank_name,
+                'borrower_bank_address'         => $claimant->bank_address,
+                'borrower_estimated_amount'     => $claimant->estimated_amount,
+                'co_borrower_nominee_name'      => $faker->firstname() . ' ' . $faker->lastname(),
+                'co_borrower_nominee_dob'       => Carbon::now()->subYears(45)->format('Y-m-d'),
+                'co_borrower_nominee_gender'    => "M",
+                'co_borrower_nominee_relation'  => "Father",
+                'co_borrower_other_documents'   => "No",
+                'borrower_ac_no'                => $claimant->ac_no,
+                'borrower_ifs_code'             => $claimant->ifs_code,
+                'co_borrower_comments'          => $faker->realText($maxNbChars = 200, $indexSize = 2),
 
-    $claimants = Borrower::get(['id', 'borrower_pan_no']);
-    foreach ($claimants as $partner) {
-        Borrower::where('id', $partner->id)->update([
-            'uid'      => 'BRO' . substr($claimant->pan_no, 0, 2) . substr($partner->borrower_pan_no, -3)
-        ]);
+            ]);
+        }
+
+        $borrowers = Borrower::get(['id', 'borrower_pan_no']);
+        foreach ($borrowers as $partner) {
+            Borrower::where('id', $partner->id)->update([
+                'uid'      => 'BRO' . substr($partner->borrower_pan_no, 0, 2) . substr($partner->borrower_pan_no, -3)
+            ]);
+        }
     }
-}
 }

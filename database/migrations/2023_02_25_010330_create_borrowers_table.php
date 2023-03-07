@@ -61,9 +61,8 @@ return new class extends Migration
             $table->string('borrower_bank_address')->nullable();
             $table->string('borrower_ac_no')->nullable();
             $table->string('borrower_ifs_code')->nullable();
-            $table->enum('co_borrower_nominee_name',['Self', 'Relations'])->nullable();
+            $table->string('co_borrower_nominee_name')->nullable();
             $table->date('co_borrower_nominee_dob')->nullable();
-            $table->date('dob')->nullable();
             $table->date('co_borrower_nominee_dob_file')->nullable();
             $table->enum('co_borrower_nominee_gender', ['M', 'F', 'Other'])->nullable();
             $table->string('co_borrower_nominee_gender_file')->nullable();

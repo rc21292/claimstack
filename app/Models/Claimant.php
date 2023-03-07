@@ -16,6 +16,7 @@ class Claimant extends Authenticatable
 
     protected $fillable = [
         'email',
+        'password',
         'patient_id',
         'claim_id',
         'associate_partner_id',
@@ -26,6 +27,9 @@ class Claimant extends Authenticatable
         'patient_lastname',
         'patient_id_proof',
         'patient_id_proof_file',
+        'policy_type',
+        'group_name',
+        'employee_id_or_member_id',
         'are_patient_and_claimant_same',
         'title',
         'firstname',
@@ -56,12 +60,12 @@ class Claimant extends Authenticatable
 
     public function claim()
     {
-        return $this->belongsTo(Claim::class, 'claim_id', 'uid');
+        return $this->belongsTo(Claim::class, 'claim_id', 'id');
     }
 
      public function patient()
     {
-        return $this->belongsTo(Patient::class, 'patient_id', 'uid');
+        return $this->belongsTo(Patient::class, 'patient_id', 'id');
     }
 
     public function sendPasswordResetNotification($token)
