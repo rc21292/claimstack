@@ -324,7 +324,7 @@ class BorrowerController extends Controller
     {
         $borrower       = Borrower::find($id);
         $claimant       = $borrower->claimant;
-        $hospital       = Hospital::where('uid',$borrower->hospital_id)->first();
+        $hospital       = Hospital::where('id',$borrower->hospital_id)->first();
         $hospitals      = Hospital::get();
 
         $icd_codes_level1      = IcdCode::where('level1', '!=', '#N/A')->where('level1', '!=', 'Level-1')->distinct('level1_code')->get(['level1','level1_code']);
@@ -339,7 +339,7 @@ class BorrowerController extends Controller
         $pcs_short_name = PcsCode::distinct('pcs_code')->get(['pcs_short_name', 'pcs_long_name', 'pcs_code']);
 
         $pcs_codes      = PcsCode::get();
-        $patient        = Patient::where('uid', $borrower->patient_id)->first();
+        $patient        = Patient::where('id', $borrower->patient_id)->first();
         $insurers       = Insurer::get();
         $associates  = AssociatePartner::get();
         $patient_id   = $borrower->patient_id;

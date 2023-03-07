@@ -49,8 +49,8 @@
                                     <tbody>
                                         @foreach ($borrowers as $borrower)
                                             <tr>
-                                                <th>{{ $borrower->patient_id }}</th>
-                                                <th scope="row">{{ $borrower->claim_id }}</th>
+                                                <th>{{ $borrower->patient->uid }}</th>
+                                                <th scope="row">{{ $borrower->claim->uid }}</th>
                                                 <th scope="row">{{ $borrower->uid }}</th>
                                                 <td>{{ @$borrower->patient_middlename }} {{ @$borrower->patient_lastname }}</td>
                                                 <td>{{ @$borrower->hospital_name }}</td>

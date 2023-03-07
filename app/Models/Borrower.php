@@ -71,16 +71,16 @@ class Borrower extends Model
 
     public function claimant()
     {
-        return $this->belongsTo(Claimant::class, 'claimant_id', 'uid');
+        return $this->belongsTo(Claimant::class, 'claimant_id', 'id');
     }
 
     public function claim()
     {
-        return $this->belongsTo(Claim::class, 'claim_id', 'uid');
+        return $this->belongsTo(Claim::class, 'claim_id', 'id');
     }
 
     public function patient()
     {
-        return $this->belongsTo(Patient::class, 'patient_id', 'uid');
+        return $this->belongsTo(Patient::class, 'patient_id', 'id');
     }
 }
