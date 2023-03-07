@@ -7,7 +7,7 @@
             <div class="col-md-12 bg-secondary text-white" style="line-height: 30px; margin-left: 2px; ;">  Pre-Assessment  </div>
             <div class="col-md-6 mt-3">
                 <label for="patient_id">Patient ID <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="patient_id" name="patient_id" maxlength="60"
+                <input type="text" readonly class="form-control" id="patient_id" name="patient_id" maxlength="60"
                 placeholder="Enter Patient Id" value="{{ old('patient_id', $patient_id) }}">
                 @error('patient_id', 'assisment-status-form')
                 <span id="patient-id-error" class="error invalid-feedback">{{ $message }}</span>
@@ -16,7 +16,7 @@
 
             <div class="col-md-6 mt-3">
                 <label for="claim_id">Cliam ID <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="claim_id" name="claim_id" maxlength="60"
+                <input type="text" readonly class="form-control" id="claim_id" name="claim_id" maxlength="60"
                 placeholder="Enter Claim Id" value="{{ old('claim_id', $claim_id) }}">
                 @error('claim_id', 'assisment-status-form')
                 <span id="claim-id-error" class="error invalid-feedback">{{ $message }}</span>
@@ -25,7 +25,7 @@
 
             <div class="col-md-4 mt-3">
                 <label for="claimant_id">Claimant ID <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="claimant_id" name="claimant_id" maxlength="60"
+                <input type="text" readonly class="form-control" id="claimant_id" name="claimant_id" maxlength="60"
                 placeholder="Enter Claimant ID" value="{{ old('claimant_id', $claimant_id) }}">
                 @error('claimant_id', 'assisment-status-form')
                 <span id="claim-id-error" class="error invalid-feedback">{{ $message }}</span>
@@ -34,7 +34,7 @@
 
             <div class="col-md-4 mt-3">
                 <label for="hospital_id">Hospital Id <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="hospital_id" name="hospital_id"
+                <input type="text" readonly class="form-control" id="hospital_id" name="hospital_id"
                 placeholder="Enter Hospital Id" value="{{ old('hospital_id', $hospital_id) }}">
                 @error('hospital_id', 'assisment-status-form')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -43,7 +43,7 @@
 
             <div class="col-md-4 mt-3">
                 <label for="hospital_name">Hospital Name <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="hospital_name" name="hospital_name"
+                <input type="text" readonly class="form-control" id="hospital_name" name="hospital_name"
                 placeholder="Enter Hospital Name" value="{{ old('hospital_name', $hospital_name) }}">
                 @error('hospital_name', 'assisment-status-form')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -52,7 +52,7 @@
 
             <div class="col-md-12 mt-3">
                 <label for="hospital_address">Hospital Address <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="hospital_address" name="hospital_address"
+                <input type="text" readonly class="form-control" id="hospital_address" name="hospital_address"
                 placeholder="Address Line"
                 value="{{ old('hospital_address', $hospital_address) }}">
                 @error('hospital_address', 'assisment-status-form')
@@ -61,7 +61,7 @@
             </div>
 
             <div class="col-md-4 mt-3">
-                <input type="text" class="form-control" id="hospital_city" name="hospital_city"
+                <input type="text" readonly class="form-control" id="hospital_city" name="hospital_city"
                 placeholder="City" value="{{ old('hospital_city', $hospital_city) }}">
                 @error('hospital_city', 'assisment-status-form')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -69,7 +69,7 @@
             </div>
 
             <div class="col-md-4 mt-3">
-                <input type="text" class="form-control" id="hospital_state" name="hospital_state"
+                <input type="text" readonly class="form-control" id="hospital_state" name="hospital_state"
                 placeholder="State" value="{{ old('hospital_state', $hospital_state) }}">
                 @error('hospital_state', 'assisment-status-form')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -77,7 +77,7 @@
             </div>
 
             <div class="col-md-4 mt-3">
-                <input type="number" class="form-control" id="hospital_pincode" name="hospital_pincode"
+                <input type="number" readonly class="form-control" id="hospital_pincode" name="hospital_pincode"
                 placeholder="Pincode" value="{{ old('hospital_pincode', $hospital_pincode) }}">
                 @error('hospital_pincode', 'assisment-status-form')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -91,9 +91,9 @@
 
             <div class="col-md-3 mt-1">
                 <select class="form-control" id="patient_title" name="patient_title">
-                    <option value="">Select</option>
-                    <option @if( old('patient_title', $patient_title) == 'Mr.') selected @endif value="Mr.">Mr.</option>
-                    <option @if( old('patient_title', $patient_title) == 'Ms.') selected @endif value="Ms.">Ms.</option>
+                    <option disabled value="">Select</option>
+                    <option disabled @if( old('patient_title', $patient_title) == 'Mr.') selected @endif value="Mr.">Mr.</option>
+                    <option disabled @if( old('patient_title', $patient_title) == 'Ms.') selected @endif value="Ms.">Ms.</option>
                 </select>
                 @error('patient_title', 'assisment-status-form')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -101,7 +101,7 @@
             </div>
 
             <div class="col-md-3 mt-1">
-                <input type="text" maxlength="25" class="form-control" id="patient_lastname"
+                <input type="text" readonly maxlength="25" class="form-control" id="patient_lastname"
                 name="patient_lastname" maxlength="30" placeholder="Last name"
                 value="{{ old('patient_lastname', $patient_lastname) }}">
                 @error('patient_lastname', 'assisment-status-form')
@@ -110,7 +110,7 @@
             </div>
 
             <div class="col-md-3 mt-1">
-                <input type="text" maxlength="25" class="form-control" id="patient_firstname"
+                <input type="text" readonly maxlength="25" class="form-control" id="patient_firstname"
                 name="patient_firstname" maxlength="15" placeholder="First name"
                 value="{{ old('patient_firstname', $patient_firstname) }}">
                 @error('patient_firstname', 'assisment-status-form')
@@ -119,7 +119,7 @@
             </div>
 
             <div class="col-md-3 mt-1">
-                <input type="text" maxlength="25" class="form-control" id="patient_middlename"
+                <input type="text" readonly maxlength="25" class="form-control" id="patient_middlename"
                 name="patient_middlename" maxlength="30" placeholder="Last name"
                 value="{{ old('patient_middlename', $patient_middlename) }}">
                 @error('patient_middlename', 'assisment-status-form')
@@ -129,8 +129,8 @@
 
             <div class="col-md-6 mt-3">
                 <label for="policy_no">Policy No. <span class="text-danger">*</span></label>
-                <input type="text" maxlength="16" class="form-control" id="policy_no" name="policy_no"
-                placeholder="Policy No." value="{{ old('policy_no') }}">
+                <input type="text" readonly maxlength="16" class="form-control" id="policy_no" name="policy_no"
+                placeholder="Policy No." value="{{ old('policy_no', $policy->policy_no) }}">
                 @error('policy_no', 'assisment-status-form')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -138,11 +138,11 @@
 
             <div class="col-md-6 mt-3">
                 <label for="insurance_company">Insurance Company<span class="text-danger">*</span></label>
-                <select class="form-control select2" id="insurance_company" name="insurance_company" data-toggle="select2">
-                    <option value="">Select Insurance Company</option>
+                <select class="form-control select2" disabled id="insurance_company" name="insurance_company" data-toggle="select2">
+                    <option value="">Please Select</option>
                     @foreach ($insurers as $insurer)
                     <option value="{{ $insurer->id }}"
-                        {{ old('insurance_company') == $insurer->id ? 'selected' : '' }}> {{ $insurer->name }}
+                        {{ old('insurance_company', @$policy->insurer_id) == $insurer->id ? 'selected' : '' }}> {{ $insurer->name }}
                     </option>
                     @endforeach
                 </select>
@@ -151,41 +151,43 @@
                 @enderror
             </div>
 
-            <div class="col-md-6 mt-3">
-                <label for="policy_no">Company/TPA ID Card No. <span class="text-danger">*</span></label>
-                <input type="text" maxlength="16" class="form-control" id="policy_no" name="policy_no"
-                placeholder="Company/TPA ID Card No." value="{{ old('policy_no') }}">
-                @error('policy_no', 'assisment-status-form')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+           <div class="col-md-6 mt-3">
+                <label for="company_tpa_id_card_no">Company / TPA ID Card No. <span class="text-danger">*</span></label>
+                <input type="text" readonly maxlength="16" class="form-control" id="company_tpa_id_card_no"
+                    placeholder="Company / TPA ID Card No." name="company_tpa_id_card_no"
+                    value="{{ old('company_tpa_id_card_no', $policy->company_tpa_id_card_no) }}">
+                @error('company_tpa_id_card_no')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
 
 
             <div class="col-md-6 mt-3">
                 <label for="start_date">Policy Start Date <span class="text-danger">*</span></label>
-                <input type="date" placeholder="Enter Policy Start Date" class="form-control" id="start_date"
-                name="start_date" value="{{ old('start_date') }}">
-                @error('start_date', 'assisment-status-form')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                <input type="date" readonly max="{{ date('Y-m-d') }}" placeholder="Enter Policy Start Date" class="form-control" id="start_date"
+                    name="start_date" value="{{ old('start_date', $policy->start_date) }}">
+                @error('start_date')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="col-md-6 mt-3">
                 <label for="expiry_date">Policy Expiry Date <span class="text-danger">*</span></label>
-                <input type="date" placeholder="Enter Policy Expiry Date" class="form-control" id="expiry_date"
-                name="expiry_date" value="{{ old('expiry_date') }}">
-                @error('expiry_date', 'assisment-status-form')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                <input type="date" readonly placeholder="Enter Policy Expiry Date" class="form-control" id="expiry_date"
+                    name="expiry_date" value="{{ old('expiry_date', $policy->expiry_date) }}">
+                @error('expiry_date')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="col-md-6 mt-3">
-                <label for="commencement_date">Policy Commencement Date (without Break) <span  class="text-danger">*</span></label>
-                <input type="date" placeholder="Enter Policy Commencement Date (without Break)"
-                class="form-control" id="commencement_date" name="commencement_date"
-                value="{{ old('commencement_date') }}">
-                @error('commencement_date', 'assisment-status-form')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                <label for="policy_commencement_date_without_break">Policy Commencement Date (without Break) <span
+                        class="text-danger">*</span></label>
+                <input type="date" readonly placeholder="Enter Policy Commencement Date (without Break)"
+                    class="form-control" id="policy_commencement_date_without_break" name="policy_commencement_date_without_break"
+                    value="{{ old('policy_commencement_date_without_break', $policy->commencement_date) }}">
+                @error('policy_commencement_date_without_break')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
 

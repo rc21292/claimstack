@@ -20,7 +20,7 @@
                             <div class="col-md-6 mb-3">
                                 <label for="patient_id">Patient ID <span class="text-danger">*</span></label>
                                 <input type="text" readonly class="form-control" id="patient_id" readonly name="patient_id" maxlength="60"
-                                placeholder="Enter Patient Id" value="{{ old('patient_id',$borrower->patient_id) }}">
+                                placeholder="Enter Patient Id" value="{{ old('patient_id',$patient_id) }}">
                                 @error('patient_id', 'lending-status-form')
                                 <span id="patient-id-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
@@ -29,7 +29,7 @@
                             <div class="col-md-6">
                                 <label for="claim_id">Cliam ID <span class="text-danger">*</span></label>
                                 <input type="text" readonly class="form-control" id="claim_id" readonly name="claim_id" maxlength="60"
-                                placeholder="Enter Claim Id" value="{{ old('claim_id',$borrower->claim_id) }}">
+                                placeholder="Enter Claim Id" value="{{ old('claim_id',$claim_id) }}">
                                 @error('claim_id', 'lending-status-form')
                                 <span id="claim-id-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
@@ -38,7 +38,7 @@
                             <div class="col-md-6">
                                 <label for="hospital_name">Hospital Name <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="hospital_name" readonly name="hospital_name"
-                                placeholder="Enter Hospital Name" value="{{ old('hospital_name',$borrower->hospital_name) }}">
+                                placeholder="Enter Hospital Name" value="{{ old('hospital_name',$hospital_name) }}">
                                 @error('hospital_name', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
@@ -48,7 +48,7 @@
                                 <label for="hospital_address">Hospital Address <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="hospital_address" readonly name="hospital_address"
                                 placeholder="Address Line"
-                                value="{{ old('hospital_address',$borrower->hospital_address) }}">
+                                value="{{ old('hospital_address',$hospital_address) }}">
                                 @error('hospital_address', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
@@ -56,7 +56,7 @@
 
                             <div class="col-md-4 mt-3">
                                 <input type="text" class="form-control" id="hospital_city" readonly name="hospital_city"
-                                placeholder="City" value="{{ old('hospital_city',$borrower->hospital_city) }}">
+                                placeholder="City" value="{{ old('hospital_city',$hospital_city) }}">
                                 @error('hospital_city', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
@@ -64,7 +64,7 @@
 
                             <div class="col-md-4 mt-3">
                                 <input type="text" class="form-control" id="hospital_state" readonly name="hospital_state"
-                                placeholder="State" value="{{ old('hospital_state',$borrower->hospital_state) }}">
+                                placeholder="State" value="{{ old('hospital_state',$hospital_state) }}">
                                 @error('hospital_state', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
@@ -72,7 +72,7 @@
 
                             <div class="col-md-4 mt-3">
                                 <input type="number" class="form-control" id="hospital_pincode" readonly name="hospital_pincode"
-                                placeholder="Pincode" value="{{ old('hospital_pincode',$borrower->hospital_pincode) }}">
+                                placeholder="Pincode" value="{{ old('hospital_pincode',$hospital_pincode) }}">
                                 @error('hospital_pincode', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
@@ -86,8 +86,8 @@
                             <div class="col-md-3 mt-1">
                                 <select class="form-control" id="patient_title" name="patient_title" disabled>
                                     <option value="">Select</option>
-                                    <option @if( old('patient_title', $borrower->patient_title) == 'Mr.') selected @endif value="Mr.">Mr.</option>
-                                    <option @if( old('patient_title', $borrower->patient_title) == 'Ms.') selected @endif value="Ms.">Ms.</option>
+                                    <option @if( old('patient_title', $patient_title) == 'Mr.') selected @endif value="Mr.">Mr.</option>
+                                    <option @if( old('patient_title', $patient_title) == 'Ms.') selected @endif value="Ms.">Ms.</option>
                                 </select>
                                 @error('patient_title', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -97,7 +97,7 @@
                             <div class="col-md-3 mt-1">
                                 <input type="text" maxlength="25" class="form-control" id="patient_lastname"
                                 name="patient_lastname" maxlength="30" readonly placeholder="Last name"
-                                value="{{ old('patient_lastname',$borrower->patient_lastname) }}">
+                                value="{{ old('patient_lastname',$patient_lastname) }}">
                                 @error('patient_lastname', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
@@ -106,7 +106,7 @@
                             <div class="col-md-3 mt-1">
                                 <input type="text" maxlength="25" class="form-control" id="patient_firstname"
                                 name="patient_firstname" maxlength="15" readonly placeholder="First name"
-                                value="{{ old('patient_firstname',$borrower->patient_firstname) }}">
+                                value="{{ old('patient_firstname',$patient_firstname) }}">
                                 @error('patient_firstname', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
@@ -115,7 +115,7 @@
                             <div class="col-md-3 mt-1">
                                 <input type="text" maxlength="25" class="form-control" id="patient_middlename"
                                 name="patient_middlename" maxlength="30"  readonly placeholder="Last name"
-                                value="{{ old('patient_middlename',$borrower->patient_middlename) }}">
+                                value="{{ old('patient_middlename',$patient_middlename) }}">
                                 @error('patient_middlename', 'lending-status-form')
                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
@@ -238,7 +238,7 @@
                             <div class="col-md-4 mt-3">
                                 <label for="vendor_partner_name_nbfc_or_bank">Vendor Partner Name (NBFC/Bank) <span class="text-danger">*</span></label>
                                 <select class="form-select" id="vendor_partner_name_nbfc_or_bank" name="vendor_partner_name_nbfc_or_bank">
-                                    <option value="">Select Is Patient and Borrower Same</option>
+                                    <option value="">Select</option>
                                     <option value="Yes" {{ old('vendor_partner_name_nbfc_or_bank') == 'Yes' ? 'selected' : '' }}>Yes
                                     </option>
                                     <option value="No" {{ old('vendor_partner_name_nbfc_or_bank') == 'No' ? 'selected' : '' }}>No
