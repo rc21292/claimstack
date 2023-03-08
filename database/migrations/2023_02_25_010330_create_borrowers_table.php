@@ -19,16 +19,7 @@ return new class extends Migration
             $table->string('patient_id')->nullable();
             $table->string('claim_id')->nullable();
             $table->string('claimant_id')->nullable();
-            $table->string('hospital_id')->nullable();
-            $table->string('hospital_name')->nullable();
-            $table->string('hospital_address')->nullable();
-            $table->string('hospital_city')->nullable();
-            $table->string('hospital_state')->nullable();
-            $table->string('hospital_pincode')->nullable();
-            $table->string('patient_title')->nullable();
-            $table->string('patient_firstname')->nullable();
-            $table->string('patient_middlename')->nullable();
-            $table->string('patient_lastname')->nullable();
+            $table->string('hospital_id')->nullable();          
             $table->enum('is_patient_and_borrower_same',['Yes', 'No'])->nullable();
             $table->enum('is_claimant_and_borrower_same',['Yes', 'No'])->nullable();
             $table->string('borrower_title')->nullable();
@@ -44,6 +35,9 @@ return new class extends Migration
             $table->string('borrower_pincode')->nullable();
             $table->string('borrower_id_proof')->nullable();
             $table->string('borrower_id_proof_file')->nullable();
+            $table->string('nature_of_income')->nullable();
+            $table->string('organization')->nullable();
+            $table->string('member_or_employer_id')->nullable();
             $table->string('borrower_personal_email_id')->nullable();
             $table->string('borrower_official_email_id')->nullable();
             $table->string('borrower_mobile_no')->nullable();

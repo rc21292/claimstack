@@ -16,6 +16,7 @@ use App\Http\Controllers\SuperAdmin\Claims\BorrowerController;
 use App\Http\Controllers\SuperAdmin\Claims\PatientController;
 use App\Http\Controllers\SuperAdmin\UtilityController;
 use App\Http\Controllers\SuperAdmin\BillEntryController;
+use App\Http\Controllers\Superadmin\Claims\DocumentReimbursementController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -129,12 +130,40 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
 
     Route::post('hospital/change-pasword', [HospitalController::class, 'changePassword'])->name('hospitals.change-password');
 
-
     /*
     |--------------------------------------------------------------------------
     | Claims Route
     |--------------------------------------------------------------------------
     */
+
+    Route::resource('claims', ClaimController::class);
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Claimant Route
+    |--------------------------------------------------------------------------
+    */
+
+    Route::resource('claimants', ClaimantController::class);
+
+    /*
+    |--------------------------------------------------------------------------
+    | Borrower Route
+    |--------------------------------------------------------------------------
+    */
+    
+    Route::resource('borrowers', BorrowerController::class);
+
+    /*
+    |--------------------------------------------------------------------------
+    | Document Reimursement Route
+    |--------------------------------------------------------------------------
+    */
+    
+    Route::resource('document-reimbursement', DocumentReimbursementController::class);
+
+   
 
     Route::get('claims/bill-entry', [ClaimController::class, 'billEntry'])->name('bill-entry');
 
@@ -151,23 +180,19 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     Route::get('claims/processing', [ClaimController::class, 'processing'])->name('claims.processing');
     Route::post('claims/processing', [ClaimController::class, 'saveClaimProcessing'])->name('claims.processing');
     Route::get('claims/assessment-status', [ClaimController::class, 'assessmentStatus'])->name('claims.assessment-status');
-    Route::resource('claims', ClaimController::class);
+    
 
     
     Route::put('claims/update-insurance-policy/{id}', [ClaimController::class, 'updateInsurancePolicy'])->name('claims.update-insurance-policy');
 
-    /*
-    |--------------------------------------------------------------------------
-    | Claimant Route
-    |--------------------------------------------------------------------------
-    */
+    
 
     Route::get('claimants/lending-status/{id}', [ClaimantController::class, 'lendingStatus'])->name('claimants.lending-status');
     Route::get('claimants/discharge-status/{id}', [ClaimantController::class, 'dischargeStatus'])->name('claimants.discharge-status');
     Route::post('claimants/discharge-status/{id}', [ClaimantController::class, 'saveDischargeStatus'])->name('claimants.save-discharge-status');
     Route::post('claimants/lending-status/{id}', [ClaimantController::class, 'saveLendingStatus'])->name('claimants.save-lending-tatus');
 
-    Route::resource('claimants', ClaimantController::class);
+
 
     Route::post('api/fetch-states', [DropdownController::class, 'fetchState']);
     Route::post('api/fetch-cities', [DropdownController::class, 'fetchCity']);
@@ -180,7 +205,7 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
 
     Route::post('claims/save_assesment_status',[ClaimController::class,'saveAssesmentStatus'])->name('claims.save_assesment_status');
 
-    Route::resource('borrowers', BorrowerController::class);
+
     /*
     |--------------------------------------------------------------------------
     | Patients Route

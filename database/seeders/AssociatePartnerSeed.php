@@ -24,7 +24,7 @@ class AssociatePartnerSeed extends Seeder
     {
         $faker = app(Generator::class);
         $user  = User::inRandomOrder()->first();
-        for ($i = 1; $i < 31; $i++) {
+        for ($i = 1; $i < 21; $i++) {
             $type =  $faker->randomElement(['vendor', 'sales']);
             AssociatePartner::create([
                 'name' =>  $faker->company,

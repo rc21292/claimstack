@@ -20,13 +20,7 @@ class Claimant extends Authenticatable
         'patient_id',
         'claim_id',
         'associate_partner_id',
-        'hospital_id',
-        'patient_title',
-        'patient_firstname',
-        'patient_middlename',
-        'patient_lastname',
-        'patient_id_proof',
-        'patient_id_proof_file',
+        'hospital_id',       
         'policy_type',
         'group_name',
         'employee_id_or_member_id',
@@ -66,6 +60,11 @@ class Claimant extends Authenticatable
      public function patient()
     {
         return $this->belongsTo(Patient::class, 'patient_id', 'id');
+    }
+
+    public function hospital()
+    {
+        return $this->belongsTo(Hospital::class, 'hospital_id', 'id');
     }
 
     public function sendPasswordResetNotification($token)

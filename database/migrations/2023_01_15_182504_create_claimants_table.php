@@ -20,13 +20,7 @@ return new class extends Migration
             $table->string('patient_id')->nullable();
             $table->string('claim_id')->nullable();
             $table->string('associate_partner_id')->nullable();
-            $table->string('hospital_id')->nullable();
-            $table->string('patient_title')->nullable();
-            $table->string('patient_firstname')->nullable();
-            $table->string('patient_middlename')->nullable();
-            $table->string('patient_lastname')->nullable();
-            $table->string('patient_id_proof')->nullable();
-            $table->string('patient_id_proof_file')->nullable();
+            $table->string('hospital_id')->nullable();            
             $table->enum('policy_type',['Group','Retail'])->nullable();
             $table->string('group_name')->nullable();
             $table->string('employee_id_or_member_id')->nullable();

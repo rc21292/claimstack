@@ -26,7 +26,7 @@ class PatientSeed extends Seeder
         $faker = app(Generator::class);
 
 
-        for ($i = 1; $i < 41; $i++) {
+        for ($i = 1; $i < 20; $i++) {
             $hospital                       = Hospital::inRandomOrder()->first();
             $hospital->ap_name              = AssociatePartner::where('id', $hospital->linked_associate_partner)->value('name');
             $dob                            = Carbon::now()->subYears(35)->format('Y-m-d');
