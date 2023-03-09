@@ -144,6 +144,8 @@ class DischargeStatusController extends Controller
         ];
 
          $this->validate($request, $rules, $messages);
+
+         
     }
 
     /**
