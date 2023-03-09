@@ -50,11 +50,11 @@ class ClaimProcessingController extends Controller
     public function show($id)
     {
         $claimant                       = Claimant::with('claim')->find($id);
-        $claim_processing_exists        = ClaimProcessing::where('claimant_id', $id)->exists();
+        $claim_processing_exists        = ClaimProcessing::where('patient_id', $claimant->patient_id)->exists();
         $claim_processing               = $claim_processing_exists ? ClaimProcessing::where('claimant_id', $claimant->id)->first() : null;
         $insurers                       = Insurer::get();
 
-        return view('super-admin.claims.claimants.edit.lending-status', compact('claimant', 'claim_processing', 'insurers'));
+        return view('super-admin.claims.claimants.edit.claim-processing', compact('claimant', 'claim_processing', 'insurers'));
     }
 
     /**
