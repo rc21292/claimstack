@@ -16,7 +16,9 @@ use App\Http\Controllers\SuperAdmin\Claims\BorrowerController;
 use App\Http\Controllers\SuperAdmin\Claims\PatientController;
 use App\Http\Controllers\SuperAdmin\UtilityController;
 use App\Http\Controllers\SuperAdmin\BillEntryController;
+use App\Http\Controllers\Superadmin\Claims\AssessmentController;
 use App\Http\Controllers\Superadmin\Claims\DocumentReimbursementController;
+use App\Http\Controllers\Superadmin\Claims\LendingStatusController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -162,6 +164,22 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     */
     
     Route::resource('document-reimbursement', DocumentReimbursementController::class);
+
+    /*
+    |--------------------------------------------------------------------------
+    | Assessment Status Controller Route
+    |--------------------------------------------------------------------------
+    */
+    
+    Route::resource('assessment-status', AssessmentController::class);
+
+    /*
+    |--------------------------------------------------------------------------
+    | Lending Status Controller Route
+    |--------------------------------------------------------------------------
+    */
+    
+    Route::resource('lending-status', LendingStatusController::class);
 
    
 

@@ -122,10 +122,10 @@
                                             <select class="form-control" id="patient_title" name="patient_title">
                                                 <option value="">Select</option>
                                                 <option value="Mr."
-                                                    @if (old('patient_title', isset($claim) ? $claim->patient->title : '') == 'Mr.') selected @else disabled @endif>Mr.
+                                                    @if (old('patient_title', isset($claim) ? $claim->patient->title : '') == 'Mr.') selected @endif>Mr.
                                                 </option>
                                                 <option value="Ms."
-                                                    @if (old('patient_title', isset($claim) ? $claim->patient->title : '') == 'Ms.') selected @else disabled @endif>Ms.
+                                                    @if (old('patient_title', isset($claim) ? $claim->patient->title : '') == 'Ms.') selected @endif>Ms.
                                                 </option>
                                             </select>
                                             @error('patient_title')

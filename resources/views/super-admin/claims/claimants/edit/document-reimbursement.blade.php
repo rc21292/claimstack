@@ -48,15 +48,23 @@
                             <span class="d-none d-md-block">Documents Reimbursement</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('super-admin.assessment-status.show', $claimant->id) }}" aria-expanded="false"
+                            class="nav-link rounded-0">
+                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                            <span class="d-none d-md-block">Assessment Status</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('super-admin.lending-status.show', $claimant->id) }}" aria-expanded="false"
+                            class="nav-link rounded-0">
+                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                            <span class="d-none d-md-block">Lending Status</span>
+                        </a>
+                    </li>
                 </ul>
 
-                <div class="tab-content">
-                    <div class="tab-pane" id="claimant_tab">
-                        ...
-                    </div>
-                    <div class="tab-pane" id="borrower_creation_tab">
-                        ...
-                    </div>
+                <div class="tab-content">                    
                     <div class="tab-pane show active" id="document_reimbursement_tab">
 
                         <div class="card">
