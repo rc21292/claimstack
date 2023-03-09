@@ -17,6 +17,7 @@ use App\Http\Controllers\SuperAdmin\Claims\PatientController;
 use App\Http\Controllers\SuperAdmin\UtilityController;
 use App\Http\Controllers\SuperAdmin\BillEntryController;
 use App\Http\Controllers\Superadmin\Claims\AssessmentController;
+use App\Http\Controllers\Superadmin\Claims\ClaimProcessingController;
 use App\Http\Controllers\Superadmin\Claims\DischargeStatusController;
 use App\Http\Controllers\Superadmin\Claims\DocumentReimbursementController;
 use App\Http\Controllers\Superadmin\Claims\LendingStatusController;
@@ -189,6 +190,14 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     */
     
     Route::resource('discharge-status', DischargeStatusController::class);
+
+    /*
+    |--------------------------------------------------------------------------
+    | Claim Processing Controller Route
+    |--------------------------------------------------------------------------
+    */
+    
+    Route::resource('claim-processing', ClaimProcessingController::class);
 
    
 

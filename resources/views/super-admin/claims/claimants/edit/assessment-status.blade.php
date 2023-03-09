@@ -70,6 +70,13 @@
                             <span class="d-none d-md-block">Discharge Status</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('super-admin.claim-processing.show', $claimant->id) }}" aria-expanded="false"
+                            class="nav-link rounded-0">
+                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                            <span class="d-none d-md-block">Claim Processing</span>
+                        </a>
+                    </li>
                 </ul>
 
                 <div class="tab-content">                    
