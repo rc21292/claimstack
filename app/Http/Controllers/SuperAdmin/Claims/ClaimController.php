@@ -259,8 +259,10 @@ class ClaimController extends Controller
 
         $this->validateWithBag('claim-processing-form', $request, $rules, $messages);
 
-        $details = ClaimProcessing::create([
+        $details = ClaimProcessing::updateOrCreate([
             'patient_id' => $request->patient_id,
+        ],[
+
             'patient_title' => $request->patient_title,
             'patient_lastname' => $request->patient_lastname,
             'patient_firstname' => $request->patient_firstname,
