@@ -185,7 +185,9 @@ class AssessmentController extends Controller
             default:
                 # code...
                 break;
+           
         }
+        return redirect()->back()->with('success', 'Assessment Status updated successfully');
     }
 
     /**

@@ -77,4 +77,9 @@ class Borrower extends Model
     {
         return $this->belongsTo(Patient::class, 'patient_id', 'id');
     }
+
+    public function hospital()
+    {
+        return $this->belongsTo(Hospital::class, 'hospital_id', 'id');
+    }
 }

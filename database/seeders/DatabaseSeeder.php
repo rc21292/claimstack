@@ -30,5 +30,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PcsCodesTableSeeder::class);
         $this->call(BorrowerSeed::class);
         $this->call(AssessmentStatusSeed::class);
+        $this->call(LendingStatusSeed::class);
     }
 }

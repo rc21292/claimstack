@@ -27,7 +27,7 @@
         <!-- start page content -->
         <div class="row">
             <div class="col-12">
-                <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
+                <ul class="nav nav-pills bg-nav-pills   mb-3">
                     <li class="nav-item">
                         <a href="{{ route('super-admin.claimants.edit', $claimant->id)}}" aria-expanded="true" class="nav-link rounded-0 active">
                             <i class="mdi mdi-home-variant d-md-none d-block"></i>

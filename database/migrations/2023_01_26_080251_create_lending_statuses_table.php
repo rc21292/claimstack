@@ -15,13 +15,17 @@ return new class extends Migration
     {
         Schema::create('lending_statuses', function (Blueprint $table) {
             $table->id();
+            $table->string('claimant_id')->nullable();
+            $table->string('borrower_id')->nullable();
+            $table->string('patient_id')->nullable();
+            $table->string('claim_id')->nullable();
             $table->enum('medical_lending_type', ['Bridge', 'Term'])->nullable();
             $table->string('vendor_partner_name_nbfc_or_bank')->nullable();
             $table->string('vendor_partner_id')->nullable();
             $table->string('loan_application_comments')->nullable();
-            $table->time('date_of_loan_application')->nullable();
+            $table->date('date_of_loan_application')->nullable();
             $table->time('time_of_loan_application')->nullable();
-            $table->time('date_of_loan_re_application')->nullable();
+            $table->date('date_of_loan_re_application')->nullable();
             $table->time('time_of_loan_re_application')->nullable();
             $table->string('loan_id_or_no')->nullable();
             $table->enum('loan_status', ['Waiting for the Approval', 'Approved', 'Rejected', 'Re-applied'])->nullable();

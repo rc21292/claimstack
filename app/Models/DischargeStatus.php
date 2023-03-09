@@ -9,16 +9,10 @@ class DischargeStatus extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'claimant_id',
         'hospital_id',
-        'hospital_name',
         'patient_id',
         'claim_id',
-        'insurance_coverage',
-        'lending_required',
-        'date_of_admission',
-        'time_of_admission',
-        'hospitalization_due_to',
-        'date_of_delivery',
         'injury_reason',
         'injury_due_to_substance_abuse_alcohol_consumption',
         'injury_due_to_substance_abuse_alcohol_consumption_file',
@@ -39,6 +33,6 @@ class DischargeStatus extends Model
         'discharge_status',
         'death_summary',
         'death_summary_file',
-        'discharge_status_comments'
+        'discharge_status_comments',
     ];
 }

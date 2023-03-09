@@ -15,17 +15,10 @@ return new class extends Migration
     {
         Schema::create('discharge_statuses', function (Blueprint $table) {
             $table->id();
-
-            $table->string('hospital_id')->nullable();
-            $table->string('hospital_name')->nullable();
+            $table->string('claimant_id')->nullable();
+            $table->string('hospital_id')->nullable();          
             $table->string('patient_id')->nullable();
             $table->string('claim_id')->nullable();
-            $table->string('insurance_coverage')->nullable();
-            $table->string('lending_required')->nullable();
-            $table->date('date_of_admission')->nullable();
-            $table->date('time_of_admission')->nullable();
-            $table->string('hospitalization_due_to')->nullable();
-            $table->date('date_of_delivery')->nullable();
             $table->enum('injury_reason', ['Self Inflected', 'Road Traffic Accident', ' Substance Abuse-Alcohol Consumption'])->nullable();
             $table->enum('injury_due_to_substance_abuse_alcohol_consumption', ['Yes', 'No'])->nullable();
             $table->string('injury_due_to_substance_abuse_alcohol_consumption_file')->nullable();
@@ -47,7 +40,6 @@ return new class extends Migration
             $table->text('death_summary')->nullable();
             $table->string('death_summary_file')->nullable();
             $table->text('discharge_status_comments')->nullable();
-
             $table->timestamps();
         });
     }
