@@ -427,4 +427,18 @@ class ClaimantController extends Controller
     {
         //
     }
+
+    public function fetchPaitientData(Request $request, $id)
+    {
+        $data = Patient::where("uid",$id)->first();
+        return response()->json($data);
+    }
+
+    public function fetchClaimentData(Request $request, $id)
+    {
+        $data = Claimant::where("id",$id)->first();
+        return response()->json($data);
+    }
+
+
 }

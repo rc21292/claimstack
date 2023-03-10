@@ -18,7 +18,7 @@
                             </div>
                         </form>
                     </div>
-                    <h4 class="page-title">Manage Claimants</h4>
+                    <h4 class="page-title">Manage Borrowers</h4>
                 </div>
             </div>
         </div>
@@ -52,14 +52,14 @@
                                                 <th>{{ $borrower->patient->uid }}</th>
                                                 <th scope="row">{{ $borrower->claim->uid }}</th>
                                                 <th scope="row">{{ $borrower->uid }}</th>
-                                                <td>{{ @$borrower->patient_middlename }} {{ @$borrower->patient_lastname }}</td>
-                                                <td>{{ @$borrower->hospital_name }}</td>
+                                                <td>{{ @$borrower->patient->middlename }} {{ @$borrower->patient->lastname }}</td>
+                                                <td>{{ @$borrower->hospital->name }}</td>
                                                 <td>{{ $borrower->borrower_state }}</td>
                                                 <td>{{ $borrower->borrower_city }}</td>
                                                 <td>{{ $borrower->borrower_pincode }}</td>
                                                 <td>
                                                     <div class="btn-group">
-                                                        <a href="{{ route('super-admin.borrowers.edit', @$borrower->id) }}"
+                                                        <a href="{{ route('super-admin.borrowers.show', @$borrower->id) }}"
                                                             class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
                                                     </div>
                                                 </td>

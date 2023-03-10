@@ -3,21 +3,20 @@
 @section('content')
     <!-- Start Content-->
     <div class="container-fluid">
-
         <!-- start page title -->
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ url('/') }}">Claimant Stack</a></li>
+                            <li class="breadcrumb-item"><a href="{{ url('/') }}">ClaimStack</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('super-admin.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('super-admin.claimants.index') }}">Claimant</a>
+                            <li class="breadcrumb-item"><a href="{{ route('super-admin.claimants.index') }}">Borrowers</a>
                             </li>
-                            <li class="breadcrumb-item active">New Claimant</li>
+                            <li class="breadcrumb-item active">New Borrower</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">New Claimant</h4>
+                    <h4 class="page-title">New Borrower</h4>
                 </div>
             </div>
         </div>
@@ -58,11 +57,11 @@
                     <option value="">Search Claim ID</option>
                     @foreach ($claimants as $row)
                         <option value="{{ $row->uid }}" {{ old('claimant_id', isset($claim) ? $claim->id : '') == $row->uid ? 'selected' : '' }} 
-                            data-patient-id="{{ $row->patient_id }}"
+                            data-patient-id="{{ $row->patient->uid }}"
                             data-patient_id="{{ $row->patient->uid }}"
                             data-claimant_id="{{ $row->id }}"
-                            data-claim-id="{{ $row->claim_id }}"
-                            data-hospital-id="{{ $row->hospital_id }}"
+                            data-claim-id="{{ $row->claim->uid }}"
+                            data-hospital-id="{{ $row->hospital->uid }}"
                             data-title="{{ $row->patient->title }}"
                             data-firstname="{{ $row->patient->firstname }}"
                             data-middlename="{{ $row->patient->middlename }}" 
@@ -356,6 +355,45 @@
                 </div>
 
                 <div class="col-md-6 mt-3">
+                    <label for="nature_of_income">Nature of Income</label>
+                    <select class="form-control" id="nature_of_income" name="nature_of_income">
+                        <option value="">Select</option>
+                        <option @if (old('nature_of_income', @$borrower->nature_of_income) == 'Salaried') selected @endif value="Salaried">
+                            Salaried</option>
+                        <option @if (old('nature_of_income', @$borrower->nature_of_income) == 'Self Employed') selected @endif
+                            value="Self Employed">Self Employed</option>
+                    </select>
+                    @error('nature_of_income')
+                        <span id="name-error"
+                            class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="col-md-6 mt-3">
+                    <label for="organization">Name of the Organization</label>
+                    <input type="text" maxlength="60" class="form-control" id="organization"
+                        name="organization" placeholder="Name of the Organization"
+                        value="{{ old('organization', @$borrower->organization) }}">
+                    @error('organization')
+                        <span id="name-error"
+                            class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="col-md-6 mt-3">
+                    <label for="member_or_employer_id">Member ID No./Employee ID (Client
+                        ID)</label>
+                    <input type="text" maxlength="12" class="form-control"
+                        id="member_or_employer_id" name="member_or_employer_id"
+                        placeholder="Member ID No./Employee ID (Client ID)"
+                        value="{{ old('member_or_employer_id', @$borrower->member_or_employer_id) }}">
+                    @error('member_or_employer_id')
+                        <span id="name-error"
+                            class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="col-md-6 mt-3">
                     <label for="borrower_mobile_no">Borrower Mobile No. <span class="text-danger">*</span></label>
                     <div class="input-group">
                         <label class="input-group-text" for="borrower_mobile_no">+91</label>
@@ -421,7 +459,7 @@
                     @enderror
                 </div>
 
-                <div class="col-md-4 mt-3">
+                <div class="col-md-6 mt-3">
                     <label>Borrower Bank Statement</label>
                     <div class="input-group">
                         <select class="form-select" id="bank_statement" name="bank_statement">
@@ -441,7 +479,7 @@
                     @enderror
                 </div>
 
-                <div class="col-md-4 mt-3">
+                <div class="col-md-6 mt-3">
                     <label>Borrower  ITR (Income Tax Return)</label>
                     <div class="input-group">
                         <select class="form-select" id="itr" name="itr">
@@ -462,7 +500,7 @@
                 </div>
 
 
-                <div class="col-md-4 mt-3">
+                <div class="col-md-6 mt-3">
                     <label>Borrower Cancel Cheque</label>
                     <div class="input-group">
                         <select class="form-select" id="borrower_cancel_cheque" name="borrower_cancel_cheque">
@@ -577,8 +615,6 @@
                     <label for="co_borrower_nominee_relation">Co-Borrower / Nominee Relation <span class="text-danger">*</span></label>
                     <select class="form-select" id="co_borrower_nominee_relation" name="co_borrower_nominee_relation">
                         <option value="">Select Co-Borrower / Nominee Relation</option>
-                       <select class="form-select" id="co_borrower_nominee_relation" name="co_borrower_nominee_relation">
-                        <option value="">Select Co-Borrower / Nominee Relation</option>
                         <option value="Husband" {{ old('co_borrower_nominee_relation') == 'Husband' ? 'selected' : '' }}>Husband </option>
                         <option value="Wife" {{ old('co_borrower_nominee_relation') == 'Wife' ? 'selected' : '' }}>Wife</option>
                         <option value="Son" {{ old('co_borrower_nominee_relation') == 'Son' ? 'selected' : '' }}>Son</option>
@@ -586,7 +622,6 @@
                         <option value="Father" {{ old('co_borrower_nominee_relation') == 'Father' ? 'selected' : '' }}>Father</option>
                         <option value="Mother" {{ old('co_borrower_nominee_relation') == 'Mother' ? 'selected' : '' }}>Mother</option>
                         <option value="Other" {{ old('co_borrower_nominee_relation') == 'Other' ? 'selected' : '' }}>Other</option>
-                    </select>
                     </select>
                     @error('co_borrower_nominee_relation')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
