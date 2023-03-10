@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Superadmin\Claims;
+namespace App\Http\Controllers\SuperAdmin\Claims;
 
 use App\Http\Controllers\Controller;
 use App\Models\Claimant;
