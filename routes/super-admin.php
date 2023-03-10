@@ -16,11 +16,11 @@ use App\Http\Controllers\SuperAdmin\Claims\BorrowerController;
 use App\Http\Controllers\SuperAdmin\Claims\PatientController;
 use App\Http\Controllers\SuperAdmin\UtilityController;
 use App\Http\Controllers\SuperAdmin\BillEntryController;
-use App\Http\Controllers\Superadmin\Claims\AssessmentController;
-use App\Http\Controllers\Superadmin\Claims\ClaimProcessingController;
-use App\Http\Controllers\Superadmin\Claims\DischargeStatusController;
-use App\Http\Controllers\Superadmin\Claims\DocumentReimbursementController;
-use App\Http\Controllers\Superadmin\Claims\LendingStatusController;
+use App\Http\Controllers\SuperAdmin\Claims\AssessmentController;
+use App\Http\Controllers\SuperAdmin\Claims\ClaimProcessingController;
+use App\Http\Controllers\SuperAdmin\Claims\DischargeStatusController;
+use App\Http\Controllers\SuperAdmin\Claims\DocumentReimbursementController;
+use App\Http\Controllers\SuperAdmin\Claims\LendingStatusController;
 use Illuminate\Support\Facades\Route;
 
 /*
