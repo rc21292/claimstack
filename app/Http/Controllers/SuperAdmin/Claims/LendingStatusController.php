@@ -8,6 +8,7 @@ use App\Models\Borrower;
 use App\Models\Claimant;
 use App\Models\Insurer;
 use App\Models\LendingStatus;
+use App\Models\VendorServiceType;
 use Illuminate\Http\Request;
 
 class LendingStatusController extends Controller
@@ -58,7 +59,9 @@ class LendingStatusController extends Controller
         $lending_status     = $lending_exists ? LendingStatus::where('borrower_id', $borrower->id)->first() : null;
         $insurers           = Insurer::get();
 
-        return view('super-admin.claims.claimants.edit.lending-status', compact('claimant', 'assessment', 'lending_status', 'insurers', 'borrower'));
+        $associates = VendorServiceType::join('associate_partners', 'associate_partners.id', 'vendor_service_types.associate_partner_id')->where('vendor_service_types.medical_lending_patient', 'yes')->get(['associate_partners.id', 'associate_partners.name', 'associate_partners.associate_partner_id']);
+
+        return view('super-admin.claims.claimants.edit.lending-status', compact('claimant', 'assessment', 'lending_status', 'insurers', 'borrower', 'associates'));
     }
 
     /**

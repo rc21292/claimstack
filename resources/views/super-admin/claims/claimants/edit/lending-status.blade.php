@@ -405,6 +405,9 @@
                                                 <option value="Term"
                                                     {{ old('medical_lending_type', isset($lending_status) ? $lending_status->medical_lending_type : '') == 'Term' ? 'selected' : '' }}>Term
                                                 </option>
+                                                <option value="Both"
+                                                    {{ old('medical_lending_type', isset($lending_status) ? $lending_status->medical_lending_type : '') == 'Both' ? 'selected' : '' }}>Both
+                                                </option>
                                             </select>
                                             @error('medical_lending_type')
                                                 <span id="name-error"
@@ -415,18 +418,18 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="vendor_partner_name_nbfc_or_bank">Vendor Partner Name (NBFC/Bank)
                                                 <span class="text-danger">*</span></label>
-                                            <select class="form-select" id="vendor_partner_name_nbfc_or_bank"
-                                                name="vendor_partner_name_nbfc_or_bank">
-                                                <option value="">Select</option>
-                                                <option value="NBFC"
-                                                    {{ old('vendor_partner_name_nbfc_or_bank', isset($lending_status) ? $lending_status->vendor_partner_name_nbfc_or_bank : '') == 'NBFC' ? 'selected' : '' }}>
-                                                    NBFC
-                                                </option>
-                                                <option value="Bank"
-                                                    {{ old('vendor_partner_name_nbfc_or_bank', isset($lending_status) ? $lending_status->vendor_partner_name_nbfc_or_bank : '') == 'Bank' ? 'selected' : '' }}>
-                                                    Bank
-                                                </option>
+
+                                            <select class="form-control select2" data-toggle="select2" id="vendor_partner_name_nbfc_or_bank" name="vendor_partner_name_nbfc_or_bank">
+                                                <option value="">Please Select</option>
+                                                @foreach ($associates as $associates)
+                                                    <option value="{{ $associates->name }}"
+                                                        {{ old('vendor_partner_name_nbfc_or_bank', isset($lending_status) ? $lending_status->vendor_partner_name_nbfc_or_bank : '') == $associates->name ? 'selected' : '' }}
+                                                        data-code="{{ $associates->associate_partner_id }}">
+                                                        {{ $associates->name }}
+                                                    </option>
+                                                @endforeach
                                             </select>
+
                                             @error('vendor_partner_name_nbfc_or_bank')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
@@ -457,13 +460,18 @@
                                         </div>
 
                                         <div class="col-md-12 text-end mt-3">
-                                            <button type="submit" class="btn btn-success" id="apply_loan"
+                                            <button type="submit" class="btn btn-success"
                                                 form="loan-application-form">
-                                                Apply Loan</button>
+                                                Save Lending Status</button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
+                            <div class="col-md-12 text-end mt-3">
+                                            <button type="submit" class="btn btn-success" id="apply_loan"
+                                                form="loan-application-form">
+                                                Apply Loan</button>
+                                        </div>
                         </div>
 
                         <div class="card">
@@ -658,7 +666,9 @@
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div> 
-            
+
+                                        <input type="hidden" name="applyloan" id="applyloan" value="{{ old('applyloan', 0) }}">
+
                                         <div class="col-md-12 text-end mt-3 mb-2">
                                             <button type="submit" class="btn btn-success" form="loan-application-status-form">
                                             Update Loan Application Status</button>
@@ -698,7 +708,7 @@
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
-
+                                        
                                         <div class="col-md-12 text-end mt-3">
                                             <button type="submit" class="btn btn-success" form="loan-reapplication-form">
                                             Re-apply Loan</button>
@@ -715,4 +725,44 @@
     </div>
 @endsection
 @push('scripts')
+<script type="text/javascript">
+$(document).on('change', '#vendor_partner_name_nbfc_or_bank', function(event) {
+    event.preventDefault();
+    $('#vendor_partner_id').val($(this).select2().find(":selected").data("code"));
+});
+
+if($("#applyloan").val() == 1){
+         setClaimant();
+}
+
+function setClaimant() {
+
+          $('#applyloan').val(1);
+          $('#date_of_loan_application').removeAttr('readonly');
+          $('#date_of_loan_disbursement').removeAttr('readonly');
+          $('#time_of_loan_application').removeAttr('readonly');
+          $('#date_of_loan_re_application').removeAttr('readonly');
+          $('#time_of_loan_re_application').removeAttr('readonly');
+          $('#loan_id_or_no').removeAttr('readonly');
+          $('#loan_status').removeAttr('readonly');
+          $('#loan_approved_amount').removeAttr('readonly');
+          $('#loan_disbursed_amount').removeAttr('readonly');
+          $('#loan_tenure').removeAttr('readonly');
+          $('#loan_instalments').removeAttr('readonly');
+          $('#loan_start_date').removeAttr('readonly');
+          $('#loan_end_date').removeAttr('readonly');
+          $('#insurance_claim_settlement_date').removeAttr('readonly');
+          $('#insurance_claim_settled_amount').removeAttr('readonly');
+          $('#insurance_claim_amount_disbursement_date').removeAttr('readonly');
+          $('#loan_application_status_comments').removeAttr('readonly');
+          $('#re_apply_loan_amount').removeAttr('readonly');
+          $('#loan_re_application_status_comments').removeAttr('readonly');
+          
+}
+        $('#apply_loan').on('click',function(e){
+         e.preventDefault();
+         setClaimant();
+
+        });
+</script>
 @endpush
