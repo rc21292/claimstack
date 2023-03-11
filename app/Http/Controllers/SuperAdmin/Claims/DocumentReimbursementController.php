@@ -189,7 +189,7 @@ class DocumentReimbursementController extends Controller
                 }
         
                 if ($request->hasfile('ecg_report_file')) {
-                    $ecg_report_file = $request->file('ecg_report_fileile');
+                    $ecg_report_file = $request->file('ecg_report_file');
                     $name = $ecg_report_file->getClientOriginalName();
                     $ecg_report_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
