@@ -702,5 +702,25 @@
 
             }
         });
+
+
+        function setGroupName() {
+            var policy_type = $('#policy_type').val();
+            switch (policy_type) {
+                case 'Group':
+                    $("#employee_id_or_member_id").prop("readonly", false);
+                    break;
+                case 'Retail':
+                    $("#employee_id_or_member_id").prop("readonly", true);
+                    break;
+                default:
+                    $("#employee_id_or_member_id").prop("readonly", true);
+                    break;
+            }
+        }
+
+        $(document).ready(function() {
+                setGroupName();
+            });
     </script>
 @endpush
