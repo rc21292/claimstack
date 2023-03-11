@@ -3,7 +3,9 @@
 @section('content')
     <!-- Start Content-->
     <div class="container-fluid">
-
+@if($errors->any())
+    {{ implode('', $errors->all('<div>:message</div>')) }}
+@endif
         <!-- start page title -->
         <div class="row">
             <div class="col-12">
@@ -576,7 +578,9 @@
         //on load
         let hdt = $('input[name="hospitalization_due_to"]:checked').val();
           if(hdt == "Injury") { 
-            $('#injury_reason').removeAttr('disabled');
+            $('#injury_reason_self').removeAttr('disabled');
+            $('#injury_reason_road').removeAttr('disabled');
+            $('#injury_reason_substance').removeAttr('disabled');
             $('#injury_due_to_substance_abuse_alcohol_consumption_yes').removeAttr('disabled');
             $('#injury_due_to_substance_abuse_alcohol_consumption_no').removeAttr('disabled');
             $('#if_medico_legal_case_mlc_yes').removeAttr('disabled');
