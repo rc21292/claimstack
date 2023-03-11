@@ -202,19 +202,19 @@
                                                     class="text-danger">*</span></label>
                                             <div class="mt-2">
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" id="injury"
+                                                    <input class="form-check-input" type="radio" disabled id="injury"
                                                         value="Injury" name="hospitalization_due_to"
                                                         @if (old('hospitalization_due_to', $claimant->claim->hospitalization_due_to) == 'Injury') checked @endif>
                                                     <label class="form-check-label" for="injury">Injury</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" id="illness"
+                                                    <input class="form-check-input" type="radio" disabled id="illness"
                                                         value="Illness" name="hospitalization_due_to"
                                                         @if (old('hospitalization_due_to', $claimant->claim->hospitalization_due_to) == 'Illness') checked @endif>
                                                     <label class="form-check-label" for="illness">Illness</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio"
+                                                    <input class="form-check-input" disabled type="radio"
                                                         id="maternity"value="Maternity" name="hospitalization_due_to"
                                                         @if (old('hospitalization_due_to', $claimant->claim->hospitalization_due_to) == 'Maternity') checked @endif>
                                                     <label class="form-check-label" for="maternity">Maternity</label>
@@ -228,7 +228,7 @@
                                         <div class="col-md-6 mb-3">
                                             <label for="date_of_delivery">Date of Injury / Date Disease first detected /
                                                 Date of delivery <span class="text-danger">*</span></label>
-                                            <input type="date" class="form-control" id="date_of_delivery"
+                                            <input type="date" readonly class="form-control" id="date_of_delivery"
                                                 name="date_of_delivery"
                                                 value="{{ old('date_of_delivery', $claimant->claim->date_of_delivery) }}"
                                                 placeholder="Date of Injury / Date Disease first detected / Date of delivery (DD-MM-YYYY)">
@@ -404,7 +404,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="not_reported_to_police_reason">If not reported to Police, give
                                                 reason </label>
-                                            <input type="text"  @if($discharge_status->reported_to_police) disabled @endif class="form-control" id="not_reported_to_police_reason" name="not_reported_to_police_reason" value="{{ old('not_reported_to_police_reason', isset($discharge_status) ? $discharge_status->not_reported_to_police_reason : '') }}" maxlength="100" placeholder="Claimant Comments">
+                                            <input type="text"  @if(isset($discharge_status->reported_to_police) && $discharge_status->reported_to_police) disabled @endif class="form-control" id="not_reported_to_police_reason" name="not_reported_to_police_reason" value="{{ old('not_reported_to_police_reason', isset($discharge_status) ? $discharge_status->not_reported_to_police_reason : '') }}" maxlength="100" placeholder="Claimant Comments">
                                             @error('not_reported_to_police_reason')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
@@ -576,8 +576,9 @@
         let mlc = $('input[name="if_medico_legal_case_mlc"]:checked').val();
         let rtp = $('input[name="reported_to_police"]:checked').val();
         let fat = $('input[name="mlc_report_and_police_fir_attached"]:checked').val();
+        let ins = $('input[name="injury_due_to_substance_abuse_alcohol_consumption"]:checked').val();
 
-        if(mlc){
+        if(mlc == 'Yes'){
             $('#reported_to_police_yes').removeAttr('disabled');
             $('#reported_to_police_no').removeAttr('disabled');            
         }
@@ -587,9 +588,14 @@
             $('#mlc_report_and_police_fir_attached_no').removeAttr('disabled');           
         }
 
-        if(fat){
-            $('#mlc_report_and_police_fir_attached_yes').removeAttr('disabled');
-            $('#mlc_report_and_police_fir_attached_no').removeAttr('disabled');           
+        if(fat == 'Yes'){
+            $('#fir_or_mlc_no').removeAttr('disabled');           
+        }
+
+        if(ins == 'Yes' && mlc  == 'No'){
+            $('#not_reported_to_police_reason').removeAttr('disabled');  
+        }else{
+            $('#not_reported_to_police_reason').attr('disabled',true);
         }
 
        
@@ -662,7 +668,7 @@
             if($(this).val() == 'Yes'){
                $('#reported_to_police_yes').removeAttr('disabled');
                $('#reported_to_police_no').removeAttr('disabled');
-               $('#reported_to_police_yes').prop('checked',true);
+               // $('#reported_to_police_yes').prop('checked',true);
             } else {
                $('#reported_to_police_yes').attr('disabled',true);
                $('#reported_to_police_no').attr('disabled',true);
