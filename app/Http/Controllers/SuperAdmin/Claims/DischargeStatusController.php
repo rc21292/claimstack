@@ -77,6 +77,8 @@ class DischargeStatusController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //dd($request->all());
+        
         $rules = [
             'hospital_id'                                           => 'required|max:40',
             'hospital_name'                                         => 'required|max:255',
@@ -93,7 +95,7 @@ class DischargeStatusController extends Controller
             'reported_to_police'                                    => ($request->injury_due_to_substance_abuse_alcohol_consumption =='Yes') ? 'required' :[],
             'mlc_report_and_police_fir_attached'                    => ($request->reported_to_police =='Yes') ? 'required' :[],
             'fir_or_mlc_no'                                         => ($request->mlc_report_and_police_fir_attached =='Yes') ? 'required|max:27':[],
-            'not_reported_to_police_reason'                         => ($request->injury_due_to_substance_abuse_alcohol_consumption =='Yes' && $request->if_medico_legal_case_mlc =='No') ?'required|max:100' :[],
+            'not_reported_to_police_reason'                         => ($request->reported_to_police =='No' && $request->if_medico_legal_case_mlc =='Yes') ?'required|max:100' :[],
             'maternity_date_of_delivery'                            => ($request->hospitalization_due_to == 'Maternity') ? 'required' : [],
             'maternity_gravida_status_g'                            => ($request->hospitalization_due_to == 'Maternity') ? 'required|numeric|digits_between:1,2' : [],
             'maternity_gravida_status_p'                            => ($request->hospitalization_due_to == 'Maternity') ? 'required|numeric|digits_between:1,2' : [],
@@ -152,7 +154,7 @@ class DischargeStatusController extends Controller
                 'hospital_id' => $claimant->hospital_id,
                 'patient_id' => $claimant->patient_id,
                 'claim_id' => $claimant->claim_id,
-                'injury_reason' => $request->abc,
+                'injury_reason' => $request->injury_reason,
                 'injury_due_to_substance_abuse_alcohol_consumption' => $request->injury_due_to_substance_abuse_alcohol_consumption,               
                 'if_medico_legal_case_mlc' => $request->if_medico_legal_case_mlc,
                 'reported_to_police' => $request->reported_to_police,

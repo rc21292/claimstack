@@ -260,9 +260,8 @@
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" disabled 
                                                         id="injury_reason_substance"
-                                                        value=" Substance Abuse-Alcohol Consumption" name="injury_reason"
-                                                        @if (old('injury_reason', isset($discharge_status) ? $discharge_status->injury_reason : '') ==
-                                                                ' Substance Abuse-Alcohol Consumption') checked @endif>
+                                                        value="Substance Abuse-Alcohol Consumption" name="injury_reason"
+                                                        @if (old('injury_reason', isset($discharge_status) ? $discharge_status->injury_reason : '') == 'Substance Abuse-Alcohol Consumption') checked @endif>
                                                     <label class="form-check-label" for="injury_reason_substance">
                                                         Substance Abuse-Alcohol Consumption</label>
                                                 </div>
@@ -405,7 +404,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="not_reported_to_police_reason">If not reported to Police, give
                                                 reason </label>
-                                            <input type="text" disabled class="form-control" id="not_reported_to_police_reason" name="not_reported_to_police_reason" value="{{ old('not_reported_to_police_reason', isset($discharge_status) ? $discharge_status->not_reported_to_police_reason : '') }}" maxlength="100" placeholder="Claimant Comments">
+                                            <input type="text"  @if($discharge_status->reported_to_police) disabled @endif class="form-control" id="not_reported_to_police_reason" name="not_reported_to_police_reason" value="{{ old('not_reported_to_police_reason', isset($discharge_status) ? $discharge_status->not_reported_to_police_reason : '') }}" maxlength="100" placeholder="Claimant Comments">
                                             @error('not_reported_to_police_reason')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
@@ -659,9 +658,11 @@
             }
         });
         $('input[name="if_medico_legal_case_mlc"]').on('change',function(e){
+           
             if($(this).val() == 'Yes'){
                $('#reported_to_police_yes').removeAttr('disabled');
                $('#reported_to_police_no').removeAttr('disabled');
+               $('#reported_to_police_yes').prop('checked',true);
             } else {
                $('#reported_to_police_yes').attr('disabled',true);
                $('#reported_to_police_no').attr('disabled',true);
@@ -691,8 +692,9 @@
             }
         });
 
-        $('input[name="if_medico_legal_case_mlc"]', 'input[name="reported_to_police"]').on('change',function(){
-            if($('#if_medico_legal_case_mlc').val() == 'Yes' && $('#reported_to_police').val() == 'No'){
+        $('input[name="reported_to_police"]').on('change',function(){
+            
+            if($('input[name="reported_to_police"]:checked').val() == 'No'){
                $('#not_reported_to_police_reason').removeAttr('disabled');
             } else {
                $('#not_reported_to_police_reason').attr('disabled',true);

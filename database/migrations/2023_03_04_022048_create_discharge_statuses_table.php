@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('hospital_id')->nullable();          
             $table->string('patient_id')->nullable();
             $table->string('claim_id')->nullable();
-            $table->enum('injury_reason', ['Self Inflected', 'Road Traffic Accident', ' Substance Abuse-Alcohol Consumption'])->nullable();
+            $table->enum('injury_reason', ['Self Inflected', 'Road Traffic Accident', 'Substance Abuse-Alcohol Consumption'])->nullable();
             $table->enum('injury_due_to_substance_abuse_alcohol_consumption', ['Yes', 'No'])->nullable();
             $table->string('injury_due_to_substance_abuse_alcohol_consumption_file')->nullable();
             $table->enum('if_medico_legal_case_mlc', ['Yes', 'No'])->nullable();
