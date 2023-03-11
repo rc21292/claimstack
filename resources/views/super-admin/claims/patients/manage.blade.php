@@ -55,7 +55,7 @@
                                                 <td>{{ $patient->patient_current_pincode }}</td>
                                                 <td class="text-center">
                                                     <div class="btn-group">
-                                                        a href="{{ route('super-admin.patients.edit', @$patient->id) }}"
+                                                        <a href="{{ route('super-admin.patients.edit', @$patient->id) }}"
                                                             class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
                                                         <a href="{{ route('super-admin.claims.create', ['patient_id' => $patient->id]) }}"
                                                             class="btn btn-primary"><i class="mdi mdi-plus"></i> New

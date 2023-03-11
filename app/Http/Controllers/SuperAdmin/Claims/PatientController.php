@@ -2766,9 +2766,24 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+
+    public function edit(Request $request, $id)
     {
-        //
+        $hospital_id = $request->hospital_id;
+        $associates = AssociatePartner::get();
+        $hospitals = Hospital::get();
+        $doctors = HospitalDepartment::get();
+        foreach ($hospitals as $hospital) {
+            if (isset($hospital->linked_associate_partner_id)) {
+                $hospital->ap_name = AssociatePartner::where('associate_partner_id', $hospital->linked_associate_partner_id)->value('name');
+            } else {
+                $hospital->ap_name = 'N/A';
+            }
+        }
+
+        $patient = Patient::with('hospital')->find($id);
+
+        return view('super-admin.claims.patients.edit',  compact('patient', 'hospital_id', 'doctors', 'associates', 'hospitals'));
     }
 
     /**
@@ -2780,6 +2795,8 @@ class PatientController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $patient = Patient::find($id);
+
         $rules = [
             'hospital_name'                     => 'required',
             'hospital_id'                       => 'required',
@@ -2812,10 +2829,10 @@ class PatientController extends Controller
             'patient_permanent_state'           => $request->current_permanent_address_same == 'No' ? 'required' : '',
             'patient_permanent_pincode'         => $request->current_permanent_address_same == 'No' ? 'required' : '',
             'id_proof'                          => 'required',
-            'id_proof_file'                     => 'required',
+            'id_proof_file'                     => empty($patient->id_proof_file) ? 'required' : [],
             'code'                              => 'required|numeric|digits:3',
             'landline'                          => 'required|numeric|digits_between:1,10',
-            'email'                             => 'required|email|min:1|max:45|unique:patients,email',
+            'email'                             => 'required|email|min:1|max:45|unique:patients,email,'.$id,
             'phone'                             => 'required|numeric|digits:10',
             'referred_by'                       => 'required',
             'referral_name'                     => 'required|max:45',
@@ -2901,6 +2918,8 @@ class PatientController extends Controller
             'admitted_by_lastname'              => $request->admitted_by_lastname,
             'comments'                          => $request->comments,
         ]);
+
+        $patient = Patient::find($id);
 
         if ($request->hasfile('dobfile')) {
             $dobfile                    = $request->file('dobfile');

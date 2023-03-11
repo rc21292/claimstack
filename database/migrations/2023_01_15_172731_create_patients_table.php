@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('occupation')->nullable();
             $table->string('specify')->nullable();
             $table->string('patient_current_address')->nullable();
+            $table->string('address_file')->nullable();
             $table->string('patient_current_city')->nullable();
             $table->string('patient_current_state')->nullable();
             $table->string('patient_current_pincode')->nullable();
