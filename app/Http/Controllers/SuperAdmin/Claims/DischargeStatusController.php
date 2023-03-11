@@ -93,7 +93,7 @@ class DischargeStatusController extends Controller
             'reported_to_police'                                    => ($request->injury_due_to_substance_abuse_alcohol_consumption =='Yes') ? 'required' :[],
             'mlc_report_and_police_fir_attached'                    => ($request->reported_to_police =='Yes') ? 'required' :[],
             'fir_or_mlc_no'                                         => ($request->mlc_report_and_police_fir_attached =='Yes') ? 'required|max:27':[],
-            'not_reported_to_police_reason'                         => ($request->injury_due_to_substance_abuse_alcohol_consumption =='Yes' && $request->reported_to_police =='No') ?'required|max:100' :[],
+            'not_reported_to_police_reason'                         => ($request->injury_due_to_substance_abuse_alcohol_consumption =='Yes' && $request->if_medico_legal_case_mlc =='No') ?'required|max:100' :[],
             'maternity_date_of_delivery'                            => ($request->hospitalization_due_to == 'Maternity') ? 'required' : [],
             'maternity_gravida_status_g'                            => ($request->hospitalization_due_to == 'Maternity') ? 'required|numeric|digits_between:1,2' : [],
             'maternity_gravida_status_p'                            => ($request->hospitalization_due_to == 'Maternity') ? 'required|numeric|digits_between:1,2' : [],

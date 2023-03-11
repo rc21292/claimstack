@@ -573,7 +573,26 @@
 @endsection
 @push('scripts')
 <script>
-    jQuery(document).ready(function($){
+
+        let mlc = $('input[name="if_medico_legal_case_mlc"]:checked').val();
+        let rtp = $('input[name="reported_to_police"]:checked').val();
+        let fat = $('input[name="mlc_report_and_police_fir_attached"]:checked').val();
+
+        if(mlc){
+            $('#reported_to_police_yes').removeAttr('disabled');
+            $('#reported_to_police_no').removeAttr('disabled');            
+        }
+
+        if(rtp == 'Yes'){
+            $('#mlc_report_and_police_fir_attached_yes').removeAttr('disabled');
+            $('#mlc_report_and_police_fir_attached_no').removeAttr('disabled');           
+        }
+
+        if(fat){
+            $('#mlc_report_and_police_fir_attached_yes').removeAttr('disabled');
+            $('#mlc_report_and_police_fir_attached_no').removeAttr('disabled');           
+        }
+
        
         //on load
         let hdt = $('input[name="hospitalization_due_to"]:checked').val();
@@ -625,7 +644,12 @@
                 $('#injury_reason_substance').attr('disabled',true);
                 $('#injury_due_to_substance_abuse_alcohol_consumption_yes').attr('disabled',true);
                 $('#injury_due_to_substance_abuse_alcohol_consumption_no').attr('disabled',true);
-                $('#if_medico_legal_case_mlc').attr('disabled',true);
+                $('#if_medico_legal_case_mlc_yes').attr('disabled',true);
+                $('#if_medico_legal_case_mlc_no').attr('disabled',true);
+                $('#reported_to_police_yes').attr('disabled',true);
+               $('#reported_to_police_no').attr('disabled',true);
+               $('#mlc_report_and_police_fir_attached_yes').attr('disabled',true);
+                $('#mlc_report_and_police_fir_attached_no').attr('disabled',true);
                 $('#maternity_date_of_delivery').attr('disabled',true);
                 $('#maternity_gravida_status_g').attr('disabled',true);
                 $('#maternity_gravida_status_p').attr('disabled',true);
@@ -642,7 +666,13 @@
                $('#reported_to_police_yes').attr('disabled',true);
                $('#reported_to_police_no').attr('disabled',true);
             }
+
+            if($('input[name="injury_due_to_substance_abuse_alcohol_consumption"]:checked').val() == 'Yes' && $(this).val() == 'No'){
+                $("#not_reported_to_police_reason").removeAttr('disabled');
+            }
+            
         });
+
         $('input[name="reported_to_police"]').on('change',function(e){
             if($(this).val() == 'Yes'){
                 $('#mlc_report_and_police_fir_attached_yes').removeAttr('disabled');
@@ -661,7 +691,7 @@
             }
         });
 
-        $('#if_medico_legal_case_mlc, #reported_to_police').on('change',function(){
+        $('input[name="if_medico_legal_case_mlc"]', 'input[name="reported_to_police"]').on('change',function(){
             if($('#if_medico_legal_case_mlc').val() == 'Yes' && $('#reported_to_police').val() == 'No'){
                $('#not_reported_to_police_reason').removeAttr('disabled');
             } else {
@@ -675,10 +705,7 @@
             } else {
                 $('#death_summary').attr('disabled',true);
             }
-        });
+        });   
 
-    
-    
-    });
 </script>
 @endpush
