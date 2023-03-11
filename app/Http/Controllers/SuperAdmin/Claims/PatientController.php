@@ -2939,6 +2939,15 @@ class PatientController extends Controller
             ]);
         }
 
+        if ($request->hasfile('address_file')) {
+            $address_file                    = $request->file('address_file');
+            $name                       = $address_file->getClientOriginalName();
+            $address_file->storeAs('uploads/patient/' . $patient->id . '/', $name, 'public');
+            Patient::where('id', $patient->id)->update([
+                'address_file'               =>  $name
+            ]);
+        }
+
         return redirect()->route('super-admin.patients.index')->with('success', 'Patient updated successfully');
     }
 

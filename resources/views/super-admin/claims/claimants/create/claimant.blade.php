@@ -52,7 +52,7 @@
                                     @csrf
                                     <div class="form-group row">
                                         <div class="col-md-6 mb-3">
-                                            <label for="claim_id">Cliam ID <span class="text-danger">*</span></label>
+                                            <label for="claim_id">Claim ID <span class="text-danger">*</span></label>
                                             <select class="form-control select2" id="claim_id" name="claim_id"
                                                 data-toggle="select2" onchange="setPatient()">
                                                 <option value="">Search Claim ID</option>
@@ -72,7 +72,8 @@
                                                         data-mobile="{{ $row->patient->phone }}"
                                                         data-lastname="{{ $row->patient->lastname }}"
                                                         data-hospital="{{ $row->patient->hospital->uid }}"
-                                                        data-id-prof="{{ $row->patient->id_proof }}">
+                                                        data-id-prof="{{ $row->patient->id_proof }}"
+                                                        data-id-prof-file="{{ $row->patient->id_proof_file }}">
                                                         {{ $row->uid }}
                                                 @endforeach
                                             </select>
@@ -193,11 +194,14 @@
                                                         {{ old('patient_id_proof', isset($claim) ? $claim->patient->id_proof : '') == 'Passport' ? 'selected' : '' }}>
                                                         Passport</option>
                                                 </select>
-                                                @isset($claim->patient->id_proof_file)
+                                                {{-- @isset($claim->patient->id_proof_file)
                                                     <a href="{{ asset('storage/uploads/patient/' . $claim->patient_id . '/' . $claim->patient->id_proof_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
                                                             class="mdi mdi-download"></i></a>
-                                                @endisset
+                                                @endisset --}}
+                                                <a id="id-prof-id" style="display:none;" href=""
+                                                        download="" class="btn btn-warning download-label"><i
+                                                            class="mdi mdi-download"></i></a>
                                                 <input type="file" name="patient_id_proof_file" id="upload" hidden
                                                     onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                                                 <label for="upload" class="btn btn-primary upload-label"><i
@@ -620,6 +624,7 @@
 
         function setPatient() {
             var title = $("#claim_id").select2().find(":selected").data("title");
+            var id = $("#claim_id").select2().find(":selected").val();
             var patient_id = $("#claim_id").select2().find(":selected").data("patient-id");
             var firstname = $("#claim_id").select2().find(":selected").data("firstname");
             var asp_id = $("#claim_id").select2().find(":selected").data("asp-id");
@@ -629,10 +634,10 @@
             var gender = $("#claim_id").select2().find(":selected").data("gender");
             var hospital = $("#claim_id").select2().find(":selected").data("hospital");
             var idprof = $("#claim_id").select2().find(":selected").data("id-prof");
-
-
+            var idproffile = $("#claim_id").select2().find(":selected").data("id-prof-file");
             $('#patient_id').val(patient_id);
             $('#patient_id_proof').val(idprof);
+            // $('#id-prof-id').css('display', 'block').attr('href', ff);
             $('#associate_partner_id').val(asp_id);
             $('#patient_title').val(title);
             $('#patient_firstname').val(firstname);
@@ -641,6 +646,23 @@
             $('#patient_age').val(age);
             $('#patient_gender').val(gender);
             $('#hospital_id').val(hospital).trigger('change');
+            if(patient_id){
+            $.ajax({
+            url: "{{url('super-admin/claimants/patient/')}}/"+patient_id,
+            type: "GET",
+            data: {
+                _token: '{{csrf_token()}}'
+            },
+            dataType: 'json',
+            success: function (result) {
+                if(result.id_proof_file && result.id_proof_file !=null){
+                    var ff = "{{ asset('storage/uploads/patient/') }}"+"/"+id+'/'+result.id_proof_file;
+                    $("#id-prof-id").css('display', 'block').attr('href', ff );
+                }
+            }
+        });
+    }
+
         }
     </script>
     <script>

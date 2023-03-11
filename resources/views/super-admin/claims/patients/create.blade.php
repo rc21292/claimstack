@@ -219,9 +219,8 @@
 
                                 <div class="col-md-12 mt-3">
                                     <label for="dob">Patient DOB <span class="text-danger">*</span></label>
-                                    <div class="input-group">
-                                        <input type="date" class="form-control" id="dob" name="dob"
-                                            value="{{ old('dob') }}"  max="{{ date('Y-m-d') }}" onchange="calculateAge();">
+                                    <div class="input-group" id="datepicker2">
+                                        <input type="text" class="form-control" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy" data-date-container="#datepicker2" id="dob" name="dob" value="{{ old('dob') }}"  minDate="'+moment()+'" onchange="calculateAge();"/>
                                         <input type="file" name="dobfile" id="dobfile" hidden
                                             onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                                         <label for="dobfile" class="btn btn-primary upload-label"><i

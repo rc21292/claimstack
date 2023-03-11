@@ -15,10 +15,10 @@
                             <li class="breadcrumb-item"><a href="javascript:void(0);">Claims</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('super-admin.patients.index') }}">Patients</a>
                             </li>
-                            <li class="breadcrumb-item active">Create</li>
+                            <li class="breadcrumb-item active">Edit</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">Patient ID Creation</h4>
+                    <h4 class="page-title">Patient ID Edit</h4>
                 </div>
             </div>
         </div>
@@ -219,10 +219,13 @@
 
 
                                 <div class="col-md-12 mt-3">
-                                    <label for="dob">Patient DOB <span class="text-danger">*</span></label>
-                                    <div class="input-group">
-                                        <input type="date" class="form-control" id="dob" name="dob"
-                                            value="{{ old('dob', $patient->dob) }}"  max="{{ date('Y-m-d') }}" onchange="calculateAge();">
+                                    <label for="dob"> Patient DOB <span class="text-danger">*</span></label>
+                                    <div class="input-group" id="datepicker2">
+                                        <input type="text" class="form-control" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy" data-date-container="#datepicker2" id="dob" name="dob" value="{{ old('dob', $patient->dob) }}"  max="{{ date('d-m-Y') }}" onchange="calculateAge();"/>
+
+                                            @isset($patient->dobfile)
+                                            <a href="{{ asset('storage/uploads/patient/'.$patient->id.'/'.$patient->dobfile) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+                                        @endisset
                                         <input type="file" name="dobfile" id="dobfile" hidden
                                             onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                                         <label for="dobfile" class="btn btn-primary upload-label"><i
@@ -363,6 +366,9 @@
                                                 <input type="text" maxlength="100" class="form-control"
                                                     id="patient_permanent_address" name="patient_permanent_address"
                                                     placeholder="Address Line" value="{{ old('patient_permanent_address', $patient->patient_permanent_address) }}">
+                                                    @isset($patient->address_file)
+                                                        <a href="{{ asset('storage/uploads/patient/'.$patient->id.'/'.$patient->address_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+                                                    @endisset
                                                 <input type="file" name="address_file" id="address_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                                                 <label for="address_file" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
                                             </div>
@@ -422,6 +428,9 @@
                                                 {{ old('id_proof', $patient->id_proof) == 'Passport' ? 'selected' : '' }}>Passport
                                             </option>
                                         </select>
+                                        @isset($patient->id_proof_file)
+                                            <a href="{{ asset('storage/uploads/patient/'.$patient->id.'/'.$patient->id_proof_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+                                        @endisset
                                         <input type="file" name="id_proof_file" id="upload" hidden
                                             onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                                         <label for="upload" class="btn btn-primary upload-label"><i
@@ -606,7 +615,7 @@
 
 
                                 <div class="col-md-12 text-end mt-3">
-                                    <button type="submit" class="btn btn-success" form="hospital-form">Create
+                                    <button type="submit" class="btn btn-success" form="hospital-form">Update
                                         Patient ID</button>
                                 </div>
                             </div>
