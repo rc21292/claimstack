@@ -102,15 +102,15 @@ class AssessmentController extends Controller
                     'patient_lastname'                           =>  isset($request->patient_lastname) ? 'max:255' : '',
                     'patient_firstname'                          => 'required|max:255',
                     'patient_middlename'                         =>  isset($request->patient_middlename) ? 'max:255' : '',
-                    'policy_no'                                  => 'required|max:255',
+                    // 'policy_no'                                  => 'required|max:255',
                     'start_date'                                 => 'required',
                     'expiry_date'                                => 'required',
                     'commencement_date'                          => 'required',
                     'hospital_on_the_panel_of_insurance_co'      => 'required',
                     'hospital_id_insurance_co'                   => 'required',
                     'pre_assessment_status'                      => 'required',
-                    'query_pre_assessment'                       => 'required|max:255',
-                    'pre_assessment_amount'                      => 'required|max:255',
+                    'query_pre_assessment'                       => ($request->pre_assessment_status == 'Query Raised by BHC Team') ? 'required|max:255' : '',
+                    'pre_assessment_amount'                      => 'required|numeric|digits_between:1,8',
                     'pre_assessment_suspected_fraud'             => 'required',    
                 ];
                 
@@ -159,7 +159,7 @@ class AssessmentController extends Controller
                 break;
             case 'final-assessment-status-form':
                 $rules =  [   
-                    'final_assessment_amount'                    => 'required|max:255',
+                    'final_assessment_amount'                    => 'required|numeric|digits_between:1,8',
                     'final_assessment_suspected_fraud'           => 'required',
                    
                 

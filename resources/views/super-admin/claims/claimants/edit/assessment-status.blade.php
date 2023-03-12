@@ -104,7 +104,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="claim_id">Cliam ID <span class="text-danger">*</span></label>
+                                            <label for="claim_id">Claim ID <span class="text-danger">*</span></label>
                                             <input type="text" readonly class="form-control" id="claim_id"
                                                 name="claim_id" maxlength="60" placeholder="Enter Claim Id"
                                                 value="{{ old('claim_id', @$claimant->claim->uid) }}">
@@ -363,7 +363,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="pre_assessment_status">Pre-Assessment Status <span
                                                     class="text-danger">*</span></label>
-                                            <select class="form-select" id="pre_assessment_status"
+                                            <select class="form-select" onchange="setStatus();" id="pre_assessment_status"
                                                 name="pre_assessment_status">
                                                 <option value="Waiting for Pre-Assessment"
                                                     {{ old('pre_assessment_status', isset($assessment_status) ? $assessment_status->pre_assessment_status : '') == 'Waiting for Pre-Assessment' ? 'selected' : '' }}>
@@ -390,7 +390,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="query_pre_assessment">Query - Pre-Assessment <span
                                                     class="text-danger">*</span></label>
-                                            <input type="text" placeholder="Enter Policy Start Date"
+                                            <input type="text" readonly placeholder="Enter Query - Pre-Assessment"
                                                 class="form-control query_pre_assessment" id="query_pre_assessment"
                                                 name="query_pre_assessment"
                                                 value="{{ old('query_pre_assessment', isset($assessment_status) ? $assessment_status->query_pre_assessment : '') }}">
@@ -403,7 +403,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="pre_assessment_amount">Pre-Assessment Amount <span
                                                     class="text-danger">*</span></label>
-                                            <input type="number" placeholder="Enter Pre-Assessment Amount"
+                                            <input type="number" pattern="/^-?\d+\.?\d*$/"  onKeyPress="if(this.value.length==8) return false;" placeholder="Enter Pre-Assessment Amount"
                                                 class="form-control" id="pre_assessment_amount"
                                                 name="pre_assessment_amount"
                                                 value="{{ old('pre_assessment_amount', isset($assessment_status) ? $assessment_status->pre_assessment_amount : '') }}">
@@ -411,7 +411,7 @@
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
-                                        </div>
+                                        </div> 
 
                                         <div class="col-md-6 mt-3">
                                             <label for="pre_assessment_suspected_fraud">Pre-Assessment Suspected Fraud
@@ -471,7 +471,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="final_assessment_status">Final Assessment Status <span
                                                     class="text-danger">*</span></label>
-                                            <select class="form-select final_assessment_status" id="final_assessment_status"
+                                            <select class="form-select final_assessment_status" onchange="setStatusFinal();" id="final_assessment_status"
                                                 name="final_assessment_status">
                                                 <option value="">Select</option>
                                                 <option value="Waiting for Final-Assessment"
@@ -492,7 +492,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="query_final_assessment">Query - Final Assessment <span
                                                     class="text-danger">*</span></label>
-                                            <input type="text" placeholder="Enter Query - Final Assessment"
+                                            <input type="text" placeholder="Enter Query - Final Assessment" readonly 
                                                 class="form-control query_final_assessment" id="query_final_assessment"
                                                 name="query_final_assessment"
                                                 value="{{ old('query_final_assessment', isset($assessment_status) ? $assessment_status->query_final_assessment : '') }}">
@@ -506,7 +506,7 @@
                                                     class="text-danger">*</span></label>
                                             <input type="number" placeholder="Enter Final Assessment Amount"
                                                 class="form-control" id="final_assessment_amount"
-                                                name="final_assessment_amount"
+                                                name="final_assessment_amount" pattern="/^-?\d+\.?\d*$/"  onKeyPress="if(this.value.length==8) return false;"
                                                 value="{{ old('final_assessment_amount', isset($assessment_status) ? $assessment_status->final_assessment_amount : '0') }}">
                                             @error('final_assessment_amount')
                                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -559,4 +559,35 @@
     </div>
 @endsection
 @push('scripts')
+<script type="text/javascript">
+     $(document).ready(function() {
+            setStatus();
+            setStatusFinal();
+        });
+
+        function setStatus() {
+            var status = $("#pre_assessment_status").val();
+            switch (status) {
+                case 'Query Raised by BHC Team':
+                    $("#query_pre_assessment").prop("readonly", false);
+                    break;
+                default:
+                    $("#query_pre_assessment").prop("readonly", true);
+                    break;
+            }
+        }
+
+        function setStatusFinal() {
+            var status = $("#final_assessment_status").val();
+            switch (status) {
+                case 'Query Raised by BHC Team':
+                    $("#query_final_assessment").prop("readonly", false);
+                    break;
+                default:
+                    $("#query_final_assessment").prop("readonly", true);
+                    break;
+            }
+        }
+
+</script>
 @endpush
