@@ -98,22 +98,18 @@ class AssessmentController extends Controller
                     'hospital_address'                           => 'required|max:255',
                     'hospital_city'                              => 'required|max:255',
                     'hospital_state'                             => 'required|max:255',
-                    'hospital_pincode'                           => 'required|numeric',                    
+                    'hospital_pincode'                           => 'required|numeric',
                     'patient_lastname'                           =>  isset($request->patient_lastname) ? 'max:255' : '',
                     'patient_firstname'                          => 'required|max:255',
                     'patient_middlename'                         =>  isset($request->patient_middlename) ? 'max:255' : '',
-                    // 'policy_no'                                  => 'required|max:255',
-                    'start_date'                                 => 'required',
-                    'expiry_date'                                => 'required',
-                    'commencement_date'                          => 'required',
                     'hospital_on_the_panel_of_insurance_co'      => 'required',
                     'hospital_id_insurance_co'                   => 'required',
                     'pre_assessment_status'                      => 'required',
                     'query_pre_assessment'                       => ($request->pre_assessment_status == 'Query Raised by BHC Team') ? 'required|max:255' : '',
                     'pre_assessment_amount'                      => 'required|numeric|digits_between:1,8',
-                    'pre_assessment_suspected_fraud'             => 'required',    
+                    'pre_assessment_suspected_fraud'             => 'required',
                 ];
-                
+
                 $messages =  [
                     'patient_id.required'                               => 'Please select Patient ID',
                     'claim_id.required'                                 => 'Please enter Claim ID',
@@ -136,10 +132,10 @@ class AssessmentController extends Controller
                     'pre_assessment_status.required'                    => 'Please enter pre assessment status',
                     'query_pre_assessment.required'                     => 'Please enter query pre assessment',
                     'pre_assessment_amount.required'                    => 'Please enter pre assessment amount',
-                    'pre_assessment_suspected_fraud.required'           => 'Please enter pre assessment suspected fraud',        
-                
+                    'pre_assessment_suspected_fraud.required'           => 'Please enter pre assessment suspected fraud',
+
                 ];
-                
+
                 $this->validate($request, $rules, $messages);
 
                 AssessmentStatus::where('claimant_id', $id)->update([
@@ -152,40 +148,40 @@ class AssessmentController extends Controller
                     'pre_assessment_status'                     => $request->pre_assessment_status,
                     'query_pre_assessment'                      => $request->query_pre_assessment,
                     'pre_assessment_amount'                     => $request->pre_assessment_amount,
-                    'pre_assessment_suspected_fraud'            => $request->pre_assessment_suspected_fraud,                    
-                    'pre_assessment_status_comments'            => $request->pre_assessment_status_comments,                    
-            
+                    'pre_assessment_suspected_fraud'            => $request->pre_assessment_suspected_fraud,
+                    'pre_assessment_status_comments'            => $request->pre_assessment_status_comments,
+
                 ]);
                 break;
             case 'final-assessment-status-form':
-                $rules =  [   
+                $rules =  [
                     // 'final_assessment_amount'                    => 'required|numeric|digits_between:1,8',
                     'final_assessment_suspected_fraud'           => 'required',
-                   
-                
+
+
                 ];
-                
-                $messages =  [  
+
+                $messages =  [
                     'final_assessment_amount.required'            => 'please enter final assessment amount',
                     'final_assessment_suspected_fraud.required'   => 'please enter final assessment suspected fraud',
                 ];
-                
+
                 $this->validate($request, $rules, $messages);
 
-                AssessmentStatus::where('claimant_id', $id)->update([                    
+                AssessmentStatus::where('claimant_id', $id)->update([
                     'final_assessment_status'                   => $request->final_assessment_status,
                     'query_final_assessment'                    => $request->query_final_assessment,
                     'final_assessment_amount'                   => $request->final_assessment_amount,
-                    'final_assessment_suspected_fraud'          => $request->final_assessment_suspected_fraud,                    
+                    'final_assessment_suspected_fraud'          => $request->final_assessment_suspected_fraud,
                     'final_assessment_status_comments'          => $request->final_assessment_status_comments,
-            
+
                 ]);
-                
+
                 break;
             default:
                 # code...
                 break;
-           
+
         }
         return redirect()->back()->with('success', 'Assessment Status updated successfully');
     }
