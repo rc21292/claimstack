@@ -157,7 +157,7 @@
                     @enderror
                 </div>
 
-                
+
 
                 <div class="col-md-6 mt-3">
                     <label for="is_patient_and_borrower_same">Is Patient and Borrower Same <span class="text-danger">*</span></label>
@@ -228,7 +228,7 @@
                     @enderror
                 </div>
 
-                
+
 
                 <div class="col-md-4 mt-3">
                     <label for="borrowers_relation_with_patient">Borrower's Relation with Patient <span class="text-danger">*</span></label>
@@ -266,8 +266,8 @@
 
                 <div class="col-md-4 mt-3">
                     <label for="dob">Borrower DOB <span class="text-danger">*</span></label>
-                    <input type="date" class="form-control" id="dob" name="dob" max="{{ date('Y-m-d') }}"
-                    value="{{ old('dob',$borrower->dob) }}" onchange="calculateAge();">
+                    <input type="text" class="form-control" id="dob" name="dob" max="{{ date('Y-m-d') }}"
+                    value="{{ old('dob',$borrower->dob) }}" onchange="calculateAge();" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
 
                     @error('dob', 'borrower-details-form')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -362,7 +362,7 @@
                     @error('borrower_official_email_id', 'borrower-details-form')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
-                </div>         
+                </div>
 
                 <div class="col-md-6 mt-3">
                     <label for="borrower_pan_no">Borrower Pan No. <span class="text-danger">*</span></label>
@@ -457,8 +457,8 @@
                     @error('borrower_cancel_cheque_file', 'borrower-details-form')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
-                </div>               
-                
+                </div>
+
 
                 <div class="col-md-12 mt-2">
                     <label for="address">Borrower Bank Details <span class="text-danger">*</span></label>
@@ -471,7 +471,7 @@
                     @error('borrower_bank_name', 'borrower-details-form')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
-                </div>            
+                </div>
 
                 <div class="col-md-6 mt-2">
                     <input type="text" class="form-control" id="borrower_bank_address" name="borrower_bank_address" maxlength="80"
@@ -514,8 +514,8 @@
                 <div class="col-md-6 mt-3">
                     <label for="co_borrower_nominee_dob">Co-Borrower / Nominee DOB <span class="text-danger">*</span></label>
                     <div class="input-group">
-                        <input type="date" class="form-control" id="co_borrower_nominee_dob" max="{{ date('Y-m-d') }}" name="co_borrower_nominee_dob" placeholder="Enter Co-Borrower / Nominee DOB" 
-                        value="{{ old('co_borrower_nominee_dob',$borrower->co_borrower_nominee_dob) }}" >
+                        <input type="text" class="form-control" id="co_borrower_nominee_dob" max="{{ date('Y-m-d') }}" name="co_borrower_nominee_dob" placeholder="Enter Co-Borrower / Nominee DOB"
+                        value="{{ old('co_borrower_nominee_dob',$borrower->co_borrower_nominee_dob) }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
                         <input type="file" name="co_borrower_nominee_dob_file" id="co_borrower_nominee_dob_file" hidden  onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                         <label for="co_borrower_nominee_dob_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
                     </div>
@@ -605,7 +605,7 @@
                     @error('co_borrower_comments', 'borrower-details-form')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
-                </div>            
+                </div>
 
                 <div class="col-md-12 text-end mt-3">
                     <button type="submit" class="btn btn-success" form="borrower-details-form">
@@ -746,7 +746,7 @@
             }
         });
 
-    
+
 
 
         var bank_statement = "{{ old('bank_statement', $borrower->bank_statement) }}";
