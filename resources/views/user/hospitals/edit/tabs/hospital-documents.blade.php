@@ -3,7 +3,7 @@
         Hospital Documents
     </div>
     <div class="card-body">
-        <form action="{{ route('super-admin.document-reimbursement.update', $hospital->id) }}"
+        <form action="{{ route('user.hospital-documents.update', $hospital->id) }}"
             method="post" id="initial-assessment-form" enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -15,7 +15,7 @@
                         <input type="text" readonly class="form-control"
                             placeholder="Hospital PAN Card*">
                         @isset($hospital_document->hospital_pan_card)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->hospital_pan_card) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->hospital_pan_card) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -36,7 +36,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="Hospital Cancel Cheque*">
                         @isset($hospital_document->hospital_cancel_cheque)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->hospital_cancel_cheque) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->hospital_cancel_cheque) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -59,7 +59,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="Hospital Owner's PAN Card *">
                         @isset($hospital_document->hospital_owners_pan_card)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->hospital_owners_pan_card) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->hospital_owners_pan_card) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -82,7 +82,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="Hospital Owner's Aadhar Card*">
                         @isset($hospital_document->hospital_owners_aadhar_card)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->hospital_owners_aadhar_card) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->hospital_owners_aadhar_card) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -103,7 +103,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="Hospital Other Documents *">
                         @isset($hospital_document->hospital_other_documents)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->hospital_other_documents) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->hospital_other_documents) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -134,7 +134,7 @@
         Hospital Facilities and Infrastructure
     </div>
     <div class="card-body">
-        <form action="{{ route('super-admin.document-reimbursement.update', $hospital->id) }}"
+        <form action="{{ route('user.hospital-documents.update', $hospital->id) }}"
             method="post" id="initial-assessment-form" enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -146,7 +146,7 @@
                         <input type="text" readonly class="form-control"
                             placeholder="Pharmacy*">
                         @isset($hospital_document->pharmacy)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->pharmacy) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->pharmacy) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -167,7 +167,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="Lab*">
                         @isset($hospital_document->lab)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->lab) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->lab) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -190,7 +190,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="Ambulance *">
                         @isset($hospital_document->ambulance)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->ambulance) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->ambulance) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -213,7 +213,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="Operation Theatre*">
                         @isset($hospital_document->operation_theatre)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->operation_theatre) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->operation_theatre) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -234,7 +234,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="ICU *">
                         @isset($hospital_document->icu)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->icu) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->icu) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -256,7 +256,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="ICCU *">
                         @isset($hospital_document->iccu)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->iccu) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->iccu) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -278,7 +278,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="NICU *">
                         @isset($hospital_document->nicu)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->nicu) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->nicu) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -300,7 +300,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="CSC (Sterilization) *">
                         @isset($hospital_document->csc_sterilization)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->csc_sterilization) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->csc_sterilization) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -322,7 +322,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="Centralized-Gas (ONS) *">
                         @isset($hospital_document->centralized_gas_ons)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->centralized_gas_ons) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->centralized_gas_ons) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -344,7 +344,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="Centralized-AC *">
                         @isset($hospital_document->centralized_ac)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->centralized_ac) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->centralized_ac) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -366,7 +366,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="Kitchen *">
                         @isset($hospital_document->kitchen)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->kitchen) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->kitchen) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -388,7 +388,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="USG Machine *">
                         @isset($hospital_document->usg_machine)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->usg_machine) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->usg_machine) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -410,7 +410,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="Digital X-Ray *">
                         @isset($hospital_document->digital_x_ray)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->digital_x_ray) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->digital_x_ray) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -432,7 +432,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="CT *">
                         @isset($hospital_document->ct)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->ct) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->ct) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -454,7 +454,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="MRI *">
                         @isset($hospital_document->mri)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->mri) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->mri) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -476,7 +476,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="PET Scan *">
                         @isset($hospital_document->pet_scan)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->pet_scan) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->pet_scan) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -498,7 +498,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="Organ Transplant Unit *">
                         @isset($hospital_document->organ_transplant_unit)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->organ_transplant_unit) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->organ_transplant_unit) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -520,7 +520,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="Burn Unit *">
                         @isset($hospital_document->burn_unit)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->burn_unit) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->burn_unit) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -539,15 +539,14 @@
 
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
-                        <input type="text" class="form-control" readonly
-                            placeholder="Dialysis Unit *">
+                        <input type="text" class="form-control" readonly placeholder="Dialysis Unit *">
                         @isset($hospital_document->dialysis_unit)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->dialysis_unit) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->dialysis_unit) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
-                        <input type="file" name="dialysis_unit"
-                            id="dialysis_unit" hidden
+                        <input type="file" name="dialysis_unit_file"
+                            id="dialysis_unit_file" hidden
                             onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                         <label for="dialysis_unit"
                             class="btn btn-primary upload-label"><i
@@ -564,7 +563,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="Blood Bank *">
                         @isset($hospital_document->blood_banks)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->blood_banks) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->blood_banks) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -586,7 +585,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="Other *">
                         @isset($hospital_document->other)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->other) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->other) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -619,7 +618,7 @@
         Hospital Certificates
     </div>
     <div class="card-body">
-        <form action="{{ route('super-admin.document-reimbursement.update', $hospital->id) }}"
+        <form action="{{ route('user.hospital-documents.update', $hospital->id) }}"
             method="post" id="initial-assessment-form" enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -631,7 +630,7 @@
                         <input type="text" readonly class="form-control"
                             placeholder="Hospital Registration Certificate*">
                         @isset($hospital_document->hospital_registration_certificate)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->hospital_registration_certificate) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->hospital_registration_certificate) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -652,7 +651,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="Hospital Rohini Certificate*">
                         @isset($hospital_document->hospital_rohini_certificate)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->hospital_rohini_certificate) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->hospital_rohini_certificate) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -675,7 +674,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="Hospital Pollution Clearance Certificate *">
                         @isset($hospital_document->hospital_pollution_clearance_certificate)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->hospital_pollution_clearance_certificate) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->hospital_pollution_clearance_certificate) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -698,7 +697,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="Hospital Fire Safety Clearance Certificate*">
                         @isset($hospital_document->hospital_fire_safety_clearance_certificate)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->hospital_fire_safety_clearance_certificate) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->hospital_fire_safety_clearance_certificate) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -719,7 +718,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="Hospital Certificate of Incorporation *">
                         @isset($hospital_document->hospital_certificate_of_incorporation)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->hospital_certificate_of_incorporation) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->hospital_certificate_of_incorporation) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -741,7 +740,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="Hospital Certificate of Incorporation *">
                         @isset($hospital_document->hospital_certificate_of_incorporation)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->hospital_certificate_of_incorporation) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->hospital_certificate_of_incorporation) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -763,7 +762,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="Hospital TAN Certificate *">
                         @isset($hospital_document->hospital_tan_certificate)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->hospital_tan_certificate) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->hospital_tan_certificate) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -785,7 +784,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="Hospital GST Certificate *">
                         @isset($hospital_document->hospital_gst_certificate)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->hospital_gst_certificate) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->hospital_gst_certificate) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -807,7 +806,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="NABL Certificate *">
                         @isset($hospital_document->nabl_certificate)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->nabl_certificate) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->nabl_certificate) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -829,7 +828,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="NABH Certificate *">
                         @isset($hospital_document->nabh_certificate)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->nabh_certificate) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->nabh_certificate) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -851,7 +850,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="JCI Certificate *">
                         @isset($hospital_document->jci_certificate)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->jci_certificate) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->jci_certificate) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -873,7 +872,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="NQAC/NHSRC Certificate *">
                         @isset($hospital_document->nqac_or_nhsrc_certificate)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->nqac_or_nhsrc_certificate) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->nqac_or_nhsrc_certificate) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -895,7 +894,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="HIPPA Certificate *">
                         @isset($hospital_document->hippa_certificate)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->hippa_certificate) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->hippa_certificate) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -917,7 +916,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="ISO Certificates *">
                         @isset($hospital_document->iso_certificates)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->iso_certificates) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->iso_certificates) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -939,7 +938,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="Other Certificates *">
                         @isset($hospital_document->other_certificates)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->other_certificates) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->other_certificates) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -970,7 +969,7 @@
         Doctor Registration Certificate Documents
     </div>
     <div class="card-body">
-        <form action="{{ route('super-admin.document-reimbursement.update', $hospital->id) }}"
+        <form action="{{ route('user.hospital-documents.update', $hospital->id) }}"
             method="post" id="initial-assessment-form" enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -982,7 +981,7 @@
                         <input type="text" readonly class="form-control"
                             placeholder="Medical Superintendent's Registration Certificate*">
                         @isset($hospital_document->medical_superintendents_registration_certificate)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->medical_superintendents_registration_certificate) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->medical_superintendents_registration_certificate) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -1003,7 +1002,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="Doctor's Registration Certificate (Other)*">
                         @isset($hospital_document->doctors_registration_certificate_other)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->doctors_registration_certificate_other) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->doctors_registration_certificate_other) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -1035,7 +1034,7 @@
         Hospital MoUs (Signed) Documents
     </div>
     <div class="card-body">
-        <form action="{{ route('super-admin.document-reimbursement.update', $hospital->id) }}"
+        <form action="{{ route('user.hospital-documents.update', $hospital->id) }}"
             method="post" id="initial-assessment-form" enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -1047,7 +1046,7 @@
                         <input type="text" readonly class="form-control"
                             placeholder="MoU with BHC*">
                         @isset($hospital_document->mou_with_bhc)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->mou_with_bhc) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->mou_with_bhc) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -1068,7 +1067,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="MoUs with NBFCs / Banks (Triparty)*">
                         @isset($hospital_document->mous_with_nbfcs_banks_triparty)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->mous_with_nbfcs_banks_triparty) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->mous_with_nbfcs_banks_triparty) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -1091,7 +1090,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="MoUs (IC/TPA/Govt./PSU/Other Corporates*">
                         @isset($hospital_document->mous_ic_or_tpa_or_govt_or_psu_or_other_corporates)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->mous_ic_or_tpa_or_govt_or_psu_or_other_corporates) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->mous_ic_or_tpa_or_govt_or_psu_or_other_corporates) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -1123,7 +1122,7 @@
         Agreed Tariff and Packages with ICs / TPAs / Govt/ PSU / Other Corporates Documents
     </div>
     <div class="card-body">
-        <form action="{{ route('super-admin.document-reimbursement.update', $hospital->id) }}"
+        <form action="{{ route('user.hospital-documents.update', $hospital->id) }}"
             method="post" id="initial-assessment-form" enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -1135,7 +1134,7 @@
                         <input type="text" readonly class="form-control"
                             placeholder="Agreed Tariff and Packages*">
                         @isset($hospital_document->agreed_tariff_and_packages)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->agreed_tariff_and_packages) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->agreed_tariff_and_packages) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
@@ -1156,7 +1155,7 @@
                         <input type="text" class="form-control" readonly
                             placeholder="Other Packages*">
                         @isset($hospital_document->other_packages)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->id . '/' . $hospital_document->other_packages) }}"
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->other_packages) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset

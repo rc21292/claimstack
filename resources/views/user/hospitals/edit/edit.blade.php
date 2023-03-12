@@ -77,7 +77,7 @@
                                 </a>
                             </li>
 
-                            <li class="nav-item" style="display: none;">
+                            <li class="nav-item">
                                 <a href="#empanelment_status" data-bs-toggle="tab" aria-expanded="false"
                                     class="nav-link rounded-0 ">
                                     <i class="mdi mdi-home-variant d-md-none d-block"></i>
