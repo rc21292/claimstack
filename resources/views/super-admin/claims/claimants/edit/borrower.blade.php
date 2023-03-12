@@ -909,7 +909,6 @@
                                             <div class="input-group">
                                                 <input type="text" class="form-control" id="co_borrower_nominee_dob"
                                                     max="{{ date('Y-m-d') }}" name="co_borrower_nominee_dob"
-                                                    placeholder="Enter Co-Borrower / Nominee DOB"
                                                     value="{{ old('co_borrower_nominee_dob', @$borrower->co_borrower_nominee_dob) }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
                                                 <input type="file" name="co_borrower_nominee_dob_file"
                                                     id="co_borrower_nominee_dob_file" hidden
