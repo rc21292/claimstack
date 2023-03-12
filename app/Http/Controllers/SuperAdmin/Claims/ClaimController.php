@@ -29,7 +29,7 @@ class ClaimController extends Controller
 
     public function assessmentStatus(Request $request)
     {
-       
+
         $patient_id     = $request->patient_id;
         $hospitals      = Hospital::get();
         $insurers       = Insurer::get();
@@ -401,7 +401,7 @@ class ClaimController extends Controller
      */
     public function store(Request $request)
     {
-       
+
         $rules =  [
             'patient_id'                => 'required',
             'hospital_name'             => 'required',
@@ -441,7 +441,7 @@ class ClaimController extends Controller
             'disease_type'              => 'required',
             'estimated_amount'          => 'required|max:8',
             'comments'                  => isset($request->comments) ? 'max:250' : '',
-            'discharge_date'            => 'required',
+            'discharge_date'            => 'required|date|after_or_equal:admission_date',
             'days_in_hospital'          => 'required',
             'room_category'             => 'required',
             'consultation_date'         => 'required|before_or_equal:' . now()->format('Y-m-d'),
@@ -583,7 +583,7 @@ class ClaimController extends Controller
 
     public function saveAssesmentStatus(Request $request)
     {
-        
+
         $rules =  [
             'patient_id'                                 => 'required|max:255',
             'claim_id'                                   => 'required|max:255',
@@ -611,7 +611,7 @@ class ClaimController extends Controller
             'query_final_assessment'                     => 'required',
             'final_assessment_amount'                    => 'required|max:255',
             'final_assessment_suspected_fraud'           => 'required',
-           
+
 
         ];
 
@@ -641,17 +641,17 @@ class ClaimController extends Controller
             'final_assessment_status.required'            => 'please enter final assessment status',
             'final_assessment_amount.required'            => 'please enter final assessment amount',
             'final_assessment_suspected_fraud.required'   => 'please enter final assessment suspected fraud',
-            
+
 
         ];
 
         $this->validateWithBag('assisment-status-form', $request, $rules, $messages);
-        
+
         $request = $request->except('_token');
         $request['patient_name'] = $request['patient_firstname']." ".$request['patient_middlename']." ".$request['patient_lastname'];
         AssessmentStatus::create($request);
         return redirect()->route('super-admin.claims.assessment-status')->with('success', 'Assessment status saved successfully');
-       
+
     }
 
     public function updateInsurancePolicy(Request $request, $id)
@@ -929,7 +929,7 @@ class ClaimController extends Controller
             'disease_name'              => 'required',
             'disease_type'              => 'required',
             'estimated_amount'          => 'required|max:8',
-            'discharge_date'            => 'required',
+            'discharge_date'            => 'required|date|after_or_equal:admission_date',
             'days_in_hospital'          => 'required',
             'room_category'             => 'required',
             'consultation_date'         => 'required|before_or_equal:' . now()->format('Y-m-d'),
@@ -1043,7 +1043,7 @@ class ClaimController extends Controller
             'associate_partner_id'              => $request->associate_partner_id,
         ]);
 
-       
+
 
         return redirect()->route('super-admin.claims.edit', $id)->with('success', 'Claim updated successfully');
     }

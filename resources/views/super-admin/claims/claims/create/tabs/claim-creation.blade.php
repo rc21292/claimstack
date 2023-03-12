@@ -175,8 +175,8 @@
             </div>
             <div class="col-md-6 mt-3">
                 <label for="admission_date">Date of Admission (DD-MM-YYYY) <span class="text-danger">*</span></label>
-                <input type="date" class="form-control" id="admission_date" max="{{ date('Y-m-d') }}"
-                    name="admission_date" value="{{ old('admission_date') }}">
+                <input type="text" class="form-control" id="admission_date" max="{{ date('Y-m-d') }}"
+                    name="admission_date" value="{{ old('admission_date') }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
                 @error('admission_date')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -192,8 +192,8 @@
             <div class="col-md-6 mt-3">
                 <label for="discharge_date">Expected Date of Discharge (DD-MM-YYYY) <span
                         class="text-danger">*</span></label>
-                <input type="date" class="form-control" id="discharge_date" name="discharge_date"
-                    value="{{ old('discharge_date') }}">
+                <input type="text" class="form-control" id="discharge_date" name="discharge_date"
+                    value="{{ old('discharge_date') }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy" onchange="calculateExpectedDays();">
                 @error('discharge_date')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -337,8 +337,8 @@
             <div class="col-md-6 mt-3">
                 <label for="consultation_date">Date of First Consultation (DD-MM-YYYY) <span
                         class="text-danger">*</span></label>
-                <input type="date" class="form-control" id="consultation_date" max="{{ date('Y-m-d') }}"
-                    name="consultation_date" value="{{ old('consultation_date') }}">
+                <input type="text" class="form-control" id="consultation_date" max="{{ date('Y-m-d') }}"
+                    name="consultation_date" value="{{ old('consultation_date') }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
                 @error('consultation_date')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -346,9 +346,9 @@
             <div class="col-md-6 mt-3">
                 <label for="date_of_delivery">Date of Injury / Date Disease first detected / Date of delivery<span
                         class="text-danger">*</span></label>
-                <input type="date" class="form-control" id="date_of_delivery" max="{{ date('Y-m-d') }}"
+                <input type="text" class="form-control" id="date_of_delivery" max="{{ date('Y-m-d') }}"
                     name="date_of_delivery" value="{{ old('date_of_delivery') }}"
-                    placeholder="Date of Injury / Date Disease first detected / Date of delivery (DD-MM-YYYY)">
+                    placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
                 @error('date_of_delivery')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror

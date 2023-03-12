@@ -133,7 +133,7 @@
                                         @foreach ($doctors as $doctor)
                                             <option value="{{ $doctor->id }}"
                                                 {{ old('treating_doctor') == $doctor->id ? 'selected' : '' }}
-                                                 data-specialization="{{ $doctor->specialization }}"  data-registration="{{ $doctor->registration_no }}"  data-mobile="{{ $doctor->doctors_mobile_no }}" > 
+                                                 data-specialization="{{ $doctor->specialization }}"  data-registration="{{ $doctor->registration_no }}"  data-mobile="{{ $doctor->doctors_mobile_no }}" >
                                                {{$doctor->doctors_firstname}} {{$doctor->doctors_lastname}}
                                             </option>
                                         @endforeach
@@ -219,8 +219,8 @@
 
                                 <div class="col-md-12 mt-3">
                                     <label for="dob">Patient DOB <span class="text-danger">*</span></label>
-                                    <div class="input-group" id="datepicker2">
-                                        <input type="text" class="form-control" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy" data-date-container="#datepicker2" id="dob" name="dob" value="{{ old('dob') }}"  minDate="'+moment()+'" onchange="calculateAge();"/>
+                                    <div class="input-group" id="patient_dob">
+                                        <input type="text" class="form-control" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy" data-date-container="#patient_dob" id="dob" name="dob" value="{{ old('dob') }}"  minDate="'+moment()+'" onchange="calculateAge();"/>
                                         <input type="file" name="dobfile" id="dobfile" hidden
                                             onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                                         <label for="dobfile" class="btn btn-primary upload-label"><i
@@ -591,7 +591,7 @@
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
-                               
+
 
                                 <div class="col-md-12 mt-3">
                                     <label for="comments">Patient Comments </label>
@@ -633,7 +633,7 @@
             var state = $("#hospital_id").select2().find(":selected").data("state");
             var pincode = $("#hospital_id").select2().find(":selected").data("pincode");
             var associate_partner_id = $("#hospital_id").select2().find(":selected").data("ap");
-       
+
             $('#hospital_name').val(name);
             $('#hospital_address').val(address);
             $('#hospital_city').val(city);
@@ -726,12 +726,20 @@
     function setTreatingDoctorOptions(){
             var specialization = $("#treating_doctor").select2().find(":selected").data("specialization");
             var registration = $("#treating_doctor").select2().find(":selected").data("registration");
-            var mobile = $("#treating_doctor").select2().find(":selected").data("mobile");            
+            var mobile = $("#treating_doctor").select2().find(":selected").data("mobile");
 
             $('#qualification').val(specialization);
             $('#doctor_registration_no').val(registration);
-            $('#doctor_mobile_no').val(mobile);           
+            $('#doctor_mobile_no').val(mobile);
     }
-    
+
+    </script>
+    <script>
+        $(function(){
+            $('#dob').datepicker({
+                endDate: '+0d',
+                autoclose: true
+            });
+        });
     </script>
 @endpush

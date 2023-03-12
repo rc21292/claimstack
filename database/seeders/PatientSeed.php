@@ -29,7 +29,7 @@ class PatientSeed extends Seeder
         for ($i = 1; $i < 20; $i++) {
             $hospital                       = Hospital::inRandomOrder()->first();
             $hospital->ap_name              = AssociatePartner::where('id', $hospital->linked_associate_partner)->value('name');
-            $dob                            = Carbon::now()->subYears(35)->format('Y-m-d');
+            $dob                            = Carbon::now()->subYears(35)->format('d-m-Y');
             $age                            = Carbon::parse($dob)->age;
             $address                        = $faker->address;
             $city                           = $faker->city;

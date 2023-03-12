@@ -98,6 +98,7 @@
                 setAdditionalPolicy();
                 setCurrentlyCovered();
                 setHospitalizedOption();
+                calculateExpectedDays();
             });
         @endif
 
@@ -308,10 +309,10 @@
         var category_option = $('#system_of_medicine').val();
         switch (category_option) {
                 case 'Allopathy':
-                    $("#treatment_category").val("{{ old('treatment_category',@$claim->treatment_category) }}");                   
-                    break;                
+                    $("#treatment_category").val("{{ old('treatment_category',@$claim->treatment_category) }}");
+                    break;
                 default:
-                    $("#treatment_category").val("Non Allopathic");                   
+                    $("#treatment_category").val("Non Allopathic");
                     break;
             }
     }
@@ -321,16 +322,16 @@
         var category_option = $('#has_family_physician').val();
         switch (category_option) {
                 case 'Yes':
-                   $("#family_physician").prop("readonly", false);       
-                    $("#family_physician_contact_no").prop("readonly", false);                   
-                    break;  
+                   $("#family_physician").prop("readonly", false);
+                    $("#family_physician_contact_no").prop("readonly", false);
+                    break;
                 case 'No':
-                   $("#family_physician").prop("readonly", true);   
-                    $("#family_physician_contact_no").prop("readonly", true);                       
-                    break;             
+                   $("#family_physician").prop("readonly", true);
+                    $("#family_physician_contact_no").prop("readonly", true);
+                    break;
                 default:
-                     $("#family_physician").prop("readonly", false);  
-                      $("#family_physician_contact_no").prop("readonly", false);                                
+                     $("#family_physician").prop("readonly", false);
+                      $("#family_physician_contact_no").prop("readonly", false);
                     break;
             }
     }
@@ -340,12 +341,44 @@
         var category_option = $('#chronic_illness').val();
         switch (category_option) {
                 case 'Any other ailment':
-                    $("#ailment_details").prop("readonly", false);            
-                    break;                
+                    $("#ailment_details").prop("readonly", false);
+                    break;
                 default:
-                     $("#ailment_details").prop("readonly", true);                           
+                     $("#ailment_details").prop("readonly", true);
                     break;
             }
+    }
+</script>
+<script>
+    $(function(){
+        $('#admission_date').datepicker({
+            endDate: '+0d',
+            autoclose: true
+        });
+    });
+    $(function(){
+        $('#consultation_date').datepicker({
+            endDate: '+0d',
+            autoclose: true
+        });
+    });
+    $(function(){
+        $('#date_of_delivery').datepicker({
+            endDate: '+0d',
+            autoclose: true
+        });
+    });
+</script>
+<script>
+    function calculateExpectedDays(){
+        var d1 = $('#admission_date').datepicker('getDate'),
+            d2 = $('#discharge_date').datepicker('getDate'),
+            diff = 0;
+
+        if (d1 && d2) {
+            diff = Math.floor((d2.getTime() - d1.getTime()) / 86400000); // ms per day
+        }
+        $('#days_in_hospital').val(diff);
     }
 </script>
 @endpush
