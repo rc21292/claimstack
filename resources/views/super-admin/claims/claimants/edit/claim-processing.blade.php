@@ -146,7 +146,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="patient_age">Patient Age <span class="text-danger">*</span></label>
-                                            <input type="number" class="form-control" readonly 
+                                            <input type="number" class="form-control" readonly
                                             id="patient_age" name="patient_age" placeholder="Patient Age"
                                             value="{{ old('patient_age', $patient->age) }}">
                                             @error('patient_age', 'claim-processing-form')
@@ -310,7 +310,7 @@
 
                                         <div class="col-md-6 mb-3">
                                             <label for="policy_start_date">Policy Start Date <span class="text-danger">*</span></label>
-                                            <input type="date" readonly placeholder="Enter Policy Start Date" class="form-control" id="policy_start_date"
+                                            <input type="text" readonly placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy" class="form-control" id="policy_start_date"
                                             name="policy_start_date" value="{{ old('policy_start_date', @$policy->start_date) }}">
                                             @error('policy_start_date', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -319,7 +319,7 @@
 
                                         <div class="col-md-6 mb-3">
                                             <label for="policy_expiry_date">Policy Expiry Date <span class="text-danger">*</span></label>
-                                            <input type="date" readonly placeholder="Enter Policy Expiry Date" class="form-control" id="policy_expiry_date"
+                                            <input type="text" readonly placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy" class="form-control" id="policy_expiry_date"
                                             name="policy_expiry_date" value="{{ old('policy_expiry_date', @$policy->expiry_date) }}">
                                             @error('policy_expiry_date', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -328,7 +328,7 @@
 
                                         <div class="col-md-6 mb-3">
                                             <label for="policy_commencement_date_without_break">Policy Commencement Date (without Break) <span  class="text-danger">*</span></label>
-                                            <input type="date" readonly placeholder="Enter Policy Commencement Date (without Break)"
+                                            <input type="text" readonly placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy"
                                             class="form-control" id="policy_commencement_date_without_break" name="policy_commencement_date_without_break"
                                             value="{{ old('policy_commencement_date_without_break', @$policy->commencement_date) }}">
                                             @error('policy_commencement_date_without_break', 'claim-processing-form')
@@ -338,8 +338,8 @@
 
                                         <div class="col-md-6 mb-3">
                                             <label for="date_of_admission">Date of Admission (DD-MM-YYYY) <span class="text-danger">*</span></label>
-                                            <input type="date" readonly class="form-control" id="date_of_admission" name="date_of_admission"
-                                            value="{{ old('date_of_admission', @$claim->admission_date) }}">
+                                            <input type="text" readonly class="form-control" id="date_of_admission" name="date_of_admission"
+                                            value="{{ old('date_of_admission', @$claim->admission_date) }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
                                             @error('date_of_admission', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -357,8 +357,8 @@
                                         <div class="col-md-6 mb-3">
                                             <label for="discharge_date">Expected Date of Discharge (DD-MM-YYYY) <span
                                                     class="text-danger">*</span></label>
-                                            <input type="date" readonly class="form-control" id="discharge_date" name="discharge_date"
-                                                value="{{ old('discharge_date', $claim->discharge_date) }}">
+                                            <input type="text" readonly class="form-control" id="discharge_date" name="discharge_date"
+                                                value="{{ old('discharge_date', $claim->discharge_date) }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
                                             @error('discharge_date')
                                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -401,9 +401,9 @@
 
                                         <div class="col-md-6 mb-3">
                                             <label for="date_of_delivery">Date of Injury / Date Disease first detected / Date of delivery <span class="text-danger">*</span></label>
-                                            <input type="date" readonly class="form-control" id="date_of_delivery" name="date_of_delivery"
+                                            <input type="text" readonly class="form-control" id="date_of_delivery" name="date_of_delivery"
                                                 value="{{ old('date_of_delivery', $claim->date_of_delivery) }}"
-                                                placeholder="Date of Injury / Date Disease first detected / Date of delivery (DD-MM-YYYY)">
+                                                placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
                                             @error('date_of_delivery')
                                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -413,8 +413,8 @@
                                         <div class="col-md-6 mb-3">
                                             <label for="consultation_date">Date of First Consultation (DD-MM-YYYY) <span
                                                     class="text-danger">*</span></label>
-                                            <input type="date" readonly class="form-control" id="consultation_date" max="{{ date('Y-m-d') }}"
-                                                name="consultation_date" value="{{ old('consultation_date', $claim->consultation_date) }}">
+                                            <input type="text" readonly class="form-control" id="consultation_date" max="{{ date('Y-m-d') }}"
+                                                name="consultation_date" value="{{ old('consultation_date', $claim->consultation_date) }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
                                             @error('consultation_date')
                                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -713,7 +713,7 @@
                                             @enderror
                                         </div>
 
-                                        
+
 
                                         <div class="col-md-12 mt-3 bg-primary text-white" style="line-height: 30px; margin-left: 2px; ;"> Disease & ICD </div>
 
@@ -730,7 +730,7 @@
 
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="primary_diagnosis_icd_leveli_disease">ICD - Level - I - Disease <span class="text-danger">*</span></label>                                  
+                                            <label for="primary_diagnosis_icd_leveli_disease">ICD - Level - I - Disease <span class="text-danger">*</span></label>
 
                                             <select class="form-control select2" data-toggle="select2" id="primary_diagnosis_icd_leveli_disease" name="primary_diagnosis_icd_leveli_disease">
                                                 <option value="">Please Select</option>
@@ -1426,7 +1426,7 @@
 
                                     </div>
                                 </div>
-                            </div>                            
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -1472,23 +1472,23 @@
         $(".final_assessment_amount").attr('readonly', false);
         $("#final_assessment_comments").attr('readonly', false);
         $("#processing_query").attr('readonly', false);
-    });    
+    });
 
     $('select').change(function(event) {
 
         var id = $(this).attr('id');
 
         if(id.includes("disease")){
-        var new_id = id.replace("disease", "code");            
+        var new_id = id.replace("disease", "code");
         }
 
         if(id.includes("procedure_ii_pcs") || id.includes("procedure_i_pcs") || id.includes("procedure_iii_pcs")){
-        var new_id = id.replace("name", "code");            
+        var new_id = id.replace("name", "code");
         }
 
         if(id.includes("short_name")){
-        var new_id = id.replace("short_name", "code");         
-        var new_id_id = id.replace("short_name", "long_name");         
+        var new_id = id.replace("short_name", "code");
+        var new_id_id = id.replace("short_name", "long_name");
         }
 
         $("#"+new_id).attr('readonly', true);;
@@ -1496,7 +1496,7 @@
         $("#"+new_id).val($(this).select2().find(":selected").data("code"));
         $("#"+new_id_id).val($(this).select2().find(":selected").data("long_name"));
     });
-    
+
 </script>
 @endpush
 

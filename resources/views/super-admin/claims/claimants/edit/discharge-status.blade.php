@@ -178,9 +178,9 @@
                                         <div class="col-md-6 mb-3">
                                             <label for="date_of_admission">Date of Admission (DD-MM-YYYY) <span
                                                     class="text-danger">*</span></label>
-                                            <input type="date" disabled class="form-control" id="date_of_admission"
+                                            <input type="text" disabled class="form-control" id="date_of_admission"
                                                 name="date_of_admission"
-                                                value="{{ old('date_of_admission', $claimant->claim->date_of_admission) }}">
+                                                value="{{ old('date_of_admission', $claimant->claim->date_of_admission) }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
                                             @error('date_of_admission')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
@@ -228,10 +228,10 @@
                                         <div class="col-md-6 mb-3">
                                             <label for="date_of_delivery">Date of Injury / Date Disease first detected /
                                                 Date of delivery <span class="text-danger">*</span></label>
-                                            <input type="date" readonly class="form-control" id="date_of_delivery"
+                                            <input type="text" readonly class="form-control" id="date_of_delivery"
                                                 name="date_of_delivery"
                                                 value="{{ old('date_of_delivery', $claimant->claim->date_of_delivery) }}"
-                                                placeholder="Date of Injury / Date Disease first detected / Date of delivery (DD-MM-YYYY)">
+                                                placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
                                             @error('date_of_delivery')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
@@ -258,7 +258,7 @@
                                                         Accident</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" disabled 
+                                                    <input class="form-check-input" type="radio" disabled
                                                         id="injury_reason_substance"
                                                         value="Substance Abuse-Alcohol Consumption" name="injury_reason"
                                                         @if (old('injury_reason', isset($discharge_status) ? $discharge_status->injury_reason : '') == 'Substance Abuse-Alcohol Consumption') checked @endif>
@@ -318,7 +318,7 @@
                                                         for="if_medico_legal_case_mlc_yes">Yes</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" disabled 
+                                                    <input class="form-check-input" type="radio" disabled
                                                         id="if_medico_legal_case_mlc_no" value="No"
                                                         name="if_medico_legal_case_mlc"
                                                         @if (old('if_medico_legal_case_mlc', isset($discharge_status) ? $discharge_status->if_medico_legal_case_mlc : '') ==
@@ -338,7 +338,7 @@
                                                     class="text-danger">*</span></label>
                                             <div class="mt-2">
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" disabled 
+                                                    <input class="form-check-input" type="radio" disabled
                                                         id="reported_to_police_yes" value="Yes"
                                                         name="reported_to_police"
                                                         @if (old('reported_to_police', isset($discharge_status) ? $discharge_status->reported_to_police : '') == 'Yes') checked @endif>
@@ -346,7 +346,7 @@
                                                         for="reported_to_police_yes">Yes</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" disabled 
+                                                    <input class="form-check-input" type="radio" disabled
                                                         id="reported_to_police_no" value="No"
                                                         name="reported_to_police"
                                                         @if (old('reported_to_police', isset($discharge_status) ? $discharge_status->reported_to_police : '') == 'No') checked @endif>
@@ -363,7 +363,7 @@
                                             <label for="mlc_report_and_police_fir_attached">MLC Report & Police FIR attached <span class="text-danger">*</span></label>
                                             <div class="mt-2">
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" disabled 
+                                                    <input class="form-check-input" type="radio" disabled
                                                         id="mlc_report_and_police_fir_attached_yes" value="Yes"
                                                         name="mlc_report_and_police_fir_attached"
                                                         @if (old(
@@ -373,7 +373,7 @@
                                                         for="mlc_report_and_police_fir_attached_yes">Yes</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" disabled 
+                                                    <input class="form-check-input" type="radio" disabled
                                                         id="mlc_report_and_police_fir_attached_no" value="No"
                                                         name="mlc_report_and_police_fir_attached"
                                                         @if (old(
@@ -415,8 +415,8 @@
                                         <div class="col-md-12 mt-3">
                                             <label for="maternity_date_of_delivery">If Maternity - Date of Delivery<span
                                                     class="text-danger">*</span></label>
-                                            <input type="date" disabled class="form-control" id="maternity_date_of_delivery"
-                                                name="maternity_date_of_delivery"
+                                            <input type="text" disabled class="form-control" id="maternity_date_of_delivery"
+                                                name="maternity_date_of_delivery" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy"
                                                 value="{{ old('maternity_date_of_delivery', isset($discharge_status) ? $discharge_status->maternity_date_of_delivery : '') }}">
 
                                             @error('maternity_date_of_delivery')
@@ -442,7 +442,7 @@
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
-            
+
                                         <div class="col-md-3 mt-1">
                                             <label for="maternity_gravida_status_p">P<span class="text-danger">*</span></label>
                                             <input type="number" disabled pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==2) return false;" class="form-control" id="maternity_gravida_status_p"
@@ -451,7 +451,7 @@
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
-            
+
                                         <div class="col-md-3 mt-1">
                                             <label for="maternity_gravida_status_l">L<span class="text-danger">*</span></label>
                                             <input type="number" disabled pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==2) return false;" class="form-control" id="maternity_gravida_status_l"
@@ -460,7 +460,7 @@
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
-            
+
                                         <div class="col-md-3 mt-1">
                                             <label for="maternity_gravida_status_a">A<span class="text-danger">*</span></label>
                                             <input type="number" disabled pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==2) return false;" class="form-control" id="maternity_gravida_status_a"
@@ -483,7 +483,7 @@
                                                         for="premature_baby_yes">Yes</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" disabled 
+                                                    <input class="form-check-input" type="radio" disabled
                                                         id="premature_baby_no" value="No"
                                                         name="premature_baby"
                                                         @if (old('premature_baby', isset($discharge_status) ? $discharge_status->premature_baby : '') == 'No') checked @endif>
@@ -498,24 +498,24 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="date_of_discharge">Date of Discharge<span class="text-danger">*</span></label>
-                                            <input type="date" class="form-control" id="date_of_discharge" name="date_of_discharge" 
-                                            value="{{ old('date_of_discharge', isset($discharge_status) ? $discharge_status->date_of_discharge : '') }}">
-            
+                                            <input type="text" class="form-control" id="date_of_discharge" name="date_of_discharge"
+                                            value="{{ old('date_of_discharge', isset($discharge_status) ? $discharge_status->date_of_discharge : '') }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
+
                                             @error('date_of_discharge')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
-            
+
                                         <div class="col-md-6 mt-3">
                                             <label for="time_of_discharge">Time of Discharge<span class="text-danger">*</span></label>
-                                            <input type="time" class="form-control" id="time_of_discharge" name="time_of_discharge" 
+                                            <input type="time" class="form-control" id="time_of_discharge" name="time_of_discharge"
                                             value="{{ old('time_of_discharge', isset($discharge_status) ? $discharge_status->time_of_discharge : '') }}">
-            
+
                                             @error('time_of_discharge')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
-            
+
                                         <div class="col-md-6 mt-3">
                                             <label for="discharge_status">Discharge Status <span class="text-danger">*</span></label>
                                             <select class="form-select" id="discharge_status" name="discharge_status">
@@ -533,7 +533,7 @@
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
-            
+
                                         <div class="col-md-12 mt-1">
                                             <label for="death_summary">Death Summary<span class="text-danger">*</span></label>
                                             <div class="input-group">
@@ -541,23 +541,23 @@
                                             rows="5">{{ old('death_summary', isset($discharge_status) ? $discharge_status->death_summary : '') }}</textarea>
                                             @error('death_summary')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                            @enderror                                         
+                                            @enderror
                                         </div>
-                                        
+
                                         <div class="col-md-12 mt-1">
                                             <label for="discharge_status_comments">Discharge Status Comments<span class="text-danger">*</span></label>
                                             <textarea class="form-control" id="discharge_status_comments" name="discharge_status_comments" maxlength="250" placeholder="Enter Discharge Status Comments"
                                             rows="5">{{ old('discharge_status_comments', isset($discharge_status) ? $discharge_status->discharge_status_comments : '') }}</textarea>
-            
+
                                             @error('discharge_status_comments')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
-            
+
                                         <div class="col-md-12 text-end mt-3">
                                             <button type="submit" class="btn btn-success" form="discharge-status-form">
                                             Save / Update Discharge Status</button>
-                                        </div>  
+                                        </div>
 
                                     </div>
                                 </div>
@@ -580,28 +580,28 @@
 
         if(mlc == 'Yes'){
             $('#reported_to_police_yes').removeAttr('disabled');
-            $('#reported_to_police_no').removeAttr('disabled');            
+            $('#reported_to_police_no').removeAttr('disabled');
         }
 
         if(rtp == 'Yes'){
             $('#mlc_report_and_police_fir_attached_yes').removeAttr('disabled');
-            $('#mlc_report_and_police_fir_attached_no').removeAttr('disabled');           
+            $('#mlc_report_and_police_fir_attached_no').removeAttr('disabled');
         }
 
         if(fat == 'Yes'){
-            $('#fir_or_mlc_no').removeAttr('disabled');           
+            $('#fir_or_mlc_no').removeAttr('disabled');
         }
 
         if(ins == 'Yes' && mlc  == 'No'){
-            $('#not_reported_to_police_reason').removeAttr('disabled');  
+            $('#not_reported_to_police_reason').removeAttr('disabled');
         }else{
             $('#not_reported_to_police_reason').attr('disabled',true);
         }
 
-       
+
         //on load
         let hdt = $('input[name="hospitalization_due_to"]:checked').val();
-          if(hdt == "Injury") { 
+          if(hdt == "Injury") {
             $('#injury_reason_self').removeAttr('disabled');
             $('#injury_reason_road').removeAttr('disabled');
             $('#injury_reason_substance').removeAttr('disabled');
@@ -620,7 +620,7 @@
                 $('#premature_baby_yes').removeAttr('disabled');
                 $('#premature_baby_no').removeAttr('disabled');
          }
-         
+
          //after change
         $('input[name="hospitalization_due_to"]').on('change',function(e){
             if($(this).val() == 'Injury'){
@@ -631,9 +631,9 @@
                 $('#injury_due_to_substance_abuse_alcohol_consumption_no').removeAttr('disabled');
                 $('#if_medico_legal_case_mlc_yes').removeAttr('disabled');
                 $('#if_medico_legal_case_mlc_no').removeAttr('disabled');
-                
+
             } else if($(this).val() == 'Maternity'){
-               
+
                 $('#maternity_date_of_delivery').removeAttr('disabled');
                 $('#maternity_gravida_status_g').removeAttr('disabled');
                 $('#maternity_gravida_status_p').removeAttr('disabled');
@@ -641,7 +641,7 @@
                 $('#maternity_gravida_status_a').removeAttr('disabled');
                 $('#premature_baby_yes').removeAttr('disabled');
                 $('#premature_baby_no').removeAttr('disabled');
-                
+
             }
             else {
                 $('#injury_reason_self').attr('disabled',true);
@@ -664,7 +664,7 @@
             }
         });
         $('input[name="if_medico_legal_case_mlc"]').on('change',function(e){
-           
+
             if($(this).val() == 'Yes'){
                $('#reported_to_police_yes').removeAttr('disabled');
                $('#reported_to_police_no').removeAttr('disabled');
@@ -677,7 +677,7 @@
             if($('input[name="injury_due_to_substance_abuse_alcohol_consumption"]:checked').val() == 'Yes' && $(this).val() == 'No'){
                 $("#not_reported_to_police_reason").removeAttr('disabled');
             }
-            
+
         });
 
         $('input[name="reported_to_police"]').on('change',function(e){
@@ -699,7 +699,7 @@
         });
 
         $('input[name="reported_to_police"]').on('change',function(){
-            
+
             if($('input[name="reported_to_police"]:checked').val() == 'No'){
                $('#not_reported_to_police_reason').removeAttr('disabled');
             } else {
@@ -713,7 +713,7 @@
             } else {
                 $('#death_summary').attr('disabled',true);
             }
-        });   
+        });
 
 </script>
 @endpush

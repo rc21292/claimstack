@@ -78,7 +78,7 @@
                     </li>
                 </ul>
 
-                <div class="tab-content">                   
+                <div class="tab-content">
                     <div class="tab-pane show active" id="borrower_creation_tab">
                         <div class="card">
                             <div class="card-body">
@@ -508,9 +508,9 @@
 
                                         <div class="col-md-4 mt-3">
                                             <label for="dob">Borrower DOB <span class="text-danger">*</span></label>
-                                            <input type="date" class="form-control" id="dob" name="dob"
+                                            <input type="text" class="form-control" id="dob" name="dob"
                                                 max="{{ date('Y-m-d') }}" value="{{ old('dob', @$borrower->dob) }}"
-                                                onchange="calculateAge();">
+                                                onchange="calculateAge();" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
 
                                             @error('dob')
                                                 <span id="name-error"
@@ -907,10 +907,10 @@
                                             <label for="co_borrower_nominee_dob">Co-Borrower / Nominee DOB <span
                                                     class="text-danger">*</span></label>
                                             <div class="input-group">
-                                                <input type="date" class="form-control" id="co_borrower_nominee_dob"
+                                                <input type="text" class="form-control" id="co_borrower_nominee_dob"
                                                     max="{{ date('Y-m-d') }}" name="co_borrower_nominee_dob"
                                                     placeholder="Enter Co-Borrower / Nominee DOB"
-                                                    value="{{ old('co_borrower_nominee_dob', @$borrower->co_borrower_nominee_dob) }}">
+                                                    value="{{ old('co_borrower_nominee_dob', @$borrower->co_borrower_nominee_dob) }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
                                                 <input type="file" name="co_borrower_nominee_dob_file"
                                                     id="co_borrower_nominee_dob_file" hidden
                                                     onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
@@ -1070,7 +1070,7 @@
         </div>
     </div>
 @endsection
-@push('scripts')    
+@push('scripts')
     <script>
         function patientBorrowerSameOptions() {
             var is_patient_and_borrower_same    = $('#is_patient_and_borrower_same').val();

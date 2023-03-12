@@ -342,7 +342,7 @@
                                             @error('borrower_pan_no')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
-                                            @enderror                                           
+                                            @enderror
                                         </div>
 
                                         <div class="col-md-6 mt-3">
@@ -354,12 +354,12 @@
                                                     class="form-control" id="borrower_aadhar_no"
                                                     name="borrower_aadhar_no" maxlength="12"
                                                     placeholder="Enter Aadhar no." readonly
-                                                    value="{{ old('borrower_aadhar_no', $borrower->borrower_aadhar_no) }}">                                                
+                                                    value="{{ old('borrower_aadhar_no', $borrower->borrower_aadhar_no) }}">
                                             </div>
                                             @error('borrower_aadhar_no')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
-                                            @enderror                                            
+                                            @enderror
                                         </div>
 
 
@@ -487,44 +487,44 @@
                                     <div class="form-group row">
                                         <div class="col-md-6 mt-3">
                                             <label for="date_of_loan_application">Date of Loan Application (DD/MM/YYYY)<span class="text-danger">*</span></label>
-                                            <input type="date" class="form-control" readonly id="date_of_loan_application" name="date_of_loan_application" 
-                                            value="{{ old('date_of_loan_application', isset($lending_status) ? $lending_status->date_of_loan_application : '') }}">
-            
+                                            <input type="text" class="form-control" readonly id="date_of_loan_application" name="date_of_loan_application"
+                                            value="{{ old('date_of_loan_application', isset($lending_status) ? $lending_status->date_of_loan_application : '') }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
+
                                             @error('date_of_loan_application')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
-            
+
                                         <div class="col-md-6 mt-3">
                                             <label for="time_of_loan_application">Time of Loan Application (HH:MM) <span class="text-danger">*</span></label>
-                                            <input type="time" class="form-control" id="time_of_loan_application" readonly name="time_of_loan_application" 
+                                            <input type="time" class="form-control" id="time_of_loan_application" readonly name="time_of_loan_application"
                                             value="{{ old('time_of_loan_application', isset($lending_status) ? $lending_status->time_of_loan_application : '') }}">
-            
+
                                             @error('time_of_loan_application')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
-            
+
                                         <div class="col-md-6 mt-3">
                                             <label for="date_of_loan_re_application">Date of Loan Re-Application (DD/MM/YYYY)<span class="text-danger">*</span></label>
-                                            <input type="date" class="form-control" id="date_of_loan_re_application" readonly name="date_of_loan_re_application" 
+                                            <input type="text" class="form-control" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy" id="date_of_loan_re_application" readonly name="date_of_loan_re_application"
                                             value="{{ old('date_of_loan_re_application', isset($lending_status) ? $lending_status->date_of_loan_re_application : '') }}">
-            
+
                                             @error('date_of_loan_re_application')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
-            
+
                                         <div class="col-md-6 mt-3">
                                             <label for="time_of_loan_re_application">Time of Loan Re-Application (HH:MM) <span class="text-danger">*</span></label>
-                                            <input type="time" class="form-control" id="time_of_loan_re_application" readonly name="time_of_loan_re_application" 
+                                            <input type="time" class="form-control" id="time_of_loan_re_application" readonly name="time_of_loan_re_application"
                                             value="{{ old('time_of_loan_re_application', isset($lending_status) ? $lending_status->time_of_loan_re_application : '') }}">
-            
+
                                             @error('time_of_loan_re_application')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
-            
+
                                         <div class="col-md-6 mt-3">
                                             <label for="loan_id_or_no">Loan ID / No.<span class="text-danger">*</span></label>
                                             <div class="input-group">
@@ -533,9 +533,9 @@
                                             </div>
                                             @error('loan_id_or_no')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                            @enderror                                            
+                                            @enderror
                                         </div>
-            
+
                                         <div class="col-md-6 mt-3">
                                             <label for="loan_status">Loan Status<span class="text-danger">*</span></label>
                                             <select class="form-select" id="loan_status" name="loan_status" readonly>
@@ -549,18 +549,18 @@
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
-            
+
                                         <div class="col-md-6 mt-3">
                                             <label for="loan_approved_amount">Loan Approved Amount <span class="text-danger">*</span></label>
                                             <div class="input-group">
                                                 <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==8) return false;" class="form-control" id="loan_approved_amount"
-                                                name="loan_approved_amount" maxlength="30" readonly placeholder="Enter Loan Approved Amount"  value="{{ old('loan_approved_amount', isset($lending_status) ? $lending_status->loan_approved_amount : '') }}">                                               
+                                                name="loan_approved_amount" maxlength="30" readonly placeholder="Enter Loan Approved Amount"  value="{{ old('loan_approved_amount', isset($lending_status) ? $lending_status->loan_approved_amount : '') }}">
                                             </div>
                                             @error('loan_approved_amount')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                            @enderror                                            
+                                            @enderror
                                         </div>
-            
+
                                         <div class="col-md-6 mt-3">
                                             <label for="loan_disbursed_amount">Loan Disbursed Amount<span class="text-danger">*</span></label>
                                             <input type="number" pattern="/^-?\d+\.?\d*$/" readonly onKeyPress="if(this.value.length==8) return false;" class="form-control" id="loan_disbursed_amount"
@@ -569,95 +569,95 @@
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
-            
+
                                         <div class="col-md-6 mt-3">
                                             <label for="date_of_loan_disbursement">Date of Loan Disbursement (DD/MM/YYYY)<span class="text-danger">*</span></label>
-                                            <input type="date" class="form-control" id="date_of_loan_disbursement" readonly name="date_of_loan_disbursement" 
-                                            value="{{ old('date_of_loan_disbursement', isset($lending_status) ? $lending_status->date_of_loan_disbursement : '') }}">
-            
+                                            <input type="text" class="form-control" id="date_of_loan_disbursement" readonly name="date_of_loan_disbursement"
+                                            value="{{ old('date_of_loan_disbursement', isset($lending_status) ? $lending_status->date_of_loan_disbursement : '') }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
+
                                             @error('date_of_loan_disbursement')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
-            
-                                        
+
+
                                         <div class="col-md-6 mt-3">
                                             <label for="loan_tenure">Loan Tenure<span class="text-danger">*</span></label>
-                                            <input type="number" pattern="/^-?\d+\.?\d*$/" readonly onKeyPress="if(this.value.length==2) return false;" placeholder="Loan Tenure" class="form-control" id="loan_tenure" name="loan_tenure" 
+                                            <input type="number" pattern="/^-?\d+\.?\d*$/" readonly onKeyPress="if(this.value.length==2) return false;" placeholder="Loan Tenure" class="form-control" id="loan_tenure" name="loan_tenure"
                                             value="{{ old('loan_tenure', isset($lending_status) ? $lending_status->loan_tenure : '') }}">
-            
+
                                             @error('loan_tenure')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
-            
+
                                         <div class="col-md-6 mt-3">
                                             <label for="loan_instalments">Loan Installments<span class="text-danger">*</span></label>
-                                            <input type="number" pattern="/^-?\d+\.?\d*$/" readonly onKeyPress="if(this.value.length==2) return false;" class="form-control" placeholder="Enter Loan Installments" id="loan_instalments" name="loan_instalments" 
+                                            <input type="number" pattern="/^-?\d+\.?\d*$/" readonly onKeyPress="if(this.value.length==2) return false;" class="form-control" placeholder="Enter Loan Installments" id="loan_instalments" name="loan_instalments"
                                             value="{{ old('loan_instalments', isset($lending_status) ? $lending_status->loan_instalments : '') }}">
-            
+
                                             @error('loan_instalments')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
-            
-            
-            
+
+
+
                                         <div class="col-md-6 mt-3">
                                             <label for="loan_start_date">Loan Start Date  (DD/MM/YYYY)<span class="text-danger">*</span></label>
-                                            <input type="date" class="form-control" readonly id="loan_start_date" name="loan_start_date" 
-                                            value="{{ old('loan_start_date', isset($lending_status) ? $lending_status->loan_start_date : '') }}">
-            
+                                            <input type="text" class="form-control" readonly id="loan_start_date" name="loan_start_date"
+                                            value="{{ old('loan_start_date', isset($lending_status) ? $lending_status->loan_start_date : '') }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
+
                                             @error('loan_start_date')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
-            
+
                                         <div class="col-md-6 mt-3">
                                             <label for="loan_end_date">Loan End Date  (DD/MM/YYYY)<span class="text-danger">*</span></label>
-                                            <input type="date" class="form-control" readonly id="loan_end_date" name="loan_end_date" 
+                                            <input type="text" class="form-control" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy" readonly id="loan_end_date" name="loan_end_date"
                                             value="{{ old('loan_end_date', isset($lending_status) ? $lending_status->loan_end_date : '') }}">
-            
+
                                             @error('loan_end_date')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
-            
+
                                         <div class="col-md-6 mt-3">
                                             <label for="insurance_claim_settlement_date">Insurance Claim Settlement Date (DD/MM/YYYY)<span class="text-danger">*</span></label>
-                                            <input type="date" class="form-control"  readonly id="insurance_claim_settlement_date" name="insurance_claim_settlement_date" 
+                                            <input type="text" class="form-control" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy"  readonly id="insurance_claim_settlement_date" name="insurance_claim_settlement_date"
                                             value="{{ old('insurance_claim_settlement_date', isset($lending_status) ? $lending_status->insurance_claim_settlement_date : '') }}">
-            
+
                                             @error('insurance_claim_settlement_date')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
-            
+
                                         <div class="col-md-6 mt-3">
                                             <label for="insurance_claim_settled_amount">Insurance Claim Settled Amount*<span class="text-danger">*</span></label>
                                             <div class="input-group">
                                                 <input type="number" readonly class="form-control" id="insurance_claim_settled_amount" name="insurance_claim_settled_amount" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==8) return false;"
-                                                value="{{ old('insurance_claim_settled_amount', isset($lending_status) ? $lending_status->insurance_claim_settled_amount : '') }}">                                               
+                                                value="{{ old('insurance_claim_settled_amount', isset($lending_status) ? $lending_status->insurance_claim_settled_amount : '') }}">
                                             </div>
                                             @error('insurance_claim_settled_amount')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                            @enderror                                            
+                                            @enderror
                                         </div>
-            
-                                        
-            
+
+
+
                                         <div class="col-md-6 mt-3">
                                             <label for="insurance_claim_amount_disbursement_date">Insurance Claim Amount Disbursement Date(DD/MM/YYYY)<span class="text-danger">*</span></label>
                                             <div class="input-group">
-                                            <input type="date" class="form-control" readonly id="insurance_claim_amount_disbursement_date" name="insurance_claim_amount_disbursement_date" 
+                                            <input type="text" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy" class="form-control" readonly id="insurance_claim_amount_disbursement_date" name="insurance_claim_amount_disbursement_date"
                                             value="{{ old('insurance_claim_amount_disbursement_date', isset($lending_status) ? $lending_status->insurance_claim_amount_disbursement_date : '') }}">
                                             </div>
                                             @error('insurance_claim_amount_disbursement_date')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                            @enderror                                            
+                                            @enderror
                                         </div>
-            
-            
+
+
                                         <div class="col-md-12 mt-3">
                                             <label for="loan_application_status_comments">Loan Application Status comments </label>
                                             <textarea class="form-control" readonly id="loan_application_status_comments" name="loan_application_status_comments" maxlength="250" placeholder="Loan Application Status comments"
@@ -665,7 +665,7 @@
                                             @error('loan_application_status_comments')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
-                                        </div> 
+                                        </div>
 
                                         <input type="hidden" name="applyloan" id="applyloan" value="{{ old('applyloan', 0) }}">
 
@@ -691,28 +691,28 @@
                                     <div class="form-group row">
                                         <div class="col-md-6 mt-1">
                                             <label for="re_apply_loan_amount">Re-apply Loan Amount<span class="text-danger">*</span></label>
-                                            <input type="number" class="form-control" readonly id="re_apply_loan_amount" name="re_apply_loan_amount" 
+                                            <input type="number" class="form-control" readonly id="re_apply_loan_amount" name="re_apply_loan_amount"
                                             value="{{ old('re_apply_loan_amount', isset($lending_status) ? $lending_status->re_apply_loan_amount : '') }}">
-            
+
                                             @error('re_apply_loan_amount')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
-            
+
                                         <div class="col-md-6 mt-1">
                                             <label for="loan_re_application_status_comments">Loan Re-application Status comments<span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" readonly id="loan_re_application_status_comments" name="loan_re_application_status_comments" 
+                                            <input type="text" class="form-control" readonly id="loan_re_application_status_comments" name="loan_re_application_status_comments"
                                             value="{{ old('loan_re_application_status_comments', isset($lending_status) ? $lending_status->loan_re_application_status_comments : '') }}">
-            
+
                                             @error('loan_re_application_status_comments')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
-                                        
+
                                         <div class="col-md-12 text-end mt-3">
                                             <button type="submit" class="btn btn-success" form="loan-reapplication-form">
                                             Re-apply Loan</button>
-                                        </div>   
+                                        </div>
 
                                     </div>
                                 </form>
@@ -757,7 +757,7 @@ function setClaimant() {
           $('#loan_application_status_comments').removeAttr('readonly');
           $('#re_apply_loan_amount').removeAttr('readonly');
           $('#loan_re_application_status_comments').removeAttr('readonly');
-          
+
 }
         $('#apply_loan').on('click',function(e){
          e.preventDefault();
