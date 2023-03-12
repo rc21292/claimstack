@@ -115,7 +115,7 @@
                                         </div>
 
                                         <div class="col-md-6">
-                                            <label for="claim_id">Cliam ID <span class="text-danger">*</span></label>
+                                            <label for="claim_id">Claim ID <span class="text-danger">*</span></label>
                                             <input type="text" readonly class="form-control" id="claim_id" readonly
                                                 name="claim_id" maxlength="60" placeholder="Enter Claim Id"
                                                 value="{{ old('claim_id', @$borrower->claim->uid) }}">
@@ -553,7 +553,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="loan_approved_amount">Loan Approved Amount <span class="text-danger">*</span></label>
                                             <div class="input-group">
-                                                <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==8) return false;" class="form-control" id="loan_approved_amount"
+                                                <input type="text" maxlength="8" onkeypress="return isNumberKey(event)" class="form-control" id="loan_approved_amount"
                                                 name="loan_approved_amount" maxlength="30" readonly placeholder="Enter Loan Approved Amount"  value="{{ old('loan_approved_amount', isset($lending_status) ? $lending_status->loan_approved_amount : '') }}">
                                             </div>
                                             @error('loan_approved_amount')
@@ -563,7 +563,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="loan_disbursed_amount">Loan Disbursed Amount<span class="text-danger">*</span></label>
-                                            <input type="number" pattern="/^-?\d+\.?\d*$/" readonly onKeyPress="if(this.value.length==8) return false;" class="form-control" id="loan_disbursed_amount"
+                                            <input type="text" maxlength="8" onkeypress="return isNumberKey(event)" class="form-control" id="loan_disbursed_amount"
                                             name="loan_disbursed_amount" maxlength="30" placeholder="Loan Disbursed Amount"  value="{{ old('loan_disbursed_amount', isset($lending_status) ? $lending_status->loan_disbursed_amount : '') }}">
                                             @error('loan_disbursed_amount')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -583,7 +583,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="loan_tenure">Loan Tenure<span class="text-danger">*</span></label>
-                                            <input type="number" pattern="/^-?\d+\.?\d*$/" readonly onKeyPress="if(this.value.length==2) return false;" placeholder="Loan Tenure" class="form-control" id="loan_tenure" name="loan_tenure"
+                                            <input type="text" maxlength="2" onkeypress="return isNumberKey(event)" placeholder="Loan Tenure" class="form-control" id="loan_tenure" name="loan_tenure"
                                             value="{{ old('loan_tenure', isset($lending_status) ? $lending_status->loan_tenure : '') }}">
 
                                             @error('loan_tenure')
@@ -636,7 +636,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="insurance_claim_settled_amount">Insurance Claim Settled Amount*<span class="text-danger">*</span></label>
                                             <div class="input-group">
-                                                <input type="number" readonly class="form-control" id="insurance_claim_settled_amount" name="insurance_claim_settled_amount" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==8) return false;"
+                                                <input type="text" maxlength="8" onkeypress="return isNumberKey(event)" readonly class="form-control" id="insurance_claim_settled_amount" name="insurance_claim_settled_amount" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==8) return false;"
                                                 value="{{ old('insurance_claim_settled_amount', isset($lending_status) ? $lending_status->insurance_claim_settled_amount : '') }}">
                                             </div>
                                             @error('insurance_claim_settled_amount')
@@ -691,7 +691,7 @@
                                     <div class="form-group row">
                                         <div class="col-md-6 mt-1">
                                             <label for="re_apply_loan_amount">Re-apply Loan Amount<span class="text-danger">*</span></label>
-                                            <input type="number" class="form-control" readonly id="re_apply_loan_amount" name="re_apply_loan_amount"
+                                            <input type="text" maxlength="8" onkeypress="return isNumberKey(event)" class="form-control" readonly id="re_apply_loan_amount" name="re_apply_loan_amount"
                                             value="{{ old('re_apply_loan_amount', isset($lending_status) ? $lending_status->re_apply_loan_amount : '') }}">
 
                                             @error('re_apply_loan_amount')
