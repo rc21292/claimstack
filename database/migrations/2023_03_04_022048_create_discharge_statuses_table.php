@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('discharge_statuses', function (Blueprint $table) {
             $table->id();
             $table->string('claimant_id')->nullable();
-            $table->string('hospital_id')->nullable();          
+            $table->string('hospital_id')->nullable();
             $table->string('patient_id')->nullable();
             $table->string('claim_id')->nullable();
             $table->enum('injury_reason', ['Self Inflected', 'Road Traffic Accident', 'Substance Abuse-Alcohol Consumption'])->nullable();
@@ -28,13 +28,13 @@ return new class extends Migration
             $table->string('mlc_report_and_police_fir_attached_file')->nullable();
             $table->string('fir_or_mlc_no')->nullable();
             $table->string('not_reported_to_police_reason')->nullable();
-            $table->date('maternity_date_of_delivery')->nullable();
+            $table->string('maternity_date_of_delivery')->nullable();
             $table->string('maternity_gravida_status_g')->nullable();
             $table->string('maternity_gravida_status_p')->nullable();
             $table->string('maternity_gravida_status_l')->nullable();
             $table->string('maternity_gravida_status_a')->nullable();
             $table->enum('premature_baby', ['Yes', 'No'])->nullable();
-            $table->date('date_of_discharge')->nullable();
+            $table->string('date_of_discharge')->nullable();
             $table->time('time_of_discharge')->nullable();
             $table->enum('discharge_status', ['Discharge to Home', 'Discharge to another Hospital', 'Deceased', 'LAMA'])->nullable();
             $table->text('death_summary')->nullable();

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('patient_id')->nullable();
             $table->string('claim_id')->nullable();
             $table->string('claimant_id')->nullable();
-            $table->string('hospital_id')->nullable();          
+            $table->string('hospital_id')->nullable();
             $table->enum('is_patient_and_borrower_same',['Yes', 'No'])->nullable();
             $table->enum('is_claimant_and_borrower_same',['Yes', 'No'])->nullable();
             $table->string('borrower_title')->nullable();
@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('borrower_middlename')->nullable();
             $table->string('borrower_lastname')->nullable();
             $table->enum('borrowers_relation_with_patient', ['Self', 'Husband', 'Wife', 'Son', 'Daughter', 'Father', 'Mother', 'Other'])->nullable();
-            $table->date('borrower_dob')->nullable();
+            $table->string('borrower_dob')->nullable();
             $table->enum('gender', ['M', 'F', 'Other'])->nullable();
             $table->string('borrower_address')->nullable();
             $table->string('borrower_city')->nullable();
@@ -56,8 +56,8 @@ return new class extends Migration
             $table->string('borrower_ac_no')->nullable();
             $table->string('borrower_ifs_code')->nullable();
             $table->string('co_borrower_nominee_name')->nullable();
-            $table->date('co_borrower_nominee_dob')->nullable();
-            $table->date('co_borrower_nominee_dob_file')->nullable();
+            $table->string('co_borrower_nominee_dob')->nullable();
+            $table->string('co_borrower_nominee_dob_file')->nullable();
             $table->enum('co_borrower_nominee_gender', ['M', 'F', 'Other'])->nullable();
             $table->string('co_borrower_nominee_gender_file')->nullable();
             $table->enum('co_borrower_nominee_relation', ['Husband', 'Wife', 'Son', 'Daughter', 'Father', 'Mother', 'Other'])->nullable();
