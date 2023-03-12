@@ -56,7 +56,7 @@ class BorrowerController extends Controller
      */
     public function store(Request $request)
     {
-        $id = $request->claimantId;
+        $id                                     = $request->claimantId;
         $claimant                               = Claimant::with('claim')->find($id);
         $borrower_exists                        = Borrower::where('claimant_id', $id)->exists();
         $borrower                               = $borrower_exists ? Borrower::where('claimant_id', $id)->first() : null;
@@ -92,7 +92,7 @@ class BorrowerController extends Controller
             'organization'                      => 'required',
             'member_or_employer_id'             => 'required',
             'borrower_mobile_no'                => 'required|digits:10',
-            'borrower_estimated_amount'         => 'required|digits_between:1,8',           
+            'borrower_estimated_amount'         => 'required|digits_between:1,8',
             'borrower_pan_no'                   => isset($borrower) ? 'required|alpha_num|size:10|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/u|unique:borrowers,borrower_pan_no,'.$borrower->id : 'required|alpha_num|size:10|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/u|unique:borrowers',
             'borrower_pan_no_file'              => (($request->is_claimant_and_borrower_same == '' || $request->is_claimant_and_borrower_same == 'No') && empty($borrower->borrower_pan_no_file) ) ? 'required' : [],
             'borrower_aadhar_no'                => 'required|numeric|digits:12',
@@ -159,7 +159,7 @@ class BorrowerController extends Controller
         ];
 
         $this->validate($request, $rules, $messages);
-        
+
 
         $borrower = Borrower::updateOrCreate([
             'claimant_id'                       => $id
@@ -295,6 +295,10 @@ class BorrowerController extends Controller
                 'co_borrower_other_documents_file'               =>  $rhnname
             ]);
         }
+
+        Borrower::where('id', $borrower->id)->update([
+            'uid'      => 'BRO' . substr($borrower->borrower_pan_no, 0, 2) . substr($borrower->borrower_pan_no, -3)
+        ]);
 
         return redirect(route('super-admin.borrowers.index'))->with('success', 'Borrower Details created successfully');
     }
@@ -370,7 +374,7 @@ class BorrowerController extends Controller
             'organization'                      => 'required',
             'member_or_employer_id'             => 'required',
             'borrower_mobile_no'                => 'required|digits:10',
-            'borrower_estimated_amount'         => 'required|digits_between:1,8',           
+            'borrower_estimated_amount'         => 'required|digits_between:1,8',
             'borrower_pan_no'                   => isset($borrower) ? 'required|alpha_num|size:10|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/u|unique:borrowers,borrower_pan_no,'.$borrower->id : 'required|alpha_num|size:10|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/u|unique:borrowers',
             'borrower_pan_no_file'              => (($request->is_claimant_and_borrower_same == '' || $request->is_claimant_and_borrower_same == 'No') && empty($borrower->borrower_pan_no_file) ) ? 'required' : [],
             'borrower_aadhar_no'                => 'required|numeric|digits:12',
@@ -437,7 +441,7 @@ class BorrowerController extends Controller
         ];
 
         $this->validate($request, $rules, $messages);
-        
+
 
         $borrower = Borrower::updateOrCreate([
             'claimant_id'                       => $id
@@ -573,6 +577,10 @@ class BorrowerController extends Controller
                 'co_borrower_other_documents_file'               =>  $rhnname
             ]);
         }
+
+        Borrower::where('id', $borrower->id)->update([
+            'uid'      => 'BRO' . substr($borrower->borrower_pan_no, 0, 2) . substr($borrower->borrower_pan_no, -3)
+        ]);
 
         return redirect()->back()->with('success', 'Borrower Details updated successfully');
     }
