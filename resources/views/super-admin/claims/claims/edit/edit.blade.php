@@ -368,6 +368,12 @@
             autoclose: true
         });
     });
+    $(function(){
+        $('#start_date').datepicker({
+            endDate: '+0d',
+            autoclose: true
+        });
+    });
 </script>
 <script>
     function calculateExpectedDays(){
