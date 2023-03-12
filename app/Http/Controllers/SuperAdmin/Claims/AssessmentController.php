@@ -159,7 +159,7 @@ class AssessmentController extends Controller
                 break;
             case 'final-assessment-status-form':
                 $rules =  [   
-                    'final_assessment_amount'                    => 'required|numeric|digits_between:1,8',
+                    // 'final_assessment_amount'                    => 'required|numeric|digits_between:1,8',
                     'final_assessment_suspected_fraud'           => 'required',
                    
                 
