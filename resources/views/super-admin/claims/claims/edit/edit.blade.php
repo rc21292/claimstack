@@ -80,6 +80,12 @@
             setMedicineOption();
             setPhysicinOptions();
             ailnessOptions();
+            setGroupName();
+            setPrimaryInsuredAddress();
+            setAdditionalPolicy();
+            setCurrentlyCovered();
+            setHospitalizedOption();
+            calculateExpectedDays();
             $('#addInsured').click(function() {
                 $('.addInsured').toggle("slide");
             });
@@ -90,17 +96,6 @@
                 $('#primary_insured_lastname').val($(this).val());
             });
         });
-
-        @if ($claim->insurance_coverage == 'Yes')
-            $(document).ready(function() {
-                setGroupName();
-                setPrimaryInsuredAddress();
-                setAdditionalPolicy();
-                setCurrentlyCovered();
-                setHospitalizedOption();
-                calculateExpectedDays();
-            });
-        @endif
 
         function setPatient() {
             var title = $("#patient_id").select2().find(":selected").data("title");
@@ -228,7 +223,6 @@
     </script>
     <script>
         function setAdditionalPolicy() {
-            $("#policy_no_additional").prop("readonly", true);
             var additional_policy = $('input[name="additional_policy"]:checked').val();
             switch (additional_policy) {
                 case 'Yes':
@@ -245,10 +239,6 @@
     </script>
     <script>
         function setCurrentlyCovered() {
-            $("#commencement_date_other").prop("readonly", true);
-            $("#insurance_company_other").prop("disabled", true);
-            $("#policy_no_other").prop("readonly", true);
-            $("#sum_insured_other").prop("readonly", true);
             var currentlycovered = $('input[name="currently_covered"]:checked').val();
             switch (currentlycovered) {
                 case 'Yes':
@@ -274,8 +264,6 @@
     </script>
     <script>
         function setHospitalizedOption() {
-            $("#admission_date_past").prop("readonly", true);
-            $("#diagnosis").prop("readonly", true);
             var additional_policy = $('input[name="hospitalized"]:checked').val();
             switch (additional_policy) {
                 case 'Yes':
