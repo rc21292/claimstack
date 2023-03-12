@@ -79,7 +79,7 @@
                     </li>
                 </ul>
 
-                <div class="tab-content">                    
+                <div class="tab-content">
                     <div class="tab-pane show active" id="assessment_status_tab">
                         <div class="card">
                             <div class="card-header bg-dark text-white">
@@ -291,10 +291,9 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="start_date">Policy Start Date <span
                                                     class="text-danger">*</span></label>
-                                            <input type="date" readonly max="{{ date('Y-m-d') }}"
-                                                placeholder="Enter Policy Start Date" class="form-control"
+                                            <input type="text" disabled max="{{ date('Y-m-d') }}" class="form-control"
                                                 id="start_date" name="start_date"
-                                                value="{{ old('start_date', @$claimant->claim->policy->start_date) }}">
+                                                value="{{ old('start_date', @$claimant->claim->policy->start_date) }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
                                             @error('start_date')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
@@ -304,9 +303,9 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="expiry_date">Policy Expiry Date <span
                                                     class="text-danger">*</span></label>
-                                            <input type="date" readonly placeholder="Enter Policy Expiry Date"
+                                            <input type="text" disabled
                                                 class="form-control" id="expiry_date" name="expiry_date"
-                                                value="{{ old('expiry_date', @$claimant->claim->policy->expiry_date) }}">
+                                                value="{{ old('expiry_date', @$claimant->claim->policy->expiry_date) }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
                                             @error('expiry_date')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
@@ -316,10 +315,10 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="commencement_date">Policy Commencement Date
                                                 (without Break) <span class="text-danger">*</span></label>
-                                            <input type="date" readonly
+                                            <input type="text" disabled
                                                 placeholder="Enter Policy Commencement Date (without Break)"
                                                 class="form-control" id="commencement_date" name="commencement_date"
-                                                value="{{ old('commencement_date', @$claimant->claim->policy->commencement_date) }}">
+                                                value="{{ old('commencement_date', @$claimant->claim->policy->commencement_date) }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
                                             @error('commencement_date')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
@@ -411,7 +410,7 @@
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
-                                        </div> 
+                                        </div>
 
                                         <div class="col-md-6 mt-3">
                                             <label for="pre_assessment_suspected_fraud">Pre-Assessment Suspected Fraud
@@ -488,11 +487,11 @@
                                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
-    
+
                                         <div class="col-md-6 mt-3">
                                             <label for="query_final_assessment">Query - Final Assessment <span
                                                     class="text-danger">*</span></label>
-                                            <input type="text" placeholder="Enter Query - Final Assessment" readonly 
+                                            <input type="text" placeholder="Enter Query - Final Assessment" readonly
                                                 class="form-control query_final_assessment" id="query_final_assessment"
                                                 name="query_final_assessment"
                                                 value="{{ old('query_final_assessment', isset($assessment_status) ? $assessment_status->query_final_assessment : '') }}">
@@ -500,7 +499,7 @@
                                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
-    
+
                                         <div class="col-md-6 mt-3">
                                             <label for="final_assessment_amount">Final Assessment Amount <span
                                                     class="text-danger">*</span></label>
@@ -512,11 +511,11 @@
                                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
-    
+
                                         <div class="col-md-6 mt-3">
                                             <label for="final_assessment_suspected_fraud">Final Assessment Suspected Fraud
                                                 <span class="text-danger">*</span></label>
-    
+
                                             <select class="form-select final_assessment_suspected_fraud"
                                                 id="final_assessment_suspected_fraud" name="final_assessment_suspected_fraud">
                                                 <option value="">Select</option>
@@ -527,12 +526,12 @@
                                                     {{ old('final_assessment_suspected_fraud', isset($assessment_status) ? $assessment_status->final_assessment_suspected_fraud : '') == 'No' ? 'selected' : '' }}>
                                                     No</option>
                                             </select>
-    
+
                                             @error('final_assessment_suspected_fraud')
                                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
-    
+
                                         <div class="col-md-12 mt-3">
                                             <label for="final_assessment_status_comments">Final Assessment Status Comments
                                             </label>
@@ -542,7 +541,7 @@
                                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
-    
+
                                         <div class="col-md-12 text-end mt-3">
                                             <button type="submit" class="btn btn-success"
                                                 form="final-assessment-status-form">Save / Update Final Assessment
