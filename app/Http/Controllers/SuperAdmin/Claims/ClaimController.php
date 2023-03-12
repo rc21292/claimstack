@@ -766,10 +766,12 @@ class ClaimController extends Controller
         ];
 
         $this->validate($request, $rules, $messages);
-
-        $insurance_policy = InsurancePolicy::create([
-            'patient_id'                                => $request->patient_id,
-            'claim_id'                                  => $request->claim_id,
+        $claim            = Claim::find($id);
+        $insurance_policy = InsurancePolicy::updateOrCreate([
+            'claim_id'                                  => $id,
+        ],
+        [
+            'patient_id'                                => $claim->patient_id,
             'policy_no'                                 => $request->policy_no,
             'insurer_id'                                => $request->insurance_company,
             'policy_id'                                 => $request->policy_name,
