@@ -4,10 +4,10 @@
     </div>
     <div class="card-body">
         <form action="{{ route('user.hospital-documents.update', $hospital->id) }}"
-            method="post" id="initial-assessment-form" enctype="multipart/form-data">
+            method="post" id="hospital-documents-form" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <input type="hidden" name="form_type" value="initial_assessment">
+            <input type="hidden" name="form_type" value="hospital_documents">
             <div class="form-group row">
 
                 <div class="col-md-6 mt-3">
@@ -122,7 +122,7 @@
 
                 <div class="col-md-12 text-end mt-3">
                     <button type="submit" class="btn btn-success"
-                        form="initial-assessment-form">Save/Update Documents</button>
+                        form="hospital-documents-form">Save/Update Documents</button>
                 </div>
             </div>
         </form>
@@ -135,10 +135,10 @@
     </div>
     <div class="card-body">
         <form action="{{ route('user.hospital-documents.update', $hospital->id) }}"
-            method="post" id="initial-assessment-form" enctype="multipart/form-data">
+            method="post" id="hospital-fi-form" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <input type="hidden" name="form_type" value="initial_assessment">
+            <input type="hidden" name="form_type" value="hospital_fi_form">
             <div class="form-group row">
 
                 <div class="col-md-6 mt-3">
@@ -151,9 +151,9 @@
                                     class="mdi mdi-download"></i></a>
                         @endisset
                         <input type="file" name="pharmacy"
-                            id="pharmacy" hidden
+                            id="hi_pharmacy" hidden
                             onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                        <label for="pharmacy" class="btn btn-primary upload-label"><i
+                        <label for="hi_pharmacy" class="btn btn-primary upload-label"><i
                                 class="mdi mdi-upload"></i></label>
                     </div>
                     @error('pharmacy')
@@ -173,9 +173,9 @@
                         @endisset
                         <input type="file"
                             name="lab"
-                            id="lab" hidden
+                            id="hi_lab" hidden
                             onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                        <label for="lab"
+                        <label for="hi_lab"
                             class="btn btn-primary upload-label"><i
                                 class="mdi mdi-upload"></i></label>
                     </div>
@@ -195,9 +195,9 @@
                                     class="mdi mdi-download"></i></a>
                         @endisset
                         <input type="file" name="ambulance"
-                            id="ambulance" hidden
+                            id="hi_ambulance" hidden
                             onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                        <label for="ambulance"
+                        <label for="hi_ambulance"
                             class="btn btn-primary upload-label"><i
                                 class="mdi mdi-upload"></i></label>
                     </div>
@@ -219,7 +219,7 @@
                         @endisset
                         <input type="file" name="operation_theatre" id="operation_theatre" hidden
                             onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                        <label for="operation_theatre" class="btn btn-primary upload-label"><i
+                        <label for="hi_operation_theatre" class="btn btn-primary upload-label"><i
                                 class="mdi mdi-upload"></i></label>
                     </div>
                     @error('operation_theatre')
@@ -239,9 +239,9 @@
                                     class="mdi mdi-download"></i></a>
                         @endisset
                         <input type="file" name="icu"
-                            id="icu" hidden
+                            id="hi_icu" hidden
                             onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                        <label for="icu"
+                        <label for="hi_icu"
                             class="btn btn-primary upload-label"><i
                                 class="mdi mdi-upload"></i></label>
                     </div>
@@ -261,9 +261,9 @@
                                     class="mdi mdi-download"></i></a>
                         @endisset
                         <input type="file" name="iccu"
-                            id="iccu" hidden
+                            id="hi_iccu" hidden
                             onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                        <label for="iccu"
+                        <label for="hi_iccu"
                             class="btn btn-primary upload-label"><i
                                 class="mdi mdi-upload"></i></label>
                     </div>
@@ -283,9 +283,9 @@
                                     class="mdi mdi-download"></i></a>
                         @endisset
                         <input type="file" name="nicu"
-                            id="nicu" hidden
+                            id="hi_nicu" hidden
                             onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                        <label for="nicu"
+                        <label for="hi_nicu"
                             class="btn btn-primary upload-label"><i
                                 class="mdi mdi-upload"></i></label>
                     </div>
@@ -305,9 +305,9 @@
                                     class="mdi mdi-download"></i></a>
                         @endisset
                         <input type="file" name="csc_sterilization"
-                            id="csc_sterilization" hidden
+                            id="hi_csc_sterilization" hidden
                             onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                        <label for="csc_sterilization"
+                        <label for="hi_csc_sterilization"
                             class="btn btn-primary upload-label"><i
                                 class="mdi mdi-upload"></i></label>
                     </div>
@@ -327,9 +327,9 @@
                                     class="mdi mdi-download"></i></a>
                         @endisset
                         <input type="file" name="centralized_gas_ons"
-                            id="centralized_gas_ons" hidden
+                            id="hi_centralized_gas_ons" hidden
                             onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                        <label for="centralized_gas_ons"
+                        <label for="hi_centralized_gas_ons"
                             class="btn btn-primary upload-label"><i
                                 class="mdi mdi-upload"></i></label>
                     </div>
@@ -349,9 +349,9 @@
                                     class="mdi mdi-download"></i></a>
                         @endisset
                         <input type="file" name="centralized_ac"
-                            id="centralized_ac" hidden
+                            id="hi_centralized_ac" hidden
                             onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                        <label for="centralized_ac"
+                        <label for="hi_centralized_ac"
                             class="btn btn-primary upload-label"><i
                                 class="mdi mdi-upload"></i></label>
                     </div>
@@ -371,9 +371,9 @@
                                     class="mdi mdi-download"></i></a>
                         @endisset
                         <input type="file" name="kitchen"
-                            id="kitchen" hidden
+                            id="hi_kitchen" hidden
                             onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                        <label for="kitchen"
+                        <label for="hi_kitchen"
                             class="btn btn-primary upload-label"><i
                                 class="mdi mdi-upload"></i></label>
                     </div>
@@ -393,9 +393,9 @@
                                     class="mdi mdi-download"></i></a>
                         @endisset
                         <input type="file" name="usg_machine"
-                            id="usg_machine" hidden
+                            id="hi_usg_machine" hidden
                             onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                        <label for="usg_machine"
+                        <label for="hi_usg_machine"
                             class="btn btn-primary upload-label"><i
                                 class="mdi mdi-upload"></i></label>
                     </div>
@@ -415,9 +415,9 @@
                                     class="mdi mdi-download"></i></a>
                         @endisset
                         <input type="file" name="digital_x_ray"
-                            id="digital_x_ray" hidden
+                            id="hi_digital_x_ray" hidden
                             onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                        <label for="digital_x_ray"
+                        <label for="hi_digital_x_ray"
                             class="btn btn-primary upload-label"><i
                                 class="mdi mdi-upload"></i></label>
                     </div>
@@ -437,9 +437,9 @@
                                     class="mdi mdi-download"></i></a>
                         @endisset
                         <input type="file" name="ct"
-                            id="ct" hidden
+                            id="hi_ct" hidden
                             onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                        <label for="ct"
+                        <label for="hi_ct"
                             class="btn btn-primary upload-label"><i
                                 class="mdi mdi-upload"></i></label>
                     </div>
@@ -459,9 +459,9 @@
                                     class="mdi mdi-download"></i></a>
                         @endisset
                         <input type="file" name="mri"
-                            id="mri" hidden
+                            id="hi_mri" hidden
                             onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                        <label for="mri"
+                        <label for="hi_mri"
                             class="btn btn-primary upload-label"><i
                                 class="mdi mdi-upload"></i></label>
                     </div>
@@ -481,9 +481,9 @@
                                     class="mdi mdi-download"></i></a>
                         @endisset
                         <input type="file" name="pet_scan"
-                            id="pet_scan" hidden
+                            id="hi_pet_scan" hidden
                             onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                        <label for="pet_scan"
+                        <label for="hi_pet_scan"
                             class="btn btn-primary upload-label"><i
                                 class="mdi mdi-upload"></i></label>
                     </div>
@@ -503,9 +503,9 @@
                                     class="mdi mdi-download"></i></a>
                         @endisset
                         <input type="file" name="organ_transplant_unit"
-                            id="organ_transplant_unit" hidden
+                            id="hi_organ_transplant_unit" hidden
                             onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                        <label for="organ_transplant_unit"
+                        <label for="hi_organ_transplant_unit"
                             class="btn btn-primary upload-label"><i
                                 class="mdi mdi-upload"></i></label>
                     </div>
@@ -525,9 +525,9 @@
                                     class="mdi mdi-download"></i></a>
                         @endisset
                         <input type="file" name="burn_unit"
-                            id="burn_unit" hidden
+                            id="hi_burn_unit" hidden
                             onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                        <label for="burn_unit"
+                        <label for="hi_burn_unit"
                             class="btn btn-primary upload-label"><i
                                 class="mdi mdi-upload"></i></label>
                     </div>
@@ -539,16 +539,12 @@
 
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
-                        <input type="text" class="form-control" readonly placeholder="Dialysis Unit *">
-                        @isset($hospital_document->dialysis_unit)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->dialysis_unit) }}"
-                                download="" class="btn btn-warning download-label"><i
-                                    class="mdi mdi-download"></i></a>
-                        @endisset
-                        <input type="file" name="dialysis_unit_file"
-                            id="dialysis_unit_file" hidden
+                        <input type="text" class="form-control" readonly
+                            placeholder="Dialysis Unit *">
+                        <input type="file" name="dialysis_unit"
+                            id="hi_dialysis_unit" hidden
                             onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                        <label for="dialysis_unit"
+                        <label for="hi_dialysis_unit"
                             class="btn btn-primary upload-label"><i
                                 class="mdi mdi-upload"></i></label>
                     </div>
@@ -606,7 +602,7 @@
 
                 <div class="col-md-12 text-end mt-3">
                     <button type="submit" class="btn btn-success"
-                        form="initial-assessment-form">Save/Update Hospital Facilities and Infrastructure Documents</button>
+                        form="hospital-fi-form">Save/Update Hospital Facilities and Infrastructure Documents</button>
                 </div>
             </div>
         </form>
@@ -619,10 +615,10 @@
     </div>
     <div class="card-body">
         <form action="{{ route('user.hospital-documents.update', $hospital->id) }}"
-            method="post" id="initial-assessment-form" enctype="multipart/form-data">
+            method="post" id="hospital-certificates-form" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <input type="hidden" name="form_type" value="initial_assessment">
+            <input type="hidden" name="form_type" value="hospital_certificates">
             <div class="form-group row">
 
                 <div class="col-md-6 mt-3">
@@ -957,7 +953,7 @@
 
                 <div class="col-md-12 text-end mt-3">
                     <button type="submit" class="btn btn-success"
-                        form="initial-assessment-form">Save/Update Hospital Certificates</button>
+                        form="hospital-certificates-form">Save/Update Hospital Certificates</button>
                 </div>
             </div>
         </form>
@@ -970,10 +966,10 @@
     </div>
     <div class="card-body">
         <form action="{{ route('user.hospital-documents.update', $hospital->id) }}"
-            method="post" id="initial-assessment-form" enctype="multipart/form-data">
+            method="post" id="doctor-registration-form" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <input type="hidden" name="form_type" value="initial_assessment">
+            <input type="hidden" name="form_type" value="doctor_registration">
             <div class="form-group row">
 
                 <div class="col-md-6 mt-3">
@@ -1022,7 +1018,7 @@
 
                 <div class="col-md-12 text-end mt-3">
                     <button type="submit" class="btn btn-success"
-                        form="initial-assessment-form">Save/Update Doctor Registration Certificate Documents</button>
+                        form="doctor-registration-form">Save/Update Doctor Registration Certificate Documents</button>
                 </div>
             </div>
         </form>
@@ -1035,10 +1031,10 @@
     </div>
     <div class="card-body">
         <form action="{{ route('user.hospital-documents.update', $hospital->id) }}"
-            method="post" id="initial-assessment-form" enctype="multipart/form-data">
+            method="post" id="mous-form" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <input type="hidden" name="form_type" value="initial_assessment">
+            <input type="hidden" name="form_type" value="hospital_mous">
             <div class="form-group row">
 
                 <div class="col-md-6 mt-3">
@@ -1110,7 +1106,7 @@
 
                 <div class="col-md-12 text-end mt-3">
                     <button type="submit" class="btn btn-success"
-                        form="initial-assessment-form">Save/Update Hospital MoUs (Signed) Documents</button>
+                        form="mous-form">Save/Update Hospital MoUs (Signed) Documents</button>
                 </div>
             </div>
         </form>
@@ -1123,10 +1119,10 @@
     </div>
     <div class="card-body">
         <form action="{{ route('user.hospital-documents.update', $hospital->id) }}"
-            method="post" id="initial-assessment-form" enctype="multipart/form-data">
+            method="post" id="hospital-package-form" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <input type="hidden" name="form_type" value="initial_assessment">
+            <input type="hidden" name="form_type" value="hospital_packages">
             <div class="form-group row">
 
                 <div class="col-md-6 mt-3">
@@ -1175,7 +1171,7 @@
 
                 <div class="col-md-12 text-end mt-3">
                     <button type="submit" class="btn btn-success"
-                        form="initial-assessment-form">Save/Update Agreed Tariff and Packages with ICs / TPAs / Govt/ PSU / Other Corporates Documents</button>
+                        form="hospital-package-form">Save/Update Agreed Tariff and Packages with ICs / TPAs / Govt/ PSU / Other Corporates Documents</button>
                 </div>
             </div>
         </form>
