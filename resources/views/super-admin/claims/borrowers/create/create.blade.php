@@ -70,7 +70,15 @@
                             data-hospital-address="{{ $row->patient->hospital->address }}"
                             data-hospital-city="{{ $row->patient->hospital->city }}"
                             data-hospital-state="{{ $row->patient->hospital->state }}"
-                            data-hospital-pincode="{{ $row->patient->hospital->pincode }}" >
+                            data-hospital-pincode="{{ $row->patient->hospital->pincode }}" 
+                            data-policy-no="{{ $row->claim->policy_no }}" 
+                            data-insurer-id="{{ $row->claim->policy->insurer_id }}" 
+                            data-policy-id="{{ $row->claim->policy->policy_id }}" 
+                            data-certificate_no="{{ $row->claim->policy->certificate_no }}" 
+                            data-company-tpa-id-card-no="{{ $row->claim->company_tpa_id_card_no }}" 
+                            data-tpa-name="{{ $row->claim->policy->tpa_name }}" 
+                            data-policy-type="{{ $row->claim->policy->policy_type }}" 
+                            >
                             {{ $row->uid }}
                         @endforeach
                     </select>
@@ -95,7 +103,7 @@
 
                 <div class="col-md-4">
                     <label for="hospital_name">Hospital Name <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="hospital_name" name="hospital_name"
+                    <input type="text" class="form-control" readonly id="hospital_name" name="hospital_name"
                     placeholder="Enter Hospital Name" value="{{ old('hospital_name') }}">
                     @error('hospital_name')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -104,7 +112,7 @@
 
                 <div class="col-md-12 mt-3">
                     <label for="hospital_address">Hospital Address <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="hospital_address" name="hospital_address"
+                    <input type="text" class="form-control" readonly id="hospital_address" name="hospital_address"
                     placeholder="Address Line"
                     value="{{ old('hospital_address') }}">
                     @error('hospital_address')
@@ -113,7 +121,7 @@
                 </div>
 
                 <div class="col-md-4 mt-3">
-                    <input type="text" class="form-control" id="hospital_city" name="hospital_city"
+                    <input type="text" readonly class="form-control" id="hospital_city" name="hospital_city"
                     placeholder="City" value="{{ old('hospital_city') }}">
                     @error('hospital_city')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -121,7 +129,7 @@
                 </div>
 
                 <div class="col-md-4 mt-3">
-                    <input type="text" class="form-control" id="hospital_state" name="hospital_state"
+                    <input type="text" readonly class="form-control" id="hospital_state" name="hospital_state"
                     placeholder="State" value="{{ old('hospital_state') }}">
                     @error('hospital_state')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -129,7 +137,7 @@
                 </div>
 
                 <div class="col-md-4 mt-3">
-                    <input type="number" class="form-control" id="hospital_pincode" name="hospital_pincode"
+                    <input type="number" readonly class="form-control" id="hospital_pincode" name="hospital_pincode"
                     placeholder="Pincode" value="{{ old('hospital_pincode') }}">
                     @error('hospital_pincode')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -142,11 +150,12 @@
                 </div>
 
                 <div class="col-md-3 mt-1">
-                    <select class="form-control" id="patient_title" name="patient_title">
+                    <input type="text" readonly value="{{old('patient_title') }}"  class="form-control" id="patient_title" name="patient_title" >
+                    {{-- <select class="form-control" id="patient_title" name="patient_title">
                         <option value="">Select</option>
-                        <option @if( old('patient_title') == 'Mr.') selected @endif value="Mr.">Mr.</option>
-                        <option @if( old('patient_title') == 'Ms.') selected @endif value="Ms.">Ms.</option>
-                    </select>
+                        <option @if( old('patient_title') == 'Mr.') selected @else disabled @endif value="Mr.">Mr.</option>
+                        <option @if( old('patient_title') == 'Ms.') selected @else disabled @endif value="Ms.">Ms.</option>
+                    </select> --}}
                     @error('patient_title')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
@@ -154,7 +163,7 @@
 
                 <div class="col-md-3 mt-1">
                     <input type="text" maxlength="25" class="form-control" id="patient_lastname"
-                    name="patient_lastname" maxlength="30" placeholder="Last name"
+                    name="patient_lastname" maxlength="30" readonly placeholder="Last name"
                     value="{{ old('patient_lastname') }}">
                     @error('patient_lastname')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -163,7 +172,7 @@
 
                 <div class="col-md-3 mt-1">
                     <input type="text" maxlength="25" class="form-control" id="patient_firstname"
-                    name="patient_firstname" maxlength="15" placeholder="First name"
+                    name="patient_firstname" maxlength="15" readonly placeholder="First name"
                     value="{{ old('patient_firstname') }}">
                     @error('patient_firstname')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -172,14 +181,121 @@
 
                 <div class="col-md-3 mt-1">
                     <input type="text" maxlength="25" class="form-control" id="patient_middlename"
-                    name="patient_middlename" maxlength="30" placeholder="Last name"
+                    name="patient_middlename" maxlength="30" readonly placeholder="Middle name"
                     value="{{ old('patient_middlename') }}">
                     @error('patient_middlename')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
 
+                <div class="col-md-4 mt-3">
+                    <label for="policy_no">Policy No. <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="policy_no" name="policy_no"
+                        maxlength="16" placeholder="Enter Policy No."
+                        value="{{ old('policy_no') }}" readonly>
+                    @error('policy_no')
+                        <span id="policy-id-error"
+                            class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
 
+                <div class="col-md-4 mt-3">
+                    <label for="insurance_company">Insurance Company<span
+                            class="text-danger">*</span></label>
+                            <input type="hidden" id="insurance_company_h" value="{{ old('insurance_company') }}" name="insurance_company">
+                    <select class="form-control select2" id="insurance_company"
+                        name="insurance_company" data-toggle="select2">
+                        <option value="">Select Insurance Company</option>
+                        @foreach ($insurers as $insurer)
+                            <option value="{{ $insurer->id }}"
+                                {{ old('insurance_company') == $insurer->id ? 'selected' : 'disabled' }}>
+                                {{ $insurer->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('insurance_company')
+                        <span id="name-error"
+                            class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="col-md-4 mt-3">
+                    <label for="policy_name">Policy Name <span
+                            class="text-danger">*</span></label>
+                            <input type="hidden" id="policy_name_h" value="{{ old('policy_name') }}" name="policy_name">
+                    <select class="form-control select2" id="policy_name" name="policy_name"
+                        data-toggle="select2">
+                        <option value="">Select Policy</option>
+                        @foreach ($insurers as $insurer)
+                            <option value="{{ $insurer->id }}"
+                                {{ old('policy_name') == $insurer->id ? 'selected' : 'disabled' }}>
+                                {{ $insurer->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('policy_name')
+                        <span id="name-error"
+                            class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="col-md-6 mt-3">
+                    <label for="certificate_no">SI No. / Certificate No. <span
+                            class="text-danger">*</span></label>
+                    <input type="text" maxlength="16" class="form-control"
+                        id="certificate_no" placeholder="SI No. / Certificate No."
+                        name="certificate_no"
+                        value="{{ old('certificate_no') }}"
+                        readonly>
+                    @error('certificate_no')
+                        <span id="name-error"
+                            class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="col-md-6 mt-3">
+                    <label for="company_tpa_id_card_no">Company / TPA ID Card No. <span
+                            class="text-danger">*</span></label>
+                    <input type="text" maxlength="16" class="form-control"
+                        id="company_tpa_id_card_no" placeholder="Company / TPA ID Card No."
+                        name="company_tpa_id_card_no"
+                        value="{{ old('company_tpa_id_card_no') }}"
+                        readonly>
+                    @error('company_tpa_id_card_no')
+                        <span id="name-error"
+                            class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="col-md-6 mt-3">
+                    <label for="tpa_name">TPA Name <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="tpa_name" name="tpa_name"
+                        placeholder="Enter TPA Name"
+                        value="{{ old('tpa_name') }}"
+                        maxlength="75" readonly>
+                    @error('tpa_name')
+                        <span id="name-error"
+                            class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="col-md-6 mt-3">
+                    <label for="policy_type">Policy Type <span
+                            class="text-danger">*</span></label>
+                    <input class="form-select" type="hidden" id="policy_type_h" name="policy_type" value="{{ old('policy_type') }}">
+                    <select class="form-select" id="policy_type" name="policy_type">
+                        <option value="">Select Policy Type</option>
+                        <option value="Group"
+                            {{ old('policy_type') == 'Group' ? 'selected' : 'disabled' }}>
+                            Group
+                        </option>
+                        <option value="Retail"
+                            {{ old('policy_type') == 'Retail' ? 'selected' : 'disabled' }}>
+                            Retail
+                        </option>
+                    </select>
+                    @error('policy_type')
+                        <span id="name-error"
+                            class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
 
                 <div class="col-md-6 mt-3">
                     <label for="is_patient_and_borrower_same">Is Patient and Borrower Same <span class="text-danger">*</span></label>
@@ -755,50 +871,6 @@
             $("#cancel_cheque_file").attr('disabled', true);
         }
 
-
-    function setPatient() {
-        var title               = $("#title");
-        var firstname           = $("#firstname");
-        var middlename          = $("#middlename");
-        var lastname            = $("#lastname");
-        var age                 = $("#age");
-        var gender              = $("#gender");
-        var hospital            = $("#hospital");
-        var registrationno      = $("#registrationno");
-
-        $('#title').val(title);
-        $('#firstname').val(firstname);
-        $('#middlename').val(middlename);
-        $('#lastname').val(lastname);
-        $('#age').val(age);
-        $('#gender').val(gender);
-        $('#hospital_name').val(hospital).trigger('change');
-        $('#registration_no').val(registrationno);
-    }
-
-    function setClaimant() {
-        var title               = $("#title");
-        var firstname           = $("#firstname");
-        var middlename          = $("#middlename");
-        var lastname            = $("#lastname");
-        var age                 = $("#age");
-        var gender              = $("#gender");
-        var hospital            = $("#hospital");
-        var registrationno      = $("#registrationno");
-
-        $('#title').val(title);
-        $('#firstname').val(firstname);
-        $('#middlename').val(middlename);
-        $('#lastname').val(lastname);
-        $('#age').val(age);
-        $('#gender').val(gender);
-        $('#hospital_name').val(hospital).trigger('change');
-        $('#registration_no').val(registrationno);
-    }
-</script>
-
-<script>
-
     $(document).ready(function () {
         $('#is_patient_and_borrower_same').on('change', function () {
             var idCountry = this.value;
@@ -928,120 +1000,7 @@
         }
     });
 
-        var is_patient_and_borrower_same = "{{ old('is_patient_and_borrower_same') }}";
-
-    var is_claimant_and_borrower_same = "{{ old('is_claimant_and_borrower_same') }}";
-
-    if(is_patient_and_borrower_same == 'Yes'){
-
-        $("#is_claimant_and_borrower_same").attr('disabled', true);
-
-        var claimantId = $("#claimantId").val();
-
-        $.ajax({
-            url: "{{url('super-admin/claimants/patient/')}}/"+claimantId,
-            type: "GET",
-            data: {
-                _token: '{{csrf_token()}}'
-            },
-            dataType: 'json',
-            success: function (result) {
-                $("#borrower_title").val(result.title);
-                $("#borrower_firstname").val(result.firstname);
-                $("#borrower_lastname").val(result.lastname);
-                $("#borrower_middlename").val(result.middlename);
-                $("#borrower_address").val(result.patient_current_address);
-                $("#borrower_city").val(result.patient_current_city);
-                $("#borrower_state").val(result.patient_current_state);
-                $("#borrower_pincode").val(result.patient_current_pincode);
-                $("#borrower_id_proof").val(result.id_proof);
-                $("#borrower_personal_email_id").val(result.email);
-                $("#borrower_mobile_no").val(result.phone);
-                $("#borrower_id_proof_file_download").css('display', 'block').attr('href', result.id_proof_file);
-            }
-        });
-
-
-    }
-
-    if(is_patient_and_borrower_same == 'No'){
-        $("#borrower_title").val('');
-        $("#borrower_firstname").val('');
-        $("#borrower_lastname").val('');
-        $("#borrower_middlename").val('');
-        $("#borrower_address").val('');
-        $("#borrower_city").val('');
-        $("#borrower_state").val('');
-        $("#borrower_pincode").val('');
-        $("#borrower_personal_email_id").val('');
-        $("#borrower_mobile_no").val('');
-        $("#borrower_id_proof_file_download").css('display', 'none').attr('href', '');
-
-        $("#is_claimant_and_borrower_same").attr('disabled', false);
-        // $("#is_claimant_and_borrower_same").val('').trigger('change');
-    }
-
-    if(is_claimant_and_borrower_same == 'No'){
-        $("#borrower_title").val('');
-        $("#borrower_firstname").val('');
-        $("#borrower_lastname").val('');
-        $("#borrower_middlename").val('');
-        $("#borrower_address").val('');
-        $("#borrower_city").val('');
-        $("#borrower_state").val('');
-        $("#borrower_pincode").val('');
-        $("#borrower_personal_email_id").val('');
-        $("#borrower_mobile_no").val('');
-        $("#borrower_pan_no").val('');
-        $("#borrower_aadhar_no").val('');
-        $("#borrower_bank_name").val('');
-        $("#borrower_bank_address").val('');
-        $("#borrower_ac_no").val('');
-        $("#borrower_ifs_code").val('');
-        $("#borrower_pan_no_file").val('');
-        $("#borrower_aadhar_no_file").val('');
-        // $("#borrower_id_proof_file_download").css('display', 'none').attr('href', '');
-
-    }
-
-    if(is_claimant_and_borrower_same == 'Yes'){
-
-        var claimantId = $("#claimantId").val();
-
-        $.ajax({
-            url: "{{url('super-admin/claimants/claimant/')}}/"+claimantId,
-            type: "GET",
-            data: {
-                _token: '{{csrf_token()}}'
-            },
-            dataType: 'json',
-            success: function (result) {
-                $("#borrower_title").val(result.title);
-                $("#borrower_firstname").val(result.firstname);
-                $("#borrower_lastname").val(result.lastname);
-                $("#borrower_middlename").val(result.middlename);
-                $("#borrower_address").val(result.address);
-                $("#borrower_city").val(result.city);
-                $("#borrower_state").val(result.state);
-                $("#borrower_pincode").val(result.pincode);
-                // $("#borrower_id_proof").val(result.id_proof);
-                $("#borrower_personal_email_id").val(result.personal_email_id);
-                $("#borrower_mobile_no").val(result.mobile_no);
-                $("#borrower_pan_no").val(result.pan_no);
-                $("#borrower_aadhar_no").val(result.aadhar_no);
-                $("#borrower_bank_name").val(result.bank_name);
-                $("#borrower_bank_address").val(result.bank_address);
-                $("#borrower_ac_no").val(result.ac_no);
-                $("#borrower_ifs_code").val(result.ifs_code);
-                $("#borrower_pan_no_file_download").css('display', 'block').attr('href', result.pan_no_file);
-                $("#borrower_aadhar_no_file_download").css('display', 'block').attr('href', result.aadhar_no_file);
-                // $("#borrower_id_proof_file_download").css('display', 'block').attr('href', result.id_proof_file);
-            }
-        });
-
-
-    }
-
+        
 
     var bank_statement = "{{ old('bank_statement') }}";
     var itr = "{{ old('itr') }}";
@@ -1060,7 +1019,7 @@
         $("#borrower_cancel_cheque_file").attr('disabled',true);
     }
 
-        $('#claimant_id').on('change', function() {
+    $('#claimant_id').on('change', function() {
 
         var title = $("#claimant_id").select2().find(":selected").data("title");
         var firstname = $("#claimant_id").select2().find(":selected").data("firstname");
@@ -1076,6 +1035,13 @@
         var hospital_name = $("#claimant_id").select2().find(":selected").data("hospital-name");
         var patientId = $("#claimant_id").select2().find(":selected").data("patient_id");
         var claimant_id = $("#claimant_id").select2().find(":selected").data("claimant_id");
+        var policy_no = $("#claimant_id").select2().find(":selected").data("policy-no");
+        var insurer_id = $("#claimant_id").select2().find(":selected").data("insurer-id");
+        var policy_id = $("#claimant_id").select2().find(":selected").data("policy-id");
+        var certificate_no= $("#claimant_id").select2().find(":selected").data("certificate_no");
+        var company_tpa_id_card_no = $("#claimant_id").select2().find(":selected").data("company-tpa-id-card-no");
+        var tpa_name = $("#claimant_id").select2().find(":selected").data("tpa-name");
+        var policy_type = $("#claimant_id").select2().find(":selected").data("policy-type");
 
         $('#patients_relation_with_claimant').val('Self');
         $('#patient_title').val(title).trigger('change');
@@ -1090,6 +1056,16 @@
         $('#hospital_id').val(hospital_id);
         $('#patient_id').val(patient_id);
         $('#claim_id').val(claim_id);
+        $('#policy_no').val(policy_no);
+        $('#insurance_company').val(insurer_id).trigger('change');
+        $('#insurance_company_h').val(insurer_id);
+        $('#policy_name').val(policy_id).trigger('change');
+        $('#policy_name_h').val(policy_id);
+        $('#certificate_no').val(certificate_no);
+        $('#company_tpa_id_card_no').val(company_tpa_id_card_no);
+        $('#policy_type').val(policy_type).trigger('change');
+        $('#policy_type_h').val(policy_type);
+        $('#tpa_name').val(tpa_name);
         $('#patientId').val(patientId);
         $('#claimantId').val(claimant_id);
     });

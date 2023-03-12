@@ -38,14 +38,16 @@ class BorrowerController extends Controller
     public function create()
     {
         $claimants = Claimant::with(['claim','patient'])->whereHas('claim', function ($query){
-            $query->where('lending_required', 'Yes');
+            $query->where('lending_required', 'Yes')->orWhere('lending_required', 'No');
         })
         ->leftJoin('borrowers','borrowers.claimant_id','claimants.id')
         ->whereNull('borrowers.claimant_id')
         ->select('claimants.*')
         ->get();
 
-        return view('super-admin.claims.borrowers.create.create', compact('claimants'));
+        $insurers        = Insurer::get();
+
+        return view('super-admin.claims.borrowers.create.create', compact('claimants', 'insurers'));
     }
 
     /**
@@ -70,7 +72,7 @@ class BorrowerController extends Controller
             'hospital_city'                     => 'required',
             'hospital_state'                    => 'required',
             'hospital_pincode'                  => 'required',
-            'patient_title'                     => 'required',
+            // 'patient_title'                     => 'required',
             'patient_firstname'                 => 'required|max:25',
             'patient_middlename'                => isset($request->patient_middlename) ? 'max:25' : '',
             'patient_lastname'                  => isset($request->patient_lastname) ? 'max:25' : '',
