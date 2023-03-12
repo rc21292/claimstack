@@ -88,7 +88,7 @@
                                     @method('PUT')
                                     <div class="form-group row">
                                         <div class="col-md-6 mb-3">
-                                            <label for="claim_id">Cliam ID <span class="text-danger">*</span></label>
+                                            <label for="claim_id">Claim ID <span class="text-danger">*</span></label>
                                             <select class="form-control select2" id="claim_id" name="claim_id"
                                                 data-toggle="select2" onchange="setPatient()">
                                                 <option value="">Search Claim ID</option>
@@ -653,7 +653,7 @@
                                 </form>
                             </div>
                         </div>
-                    </div>                    
+                    </div>
                 </div>
             </div>
         </div>
@@ -721,7 +721,7 @@
             }
         }
     </script>
-    <script>      
+    <script>
 
         $('#are_patient_and_claimant_same').on('change', function() {
             var idCountry = this.value;

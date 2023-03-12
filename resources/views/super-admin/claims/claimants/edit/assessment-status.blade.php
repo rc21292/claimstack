@@ -402,7 +402,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="pre_assessment_amount">Pre-Assessment Amount <span
                                                     class="text-danger">*</span></label>
-                                            <input type="number" pattern="/^-?\d+\.?\d*$/"  onKeyPress="if(this.value.length==8) return false;" placeholder="Enter Pre-Assessment Amount"
+                                            <input type="text" maxlength="8" onkeypress="return isNumberKey(event)"  placeholder="Enter Pre-Assessment Amount"
                                                 class="form-control" id="pre_assessment_amount"
                                                 name="pre_assessment_amount"
                                                 value="{{ old('pre_assessment_amount', isset($assessment_status) ? $assessment_status->pre_assessment_amount : '') }}">
@@ -503,9 +503,9 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="final_assessment_amount">Final Assessment Amount <span
                                                     class="text-danger">*</span></label>
-                                            <input type="number" placeholder="Enter Final Assessment Amount"
+                                            <input type="text" maxlength="8" onkeypress="return isNumberKey(event)" placeholder="Enter Final Assessment Amount"
                                                 class="form-control" id="final_assessment_amount"
-                                                name="final_assessment_amount" pattern="/^-?\d+\.?\d*$/"  onKeyPress="if(this.value.length==8) return false;"
+                                                name="final_assessment_amount"
                                                 value="{{ old('final_assessment_amount', isset($assessment_status) ? $assessment_status->final_assessment_amount : '0') }}">
                                             @error('final_assessment_amount')
                                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
