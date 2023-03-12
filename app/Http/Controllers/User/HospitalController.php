@@ -558,7 +558,7 @@ class HospitalController extends Controller
                 'hms_charges' => $request->hms_charges,
                 'comments' => $request->comments
             ]);
-        
+
         HospitalTieUp::where('hospital_id', $id)->update([
             'uid'      => 'HSPTUP'.$hospital->id
         ]);
@@ -567,7 +567,7 @@ class HospitalController extends Controller
     }
 
     public function updateHospitalFacility(Request $request, $id)
-    {        
+    {
         $hospital             = Hospital::find($id);
 
         $rules = [
@@ -620,7 +620,7 @@ class HospitalController extends Controller
 
         $this->validate($request, $rules, $messages);
 
-      
+
 
         $hospitalT =  HospitalFacility::updateOrCreate([
             'hospital_id' => $id],
@@ -836,7 +836,7 @@ class HospitalController extends Controller
 
     public function updateHospitalInfrastructure(Request $request, $id)
     {
-        
+
         $hospital             = Hospital::find($id);
 
         $rules = [
@@ -1007,450 +1007,7 @@ class HospitalController extends Controller
         return redirect()->back()->with('success', 'Hospital updated successfully');
     }
 
-    public function updateHospitalDocuments(Request $request, $id)
-    {
-        if(!HospitalDocument::where('hospital_id',$id)->exists()){
-            HospitalDocument::create(['hospital_id' => $id]);
-            $hospitaldocument =  HospitalDocument::where('hospital_id',$id)->first();
-        }else{
-            $hospitaldocument =  HospitalDocument::where('hospital_id',$id)->first();
-        }
 
-        if ($request->hasfile('hospital_pan_card')) {
-            $file_data                    = $request->file('hospital_pan_card');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'hospital_pan_card'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('hospital_cancel_cheque')) {
-            $file_data                    = $request->file('hospital_cancel_cheque');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'hospital_cancel_cheque'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('hospital_owners_pan_card')) {
-            $file_data                    = $request->file('hospital_owners_pan_card');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'hospital_owners_pan_card'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('hospital_owners_aadhar_card')) {
-            $file_data                    = $request->file('hospital_owners_aadhar_card');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'hospital_owners_aadhar_card'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('hospital_other_documents')) {
-            $file_data                    = $request->file('hospital_other_documents');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'hospital_other_documents'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('pharmacy')) {
-            $file_data                    = $request->file('pharmacy');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'pharmacy'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('lab')) {
-            $file_data                    = $request->file('lab');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'lab'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('ambulance')) {
-            $file_data                    = $request->file('ambulance');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'ambulance'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('operation_theatre')) {
-            $file_data                    = $request->file('operation_theatre');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'operation_theatre'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('icu')) {
-            $file_data                    = $request->file('icu');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'icu'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('iccu')) {
-            $file_data                    = $request->file('iccu');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'iccu'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('nicu')) {
-            $file_data                    = $request->file('nicu');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'nicu'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('csc_sterilization')) {
-            $file_data                    = $request->file('csc_sterilization');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'csc_sterilization'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('centralized_gas_ons')) {
-            $file_data                    = $request->file('centralized_gas_ons');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'centralized_gas_ons'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('centralized_ac')) {
-            $file_data                    = $request->file('centralized_ac');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'centralized_ac'               =>  $name
-            ]);
-        }
-
-         if ($request->hasfile('kitchen')) {
-            $file_data                    = $request->file('kitchen');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'kitchen'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('usg_machine')) {
-            $file_data                    = $request->file('usg_machine');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'usg_machine'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('digital_x_ray')) {
-            $file_data                    = $request->file('digital_x_ray');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'digital_x_ray'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('ct')) {
-            $file_data                    = $request->file('ct');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'ct'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('mri')) {
-            $file_data                    = $request->file('mri');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'mri'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('pet_scan')) {
-            $file_data                    = $request->file('pet_scan');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'pet_scan'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('organ_transplant_unit')) {
-            $file_data                    = $request->file('organ_transplant_unit');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'organ_transplant_unit'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('burn_unit')) {
-            $file_data                    = $request->file('burn_unit');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'burn_unit'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('dialysis_unit')) {
-            $file_data                    = $request->file('dialysis_unit');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'dialysis_unit'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('blood_banks')) {
-            $file_data                    = $request->file('blood_banks');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'blood_banks'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('other')) {
-            $file_data                    = $request->file('other');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'other'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('hospital_registration_certificate')) {
-            $file_data                    = $request->file('hospital_registration_certificate');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'hospital_registration_certificate'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('hospital_rohini_certificate')) {
-            $file_data                    = $request->file('hospital_rohini_certificate');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'hospital_rohini_certificate'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('hospital_pollution_clearance_certificate')) {
-            $file_data                    = $request->file('hospital_pollution_clearance_certificate');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'hospital_pollution_clearance_certificate'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('hospital_fire_safety_clearance_certificate')) {
-            $file_data                    = $request->file('hospital_fire_safety_clearance_certificate');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'hospital_fire_safety_clearance_certificate'               =>  $name
-            ]);
-        }
-
-         if ($request->hasfile('hospital_certificate_of_incorporation')) {
-            $file_data                    = $request->file('hospital_certificate_of_incorporation');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'hospital_certificate_of_incorporation'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('hospital_certificate_of_incorporation')) {
-            $file_data                    = $request->file('hospital_certificate_of_incorporation');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'hospital_certificate_of_incorporation'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('hospital_tan_certificate')) {
-            $file_data                    = $request->file('hospital_tan_certificate');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'hospital_tan_certificate'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('hospital_gst_certificate')) {
-            $file_data                    = $request->file('hospital_gst_certificate');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'hospital_gst_certificate'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('nabl_certificate')) {
-            $file_data                    = $request->file('nabl_certificate');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'nabl_certificate'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('nabh_certificate')) {
-            $file_data                    = $request->file('nabh_certificate');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'nabh_certificate'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('jci_certificate')) {
-            $file_data                    = $request->file('jci_certificate');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'jci_certificate'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('nqac_or_nhsrc_certificate')) {
-            $file_data                    = $request->file('nqac_or_nhsrc_certificate');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'nqac_or_nhsrc_certificate'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('hippa_certificate')) {
-            $file_data                    = $request->file('hippa_certificate');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'hippa_certificate'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('iso_certificates')) {
-            $file_data                    = $request->file('iso_certificates');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'iso_certificates'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('other_certificates')) {
-            $file_data                    = $request->file('other_certificates');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'other_certificates'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('medical_superintendents_registration_certificate')) {
-            $file_data                    = $request->file('medical_superintendents_registration_certificate');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'medical_superintendents_registration_certificate'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('doctors_registration_certificate_other')) {
-            $file_data                    = $request->file('doctors_registration_certificate_other');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'doctors_registration_certificate_other'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('mou_with_bhc')) {
-            $file_data                    = $request->file('mou_with_bhc');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'mou_with_bhc'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('mous_with_nbfcs_banks_triparty')) {
-            $file_data                    = $request->file('mous_with_nbfcs_banks_triparty');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'mous_with_nbfcs_banks_triparty'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('mous_ic_or_tpa_or_govt_or_psu_or_other_corporates')) {
-            $file_data                    = $request->file('mous_ic_or_tpa_or_govt_or_psu_or_other_corporates');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'mous_ic_or_tpa_or_govt_or_psu_or_other_corporates'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('agreed_tariff_and_packages')) {
-            $file_data                    = $request->file('agreed_tariff_and_packages');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'agreed_tariff_and_packages'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('other_packages')) {
-            $file_data                    = $request->file('other_packages');
-            $name                       = $file_data->getClientOriginalName();
-            $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-            HospitalDocument::where('hospital_id', $id)->update([
-                'other_packages'               =>  $name
-            ]);
-        }
-
-        return redirect()->back()->with('success', 'Hospital Document updated successfully');
-
-    }
 
     public function updateHospitalEmpanelmentStatus(Request $request, $id)
     {
@@ -1526,5 +1083,541 @@ class HospitalController extends Controller
     {
         Hospital::find($id)->delete();
         return redirect()->route('user.hospitals.index')->with('success', 'Hospital deleted successfully');
+    }
+
+    public function updateHospitalDocuments(Request $request, $id)
+    {
+        $document = HospitalDocument::updateOrCreate(
+            [
+                'hospital_id' => $id
+            ],
+            []
+        );
+
+        switch ($request->form_type) {
+            case 'hospital_documents':
+
+                $rules = [
+                    'hospital_pan_card'           => 'required',
+                    'hospital_owners_pan_card'    => 'required',
+                    'hospital_owners_aadhar_card'              => 'required',
+                ];
+
+                $messages = [
+                    'hospital_pan_card.required'            => 'Please upload Hospital Pan Card',
+                    'hospital_owners_pan_card.required'              => 'Please upload Hospital Owner Pan Card',
+                    'hospital_owners_aadhar_card.required'           => 'Please upload Hospital Owner Aadhar Card.'
+                ];
+
+                $this->validate($request, $rules, $messages);
+
+                if ($request->hasfile('hospital_pan_card')) {
+                    $file_data                  = $request->file('hospital_pan_card');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'hospital_pan_card'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('hospital_cancel_cheque')) {
+                    $file_data                  = $request->file('hospital_cancel_cheque');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'hospital_cancel_cheque'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('hospital_owners_pan_card')) {
+                    $file_data                    = $request->file('hospital_owners_pan_card');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'hospital_owners_pan_card'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('hospital_owners_aadhar_card')) {
+                    $file_data                  = $request->file('hospital_owners_aadhar_card');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'hospital_owners_aadhar_card'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('hospital_other_documents')) {
+                    $file_data                  = $request->file('hospital_other_documents');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'hospital_other_documents'               =>  $name
+                    ]);
+                }
+                break;
+            case 'hospital_fi_form':
+                if ($request->hasfile('pharmacy')) {
+                    $file_data                    = $request->file('pharmacy');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'pharmacy'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('lab')) {
+                    $file_data                    = $request->file('lab');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'lab'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('ambulance')) {
+                    $file_data                    = $request->file('ambulance');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'ambulance'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('operation_theatre')) {
+                    $file_data                    = $request->file('operation_theatre');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'operation_theatre'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('icu')) {
+                    $file_data                    = $request->file('icu');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'icu'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('iccu')) {
+                    $file_data                    = $request->file('iccu');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'iccu'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('nicu')) {
+                    $file_data                    = $request->file('nicu');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'nicu'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('csc_sterilization')) {
+                    $file_data                    = $request->file('csc_sterilization');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'csc_sterilization'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('centralized_gas_ons')) {
+                    $file_data                    = $request->file('centralized_gas_ons');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'centralized_gas_ons'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('centralized_ac')) {
+                    $file_data                    = $request->file('centralized_ac');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'centralized_ac'               =>  $name
+                    ]);
+                }
+
+                 if ($request->hasfile('kitchen')) {
+                    $file_data                    = $request->file('kitchen');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'kitchen'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('usg_machine')) {
+                    $file_data                    = $request->file('usg_machine');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'usg_machine'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('digital_x_ray')) {
+                    $file_data                    = $request->file('digital_x_ray');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'digital_x_ray'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('ct')) {
+                    $file_data                    = $request->file('ct');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'ct'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('mri')) {
+                    $file_data                    = $request->file('mri');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'mri'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('pet_scan')) {
+                    $file_data                    = $request->file('pet_scan');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'pet_scan'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('organ_transplant_unit')) {
+                    $file_data                    = $request->file('organ_transplant_unit');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'organ_transplant_unit'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('burn_unit')) {
+                    $file_data                    = $request->file('burn_unit');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'burn_unit'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('dialysis_unit')) {
+                    $file_data                    = $request->file('dialysis_unit');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'dialysis_unit'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('blood_banks')) {
+                    $file_data                    = $request->file('blood_banks');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'blood_banks'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('other')) {
+                    $file_data                    = $request->file('other');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'other'               =>  $name
+                    ]);
+                }
+                break;
+            case 'hospital_certificates':
+                $rules = [
+                    'hospital_registration_certificate'           => 'required',
+                    'hospital_rohini_certificate'    => 'required',
+                    'hospital_pollution_clearance_certificate'              => 'required',
+                    'hospital_fire_safety_clearance_certificate'           => 'required',
+                    'hospital_certificate_of_incorporation'    => 'required',
+                    'hospital_tan_certificate'              => 'required',
+                    'hospital_gst_certificate'           => 'required',
+                    'nabl_certificate'    => 'required',
+                    'nabh_certificate'              => 'required',
+                    'jci_certificate'           => 'required',
+                    'nqac_or_nhsrc_certificate'    => 'required',
+                    'hippa_certificate'              => 'required',
+                    'iso_certificates'    => 'required',
+                    'other_certificates'              => 'required',
+                ];
+
+                $messages = [
+                    'hospital_registration_certificate.required'            => 'Please upload Hospital Registration certiticate',
+                    'hospital_rohini_certificate.required'              => 'Please upload Hospital Rohini Certificate',
+                    'hospital_pollution_clearance_certificate.required'           => 'Please upload Hospital Clearence Certificate.',
+                    'hospital_fire_safety_clearance_certificate.required'            => 'Please upload Hospital Fire clearance certificate',
+                    'hospital_certificate_of_incorporation.required'              => 'Please upload Hospital certificate of incorporation',
+                    'hospital_tan_certificate.required'           => 'Please upload Hospital TAN Certificate.',
+                    'hospital_gst_certificate.required'            => 'Please upload Hospital GST Certificate.',
+                    'nabl_certificate.required'     => 'Please upload Hospital NABL Certificate.',
+                    'nabh_certificate.required'               => 'Please upload Hospital NABH Certificate.',
+                    'jci_certificate.required'            => 'Please upload Hospital JCI Certificate.',
+                    'nqac_or_nhsrc_certificate.required'     => 'Please upload Hospital NQAC or NHSRC Certificate.',
+                    'hippa_certificate.required'               => 'Please upload Hospital Hippa Certificate.',
+                    'iso_certificates.required'     => 'Please upload Hospital ISO Certificate.',
+                    'other_certificates.required'               => 'Please upload Hospital Other Certificates.',
+                ];
+
+                $this->validate($request, $rules, $messages);
+                if ($request->hasfile('hospital_registration_certificate')) {
+                    $file_data                    = $request->file('hospital_registration_certificate');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'hospital_registration_certificate'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('hospital_rohini_certificate')) {
+                    $file_data                    = $request->file('hospital_rohini_certificate');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'hospital_rohini_certificate'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('hospital_pollution_clearance_certificate')) {
+                    $file_data                    = $request->file('hospital_pollution_clearance_certificate');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'hospital_pollution_clearance_certificate'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('hospital_fire_safety_clearance_certificate')) {
+                    $file_data                    = $request->file('hospital_fire_safety_clearance_certificate');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'hospital_fire_safety_clearance_certificate'               =>  $name
+                    ]);
+                }
+
+                 if ($request->hasfile('hospital_certificate_of_incorporation')) {
+                    $file_data                    = $request->file('hospital_certificate_of_incorporation');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'hospital_certificate_of_incorporation'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('hospital_certificate_of_incorporation')) {
+                    $file_data                    = $request->file('hospital_certificate_of_incorporation');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'hospital_certificate_of_incorporation'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('hospital_tan_certificate')) {
+                    $file_data                    = $request->file('hospital_tan_certificate');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'hospital_tan_certificate'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('hospital_gst_certificate')) {
+                    $file_data                    = $request->file('hospital_gst_certificate');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'hospital_gst_certificate'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('nabl_certificate')) {
+                    $file_data                    = $request->file('nabl_certificate');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'nabl_certificate'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('nabh_certificate')) {
+                    $file_data                    = $request->file('nabh_certificate');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'nabh_certificate'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('jci_certificate')) {
+                    $file_data                    = $request->file('jci_certificate');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'jci_certificate'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('nqac_or_nhsrc_certificate')) {
+                    $file_data                    = $request->file('nqac_or_nhsrc_certificate');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'nqac_or_nhsrc_certificate'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('hippa_certificate')) {
+                    $file_data                    = $request->file('hippa_certificate');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'hippa_certificate'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('iso_certificates')) {
+                    $file_data                    = $request->file('iso_certificates');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'iso_certificates'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('other_certificates')) {
+                    $file_data                    = $request->file('other_certificates');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'other_certificates'               =>  $name
+                    ]);
+                }
+                break;
+            case 'doctor_registration':
+                $rules = [
+                    'medical_superintendents_registration_certificate'           => 'required',
+                ];
+
+                $messages = [
+                    'medical_superintendents_registration_certificate.required'            => 'Please upload Medical superintendents registration certificate',
+                ];
+
+                $this->validate($request, $rules, $messages);
+                if ($request->hasfile('medical_superintendents_registration_certificate')) {
+                    $file_data                    = $request->file('medical_superintendents_registration_certificate');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'medical_superintendents_registration_certificate'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('doctors_registration_certificate_other')) {
+                    $file_data                    = $request->file('doctors_registration_certificate_other');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'doctors_registration_certificate_other'               =>  $name
+                    ]);
+                }
+                break;
+            case 'hospital_mous':
+                $rules = [
+                    'mou_with_bhc'           => 'required',
+                    'mous_with_nbfcs_banks_triparty'    => 'required',
+                ];
+
+                $messages = [
+                    'mou_with_bhc.required'            => 'Please upload MOU with BHC',
+                    'mous_with_nbfcs_banks_triparty.required'              => 'Please upload MOU with NBFC Banks / Triparty',
+                ];
+
+                $this->validate($request, $rules, $messages);
+                if ($request->hasfile('mou_with_bhc')) {
+                    $file_data                    = $request->file('mou_with_bhc');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'mou_with_bhc'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('mous_with_nbfcs_banks_triparty')) {
+                    $file_data                    = $request->file('mous_with_nbfcs_banks_triparty');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'mous_with_nbfcs_banks_triparty'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('mous_ic_or_tpa_or_govt_or_psu_or_other_corporates')) {
+                    $file_data                    = $request->file('mous_ic_or_tpa_or_govt_or_psu_or_other_corporates');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'mous_ic_or_tpa_or_govt_or_psu_or_other_corporates'               =>  $name
+                    ]);
+                }
+                break;
+            case 'hospital_packages':
+                $rules = [
+                    'agreed_tariff_and_packages'           => 'required',
+                    'other_packages'    => 'required',
+                ];
+
+                $messages = [
+                    'agreed_tariff_and_packages.required'            => 'Please upload Agreed tariff and packages',
+                    'other_packages.required'              => 'Please upload other Packages',
+                ];
+
+                $this->validate($request, $rules, $messages);
+                if ($request->hasfile('agreed_tariff_and_packages')) {
+                    $file_data                    = $request->file('agreed_tariff_and_packages');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'agreed_tariff_and_packages'               =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('other_packages')) {
+                    $file_data                    = $request->file('other_packages');
+                    $name                       = $file_data->getClientOriginalName();
+                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'other_packages'               =>  $name
+                    ]);
+                }
+                break;
+            default:
+                # code...
+                break;
+        }
+        return redirect()->back()->with('success', 'Hospital Document updated successfully');
     }
 }
