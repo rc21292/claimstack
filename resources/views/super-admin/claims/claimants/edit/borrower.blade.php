@@ -260,7 +260,7 @@
                                                 <option value="">Select Insurance Company</option>
                                                 @foreach ($insurers as $insurer)
                                                     <option value="{{ $insurer->id }}"
-                                                        {{ old('insurance_company', $claimant->claim->policy->insurer_id) == $insurer->id ? 'selected' : 'disabled' }}>
+                                                        {{ old('insurance_company', @$claimant->claim->policy->insurer_id) == $insurer->id ? 'selected' : 'disabled' }}>
                                                         {{ $insurer->name }}
                                                     </option>
                                                 @endforeach
@@ -279,7 +279,7 @@
                                                 <option value="">Select Policy</option>
                                                 @foreach ($insurers as $insurer)
                                                     <option value="{{ $insurer->id }}"
-                                                        {{ old('policy_name', $claimant->claim->policy->policy_id) == $insurer->id ? 'selected' : 'disabled' }}>
+                                                        {{ old('policy_name', @$claimant->claim->policy->policy_id) == $insurer->id ? 'selected' : 'disabled' }}>
                                                         {{ $insurer->name }}
                                                     </option>
                                                 @endforeach
@@ -295,7 +295,7 @@
                                             <input type="text" maxlength="16" class="form-control"
                                                 id="certificate_no" placeholder="SI No. / Certificate No."
                                                 name="certificate_no"
-                                                value="{{ old('certificate_no', $claimant->claim->policy->certificate_no) }}"
+                                                value="{{ old('certificate_no', @$claimant->claim->policy->certificate_no) }}"
                                                 readonly>
                                             @error('certificate_no')
                                                 <span id="name-error"
@@ -308,7 +308,7 @@
                                             <input type="text" maxlength="16" class="form-control"
                                                 id="company_tpa_id_card_no" placeholder="Company / TPA ID Card No."
                                                 name="company_tpa_id_card_no"
-                                                value="{{ old('company_tpa_id_card_no', $claimant->claim->company_tpa_id_card_no) }}"
+                                                value="{{ old('company_tpa_id_card_no', @$claimant->claim->company_tpa_id_card_no) }}"
                                                 readonly>
                                             @error('company_tpa_id_card_no')
                                                 <span id="name-error"
@@ -319,7 +319,7 @@
                                             <label for="tpa_name">TPA Name <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" id="tpa_name" name="tpa_name"
                                                 placeholder="Enter TPA Name"
-                                                value="{{ old('tpa_name', $claimant->claim->policy->tpa_name) }}"
+                                                value="{{ old('tpa_name', @$claimant->claim->policy->tpa_name) }}"
                                                 maxlength="75" readonly>
                                             @error('tpa_name')
                                                 <span id="name-error"
@@ -334,11 +334,11 @@
                                                 onchange="setGroupName();">
                                                 <option value="">Select Policy Type</option>
                                                 <option value="Group"
-                                                    {{ old('policy_type', $claimant->claim->policy->policy_type) == 'Group' ? 'selected' : 'disabled' }}>
+                                                    {{ old('policy_type', @$claimant->claim->policy->policy_type) == 'Group' ? 'selected' : 'disabled' }}>
                                                     Group
                                                 </option>
                                                 <option value="Retail"
-                                                    {{ old('policy_type', $claimant->claim->policy->policy_type) == 'Retail' ? 'selected' : 'disabled' }}>
+                                                    {{ old('policy_type', @$claimant->claim->policy->policy_type) == 'Retail' ? 'selected' : 'disabled' }}>
                                                     Retail
                                                 </option>
                                             </select>

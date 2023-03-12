@@ -96,7 +96,7 @@
                                             <label for="borrower_id">Borrower ID <span class="text-danger">*</span></label>
                                             <input type="text" readonly class="form-control" id="borrower_id"
                                                 name="borrower_id" maxlength="60" placeholder="Enter Borrower Id"
-                                                value="{{ old('borrower_id', $borrower->uid) }}">
+                                                value="{{ old('borrower_id', @$borrower->uid) }}">
                                             @error('borrower_id')
                                                 <span id="patient-id-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
@@ -354,7 +354,7 @@
                                                     class="form-control" id="borrower_aadhar_no"
                                                     name="borrower_aadhar_no" maxlength="12"
                                                     placeholder="Enter Aadhar no." readonly
-                                                    value="{{ old('borrower_aadhar_no', $borrower->borrower_aadhar_no) }}">
+                                                    value="{{ old('borrower_aadhar_no', @$borrower->borrower_aadhar_no) }}">
                                             </div>
                                             @error('borrower_aadhar_no')
                                                 <span id="name-error"
