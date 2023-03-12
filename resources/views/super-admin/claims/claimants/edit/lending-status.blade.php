@@ -593,7 +593,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="loan_instalments">Loan Installments<span class="text-danger">*</span></label>
-                                            <input type="number" pattern="/^-?\d+\.?\d*$/" readonly onKeyPress="if(this.value.length==2) return false;" class="form-control" placeholder="Enter Loan Installments" id="loan_instalments" name="loan_instalments"
+                                            <input type="text" maxlength="2" onkeypress="return isNumberKey(event)" class="form-control" placeholder="Enter Loan Installments" id="loan_instalments" name="loan_instalments"
                                             value="{{ old('loan_instalments', isset($lending_status) ? $lending_status->loan_instalments : '') }}">
 
                                             @error('loan_instalments')
