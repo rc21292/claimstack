@@ -143,10 +143,10 @@
         var category_option = $('#system_of_medicine').val();
         switch (category_option) {
                 case 'Allopathy':
-                    $("#treatment_category").val("{{ old('treatment_category', '') }}").removeAttr('disabled');
+                    $("#treatment_category").val("{{ old('treatment_category', '') }}").removeAttr('readonly');
                     break;
                 default:
-                    $("#treatment_category").val("Non Allopathic").attr('disabled', true);
+                    $("#treatment_category").val("Non Allopathic").attr('readonly', true);
                     break;
             }
     }
