@@ -538,7 +538,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="loan_status">Loan Status<span class="text-danger">*</span></label>
-                                            <select class="form-select" id="loan_status" name="loan_status" readonly>
+                                            <select class="form-select" disabled id="loan_status" name="loan_status" >
                                                 <option value="">Select</option>
                                                 <option value="Waiting for the Approval" {{ old('loan_status', isset($lending_status) ? $lending_status->loan_status : '') == 'Waiting for the Approval' ? 'selected' : '' }}>Waiting for the Approval </option>
                                                 <option value="Approved" {{ old('loan_status', isset($lending_status) ? $lending_status->loan_status : '') == 'Approved' ? 'selected' : '' }}>Approved </option>
@@ -605,7 +605,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="loan_start_date">Loan Start Date  (DD/MM/YYYY)<span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" readonly id="loan_start_date" name="loan_start_date"
+                                            <input type="text" class="form-control" disabled id="loan_start_date" name="loan_start_date"
                                             value="{{ old('loan_start_date', isset($lending_status) ? $lending_status->loan_start_date : '') }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
 
                                             @error('loan_start_date')
@@ -615,7 +615,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="loan_end_date">Loan End Date  (DD/MM/YYYY)<span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy" readonly id="loan_end_date" name="loan_end_date"
+                                            <input type="text" class="form-control" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy" disabled id="loan_end_date" name="loan_end_date"
                                             value="{{ old('loan_end_date', isset($lending_status) ? $lending_status->loan_end_date : '') }}">
 
                                             @error('loan_end_date')
@@ -625,7 +625,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="insurance_claim_settlement_date">Insurance Claim Settlement Date (DD/MM/YYYY)<span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy"  readonly id="insurance_claim_settlement_date" name="insurance_claim_settlement_date"
+                                            <input type="text" class="form-control" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy"  disabled id="insurance_claim_settlement_date" name="insurance_claim_settlement_date"
                                             value="{{ old('insurance_claim_settlement_date', isset($lending_status) ? $lending_status->insurance_claim_settlement_date : '') }}">
 
                                             @error('insurance_claim_settlement_date')
@@ -649,7 +649,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="insurance_claim_amount_disbursement_date">Insurance Claim Amount Disbursement Date(DD/MM/YYYY)<span class="text-danger">*</span></label>
                                             <div class="input-group">
-                                            <input type="text" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy" class="form-control" readonly id="insurance_claim_amount_disbursement_date" name="insurance_claim_amount_disbursement_date"
+                                            <input type="text" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy" class="form-control" disabled id="insurance_claim_amount_disbursement_date" name="insurance_claim_amount_disbursement_date"
                                             value="{{ old('insurance_claim_amount_disbursement_date', isset($lending_status) ? $lending_status->insurance_claim_amount_disbursement_date : '') }}">
                                             </div>
                                             @error('insurance_claim_amount_disbursement_date')
@@ -744,16 +744,16 @@ function setClaimant() {
           $('#date_of_loan_re_application').removeAttr('readonly');
           $('#time_of_loan_re_application').removeAttr('readonly');
           $('#loan_id_or_no').removeAttr('readonly');
-          $('#loan_status').removeAttr('readonly');
+          $('#loan_status').removeAttr('disabled');
           $('#loan_approved_amount').removeAttr('readonly');
           $('#loan_disbursed_amount').removeAttr('readonly');
           $('#loan_tenure').removeAttr('readonly');
           $('#loan_instalments').removeAttr('readonly');
-          $('#loan_start_date').removeAttr('readonly');
-          $('#loan_end_date').removeAttr('readonly');
-          $('#insurance_claim_settlement_date').removeAttr('readonly');
+          $('#loan_start_date').removeAttr('disabled');
+          $('#loan_end_date').removeAttr('disabled');
+          $('#insurance_claim_settlement_date').removeAttr('disabled');
           $('#insurance_claim_settled_amount').removeAttr('readonly');
-          $('#insurance_claim_amount_disbursement_date').removeAttr('readonly');
+          $('#insurance_claim_amount_disbursement_date').removeAttr('disabled');
           $('#loan_application_status_comments').removeAttr('readonly');
           $('#re_apply_loan_amount').removeAttr('readonly');
           $('#loan_re_application_status_comments').removeAttr('readonly');

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('borrower_id')->nullable();
             $table->string('patient_id')->nullable();
             $table->string('claim_id')->nullable();
-            $table->enum('medical_lending_type', ['Bridge', 'Term'])->nullable();
+            $table->enum('medical_lending_type', ['Bridge', 'Term', 'Both'])->nullable();
             $table->string('vendor_partner_name_nbfc_or_bank')->nullable();
             $table->string('vendor_partner_id')->nullable();
             $table->string('loan_application_comments')->nullable();
