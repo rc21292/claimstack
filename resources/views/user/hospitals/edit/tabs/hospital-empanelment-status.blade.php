@@ -167,49 +167,49 @@
             </div>
         </form>
     </div>
-@push('scripts')
+    @push('scripts')
     <script>
-$(document).ready(function() {
-    enableDisable();
-  $(".show-hide-empanelment").hide();
-    $("#show-doctor-empanelment").val(0);
+        $(document).ready(function() {
+            enableDisable();
+            $(".show-hide-empanelment").hide();
+            $("#show-doctor-empanelment").val(0);
 
-  $('.show-empanelment').click(function() {
-    $(".show-hide-empanelment").toggle('fast');
-    $("#show-doctor-empanelment").val(1);
-  });
-});
+            $('.show-empanelment').click(function() {
+                $(".show-hide-empanelment").toggle('fast');
+                $("#show-doctor-empanelment").val(1);
+            });
+        });
 
 
-function enableDisable() {
-    if($("#empanelled").val() == 'Yes'){
-        $("#hospital_id_as_per_the_selected_company").removeAttr('readonly');
-        $("#signed_mou").removeAttr('disabled');
-        $("#agreed_packages_and_tariff_pdf_other_images").removeAttr('disabled');
-    }else{
-       $("#hospital_id_as_per_the_selected_company").attr('readonly', true);
-       $("#signed_mou").attr('disabled', true)
-       $("#agreed_packages_and_tariff_pdf_other_images").attr('disabled', true)
-   }
-}
-
-$('select').on('change', function(){
-            var id = $(this).attr('id');
-        if($(this).val() == 'No'){
-            $("#"+id+"_file").attr('disabled',true);
-        }else{
-            $("#"+id+"_file").attr('disabled',false);
+        function enableDisable() {
+            if($("#empanelled").val() == 'Yes'){
+                $("#hospital_id_as_per_the_selected_company").removeAttr('readonly');
+                $("#signed_mou").removeAttr('disabled');
+                $("#agreed_packages_and_tariff_pdf_other_images").removeAttr('disabled');
+            }else{
+                $("#hospital_id_as_per_the_selected_company").attr('readonly', true);
+                $("#signed_mou").attr('disabled', true)
+                $("#agreed_packages_and_tariff_pdf_other_images").attr('disabled', true)
+            }
         }
-    });
+
+        $('select').on('change', function(){
+            var id = $(this).attr('id');
+            if($(this).val() == 'No'){
+                $("#"+id+"_file").attr('disabled',true);
+            }else{
+                $("#"+id+"_file").attr('disabled',false);
+            }
+        });
         $(".show-hide-empanelment").toggle('fast');
 
-    $(document).ready(function() {
-    var shsh = "{{ old('empanelled', $empanelment_status->empanelled) }}";
-    
-    if(shsh == 'Yes' || shsh == 'No'){
-        $(".show-hide-empanelment").toggle('fast');
-    }
-});
+        $(document).ready(function() {
+            var shsh = "{{ old('empanelled', $empanelment_status->empanelled) }}";
+
+            if(shsh == 'Yes' || shsh == 'No'){
+                $(".show-hide-empanelment").toggle('fast');
+            }
+        });
 
     </script>
-@endpush
+    @endpush
