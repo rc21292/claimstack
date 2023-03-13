@@ -130,6 +130,10 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
 
     Route::put('hospitals/department/{id}', [HospitalController::class, 'updateHospitalDepartment'])->name('hospitals.department');
 
+    Route::put('hospitals/documets/{id}', [HospitalController::class, 'updateHospitalDocuments'])->name('hospital-documents.update');
+
+    Route::put('hospitals/empanelment-status/{id}', [HospitalController::class, 'updateHospitalEmpanelmentStatus'])->name('hospitals.empanelment-status');
+
     Route::put('hospitals/empanelment-status/{id}', [HospitalController::class, 'updateHospitalEmpanelmentStatus'])->name('hospitals.empanelment-status');
 
     Route::post('hospital/change-pasword', [HospitalController::class, 'changePassword'])->name('hospitals.change-password');
