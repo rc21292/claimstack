@@ -1025,39 +1025,33 @@ class HospitalController extends Controller
 
         $empanelment_status          = HospitalEmpanelmentStatus::where('hospital_id', $id)->first();
 
-        $rules = [
-            'company_name'              => 'required',
-            'empanelled'                => 'required',
-            'empanelled_file'                => ($request->empanelled == 'Yes' && empty($empanelment_status->empanelled_file)) ? 'required' : '',
-            'hospital_id_as_per_the_selected_company'             => ($request->empanelled == 'Yes') ? 'required|max:25' : '',
-            'signed_mou'                    => ($request->empanelled == 'Yes') ? 'required' : '',
-            'signed_mou_file'                    => ($request->empanelled == 'Yes' && $request->signed_mou == 'Yes' && empty($empanelment_status->empanelled_file)) ? 'required' : '',
-            'agreed_packages_and_tariff_pdf_other_images'           => ($request->empanelled == 'Yes') ? 'required' : '',
-            'agreed_packages_and_tariff_pdf_other_images_file'           => ($request->empanelled == 'Yes' && $request->agreed_packages_and_tariff_pdf_other_images == 'Yes' && empty($empanelment_status->empanelled_file)) ? 'required' : '',
-            /*'upload_packages_and_tariff_excel_or_csv'           => 'required',
-            'upload_packages_and_tariff_excel_or_csv_file'           => 'required',*/
-            'negative_listing_status'           => 'required',
-            'negative_listing_status_file'           => ($request->empanelled == 'Yes' && $request->negative_listing_status == 'Yes' && empty($empanelment_status->negative_listing_status_file)) ? 'required' : '',
-            // 'hospital_empanelment_status_comments'           => 'required|max:250',
-        ];
+        if ($request->form_type == 'empanelment_status') {
 
-        $messages = [
-            'company_name.required'            => 'Please Select Company Name',
-            'empanelled.required'              => 'Please Select Empanelled',
-            'empanelled_file.required'              => 'Please Select Empanelled File',
-            'hospital_id_as_per_the_selected_company.required'           => 'Please Enter Hospital Id As Per The Selected Company',
-            'signed_mou.required'                  => 'Please Select Signed Mou',
-            'signed_mou_file.required'                  => 'Please Select Signed Mou File',
-            'agreed_packages_and_tariff_pdf_other_images.required'         => 'Please Select Agreed Packages And Tariff Pdf Other Images',
-            'agreed_packages_and_tariff_pdf_other_images_file.required'         => 'Please Select Agreed Packages And Tariff Pdf Other Images File',
-            'negative_listing_status.required'         => 'Please Select Negative Listing Status',
-            'negative_listing_status_file.required'         => 'Please Select Negative Listing Status File',
-            'hospital_empanelment_status_comments.required'         => 'Please Enter Hospital Empanelment Status Comments',
-        ];
+            $rules = [
+                'company_name'              => 'required',
+                'empanelled'                => 'required',
+                'empanelled_file'                => ($request->empanelled == 'Yes' && empty($empanelment_status->empanelled_file)) ? 'required' : '',
+                'hospital_id_as_per_the_selected_company'             => ($request->empanelled == 'Yes') ? 'required|max:25' : '',
+                'signed_mou'                    => ($request->empanelled == 'Yes') ? 'required' : '',
+                'signed_mou_file'                    => ($request->empanelled == 'Yes' && $request->signed_mou == 'Yes' && empty($empanelment_status->empanelled_file)) ? 'required' : '',
+                'agreed_packages_and_tariff_pdf_other_images'           => ($request->empanelled == 'Yes') ? 'required' : '',
+                'agreed_packages_and_tariff_pdf_other_images_file'           => ($request->empanelled == 'Yes' && $request->agreed_packages_and_tariff_pdf_other_images == 'Yes' && empty($empanelment_status->empanelled_file)) ? 'required' : '',
+            ];
 
-        $this->validate($request, $rules, $messages);
+            $messages = [
+                'company_name.required'            => 'Please Select Company Name',
+                'empanelled.required'              => 'Please Select Empanelled',
+                'empanelled_file.required'              => 'Please Select Empanelled File',
+                'hospital_id_as_per_the_selected_company.required'           => 'Please Enter Hospital Id As Per The Selected Company',
+                'signed_mou.required'                  => 'Please Select Signed Mou',
+                'signed_mou_file.required'                  => 'Please Select Signed Mou File',
+                'agreed_packages_and_tariff_pdf_other_images.required'         => 'Please Select Agreed Packages And Tariff Pdf Other Images',
+                'agreed_packages_and_tariff_pdf_other_images_file.required'         => 'Please Select Agreed Packages And Tariff Pdf Other Images File',
+            ];
 
-        HospitalEmpanelmentStatus::updateOrCreate([
+            $this->validate($request, $rules, $messages);
+
+            HospitalEmpanelmentStatus::updateOrCreate([
             'hospital_id' => $id],
             [
                 'company_name'             => $request->company_name,
@@ -1066,14 +1060,34 @@ class HospitalController extends Controller
                 'signed_mou'                   => $request->signed_mou,
                 'agreed_packages_and_tariff_pdf_other_images'          => $request->agreed_packages_and_tariff_pdf_other_images,
                 'upload_packages_and_tariff_excel_or_csv'          => $request->upload_packages_and_tariff_excel_or_csv,
+            ]);
+
+        }else{
+
+            $rules = [
+                'negative_listing_status'           => 'required',
+                'negative_listing_status_file'           => ($request->empanelled == 'Yes' && $request->negative_listing_status == 'Yes' && empty($empanelment_status->negative_listing_status_file)) ? 'required' : '',
+            ];
+
+            $messages = [
+                'negative_listing_status.required'         => 'Please Select Negative Listing Status',
+                'negative_listing_status_file.required'         => 'Please Select Negative Listing Status File',
+            ];
+
+            $this->validate($request, $rules, $messages);
+
+            HospitalEmpanelmentStatus::updateOrCreate([
+            'hospital_id' => $id],
+            [
                 'negative_listing_status'          => $request->negative_listing_status,
                 'hospital_empanelment_status_comments'          => $request->hospital_empanelment_status_comments,
-        ]);
+            ]);
+        }
 
         if ($request->hasfile('empanelled_file')) {
             $empanelled_file                    = $request->file('empanelled_file');
             $name                       = $empanelled_file->getClientOriginalName();
-            $empanelled_file->storeAs('empanelled_files/hospital/empanelment_status/' . $hospital->id . '/', $name, 'public');
+            $empanelled_file->storeAs('uploads/hospital/empanelment_status/' . $hospital->id . '/', $name, 'public');
             HospitalEmpanelmentStatus::where('hospital_id', $hospital->id)->update([
                 'empanelled_file'               =>  $name
             ]);
@@ -1082,7 +1096,7 @@ class HospitalController extends Controller
         if ($request->hasfile('signed_mou_file')) {
             $signed_mou_file                    = $request->file('signed_mou_file');
             $name                       = $signed_mou_file->getClientOriginalName();
-            $signed_mou_file->storeAs('signed_mou_files/hospital/empanelment_status/' . $hospital->id . '/', $name, 'public');
+            $signed_mou_file->storeAs('uploads/hospital/empanelment_status/' . $hospital->id . '/', $name, 'public');
             HospitalEmpanelmentStatus::where('hospital_id', $hospital->id)->update([
                 'signed_mou_file'               =>  $name
             ]);
@@ -1091,7 +1105,7 @@ class HospitalController extends Controller
         if ($request->hasfile('agreed_packages_and_tariff_pdf_other_images_file')) {
             $agreed_packages_and_tariff_pdf_other_images_file                    = $request->file('agreed_packages_and_tariff_pdf_other_images_file');
             $name                       = $agreed_packages_and_tariff_pdf_other_images_file->getClientOriginalName();
-            $agreed_packages_and_tariff_pdf_other_images_file->storeAs('agreed_packages_and_tariff_pdf_other_images_files/hospital/empanelment_status/' . $hospital->id . '/', $name, 'public');
+            $agreed_packages_and_tariff_pdf_other_images_file->storeAs('uploads/hospital/empanelment_status/' . $hospital->id . '/', $name, 'public');
             HospitalEmpanelmentStatus::where('hospital_id', $hospital->id)->update([
                 'agreed_packages_and_tariff_pdf_other_images_file'               =>  $name
             ]);
@@ -1100,7 +1114,7 @@ class HospitalController extends Controller
         if ($request->hasfile('upload_packages_and_tariff_excel_or_csv_file')) {
             $upload_packages_and_tariff_excel_or_csv_file                    = $request->file('upload_packages_and_tariff_excel_or_csv_file');
             $name                       = $upload_packages_and_tariff_excel_or_csv_file->getClientOriginalName();
-            $upload_packages_and_tariff_excel_or_csv_file->storeAs('upload_packages_and_tariff_excel_or_csv_files/hospital/empanelment_status/' . $hospital->id . '/', $name, 'public');
+            $upload_packages_and_tariff_excel_or_csv_file->storeAs('uploads/hospital/empanelment_status/' . $hospital->id . '/', $name, 'public');
             HospitalEmpanelmentStatus::where('hospital_id', $hospital->id)->update([
                 'upload_packages_and_tariff_excel_or_csv_file'               =>  $name
             ]);
@@ -1109,7 +1123,7 @@ class HospitalController extends Controller
         if ($request->hasfile('negative_listing_status_file')) {
             $negative_listing_status_file                    = $request->file('negative_listing_status_file');
             $name                       = $negative_listing_status_file->getClientOriginalName();
-            $negative_listing_status_file->storeAs('negative_listing_status_files/hospital/empanelment_status/' . $hospital->id . '/', $name, 'public');
+            $negative_listing_status_file->storeAs('uploads/hospital/empanelment_status/' . $hospital->id . '/', $name, 'public');
             HospitalEmpanelmentStatus::where('hospital_id', $hospital->id)->update([
                 'negative_listing_status_file'               =>  $name
             ]);

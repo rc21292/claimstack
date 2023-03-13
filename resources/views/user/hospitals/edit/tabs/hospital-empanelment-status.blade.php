@@ -3,6 +3,7 @@
         enctype="multipart/form-data">
         @csrf
         @method('PUT')
+        <input type="hidden" name="form_type" value="empanelment_status">
         <div class="form-group row">
             <div class="col-md-12">
                 <button style="float:right;" type="button" class="btn btn-danger show-empanelment"> <i class="mdi mdi-plus"></i> Add Insurance Co. / TPA / Other </button>
@@ -32,6 +33,9 @@
                     <option value="Yes" {{ old('empanelled', $empanelment_status->empanelled ?? '') == 'Yes' ? 'selected' : '' }}>Yes</option>
                     <option value="No" {{ old('empanelled', $empanelment_status->empanelled ?? '') == 'No' ? 'selected' : '' }}>No</option>
                 </select>
+                @isset($empanelment_status->empanelled_file)
+                    <a href="{{ asset('storage/uploads/hospital/empanelment_status/'.$empanelment_status->hospital_id.'/'.$empanelment_status->empanelled_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+                @endisset
                 <input type="file" name="empanelled_file" id="empanelled_file_id" hidden />
                     <label for="empanelled_file_id" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
@@ -62,6 +66,9 @@
                     <option value="Yes" {{ old('signed_mou', $empanelment_status->signed_mou ?? '') == 'Yes' ? 'selected' : '' }}>Yes</option>
                     <option value="No" {{ old('signed_mou', $empanelment_status->signed_mou ?? '') == 'No' ? 'selected' : '' }}>No</option>
                 </select>
+                @isset($empanelment_status->signed_mou_file)
+                    <a href="{{ asset('storage/uploads/hospital/empanelment_status/'.$empanelment_status->hospital_id.'/'.$empanelment_status->signed_mou_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+                @endisset
                 <input type="file" name="signed_mou_file" id="signed_mou_file_id" hidden />
                     <label for="signed_mou_file_id" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
@@ -83,6 +90,9 @@
                     <option value="Yes" {{ old('agreed_packages_and_tariff_pdf_other_images', $empanelment_status->agreed_packages_and_tariff_pdf_other_images ?? '') == 'Yes' ? 'selected' : '' }}>Yes</option>
                     <option value="As Per Hospital Tariff" {{ old('agreed_packages_and_tariff_pdf_other_images', $empanelment_status->agreed_packages_and_tariff_pdf_other_images ?? '') == 'As Per Hospital Tariff' ? 'selected' : '' }}>As Per Hospital Tariff</option>
                 </select>
+                @isset($empanelment_status->agreed_packages_and_tariff_pdf_other_images_file)
+                    <a href="{{ asset('storage/uploads/hospital/empanelment_status/'.$empanelment_status->hospital_id.'/'.$empanelment_status->agreed_packages_and_tariff_pdf_other_images_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+                @endisset
                 <input type="file" name="agreed_packages_and_tariff_pdf_other_images_file" id="agreed_packages_and_tariff_pdf_other_images_file_id" hidden />
                     <label for="agreed_packages_and_tariff_pdf_other_images_file_id" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
@@ -104,6 +114,9 @@
                     <option value="Yes" {{ old('upload_packages_and_tariff_excel_or_csv', $empanelment_status->upload_packages_and_tariff_excel_or_csv ?? '') == 'Yes' ? 'selected' : '' }}>Yes</option>
                     <option value="No" {{ old('upload_packages_and_tariff_excel_or_csv', $empanelment_status->upload_packages_and_tariff_excel_or_csv ?? '') == 'No' ? 'selected' : '' }}>No</option>
                 </select>
+                @isset($empanelment_status->upload_packages_and_tariff_excel_or_csv_file)
+                    <a href="{{ asset('storage/uploads/hospital/empanelment_status/'.$empanelment_status->hospital_id.'/'.$empanelment_status->upload_packages_and_tariff_excel_or_csv_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+                @endisset
                 <input type="file" name="upload_packages_and_tariff_excel_or_csv_file" @if($empanelment_status->upload_packages_and_tariff_excel_or_csv ?? '' == 'No') disabled @endif id="upload_packages_and_tariff_excel_or_csv_file" hidden />
                     <label for="upload_packages_and_tariff_excel_or_csv_file" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
@@ -123,6 +136,16 @@
                 <button type="submit" class="btn btn-success" form="hospital-empanelment-form">Edit/Update - Packages and Tariff</button>
             </div>
 
+            </div>
+        </form>
+
+    <form action="{{ route('user.hospitals.empanelment-status', $hospital->id) }}" method="post" id="hospital-empanelment-status-form"
+        enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
+        <input type="hidden" name="form_type" value="empanelment_status_update">
+        <div class="form-group row">
+            
             <div class="card-header bg-dark text-white mt-3 show-hide-empanelment"> Claim Form for Reimbursement </div>
 
 
@@ -137,7 +160,10 @@
                         <option value="Yes" {{ old('negative_listing_status', $empanelment_status->negative_listing_status ?? '') == 'Yes' ? 'selected' : '' }}>Yes</option>
                         <option value="No" {{ old('negative_listing_status', $empanelment_status->negative_listing_status ?? '') == 'No' ? 'selected' : '' }}>No</option>
                     </select>
-                    <input type="file" name="negative_listing_status_file" @if($hospital_tie_ups->negative_listing_status == 'No') disabled @endif id="negative_listing_status_file" hidden />
+                    @isset($empanelment_status->negative_listing_status_file)
+                        <a href="{{ asset('storage/uploads/hospital/empanelment_status/'.$empanelment_status->hospital_id.'/'.$empanelment_status->negative_listing_status_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+                    @endisset
+                    <input type="file" name="negative_listing_status_file" @if($empanelment_status->negative_listing_status == 'No') disabled @endif id="negative_listing_status_file" hidden />
                     <label for="negative_listing_status_file" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
                     </div>
@@ -152,7 +178,7 @@
 
                 <div class="col-md-12 show-hide-empanelment mt-3">
                     <label for="hospital_empanelment_status_comments">Hospital Empanelment Status Comments </label>
-                    <textarea class="form-control" id="hospital_empanelment_status_comments" name="hospital_empanelment_status_comments" maxlength="250" placeholder="Comments" rows="4">{{ old('hospital_empanelment_status_comments', $hospital_tie_ups->hospital_empanelment_status_comments??'') }}</textarea>
+                    <textarea class="form-control" id="hospital_empanelment_status_comments" name="hospital_empanelment_status_comments" maxlength="250" placeholder="Comments" rows="4">{{ old('hospital_empanelment_status_comments', $empanelment_status->hospital_empanelment_status_comments??'') }}</textarea>
                     @error('hospital_empanelment_status_comments')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
@@ -160,7 +186,7 @@
 
 
                 <div class="col-md-12 show-hide-empanelment text-end mt-3">
-                <button type="submit" class="btn btn-success" form="hospital-empanelment-form">Save / Update </button>
+                <button type="submit" class="btn btn-success" form="hospital-empanelment-status-form">Save / Update </button>
             </div>
 
 
