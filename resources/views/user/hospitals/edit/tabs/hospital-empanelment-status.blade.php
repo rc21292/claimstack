@@ -27,12 +27,20 @@
 
             <div class="col-md-6 show-hide-empanelment mt-3">
                 <label for="empanelled">Empanelled<span class="text-danger">*</span></label>
+                <div class="input-group">
                 <select onchange="enableDisable()" class="form-select" id="empanelled" name="empanelled">
                     <option value="">Select Company Name</option>
                     <option value="Yes" {{ old('empanelled', $empanelment_status->empanelled ?? '') == 'Yes' ? 'selected' : '' }}>Yes</option>
                     <option value="No" {{ old('empanelled', $empanelment_status->empanelled ?? '') == 'No' ? 'selected' : '' }}>No</option>
                 </select>
+                <input type="file" name="empanelled_file" @if($empanelment_status->empanelled ?? '' == 'No') disabled @endif id="empanelled_file" hidden />
+                    <label for="empanelled_file" class="btn btn-primary upload-label"><i
+                        class="mdi mdi-upload"></i></label>
+                    </div>
                 @error('empanelled')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+                @error('empanelled_file')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
@@ -49,12 +57,20 @@
 
             <div class="col-md-6 show-hide-empanelment mt-3">
                 <label for="signed_mou">Signed MoU<span class="text-danger">*</span></label>
+                <div class="input-group">
                 <select disabled class="form-select" id="signed_mou" name="signed_mou">
                     <option value="">Select Signed MoU</option>
                     <option value="Yes" {{ old('signed_mou', $empanelment_status->signed_mou ?? '') == 'Yes' ? 'selected' : '' }}>Yes</option>
                     <option value="No" {{ old('signed_mou', $empanelment_status->signed_mou ?? '') == 'No' ? 'selected' : '' }}>No</option>
                 </select>
+                <input type="file" name="signed_mou_file" @if($empanelment_status->signed_mou ?? '' == 'No') disabled @endif id="signed_mou_file" hidden />
+                    <label for="signed_mou_file" class="btn btn-primary upload-label"><i
+                        class="mdi mdi-upload"></i></label>
+                    </div>
                 @error('signed_mou')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+                @error('signed_mou_file')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
@@ -62,25 +78,41 @@
 
             <div class="col-md-6 show-hide-empanelment mt-3">
                 <label for="agreed_packages_and_tariff_pdf_other_images">Agreed Packages and Tariff (PDF & Other Images)<span class="text-danger">*</span></label>
+                <div class="input-group">
                 <select disabled class="form-select" id="agreed_packages_and_tariff_pdf_other_images" name="agreed_packages_and_tariff_pdf_other_images">
                     <option value="">Select Agreed Packages and Tariff</option>
                     <option value="Yes" {{ old('agreed_packages_and_tariff_pdf_other_images', $empanelment_status->agreed_packages_and_tariff_pdf_other_images ?? '') == 'Yes' ? 'selected' : '' }}>Yes</option>
                     <option value="As Per Hospital Tariff" {{ old('agreed_packages_and_tariff_pdf_other_images', $empanelment_status->agreed_packages_and_tariff_pdf_other_images ?? '') == 'As Per Hospital Tariff' ? 'selected' : '' }}>As Per Hospital Tariff</option>
                 </select>
+                <input type="file" name="agreed_packages_and_tariff_pdf_other_images_file" @if($empanelment_status->agreed_packages_and_tariff_pdf_other_images ?? '' == 'No') disabled @endif id="agreed_packages_and_tariff_pdf_other_images_file" hidden />
+                    <label for="agreed_packages_and_tariff_pdf_other_images_file" class="btn btn-primary upload-label"><i
+                        class="mdi mdi-upload"></i></label>
+                    </div>
                 @error('agreed_packages_and_tariff_pdf_other_images')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+                @error('agreed_packages_and_tariff_pdf_other_images_file')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
 
 
             <div class="col-md-12 show-hide-empanelment mt-3">
-                <label for="agreed_packages_and_tariff_pdf_other_images">Upload - Packages and Tariff (Excel / CSV)<span class="text-danger">*</span></label>
-                <select class="form-select" id="agreed_packages_and_tariff_pdf_other_images" name="agreed_packages_and_tariff_pdf_other_images">
+                <label for="upload_packages_and_tariff_excel_or_csv">Upload - Packages and Tariff (Excel / CSV)<span class="text-danger">*</span></label>
+                <div class="input-group">
+                <select class="form-select" id="upload_packages_and_tariff_excel_or_csv" name="upload_packages_and_tariff_excel_or_csv">
                     <option value="">Select Upload - Packages and Tariff</option>
-                    <option value="Yes" {{ old('agreed_packages_and_tariff_pdf_other_images', $empanelment_status->agreed_packages_and_tariff_pdf_other_images ?? '') == 'Yes' ? 'selected' : '' }}>Yes</option>
-                    <option value="No" {{ old('agreed_packages_and_tariff_pdf_other_images', $empanelment_status->agreed_packages_and_tariff_pdf_other_images ?? '') == 'No' ? 'selected' : '' }}>No</option>
+                    <option value="Yes" {{ old('upload_packages_and_tariff_excel_or_csv', $empanelment_status->upload_packages_and_tariff_excel_or_csv ?? '') == 'Yes' ? 'selected' : '' }}>Yes</option>
+                    <option value="No" {{ old('upload_packages_and_tariff_excel_or_csv', $empanelment_status->upload_packages_and_tariff_excel_or_csv ?? '') == 'No' ? 'selected' : '' }}>No</option>
                 </select>
-                @error('agreed_packages_and_tariff_pdf_other_images')
+                <input type="file" name="upload_packages_and_tariff_excel_or_csv_file" @if($empanelment_status->upload_packages_and_tariff_excel_or_csv ?? '' == 'No') disabled @endif id="upload_packages_and_tariff_excel_or_csv_file" hidden />
+                    <label for="upload_packages_and_tariff_excel_or_csv_file" class="btn btn-primary upload-label"><i
+                        class="mdi mdi-upload"></i></label>
+                    </div>
+                @error('upload_packages_and_tariff_excel_or_csv')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+                @error('upload_packages_and_tariff_excel_or_csv_file')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
