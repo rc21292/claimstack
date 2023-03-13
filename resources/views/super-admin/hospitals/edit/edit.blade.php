@@ -114,10 +114,10 @@
                                 @include('super-admin.hospitals.edit.tabs.hospital-department')
                             </div>
                             <div class="tab-pane" id="hospital_docuuments">
-                                @include('user.hospitals.edit.tabs.hospital-documents')
+                                @include('super-admin.hospitals.edit.tabs.hospital-documents')
                             </div>
                             <div class="tab-pane" id="empanelment_status">
-                                @include('user.hospitals.edit.tabs.hospital-empanelment-status')
+                                @include('super-admin.hospitals.edit.tabs.hospital-empanelment-status')
                             </div>
                             <div class="tab-pane" id="negative_isting">
                                 @include('super-admin.hospitals.edit.tabs.hospital-negative-listing-status')
