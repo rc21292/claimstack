@@ -1023,19 +1023,21 @@ class HospitalController extends Controller
     {
         $hospital             = Hospital::find($id);
 
+        $empanelment_status          = HospitalEmpanelmentStatus::where('hospital_id', $id)->first();
+
         $rules = [
             'company_name'              => 'required',
             'empanelled'                => 'required',
-            'empanelled_file'                => 'required',
+            'empanelled_file'                => ($request->empanelled == 'Yes' && empty($empanelment_status->empanelled_file)) ? 'required' : '',
             'hospital_id_as_per_the_selected_company'             => ($request->empanelled == 'Yes') ? 'required|max:25' : '',
             'signed_mou'                    => ($request->empanelled == 'Yes') ? 'required' : '',
-            'signed_mou_file'                    => ($request->empanelled == 'Yes') ? 'required' : '',
+            'signed_mou_file'                    => ($request->empanelled == 'Yes' && $request->signed_mou == 'Yes' && empty($empanelment_status->empanelled_file)) ? 'required' : '',
             'agreed_packages_and_tariff_pdf_other_images'           => ($request->empanelled == 'Yes') ? 'required' : '',
-            'agreed_packages_and_tariff_pdf_other_images_file'           => ($request->empanelled == 'Yes') ? 'required' : '',
+            'agreed_packages_and_tariff_pdf_other_images_file'           => ($request->empanelled == 'Yes' && $request->agreed_packages_and_tariff_pdf_other_images == 'Yes' && empty($empanelment_status->empanelled_file)) ? 'required' : '',
             /*'upload_packages_and_tariff_excel_or_csv'           => 'required',
             'upload_packages_and_tariff_excel_or_csv_file'           => 'required',*/
             'negative_listing_status'           => 'required',
-            'negative_listing_status_file'           => ($request->empanelled == 'Yes') ? 'required' : '',
+            'negative_listing_status_file'           => ($request->empanelled == 'Yes' && $request->negative_listing_status == 'Yes' && empty($empanelment_status->negative_listing_status_file)) ? 'required' : '',
             // 'hospital_empanelment_status_comments'           => 'required|max:250',
         ];
 

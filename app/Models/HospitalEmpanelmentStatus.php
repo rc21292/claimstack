@@ -10,6 +10,7 @@ class HospitalEmpanelmentStatus extends Model
     use HasFactory;
 
     protected $fillable = [
+        'hospital_id',
         'company_name',
         'empanelled',
         'empanelled_file',

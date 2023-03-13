@@ -4,7 +4,6 @@
         @csrf
         @method('PUT')
         <div class="form-group row">
-
             <div class="col-md-12">
                 <button style="float:right;" type="button" class="btn btn-danger show-empanelment"> <i class="mdi mdi-plus"></i> Add Insurance Co. / TPA / Other </button>
             </div>
@@ -33,8 +32,8 @@
                     <option value="Yes" {{ old('empanelled', $empanelment_status->empanelled ?? '') == 'Yes' ? 'selected' : '' }}>Yes</option>
                     <option value="No" {{ old('empanelled', $empanelment_status->empanelled ?? '') == 'No' ? 'selected' : '' }}>No</option>
                 </select>
-                <input type="file" name="empanelled_file" @if($empanelment_status->empanelled ?? '' == 'No') disabled @endif id="empanelled_file" hidden />
-                    <label for="empanelled_file" class="btn btn-primary upload-label"><i
+                <input type="file" name="empanelled_file" id="empanelled_file_id" hidden />
+                    <label for="empanelled_file_id" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
                     </div>
                 @error('empanelled')
@@ -63,8 +62,8 @@
                     <option value="Yes" {{ old('signed_mou', $empanelment_status->signed_mou ?? '') == 'Yes' ? 'selected' : '' }}>Yes</option>
                     <option value="No" {{ old('signed_mou', $empanelment_status->signed_mou ?? '') == 'No' ? 'selected' : '' }}>No</option>
                 </select>
-                <input type="file" name="signed_mou_file" @if($empanelment_status->signed_mou ?? '' == 'No') disabled @endif id="signed_mou_file" hidden />
-                    <label for="signed_mou_file" class="btn btn-primary upload-label"><i
+                <input type="file" name="signed_mou_file" id="signed_mou_file_id" hidden />
+                    <label for="signed_mou_file_id" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
                     </div>
                 @error('signed_mou')
@@ -84,8 +83,8 @@
                     <option value="Yes" {{ old('agreed_packages_and_tariff_pdf_other_images', $empanelment_status->agreed_packages_and_tariff_pdf_other_images ?? '') == 'Yes' ? 'selected' : '' }}>Yes</option>
                     <option value="As Per Hospital Tariff" {{ old('agreed_packages_and_tariff_pdf_other_images', $empanelment_status->agreed_packages_and_tariff_pdf_other_images ?? '') == 'As Per Hospital Tariff' ? 'selected' : '' }}>As Per Hospital Tariff</option>
                 </select>
-                <input type="file" name="agreed_packages_and_tariff_pdf_other_images_file" @if($empanelment_status->agreed_packages_and_tariff_pdf_other_images ?? '' == 'No') disabled @endif id="agreed_packages_and_tariff_pdf_other_images_file" hidden />
-                    <label for="agreed_packages_and_tariff_pdf_other_images_file" class="btn btn-primary upload-label"><i
+                <input type="file" name="agreed_packages_and_tariff_pdf_other_images_file" id="agreed_packages_and_tariff_pdf_other_images_file_id" hidden />
+                    <label for="agreed_packages_and_tariff_pdf_other_images_file_id" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
                     </div>
                 @error('agreed_packages_and_tariff_pdf_other_images')
@@ -145,6 +144,10 @@
                     @error('negative_listing_status')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
+
+                    @error('negative_listing_status_file')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <div class="col-md-12 show-hide-empanelment mt-3">
@@ -198,5 +201,15 @@ $('select').on('change', function(){
             $("#"+id+"_file").attr('disabled',false);
         }
     });
+        $(".show-hide-empanelment").toggle('fast');
+
+    $(document).ready(function() {
+    var shsh = "{{ old('empanelled', $empanelment_status->empanelled) }}";
+    
+    if(shsh == 'Yes' || shsh == 'No'){
+        $(".show-hide-empanelment").toggle('fast');
+    }
+});
+
     </script>
 @endpush
