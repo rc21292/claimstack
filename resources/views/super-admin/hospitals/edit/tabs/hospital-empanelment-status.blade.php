@@ -139,7 +139,7 @@
             </div>
         </form>
 
-    <form action="{{ route('user.hospitals.empanelment-status', $hospital->id) }}" method="post" id="hospital-empanelment-status-form"
+    <form action="{{ route('super-admin.hospitals.empanelment-status', $hospital->id) }}" method="post" id="hospital-empanelment-status-form"
         enctype="multipart/form-data">
         @csrf
         @method('PUT')
