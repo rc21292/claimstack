@@ -1,5 +1,5 @@
 <div class="card-body">
-    <form action="{{ route('user.hospitals.empanelment-status', $hospital->id) }}" method="post" id="hospital-empanelment-form"
+    <form action="{{ route('super-admin.hospitals.empanelment-status', $hospital->id) }}" method="post" id="hospital-empanelment-form"
         enctype="multipart/form-data">
         @csrf
         @method('PUT')

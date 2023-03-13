@@ -3,7 +3,7 @@
         Hospital Documents
     </div>
     <div class="card-body">
-        <form action="{{ route('user.hospital-documents.update', $hospital->id) }}"
+        <form action="{{ route('super-admin.hospital-documents.update', $hospital->id) }}"
             method="post" id="hospital-documents-form" enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -134,7 +134,7 @@
         Hospital Facilities and Infrastructure
     </div>
     <div class="card-body">
-        <form action="{{ route('user.hospital-documents.update', $hospital->id) }}"
+        <form action="{{ route('super-admin.hospital-documents.update', $hospital->id) }}"
             method="post" id="hospital-fi-form" enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -614,7 +614,7 @@
         Hospital Certificates
     </div>
     <div class="card-body">
-        <form action="{{ route('user.hospital-documents.update', $hospital->id) }}"
+        <form action="{{ route('super-admin.hospital-documents.update', $hospital->id) }}"
             method="post" id="hospital-certificates-form" enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -965,7 +965,7 @@
         Doctor Registration Certificate Documents
     </div>
     <div class="card-body">
-        <form action="{{ route('user.hospital-documents.update', $hospital->id) }}"
+        <form action="{{ route('super-admin.hospital-documents.update', $hospital->id) }}"
             method="post" id="doctor-registration-form" enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -1030,7 +1030,7 @@
         Hospital MoUs (Signed) Documents
     </div>
     <div class="card-body">
-        <form action="{{ route('user.hospital-documents.update', $hospital->id) }}"
+        <form action="{{ route('super-admin.hospital-documents.update', $hospital->id) }}"
             method="post" id="mous-form" enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -1118,7 +1118,7 @@
         Agreed Tariff and Packages with ICs / TPAs / Govt/ PSU / Other Corporates Documents
     </div>
     <div class="card-body">
-        <form action="{{ route('user.hospital-documents.update', $hospital->id) }}"
+        <form action="{{ route('super-admin.hospital-documents.update', $hospital->id) }}"
             method="post" id="hospital-package-form" enctype="multipart/form-data">
             @csrf
             @method('PUT')
