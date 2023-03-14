@@ -636,7 +636,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="insurance_claim_settled_amount">Insurance Claim Settled Amount<span class="text-danger">*</span></label>
                                             <div class="input-group">
-                                                <input type="number" readonly class="form-control" id="insurance_claim_settled_amount" name="insurance_claim_settled_amount" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==8) return false;"
+                                                <input type="number" readonly class="form-control" id="insurance_claim_settled_amount" placeholder="Enter Insurance Claim Settled Amount" name="insurance_claim_settled_amount" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==8) return false;"
                                                 value="{{ old('insurance_claim_settled_amount', isset($lending_status) ? $lending_status->insurance_claim_settled_amount : '') }}">
                                             </div>
                                             @error('insurance_claim_settled_amount')
