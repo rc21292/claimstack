@@ -657,7 +657,9 @@
     <script>
         function calculateAge() {
             var dob = $('#dob').val();
-            dob = new Date(dob);
+            var dmy = dob.split("-");
+            var d = new Date(dmy[2], dmy[1] - 1, dmy[0]);
+            dob = new Date(d);
             var today = new Date();
             var age = Math.floor((today - dob) / (365.25 * 24 * 60 * 60 * 1000));
             $('#age').val(age);
