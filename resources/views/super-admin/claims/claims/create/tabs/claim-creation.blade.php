@@ -10,7 +10,11 @@
                     <option value="">Enter Patient ID</option>
                     @foreach ($patients as $row)
                         <option value="{{ $row->id }}"
+                            @isset($patient)
+                            {{ old('patient_id', isset($patient) ? $patient->id : '') == $row->id ? 'selected' : 'disabled' }}
+                            @else
                             {{ old('patient_id', isset($patient) ? $patient->id : '') == $row->id ? 'selected' : '' }}
+                            @endisset
                             data-title="{{ $row->title }}" data-firstname="{{ $row->firstname }}"
                             data-middlename="{{ $row->middlename }}" data-lastname="{{ $row->lastname }}"
                             data-age="{{ $row->age }}" data-gender="{{ $row->gender }}"
@@ -30,7 +34,11 @@
                     <option value="">Select Hospital</option>
                     @foreach ($hospitals as $hospital)
                         <option value="{{ $hospital->id }}"
+                            @isset($patient)
                             {{ old('hospital_id') == $hospital->id ? 'selected' : '' }}
+                            @else
+                            {{ old('hospital_id') == $hospital->id ? 'selected' : '' }}
+                            @endisset
                             data-name="{{ $hospital->name }}" data-id="{{ $hospital->uid }}"
                             data-address="{{ $hospital->address }}" data-city="{{ $hospital->city }}"
                             data-state="{{ $hospital->state }}" data-pincode="{{ $hospital->pincode }}"
@@ -51,7 +59,8 @@
             <div class="col-md-6">
                 <label for="hospital_name">Hospital Name <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="hospital_name" name="hospital_name"
-                    placeholder="Enter Hospital Name" value="{{ old('hospital_name') }}">
+                    placeholder="Enter Hospital Name" value="{{ old('hospital_name') }}"
+                    @isset($patient) readonly @endisset>
                 @error('hospital_name')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -60,7 +69,8 @@
             <div class="col-md-12 mt-3">
                 <label for="hospital_address">Hospital Address <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="hospital_address" name="hospital_address"
-                    placeholder="Address Line" value="{{ old('hospital_address') }}">
+                    placeholder="Address Line" value="{{ old('hospital_address') }}"
+                    @isset($patient) readonly @endisset>
                 @error('hospital_address')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -68,7 +78,7 @@
 
             <div class="col-md-4 mt-2">
                 <input type="text" class="form-control" id="hospital_city" name="hospital_city" placeholder="City"
-                    value="{{ old('hospital_city') }}">
+                    value="{{ old('hospital_city') }}" @isset($patient) readonly @endisset>
                 @error('hospital_city')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -76,7 +86,7 @@
 
             <div class="col-md-4 mt-2">
                 <input type="text" class="form-control" id="hospital_state" name="hospital_state" placeholder="State"
-                    value="{{ old('hospital_state') }}">
+                    value="{{ old('hospital_state') }}" @isset($patient) readonly @endisset>
                 @error('hospital_state')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -84,7 +94,8 @@
 
             <div class="col-md-4 mt-2">
                 <input type="number" class="form-control" id="hospital_pincode" name="hospital_pincode"
-                    placeholder="Pincode" value="{{ old('hospital_pincode') }}">
+                    placeholder="Pincode" value="{{ old('hospital_pincode') }}"
+                    @isset($patient) readonly @endisset>
                 @error('hospital_pincode')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -93,7 +104,8 @@
             <div class="col-md-6 mt-3">
                 <label for="associate_partner_id">Associate Partner ID <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="associate_partner_id" name="associate_partner_id"
-                    placeholder="Associate Partner ID" value="{{ old('associate_partner_id') }}">
+                    placeholder="Associate Partner ID" value="{{ old('associate_partner_id') }}"
+                    @isset($patient) readonly @endisset>
                 @error('associate_partner_id')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -104,7 +116,7 @@
                         class="text-danger">*</span></label>
                 <input type="text" class="form-control" maxlength="20" id="registration_no"
                     name="registration_no" placeholder="Enter IP Registration No."
-                    value="{{ old('registration_no') }}">
+                    value="{{ old('registration_no') }}" @isset($patient) readonly @endisset>
                 @error('registration_no')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -116,9 +128,22 @@
 
             <div class="col-md-3 mt-1">
                 <select class="form-control" id="title" name="title">
-                    <option value="">Select</option>
-                    <option value="Mr." {{ old('title') == 'Mr.' ? 'selected' : '' }}>Mr.</option>
-                    <option value="Ms." {{ old('title') == 'Ms.' ? 'selected' : '' }}>Ms.</option>
+                    @isset($patient)
+                        <option value="Mr."
+                            {{ old('title', isset($patient) ? $patient->title : '') == 'Mr.' ? 'selected' : 'disabled' }}>
+                            Mr.</option>
+                        <option value="Ms."
+                            {{ old('title', isset($patient) ? $patient->title : '') == 'Ms.' ? 'selected' : 'disabled' }}>
+                            Ms.</option>
+                    @else
+                        <option value="Mr."
+                            {{ old('title', isset($patient) ? $patient->title : '') == 'Mr.' ? 'selected' : '' }}>Mr.
+                        </option>
+                        <option value="Ms."
+                            {{ old('title', isset($patient) ? $patient->title : '') == 'Ms.' ? 'selected' : '' }}>Ms.
+                        </option>
+                    @endisset
+
                 </select>
                 @error('title')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -127,7 +152,8 @@
 
             <div class="col-md-3 mt-1">
                 <input type="text" maxlength="25" class="form-control" id="lastname" name="lastname"
-                    maxlength="30" placeholder="Last name" value="{{ old('lastname') }}">
+                    maxlength="30" placeholder="Last name" value="{{ old('lastname') }}"
+                    @isset($patient) readonly @endisset>
                 @error('lastname')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -135,7 +161,8 @@
 
             <div class="col-md-3 mt-1">
                 <input type="text" maxlength="25" class="form-control" id="firstname" name="firstname"
-                    maxlength="15" placeholder="First name" value="{{ old('firstname') }}">
+                    maxlength="15" placeholder="First name" value="{{ old('firstname') }}"
+                    @isset($patient) readonly @endisset>
                 @error('firstname')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -143,7 +170,8 @@
 
             <div class="col-md-3 mt-1">
                 <input type="text" maxlength="25" class="form-control" id="middlename" name="middlename"
-                    maxlength="30" placeholder="Middle name" value="{{ old('middlename') }}">
+                    maxlength="30" placeholder="Middle name" value="{{ old('middlename') }}"
+                    @isset($patient) readonly @endisset>
                 @error('middlename')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -152,7 +180,8 @@
             <div class="col-md-6 mt-3">
                 <label for="age">Patient Age <span class="text-danger">*</span></label>
                 <input type="text" onkeypress="return isNumberKey(event)" class="form-control" id="age"
-                    name="age" placeholder="Patient Age" value="{{ old('age') }}">
+                    name="age" placeholder="Patient Age" value="{{ old('age') }}"
+                    @isset($patient) readonly @endisset>
                 @error('age')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -161,13 +190,32 @@
             <div class="col-md-6 mt-3">
                 <label for="gender">Patient Gender <span class="text-danger">*</span></label>
                 <select class="form-select" id="gender" name="gender">
-                    <option value="">Select gender</option>
-                    <option value="Male" {{ old('gender') == 'Male' ? 'selected' : '' }}>Male
-                    </option>
-                    <option value="Female" {{ old('gender') == 'Female' ? 'selected' : '' }}>Female
-                    </option>
-                    <option value="Other" {{ old('gender') == 'Other' ? 'selected' : '' }}>Other
-                    </option>
+
+                    @isset($patient)
+                        <option value="Male"
+                            {{ old('gender', isset($patient) ? $patient->gender : '') == 'Male' ? 'selected' : 'disabled' }}>
+                            Male
+                        </option>
+                        <option value="Female"
+                            {{ old('gender', isset($patient) ? $patient->gender : '') == 'Female' ? 'selected' : 'disabled' }}>
+                            Female
+                        </option>
+                        <option value="Other"
+                            {{ old('gender', isset($patient) ? $patient->gender : '') == 'Other' ? 'selected' : 'disabled' }}>
+                            Other
+                        </option>
+                    @else
+                        <option value="Male"
+                            {{ old('gender', isset($patient) ? $patient->gender : '') == 'Male' ? 'selected' : '' }}>Male
+                        </option>
+                        <option value="Female"
+                            {{ old('gender', isset($patient) ? $patient->gender : '') == 'Female' ? 'selected' : '' }}>
+                            Female
+                        </option>
+                        <option value="Other"
+                            {{ old('gender', isset($patient) ? $patient->gender : '') == 'Other' ? 'selected' : '' }}>Other
+                        </option>
+                    @endisset
                 </select>
                 @error('gender')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -176,7 +224,8 @@
             <div class="col-md-6 mt-3">
                 <label for="admission_date">Date of Admission (DD-MM-YYYY) <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="admission_date" max="{{ date('Y-m-d') }}"
-                    name="admission_date" value="{{ old('admission_date') }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
+                    name="admission_date" value="{{ old('admission_date') }}" placeholder="DD-MM-YYYY"
+                    data-provide="datepicker" data-date-format="dd-mm-yyyy">
                 @error('admission_date')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -193,7 +242,8 @@
                 <label for="discharge_date">Expected Date of Discharge (DD-MM-YYYY) <span
                         class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="discharge_date" name="discharge_date"
-                    value="{{ old('discharge_date') }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy" onchange="calculateExpectedDays();">
+                    value="{{ old('discharge_date') }}" placeholder="DD-MM-YYYY" data-provide="datepicker"
+                    data-date-format="dd-mm-yyyy" onchange="calculateExpectedDays();">
                 @error('discharge_date')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -213,14 +263,8 @@
                 <div class="input-group">
                     <input type="text" maxlength="45" class="form-control" id="abha_id" name="abha_id"
                         placeholder="ABHA ID" value="{{ old('abha_id') }}">
-                    <input type="file" name="abhafile" id="abhafile" hidden
-                        onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                    <label for="abhafile" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
                 </div>
                 @error('abha_id')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-                @error('abhafile')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
@@ -243,15 +287,8 @@
                 <div class="input-group">
                     <input type="text" maxlength="16" class="form-control" id="policy_no" name="policy_no"
                         placeholder="Policy No." value="{{ old('policy_no') }}">
-                    <input type="file" name="policy_file" id="policy_file" hidden
-                        onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                    <label for="policy_file" class="btn btn-primary upload-label"><i
-                            class="mdi mdi-upload"></i></label>
                 </div>
                 @error('policy_no')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-                @error('policy_file')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
@@ -262,15 +299,8 @@
                     <input type="text" maxlength="16" class="form-control" id="company_tpa_id_card_no"
                         placeholder="Company / TPA ID Card No." name="company_tpa_id_card_no"
                         value="{{ old('company_tpa_id_card_no') }}">
-                    <input type="file" name="company_tpa_id_card_file" id="company_tpa_id_card_file" hidden
-                        onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                    <label for="company_tpa_id_card_file" class="btn btn-primary upload-label"><i
-                            class="mdi mdi-upload"></i></label>
                 </div>
                 @error('company_tpa_id_card_no')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-                @error('company_tpa_id_card_file')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
@@ -338,7 +368,8 @@
                 <label for="consultation_date">Date of First Consultation (DD-MM-YYYY) <span
                         class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="consultation_date" max="{{ date('Y-m-d') }}"
-                    name="consultation_date" value="{{ old('consultation_date') }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
+                    name="consultation_date" value="{{ old('consultation_date') }}" placeholder="DD-MM-YYYY"
+                    data-provide="datepicker" data-date-format="dd-mm-yyyy">
                 @error('consultation_date')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -347,15 +378,16 @@
                 <label for="date_of_delivery">Date of Injury / Date Disease first detected / Date of delivery<span
                         class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="date_of_delivery" max="{{ date('Y-m-d') }}"
-                    name="date_of_delivery" value="{{ old('date_of_delivery') }}"
-                    placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
+                    name="date_of_delivery" value="{{ old('date_of_delivery') }}" placeholder="DD-MM-YYYY"
+                    data-provide="datepicker" data-date-format="dd-mm-yyyy">
                 @error('date_of_delivery')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
             <div class="col-md-6 mt-3">
                 <label for="system_of_medicine">System of Medicine <span class="text-danger">*</span></label>
-                <select class="form-select" id="system_of_medicine" name="system_of_medicine" onchange=setMedicineOption();>
+                <select class="form-select" id="system_of_medicine" name="system_of_medicine"
+                    onchange=setMedicineOption();>
                     <option value="">Select</option>
                     <option value="Allopathy" {{ old('system_of_medicine') == 'Allopathy' ? 'selected' : '' }}>
                         Allopathy
@@ -555,7 +587,8 @@
             <div class="col-md-6 mt-3">
                 <label for="chronic_illness">Past history of any chronic illness <span
                         class="text-danger">*</span></label>
-                <select class="form-select" id="chronic_illness" name="chronic_illness" onchange="ailnessOptions();">
+                <select class="form-select" id="chronic_illness" name="chronic_illness"
+                    onchange="ailnessOptions();">
                     <option value="">Select</option>
                     <option value="N/A" selected>N/A
                     </option>
@@ -609,7 +642,8 @@
             <div class="col-md-6 mt-3">
                 <label for="has_family_physician">Does the patient has a family physician <span
                         class="text-danger">*</span></label>
-                <select class="form-select" id="has_family_physician" name="has_family_physician" onchange="setPhysicinOptions();">
+                <select class="form-select" id="has_family_physician" name="has_family_physician"
+                    onchange="setPhysicinOptions();">
                     <option value="">Select</option>
                     <option value="Yes" {{ old('has_family_physician') == 'Yes' ? 'selected' : '' }}>Yes
                     </option>
