@@ -125,9 +125,9 @@ class LendingStatusController extends Controller
 
             case 'loan-application-status-form':
                 $rules = [
-                    'date_of_loan_application'  => 'required',   
-                    'loan_id_or_no'             => 'required|max:20',
-                    'loan_status'               => 'required',   
+                    'date_of_loan_application'  => ($request->applyloan == 1) ? 'required' : '',   
+                    'loan_id_or_no'             => ($request->applyloan == 1) ? 'required|max:20' : '',
+                    'loan_status'               => ($request->applyloan == 1) ? 'required' : '',   
                 ];
                 
                 $messages =  [

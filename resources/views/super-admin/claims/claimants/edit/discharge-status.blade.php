@@ -3,9 +3,6 @@
 @section('content')
     <!-- Start Content-->
     <div class="container-fluid">
-@if($errors->any())
-    {{ implode('', $errors->all('<div>:message</div>')) }}
-@endif
         <!-- start page title -->
         <div class="row">
             <div class="col-12">
