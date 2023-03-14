@@ -58,6 +58,7 @@ return new class extends Migration
             $table->string('medical_superintendent_lastname')->nullable();
             $table->string('medical_superintendent_email')->nullable();
             $table->string('medical_superintendent_registration_no')->nullable();
+            $table->text('medical_superintendent_registration_no_file')->nullable();
             $table->string('medical_superintendent_qualification')->nullable();
             $table->string('medical_superintendent_mobile')->nullable();
             $table->string('pollution_clearance_certificate')->nullable();

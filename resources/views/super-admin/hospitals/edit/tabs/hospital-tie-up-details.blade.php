@@ -27,16 +27,11 @@
             @isset($hospital_tie_ups->bhc_packages_for_surgical_procedures_accepted_file)
                 <a href="{{ asset('storage/uploads/hospital/'.$hospital_tie_ups->hospital_id.'/'.$hospital_tie_ups->bhc_packages_for_surgical_procedures_accepted_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
             @endisset
-            <input type="file" name="bhc_packages_for_surgical_procedures_accepted_file" @if(old('bhc_packages_for_surgical_procedures_accepted',$hospital_tie_ups->bhc_packages_for_surgical_procedures_accepted) == 'No') disabled @endif id="bhc_packages_for_surgical_procedures_accepted_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
-            <label for="bhc_packages_for_surgical_procedures_accepted_file" class="btn btn-primary upload-label"><i
-                class="mdi mdi-upload"></i></label>
+            
             </div>
             @error('bhc_packages_for_surgical_procedures_accepted')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-            @error('bhc_packages_for_surgical_procedures_accepted_file')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
         </div>
 
         <div class="col-md-6 mt-3">
@@ -254,16 +249,10 @@
             @isset($hospital_tie_ups->lending_finance_company_agreement_file)
                 <a href="{{ asset('storage/uploads/hospital/'.$hospital_tie_ups->hospital_id.'/'.$hospital_tie_ups->lending_finance_company_agreement_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
             @endisset
-            <input type="file" name="lending_finance_company_agreement_file" @if($hospital_tie_ups->lending_finance_company_agreement == 'No') disabled @endif id="lending_finance_company_agreement_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
-            <label for="lending_finance_company_agreement_file" class="btn btn-primary upload-label"><i
-                class="mdi mdi-upload"></i></label>
             </div>
             @error('lending_finance_company_agreement')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-            @error('lending_finance_company_agreement_file')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
         </div>
 
         <div class="col-md-6 mt-3 show-hide-agrrement">

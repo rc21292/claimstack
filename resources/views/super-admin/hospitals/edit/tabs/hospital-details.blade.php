@@ -355,14 +355,8 @@
             @isset($hospital->tanfile)
                 <a href="{{ asset('storage/uploads/hospital/'.$hospital->id.'/'.$hospital->tanfile) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
             @endisset
-            <input type="file" name="tanfile" id="tanfile" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
-                <label for="tanfile" class="btn btn-primary upload-label"><i
-                        class="mdi mdi-upload"></i></label>
             </div>
             @error('tan')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
-            @error('tanfile')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
@@ -498,9 +492,20 @@
         <div class="col-md-6 mt-3">
             <label for="medical_superintendent_registration_no">Medical Superintendent Registration No <span
                     class="text-danger">*</span></label>
+                    <div class="input-group">
             <input type="text" maxlength="20" class="form-control" id="medical_superintendent_registration_no" name="medical_superintendent_registration_no"
                 placeholder="Enter Medical Superintendent Registration No" value="{{ old('medical_superintendent_registration_no', $hospital->medical_superintendent_registration_no) }}">
+            @isset($hospital->medical_superintendent_registration_no_file)
+                <a href="{{ asset('storage/uploads/hospital/'.$hospital->id.'/'.$hospital->medical_superintendent_registration_no_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+            @endisset
+            <input type="file"  @if(old('medical_superintendent_registration_no', $hospital->medical_superintendent_registration_no) == 'No') disabled @endif name="medical_superintendent_registration_no_file" id="medical_superintendent_registration_no_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
+            <label for="medical_superintendent_registration_no_file" class="btn btn-primary upload-label"><i
+                class="mdi mdi-upload"></i></label>
+            </div>
             @error('medical_superintendent_registration_no')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+            @error('medical_superintendent_registration_no_file')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>

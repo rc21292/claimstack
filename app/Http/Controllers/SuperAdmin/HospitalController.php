@@ -247,7 +247,6 @@ class HospitalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // echo "<pre>";print_r($request->files);"</pre>";exit;
         $hospital             = Hospital::find($id);
 
         if ($request->hasfile('panfile')) {
@@ -256,15 +255,6 @@ class HospitalController extends Controller
             $panfile->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
             Hospital::where('id', $hospital->id)->update([
                 'panfile'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('tanfile')) {
-            $tanfile                    = $request->file('tanfile');
-            $name                       = $tanfile->getClientOriginalName();
-            $tanfile->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
-            Hospital::where('id', $hospital->id)->update([
-                'tanfile'               =>  $name
             ]);
         }
 
@@ -319,6 +309,15 @@ class HospitalController extends Controller
             $signed_mous_file->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
             Hospital::where('id', $hospital->id)->update([
                 'signed_mous_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('medical_superintendent_registration_no_file')) {
+            $medical_superintendent_registration_no_file                    = $request->file('medical_superintendent_registration_no_file');
+            $name                       = $medical_superintendent_registration_no_file->getClientOriginalName();
+            $medical_superintendent_registration_no_file->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
+            Hospital::where('id', $hospital->id)->update([
+                'medical_superintendent_registration_no_file'               =>  $name
             ]);
         }
 
@@ -404,7 +403,6 @@ class HospitalController extends Controller
             'linked_employee'                           => 'required',
             'linked_employee_id'                        => 'required',
             'tan'                                       => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|size:10' : [],
-            'tanfile'                                   => ($request->onboarding == 'Tie Up' && empty($hospital->tanfile)) ? 'required' : [],
             'gst'                                       => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|size:15' : [],
             'gstfile'                                   => ($request->onboarding == 'Tie Up' && empty($hospital->gstfile)) ? 'required' : [],
             'owner_email'                               => ($request->onboarding == 'Tie Up') ? 'required|email|min:1|max:45' : [],
@@ -571,29 +569,9 @@ class HospitalController extends Controller
         $hospital             = Hospital::find($id);
         $hospital_tie_ups             = HospitalTieUp::where('hospital_id',$id)->first();
 
-
-        if ($request->hasfile('bhc_packages_for_surgical_procedures_accepted_file')) {
-            $bhc_packages_for_surgical_procedures_accepted_file                    = $request->file('bhc_packages_for_surgical_procedures_accepted_file');
-            $name                       = $bhc_packages_for_surgical_procedures_accepted_file->getClientOriginalName();
-            $bhc_packages_for_surgical_procedures_accepted_file->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
-            HospitalTieUp::where('hospital_id', $hospital->id)->update([
-                'bhc_packages_for_surgical_procedures_accepted_file'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('lending_finance_company_agreement_file')) {
-            $lending_finance_company_agreement_file                    = $request->file('lending_finance_company_agreement_file');
-            $name                       = $lending_finance_company_agreement_file->getClientOriginalName();
-            $lending_finance_company_agreement_file->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
-            HospitalTieUp::where('hospital_id', $hospital->id)->update([
-                'lending_finance_company_agreement_file'               =>  $name
-            ]);
-        }
-
         $rules = [
             'mou_inception_date'                            => ($hospital->onboarding == 'Tie Up' && $hospital->signed_mous == 'Yes') ? 'required' : [],
             'bhc_packages_for_surgical_procedures_accepted' => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
-            'bhc_packages_for_surgical_procedures_accepted_file' => ($hospital->onboarding == 'Tie Up' && $request->bhc_packages_for_surgical_procedures_accepted == 'Yes' && empty($hospital_tie_ups->bhc_packages_for_surgical_procedures_accepted_file)) ? 'required' : [],
             'discount_on_medical_management_cases'          => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
             'discount_on_final_bill'                        => ($hospital->onboarding == 'Tie Up' && $request->discount_on_medical_management_cases == 'Yes') ? 'required|numeric|digits_between:1,2' : [],
             'discount_on_room_rent'                         => ($hospital->onboarding == 'Tie Up' && $request->discount_on_medical_management_cases == 'Yes') ? 'required|numeric|digits_between:1,2' : [],
@@ -609,7 +587,6 @@ class HospitalController extends Controller
             'cashless_claims_management_services'           => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
             'cashless_claims_management_services_charges'   => ($hospital->onboarding == 'Tie Up') ? 'required|numeric|digits_between:1,6' : [],
             'lending_finance_company_agreement'             => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
-            'lending_finance_company_agreement_file'             => ($hospital->onboarding == 'Tie Up' && $request->lending_finance_company_agreement == 'Yes' && empty($hospital_tie_ups->lending_finance_company_agreement_file)) ? 'required' : [],
             'lending_finance_company_agreement_date'        => ($hospital->onboarding == 'Tie Up' && $request->lending_finance_company_agreement == 'Yes') ? 'required' : [],
             'medical_lending_for_patients'                  => ($hospital->onboarding == 'Tie Up' && $request->lending_finance_company_agreement == 'Yes') ? 'required' : [],
             'medical_lending_service_type'                  => ($hospital->onboarding == 'Tie Up' && $request->lending_finance_company_agreement == 'Yes') ? 'required' : [],

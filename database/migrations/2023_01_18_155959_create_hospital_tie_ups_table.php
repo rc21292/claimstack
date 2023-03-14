@@ -19,7 +19,6 @@ return new class extends Migration
             $table->integer('hospital_id')->unsigned()->nullable();
             $table->string('mou_inception_date')->nullable();
             $table->enum('bhc_packages_for_surgical_procedures_accepted', ['Yes','No'])->nullable();
-            $table->string('bhc_packages_for_surgical_procedures_accepted_file')->nullable();
             $table->enum('discount_on_medical_management_cases', ['Yes','No'])->nullable();
             $table->integer('discount_on_final_bill')->default(0);
             $table->integer('discount_on_room_rent')->default(0);
@@ -40,7 +39,6 @@ return new class extends Migration
             $table->enum('medical_lending_for_bill_invoice_discounting', ['Yes','No'])->nullable();
             $table->string('comments_on_invoice_discounting')->nullable();
             $table->string('lending_finance_company_agreement')->nullable();
-            $table->string('lending_finance_company_agreement_file')->nullable();
             $table->string('lending_finance_company_agreement_date')->nullable();
             $table->enum('hospital_management_system_installation', ['Yes','No'])->nullable();
             $table->enum('hms_services',['Monthly','Half Yearly','Quarterly', 'Yearly','Pre Use','No'])->nullable();
