@@ -317,7 +317,7 @@ class BorrowerController extends Controller
         $borrower_exists = Borrower::where('claimant_id', $id)->exists();
         $borrower        = $borrower_exists ? Borrower::where('claimant_id', $id)->first() : null;
         $insurers        = Insurer::get();
-
+        
         return view('super-admin.claims.claimants.edit.borrower', compact('claimant', 'borrower', 'insurers'));
     }
 

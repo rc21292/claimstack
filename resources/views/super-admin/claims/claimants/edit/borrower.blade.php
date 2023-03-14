@@ -1079,7 +1079,7 @@
             var pincode                         = {!! json_encode($claimant->patient->patient_current_pincode) !!};
             var id_proof                        = {!! json_encode($claimant->patient->id_proof) !!};
             var borrower_personal_email_id      = {!! json_encode($claimant->patient->email) !!};
-            var borrower_mobile_number          = {!! json_encode($claimant->patient->mobile) !!};
+            var borrower_mobile_number          = {!! json_encode($claimant->patient->phone) !!};
             switch (is_patient_and_borrower_same) {
                 case 'Yes':
                     $('#is_claimant_and_borrower_same').val('');
@@ -1094,7 +1094,7 @@
                     $('#borrower_pincode').val(pincode);
                     $('#borrower_id_proof').val(id_proof);
                     $('#borrower_personal_email_id').val(borrower_personal_email_id);
-                    $('#borrower_mobile_number').val(borrower_mobile_number);
+                    $('#borrower_mobile_no').val(borrower_mobile_number);
                     break;
                 case 'No':
                     $('#is_claimant_and_borrower_same').attr('disabled', false);
@@ -1109,7 +1109,7 @@
                     $('#borrower_pincode').val("");
                     $('#borrower_id_proof').val("");
                     $('#borrower_personal_email_id').val("");
-                    $('#borrower_mobile_number').val("");
+                    $('#borrower_mobile_no').val("");
                     break;
                 default:
                     $('#is_claimant_and_borrower_same').attr('disabled', true);
@@ -1124,7 +1124,7 @@
                     $('#borrower_pincode').val("");
                     $('#borrower_id_proof').val("");
                     $('#borrower_personal_email_id').val("");
-                    $('#borrower_mobile_number').val("");
+                    $('#borrower_mobile_no').val("");
                     break;
             }
         }
@@ -1142,6 +1142,11 @@
             var borrower_mobile_number          = {!! json_encode($claimant->mobile_no) !!};
             var borrower_pan_no                 = {!! json_encode($claimant->pan_no) !!};
             var borrower_aadhar_no              = {!! json_encode($claimant->aadhar_no) !!};
+            var borrower_bank_name              = {!! json_encode($claimant->bank_name) !!};
+            var borrower_bank_address           = {!! json_encode($claimant->bank_address) !!};
+            var borrower_ac_no                  = {!! json_encode($claimant->ac_no) !!};
+            var borrower_ifs_code               = {!! json_encode($claimant->ifs_code) !!};
+
             switch (is_claimant_and_borrower_same) {
                 case 'Yes':
                     $('#borrower_title').val("{{ $claimant->title }}");
@@ -1155,9 +1160,13 @@
                     $('#borrower_id_proof').val(id_proof);
                     $('#borrower_personal_email_id').val(borrower_personal_email_id);
                     $('#borrower_official_email_id').val(borrower_official_email_id);
-                    $('#borrower_mobile_number').val(borrower_mobile_number);
+                    $('#borrower_mobile_no').val(borrower_mobile_number);
                     $('#borrower_pan_no').val(borrower_pan_no);
                     $('#borrower_aadhar_no').val(borrower_aadhar_no);
+                    $("#borrower-details-form #borrower_bank_name").val(borrower_bank_name);
+                    $("#borrower-details-form #borrower_bank_address").val(borrower_bank_address);
+                    $("#borrower_ac_no").val(borrower_ac_no);
+                    $("#borrower_ifs_code").val(borrower_ifs_code);
                     break;
                 case 'No':
                     $('#borrower_title').val("");
@@ -1171,9 +1180,13 @@
                     $('#borrower_id_proof').val("");
                     $('#borrower_personal_email_id').val("");
                     $('#borrower_official_email_id').val("");
-                    $('#borrower_mobile_number').val("");
+                    $('#borrower_mobile_no').val("");
                     $('#borrower_pan_no').val("");
                     $('#borrower_aadhar_no').val("");
+                    $("#borrower_bank_name").val();
+                    $("#borrower_bank_address").val();
+                    $("#borrower_ac_no").val();
+                    $("#borrower_ifs_code").val();
                     break;
                 default:
                     $('#borrower_title').val("");
@@ -1187,9 +1200,13 @@
                     $('#borrower_id_proof').val("");
                     $('#borrower_personal_email_id').val("");
                     $('#borrower_official_email_id').val("");
-                    $('#borrower_mobile_number').val("");
+                    $('#borrower_mobile_no').val("");
                     $('#borrower_pan_no').val("");
                     $('#borrower_aadhar_no').val("");
+                    $("#borrower_bank_name").val();
+                    $("#borrower_bank_address").val();
+                    $("#borrower_ac_no").val();
+                    $("#borrower_ifs_code").val();
                     break;
             }
         }
