@@ -84,6 +84,14 @@ class LendingStatusController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $rules = [    
+            'borrower_id'              =>'required',
+            'claim_id'  =>'required',
+            'patient_id'  =>'required',
+        ];
+
+        $this->validate($request, $rules, $messages);
+
         $claimant      = Claimant::with('claim')->find($id);
         $borrower      = Borrower::where('claimant_id', $id)->first();
         $assessment    = AssessmentStatus::where('claimant_id', $id)->first();
