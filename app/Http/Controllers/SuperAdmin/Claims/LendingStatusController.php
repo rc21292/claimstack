@@ -90,7 +90,7 @@ class LendingStatusController extends Controller
             'patient_id'  =>'required',
         ];
 
-        $this->validate($request, $rules, $messages);
+        $this->validate($request, $rules, []);
 
         $claimant      = Claimant::with('claim')->find($id);
         $borrower      = Borrower::where('claimant_id', $id)->first();
