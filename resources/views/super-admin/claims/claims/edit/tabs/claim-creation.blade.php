@@ -11,7 +11,7 @@
                     <option value="">Enter Patient ID</option>
                     @foreach ($patients as $row)
                         <option value="{{ $row->id }}"
-                            {{ old('patient_id', isset($claim->patient) ? $claim->patient->id : '') == $row->id ? 'selected' : '' }}
+                            {{ old('patient_id', isset($claim->patient) ? $claim->patient->id : '') == $row->id ? 'selected' : 'disabled' }}
                             data-title="{{ $row->title }}" data-firstname="{{ $row->firstname }}"
                             data-middlename="{{ $row->middlename }}" data-lastname="{{ $row->lastname }}"
                             data-age="{{ $row->age }}" data-gender="{{ $row->gender }}"
@@ -31,7 +31,7 @@
                     <option value="">Select Hospital</option>
                     @foreach ($hospitals as $hospital)
                         <option value="{{ $hospital->id }}"
-                            {{ old('hospital_id') == $hospital->id ? 'selected' : '' }}
+                            {{ old('hospital_id', $claim->hospital_id) == $hospital->id ? 'selected' : '' }}
                             data-name="{{ $hospital->name }}" data-id="{{ $hospital->uid }}"
                             data-address="{{ $hospital->address }}" data-city="{{ $hospital->city }}"
                             data-state="{{ $hospital->state }}" data-pincode="{{ $hospital->pincode }}"
@@ -52,7 +52,7 @@
             <div class="col-md-6">
                 <label for="hospital_name">Hospital Name <span class="text-danger">*</span></label>
                 <input type="text" readonly class="form-control" id="hospital_name" name="hospital_name"
-                    placeholder="Enter Hospital Name" value="{{ old('hospital_name') }}">
+                    placeholder="Enter Hospital Name" value="{{ old('hospital_name') }}" readonly>
                 @error('hospital_name')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -62,7 +62,7 @@
                 <label for="hospital_address">Hospital Address <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="hospital_address" name="hospital_address"
                     placeholder="Address Line"
-                    value="{{ old('hospital_address', $claim->patient->hospital_address) }}">
+                    value="{{ old('hospital_address', $claim->patient->hospital_address) }}" readonly>
                 @error('hospital_address')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -70,7 +70,7 @@
 
             <div class="col-md-4 mt-2">
                 <input type="text" class="form-control" id="hospital_city" name="hospital_city" placeholder="City"
-                    value="{{ old('hospital_city', $claim->patient->hospital_city) }}">
+                    value="{{ old('hospital_city', $claim->patient->hospital_city) }}" readonly>
                 @error('hospital_city')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -78,7 +78,7 @@
 
             <div class="col-md-4 mt-2">
                 <input type="text" class="form-control" id="hospital_state" name="hospital_state" placeholder="State"
-                    value="{{ old('hospital_state', $claim->patient->hospital_state) }}">
+                    value="{{ old('hospital_state', $claim->patient->hospital_state) }}" readonly>
                 @error('hospital_state')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -86,7 +86,7 @@
 
             <div class="col-md-4 mt-2">
                 <input type="number" class="form-control" id="hospital_pincode" name="hospital_pincode"
-                    placeholder="Pincode" value="{{ old('hospital_pincode', $claim->patient->hospital_pincode) }}">
+                    placeholder="Pincode" value="{{ old('hospital_pincode', $claim->patient->hospital_pincode) }}" readonly>
                 @error('hospital_pincode')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -96,7 +96,7 @@
                 <label for="associate_partner_id">Associate Partner ID <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="associate_partner_id" name="associate_partner_id"
                     placeholder="Associate Partner ID"
-                    value="{{ old('associate_partner_id', $claim->patient->associate_partner_id) }}">
+                    value="{{ old('associate_partner_id', $claim->patient->associate_partner_id) }}" readonly>
                 @error('associate_partner_id')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -107,7 +107,7 @@
                         class="text-danger">*</span></label>
                 <input type="text" class="form-control" maxlength="20" id="registration_no"
                     name="registration_no" placeholder="Enter IP Registration No."
-                    value="{{ old('registration_no', $claim->patient->registration_no) }}">
+                    value="{{ old('registration_no', $claim->patient->registration_no) }}" readonly>
                 @error('registration_no')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -119,10 +119,9 @@
 
             <div class="col-md-3 mt-1">
                 <select class="form-control" id="title" name="title">
-                    <option value="">Select</option>
-                    <option value="Mr." {{ old('value', $claim->patient->title) == 'Mr.' ? 'selected' : '' }}>Mr.
+                    <option value="Mr." {{ old('value', $claim->patient->title) == 'Mr.' ? 'selected' : 'disabled' }}>Mr.
                     </option>
-                    <option value="Ms." {{ old('value', $claim->patient->title) == 'Ms.' ? 'selected' : '' }}>Ms.
+                    <option value="Ms." {{ old('value', $claim->patient->title) == 'Ms.' ? 'selected' : 'disabled' }}>Ms.
                     </option>
                 </select>
                 @error('title')
@@ -131,9 +130,17 @@
             </div>
 
             <div class="col-md-3 mt-1">
+                <input type="text" maxlength="25" class="form-control" id="lastname" name="lastname"
+                    maxlength="30" placeholder="Last name" value="{{ old('lastname', $claim->patient->lastname) }}" readonly>
+                @error('lastname')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="col-md-3 mt-1">
                 <input type="text" maxlength="25" class="form-control" id="firstname" name="firstname"
                     maxlength="15" placeholder="First name"
-                    value="{{ old('firstname', $claim->patient->firstname) }}">
+                    value="{{ old('firstname', $claim->patient->firstname) }}" readonly>
                 @error('firstname')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -142,24 +149,18 @@
             <div class="col-md-3 mt-1">
                 <input type="text" maxlength="25" class="form-control" id="middlename" name="middlename"
                     maxlength="30" placeholder="Middle name"
-                    value="{{ old('middlename', $claim->patient->middlename) }}">
+                    value="{{ old('middlename', $claim->patient->middlename) }}" readonly>
                 @error('middlename')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
 
-            <div class="col-md-3 mt-1">
-                <input type="text" maxlength="25" class="form-control" id="lastname" name="lastname"
-                    maxlength="30" placeholder="Last name" value="{{ old('lastname', $claim->patient->lastname) }}">
-                @error('lastname')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
+
 
             <div class="col-md-6 mt-3">
                 <label for="age">Patient Age <span class="text-danger">*</span></label>
                 <input type="text" onkeypress="return isNumberKey(event)" class="form-control" id="age"
-                    name="age" placeholder="Patient Age" value="{{ old('age', $claim->patient->age) }}">
+                    name="age" placeholder="Patient Age" value="{{ old('age', $claim->patient->age) }}" readonly>
                 @error('age')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -168,14 +169,13 @@
             <div class="col-md-6 mt-3">
                 <label for="gender">Patient Gender <span class="text-danger">*</span></label>
                 <select class="form-select" id="gender" name="gender">
-                    <option value="">Select gender</option>
-                    <option value="Male" {{ old('gender', $claim->patient->gender) == 'Male' ? 'selected' : '' }}>
+                    <option value="Male" {{ old('gender', $claim->patient->gender) == 'Male' ? 'selected' : 'disabled' }}>
                         Male
                     </option>
-                    <option value="Female" {{ old('gender', $claim->patient->gender) == 'Female' ? 'selected' : '' }}>
+                    <option value="Female" {{ old('gender', $claim->patient->gender) == 'Female' ? 'selected' : 'disabled' }}>
                         Female
                     </option>
-                    <option value="Other" {{ old('gender', $claim->patient->gender) == 'Other' ? 'selected' : '' }}>
+                    <option value="Other" {{ old('gender', $claim->patient->gender) == 'Other' ? 'selected' : 'disabled' }}>
                         Other
                     </option>
                 </select>
@@ -227,16 +227,11 @@
                         <a href="{{ asset('storage/uploads/claims/' . $claim->id . '/' . $claim->abhafile) }}" download=""
                             class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
                     @endisset
-                    <input type="file" name="abhafile" id="abhafile" hidden
-                        onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                    <label for="abhafile" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
                 </div>
                 @error('abha_id')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
-                @error('abhafile')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
+
             </div>
             <div class="col-md-6 mt-3">
                 <label for="insurance_coverage">Insurance Coverage <span class="text-danger">*</span></label>
@@ -263,15 +258,8 @@
                         <a href="{{ asset('storage/uploads/claims/' . $claim->id . '/policies' . '/' . $claim->policy_file) }}"
                             download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
                     @endisset
-                    <input type="file" name="policy_file" id="policy_file" hidden
-                        onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                    <label for="policy_file" class="btn btn-primary upload-label"><i
-                            class="mdi mdi-upload"></i></label>
                 </div>
                 @error('policy_no')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-                @error('policy_file')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
@@ -286,15 +274,8 @@
                         <a href="{{ asset('storage/uploads/claims/' . $claim->id . '/tpa_card' . '/' . $claim->company_tpa_id_card_file) }}"
                             download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
                     @endisset
-                    <input type="file" name="company_tpa_id_card_file" id="company_tpa_id_card_file" hidden
-                        onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                    <label for="company_tpa_id_card_file" class="btn btn-primary upload-label"><i
-                            class="mdi mdi-upload"></i></label>
                 </div>
                 @error('company_tpa_id_card_no')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-                @error('company_tpa_id_card_file')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>

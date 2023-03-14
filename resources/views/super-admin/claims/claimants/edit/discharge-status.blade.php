@@ -92,7 +92,7 @@
                                             <label for="hospital_id">Hospital ID <span class="text-danger">*</span></label>
                                             <input type="text" readonly class="form-control" id="hospital_id"
                                                 name="hospital_id" maxlength="60" placeholder="Enter Borrower Id"
-                                                value="{{ old('hospital_id', @$claimant->hospital_id) }}">
+                                                value="{{ old('hospital_id', @$claimant->hospital->uid) }}">
                                             @error('hospital_id', 'discharge-status-form')
                                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -121,7 +121,7 @@
                                         </div>
 
                                         <div class="col-md-6 mb-3">
-                                            <label for="claim_id">Cliam ID <span class="text-danger">*</span></label>
+                                            <label for="claim_id">Claim ID <span class="text-danger">*</span></label>
                                             <input type="text" readonly class="form-control" id="claim_id"
                                                 name="claim_id" maxlength="60" placeholder="Enter Claim Id"
                                                 value="{{ old('claim_id', @$claimant->claim->uid) }}">
@@ -135,7 +135,7 @@
                                             <label for="insurance_coverage">Insurance Coverage <span
                                                     class="text-danger">*</span></label>
                                             <select class="form-select" id="insurance_coverage"
-                                                name="insurance_coverage">
+                                                name="insurance_coverage" disabled>
                                                 <option value="">Select</option>
                                                 <option value="Yes"
                                                     {{ old('insurance_coverage', $claimant->claim->insurance_coverage) == 'Yes' ? 'selected' : '' }}>
@@ -155,7 +155,7 @@
                                         <div class="col-md-6 mb-3">
                                             <label for="lending_required">Lending Required <span
                                                     class="text-danger">*</span></label>
-                                            <select class="form-select" id="lending_required" name="lending_required">
+                                            <select class="form-select" id="lending_required" name="lending_required" disabled>
                                                 <option value="">Select</option>
                                                 <option value="Yes"
                                                     {{ old('lending_required', $claimant->claim->lending_required) == 'Yes' ? 'selected' : '' }}>
@@ -225,7 +225,7 @@
                                         <div class="col-md-6 mb-3">
                                             <label for="date_of_delivery">Date of Injury / Date Disease first detected /
                                                 Date of delivery <span class="text-danger">*</span></label>
-                                            <input type="text" readonly class="form-control" id="date_of_delivery"
+                                            <input type="text" disabled class="form-control" id="date_of_delivery"
                                                 name="date_of_delivery"
                                                 value="{{ old('date_of_delivery', $claimant->claim->date_of_delivery) }}"
                                                 placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">

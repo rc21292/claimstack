@@ -423,9 +423,7 @@ class ClaimController extends Controller
             'abha_id'                   => isset($request->abha_id) ? 'max:45' : '',
             'insurance_coverage'        => 'required',
             'policy_no'                 => $request->insurance_coverage == 'Yes' ? 'required|max:16' : '',
-            'policy_file'               => $request->insurance_coverage == 'Yes' ? 'required' : '',
             'company_tpa_id_card_no'    => $request->insurance_coverage == 'Yes' ? 'required|max:16' : '',
-            'company_tpa_id_card_file'  => $request->insurance_coverage == 'Yes' ? 'required' : '',
             'lending_required'          => 'required',
             'hospitalization_due_to'    => 'required',
             'date_of_delivery'          => 'required|before_or_equal:' . now()->format('Y-m-d'),
@@ -533,33 +531,6 @@ class ClaimController extends Controller
         Claim::where('id', $claim->id)->update([
             'uid'      => 'C-' . Carbon::parse($claim->created_at)->format('Y-m-d') . '-' . $claim->id
         ]);
-
-        if ($request->hasfile('abhafile')) {
-            $abhafile                    = $request->file('abhafile');
-            $name                       = $abhafile->getClientOriginalName();
-            $abhafile->storeAs('uploads/claims/' . $claim->id . '/', $name, 'public');
-            Claim::where('id', $claim->id)->update([
-                'abhafile'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('policy_file')) {
-            $policy_file                    = $request->file('policy_file');
-            $name                       = $policy_file->getClientOriginalName();
-            $policy_file->storeAs('uploads/claims/' . $claim->id . '/policies', $name, 'public');
-            Claim::where('id', $claim->id)->update([
-                'policy_file'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('company_tpa_id_card_file')) {
-            $company_tpa_id_card_file                    = $request->file('company_tpa_id_card_file');
-            $name                       = $company_tpa_id_card_file->getClientOriginalName();
-            $company_tpa_id_card_file->storeAs('uploads/claims/' . $claim->id . '/tpa_file', $name, 'public');
-            Claim::where('id', $claim->id)->update([
-                'company_tpa_id_card_file'               =>  $name
-            ]);
-        }
 
         Patient::where('id', $claim->patient_id)->update([
             'title'                             => $request->title,
@@ -869,32 +840,7 @@ class ClaimController extends Controller
     public function update(Request $request, $id)
     {
         $claim = Claim::find($id);
-        if ($request->hasfile('abhafile')) {
-            $abhafile                    = $request->file('abhafile');
-            $name                       = $abhafile->getClientOriginalName();
-            $abhafile->storeAs('uploads/claims/' . $claim->id . '/', $name, 'public');
-            Claim::where('id', $claim->id)->update([
-                'abhafile'               =>  $name
-            ]);
-        }
 
-        if ($request->hasfile('policy_file')) {
-            $policy_file                    = $request->file('policy_file');
-            $name                       = $policy_file->getClientOriginalName();
-            $policy_file->storeAs('uploads/claims/' . $claim->id . '/policies', $name, 'public');
-            Claim::where('id', $claim->id)->update([
-                'policy_file'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('company_tpa_id_card_file')) {
-            $company_tpa_id_card_file                    = $request->file('company_tpa_id_card_file');
-            $name                       = $company_tpa_id_card_file->getClientOriginalName();
-            $company_tpa_id_card_file->storeAs('uploads/claims/' . $claim->id . '/tpa_file', $name, 'public');
-            Claim::where('id', $claim->id)->update([
-                'company_tpa_id_card_file'               =>  $name
-            ]);
-        }
         $rules =  [
             'patient_id'                => 'required',
             'hospital_name'             => 'required',
@@ -916,9 +862,7 @@ class ClaimController extends Controller
             'abha_id'                   => isset($request->abha_id) ? 'max:45' : '',
             'insurance_coverage'        => 'required',
             'policy_no'                 => $request->insurance_coverage == 'Yes' ? 'required|max:16' : '',
-            'policy_file'               => ($request->insurance_coverage == 'Yes' && empty($claim->policy_file)) ? 'required' : '',
             'company_tpa_id_card_no'    => $request->insurance_coverage == 'Yes' ? 'required|max:16' : '',
-            'company_tpa_id_card_file'  => ($request->insurance_coverage == 'Yes' && empty($claim->company_tpa_id_card_file))? 'required' : '',
             'lending_required'          => 'required',
             'hospitalization_due_to'    => 'required',
             'date_of_delivery'          => 'required|before_or_equal:' . now()->format('Y-m-d'),

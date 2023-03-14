@@ -354,18 +354,7 @@
             autoclose: true
         });
     });
-    $(function(){
-        $('#consultation_date').datepicker({
-            endDate: '+0d',
-            autoclose: true
-        });
-    });
-    $(function(){
-        $('#date_of_delivery').datepicker({
-            endDate: '+0d',
-            autoclose: true
-        });
-    });
+
     $(function(){
         $('#start_date').datepicker({
             endDate: '+0d',
