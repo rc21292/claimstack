@@ -1,5 +1,5 @@
 @extends('layouts.super-admin')
-@section('title', 'Create Patient ID')
+@section('title', 'Edit Patient ID')
 @section('content')
     <!-- Start Content-->
     <div class="container-fluid">
@@ -165,9 +165,9 @@
                                 </div>
 
                                 <div class="col-md-6 mt-3">
-                                 <label for="doctor_mobile_no">Contat No.(Mobile No.) <span class="text-danger">*</span></label>
+                                 <label for="doctor_mobile_no">Contact No.(Mobile No.) <span class="text-danger">*</span></label>
                                     <input maxlength="10" onkeypress="return isNumberKey(event)" class="form-control" id="doctor_mobile_no"
-                                        name="doctor_mobile_no" placeholder="Contat No.(Mobile No.)"
+                                        name="doctor_mobile_no" placeholder="Contact No.(Mobile No.)"
                                         value="{{ old('doctor_mobile_no', $patient->doctor_mobile_no) }}">
                                     @error('doctor_mobile_no')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -226,15 +226,8 @@
                                             @isset($patient->dobfile)
                                             <a href="{{ asset('storage/uploads/patient/'.$patient->id.'/'.$patient->dobfile) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
                                         @endisset
-                                        <input type="file" name="dobfile" id="dobfile" hidden
-                                            onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                                        <label for="dobfile" class="btn btn-primary upload-label"><i
-                                                class="mdi mdi-upload"></i></label>
                                     </div>
                                     @error('dob')
-                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                    @enderror
-                                    @error('dobfile')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -369,8 +362,6 @@
                                                     @isset($patient->address_file)
                                                         <a href="{{ asset('storage/uploads/patient/'.$patient->id.'/'.$patient->address_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
                                                     @endisset
-                                                <input type="file" name="address_file" id="address_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                                                <label for="address_file" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
                                             </div>
                                     @error('patient_permanent_address')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -431,15 +422,8 @@
                                         @isset($patient->id_proof_file)
                                             <a href="{{ asset('storage/uploads/patient/'.$patient->id.'/'.$patient->id_proof_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
                                         @endisset
-                                        <input type="file" name="id_proof_file" id="upload" hidden
-                                            onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                                        <label for="upload" class="btn btn-primary upload-label"><i
-                                                class="mdi mdi-upload"></i></label>
                                     </div>
                                     @error('id_proof')
-                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                    @enderror
-                                    @error('id_proof_file')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>

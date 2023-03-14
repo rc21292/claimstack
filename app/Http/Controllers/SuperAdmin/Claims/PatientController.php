@@ -499,7 +499,7 @@ class PatientController extends Controller
             // 'co_borrower_itr_income_tax_return_file' => empty($reimbursementdocument->co_borrower_itr_income_tax_return_file) ? 'required' : [],
             'co_borrower_cancel_cheque_file' => empty($reimbursementdocument->co_borrower_cancel_cheque_file) ? 'required' : [],
             'co_borrower_other_documents_file' => empty($reimbursementdocument->co_borrower_other_documents_file) ? 'required' : [],
-            
+
         ];
 
         $messages = [
@@ -572,7 +572,7 @@ class PatientController extends Controller
        }
 
        $reimbursementdocument = ReimbursementDocument::where('patient_id', $claimant->patient_id)->first();
-       
+
        $id = $reimbursementdocument->id;
 
         if ($request->hasfile('patient_id_proof_file')) {
@@ -999,7 +999,7 @@ class PatientController extends Controller
             // 'co_borrower_itr_income_tax_return_file' => empty($reimbursementdocument->co_borrower_itr_income_tax_return_file) ? 'required' : [],
             'co_borrower_cancel_cheque_file' => empty($reimbursementdocument->co_borrower_cancel_cheque_file) ? 'required' : [],
             'co_borrower_other_documents_file' => empty($reimbursementdocument->co_borrower_other_documents_file) ? 'required' : [],
-            
+
         ];
 
         $messages = [
@@ -1072,7 +1072,7 @@ class PatientController extends Controller
        }
 
        $reimbursementdocument = ReimbursementDocument::where('patient_id', $claimant->patient_id)->first();
-       
+
        $id = $reimbursementdocument->id;
 
         if ($request->hasfile('patient_id_proof_file')) {
@@ -1499,7 +1499,7 @@ class PatientController extends Controller
             // 'co_borrower_itr_income_tax_return_file' => empty($reimbursementdocument->co_borrower_itr_income_tax_return_file) ? 'required' : [],
             'co_borrower_cancel_cheque_file' => empty($reimbursementdocument->co_borrower_cancel_cheque_file) ? 'required' : [],
             'co_borrower_other_documents_file' => empty($reimbursementdocument->co_borrower_other_documents_file) ? 'required' : [],
-            
+
         ];
 
         $messages = [
@@ -1572,7 +1572,7 @@ class PatientController extends Controller
        }
 
        $reimbursementdocument = ReimbursementDocument::where('patient_id', $claimant->patient_id)->first();
-       
+
        $id = $reimbursementdocument->id;
 
         if ($request->hasfile('patient_id_proof_file')) {
@@ -1999,7 +1999,7 @@ class PatientController extends Controller
             // 'co_borrower_itr_income_tax_return_file' => empty($reimbursementdocument->co_borrower_itr_income_tax_return_file) ? 'required' : [],
             'co_borrower_cancel_cheque_file' => empty($reimbursementdocument->co_borrower_cancel_cheque_file) ? 'required' : [],
             'co_borrower_other_documents_file' => empty($reimbursementdocument->co_borrower_other_documents_file) ? 'required' : [],
-            
+
         ];
 
         $messages = [
@@ -2072,7 +2072,7 @@ class PatientController extends Controller
        }
 
        $reimbursementdocument = ReimbursementDocument::where('patient_id', $claimant->patient_id)->first();
-       
+
        $id = $reimbursementdocument->id;
 
         if ($request->hasfile('patient_id_proof_file')) {
@@ -2499,7 +2499,7 @@ class PatientController extends Controller
             // 'co_borrower_itr_income_tax_return_file' => empty($reimbursementdocument->co_borrower_itr_income_tax_return_file) ? 'required' : [],
             'co_borrower_cancel_cheque_file' => empty($reimbursementdocument->co_borrower_cancel_cheque_file) ? 'required' : [],
             'co_borrower_other_documents_file' => empty($reimbursementdocument->co_borrower_other_documents_file) ? 'required' : [],
-            
+
         ];
 
         $messages = [
@@ -2609,7 +2609,6 @@ class PatientController extends Controller
             'lastname'                          => isset($request->lastname) ? 'max:25' : '',
             'middlename'                        => isset($request->middlename) ? 'max:25' : '',
             'dob'                               => 'required',
-            'dobfile'                           => 'required',
             'age'                               => 'required',
             'gender'                            => 'required',
             'occupation'                        => 'required',
@@ -2624,7 +2623,6 @@ class PatientController extends Controller
             'patient_permanent_state'           => $request->current_permanent_address_same == 'No' ? 'required' : '',
             'patient_permanent_pincode'         => $request->current_permanent_address_same == 'No' ? 'required' : '',
             'id_proof'                          => 'required',
-            'id_proof_file'                     => 'required',
             'code'                              => 'required|numeric|digits:3',
             'landline'                          => 'required|numeric|digits_between:1,10',
             'email'                             => 'required|email|min:1|max:45|unique:patients,email',
@@ -2719,33 +2717,6 @@ class PatientController extends Controller
             'uid'      => 'P-' . $patient->id + 10000
         ]);
 
-        if ($request->hasfile('dobfile')) {
-            $dobfile                    = $request->file('dobfile');
-            $name                       = $dobfile->getClientOriginalName();
-            $dobfile->storeAs('uploads/patient/' . $patient->id . '/', $name, 'public');
-            Patient::where('id', $patient->id)->update([
-                'dobfile'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('id_proof_file')) {
-            $id_proof_file                    = $request->file('id_proof_file');
-            $name                       = $id_proof_file->getClientOriginalName();
-            $id_proof_file->storeAs('uploads/patient/' . $patient->id . '/', $name, 'public');
-            Patient::where('id', $patient->id)->update([
-                'id_proof_file'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('address_file')) {
-            $address_file                    = $request->file('address_file');
-            $name                       = $address_file->getClientOriginalName();
-            $address_file->storeAs('uploads/patient/' . $patient->id . '/', $name, 'public');
-            Patient::where('id', $patient->id)->update([
-                'address_file'               =>  $name
-            ]);
-        }
-
         return redirect()->route('super-admin.patients.index')->with('success', 'Patient added successfully');
     }
 
@@ -2829,7 +2800,6 @@ class PatientController extends Controller
             'patient_permanent_state'           => $request->current_permanent_address_same == 'No' ? 'required' : '',
             'patient_permanent_pincode'         => $request->current_permanent_address_same == 'No' ? 'required' : '',
             'id_proof'                          => 'required',
-            'id_proof_file'                     => empty($patient->id_proof_file) ? 'required' : [],
             'code'                              => 'required|numeric|digits:3',
             'landline'                          => 'required|numeric|digits_between:1,10',
             'email'                             => 'required|email|min:1|max:45|unique:patients,email,'.$id,
@@ -2918,35 +2888,6 @@ class PatientController extends Controller
             'admitted_by_lastname'              => $request->admitted_by_lastname,
             'comments'                          => $request->comments,
         ]);
-
-        $patient = Patient::find($id);
-
-        if ($request->hasfile('dobfile')) {
-            $dobfile                    = $request->file('dobfile');
-            $name                       = $dobfile->getClientOriginalName();
-            $dobfile->storeAs('uploads/patient/' . $patient->id . '/', $name, 'public');
-            Patient::where('id', $patient->id)->update([
-                'dobfile'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('id_proof_file')) {
-            $id_proof_file                    = $request->file('id_proof_file');
-            $name                       = $id_proof_file->getClientOriginalName();
-            $id_proof_file->storeAs('uploads/patient/' . $patient->id . '/', $name, 'public');
-            Patient::where('id', $patient->id)->update([
-                'id_proof_file'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('address_file')) {
-            $address_file                    = $request->file('address_file');
-            $name                       = $address_file->getClientOriginalName();
-            $address_file->storeAs('uploads/patient/' . $patient->id . '/', $name, 'public');
-            Patient::where('id', $patient->id)->update([
-                'address_file'               =>  $name
-            ]);
-        }
 
         return redirect()->route('super-admin.patients.index')->with('success', 'Patient updated successfully');
     }

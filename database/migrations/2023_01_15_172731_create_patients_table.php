@@ -22,13 +22,11 @@ return new class extends Migration
             $table->string('middlename')->nullable();
             $table->string('lastname')->nullable();
             $table->string('dob')->nullable();
-            $table->string('dobfile')->nullable();
             $table->string('age')->nullable();
             $table->enum('gender', ['Male', 'Female', 'Other'])->default('Male');
             $table->string('occupation')->nullable();
             $table->string('specify')->nullable();
             $table->string('patient_current_address')->nullable();
-            $table->string('address_file')->nullable();
             $table->string('patient_current_city')->nullable();
             $table->string('patient_current_state')->nullable();
             $table->string('patient_current_pincode')->nullable();
@@ -38,7 +36,6 @@ return new class extends Migration
             $table->string('patient_permanent_state')->nullable();
             $table->string('patient_permanent_pincode')->nullable();
             $table->string('id_proof')->nullable();
-            $table->string('id_proof_file')->nullable();
             $table->integer('hospital_id')->nullable();
             $table->string('hospital_name')->nullable();
             $table->string('hospital_address')->nullable();
