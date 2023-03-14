@@ -82,9 +82,7 @@ class ClaimantController extends Controller
             'middlename'                      => isset($request->middlename) ? 'max:25' : '',
             'lastname'                        => isset($request->lastname) ? 'max:25' : '',
             'pan_no'                          => 'required|unique:claimants|alpha_num|size:10|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/u',
-            'pan_no_file'                     => 'required',
             'aadhar_no'                       => 'required|unique:claimants|numeric|digits:12',
-            'aadhar_no_file'                  => 'required',
             'patients_relation_with_claimant' => 'required',
             'specify'                         => ($request->patients_relation_with_claimant == 'Other') ? 'required' : [],
             'address'                         => 'required|max:100',
@@ -96,7 +94,6 @@ class ClaimantController extends Controller
             'mobile_no'                       => 'required|digits:10',
             'estimated_amount'                => 'required|digits_between:1,8',
             'cancel_cheque'                   => 'required',
-            'cancel_cheque_file'              => ($request->cancel_cheque != 'No') ? 'required' : [],
             'bank_name'                       => 'required|max:45',
             'bank_address'                    => 'required|max:80',
             'ac_no'                           => 'required|max:20',
@@ -181,42 +178,6 @@ class ClaimantController extends Controller
 
         Patient::where('id', $claim->patient_id)->update(['id_proof' => $request->patient_id_proof]);
 
-        if ($request->hasfile('patient_id_proof_file')) {
-            $patient_id_proof_file      = $request->file('patient_id_proof_file');
-            $name                       = $patient_id_proof_file->getClientOriginalName();
-            $patient_id_proof_file->storeAs('uploads/patient/' . $claim->patient_id . '/', $name, 'public');
-            Patient::where('id', $claim->patient_id)->update([
-                'id_proof_file'         =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('pan_no_file')) {
-            $pan_no_file                    = $request->file('pan_no_file');
-            $rhnname                        = $pan_no_file->getClientOriginalName();
-            $pan_no_file->storeAs('uploads/claimant/' . $claimant->id . '/', $rhnname, 'public');
-            Claimant::where('id', $claimant->id)->update([
-                'pan_no_file'               =>  $rhnname
-            ]);
-        }
-
-        if ($request->hasfile('aadhar_no_file')) {
-            $aadhar_no_file                    = $request->file('aadhar_no_file');
-            $name                              = $aadhar_no_file->getClientOriginalName();
-            $aadhar_no_file->storeAs('uploads/claimant/' . $claimant->id . '/', $name, 'public');
-            Claimant::where('id', $claimant->id)->update([
-                'aadhar_no_file'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('cancel_cheque_file')) {
-            $cancel_cheque_file                    = $request->file('cancel_cheque_file');
-            $rhnname                               = $cancel_cheque_file->getClientOriginalName();
-            $cancel_cheque_file->storeAs('uploads/claimant/' . $claimant->id . '/', $rhnname, 'public');
-            Claimant::where('id', $claimant->id)->update([
-                'cancel_cheque_file'               =>  $rhnname
-            ]);
-        }
-
         return redirect()->route('super-admin.claimants.edit', $claimant->id)->with('success', 'Claimant created successfully');
     }
 
@@ -264,42 +225,6 @@ class ClaimantController extends Controller
         $claim                                = Claim::find($request->claim_id);
         $claimant                             = Claimant::find($id);
 
-        if ($request->hasfile('patient_id_proof_file')) {
-            $patient_id_proof_file      = $request->file('patient_id_proof_file');
-            $name                       = $patient_id_proof_file->getClientOriginalName();
-            $patient_id_proof_file->storeAs('uploads/patient/' . $claim->patient_id . '/', $name, 'public');
-            Patient::where('id', $claim->patient_id)->update([
-                'id_proof_file'         =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('pan_no_file')) {
-            $pan_no_file                    = $request->file('pan_no_file');
-            $rhnname                        = $pan_no_file->getClientOriginalName();
-            $pan_no_file->storeAs('uploads/claimant/' . $claimant->id . '/', $rhnname, 'public');
-            Claimant::where('id', $claimant->id)->update([
-                'pan_no_file'               =>  $rhnname
-            ]);
-        }
-
-        if ($request->hasfile('aadhar_no_file')) {
-            $aadhar_no_file                    = $request->file('aadhar_no_file');
-            $name                              = $aadhar_no_file->getClientOriginalName();
-            $aadhar_no_file->storeAs('uploads/claimant/' . $claimant->id . '/', $name, 'public');
-            Claimant::where('id', $claimant->id)->update([
-                'aadhar_no_file'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('cancel_cheque_file')) {
-            $cancel_cheque_file                    = $request->file('cancel_cheque_file');
-            $rhnname                               = $cancel_cheque_file->getClientOriginalName();
-            $cancel_cheque_file->storeAs('uploads/claimant/' . $claimant->id . '/', $rhnname, 'public');
-            Claimant::where('id', $claimant->id)->update([
-                'cancel_cheque_file'               =>  $rhnname
-            ]);
-        }
-
         $rules = [
             'patient_id'                      => 'required',
             'claim_id'                        => 'required',
@@ -317,9 +242,7 @@ class ClaimantController extends Controller
             'middlename'                      => isset($request->middlename) ? 'max:25' : '',
             'lastname'                        => isset($request->lastname) ? 'max:25' : '',
             'pan_no'                          => 'required|alpha_num|size:10|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/u|unique:claimants,pan_no,'.$id,
-            'pan_no_file'                     => empty($claimant->pan_no_file) ? 'required' : [],
             'aadhar_no'                       => 'required|numeric|digits:12|unique:claimants,aadhar_no,'.$id,
-            'aadhar_no_file'                  => empty($claimant->aadhar_no_file) ? 'required' : [],
             'patients_relation_with_claimant' => 'required',
             'specify'                         => ($request->patients_relation_with_claimant == 'Other') ? 'required' : [],
             'address'                         => 'required|max:100',
@@ -331,7 +254,6 @@ class ClaimantController extends Controller
             'mobile_no'                       => 'required|digits:10',
             'estimated_amount'                => 'required|digits_between:1,8',
             'cancel_cheque'                   => 'required',
-            'cancel_cheque_file'              => ($request->cancel_cheque != 'No' && empty($claimant->cancel_cheque_file)) ? 'required' : [],
             'bank_name'                       => 'required|max:45',
             'bank_address'                    => 'required|max:80',
             'ac_no'                           => 'required|max:20',

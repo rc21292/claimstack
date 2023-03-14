@@ -194,20 +194,11 @@
                                                         {{ old('patient_id_proof', isset($claim) ? $claim->patient->id_proof : '') == 'Passport' ? 'selected' : '' }}>
                                                         Passport</option>
                                                 </select>
-                                                {{-- @isset($claim->patient->id_proof_file)
-                                                    <a href="{{ asset('storage/uploads/patient/' . $claim->patient_id . '/' . $claim->patient->id_proof_file) }}"
-                                                        download="" class="btn btn-warning download-label"><i
-                                                            class="mdi mdi-download"></i></a>
-                                                @endisset --}}
                                                 <a id="id-prof-id" style="display:none;" href=""
                                                         download="" class="btn btn-warning download-label"><i
                                                             class="mdi mdi-download"></i></a>
-                                                <input type="file" name="patient_id_proof_file" id="upload" hidden
-                                                    onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                                                <label for="upload" class="btn btn-primary upload-label"><i
-                                                        class="mdi mdi-upload"></i></label>
                                             </div>
-                                            @error('patient_id_proof', 'patient_id_proof_file')
+                                            @error('patient_id_proof')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -333,16 +324,9 @@
                                                 <input type="text" class="form-control" id="pan_no" name="pan_no"
                                                     maxlength="10" placeholder="Enter PAN no."
                                                     value="{{ old('pan_no') }}">
-                                                <input type="file" name="pan_no_file" id="pan_no_file" hidden
-                                                    onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                                                <label for="pan_no_file" class="btn btn-primary upload-label"><i
-                                                        class="mdi mdi-upload"></i></label>
+                                                
                                             </div>
                                             @error('pan_no')
-                                                <span id="name-error"
-                                                    class="error invalid-feedback">{{ $message }}</span>
-                                            @enderror
-                                            @error('pan_no_file')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -356,16 +340,9 @@
                                                     onKeyPress="if(this.value.length==12) return false;"
                                                     class="form-control" id="aadhar_no" name="aadhar_no" maxlength="12"
                                                     placeholder="Enter Aadhar no." value="{{ old('aadhar_no') }}">
-                                                <input type="file" name="aadhar_no_file" id="aadhar_no_file" hidden
-                                                    onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                                                <label for="aadhar_no_file" class="btn btn-primary upload-label"><i
-                                                        class="mdi mdi-upload"></i></label>
+                                                
                                             </div>
                                             @error('aadhar_no')
-                                                <span id="name-error"
-                                                    class="error invalid-feedback">{{ $message }}</span>
-                                            @enderror
-                                            @error('aadhar_no_file')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -524,18 +501,10 @@
                                                         {{ old('cancel_cheque', @$hospital->cancel_cheque) == 'No' ? 'selected' : '' }}>
                                                         No </option>
                                                 </select>
-                                                <input type="file" name="cancel_cheque_file" id="cancel_cheque_file"
-                                                    hidden
-                                                    onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                                                <label for="cancel_cheque_file" class="btn btn-primary upload-label"><i
-                                                        class="mdi mdi-upload"></i></label>
+                                                
                                             </div>
 
                                             @error('cancel_cheque')
-                                                <span id="name-error"
-                                                    class="error invalid-feedback">{{ $message }}</span>
-                                            @enderror
-                                            @error('cancel_cheque_file')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
                                             @enderror

@@ -233,16 +233,8 @@
                                                     <a href="{{ asset('storage/uploads/patient/' . $claimant->claim->patient_id . '/' . $claimant->claim->patient->id_proof_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
                                                             class="mdi mdi-download"></i></a>
-                                                @endisset
-                                                <input type="file" name="patient_id_proof_file" id="upload" hidden
-                                                    onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                                                <label for="upload" class="btn btn-primary upload-label"><i
-                                                        class="mdi mdi-upload"></i></label>
+                                                @endisset                                                
                                             </div>
-                                            @error('patient_id_proof', 'patient_id_proof_file')
-                                                <span id="name-error"
-                                                    class="error invalid-feedback">{{ $message }}</span>
-                                            @enderror
                                         </div>
 
                                         <div class="col-md-6 mt-3">
@@ -370,16 +362,8 @@
                                                         download="" class="btn btn-warning download-label"><i
                                                             class="mdi mdi-download"></i></a>
                                                 @endisset
-                                                <input type="file" name="pan_no_file" id="pan_no_file" hidden
-                                                    onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                                                <label for="pan_no_file" class="btn btn-primary upload-label"><i
-                                                        class="mdi mdi-upload"></i></label>
                                             </div>
                                             @error('pan_no')
-                                                <span id="name-error"
-                                                    class="error invalid-feedback">{{ $message }}</span>
-                                            @enderror
-                                            @error('pan_no_file')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -398,16 +382,9 @@
                                                         download="" class="btn btn-warning download-label"><i
                                                             class="mdi mdi-download"></i></a>
                                                 @endisset
-                                                <input type="file" name="aadhar_no_file" id="aadhar_no_file" hidden
-                                                    onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                                                <label for="aadhar_no_file" class="btn btn-primary upload-label"><i
-                                                        class="mdi mdi-upload"></i></label>
+                                                
                                             </div>
                                             @error('aadhar_no')
-                                                <span id="name-error"
-                                                    class="error invalid-feedback">{{ $message }}</span>
-                                            @enderror
-                                            @error('aadhar_no_file')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -571,18 +548,9 @@
                                                         download="" class="btn btn-warning download-label"><i
                                                             class="mdi mdi-download"></i></a>
                                                 @endisset
-                                                <input type="file" name="cancel_cheque_file" id="cancel_cheque_file"
-                                                    hidden
-                                                    onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                                                <label for="cancel_cheque_file" class="btn btn-primary upload-label"><i
-                                                        class="mdi mdi-upload"></i></label>
                                             </div>
 
                                             @error('cancel_cheque')
-                                                <span id="name-error"
-                                                    class="error invalid-feedback">{{ $message }}</span>
-                                            @enderror
-                                            @error('cancel_cheque_file')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
