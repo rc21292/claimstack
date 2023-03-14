@@ -77,8 +77,6 @@ class DischargeStatusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //dd($request->all());
-
         $rules = [
             'hospital_id'                                           => 'required|max:40',
             'hospital_name'                                         => 'required|max:255',
@@ -87,7 +85,7 @@ class DischargeStatusController extends Controller
             // 'date_of_admission'                                     => 'required',
             // 'time_of_admission'                                     => 'required',
             // 'hospitalization_due_to'                                => 'required',
-            'date_of_delivery'                                      => 'required',
+            // 'date_of_delivery'                                      => 'required',
             'injury_reason'                                         => ($request->hospitalization_due_to == 'Injury') ? 'required': [],
             'injury_due_to_substance_abuse_alcohol_consumption'     => ($request->injury_reason) ? 'required':[],
             'reported_to_police'                                    => ($request->if_medico_legal_case_mlc =='Yes') ? 'required' :[],

@@ -177,7 +177,7 @@
                                                     class="text-danger">*</span></label>
                                             <input type="text" disabled class="form-control" id="date_of_admission"
                                                 name="date_of_admission"
-                                                value="{{ old('date_of_admission', $claimant->claim->date_of_admission) }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
+                                                value="{{ old('date_of_admission', $claimant->claim->admission_date) }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
                                             @error('date_of_admission')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
@@ -188,7 +188,7 @@
                                                     class="text-danger">*</span></label>
                                             <input type="time" disabled class="form-control" id="time_of_admission"
                                                 name="time_of_admission"
-                                                value="{{ old('time_of_admission', $claimant->claim->time_of_admission) }}">
+                                                value="{{ old('time_of_admission', $claimant->claim->admission_time) }}">
                                             @error('time_of_admission')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
