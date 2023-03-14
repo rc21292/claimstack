@@ -78,14 +78,12 @@ class DischargeStatusController extends Controller
     public function update(Request $request, $id)
     {
         //dd($request->all());
-        
+
         $rules = [
             'hospital_id'                                           => 'required|max:40',
             'hospital_name'                                         => 'required|max:255',
             'patient_id'                                            => 'required|max:40',
             'claim_id'                                              => 'required|max:40',
-            'insurance_coverage'                                    => 'required',
-            'lending_required'                                      => 'required',
             // 'date_of_admission'                                     => 'required',
             // 'time_of_admission'                                     => 'required',
             // 'hospitalization_due_to'                                => 'required',
@@ -106,9 +104,9 @@ class DischargeStatusController extends Controller
             'time_of_discharge'                                     => 'required',
             'discharge_status'                                      => 'required',
             'death_summary'                                         => ($request->discharge_status == 'Deceased') ? 'required|alpha_num|max:100':[],
-            'discharge_status_comments'                             => 'max:250',            
+            'discharge_status_comments'                             => 'max:250',
             // 'death_summary_file'                                    => ($request->death_summary) ? 'required' :[]
-            
+
         ];
 
         $messages = [
@@ -140,7 +138,7 @@ class DischargeStatusController extends Controller
             'death_summary.required'                                        => 'Please enter death summary',
             'injury_due_to_substance_abuse_alcohol_consumption_file.required'=>'Please upload file',
             'death_summary_file.required'                                   =>'Please upload death summary file'
-            
+
         ];
 
          $this->validate($request, $rules, $messages);
@@ -155,7 +153,7 @@ class DischargeStatusController extends Controller
                 'patient_id' => $claimant->patient_id,
                 'claim_id' => $claimant->claim_id,
                 'injury_reason' => $request->injury_reason,
-                'injury_due_to_substance_abuse_alcohol_consumption' => $request->injury_due_to_substance_abuse_alcohol_consumption,               
+                'injury_due_to_substance_abuse_alcohol_consumption' => $request->injury_due_to_substance_abuse_alcohol_consumption,
                 'if_medico_legal_case_mlc' => $request->if_medico_legal_case_mlc,
                 'reported_to_police' => $request->reported_to_police,
                 'mlc_report_and_police_fir_attached' => $request->mlc_report_and_police_fir_attached,
@@ -172,11 +170,11 @@ class DischargeStatusController extends Controller
                 'discharge_status' => $request->discharge_status,
                 'death_summary' => $request->death_summary,
                 'discharge_status_comments' => $request->discharge_status_comments,
-            
+
             ]);
             return redirect()->back()->with('success', 'Discharge status updated successfully');
 
-         
+
     }
 
     /**
