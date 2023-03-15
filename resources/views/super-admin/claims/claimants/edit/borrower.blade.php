@@ -99,7 +99,7 @@
                                         </div>
 
                                         <div class="col-md-6 mb-3">
-                                            <label for="claim_id">Cliam ID <span class="text-danger">*</span></label>
+                                            <label for="claim_id">Claim ID <span class="text-danger">*</span></label>
                                             <input type="text" readonly class="form-control" id="claim_id"
                                                 name="claim_id" maxlength="60" placeholder="Enter Claim Id"
                                                 value="{{ old('claim_id', @$claimant->claim->uid) }}">

@@ -38,7 +38,7 @@ return new class extends Migration
             $table->string('loan_end_date')->nullable();
             $table->string('insurance_claim_settlement_date')->nullable();
             $table->double('insurance_claim_settled_amount')->nullable();
-            $table->double('insurance_claim_amount_disbursement_date')->nullable();
+            $table->string('insurance_claim_amount_disbursement_date')->nullable();
             $table->text('loan_application_status_comments')->nullable();
             $table->double('re_apply_loan_amount')->nullable();
             $table->text('loan_re_application_status_comments')->nullable();

@@ -131,8 +131,10 @@ class LendingStatusController extends Controller
             case 'loan-application-status-form':
                 $rules = [
                     'date_of_loan_application'  => ($request->applyloan == 1) ? 'required' : '',   
+                    'date_of_loan_re_application'      => ($request->date_of_loan_application &&  $request->date_of_loan_re_application) ? 'required|date|after_or_equal:date_of_loan_application' : '',
                     'loan_id_or_no'             => ($request->applyloan == 1) ? 'required|max:20' : '',
                     'loan_status'               => ($request->applyloan == 1) ? 'required' : '',   
+                    'loan_end_date'      => ($request->loan_start_date &&  $request->loan_end_date) ? 'required|date|after_or_equal:loan_start_date' : '',
                 ];
                 
                 $messages =  [
@@ -144,26 +146,28 @@ class LendingStatusController extends Controller
                 ];
                 
                 $this->validate($request, $rules, $messages);
+                if ($request->applyloan == 1) {
 
-                LendingStatus::where('claimant_id', $id)->update([                   
-                    'date_of_loan_application'                  => $request->date_of_loan_application,
-                    'time_of_loan_application'                  => $request->time_of_loan_application,
-                    'date_of_loan_re_application'               => $request->date_of_loan_re_application,
-                    'time_of_loan_re_application'               => $request->time_of_loan_re_application,
-                    'loan_id_or_no'                             => $request->loan_id_or_no,
-                    'loan_status'                               => $request->loan_status,
-                    'loan_approved_amount'                      => $request->loan_approved_amount,
-                    'loan_disbursed_amount'                     => $request->loan_disbursed_amount,
-                    'date_of_loan_disbursement'                 => $request->date_of_loan_disbursement,
-                    'loan_tenure'                               => $request->loan_tenure,
-                    'loan_instalments'                          => $request->loan_instalments,
-                    'loan_start_date'                           => $request->loan_start_date,
-                    'loan_end_date'                             => $request->loan_end_date,
-                    'insurance_claim_settlement_date'           => $request->insurance_claim_settlement_date,
-                    'insurance_claim_settled_amount'            => $request->insurance_claim_settled_amount,
-                    'insurance_claim_amount_disbursement_date'  => $request->insurance_claim_amount_disbursement_date,
-                    'loan_application_status_comments'          => $request->loan_application_status_comments,          
-                ]);
+                    LendingStatus::where('claimant_id', $id)->update([                   
+                        'date_of_loan_application'                  => $request->date_of_loan_application,
+                        'time_of_loan_application'                  => $request->time_of_loan_application,
+                        'date_of_loan_re_application'               => $request->date_of_loan_re_application,
+                        'time_of_loan_re_application'               => $request->time_of_loan_re_application,
+                        'loan_id_or_no'                             => $request->loan_id_or_no,
+                        'loan_status'                               => $request->loan_status,
+                        'loan_approved_amount'                      => $request->loan_approved_amount,
+                        'loan_disbursed_amount'                     => $request->loan_disbursed_amount,
+                        'date_of_loan_disbursement'                 => $request->date_of_loan_disbursement,
+                        'loan_tenure'                               => $request->loan_tenure,
+                        'loan_instalments'                          => $request->loan_instalments,
+                        'loan_start_date'                           => $request->loan_start_date,
+                        'loan_end_date'                             => $request->loan_end_date,
+                        'insurance_claim_settlement_date'           => $request->insurance_claim_settlement_date,
+                        'insurance_claim_settled_amount'            => $request->insurance_claim_settled_amount,
+                        'insurance_claim_amount_disbursement_date'  => $request->insurance_claim_amount_disbursement_date,
+                        'loan_application_status_comments'          => $request->loan_application_status_comments,          
+                    ]);
+                }
                 break;
             case 'loan-reapplication-form':
                 LendingStatus::where('claimant_id', $id)->update([                   
