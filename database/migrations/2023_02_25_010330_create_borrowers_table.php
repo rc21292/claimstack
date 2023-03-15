@@ -26,6 +26,15 @@ return new class extends Migration
             $table->string('borrower_firstname')->nullable();
             $table->string('borrower_middlename')->nullable();
             $table->string('borrower_lastname')->nullable();
+            $table->string('borrower_id_proof_file')->nullable();
+            $table->string('borrower_pan_no_file')->nullable();
+            $table->string('borrower_aadhar_no_file')->nullable();
+            $table->string('bank_statement_file')->nullable();
+            $table->string('itr_file')->nullable();
+            $table->string('borrower_cancel_cheque_file')->nullable();
+            $table->string('co_borrower_nominee_dob_file')->nullable();
+            $table->string('co_borrower_nominee_gender_file')->nullable();
+            $table->string('co_borrower_other_documents_file')->nullable();
             $table->enum('borrowers_relation_with_patient', ['Self', 'Husband', 'Wife', 'Son', 'Daughter', 'Father', 'Mother', 'Other'])->nullable();
             $table->string('borrower_dob')->nullable();
             $table->enum('gender', ['M', 'F', 'Other'])->nullable();

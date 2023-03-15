@@ -89,14 +89,18 @@ class BorrowerController extends Controller
             'borrower_state'                    => 'required|max:40',
             'borrower_pincode'                  => 'required',
             'borrower_id_proof'                 => 'required',
+            'borrower_id_proof_file'            => (($request->is_patient_and_borrower_same == '' || $request->is_patient_and_borrower_same == 'No') && empty($borrower->borrower_id_proof_file) ) ? 'required' : [],
             'nature_of_income'                  => 'required',
             'organization'                      => 'required',
             // 'member_or_employer_id'             => 'required',
             'borrower_mobile_no'                => 'required|digits:10',
             'borrower_estimated_amount'         => 'required|digits_between:1,8',
             'borrower_pan_no'                   => isset($borrower) ? 'required|alpha_num|size:10|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/u|unique:borrowers,borrower_pan_no,'.$borrower->id : 'required|alpha_num|size:10|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/u|unique:borrowers',
+            'borrower_pan_no_file'              => (($request->is_claimant_and_borrower_same == '' || $request->is_claimant_and_borrower_same == 'No') && empty($borrower->borrower_pan_no_file) ) ? 'required' : [],
             'borrower_aadhar_no'                => 'required|numeric|digits:12',
+            'borrower_aadhar_no_file'           => (($request->is_claimant_and_borrower_same == '' || $request->is_claimant_and_borrower_same == 'No') && empty($borrower->borrower_aadhar_no_file) ) ? 'required' : [],
             'borrower_cancel_cheque'            => 'required',
+             'borrower_cancel_cheque_file'       => ($request->borrower_cancel_cheque != 'No' && empty($borrower->borrower_cancel_cheque_file)) ? 'required' : [],
             'borrower_personal_email_id'        => 'required',
             'borrower_bank_name'                => 'required|max:45',
             'borrower_bank_address'             => 'required|max:80',
@@ -222,6 +226,96 @@ class BorrowerController extends Controller
             ]);
         }
 
+         if ($request->hasfile('borrower_id_proof_file')) {
+            $borrower_id_proof_file                     = $request->file('borrower_id_proof_file');
+            $name                                       = $borrower_id_proof_file->getClientOriginalName();
+            $borrower_id_proof_file->storeAs('uploads/borrower/' . $borrower->id . '/', $name, 'public');
+            Borrower::where('id', $borrower->id)->update([
+                'borrower_id_proof_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('borrower_pan_no_file')) {
+            $borrower_pan_no_file                    = $request->file('borrower_pan_no_file');
+            $rhnname                                 = $borrower_pan_no_file->getClientOriginalName();
+            $borrower_pan_no_file->storeAs('uploads/borrower/' . $borrower->id . '/', $rhnname, 'public');
+            Borrower::where('id', $borrower->id)->update([
+                'borrower_pan_no_file'               =>  $rhnname
+            ]);
+        }
+
+        if ($request->hasfile('bank_statement_file')) {
+            $bank_statement_file                    = $request->file('bank_statement_file');
+            $rhnname                                 = $bank_statement_file->getClientOriginalName();
+            $bank_statement_file->storeAs('uploads/borrower/' . $borrower->id . '/', $rhnname, 'public');
+            Borrower::where('id', $borrower->id)->update([
+                'bank_statement_file'               =>  $rhnname
+            ]);
+        }
+
+        if ($request->hasfile('borrower_aadhar_no_file')) {
+            $borrower_aadhar_no_file                    = $request->file('borrower_aadhar_no_file');
+            $name                                       = $borrower_aadhar_no_file->getClientOriginalName();
+            $borrower_aadhar_no_file->storeAs('uploads/borrower/' . $borrower->id . '/', $name, 'public');
+            Borrower::where('id', $borrower->id)->update([
+                'borrower_aadhar_no_file'               =>  $name
+            ]);
+        }
+
+         if ($request->hasfile('bank_statement')) {
+            $bank_statement                     = $request->file('bank_statement');
+            $rhnname                            = $bank_statement->getClientOriginalName();
+            $bank_statement->storeAs('uploads/borrower/' . $borrower->id . '/', $rhnname, 'public');
+            Borrower::where('id', $borrower->id)->update([
+                'bank_statement'               =>  $rhnname
+            ]);
+        }
+
+         if ($request->hasfile('itr_file')) {
+            $itr_file                       = $request->file('itr_file');
+            $rhnname                        = $itr_file->getClientOriginalName();
+            $itr_file->storeAs('uploads/borrower/' . $borrower->id . '/', $rhnname, 'public');
+            Borrower::where('id', $borrower->id)->update([
+                'itr_file'               =>  $rhnname
+            ]);
+        }
+
+        if ($request->hasfile('borrower_cancel_cheque_file')) {
+            $borrower_cancel_cheque_file                    = $request->file('borrower_cancel_cheque_file');
+            $rhnname                                        = $borrower_cancel_cheque_file->getClientOriginalName();
+            $borrower_cancel_cheque_file->storeAs('uploads/borrower/' . $borrower->id . '/', $rhnname, 'public');
+            Borrower::where('id', $borrower->id)->update([
+                'borrower_cancel_cheque_file'               =>  $rhnname
+            ]);
+        }
+
+        if ($request->hasfile('co_borrower_nominee_dob_file')) {
+            $co_borrower_nominee_dob_file                    = $request->file('co_borrower_nominee_dob_file');
+            $rhnname                                         = $co_borrower_nominee_dob_file->getClientOriginalName();
+            $co_borrower_nominee_dob_file->storeAs('uploads/borrower/' . $borrower->id . '/', $rhnname, 'public');
+            Borrower::where('id', $borrower->id)->update([
+                'co_borrower_nominee_dob_file'               =>  $rhnname
+            ]);
+        }
+
+        if ($request->hasfile('co_borrower_nominee_gender_file')) {
+            $co_borrower_nominee_gender_file                    = $request->file('co_borrower_nominee_gender_file');
+            $rhnname                                            = $co_borrower_nominee_gender_file->getClientOriginalName();
+            $co_borrower_nominee_gender_file->storeAs('uploads/borrower/' . $borrower->id . '/', $rhnname, 'public');
+            Borrower::where('id', $borrower->id)->update([
+                'co_borrower_nominee_gender_file'               =>  $rhnname
+            ]);
+        }
+
+        if ($request->hasfile('co_borrower_other_documents_file')) {
+            $co_borrower_other_documents_file                    = $request->file('co_borrower_other_documents_file');
+            $rhnname                                             = $co_borrower_other_documents_file->getClientOriginalName();
+            $co_borrower_other_documents_file->storeAs('uploads/borrower/' . $borrower->id . '/', $rhnname, 'public');
+            Borrower::where('id', $borrower->id)->update([
+                'co_borrower_other_documents_file'               =>  $rhnname
+            ]);
+        }
+
         Borrower::where('id', $borrower->id)->update([
             'uid'      => 'BRO' . substr($borrower->borrower_pan_no, 0, 2) . substr($borrower->borrower_pan_no, -3)
         ]);
@@ -295,14 +389,18 @@ class BorrowerController extends Controller
             'borrower_state'                    => 'required|max:40',
             'borrower_pincode'                  => 'required',
             'borrower_id_proof'                 => 'required',
+            'borrower_id_proof_file'            => (($request->is_patient_and_borrower_same == '' || $request->is_patient_and_borrower_same == 'No') && empty($borrower->borrower_id_proof_file) ) ? 'required' : [],
             'nature_of_income'                  => 'required',
             'organization'                      => 'required',
             'member_or_employer_id'             => 'required',
             'borrower_mobile_no'                => 'required|digits:10',
             'borrower_estimated_amount'         => 'required|digits_between:1,8',
             'borrower_pan_no'                   => isset($borrower) ? 'required|alpha_num|size:10|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/u|unique:borrowers,borrower_pan_no,'.$borrower->id : 'required|alpha_num|size:10|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/u|unique:borrowers',
+            'borrower_pan_no_file'              => (($request->is_claimant_and_borrower_same == '' || $request->is_claimant_and_borrower_same == 'No') && empty($borrower->borrower_pan_no_file) ) ? 'required' : [],
             'borrower_aadhar_no'                => 'required|numeric|digits:12',
+            'borrower_aadhar_no_file'           => (($request->is_claimant_and_borrower_same == '' || $request->is_claimant_and_borrower_same == 'No') && empty($borrower->borrower_aadhar_no_file) ) ? 'required' : [],
             'borrower_cancel_cheque'            => 'required',
+            'borrower_cancel_cheque_file'       => ($request->borrower_cancel_cheque != 'No' && empty($borrower->borrower_cancel_cheque_file)) ? 'required' : [],
             'borrower_personal_email_id'        => 'required',
             'borrower_bank_name'                => 'required|max:45',
             'borrower_bank_address'             => 'required|max:80',
@@ -419,6 +517,95 @@ class BorrowerController extends Controller
             'co_borrower_comments'              => $request->co_borrower_comments,
         ]);
 
+        if ($request->hasfile('borrower_id_proof_file')) {
+            $borrower_id_proof_file                     = $request->file('borrower_id_proof_file');
+            $name                                       = $borrower_id_proof_file->getClientOriginalName();
+            $borrower_id_proof_file->storeAs('uploads/borrower/' . $borrower->id . '/', $name, 'public');
+            Borrower::where('id', $borrower->id)->update([
+                'borrower_id_proof_file'               =>  $name
+            ]);
+        }
+
+        if ($request->hasfile('borrower_pan_no_file')) {
+            $borrower_pan_no_file                    = $request->file('borrower_pan_no_file');
+            $rhnname                                 = $borrower_pan_no_file->getClientOriginalName();
+            $borrower_pan_no_file->storeAs('uploads/borrower/' . $borrower->id . '/', $rhnname, 'public');
+            Borrower::where('id', $borrower->id)->update([
+                'borrower_pan_no_file'               =>  $rhnname
+            ]);
+        }
+
+        if ($request->hasfile('bank_statement_file')) {
+            $bank_statement_file                    = $request->file('bank_statement_file');
+            $rhnname                                 = $bank_statement_file->getClientOriginalName();
+            $bank_statement_file->storeAs('uploads/borrower/' . $borrower->id . '/', $rhnname, 'public');
+            Borrower::where('id', $borrower->id)->update([
+                'bank_statement_file'               =>  $rhnname
+            ]);
+        }
+
+        if ($request->hasfile('borrower_aadhar_no_file')) {
+            $borrower_aadhar_no_file                    = $request->file('borrower_aadhar_no_file');
+            $name                                       = $borrower_aadhar_no_file->getClientOriginalName();
+            $borrower_aadhar_no_file->storeAs('uploads/borrower/' . $borrower->id . '/', $name, 'public');
+            Borrower::where('id', $borrower->id)->update([
+                'borrower_aadhar_no_file'               =>  $name
+            ]);
+        }
+
+         if ($request->hasfile('bank_statement')) {
+            $bank_statement                     = $request->file('bank_statement');
+            $rhnname                            = $bank_statement->getClientOriginalName();
+            $bank_statement->storeAs('uploads/borrower/' . $borrower->id . '/', $rhnname, 'public');
+            Borrower::where('id', $borrower->id)->update([
+                'bank_statement'               =>  $rhnname
+            ]);
+        }
+
+         if ($request->hasfile('itr_file')) {
+            $itr_file                       = $request->file('itr_file');
+            $rhnname                        = $itr_file->getClientOriginalName();
+            $itr_file->storeAs('uploads/borrower/' . $borrower->id . '/', $rhnname, 'public');
+            Borrower::where('id', $borrower->id)->update([
+                'itr_file'               =>  $rhnname
+            ]);
+        }
+
+        if ($request->hasfile('borrower_cancel_cheque_file')) {
+            $borrower_cancel_cheque_file                    = $request->file('borrower_cancel_cheque_file');
+            $rhnname                                        = $borrower_cancel_cheque_file->getClientOriginalName();
+            $borrower_cancel_cheque_file->storeAs('uploads/borrower/' . $borrower->id . '/', $rhnname, 'public');
+            Borrower::where('id', $borrower->id)->update([
+                'borrower_cancel_cheque_file'               =>  $rhnname
+            ]);
+        }
+
+        if ($request->hasfile('co_borrower_nominee_dob_file')) {
+            $co_borrower_nominee_dob_file                    = $request->file('co_borrower_nominee_dob_file');
+            $rhnname                                         = $co_borrower_nominee_dob_file->getClientOriginalName();
+            $co_borrower_nominee_dob_file->storeAs('uploads/borrower/' . $borrower->id . '/', $rhnname, 'public');
+            Borrower::where('id', $borrower->id)->update([
+                'co_borrower_nominee_dob_file'               =>  $rhnname
+            ]);
+        }
+
+        if ($request->hasfile('co_borrower_nominee_gender_file')) {
+            $co_borrower_nominee_gender_file                    = $request->file('co_borrower_nominee_gender_file');
+            $rhnname                                            = $co_borrower_nominee_gender_file->getClientOriginalName();
+            $co_borrower_nominee_gender_file->storeAs('uploads/borrower/' . $borrower->id . '/', $rhnname, 'public');
+            Borrower::where('id', $borrower->id)->update([
+                'co_borrower_nominee_gender_file'               =>  $rhnname
+            ]);
+        }
+
+        if ($request->hasfile('co_borrower_other_documents_file')) {
+            $co_borrower_other_documents_file                    = $request->file('co_borrower_other_documents_file');
+            $rhnname                                             = $co_borrower_other_documents_file->getClientOriginalName();
+            $co_borrower_other_documents_file->storeAs('uploads/borrower/' . $borrower->id . '/', $rhnname, 'public');
+            Borrower::where('id', $borrower->id)->update([
+                'co_borrower_other_documents_file'               =>  $rhnname
+            ]);
+        }
         
         if ($request->hasfile('member_or_employer_id_file')) {
             $member_or_employer_id_file                    = $request->file('member_or_employer_id_file');

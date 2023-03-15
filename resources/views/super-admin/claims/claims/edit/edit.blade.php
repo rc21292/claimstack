@@ -303,17 +303,19 @@
     });
     </script>
     <script>
+
     function setMedicineOption(){
         var category_option = $('#system_of_medicine').val();
         switch (category_option) {
                 case 'Allopathy':
-                    $("#treatment_category").val("{{ old('treatment_category',@$claim->treatment_category) }}");
+                    $("#treatment_category").val("{{ old('treatment_category', @$claim->treatment_category) }}").removeAttr('disabled');
                     break;
                 default:
-                    $("#treatment_category").val("Non Allopathic");
+                    $("#treatment_category").val("Non Allopathic").attr('disabled', true);
                     break;
             }
     }
+
 </script>
 <script>
     function setPhysicinOptions(){

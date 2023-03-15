@@ -99,7 +99,7 @@
                                         </div>
 
                                         <div class="col-md-6 mb-3">
-                                            <label for="claim_id">Cliam ID <span class="text-danger">*</span></label>
+                                            <label for="claim_id">Claim ID <span class="text-danger">*</span></label>
                                             <input type="text" readonly class="form-control" id="claim_id"
                                                 name="claim_id" maxlength="60" placeholder="Enter Claim Id"
                                                 value="{{ old('claim_id', @$claimant->claim->uid) }}">
@@ -586,19 +586,9 @@
                                                     href="" download=""
                                                     class="btn btn-warning download-label"><i
                                                         class="mdi mdi-download"></i></a>
-                                                <input type="file" name="borrower_id_proof_file"
-                                                    id="borrower_id_proof_file" hidden
-                                                    onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                                                <label for="borrower_id_proof_file"
-                                                    class="btn btn-primary upload-label"><i
-                                                        class="mdi mdi-upload"></i></label>
                                             </div>
 
                                             @error('borrower_id_proof')
-                                                <span id="name-error"
-                                                    class="error invalid-feedback">{{ $message }}</span>
-                                            @enderror
-                                            @error('borrower_id_proof_file')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -638,6 +628,9 @@
                                                 id="member_or_employer_id" name="member_or_employer_id"
                                                 placeholder="Member ID No./Employee ID (Client ID)"
                                                 value="{{ old('member_or_employer_id', @$borrower->member_or_employer_id) }}">
+                                                @isset($borrower->member_or_employer_id_file)
+                                                    <a href="{{ asset('storage/uploads/borrower/'.$borrower->id.'/'.@$borrower->member_or_employer_id_file) }}" download=""  class="btn btn-warning download-label"><i  class="mdi mdi-download"></i></a>
+                                                @endisset
                                                 <input type="file" name="member_or_employer_id_file"
                                                     id="member_or_employer_id_file" hidden
                                                     onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
@@ -709,17 +702,8 @@
                                                     href="" download=""
                                                     class="btn btn-warning download-label"><i
                                                         class="mdi mdi-download"></i></a>
-                                                <input type="file" name="borrower_pan_no_file"
-                                                    id="borrower_pan_no_file" hidden
-                                                    onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                                                <label for="borrower_pan_no_file" class="btn btn-primary upload-label"><i
-                                                        class="mdi mdi-upload"></i></label>
                                             </div>
                                             @error('borrower_pan_no')
-                                                <span id="name-error"
-                                                    class="error invalid-feedback">{{ $message }}</span>
-                                            @enderror
-                                            @error('borrower_pan_no_file')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -739,18 +723,8 @@
                                                     href="" download=""
                                                     class="btn btn-warning download-label"><i
                                                         class="mdi mdi-download"></i></a>
-                                                <input type="file" name="borrower_aadhar_no_file"
-                                                    id="borrower_aadhar_no_file" hidden
-                                                    onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                                                <label for="borrower_aadhar_no_file"
-                                                    class="btn btn-primary upload-label"><i
-                                                        class="mdi mdi-upload"></i></label>
                                             </div>
                                             @error('borrower_aadhar_no')
-                                                <span id="name-error"
-                                                    class="error invalid-feedback">{{ $message }}</span>
-                                            @enderror
-                                            @error('borrower_aadhar_no_file')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -768,18 +742,9 @@
                                                         {{ old('bank_statement', @$borrower->bank_statement) == 'No' ? 'selected' : '' }}>
                                                         No </option>
                                                 </select>
-                                                <input type="file" name="bank_statement_file" id="bank_statement_file"
-                                                    hidden
-                                                    onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                                                <label for="bank_statement_file" class="btn btn-primary upload-label"><i
-                                                        class="mdi mdi-upload"></i></label>
                                             </div>
 
                                             @error('bank_statement')
-                                                <span id="name-error"
-                                                    class="error invalid-feedback">{{ $message }}</span>
-                                            @enderror
-                                            @error('bank_statement_file')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -798,17 +763,9 @@
                                                         {{ old('itr', @$borrower->itr) == 'No' ? 'selected' : '' }}>No
                                                     </option>
                                                 </select>
-                                                <input type="file" name="itr_file" id="itr_file" hidden
-                                                    onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                                                <label for="itr_file" class="btn btn-primary upload-label"><i
-                                                        class="mdi mdi-upload"></i></label>
                                             </div>
 
                                             @error('itr')
-                                                <span id="name-error"
-                                                    class="error invalid-feedback">{{ $message }}</span>
-                                            @enderror
-                                            @error('itr_file')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -828,19 +785,9 @@
                                                         {{ old('borrower_cancel_cheque', @$borrower->borrower_cancel_cheque) == 'No' ? 'selected' : '' }}>
                                                         No </option>
                                                 </select>
-                                                <input type="file" name="borrower_cancel_cheque_file"
-                                                    id="borrower_cancel_cheque_file" hidden
-                                                    onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                                                <label for="borrower_cancel_cheque_file"
-                                                    class="btn btn-primary upload-label"><i
-                                                        class="mdi mdi-upload"></i></label>
                                             </div>
 
                                             @error('borrower_cancel_cheque')
-                                                <span id="name-error"
-                                                    class="error invalid-feedback">{{ $message }}</span>
-                                            @enderror
-                                            @error('borrower_cancel_cheque_file')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -921,18 +868,8 @@
                                                 <input type="text" class="form-control" id="co_borrower_nominee_dob"
                                                     max="{{ date('Y-m-d') }}" name="co_borrower_nominee_dob"
                                                     value="{{ old('co_borrower_nominee_dob', @$borrower->co_borrower_nominee_dob) }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
-                                                <input type="file" name="co_borrower_nominee_dob_file"
-                                                    id="co_borrower_nominee_dob_file" hidden
-                                                    onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                                                <label for="co_borrower_nominee_dob_file"
-                                                    class="btn btn-primary upload-label"><i
-                                                        class="mdi mdi-upload"></i></label>
                                             </div>
                                             @error('co_borrower_nominee_dob')
-                                                <span id="name-error"
-                                                    class="error invalid-feedback">{{ $message }}</span>
-                                            @enderror
-                                            @error('co_borrower_nominee_dob_file')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -958,18 +895,8 @@
                                                         Other
                                                     </option>
                                                 </select>
-                                                <input type="file" name="co_borrower_nominee_gender_file"
-                                                    id="co_borrower_nominee_gender_file" hidden
-                                                    onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                                                <label for="co_borrower_nominee_gender_file"
-                                                    class="btn btn-primary upload-label"><i
-                                                        class="mdi mdi-upload"></i></label>
                                             </div>
                                             @error('co_borrower_nominee_gender')
-                                                <span id="name-error"
-                                                    class="error invalid-feedback">{{ $message }}</span>
-                                            @enderror
-                                            @error('co_borrower_nominee_gender_file')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -1023,19 +950,9 @@
                                                         {{ old('co_borrower_other_documents', @$borrower->co_borrower_other_documents) == 'No' ? 'selected' : '' }}>
                                                         No </option>
                                                 </select>
-                                                <input type="file" name="co_borrower_other_documents_file"
-                                                    id="co_borrower_other_documents_file" hidden
-                                                    onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                                                <label for="co_borrower_other_documents_file"
-                                                    class="btn btn-primary upload-label"><i
-                                                        class="mdi mdi-upload"></i></label>
                                             </div>
 
                                             @error('co_borrower_other_documents')
-                                                <span id="name-error"
-                                                    class="error invalid-feedback">{{ $message }}</span>
-                                            @enderror
-                                            @error('co_borrower_other_documents_file')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
