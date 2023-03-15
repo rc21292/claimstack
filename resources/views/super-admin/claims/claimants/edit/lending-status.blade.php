@@ -488,7 +488,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="date_of_loan_application">Date of Loan Application (DD/MM/YYYY)<span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" disabled id="date_of_loan_application" name="date_of_loan_application"
-                                            value="{{ old('date_of_loan_application', isset($lending_status) ? ( !empty($lending_status->date_of_loan_application) ? $lending_status->date_of_loan_application : date('d-m-Y') ) : '') }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
+                                            value="{{ old('date_of_loan_application', isset($lending_status) ? ( !empty($lending_status->date_of_loan_application) ? $lending_status->date_of_loan_application : date('d-m-Y') ) : date('d-m-Y')) }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
 
                                             @error('date_of_loan_application')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -497,7 +497,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="time_of_loan_application">Time of Loan Application (HH:MM) <span class="text-danger">*</span></label>
-                                            <input type="time" class="form-control" id="time_of_loan_application" disabled name="time_of_loan_application" value="{{ old('time_of_loan_application', isset($lending_status) ? ( !empty($lending_status->time_of_loan_application) ? $lending_status->time_of_loan_application : date('H:i') ) : '') }}" >
+                                            <input type="time" class="form-control" id="time_of_loan_application" disabled name="time_of_loan_application" value="{{ old('time_of_loan_application', isset($lending_status) ? ( !empty($lending_status->time_of_loan_application) ? $lending_status->time_of_loan_application : date('H:i') ) : date('H:i')) }}" >
 
                                             @error('time_of_loan_application')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -506,7 +506,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="date_of_loan_re_application">Date of Loan Re-Application (DD/MM/YYYY)<span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy" id="date_of_loan_re_application" disabled name="date_of_loan_re_application" value="{{ old('date_of_loan_re_application', isset($lending_status) ? ( !empty($lending_status->date_of_loan_re_application) ? $lending_status->date_of_loan_re_application : date('d-m-Y') ) : '') }}">
+                                            <input type="text" class="form-control" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy" id="date_of_loan_re_application" disabled name="date_of_loan_re_application" value="{{ old('date_of_loan_re_application', isset($lending_status) ? ( !empty($lending_status->date_of_loan_re_application) ? $lending_status->date_of_loan_re_application : date('d-m-Y') ) : date('d-m-Y')) }}">
 
                                             @error('date_of_loan_re_application')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -515,7 +515,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="time_of_loan_re_application">Time of Loan Re-Application (HH:MM) <span class="text-danger">*</span></label>
-                                            <input type="time" class="form-control" id="time_of_loan_re_application" disabled name="time_of_loan_re_application" value="{{ old('time_of_loan_re_application', isset($lending_status) ? ( !empty($lending_status->time_of_loan_re_application) ? $lending_status->time_of_loan_re_application : date('H:i') ) : '') }}" >
+                                            <input type="time" class="form-control" id="time_of_loan_re_application" disabled name="time_of_loan_re_application" value="{{ old('time_of_loan_re_application', isset($lending_status) ? ( !empty($lending_status->time_of_loan_re_application) ? $lending_status->time_of_loan_re_application : date('H:i') ) : date('H:i')) }}" >
 
                                             @error('time_of_loan_re_application')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
