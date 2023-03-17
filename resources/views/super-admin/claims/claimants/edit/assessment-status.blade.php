@@ -236,7 +236,7 @@
                                         <div class="col-md-3 mt-1">
                                             <input type="text" readonly maxlength="25" class="form-control"
                                                 id="patient_middlename" name="patient_middlename" maxlength="30"
-                                                placeholder="Last name"
+                                                placeholder="Middle name"
                                                 value="{{ old('patient_middlename', @$claimant->patient->middlename) }}">
                                             @error('patient_middlename')
                                                 <span id="name-error"
