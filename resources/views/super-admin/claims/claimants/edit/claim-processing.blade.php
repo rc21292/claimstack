@@ -268,7 +268,7 @@
                                                 <option value="">Please Select</option>
                                                 @foreach ($insurers as $insurer)
                                                 <option value="{{ $insurer->id }}"
-                                                    {{ old('insurance_company', @$policy->insurer_id) == $insurer->id ? 'selected' : '' }}> {{ $insurer->name }}
+                                                    {{ old('insurance_company', @$claim->policy->insurer_id) == $insurer->id ? 'selected' : '' }}> {{ $insurer->name }}
                                                 </option>
                                                 @endforeach
                                             </select>
@@ -281,9 +281,9 @@
                                             <label for="policy_type">Policy Type <span class="text-danger">*</span></label>
                                             <select disabled class="form-select" id="policy_type" name="policy_type" onchange="setGroupName();">
                                                 <option value="">Please Select</option>
-                                                <option value="Group" {{ old('policy_type', @$policy->policy_type) == 'Group' ? 'selected' : '' }}>Group
+                                                <option value="Group" {{ old('policy_type', @$claim->policy->policy_type) == 'Group' ? 'selected' : '' }}>Group
                                                 </option>
-                                                <option value="Retail" {{ old('policy_type', @$policy->policy_type) == 'Retail' ? 'selected' : '' }}>Retail
+                                                <option value="Retail" {{ old('policy_type', @$claim->policy->policy_type) == 'Retail' ? 'selected' : '' }}>Retail
                                                 </option>
                                             </select>
                                             @error('policy_type', 'claim-processing-form')
@@ -298,7 +298,7 @@
                                                 <option value="">Please Select</option>
                                                 @foreach ($insurers as $insurer)
                                                 <option value="{{ $insurer->id }}"
-                                                    {{ old('policy_name', @$policy->policy_id) == $insurer->id ? 'selected' : '' }}>
+                                                    {{ old('policy_name', @$claim->policy->policy_id) == $insurer->id ? 'selected' : '' }}>
                                                     {{ $insurer->name }}
                                                 </option>
                                                 @endforeach
@@ -310,8 +310,8 @@
 
                                         <div class="col-md-6 mb-3">
                                             <label for="policy_start_date">Policy Start Date <span class="text-danger">*</span></label>
-                                            <input type="text" readonly placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy" class="form-control" id="policy_start_date"
-                                            name="policy_start_date" value="{{ old('policy_start_date', @$policy->start_date) }}">
+                                            <input type="text" disabled placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy" class="form-control" id="policy_start_date"
+                                            name="policy_start_date" value="{{ old('policy_start_date', @$claim->policy->start_date) }}">
                                             @error('policy_start_date', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -319,8 +319,8 @@
 
                                         <div class="col-md-6 mb-3">
                                             <label for="policy_expiry_date">Policy Expiry Date <span class="text-danger">*</span></label>
-                                            <input type="text" readonly placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy" class="form-control" id="policy_expiry_date"
-                                            name="policy_expiry_date" value="{{ old('policy_expiry_date', @$policy->expiry_date) }}">
+                                            <input type="text" disabled placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy" class="form-control" id="policy_expiry_date"
+                                            name="policy_expiry_date" value="{{ old('policy_expiry_date', @$claim->policy->expiry_date) }}">
                                             @error('policy_expiry_date', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -328,9 +328,9 @@
 
                                         <div class="col-md-6 mb-3">
                                             <label for="policy_commencement_date_without_break">Policy Commencement Date (without Break) <span  class="text-danger">*</span></label>
-                                            <input type="text" readonly placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy"
+                                            <input type="text" disabled placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy"
                                             class="form-control" id="policy_commencement_date_without_break" name="policy_commencement_date_without_break"
-                                            value="{{ old('policy_commencement_date_without_break', @$policy->commencement_date) }}">
+                                            value="{{ old('policy_commencement_date_without_break', @$claim->policy->commencement_date) }}">
                                             @error('policy_commencement_date_without_break', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -338,7 +338,7 @@
 
                                         <div class="col-md-6 mb-3">
                                             <label for="date_of_admission">Date of Admission (DD-MM-YYYY) <span class="text-danger">*</span></label>
-                                            <input type="text" readonly class="form-control" id="date_of_admission" name="date_of_admission"
+                                            <input type="text" disabled class="form-control" id="date_of_admission" name="date_of_admission"
                                             value="{{ old('date_of_admission', @$claim->admission_date) }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
                                             @error('date_of_admission', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -357,7 +357,7 @@
                                         <div class="col-md-6 mb-3">
                                             <label for="discharge_date">Expected Date of Discharge (DD-MM-YYYY) <span
                                                     class="text-danger">*</span></label>
-                                            <input type="text" readonly class="form-control" id="discharge_date" name="discharge_date"
+                                            <input type="text" disabled class="form-control" id="discharge_date" name="discharge_date"
                                                 value="{{ old('discharge_date', $claim->discharge_date) }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
                                             @error('discharge_date')
                                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -401,7 +401,7 @@
 
                                         <div class="col-md-6 mb-3">
                                             <label for="date_of_delivery">Date of Injury / Date Disease first detected / Date of delivery <span class="text-danger">*</span></label>
-                                            <input type="text" readonly class="form-control" id="date_of_delivery" name="date_of_delivery"
+                                            <input type="text" disabled class="form-control" id="date_of_delivery" name="date_of_delivery"
                                                 value="{{ old('date_of_delivery', $claim->date_of_delivery) }}"
                                                 placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
                                             @error('date_of_delivery')
@@ -413,7 +413,7 @@
                                         <div class="col-md-6 mb-3">
                                             <label for="consultation_date">Date of First Consultation (DD-MM-YYYY) <span
                                                     class="text-danger">*</span></label>
-                                            <input type="text" readonly class="form-control" id="consultation_date" max="{{ date('Y-m-d') }}"
+                                            <input type="text" disabled class="form-control" id="consultation_date" max="{{ date('Y-m-d') }}"
                                                 name="consultation_date" value="{{ old('consultation_date', $claim->consultation_date) }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
                                             @error('consultation_date')
                                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
