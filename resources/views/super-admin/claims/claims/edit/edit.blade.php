@@ -123,6 +123,7 @@
             $('#age').val(age);
             $('#gender').val(gender);
             $('#hospital_id').val(hospital).trigger('change');
+            $('#hospital_id').prop('disabled', true);
             $('#registration_no').val(registrationno);
         }
 

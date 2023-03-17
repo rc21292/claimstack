@@ -405,7 +405,6 @@ class ClaimController extends Controller
         $rules =  [
             'patient_id'                => 'required',
             'hospital_name'             => 'required',
-            'hospital_id'               => 'required',
             'hospital_address'          => 'required',
             'hospital_city'             => 'required',
             'hospital_state'            => 'required',
@@ -539,7 +538,6 @@ class ClaimController extends Controller
             'lastname'                          => $request->lastname,
             'age'                               => $request->age,
             'gender'                            => $request->gender,
-            'hospital_id'                       => $request->hospital_id,
             'hospital_name'                     => $request->hospital_name,
             'hospital_address'                  => $request->hospital_address,
             'hospital_city'                     => $request->hospital_city,
@@ -844,7 +842,6 @@ class ClaimController extends Controller
         $rules =  [
             'patient_id'                => 'required',
             'hospital_name'             => 'required',
-            'hospital_id'               => 'required',
             'hospital_address'          => 'required',
             'hospital_city'             => 'required',
             'hospital_state'            => 'required',
@@ -981,7 +978,6 @@ class ClaimController extends Controller
             'lastname'                          => $request->lastname,
             'age'                               => $request->age,
             'gender'                            => $request->gender,
-            'hospital_id'                       => $request->hospital_id,
             'hospital_name'                     => $request->hospital_name,
             'hospital_address'                  => $request->hospital_address,
             'hospital_city'                     => $request->hospital_city,

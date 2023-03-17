@@ -99,7 +99,7 @@
                                         </div>
 
                                         <div class="col-md-6 mb-3">
-                                            <label for="claim_id">Cliam ID <span class="text-danger">*</span></label>
+                                            <label for="claim_id">Claim ID <span class="text-danger">*</span></label>
                                             <input type="text" readonly class="form-control" id="claim_id"
                                                 name="claim_id" maxlength="60" placeholder="Enter Claim Id"
                                                 value="{{ old('claim_id', @$claimant->claim->uid) }}">
@@ -232,7 +232,7 @@
                                         <div class="col-md-3 mt-1 mb-3">
                                             <input type="text" maxlength="25" class="form-control"
                                                 id="patient_middlename" name="patient_middlename" maxlength="30"
-                                                placeholder="Last name"
+                                                placeholder="Middle name"
                                                 value="{{ old('patient_middlename', @$claimant->patient->middlename) }}"
                                                 readonly>
                                             @error('patient_middlename')
@@ -1088,7 +1088,7 @@
                                         <div class="col-md-12 mt-3">
                                             <label for="co_borrower_comments">Co-Borrower / Borrower Comments </label>
                                             <textarea class="form-control" id="co_borrower_comments" name="co_borrower_comments" maxlength="250"
-                                                placeholder="Claimant Comments" rows="5">{{ old('co_borrower_comments', @$borrower->co_borrower_comments) }}</textarea>
+                                                placeholder="Co-Borrower / Borrower Comments" rows="5">{{ old('co_borrower_comments', @$borrower->co_borrower_comments) }}</textarea>
                                             @error('co_borrower_comments')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
