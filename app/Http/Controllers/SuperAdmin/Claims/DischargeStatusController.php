@@ -77,6 +77,7 @@ class DischargeStatusController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $claimant = Claimant::find($id);
         $rules = [
             'hospital_id'                                           => 'required|max:40',
             'hospital_name'                                         => 'required|max:255',
@@ -86,18 +87,19 @@ class DischargeStatusController extends Controller
             // 'time_of_admission'                                     => 'required',
             // 'hospitalization_due_to'                                => 'required',
             // 'date_of_delivery'                                      => 'required',
-            'injury_reason'                                         => ($request->hospitalization_due_to == 'Injury') ? 'required': [],
-            'injury_due_to_substance_abuse_alcohol_consumption'     => ($request->injury_reason) ? 'required':[],
+            'injury_reason'                                         => ($claimant->claim->hospitalization_due_to == 'Injury') ? 'required': [],
+            'injury_due_to_substance_abuse_alcohol_consumption'     => isset($request->injury_reason) ? 'required':[],
+            'if_medico_legal_case_mlc'                              => isset($request->injury_due_to_substance_abuse_alcohol_consumption) ? 'required':[],
             'reported_to_police'                                    => ($request->if_medico_legal_case_mlc =='Yes') ? 'required' :[],
             'mlc_report_and_police_fir_attached'                    => ($request->reported_to_police =='Yes') ? 'required' :[],
             'fir_or_mlc_no'                                         => ($request->mlc_report_and_police_fir_attached =='Yes') ? 'required|max:27':[],
             'not_reported_to_police_reason'                         => ($request->reported_to_police =='No' && $request->if_medico_legal_case_mlc =='Yes') ?'required|max:100' :[],
-            'maternity_date_of_delivery'                            => ($request->hospitalization_due_to == 'Maternity') ? 'required' : [],
-            'maternity_gravida_status_g'                            => ($request->hospitalization_due_to == 'Maternity') ? 'required|numeric|digits_between:1,2' : [],
-            'maternity_gravida_status_p'                            => ($request->hospitalization_due_to == 'Maternity') ? 'required|numeric|digits_between:1,2' : [],
-            'maternity_gravida_status_l'                            => ($request->hospitalization_due_to == 'Maternity') ? 'required|numeric|digits_between:1,2' : [],
-            'maternity_gravida_status_a'                            => ($request->hospitalization_due_to == 'Maternity') ? 'required|numeric|digits_between:1,2' : [],
-            'premature_baby'                                        => ($request->hospitalization_due_to == 'Maternity') ? 'required' : [],
+            'maternity_date_of_delivery'                            => ($claimant->claim->hospitalization_due_to == 'Maternity') ? 'required' : [],
+            'maternity_gravida_status_g'                            => ($claimant->claim->hospitalization_due_to == 'Maternity') ? 'required|numeric|digits_between:1,2' : [],
+            'maternity_gravida_status_p'                            => ($claimant->claim->hospitalization_due_to == 'Maternity') ? 'required|numeric|digits_between:1,2' : [],
+            'maternity_gravida_status_l'                            => ($claimant->claim->hospitalization_due_to == 'Maternity') ? 'required|numeric|digits_between:1,2' : [],
+            'maternity_gravida_status_a'                            => ($claimant->claim->hospitalization_due_to == 'Maternity') ? 'required|numeric|digits_between:1,2' : [],
+            'premature_baby'                                        => ($claimant->claim->hospitalization_due_to == 'Maternity') ? 'required' : [],
             'date_of_discharge'                                     => 'required',
             'time_of_discharge'                                     => 'required',
             'discharge_status'                                      => 'required',
@@ -141,7 +143,7 @@ class DischargeStatusController extends Controller
 
          $this->validate($request, $rules, $messages);
 
-         $claimant = Claimant::find($id);
+
          DischargeStatus::updateOrCreate([
             'claimant_id' => $id
          ],

@@ -401,7 +401,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="not_reported_to_police_reason">If not reported to Police, give
                                                 reason </label>
-                                            <input type="text"  @if(isset($discharge_status->reported_to_police) && $discharge_status->reported_to_police) disabled @endif class="form-control" id="not_reported_to_police_reason" name="not_reported_to_police_reason" value="{{ old('not_reported_to_police_reason', isset($discharge_status) ? $discharge_status->not_reported_to_police_reason : '') }}" maxlength="100" placeholder="Claimant Comments">
+                                            <input type="text"  @if(isset($discharge_status->reported_to_police) && $discharge_status->reported_to_police == "No" && $discharge_status->if_medico_legal_case_mlc == "Yes") disabled @endif class="form-control" id="not_reported_to_police_reason" name="not_reported_to_police_reason" value="{{ old('not_reported_to_police_reason', isset($discharge_status) ? $discharge_status->not_reported_to_police_reason : '') }}" maxlength="100" placeholder="Claimant Comments">
                                             @error('not_reported_to_police_reason')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
