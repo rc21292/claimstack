@@ -1251,5 +1251,41 @@
                     break;
             }
         }
-    </script>
+
+        $('select').on('change', function(){
+            var id = $(this).attr('id');
+            if($(this).val() == 'No' || $(this).val() == 'NA'){
+                $("#"+id+"_file").attr('disabled',true);
+            }else{
+                $("#"+id+"_file").attr('disabled',false);
+            }
+        });
+
+        $( document ).ready(function() {
+            if($("#itr").val() == 'No'){
+                $("#itr_file").attr('disabled',true);
+            }else{
+                $("#itr_file").attr('disabled',false);
+            }
+
+            if($("#borrower_cancel_cheque").val() == 'No' || $("#borrower_cancel_cheque").val() == 'NA'){
+                $("#borrower_cancel_cheque_file").attr('disabled',true);
+            }else{
+                $("#borrower_cancel_cheque_file").attr('disabled',false);
+            }
+
+            if($("#co_borrower_other_documents").val() == 'No' || $("#co_borrower_other_documents").val() == 'NA'){
+                $("#co_borrower_other_documents_file").attr('disabled',true);
+            }else{
+                $("#co_borrower_other_documents_file").attr('disabled',false);
+            }
+
+            if($("#bank_statement").val() == 'No' || $("#bank_statement").val() == 'NA'){
+                $("#bank_statement_file").attr('disabled',true);
+            }else{
+                $("#bank_statement_file").attr('disabled',false);
+            }
+        });
+
+</script>
 @endpush
