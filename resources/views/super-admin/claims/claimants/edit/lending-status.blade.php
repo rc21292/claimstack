@@ -452,7 +452,7 @@
                                         <div class="col-md-12 mt-3">
                                             <label for="loan_application_comments">Loan application Comments </label>
                                             <textarea class="form-control" id="loan_application_comments" name="loan_application_comments" maxlength="250"
-                                                placeholder="Claimant Comments" rows="5">{{ old('loan_application_comments', isset($lending_status) ? $lending_status->loan_application_comments : '') }}</textarea>
+                                                placeholder="Loan application Comments" rows="5">{{ old('loan_application_comments', isset($lending_status) ? $lending_status->loan_application_comments : '') }}</textarea>
                                             @error('loan_application_comments')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
@@ -536,7 +536,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="loan_status">Loan Status {{ old('loan_status') }}<span class="text-danger">*</span></label>
                                             <select class="form-select" disabled id="loan_status" name="loan_status" >
-                                                <option value="">Select</option>
+                                                {{-- <option value="">Select</option> --}}
                                                 <option value="Waiting for the Approval" {{ old('loan_status', isset($lending_status) ? $lending_status->loan_status : 'Waiting for the Approval') == 'Waiting for the Approval' ? 'selected' : '' }}>Waiting for the Approval </option>
                                                 <option value="Approved" {{ old('loan_status', isset($lending_status) ? $lending_status->loan_status : '') == 'Approved' ? 'selected' : '' }}>Approved </option>
                                                 <option value="Rejected" {{ old('loan_status', isset($lending_status) ? $lending_status->loan_status : '') == 'Rejected' ? 'selected' : '' }}>Rejected </option>
