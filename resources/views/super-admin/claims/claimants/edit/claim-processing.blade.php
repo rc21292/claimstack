@@ -1438,7 +1438,7 @@
 @push('scripts')
 <script>
 
-    var final_assessment_status = "{{ old('final_assessment_status') }}";
+    var final_assessment_status = "{{ old('final_assessment_status', @$claim_processing->final_assessment_status) }}";
     var add_query_clicked = "{{ old('add_query_clicked') }}";
 
     if(add_query_clicked == 1){
@@ -1457,6 +1457,7 @@
         }
 
     $(document).on('change', '#final_assessment_status', function(event) {
+        alert($(this).val());
         if($(this).val() == 'Query Raised by BHC Team'){
             $(".add-query").attr('disabled', false);
         }else{

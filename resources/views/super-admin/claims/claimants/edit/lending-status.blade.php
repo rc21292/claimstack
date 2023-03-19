@@ -534,10 +534,10 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="loan_status">Loan Status<span class="text-danger">*</span></label>
+                                            <label for="loan_status">Loan Status {{ old('loan_status') }}<span class="text-danger">*</span></label>
                                             <select class="form-select" disabled id="loan_status" name="loan_status" >
                                                 <option value="">Select</option>
-                                                <option value="Waiting for the Approval" {{ old('loan_status', isset($lending_status) ? $lending_status->loan_status : '') == 'Waiting for the Approval' ? 'selected' : '' }}>Waiting for the Approval </option>
+                                                <option value="Waiting for the Approval" {{ old('loan_status', isset($lending_status) ? $lending_status->loan_status : 'Waiting for the Approval') == 'Waiting for the Approval' ? 'selected' : '' }}>Waiting for the Approval </option>
                                                 <option value="Approved" {{ old('loan_status', isset($lending_status) ? $lending_status->loan_status : '') == 'Approved' ? 'selected' : '' }}>Approved </option>
                                                 <option value="Rejected" {{ old('loan_status', isset($lending_status) ? $lending_status->loan_status : '') == 'Rejected' ? 'selected' : '' }}>Rejected </option>
                                                 <option value="Re-applied" {{ old('loan_status', isset($lending_status) ? $lending_status->loan_status : '') == 'Re-applied' ? 'selected' : '' }}>Re-applied </option>

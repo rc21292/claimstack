@@ -596,6 +596,13 @@
         }
 
 
+        if(rtp == 'No' && mlc  == 'Yes'){
+            $('#not_reported_to_police_reason').removeAttr('disabled');
+        }else{
+            $('#not_reported_to_police_reason').attr('disabled',true);
+        }
+
+
         //on load
         let hdt = $('input[name="hospitalization_due_to"]:checked').val();
           if(hdt == "Injury") {
@@ -706,11 +713,26 @@
 
         $('#discharge_status').on('change',function(){
             if($(this).val()=="Deceased"){
-                $('#death_summary').removeAttr('disabled');
+                $('#death_summary').removeAttr('readonly');
             } else {
-                $('#death_summary').attr('disabled',true);
+                $('#death_summary').attr('readonly',true);
             }
         });
+
+        var discharge_status = "{{ old('discharge_status', @$discharge_status->discharge_status) }}";
+
+        if(discharge_status =="Deceased"){
+            $('#death_summary').removeAttr('readonly');
+        } else {
+            $('#death_summary').attr('readonly',true);
+        }
+
+         $('#maternity_date_of_delivery').datepicker({
+                endDate: '+0d',
+                autoclose: true,
+            });
+
+
 
 </script>
 @endpush
