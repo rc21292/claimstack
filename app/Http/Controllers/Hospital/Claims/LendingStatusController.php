@@ -13,6 +13,12 @@ use Illuminate\Http\Request;
 
 class LendingStatusController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:hospital');
+    }
+    
     /**
      * Display a listing of the resource.
      *
