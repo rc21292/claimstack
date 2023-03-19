@@ -1,5 +1,5 @@
 {{-- <div class="card-body">
-        <form action="{{ route('super-admin.claimants.update-borrower-details',1) }}" method="post" id="borrower-details-form"
+        <form action="{{ route('admin.claimants.update-borrower-details',1) }}" method="post" id="borrower-details-form"
         enctype="multipart/form-data">
         @csrf
 

@@ -12,7 +12,13 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HospitalController;
 use App\Http\Controllers\Admin\Claims\ClaimController;
 use App\Http\Controllers\Admin\Claims\PatientController;
+use App\Http\Controllers\Admin\Claims\BorrowerController;
 use App\Http\Controllers\Admin\Claims\ClaimantController;
+use App\Http\Controllers\Admin\Claims\AssessmentController;
+use App\Http\Controllers\Admin\Claims\ClaimProcessingController;
+use App\Http\Controllers\Admin\Claims\DischargeStatusController;
+use App\Http\Controllers\Admin\Claims\DocumentReimbursementController;
+use App\Http\Controllers\Admin\Claims\LendingStatusController;
 use App\Http\Controllers\Admin\UtilityController;
 use Illuminate\Support\Facades\Route;
 
@@ -145,6 +151,48 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::resource('claimants', ClaimantController::class);
 
 
+    /*
+    |--------------------------------------------------------------------------
+    | Borrower Route
+    |--------------------------------------------------------------------------
+    */
+    
+    Route::resource('borrowers', BorrowerController::class);
+
+
+    Route::resource('document-reimbursement', DocumentReimbursementController::class);
+
+    /*
+    |--------------------------------------------------------------------------
+    | Assessment Status Controller Route
+    |--------------------------------------------------------------------------
+    */
+    
+    Route::resource('assessment-status', AssessmentController::class);
+
+    /*
+    |--------------------------------------------------------------------------
+    | Lending Status Controller Route
+    |--------------------------------------------------------------------------
+    */
+    
+    Route::resource('lending-status', LendingStatusController::class);
+
+    /*
+    |--------------------------------------------------------------------------
+    | Discharge Status Controller Route
+    |--------------------------------------------------------------------------
+    */
+    
+    Route::resource('discharge-status', DischargeStatusController::class);
+
+    /*
+    |--------------------------------------------------------------------------
+    | Claim Processing Controller Route
+    |--------------------------------------------------------------------------
+    */
+    
+    Route::resource('claim-processing', ClaimProcessingController::class);
 
     /*
     |--------------------------------------------------------------------------

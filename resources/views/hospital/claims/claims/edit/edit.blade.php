@@ -77,6 +77,12 @@
             setHospitalId();
             setInsuranceCoverageOptions();
             setClaimIntimationNumber();
+            setMedicineOption();
+            setPhysicinOptions();
+            ailnessOptions();
+            setAdditionalPolicy();
+            setHospitalizedOption();
+            setCurrentlyCovered();
             $('#addInsured').click(function() {
                 $('.addInsured').toggle("slide");
             });
@@ -95,6 +101,7 @@
                 setAdditionalPolicy();
                 setCurrentlyCovered();
                 setHospitalizedOption();
+                calculateExpectedDays();
             });
         @endif
 
@@ -116,6 +123,7 @@
             $('#age').val(age);
             $('#gender').val(gender);
             $('#hospital_id').val(hospital).trigger('change');
+            $('#hospital_id').prop('disabled', true);
             $('#registration_no').val(registrationno);
         }
 
@@ -137,27 +145,30 @@
         }
     </script>
     <script>
-        function setInsuranceCoverageOptions() {
-            var insurance_coverage = $('#insurance_coverage').val();
-            switch (insurance_coverage) {
+    function setInsuranceCoverageOptions(){
+        var insurance_coverage = $('#insurance_coverage').val();
+        switch (insurance_coverage) {
                 case 'Yes':
                     $("#policy_no").prop("readonly", false);
                     $("#company_tpa_id_card_no").prop("readonly", false);
-                    $("#claim_intimation_done").prop("disabled", false);
+                    $("#policy_file").prop("disabled", false);
+                    $("#company_tpa_id_card_file").prop("disabled", false);
                     break;
                 case 'No':
                     $("#policy_no").prop("readonly", true);
                     $("#company_tpa_id_card_no").prop("readonly", true);
-                    $("#claim_intimation_done").prop("disabled", true);
+                    $("#policy_file").prop("disabled", true);
+                    $("#company_tpa_id_card_file").prop("disabled", true);
                     break;
                 default:
                     $("#policy_no").prop("readonly", true);
                     $("#company_tpa_id_card_no").prop("readonly", true);
-                    $("#claim_intimation_done").prop("disabled", true);
+                    $("#policy_file").prop("disabled", true);
+                    $("#company_tpa_id_card_file").prop("disabled", true);
                     break;
             }
-        }
-    </script>
+    }
+</script>
     <script>
         function setClaimIntimationNumber() {
             var claim_intimation_done = $('#claim_intimation_done').val();
@@ -180,12 +191,15 @@
             switch (policy_type) {
                 case 'Group':
                     $("#group_name").prop("readonly", false);
+                    $("#previous_policy_no").prop("readonly", true);
                     break;
                 case 'Retail':
                     $("#group_name").prop("readonly", true);
+                    $("#previous_policy_no").prop("readonly", false);
                     break;
                 default:
                     $("#group_name").prop("readonly", true);
+                    $("#previous_policy_no").prop("readonly", true);
                     break;
             }
         }
@@ -202,23 +216,22 @@
                     $("#primary_insured_pincode").val("{{ $claim->patient->patient_current_pincode }}");
                     break;
                 case 'No':
-                    $("#primary_insured_address").val("");
-                    $("#primary_insured_city").val("");
-                    $("#primary_insured_state").val("");
-                    $("#primary_insured_pincode").val("");
+                    $("#primary_insured_address").val({{ old('primary_insured_address') }});
+                    $("#primary_insured_city").val({{ old('primary_insured_city') }});
+                    $("#primary_insured_state").val({{ old('primary_insured_state') }});
+                    $("#primary_insured_pincode").val({{ old('primary_insured_pincode') }});
                     break;
                 default:
-                    $("#primary_insured_address").val("");
-                    $("#primary_insured_city").val("");
-                    $("#primary_insured_state").val("");
-                    $("#primary_insured_pincode").val("");
+                    $("#primary_insured_address").val({{ old('primary_insured_address') }});
+                    $("#primary_insured_city").val({{ old('primary_insured_city') }});
+                    $("#primary_insured_state").val({{ old('primary_insured_state') }});
+                    $("#primary_insured_pincode").val({{ old('primary_insured_pincode') }});
                     break;
             }
         }
     </script>
     <script>
         function setAdditionalPolicy() {
-            $("#policy_no_additional").prop("readonly", true);
             var additional_policy = $('input[name="additional_policy"]:checked').val();
             switch (additional_policy) {
                 case 'Yes':
@@ -235,27 +248,23 @@
     </script>
     <script>
         function setCurrentlyCovered() {
-            $("#commencement_date_other").prop("readonly", true);
-            $("#insurance_company_other").prop("readonly", true);
-            $("#policy_no_other").prop("readonly", true);
-            $("#sum_insured_other").prop("readonly", true);
             var currentlycovered = $('input[name="currently_covered"]:checked').val();
             switch (currentlycovered) {
                 case 'Yes':
                     $("#commencement_date_other").prop("readonly", false);
-                    $("#insurance_company_other").prop("readonly", false);
+                    $("#insurance_company_other").prop("disabled", false);
                     $("#policy_no_other").prop("readonly", false);
                     $("#sum_insured_other").prop("readonly", false);
                     break;
                 case 'No':
                     $("#commencement_date_other").prop("readonly", true);
-                    $("#insurance_company_other").prop("readonly", true);
+                    $("#insurance_company_other").prop("disabled", true);
                     $("#policy_no_other").prop("readonly", true);
                     $("#sum_insured_other").prop("readonly", true);
                     break;
                 default:
                     $("#commencement_date_other").prop("readonly", true);
-                    $("#insurance_company_other").prop("readonly", true);
+                    $("#insurance_company_other").prop("disabled", true);
                     $("#policy_no_other").prop("readonly", true);
                     $("#sum_insured_other").prop("readonly", true);
                     break;
@@ -294,4 +303,78 @@
         }
     });
     </script>
+    <script>
+
+    function setMedicineOption(){
+        var category_option = $('#system_of_medicine').val();
+        switch (category_option) {
+                case 'Allopathy':
+                    $("#treatment_category").val("{{ old('treatment_category', @$claim->treatment_category) }}").removeAttr('disabled');
+                    break;
+                default:
+                    $("#treatment_category").val("Non Allopathic").attr('disabled', true);
+                    break;
+            }
+    }
+
+</script>
+<script>
+    function setPhysicinOptions(){
+        var category_option = $('#has_family_physician').val();
+        switch (category_option) {
+                case 'Yes':
+                   $("#family_physician").prop("readonly", false);
+                    $("#family_physician_contact_no").prop("readonly", false);
+                    break;
+                case 'No':
+                   $("#family_physician").prop("readonly", true);
+                    $("#family_physician_contact_no").prop("readonly", true);
+                    break;
+                default:
+                     $("#family_physician").prop("readonly", false);
+                      $("#family_physician_contact_no").prop("readonly", false);
+                    break;
+            }
+    }
+</script>
+<script>
+    function ailnessOptions(){
+        var category_option = $('#chronic_illness').val();
+        switch (category_option) {
+                case 'Any other ailment':
+                    $("#ailment_details").prop("readonly", false);
+                    break;
+                default:
+                     $("#ailment_details").prop("readonly", true);
+                    break;
+            }
+    }
+</script>
+<script>
+    $(function(){
+        $('#admission_date').datepicker({
+            endDate: '+0d',
+            autoclose: true
+        });
+    });
+
+    $(function(){
+        $('#start_date').datepicker({
+            endDate: '+0d',
+            autoclose: true
+        });
+    });
+</script>
+<script>
+    function calculateExpectedDays(){
+        var d1 = $('#admission_date').datepicker('getDate'),
+            d2 = $('#discharge_date').datepicker('getDate'),
+            diff = 0;
+
+        if (d1 && d2) {
+            diff = Math.floor((d2.getTime() - d1.getTime()) / 86400000); // ms per day
+        }
+        $('#days_in_hospital').val(diff);
+    }
+</script>
 @endpush

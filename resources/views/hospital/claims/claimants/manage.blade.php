@@ -43,19 +43,26 @@
                                             <th scope="col">State</th>
                                             <th scope="col">City</th>
                                             <th scope="col">Pincode</th>
+                                            <th scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($claimants as $claimant)
                                             <tr>
-                                                <th>{{ $claimant->patient_id }}</th>
-                                                <th scope="row">{{ $claimant->claim_id }}</th>
+                                                <th>{{ $claimant->patient->uid }}</th>
+                                                <th scope="row">{{ $claimant->claim->uid }}</th>
                                                 <th scope="row">{{ $claimant->uid }}</th>
-                                                <td>{{ $claimant->claim->patient->middlename }} {{ $claimant->claim->patient->lastname }}</td>
-                                                <td>{{ $claimant->claim->patient->hospital->name }}</td>
+                                                <td>{{ @$claimant->patient->firstname }} {{ @$claimant->patient->middlename }} {{ @$claimant->patient->lastname }}</td>
+                                                <td>{{ @$claimant->patient->hospital->name }}</td>
                                                 <td>{{ $claimant->state }}</td>
                                                 <td>{{ $claimant->city }}</td>
                                                 <td>{{ $claimant->pincode }}</td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <a href="{{ route('hospital.claimants.edit', @$claimant->id) }}"
+                                                            class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>

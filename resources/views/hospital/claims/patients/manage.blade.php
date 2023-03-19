@@ -55,6 +55,8 @@
                                                 <td>{{ $patient->patient_current_pincode }}</td>
                                                 <td class="text-center">
                                                     <div class="btn-group">
+                                                        <a href="{{ route('hospital.patients.edit', @$patient->id) }}"
+                                                            class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
                                                         <a href="{{ route('hospital.claims.create', ['patient_id' => $patient->id]) }}"
                                                             class="btn btn-primary"><i class="mdi mdi-plus"></i> New
                                                             Claim</a>

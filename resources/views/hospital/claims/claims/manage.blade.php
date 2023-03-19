@@ -42,7 +42,7 @@
                                             <th scope="col">State</th>
                                             <th scope="col">City</th>
                                             <th scope="col">Pincode</th>
-                                            <th scope="col" class="text-center">Create</th>
+                                            <th scope="col" class="text-center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -57,7 +57,9 @@
                                                 <td>{{ $claim->patient->patient_current_pincode }}</td>
                                                 <td class="text-center">
                                                     <div class="btn-group">
-                                                        <a href="{{ route('hospital.claimants.create', ['patient_id' => $claim->patient->id, 'claim_id' => $claim->id]) }}"
+                                                        <a href="{{ route('hospital.claims.edit', @$claim->id) }}"
+                                                            class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
+                                                        <a href="{{ route('hospital.claimants.create', ['claim_id' => $claim->id]) }}"
                                                             class="btn btn-primary"><i class="mdi mdi-plus"></i> New
                                                             Claimant</a>
                                                     </div>
