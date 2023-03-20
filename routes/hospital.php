@@ -185,6 +185,8 @@ Route::group(['prefix' => 'hospital', 'as' => 'hospital.'], function () {
     Route::put('associate-partners/vendor-services/{id}', [AssociatePartnerController::class, 'updateVendorServices'])->name('associate-partners.vendor-services');
     Route::put('associate-partners/sales-services/{id}', [AssociatePartnerController::class, 'updateSalesServices'])->name('associate-partners.sales-services');
 
+    Route::put('claims/update-insurance-policy/{id}', [ClaimController::class, 'updateInsurancePolicy'])->name('claims.update-insurance-policy');
+
      /*
     |--------------------------------------------------------------------------
     | Settings > My Account Route
