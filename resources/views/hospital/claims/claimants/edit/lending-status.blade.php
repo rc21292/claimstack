@@ -396,7 +396,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="medical_lending_type">Medical Lending Type <span
                                                     class="text-danger">*</span></label>
-                                            <select class="form-select" id="medical_lending_type"
+                                            <select class="form-select" disabled id="medical_lending_type"
                                                 name="medical_lending_type">
                                                 <option value="">Select</option>
                                                 <option value="Bridge"
@@ -419,7 +419,7 @@
                                             <label for="vendor_partner_name_nbfc_or_bank">Vendor Partner Name (NBFC/Bank)
                                                 <span class="text-danger">*</span></label>
 
-                                            <select class="form-control select2" data-toggle="select2" id="vendor_partner_name_nbfc_or_bank" name="vendor_partner_name_nbfc_or_bank">
+                                            <select disabled class="form-control select2" data-toggle="select2" id="vendor_partner_name_nbfc_or_bank" name="vendor_partner_name_nbfc_or_bank">
                                                 <option value="">Please Select</option>
                                                 @foreach ($associates as $associates)
                                                     <option value="{{ $associates->name }}"
@@ -439,7 +439,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="vendor_partner_id">Vendor Partner ID<span
                                                     class="text-danger">*</span></label>
-                                            <input type="text" maxlength="25" class="form-control"
+                                            <input type="text" maxlength="25" readonly class="form-control"
                                                 id="vendor_partner_id" name="vendor_partner_id" maxlength="30"
                                                 placeholder="Vendor Partner ID"
                                                 value="{{ old('vendor_partner_id', isset($lending_status) ? $lending_status->vendor_partner_id : '') }}">
@@ -449,29 +449,14 @@
                                             @enderror
                                         </div>
 
-                                        <div class="col-md-12 mt-3">
-                                            <label for="loan_application_comments">Loan application Comments </label>
-                                            <textarea class="form-control" id="loan_application_comments" name="loan_application_comments" maxlength="250"
-                                                placeholder="Loan application Comments" rows="5">{{ old('loan_application_comments', isset($lending_status) ? $lending_status->loan_application_comments : '') }}</textarea>
-                                            @error('loan_application_comments')
-                                                <span id="name-error"
-                                                    class="error invalid-feedback">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-
                                         <div class="col-md-12 text-end mt-3">
-                                            <button type="submit" class="btn btn-success"
+                                            <button disabled type="submit" class="btn btn-success"
                                                 form="loan-application-form">
                                                 Save Lending Status</button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
-                            <div class="col-md-12 text-end mt-3">
-                                            <button type="submit" class="btn btn-success" id="apply_loan"
-                                                form="loan-application-form">
-                                                Apply Loan</button>
-                                        </div>
                         </div>
 
                         <div class="card">
@@ -654,22 +639,8 @@
                                             @enderror
                                         </div>
 
-
-                                        <div class="col-md-12 mt-3">
-                                            <label for="loan_application_status_comments">Loan Application Status comments </label>
-                                            <textarea class="form-control" readonly id="loan_application_status_comments" name="loan_application_status_comments" maxlength="250" placeholder="Loan Application Status comments"
-                                            rows="5">{{ old('loan_application_status_comments', isset($lending_status) ? $lending_status->loan_application_status_comments : '') }}</textarea>
-                                            @error('loan_application_status_comments')
-                                            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-
                                         <input type="hidden" name="applyloan" id="applyloan" value="{{ old('applyloan', 0) }}">
 
-                                        <div class="col-md-12 text-end mt-3 mb-2">
-                                            <button type="submit" class="btn btn-success" form="loan-application-status-form">
-                                            Update Loan Application Status</button>
-                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -694,21 +665,6 @@
                                             @error('re_apply_loan_amount')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
-                                        </div>
-
-                                        <div class="col-md-6 mt-1">
-                                            <label for="loan_re_application_status_comments">Loan Re-application Status comments<span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" readonly id="loan_re_application_status_comments" name="loan_re_application_status_comments"
-                                            value="{{ old('loan_re_application_status_comments', isset($lending_status) ? $lending_status->loan_re_application_status_comments : '') }}">
-
-                                            @error('loan_re_application_status_comments')
-                                            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-
-                                        <div class="col-md-12 text-end mt-3">
-                                            <button type="submit" class="btn btn-success" form="loan-reapplication-form">
-                                            Re-apply Loan</button>
                                         </div>
 
                                     </div>
