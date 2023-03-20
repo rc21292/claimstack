@@ -466,7 +466,7 @@
                                 </div>
 
                                 <div class="col-md-6 mt-3">
-                                    <label for="referred_by">Patient Referred By* <span
+                                    <label for="referred_by">Patient Referred By <span
                                             class="text-danger">*</span></label>
                                     <select class="form-select" id="referred_by" name="referred_by"
                                         onchange="setReferral();">
@@ -501,7 +501,7 @@
                                 </div>
 
                                 <div class="col-md-12 mt-3">
-                                    <label for="admitted_by">Patient Admitted By* <span
+                                    <label for="admitted_by">Patient Admitted By <span
                                             class="text-danger">*</span></label>
                                     <select class="form-select" id="admitted_by" name="admitted_by"
                                         onchange="setNameField();">
