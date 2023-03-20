@@ -55,11 +55,15 @@
                                                 <td>{{ $patient->patient_current_pincode }}</td>
                                                 <td class="text-center">
                                                     <div class="btn-group">
+                                                        @if(auth()->check() && auth()->user()->hasDirectPermission('Patient Updation/Editing Rights'))
                                                         <a href="{{ route('admin.patients.edit', @$patient->id) }}"
                                                             class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
+                                                        @endif
+                                                        @if(auth()->check() && auth()->user()->hasDirectPermission('Claim ID Creation/Claim Intimation Rights'))
                                                         <a href="{{ route('admin.claims.create', ['patient_id' => $patient->id]) }}"
                                                             class="btn btn-primary"><i class="mdi mdi-plus"></i> New
                                                             Claim</a>
+                                                        @endif
                                                     </div>
                                                 </td>
                                             </tr>

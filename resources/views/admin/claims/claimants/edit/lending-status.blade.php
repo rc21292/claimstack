@@ -460,7 +460,7 @@
                                         </div>
 
                                         <div class="col-md-12 text-end mt-3">
-                                            <button type="submit" class="btn btn-success"
+                                            <button @if(auth()->check() && auth()->user()->hasDirectPermission('Lending Status Updation/Editing Rights')) @else disabled @endif  type="submit" class="btn btn-success"
                                                 form="loan-application-form">
                                                 Save Lending Status</button>
                                         </div>

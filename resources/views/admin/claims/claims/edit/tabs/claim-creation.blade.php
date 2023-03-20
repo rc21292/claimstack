@@ -737,7 +737,7 @@
                 @enderror
             </div>
             <div class="col-md-12 text-end mt-3">
-                <button type="submit" class="btn btn-success" form="claim-form">Update</button>
+                <button type="submit" @if(auth()->check() && auth()->user()->hasDirectPermission('Claim Details Updation/Editing Rights')) @else disabled @endif class="btn btn-success" form="claim-form">Update</button>
             </div>
         </div>
     </div>

@@ -287,7 +287,7 @@
 
 
                                         <div class="col-md-12 text-end mt-3">
-                                            <button type="submit" class="btn btn-success"
+                                            <button type="submit" class="btn btn-success" @if(auth()->check() && auth()->user()->hasDirectPermission('Claim Document Updation/Editing Rights')) @else disabled @endif
                                                 form="initial-assessment-form">Save Documents for Initial
                                                 Assessment</button>
                                         </div>
@@ -621,7 +621,7 @@
 
 
                                         <div class="col-md-12 text-end mt-3">
-                                            <button type="submit" class="btn btn-success"
+                                            <button type="submit" class="btn btn-success" @if(auth()->check() && auth()->user()->hasDirectPermission('Claim Document Updation/Editing Rights')) @else disabled @endif
                                                 form="final-assessment-form">Save
                                                 Documents for Final Assessment</button>
                                         </div>
@@ -773,7 +773,7 @@
                                         </div>
 
                                         <div class="col-md-12 text-end mt-3">
-                                            <button type="submit" class="btn btn-success"
+                                            <button type="submit" class="btn btn-success" @if(auth()->check() && auth()->user()->hasDirectPermission('Claim Document Updation/Editing Rights')) @else disabled @endif
                                                 form="insurance-claim-form">Save Documents for Insurance Claim</button>
                                         </div>
                                     </div>
@@ -947,7 +947,7 @@
                                         </div>
 
                                         <div class="col-md-12 text-end mt-3">
-                                            <button type="submit" class="btn btn-success" form="medical-loan-form">Save
+                                            <button type="submit" class="btn btn-success" @if(auth()->check() && auth()->user()->hasDirectPermission('Claim Document Updation/Editing Rights')) @else disabled @endif form="medical-loan-form">Save
                                                 Documents of Borrower</button>
                                         </div>
                                     </div>
@@ -1121,7 +1121,7 @@
                                         </div>
 
                                         <div class="col-md-12 text-end mt-3">
-                                            <button type="submit" class="btn btn-success" form="borrower-loan-form">Save
+                                            <button type="submit" class="btn btn-success" @if(auth()->check() && auth()->user()->hasDirectPermission('Claim Document Updation/Editing Rights')) @else disabled @endif form="borrower-loan-form">Save
                                                 Documents of Co-Borrower</button>
                                         </div>
                                     </div>

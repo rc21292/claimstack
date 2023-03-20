@@ -43,7 +43,9 @@
                                             <th scope="col">State</th>
                                             <th scope="col">City</th>
                                             <th scope="col">Pincode</th>
+                                            @if(auth()->check() && auth()->user()->hasDirectPermission('Claimant Updation/Editing Rights'))
                                             <th scope="col">Action</th>
+                                            @endif
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -57,12 +59,14 @@
                                                 <td>{{ $claimant->state }}</td>
                                                 <td>{{ $claimant->city }}</td>
                                                 <td>{{ $claimant->pincode }}</td>
+                                                @if(auth()->check() && auth()->user()->hasDirectPermission('Claimant Updation/Editing Rights'))
                                                 <td>
                                                     <div class="btn-group">
                                                         <a href="{{ route('admin.claimants.edit', @$claimant->id) }}"
                                                             class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
                                                     </div>
                                                 </td>
+                                                @endif
                                             </tr>
                                         @endforeach
                                     </tbody>

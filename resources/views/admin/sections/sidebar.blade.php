@@ -156,12 +156,16 @@
                             </a>
                             <div class="collapse show" id="patients" style="">
                                 <ul class="side-nav-third-level">
+                                    @if(auth()->check() && auth()->user()->hasDirectPermission('Patient Login ID Creation Rights'))
                                     <li>
                                         <a href="{{ route('admin.patients.create') }}">Create Patient</a>
                                     </li>
+                                    @endif
+                                    @if(auth()->check() && auth()->user()->hasDirectPermission('Patient Updation/Editing Rights'))
                                     <li>
                                         <a href="{{ route('admin.patients.index') }}">Manage Patient</a>
                                     </li>
+                                    @endif
                                 </ul>
                             </div>
                         </li>
@@ -172,12 +176,16 @@
                             </a>
                             <div class="collapse show" id="claims-management" style="">
                                 <ul class="side-nav-third-level">
+                                    @if(auth()->check() && auth()->user()->hasDirectPermission('Claim ID Creation/Claim Intimation Rights'))
                                     <li>
                                         <a href="{{ route('admin.claims.create') }}">Create Claim</a>
                                     </li>
+                                    @endif
+                                    @if(auth()->check() && auth()->user()->hasDirectPermission('Claim Intimation Updation/Editing Rights'))
                                     <li>
                                         <a href="{{ route('admin.claims.index') }}">Manage Claims</a>
                                     </li>
+                                    @endif
                                 </ul>
                             </div>
                         </li>
@@ -188,12 +196,16 @@
                             </a>
                             <div class="collapse show" id="claimant-management" style="">
                                 <ul class="side-nav-third-level">
+                                    @if(auth()->check() && auth()->user()->hasDirectPermission('Claimant Login ID Creation Rights'))
                                     <li>
                                         <a href="{{ route('admin.claimants.create') }}">Create Claimant</a>
                                     </li>
+                                    @endif
+                                    @if(auth()->check() && auth()->user()->hasDirectPermission('Claimant Updation/Editing Rights'))
                                     <li>
                                         <a href="{{ route('admin.claimants.index') }}">Manage Claimants</a>
                                     </li>
+                                    @endif
                                 </ul>
                             </div>
                         </li>
@@ -205,12 +217,16 @@
                             </a>
                             <div class="collapse show" id="borrowers-management" style="">
                                 <ul class="side-nav-third-level">
+                                    @if(auth()->check() && auth()->user()->hasDirectPermission('Claimant Login ID Creation Rights'))
                                     <li>
                                         <a href="{{ route('admin.borrowers.create') }}">Create Borrower</a>
                                     </li>
+                                    @endif
+                                    @if(auth()->check() && auth()->user()->hasDirectPermission('Claimant Updation/Editing Rights'))
                                     <li>
                                         <a href="{{ route('admin.borrowers.index') }}">Manage Borrowers</a>
                                     </li>
+                                    @endif
                                 </ul>
                             </div>
                         </li>   

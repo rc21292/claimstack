@@ -759,7 +759,7 @@
 
     <div class="card-body">
         <div class="form-group text-end">
-            <button type="submit" class="btn btn-success" form="insurance-form">Update</button>
+            <button type="submit" class="btn btn-success" @if(auth()->check() && auth()->user()->hasDirectPermission('Insurance Policy Updation/Editing Rights')) @else disabled @endif form="insurance-form">Update</button>
         </div>
     </div>
 </form>
