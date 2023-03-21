@@ -232,11 +232,6 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     Route::post('claimants/discharge-status/{id}', [ClaimantController::class, 'saveDischargeStatus'])->name('claimants.save-discharge-status');
     Route::post('claimants/lending-status/{id}', [ClaimantController::class, 'saveLendingStatus'])->name('claimants.save-lending-tatus');
 
-
-
-    Route::post('api/fetch-states', [DropdownController::class, 'fetchState']);
-    Route::post('api/fetch-cities', [DropdownController::class, 'fetchCity']);
-
     Route::get('claimants/patient/{id}', [ClaimantController::class, 'fetchPaitientData'])->name('claimants.fetch-patient');
     
     Route::get('claimants/claimant/{id}', [ClaimantController::class, 'fetchClaimentData'])->name('claimants.fetch-claimant');

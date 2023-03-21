@@ -390,9 +390,9 @@
                     <label for="gender">Borrower Gender <span class="text-danger">*</span></label>
                     <select class="form-select" id="gender" name="gender">
                         <option value="">Select Borrower Gender</option>
-                        <option value="Male" {{ old('gender') == 'Male' ? 'selected' : '' }}>M
+                        <option value="M" {{ old('gender') == 'M' ? 'selected' : '' }}>M
                         </option>
-                        <option value="Female" {{ old('gender') == 'Female' ? 'selected' : '' }}>F
+                        <option value="F" {{ old('gender') == 'F' ? 'selected' : '' }}>F
                         </option>
                         <option value="Other" {{ old('gender') == 'Other' ? 'selected' : '' }}>Other
                         </option>
@@ -403,11 +403,11 @@
                 </div>
 
                 <div class="col-md-4 mt-3">
-                    <label for="dob">Borrower DOB <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="dob" name="dob" max="{{ date('Y-m-d') }}"
-                    value="{{ old('dob') }}" onchange="calculateAge();" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
+                    <label for="borrower_dob">Borrower DOB <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="borrower_dob" name="borrower_dob" max="{{ date('Y-m-d') }}"
+                    value="{{ old('borrower_dob') }}" onchange="calculateAge();" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
 
-                    @error('dob')
+                    @error('borrower_dob')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
@@ -705,8 +705,7 @@
                 <div class="col-md-6 mt-3">
                     <label for="co_borrower_nominee_dob">Co-Borrower / Nominee DOB <span class="text-danger">*</span></label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="co_borrower_nominee_dob" max="{{ date('Y-m-d') }}" name="co_borrower_nominee_dob" placeholder="Enter Co-Borrower / Nominee DOB"
-                        value="{{ old('co_borrower_nominee_dob') }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
+                        <input type="text" class="form-control" id="co_borrower_nominee_dob" max="{{ date('Y-m-d') }}" name="co_borrower_nominee_dob" value="{{ old('co_borrower_nominee_dob') }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
                         <input type="file" name="co_borrower_nominee_dob_file" id="co_borrower_nominee_dob_file" hidden  onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                         <label for="co_borrower_nominee_dob_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
                     </div>
@@ -1116,6 +1115,16 @@
         }else{
             $("#bank_statement_file").attr('disabled',false);
         }
+    });
+
+    $('#co_borrower_nominee_dob').datepicker({
+        endDate: '+0d',
+        autoclose: true,
+    });
+
+    $('#dob').datepicker({
+        endDate: '+0d',
+        autoclose: true,
     });
 
 </script>

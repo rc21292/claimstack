@@ -727,10 +727,10 @@
             $('#death_summary').attr('readonly',true);
         }
 
-         $('#maternity_date_of_delivery').datepicker({
-                endDate: '+0d',
-                autoclose: true,
-            });
+        $('#maternity_date_of_delivery').datepicker({
+            endDate: '+0d',
+            autoclose: true,
+        });
 
 
 

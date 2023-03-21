@@ -2569,18 +2569,16 @@ class PatientController extends Controller
     {
         $hospital_id = $request->hospital_id;
         $associates = AssociatePartner::get();
-        $hospitals = Hospital::get();
+        $hospital = Hospital::where('id', auth()->user()->id)->first();
+        // echo "<pre>";print_r($hospital);"</pre>";exit;
         $doctors = HospitalDepartment::get();
-        foreach ($hospitals as $hospital) {
-            if (isset($hospital->linked_associate_partner_id)) {
-                $hospital->ap_name = AssociatePartner::where('associate_partner_id', $hospital->linked_associate_partner_id)->value('name');
-            } else {
-                $hospital->ap_name = 'N/A';
-            }
+        if (isset($hospital->linked_associate_partner_id)) {
+            $hospital->ap_name = AssociatePartner::where('associate_partner_id', $hospital->linked_associate_partner_id)->value('name');
+        } else {
+            $hospital->ap_name = 'N/A';
         }
 
-
-        return view('hospital.claims.patients.create',  compact('hospital_id', 'doctors','associates', 'hospitals'));
+        return view('hospital.claims.patients.create',  compact('hospital_id', 'doctors','associates', 'hospital'));
     }
 
     /**

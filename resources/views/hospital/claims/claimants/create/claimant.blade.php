@@ -207,7 +207,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="policy_type">Policy Type <span
                                                     class="text-danger">*</span></label>
-                                            <select class="form-select" id="policy_type" name="policy_type"
+                                            <select disabled class="form-select" id="policy_type" name="policy_type"
                                                 onchange="setGroupName();">
                                                 <option value="">Select Policy Type</option>
                                                 <option value="Group"
@@ -223,9 +223,11 @@
                                             @enderror
                                         </div>
 
+                                        <input type="hidden" name="policy_type" value="{{ old('policy_type') }}">
+
                                         <div class="col-md-6 mt-3">
                                             <label for="group_name">Group Name <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" id="group_name" name="group_name"
+                                            <input type="text" readonly class="form-control" id="group_name" name="group_name"
                                                 placeholder="Enter Group Name" value="{{ old('group_name') }}"
                                                 maxlength="75">
                                             @error('group_name')
