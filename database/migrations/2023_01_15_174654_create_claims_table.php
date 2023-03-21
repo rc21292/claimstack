@@ -33,7 +33,7 @@ return new class extends Migration
            $table->string('admission_type_2')->nullable();
            $table->string('admission_type_3')->nullable();
            $table->string('claim_category')->nullable();
-           $table->enum('treatment_category', ['Surgical', 'Medical Management', 'Intensive Care', 'Investigation', 'Non Allopathic'])->default('Surgical');
+           $table->enum('treatment_category', ['Surgical', 'Medical Management', 'Intensive Care', 'Investigation', 'Non Allopathic'])->nullable();
            $table->string('disease_category')->nullable();
            $table->string('disease_name')->nullable();
            $table->string('disease_type')->nullable();

@@ -52,7 +52,7 @@
                                                 <th>{{ $borrower->patient->uid }}</th>
                                                 <th scope="row">{{ $borrower->claim->uid }}</th>
                                                 <th scope="row">{{ $borrower->uid }}</th>
-                                                <td>{{ @$borrower->patient->lastname }} {{ @$borrower->patient->firstname }} {{ @$borrower->patient->middlename }} </td>
+                                                <td>{{ @$borrower->patient->firstname }} {{ @$borrower->patient->middlename }} {{ @$borrower->patient->lastname }}</td>
                                                 <td>{{ @$borrower->hospital->name }}</td>
                                                 <td>{{ $borrower->borrower_state }}</td>
                                                 <td>{{ $borrower->borrower_city }}</td>
