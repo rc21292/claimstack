@@ -1457,7 +1457,6 @@
         }
 
     $(document).on('change', '#final_assessment_status', function(event) {
-        alert($(this).val());
         if($(this).val() == 'Query Raised by BHC Team'){
             $(".add-query").attr('disabled', false);
         }else{
