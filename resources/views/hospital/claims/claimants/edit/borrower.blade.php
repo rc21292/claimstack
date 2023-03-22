@@ -1292,7 +1292,7 @@
             autoclose: true,
         });
 
-        $('#dob').datepicker({
+        $('#borrower_dob').datepicker({
             endDate: '+0d',
             autoclose: true,
         });
