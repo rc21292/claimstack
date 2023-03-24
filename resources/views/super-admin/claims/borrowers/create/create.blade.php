@@ -44,7 +44,7 @@
                 <div class="col-md-6 mb-3">
                     <label for="claim_id">Claim ID <span class="text-danger">*</span></label>
                     <input type="text" readonly class="form-control" id="claim_id" name="claim_id" maxlength="60"
-                    placeholder="Enter Claimant ID" value="{{ old('claim_id') }}">
+                    placeholder="Enter Claim ID" value="{{ old('claim_id') }}">
                     @error('claim_id')
                     <span id="claim-id-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
@@ -403,11 +403,11 @@
                 </div>
 
                 <div class="col-md-4 mt-3">
-                    <label for="dob">Borrower DOB <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="dob" name="dob" max="{{ date('Y-m-d') }}"
-                    value="{{ old('dob') }}" onchange="calculateAge();" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
+                    <label for="borrower_dob">Borrower DOB <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="borrower_dob" name="borrower_dob" max="{{ date('Y-m-d') }}"
+                    value="{{ old('borrower_dob') }}" onchange="calculateAge();" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
 
-                    @error('dob')
+                    @error('borrower_dob')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
@@ -471,7 +471,7 @@
                 </div>
 
                 <div class="col-md-6 mt-3">
-                    <label for="nature_of_income">Nature of Income</label>
+                    <label for="nature_of_income">Nature of Income <span class="text-danger">*</span></label>
                     <select class="form-control" id="nature_of_income" name="nature_of_income">
                         <option value="">Select</option>
                         <option @if (old('nature_of_income', @$borrower->nature_of_income) == 'Salaried') selected @endif value="Salaried">
@@ -486,7 +486,7 @@
                 </div>
 
                 <div class="col-md-6 mt-3">
-                    <label for="organization">Name of the Organization</label>
+                    <label for="organization">Name of the Organization <span class="text-danger">*</span></label>
                     <input type="text" maxlength="60" class="form-control" id="organization"
                         name="organization" placeholder="Name of the Organization"
                         value="{{ old('organization', @$borrower->organization) }}">
@@ -547,7 +547,7 @@
                 </div>
 
                 <div class="col-md-6 mt-3">
-                    <label for="borrower_official_email_id">Borrower official email id<span class="text-danger">*</span></label>
+                    <label for="borrower_official_email_id">Borrower official email id<span class="text-danger"></span></label>
                     <input type="email" class="form-control" id="borrower_official_email_id" name="borrower_official_email_id" maxlength="45"
                     placeholder="Enter Borrower official email id" value="{{ old('borrower_official_email_id') }}">
                     @error('borrower_official_email_id')
@@ -632,7 +632,7 @@
 
 
                 <div class="col-md-6 mt-3">
-                    <label>Borrower Cancel Cheque</label>
+                    <label>Borrower Cancel Cheque / Pass Book <span class="text-danger">*</span></label>
                     <div class="input-group">
                         <select class="form-select" id="borrower_cancel_cheque" name="borrower_cancel_cheque">
                             <option value="">Select Borrower Cancel Cheque</option>
@@ -703,9 +703,9 @@
                 </div>
 
                 <div class="col-md-6 mt-3">
-                    <label for="co_borrower_nominee_dob">Co-Borrower / Nominee DOB <span class="text-danger">*</span></label>
+                    <label for="co_borrower_nominee_dob">Co-Borrower / Nominee DOB <span class="text-danger"></span></label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="co_borrower_nominee_dob" max="{{ date('Y-m-d') }}" name="co_borrower_nominee_dob" placeholder="Enter Co-Borrower / Nominee DOB"
+                        <input type="text" class="form-control" id="co_borrower_nominee_dob" max="{{ date('Y-m-d') }}" name="co_borrower_nominee_dob"
                         value="{{ old('co_borrower_nominee_dob') }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
                         <input type="file" name="co_borrower_nominee_dob_file" id="co_borrower_nominee_dob_file" hidden  onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                         <label for="co_borrower_nominee_dob_file" class="btn btn-primary upload-label"><i  class="mdi mdi-upload"></i></label>
@@ -1117,6 +1117,16 @@
             $("#bank_statement_file").attr('disabled',false);
         }
     });
+
+    $('#co_borrower_nominee_dob').datepicker({
+            endDate: '+0d',
+            autoclose: true,
+        });
+
+        $('#borrower_dob').datepicker({
+            endDate: '+0d',
+            autoclose: true,
+        });
 
 </script>
 @endpush

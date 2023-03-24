@@ -5,7 +5,7 @@
         <div class="form-group row">
             <div class="col-md-12 mb-3">
                 <label for="patient_id">Patient ID <span class="text-danger">*</span></label>
-                <select class="form-control select2" id="patient_id" name="patient_id" data-toggle="select2"
+                <select class="form-control select2" @if(isset($patient) && !empty($patient)) disabled @endif id="patient_id" name="patient_id" data-toggle="select2"
                     onchange="setPatient()">
                     <option value="">Enter Patient ID</option>
                     @foreach ($patients as $row)
@@ -27,6 +27,11 @@
                     <span id="patient-id-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
+
+            @if(isset($patient) && !empty($patient)) 
+            <input type="hidden" name="patient_id" value="{{ old('patient_id', isset($patient) ? $patient->id : '') }}">
+            @endif
+
             <div class="col-md-6">
                 <label for="hospital_id">Hospital ID <span class="text-danger">*</span></label>
                 <select class="form-control select2" id="hospital_id" name="hospital_id" data-toggle="select2"
@@ -102,7 +107,7 @@
             </div>
 
             <div class="col-md-6 mt-3">
-                <label for="associate_partner_id">Associate Partner ID <span class="text-danger">*</span></label>
+                <label for="associate_partner_id">Associate Partner ID <span class="text-danger"></span></label>
                 <input type="text" class="form-control" id="associate_partner_id" name="associate_partner_id"
                     placeholder="Associate Partner ID" value="{{ old('associate_partner_id') }}"
                     @isset($patient) readonly @endisset>
@@ -259,7 +264,7 @@
                 @enderror
             </div>
             <div class="col-md-12 mt-3">
-                <label for="abha_id">ABHA ID <span class="text-danger">*</span></label>
+                <label for="abha_id">ABHA ID <span class="text-danger"></span></label>
                 <div class="input-group">
                     <input type="text" maxlength="45" class="form-control" id="abha_id" name="abha_id"
                         placeholder="ABHA ID" value="{{ old('abha_id') }}">

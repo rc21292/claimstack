@@ -224,7 +224,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="group_name">Group Name <span class="text-danger">*</span></label>
+                                            <label for="group_name">Group Name <span class="text-danger"></span></label>
                                             <input type="text" class="form-control" id="group_name" name="group_name"
                                                 placeholder="Enter Group Name" value="{{ old('group_name') }}"
                                                 maxlength="75">
