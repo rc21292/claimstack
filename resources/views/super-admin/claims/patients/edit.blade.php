@@ -107,7 +107,7 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="associate_partner_id">Associate Partner ID <span
-                                            class="text-danger">*</span></label>
+                                            class="text-danger"></span></label>
                                     <input type="text" readonly class="form-control" id="associate_partner_id"
                                         name="associate_partner_id" placeholder="Associate Partner ID"
                                         value="{{ old('associate_partner_id') }}">
@@ -146,7 +146,7 @@
 
                                 <div class="col-md-6 mt-3">
                                  <label for="qualification">Qualification / Specilization <span class="text-danger">*</span></label>
-                                    <input type="text" maxlength="25" class="form-control" id="qualification"
+                                    <input type="text" readonly maxlength="25" class="form-control" id="qualification"
                                         name="qualification" placeholder="Qualification / Specilization"
                                         value="{{ old('qualification', $patient->qualification) }}">
                                     @error('qualification')
@@ -156,7 +156,7 @@
 
                                 <div class="col-md-6 mt-3">
                                  <label for="doctor_registration_no">Registration No. with State Code <span class="text-danger">*</span></label>
-                                    <input type="text" maxlength="20" class="form-control" id="doctor_registration_no"
+                                    <input type="text" maxlength="20" readonly class="form-control" id="doctor_registration_no"
                                         name="doctor_registration_no" placeholder="Registration No. with State Code"
                                         value="{{ old('doctor_registration_no', $patient->doctor_registration_no) }}">
                                     @error('doctor_registration_no')
@@ -166,7 +166,7 @@
 
                                 <div class="col-md-6 mt-3">
                                  <label for="doctor_mobile_no">Contact No.(Mobile No.) <span class="text-danger">*</span></label>
-                                    <input maxlength="10" onkeypress="return isNumberKey(event)" class="form-control" id="doctor_mobile_no"
+                                    <input maxlength="10" readonly onkeypress="return isNumberKey(event)" class="form-control" id="doctor_mobile_no"
                                         name="doctor_mobile_no" placeholder="Contact No.(Mobile No.)"
                                         value="{{ old('doctor_mobile_no', $patient->doctor_mobile_no) }}">
                                     @error('doctor_mobile_no')
