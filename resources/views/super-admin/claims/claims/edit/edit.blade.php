@@ -15,10 +15,10 @@
                             <li class="breadcrumb-item"><a href="javascript:void(0);">Claims</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('super-admin.claims.index') }}">Claims</a>
                             </li>
-                            <li class="breadcrumb-item active">New Claim</li>
+                            <li class="breadcrumb-item active">Edit Claim</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">New Claim</h4>
+                    <h4 class="page-title">Claim ID Edit</h4>
                 </div>
             </div>
         </div>

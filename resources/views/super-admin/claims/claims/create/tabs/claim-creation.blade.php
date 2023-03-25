@@ -63,7 +63,7 @@
 
             <div class="col-md-6">
                 <label for="hospital_name">Hospital Name <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="hospital_name" name="hospital_name"
+                <input type="text" readonly class="form-control" id="hospital_name" name="hospital_name"
                     placeholder="Enter Hospital Name" value="{{ old('hospital_name') }}"
                     @isset($patient) readonly @endisset>
                 @error('hospital_name')
@@ -73,7 +73,7 @@
 
             <div class="col-md-12 mt-3">
                 <label for="hospital_address">Hospital Address <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="hospital_address" name="hospital_address"
+                <input type="text" readonly class="form-control" id="hospital_address" name="hospital_address"
                     placeholder="Address Line" value="{{ old('hospital_address') }}"
                     @isset($patient) readonly @endisset>
                 @error('hospital_address')
@@ -82,7 +82,7 @@
             </div>
 
             <div class="col-md-4 mt-2">
-                <input type="text" class="form-control" id="hospital_city" name="hospital_city" placeholder="City"
+                <input type="text" readonly class="form-control" id="hospital_city" name="hospital_city" placeholder="City"
                     value="{{ old('hospital_city') }}" @isset($patient) readonly @endisset>
                 @error('hospital_city')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -90,7 +90,7 @@
             </div>
 
             <div class="col-md-4 mt-2">
-                <input type="text" class="form-control" id="hospital_state" name="hospital_state" placeholder="State"
+                <input type="text" readonly class="form-control" id="hospital_state" name="hospital_state" placeholder="State"
                     value="{{ old('hospital_state') }}" @isset($patient) readonly @endisset>
                 @error('hospital_state')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -98,7 +98,7 @@
             </div>
 
             <div class="col-md-4 mt-2">
-                <input type="number" class="form-control" id="hospital_pincode" name="hospital_pincode"
+                <input type="number" readonly class="form-control" id="hospital_pincode" name="hospital_pincode"
                     placeholder="Pincode" value="{{ old('hospital_pincode') }}"
                     @isset($patient) readonly @endisset>
                 @error('hospital_pincode')
@@ -108,7 +108,7 @@
 
             <div class="col-md-6 mt-3">
                 <label for="associate_partner_id">Associate Partner ID <span class="text-danger"></span></label>
-                <input type="text" class="form-control" id="associate_partner_id" name="associate_partner_id"
+                <input type="text" readonly class="form-control" id="associate_partner_id" name="associate_partner_id"
                     placeholder="Associate Partner ID" value="{{ old('associate_partner_id') }}"
                     @isset($patient) readonly @endisset>
                 @error('associate_partner_id')
@@ -119,7 +119,7 @@
             <div class="col-md-6 mt-3">
                 <label for="registration_no">IP (In-patient) Registration No. <span
                         class="text-danger">*</span></label>
-                <input type="text" class="form-control" maxlength="20" id="registration_no"
+                <input type="text" readonly class="form-control" maxlength="20" id="registration_no"
                     name="registration_no" placeholder="Enter IP Registration No."
                     value="{{ old('registration_no') }}" @isset($patient) readonly @endisset>
                 @error('registration_no')
@@ -132,7 +132,7 @@
             </div>
 
             <div class="col-md-3 mt-1">
-                <select class="form-control" id="title" name="title">
+                <select disabled class="form-control" id="title" name="title">
                     @isset($patient)
                         <option value="Mr."
                             {{ old('title', isset($patient) ? $patient->title : '') == 'Mr.' ? 'selected' : 'disabled' }}>
@@ -155,8 +155,10 @@
                 @enderror
             </div>
 
+            <input type="hidden" value="{{ old('title', isset($patient) ? $patient->title : '') }}" id="patient_title" name="title">
+
             <div class="col-md-3 mt-1">
-                <input type="text" maxlength="25" class="form-control" id="lastname" name="lastname"
+                <input type="text" readonly maxlength="25" class="form-control" id="lastname" name="lastname"
                     maxlength="30" placeholder="Last name" value="{{ old('lastname') }}"
                     @isset($patient) readonly @endisset>
                 @error('lastname')
@@ -165,7 +167,7 @@
             </div>
 
             <div class="col-md-3 mt-1">
-                <input type="text" maxlength="25" class="form-control" id="firstname" name="firstname"
+                <input type="text" readonly maxlength="25" class="form-control" id="firstname" name="firstname"
                     maxlength="15" placeholder="First name" value="{{ old('firstname') }}"
                     @isset($patient) readonly @endisset>
                 @error('firstname')
@@ -174,7 +176,7 @@
             </div>
 
             <div class="col-md-3 mt-1">
-                <input type="text" maxlength="25" class="form-control" id="middlename" name="middlename"
+                <input type="text" readonly maxlength="25" class="form-control" id="middlename" name="middlename"
                     maxlength="30" placeholder="Middle name" value="{{ old('middlename') }}"
                     @isset($patient) readonly @endisset>
                 @error('middlename')
@@ -184,7 +186,7 @@
 
             <div class="col-md-6 mt-3">
                 <label for="age">Patient Age <span class="text-danger">*</span></label>
-                <input type="text" onkeypress="return isNumberKey(event)" class="form-control" id="age"
+                <input type="text" readonly onkeypress="return isNumberKey(event)" class="form-control" id="age"
                     name="age" placeholder="Patient Age" value="{{ old('age') }}"
                     @isset($patient) readonly @endisset>
                 @error('age')
@@ -194,7 +196,7 @@
 
             <div class="col-md-6 mt-3">
                 <label for="gender">Patient Gender <span class="text-danger">*</span></label>
-                <select class="form-select" id="gender" name="gender">
+                <select disabled class="form-select" id="gender" name="gender">
 
                     @isset($patient)
                         <option value="Male"
@@ -226,6 +228,7 @@
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
+            <input type="hidden" value="{{ old('gender', isset($patient) ? $patient->gender : '') }}" name="gender" id="patient_gender">
             <div class="col-md-6 mt-3">
                 <label for="admission_date">Date of Admission (DD-MM-YYYY) <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="admission_date" max="{{ date('Y-m-d') }}"

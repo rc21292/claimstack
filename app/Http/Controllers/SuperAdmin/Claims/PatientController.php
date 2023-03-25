@@ -25,6 +25,8 @@ class PatientController extends Controller
      */
     public function index(Request $request)
     {
+        /*$users = DB::connection('mysql_second')->table('wp_trak_rawdata')->where('raw_datetime', '<' ,Carbon::now()->subMonth(3))
+    ->get()->take(1);*/
         $filter_search = $request->search;
         $patients = Patient::query();
         if ($filter_search) {
