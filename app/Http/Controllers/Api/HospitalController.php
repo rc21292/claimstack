@@ -23,8 +23,8 @@ class HospitalController extends Controller
 
             $hospital = Hospital::create($request->all());
 
-            DB::table('hospitals')->where('id',$hospital->id)->update(['uid' => 'HPS'.$hospital->id]);
-            
+            Hospital::where('id',$hospital->id)->update(['uid' => 'HPS'.$hospital->id]);
+
             return response()->json([
                 'message' => "Hospital saved successfully!",
                 'hospital' => $hospital
