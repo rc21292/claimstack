@@ -19,12 +19,22 @@ class HospitalController extends Controller
 
     public function store(Request $request)
     {
-        $hospital = Hospital::create($request->all());
+        if(env('ENABLE_HMS') == true):
 
-        return response()->json([
-            'message' => "Hospital saved successfully!",
-            'hospital' => $hospital
-        ], 200);
+            $hospital = Hospital::create($request->all());
+            return response()->json([
+                'message' => "Hospital saved successfully!",
+                'hospital' => $hospital
+            ], 200);
+
+        else :
+
+            return response()->json([
+                'message' => "Remote create permission disabled!",
+            ], 200);
+            
+        endif;
+
     }
 
     public function update(Request $request, Hospital $hospital)
