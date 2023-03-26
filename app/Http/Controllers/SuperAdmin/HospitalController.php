@@ -20,6 +20,7 @@ use App\Notifications\Hospital\CredentialsGeneratedNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 
 class HospitalController extends Controller
 {
@@ -84,12 +85,12 @@ class HospitalController extends Controller
             'phone'                    => 'required|numeric|digits:10',
             'linked_associate_partner_id'     => ($request->by == 'Associate Partner') ? 'required' : [],
             'linked_associate_partner'   => ($request->by == 'Associate Partner') ? 'required' : [],
-            'assigned_employee'        => 'required',
+            // 'assigned_employee'        => 'required',
             'assigned_employee_id'     => 'required',
-            'assigned_employee_department'        => 'required',
+            // 'assigned_employee_department'        => 'required',
             'linked_employee_department'        => 'required',
-            'linked_employee'          => 'required',
-            'linked_employee_id'       => 'required',
+            // 'linked_employee'          => 'required',
+            // 'linked_employee_id'       => 'required',
         ];
 
         $messages = [
@@ -147,6 +148,19 @@ class HospitalController extends Controller
 
         Hospital::where('id', $hospital->id)->update([
             'uid'      => 'HSP'.$hospital->id
+        ]);
+
+        $response = Http::post('http://127.0.0.1:8000/api/hospitals', [
+            'name' => $request->name, 
+            'email' => $request->email, 
+            'phone' => $request->phone, 
+            'city' => $request->city, 
+            'address' => $request->address, 
+            'state' => $request->state, 
+            'pincode' => $request->pincode, 
+            'password' => '12345678', 
+            'uid' => 'HPS'.$hospital->id,
+            'hospital_by' => 'Claimstack'
         ]);
 
         if ($request->hasfile('panfile')) {
