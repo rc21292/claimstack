@@ -21,6 +21,7 @@ return new class extends Migration
             $table->enum('onboarding', ['Tie Up', 'Non - Tie Up'])->default('Tie Up');
             $table->enum('by', ['Direct', 'Associate Partner'])->default('Direct');
             $table->enum('hospital_by', ['Claimstack', 'Hms'])->default('Claimstack');
+            $table->integer('hms_hospital_id')->nullable();
             $table->longText('address')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();

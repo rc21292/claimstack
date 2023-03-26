@@ -22,6 +22,7 @@ class Hospital extends Authenticatable
         'onboarding',
         'by',
         'hospital_by',
+        'hms_hospital_id',
         'address',
         'city',
         'state',

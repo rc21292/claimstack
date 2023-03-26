@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\HospitalController;
+use App\Http\Controllers\Api\PatientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,7 @@ use App\Http\Controllers\Api\HospitalController;
 */
 
 Route::apiResource('hospitals', HospitalController::class);
+Route::apiResource('patients', PatientController::class);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
