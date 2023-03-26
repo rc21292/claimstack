@@ -150,7 +150,7 @@ class HospitalController extends Controller
             'uid'      => 'HSP'.$hospital->id
         ]);
 
-        $response = Http::post('http://127.0.0.1:8000/api/hospitals', [
+        $response = Http::post(env('REMOTE_HOSPITAL_CREATE_URL'), [
             'name' => $request->name, 
             'email' => $request->email, 
             'phone' => $request->phone, 
