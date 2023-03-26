@@ -10,9 +10,9 @@
             </div>
 
 
-            <div class="col-md-12 show-hide-empanelment mt-3">
+            <div class="col-md-6 show-hide-empanelment mt-3">
                 <label for="company_name">Company Name<span class="text-danger">*</span></label>
-                <select class="form-select" id="company_name" name="company_name">
+                <select class="form-select" onchange="setInsurarType()" id="company_name" name="company_name">
                     <option value="">Select Company Name</option>
                     @foreach ($insurers as $insurer)
                     <option value="{{ $insurer->id }}" {{ old('company_name', $empanelment_status->company_name ?? '') == $insurer->id ? 'selected' : '' }}>{{ $insurer->name }}</option>
@@ -23,7 +23,20 @@
                 @enderror
             </div>
 
-            <div class="card-header bg-dark text-white mt-3 show-hide-empanelment"> Hospital Documents </div>
+            <div class="col-md-6 show-hide-empanelment mt-3">
+                <label for="company_type">Company Type<span class="text-danger">*</span></label>
+                <select disabled class="form-select" id="company_type" name="company_type">
+                    <option value="">Select Company Name</option>
+                    @foreach ($insurers as $insurer)
+                    <option value="{{ $insurer->id }}" {{ old('company_type', $empanelment_status->type ?? '') == $insurer->id ? 'selected' : '' }}>{{ $insurer->type }}</option>
+                    @endforeach
+                </select>
+                @error('company_type')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+
+            {{-- <div class="card-header bg-dark text-white mt-3 show-hide-empanelment"> Hospital Documents </div> --}}
 
             <div class="col-md-6 show-hide-empanelment mt-3">
                 <label for="empanelled">Empanelled<span class="text-danger">*</span></label>
@@ -197,6 +210,7 @@
     <script>
         $(document).ready(function() {
             enableDisable();
+            setInsurarType();
             $(".show-hide-empanelment").hide();
             $("#show-doctor-empanelment").val(0);
 
@@ -236,6 +250,10 @@
                 $(".show-hide-empanelment").toggle('fast');
             }
         });
+
+        function setInsurarType() {
+                $("#company_type").val($("#company_name").val()).trigger('change');
+        }
 
     </script>
     @endpush
