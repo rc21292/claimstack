@@ -1329,9 +1329,9 @@ class HospitalController extends Controller
             case 'hospital_documents':
 
                 $rules = [
-                    'hospital_pan_card'           => 'required',
-                    'hospital_owners_pan_card'    => 'required',
-                    'hospital_owners_aadhar_card'              => 'required',
+                    'hospital_pan_card'           => empty($document->hospital_pan_card) ? 'required' : [],
+                    'hospital_owners_pan_card'    => empty($document->hospital_owners_pan_card) ? 'required' : [],
+                    'hospital_owners_aadhar_card'              => empty($document->hospital_owners_aadhar_card) ? 'required' : [],
                 ];
 
                 $messages = [
@@ -1579,20 +1579,20 @@ class HospitalController extends Controller
                 break;
             case 'hospital_certificates':
                 $rules = [
-                    'hospital_registration_certificate'           => 'required',
-                    'hospital_rohini_certificate'    => 'required',
-                    'hospital_pollution_clearance_certificate'              => 'required',
-                    'hospital_fire_safety_clearance_certificate'           => 'required',
-                    'hospital_certificate_of_incorporation'    => 'required',
-                    'hospital_tan_certificate'              => 'required',
-                    'hospital_gst_certificate'           => 'required',
-                    'nabl_certificate'    => 'required',
-                    'nabh_certificate'              => 'required',
-                    'jci_certificate'           => 'required',
-                    'nqac_or_nhsrc_certificate'    => 'required',
-                    'hippa_certificate'              => 'required',
-                    'iso_certificates'    => 'required',
-                    'other_certificates'              => 'required',
+                    'hospital_registration_certificate'           => empty($document->hospital_registration_certificate) ? 'required' : [],
+                    'hospital_rohini_certificate'    => empty($document->hospital_rohini_certificate) ? 'required' : [],
+                    'hospital_pollution_clearance_certificate'              => empty($document->hospital_pollution_clearance_certificate) ? 'required' : [],
+                    'hospital_fire_safety_clearance_certificate'           => empty($document->hospital_fire_safety_clearance_certificate) ? 'required' : [],
+                    'hospital_certificate_of_incorporation'    => empty($document->hospital_certificate_of_incorporation) ? 'required' : [],
+                    'hospital_tan_certificate'              => empty($document->hospital_tan_certificate) ? 'required' : [],
+                    'hospital_gst_certificate'           => empty($document->hospital_gst_certificate) ? 'required' : [],
+                    'nabl_certificate'    => empty($document->nabl_certificate) ? 'required' : [],
+                    'nabh_certificate'              => empty($document->nabh_certificate) ? 'required' : [],
+                    'jci_certificate'           => empty($document->jci_certificate) ? 'required' : [],
+                    'nqac_or_nhsrc_certificate'    => empty($document->nqac_or_nhsrc_certificate) ? 'required' : [],
+                    'hippa_certificate'              => empty($document->hippa_certificate) ? 'required' : [],
+                    'iso_certificates'    => empty($document->iso_certificates) ? 'required' : [],
+                    'other_certificates'              => empty($document->other_certificates) ? 'required' : [],
                 ];
 
                 $messages = [
@@ -1750,7 +1750,7 @@ class HospitalController extends Controller
                 break;
             case 'doctor_registration':
                 $rules = [
-                    'medical_superintendents_registration_certificate'           => 'required',
+                    'medical_superintendents_registration_certificate'           => empty($document->medical_superintendents_registration_certificate) ? 'required' : [],
                 ];
 
                 $messages = [
@@ -1778,8 +1778,8 @@ class HospitalController extends Controller
                 break;
             case 'hospital_mous':
                 $rules = [
-                    'mou_with_bhc'           => 'required',
-                    'mous_with_nbfcs_banks_triparty'    => 'required',
+                    'mou_with_bhc'           => empty($document->mou_with_bhc) ? 'required' : [],
+                    'mous_with_nbfcs_banks_triparty'    => empty($document->mous_with_nbfcs_banks_triparty) ? 'required' : [],
                 ];
 
                 $messages = [
@@ -1817,8 +1817,8 @@ class HospitalController extends Controller
                 break;
             case 'hospital_packages':
                 $rules = [
-                    'agreed_tariff_and_packages'           => 'required',
-                    'other_packages'    => 'required',
+                    'agreed_tariff_and_packages'           => empty($document->agreed_tariff_and_packages) ? 'required' : [],
+                    'other_packages'    => empty($document->other_packages) ? 'required' : [],
                 ];
 
                 $messages = [

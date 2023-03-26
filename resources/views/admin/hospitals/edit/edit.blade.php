@@ -71,7 +71,15 @@
                                 </a>
                             </li>
 
-                            <li class="nav-item" style="display: none;">
+                            <li class="nav-item">
+                                <a href="#hospital_docuuments" data-bs-toggle="tab" aria-expanded="false"
+                                    class="nav-link rounded-0 ">
+                                    <i class="mdi mdi-home-variant d-md-none d-block"></i>
+                                    <span class="d-none d-md-block">Hospital Document</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
                                 <a href="#empanelment_status" data-bs-toggle="tab" aria-expanded="false"
                                     class="nav-link rounded-0 ">
                                     <i class="mdi mdi-home-variant d-md-none d-block"></i>
@@ -104,6 +112,9 @@
                             </div>
                             <div class="tab-pane" id="hospital_department">
                                 @include('admin.hospitals.edit.tabs.hospital-department')
+                            </div>
+                            <div class="tab-pane" id="hospital_docuuments">
+                                @include('admin.hospitals.edit.tabs.hospital-documents')
                             </div>
                             <div class="tab-pane" id="empanelment_status">
                                 @include('admin.hospitals.edit.tabs.hospital-empanelment-status')
