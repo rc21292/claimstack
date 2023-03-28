@@ -133,6 +133,7 @@
 
             <div class="col-md-3 mt-1">
                 <select disabled class="form-control" id="title" name="title">
+                    <option value="">Please select</option>
                     @isset($patient)
                         <option value="Mr."
                             {{ old('title', isset($patient) ? $patient->title : '') == 'Mr.' ? 'selected' : 'disabled' }}>
@@ -197,7 +198,7 @@
             <div class="col-md-6 mt-3">
                 <label for="gender">Patient Gender <span class="text-danger">*</span></label>
                 <select disabled class="form-select" id="gender" name="gender">
-
+                    <option value="">Please Select</option>
                     @isset($patient)
                         <option value="Male"
                             {{ old('gender', isset($patient) ? $patient->gender : '') == 'Male' ? 'selected' : 'disabled' }}>

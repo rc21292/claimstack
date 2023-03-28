@@ -49,7 +49,7 @@
                                             <tr>
                                                 <th scope="row">{{ $patient->uid }}</th>
                                                 <td>{{ $patient->title }} {{ $patient->firstname }} {{ $patient->middlename }} {{ $patient->lastname }}</td>
-                                                <td>{{ $patient->hospital->name }}</td>
+                                                <td>{{ @$patient->hospital->name }}</td>
                                                 <td>{{ $patient->patient_current_state }}</td>
                                                 <td>{{ $patient->patient_current_city }}</td>
                                                 <td>{{ $patient->patient_current_pincode }}</td>

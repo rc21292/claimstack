@@ -93,7 +93,7 @@
             </div>
 
             <div class="col-md-6 mt-3">
-                <label for="associate_partner_id">Associate Partner ID <span class="text-danger">*</span></label>
+                <label for="associate_partner_id">Associate Partner ID <span class="text-danger"></span></label>
                 <input type="text" class="form-control" id="associate_partner_id" name="associate_partner_id"
                     placeholder="Associate Partner ID"
                     value="{{ old('associate_partner_id', $claim->patient->associate_partner_id) }}" readonly>
