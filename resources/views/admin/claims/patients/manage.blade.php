@@ -37,10 +37,9 @@
                                         <tr>
                                             <th scope="col">Patient UID</th>
                                             <th scope="col">Patient Name</th>
-                                            
                                             <th scope="col">Hospital Name</th>
-                                            <th scope="col">City</th>
                                             <th scope="col">State</th>
+                                            <th scope="col">City</th>
                                             <th scope="col">Pincode</th>
                                             <th scope="col" class="text-center">Create</th>
                                         </tr>
@@ -50,10 +49,9 @@
                                             <tr>
                                                 <th scope="row">{{ $patient->uid }}</th>
                                                 <td>{{ $patient->title }} {{ $patient->firstname }} {{ $patient->middlename }} {{ $patient->lastname }}</td>
-
                                                 <td>{{ $patient->hospital->name }}</td>
-                                                <td>{{ $patient->patient_current_state }}</td>
                                                 <td>{{ $patient->patient_current_city }}</td>
+                                                <td>{{ $patient->patient_current_state }}</td>
                                                 <td>{{ $patient->patient_current_pincode }}</td>
                                                 <td class="text-center">
                                                     <div class="btn-group">
