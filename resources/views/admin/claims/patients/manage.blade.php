@@ -39,8 +39,8 @@
                                             <th scope="col">Patient Name</th>
                                             
                                             <th scope="col">Hospital Name</th>
-                                            <th scope="col">State</th>
                                             <th scope="col">City</th>
+                                            <th scope="col">State</th>
                                             <th scope="col">Pincode</th>
                                             <th scope="col" class="text-center">Create</th>
                                         </tr>
