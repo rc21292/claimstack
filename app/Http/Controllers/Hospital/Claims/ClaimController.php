@@ -367,6 +367,11 @@ class ClaimController extends Controller
     {
         $filter_search = $request->search;
         $claims = Claim::with('patient');
+        /*$claims = Claim::with('patient')->whereHas('patient', function ($q) use ($filter_search) {
+                $q->where(function ($q) {
+                    $q->where('hospital_id', auth()->user()->id);
+                });
+            });*/
         if ($filter_search) {
             $claims->whereHas('patient', function ($q) use ($filter_search) {
                 $q->where(function ($q) use ($filter_search) {
@@ -389,7 +394,7 @@ class ClaimController extends Controller
         $patient_id     = $request->patient_id;
         $hospitals      = Hospital::get();
         $patient        = isset($patient_id) ? Patient::find($request->patient_id) : null;
-        $patients       = Patient::get();
+        $patients       = Patient::where('hospital_id', auth()->user()->id)->get();
         return view('hospital.claims.claims.create.create',  compact('hospitals', 'patient_id', 'patient', 'patients'));
     }
 
