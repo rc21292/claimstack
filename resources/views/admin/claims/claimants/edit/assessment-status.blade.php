@@ -46,7 +46,7 @@
                         <a href="{{ route('admin.document-reimbursement.show', $claimant->id) }}"
                             aria-expanded="false" class="nav-link rounded-0">
                             <i class="mdi mdi-account-circle d-md-none d-block"></i>
-                            <span class="d-none d-md-block">Documents Reimbursement</span>
+                            <span class="d-none d-md-block">Documents</span>
                         </a>
                     </li>
                     <li class="nav-item">
