@@ -159,6 +159,11 @@
                                                     placeholder="Patient ID Proof">
                                                 @isset($reimbursementdocument->patient_id_proof_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->patient_id_proof_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
+                                                @isset($reimbursementdocument->patient_id_proof_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->patient_id_proof_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
                                                             class="mdi mdi-download"></i></a>
                                                 @endisset
@@ -178,6 +183,11 @@
                                             <div class="input-group">
                                                 <input type="text" class="form-control" readonly
                                                     placeholder="Doctor Prescriptions / Consultation Papers">
+                                                @isset($reimbursementdocument->doctor_prescriptions_or_consultation_papers_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->doctor_prescriptions_or_consultation_papers_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
                                                 @isset($reimbursementdocument->doctor_prescriptions_or_consultation_papers_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->doctor_prescriptions_or_consultation_papers_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
@@ -203,6 +213,11 @@
                                                     placeholder="Insurance Policy Copy *">
                                                 @isset($reimbursementdocument->insurance_policy_copy_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->insurance_policy_copy_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
+                                                @isset($reimbursementdocument->insurance_policy_copy_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->insurance_policy_copy_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
                                                             class="mdi mdi-download"></i></a>
                                                 @endisset
@@ -226,6 +241,11 @@
                                                     placeholder="TPA Card*">
                                                 @isset($reimbursementdocument->tpa_card_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->tpa_card_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
+                                                @isset($reimbursementdocument->tpa_card_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->tpa_card_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
                                                             class="mdi mdi-download"></i></a>
                                                 @endisset
@@ -245,6 +265,11 @@
                                             <div class="input-group">
                                                 <input type="text" class="form-control" readonly
                                                     placeholder="Employee / Member ID (Group) *">
+                                                @isset($reimbursementdocument->employee_or_member_id_group_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->employee_or_member_id_group_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
                                                 @isset($reimbursementdocument->employee_or_member_id_group_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->employee_or_member_id_group_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
@@ -267,6 +292,11 @@
                                             <div class="input-group">
                                                 <input type="text" class="form-control" readonly
                                                     placeholder="Photograph of the Patient *">
+                                                @isset($reimbursementdocument->photograph_of_the_patient_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->photograph_of_the_patient_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
                                                 @isset($reimbursementdocument->photograph_of_the_patient_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->photograph_of_the_patient_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
@@ -313,6 +343,11 @@
                                                     placeholder="Indoor Care Paper">
                                                 @isset($reimbursementdocument->indoor_care_paper_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->indoor_care_paper_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
+                                                @isset($reimbursementdocument->indoor_care_paper_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->indoor_care_paper_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
                                                             class="mdi mdi-download"></i></a>
                                                 @endisset
@@ -335,6 +370,11 @@
                                                     placeholder="ECG Report">
                                                 @isset($reimbursementdocument->ecg_report_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->ecg_report_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
+                                                @isset($reimbursementdocument->ecg_report_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->ecg_report_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
                                                             class="mdi mdi-download"></i></a>
                                                 @endisset
@@ -353,6 +393,11 @@
                                             <div class="input-group">
                                                 <input type="text" class="form-control" readonly
                                                     placeholder="CT/MRI/USG/HPE investigation Report">
+                                                @isset($reimbursementdocument->ct_mri_usg_hpe_investigation_report_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->ct_mri_usg_hpe_investigation_report_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
                                                 @isset($reimbursementdocument->ct_mri_usg_hpe_investigation_report_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->ct_mri_usg_hpe_investigation_report_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
@@ -378,6 +423,11 @@
                                                     placeholder="Diagnostic / Investigation Reports">
                                                 @isset($reimbursementdocument->diagnostic_or_investigation_reports_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->diagnostic_or_investigation_reports_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
+                                                @isset($reimbursementdocument->diagnostic_or_investigation_reports_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->diagnostic_or_investigation_reports_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
                                                             class="mdi mdi-download"></i></a>
                                                 @endisset
@@ -398,6 +448,11 @@
                                             <div class="input-group">
                                                 <input type="text" class="form-control" readonly
                                                     placeholder="Doctor’s reference slip for Investigation">
+                                                @isset($reimbursementdocument->doctor’s_reference_slip_for_investigation_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->doctor’s_reference_slip_for_investigation_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
                                                 @isset($reimbursementdocument->doctor’s_reference_slip_for_investigation_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->doctor’s_reference_slip_for_investigation_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
@@ -425,6 +480,11 @@
                                                     placeholder="Operation Theatre Notes">
                                                 @isset($reimbursementdocument->operation_theatre_notes_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->operation_theatre_notes_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
+                                                @isset($reimbursementdocument->operation_theatre_notes_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->operation_theatre_notes_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
                                                             class="mdi mdi-download"></i></a>
                                                 @endisset
@@ -447,6 +507,11 @@
                                                     placeholder="Pharmacy Bills">
                                                 @isset($reimbursementdocument->pharmacy_bills_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->pharmacy_bills_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
+                                                @isset($reimbursementdocument->pharmacy_bills_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->pharmacy_bills_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
                                                             class="mdi mdi-download"></i></a>
                                                 @endisset
@@ -466,6 +531,11 @@
                                             <div class="input-group">
                                                 <input type="text" class="form-control" readonly
                                                     placeholder="Implant Sticker Invoice">
+                                                @isset($reimbursementdocument->implant_sticker_invoice_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->implant_sticker_invoice_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
                                                 @isset($reimbursementdocument->implant_sticker_invoice_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->implant_sticker_invoice_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
@@ -491,6 +561,11 @@
                                                     placeholder="Hospital Break-up Bills">
                                                 @isset($reimbursementdocument->hospital_break_up_bills_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->hospital_break_up_bills_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
+                                                @isset($reimbursementdocument->hospital_break_up_bills_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->hospital_break_up_bills_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
                                                             class="mdi mdi-download"></i></a>
                                                 @endisset
@@ -512,6 +587,11 @@
                                             <div class="input-group">
                                                 <input type="text" class="form-control" readonly
                                                     placeholder="Hospital (Main) Final Bill">
+                                                @isset($reimbursementdocument->hospital_main_final_bill_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->hospital_main_final_bill_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
                                                 @isset($reimbursementdocument->hospital_main_final_bill_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->hospital_main_final_bill_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
@@ -536,6 +616,11 @@
                                                     placeholder="Discharge / Day-care Summary">
                                                 @isset($reimbursementdocument->discharge_or_day_care_summary_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->discharge_or_day_care_summary_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
+                                                @isset($reimbursementdocument->discharge_or_day_care_summary_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->discharge_or_day_care_summary_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
                                                             class="mdi mdi-download"></i></a>
                                                 @endisset
@@ -556,6 +641,11 @@
                                             <div class="input-group">
                                                 <input type="text" class="form-control" readonly
                                                     placeholder="Death summary from hospital where applicable">
+                                                @isset($reimbursementdocument->death_summary_from_hospital_where_applicable_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->death_summary_from_hospital_where_applicable_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
                                                 @isset($reimbursementdocument->death_summary_from_hospital_where_applicable_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->death_summary_from_hospital_where_applicable_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
@@ -582,6 +672,11 @@
                                                     placeholder="Payment Receipts of the Hospital">
                                                 @isset($reimbursementdocument->payment_receipts_of_the_hospital_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->payment_receipts_of_the_hospital_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
+                                                @isset($reimbursementdocument->payment_receipts_of_the_hospital_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->payment_receipts_of_the_hospital_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
                                                             class="mdi mdi-download"></i></a>
                                                 @endisset
@@ -602,6 +697,11 @@
                                             <div class="input-group">
                                                 <input type="text" class="form-control" readonly
                                                     placeholder="Other Documents">
+                                                @isset($reimbursementdocument->other_documents_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->other_documents_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
                                                 @isset($reimbursementdocument->other_documents_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->other_documents_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
@@ -647,6 +747,11 @@
                                                     placeholder="Claimant PAN Card">
                                                 @isset($reimbursementdocument->claimant_pan_card_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->claimant_pan_card_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
+                                                @isset($reimbursementdocument->claimant_pan_card_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->claimant_pan_card_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
                                                             class="mdi mdi-download"></i></a>
                                                 @endisset
@@ -667,6 +772,11 @@
                                             <div class="input-group">
                                                 <input type="text" class="form-control" readonly
                                                     placeholder="Claimant Aadhar Card">
+                                                @isset($reimbursementdocument->claimant_aadhar_card_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->claimant_aadhar_card_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
                                                 @isset($reimbursementdocument->claimant_aadhar_card_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->claimant_aadhar_card_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
@@ -691,6 +801,11 @@
                                                     placeholder="Claimant Current Address Proof">
                                                 @isset($reimbursementdocument->claimant_current_address_proof_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->claimant_current_address_proof_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
+                                                @isset($reimbursementdocument->claimant_current_address_proof_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->claimant_current_address_proof_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
                                                             class="mdi mdi-download"></i></a>
                                                 @endisset
@@ -711,6 +826,11 @@
                                             <div class="input-group">
                                                 <input type="text" class="form-control" readonly
                                                     placeholder="Claimant Cancel Cheque">
+                                                @isset($reimbursementdocument->claimant_cancel_cheque_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->claimant_cancel_cheque_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
                                                 @isset($reimbursementdocument->claimant_cancel_cheque_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->claimant_cancel_cheque_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
@@ -735,6 +855,11 @@
                                                     placeholder="ABHA ID Proof">
                                                 @isset($reimbursementdocument->abha_id_proof_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->abha_id_proof_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
+                                                @isset($reimbursementdocument->abha_id_proof_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->abha_id_proof_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
                                                             class="mdi mdi-download"></i></a>
                                                 @endisset
@@ -754,6 +879,11 @@
                                             <div class="input-group">
                                                 <input type="text" class="form-control" readonly
                                                     placeholder="MLC Report & Police FIR Document">
+                                                @isset($reimbursementdocument->mlc_report_and_police_fir_document_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->mlc_report_and_police_fir_document_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
                                                 @isset($reimbursementdocument->mlc_report_and_police_fir_document_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->mlc_report_and_police_fir_document_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
@@ -798,6 +928,11 @@
                                                     placeholder="Borrower Current Address Proof">
                                                 @isset($reimbursementdocument->borrower_current_address_proof_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->borrower_current_address_proof_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
+                                                @isset($reimbursementdocument->borrower_current_address_proof_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->borrower_current_address_proof_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
                                                             class="mdi mdi-download"></i></a>
                                                 @endisset
@@ -818,6 +953,11 @@
                                             <div class="input-group">
                                                 <input type="text" class="form-control" readonly
                                                     placeholder="Borrower PAN Card">
+                                                @isset($reimbursementdocument->borrower_pan_card_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->borrower_pan_card_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
                                                 @isset($reimbursementdocument->borrower_pan_card_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->borrower_pan_card_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
@@ -842,6 +982,11 @@
                                                     placeholder="Borrower Aadhar Card">
                                                 @isset($reimbursementdocument->borrower_aadhar_card_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->borrower_aadhar_card_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
+                                                @isset($reimbursementdocument->borrower_aadhar_card_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->borrower_aadhar_card_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
                                                             class="mdi mdi-download"></i></a>
                                                 @endisset
@@ -862,6 +1007,11 @@
                                             <div class="input-group">
                                                 <input type="text" class="form-control" readonly
                                                     placeholder="Borrower Bank Statement (3 months)">
+                                                @isset($reimbursementdocument->borrower_bank_statement_3_months_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->borrower_bank_statement_3_months_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
                                                 @isset($reimbursementdocument->borrower_bank_statement_3_months_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->borrower_bank_statement_3_months_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
@@ -886,6 +1036,11 @@
                                                     placeholder="Borrower  ITR (Income Tax Return)">
                                                 @isset($reimbursementdocument->borrower_itr_income_tax_return_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->borrower_itr_income_tax_return_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
+                                                @isset($reimbursementdocument->borrower_itr_income_tax_return_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->borrower_itr_income_tax_return_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
                                                             class="mdi mdi-download"></i></a>
                                                 @endisset
@@ -908,6 +1063,11 @@
                                                     placeholder="Borrower Cancel Cheque">
                                                 @isset($reimbursementdocument->borrower_cancel_cheque_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->borrower_cancel_cheque_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
+                                                @isset($reimbursementdocument->borrower_cancel_cheque_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->borrower_cancel_cheque_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
                                                             class="mdi mdi-download"></i></a>
                                                 @endisset
@@ -928,6 +1088,11 @@
                                             <div class="input-group">
                                                 <input type="text" class="form-control" readonly
                                                     placeholder="Borrower Other Documents">
+                                                @isset($reimbursementdocument->borrower_other_documents_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->borrower_other_documents_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
                                                 @isset($reimbursementdocument->borrower_other_documents_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->borrower_other_documents_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
@@ -972,6 +1137,11 @@
                                                     placeholder="Co-Borrower  Current Address Proof">
                                                 @isset($reimbursementdocument->co_borrower_current_address_proof_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->co_borrower_current_address_proof_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
+                                                @isset($reimbursementdocument->co_borrower_current_address_proof_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->co_borrower_current_address_proof_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
                                                             class="mdi mdi-download"></i></a>
                                                 @endisset
@@ -992,6 +1162,11 @@
                                             <div class="input-group">
                                                 <input type="text" class="form-control" readonly
                                                     placeholder="Co-Borrower PAN Card">
+                                                @isset($reimbursementdocument->co_borrower_pan_card_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->co_borrower_pan_card_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
                                                 @isset($reimbursementdocument->co_borrower_pan_card_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->co_borrower_pan_card_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
@@ -1016,6 +1191,11 @@
                                                     placeholder="Co-Borrower Aadhar Card">
                                                 @isset($reimbursementdocument->co_borrower_aadhar_card_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->co_borrower_aadhar_card_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
+                                                @isset($reimbursementdocument->co_borrower_aadhar_card_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->co_borrower_aadhar_card_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
                                                             class="mdi mdi-download"></i></a>
                                                 @endisset
@@ -1036,6 +1216,11 @@
                                             <div class="input-group">
                                                 <input type="text" class="form-control" readonly
                                                     placeholder="Co-Borrower Bank Statement (3 months)">
+                                                @isset($reimbursementdocument->co_borrower_bank_statement_3_months_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->co_borrower_bank_statement_3_months_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
                                                 @isset($reimbursementdocument->co_borrower_bank_statement_3_months_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->co_borrower_bank_statement_3_months_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
@@ -1060,6 +1245,11 @@
                                                     placeholder="Co-Borrower  ITR (Income Tax Return)">
                                                 @isset($reimbursementdocument->co_borrower_itr_income_tax_return_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->co_borrower_itr_income_tax_return_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
+                                                @isset($reimbursementdocument->co_borrower_itr_income_tax_return_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->co_borrower_itr_income_tax_return_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
                                                             class="mdi mdi-download"></i></a>
                                                 @endisset
@@ -1082,6 +1272,11 @@
                                                     placeholder="Co-Borrower Cancel Cheque">
                                                 @isset($reimbursementdocument->co_borrower_cancel_cheque_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->co_borrower_cancel_cheque_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
+                                                @isset($reimbursementdocument->co_borrower_cancel_cheque_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->co_borrower_cancel_cheque_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
                                                             class="mdi mdi-download"></i></a>
                                                 @endisset
@@ -1102,6 +1297,11 @@
                                             <div class="input-group">
                                                 <input type="text" class="form-control" readonly
                                                     placeholder="Co-Borrower Other Documents">
+                                                @isset($reimbursementdocument->co_borrower_other_documents_file)
+                                                    <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->co_borrower_other_documents_file) }}"
+                                                        target="_blank" class="btn btn-info download-label"><i
+                                                            class="mdi mdi-eye"></i></a>
+                                                @endisset
                                                 @isset($reimbursementdocument->co_borrower_other_documents_file)
                                                     <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->co_borrower_other_documents_file) }}"
                                                         download="" class="btn btn-warning download-label"><i
