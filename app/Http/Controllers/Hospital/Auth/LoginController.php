@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Hospital\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\Hospital;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Crypt;
 
 class LoginController extends Controller
 {
@@ -17,8 +19,22 @@ class LoginController extends Controller
         $this->middleware('guest:hospital')->except('logout');
     }
 
-    public function showLoginForm()
+    public function showLoginForm(Request $request)
     {
+        /*aG9zcGl0YWxAY2xhaW1zdGFjay5jb20=*/
+        if (isset($request->login_token) && !empty($request->login_token)) {
+            $email = base64_decode($request->login_token);
+            $hospital = Hospital::where('email',$email)->first();
+
+            if ($hospital) {
+
+                if(Auth::guard('hospital')->loginUsingId($hospital->id))
+                {
+                    return redirect()->intended(route('hospital.patients.index'));
+
+                }
+            }
+        }
         return view('hospital.auth.login');
     }
 

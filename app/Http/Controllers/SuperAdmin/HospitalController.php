@@ -150,7 +150,7 @@ class HospitalController extends Controller
             'uid'      => 'HSP'.$hospital->id
         ]);
 
-        $response = Http::post(env('REMOTE_HOSPITAL_CREATE_URL'), [
+        /*$response = Http::post(env('REMOTE_HOSPITAL_CREATE_URL'), [
             'name' => $request->name, 
             'email' => $request->email, 
             'phone' => $request->phone, 
@@ -161,7 +161,7 @@ class HospitalController extends Controller
             'password' => '12345678', 
             'uid' => 'HPS'.$hospital->id,
             'hospital_by' => 'Claimstack'
-        ]);
+        ]);*/
 
         if ($request->hasfile('panfile')) {
             $panfile                    = $request->file('panfile');
