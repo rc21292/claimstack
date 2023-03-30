@@ -15,7 +15,7 @@
                             <li class="breadcrumb-item active">Create</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">Create Associate Partner</h4>
+                    <h4 class="page-title">Documents</h4>
                 </div>
             </div>
         </div>

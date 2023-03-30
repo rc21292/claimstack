@@ -116,7 +116,7 @@ class DocumentReimbursementController extends Controller
                             ['file_name' => 'doctor_prescriptions_or_consultation_papers_file', 'file_path' => $reimbursement->doctor_prescriptions_or_consultation_papers_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
                         );
                     }
-                    
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'doctor_prescriptions_or_consultation_papers_file' =>  $name
                     ]);
@@ -578,7 +578,14 @@ class DocumentReimbursementController extends Controller
 
     public function showDocument($id)
     {
+        $reimbursementdocument = ReimbursementDocument::where('patient_id', $id)->exists();
+
+        if (!$reimbursementdocument) {
+            ReimbursementDocument::create(['patient_id' => $id]);
+        }
+
         $reimbursementdocument = ReimbursementDocument::where('patient_id', $id)->first();
+
         $patient = Patient::where('id', $id)->first();
 
         $document_files = DocumentReimbursementFileHistory::where('patient_id', $id)->get()

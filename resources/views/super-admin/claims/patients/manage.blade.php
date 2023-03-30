@@ -55,13 +55,12 @@
                                                 <td>{{ $patient->patient_current_pincode }}</td>
                                                 <td class="text-center">
                                                     <div class="btn-group">
-                                                        <a href="{{ route('super-admin.patients.edit', @$patient->id) }}"
+                                                        <a title="Edit Patient" href="{{ route('super-admin.patients.edit', @$patient->id) }}"
                                                             class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
-                                                        <a href="{{ route('super-admin.claims.create', ['patient_id' => $patient->id]) }}"
-                                                            class="btn btn-primary"><i class="mdi mdi-plus"></i> New
-                                                            Claim</a>
-                                                        <a href="{{ route('super-admin.view-claim-documents', $patient->id) }}"
-                                                            class="btn btn-primary"><i class="mdi mdi-plus"></i> View Documents</a>
+                                                        <a title="View Documents" href="{{ route('super-admin.view-claim-documents', $patient->id) }}"
+                                                            class="btn btn-info"><i class="mdi mdi-eye"></i></a>
+                                                        <a title="Create New Claim" href="{{ route('super-admin.claims.create', ['patient_id' => $patient->id]) }}"
+                                                            class="btn btn-primary"><i class="mdi mdi-plus"></i></a>
                                                     </div>
                                                 </td>
                                             </tr>
