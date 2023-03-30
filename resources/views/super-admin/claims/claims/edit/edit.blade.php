@@ -293,15 +293,15 @@
         }
 
         $(document).ready(function(){
-        $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
-            localStorage.setItem('activeTab', $(e.target).attr('href'));
-        });
+            $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
+                localStorage.setItem('activeTab', $(e.target).attr('href'));
+            });
 
-        var activeTab = localStorage.getItem('activeTab');
-        if(activeTab){
-            $('a[href="' + activeTab + '"]').tab('show');
-        }
-    });
+            var activeTab = localStorage.getItem('activeTab');
+            if(activeTab){
+                $('a[href="' + activeTab + '"]').tab('show');
+            }
+        });
     </script>
     <script>
 

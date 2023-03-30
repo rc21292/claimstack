@@ -168,6 +168,7 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     */
     
     Route::resource('document-reimbursement', DocumentReimbursementController::class);
+    Route::post('document-reimbursement/update-document/{id}',[DocumentReimbursementController::class, 'updateDocument'])->name('document-reimbursement.update-document');
 
     /*
     |--------------------------------------------------------------------------

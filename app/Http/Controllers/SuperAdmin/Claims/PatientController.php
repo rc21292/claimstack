@@ -25,8 +25,6 @@ class PatientController extends Controller
      */
     public function index(Request $request)
     {
-        /*$users = DB::connection('mysql_second')->table('wp_trak_rawdata')->where('raw_datetime', '<' ,Carbon::now()->subMonth(3))
-    ->get()->take(1);*/
         $filter_search = $request->search;
         $patients = Patient::query();
         if ($filter_search) {
@@ -2746,6 +2744,7 @@ class PatientController extends Controller
         $associates = AssociatePartner::get();
         $hospitals = Hospital::get();
         $doctors = HospitalDepartment::get();
+        $reimbursementdocument = ReimbursementDocument::where('patient_id', $id)->first();
         foreach ($hospitals as $hospital) {
             if (isset($hospital->linked_associate_partner_id)) {
                 $hospital->ap_name = AssociatePartner::where('associate_partner_id', $hospital->linked_associate_partner_id)->value('name');
@@ -2756,7 +2755,7 @@ class PatientController extends Controller
 
         $patient = Patient::with('hospital')->find($id);
 
-        return view('super-admin.claims.patients.edit',  compact('patient', 'hospital_id', 'doctors', 'associates', 'hospitals'));
+        return view('super-admin.claims.patients.edit',  compact('patient', 'hospital_id', 'doctors', 'associates', 'hospitals', 'reimbursementdocument'));
     }
 
     /**
