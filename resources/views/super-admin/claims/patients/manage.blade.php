@@ -60,6 +60,8 @@
                                                         <a href="{{ route('super-admin.claims.create', ['patient_id' => $patient->id]) }}"
                                                             class="btn btn-primary"><i class="mdi mdi-plus"></i> New
                                                             Claim</a>
+                                                        <a href="{{ route('super-admin.view-claim-documents', $patient->id) }}"
+                                                            class="btn btn-primary"><i class="mdi mdi-plus"></i> View Documents</a>
                                                     </div>
                                                 </td>
                                             </tr>

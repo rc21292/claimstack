@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Claimant;
 use App\Models\Patient;
 use App\Models\ReimbursementDocument;
+use App\Models\DocumentReimbursementFileHistory;
 use Illuminate\Http\Request;
 
 class DocumentReimbursementController extends Controller
@@ -79,6 +80,20 @@ class DocumentReimbursementController extends Controller
                     $patient_id_proof_file = $request->file('patient_id_proof_file');
                     $name = $patient_id_proof_file->getClientOriginalName();
                     $patient_id_proof_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->patient_id_proof_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'patient_id_proof_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'patient_id_proof_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'patient_id_proof_file', 'file_path' => $reimbursement->patient_id_proof_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'patient_id_proof_file' =>  $name
                     ]);
@@ -88,6 +103,20 @@ class DocumentReimbursementController extends Controller
                     $doctor_prescriptions_or_consultation_papers_file = $request->file('doctor_prescriptions_or_consultation_papers_file');
                     $name = $doctor_prescriptions_or_consultation_papers_file->getClientOriginalName();
                     $doctor_prescriptions_or_consultation_papers_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->doctor_prescriptions_or_consultation_papers_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'doctor_prescriptions_or_consultation_papers_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'doctor_prescriptions_or_consultation_papers_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'doctor_prescriptions_or_consultation_papers_file', 'file_path' => $reimbursement->doctor_prescriptions_or_consultation_papers_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+                    
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'doctor_prescriptions_or_consultation_papers_file' =>  $name
                     ]);
@@ -546,6 +575,19 @@ class DocumentReimbursementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function showDocument($id)
+    {
+        $reimbursementdocument = ReimbursementDocument::where('patient_id', $id)->first();
+        $patient = Patient::where('id', $id)->first();
+
+        $document_files = DocumentReimbursementFileHistory::where('patient_id', $id)->get()
+        ->groupBy('file_name')
+        ->map(function ($pb) { return $pb->keyBy('file_id'); });
+
+        return view('super-admin.claims.patients.tabs.view-document-reimbursement', compact('reimbursementdocument', 'patient', 'document_files'));
+    }
+
     public function show($id)
     {
         $claimant              = Claimant::find($id);
