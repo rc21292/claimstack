@@ -30,6 +30,7 @@ class RouteServiceProvider extends ServiceProvider
     public const ASSOCIATE = '/associate-partner';
 
     public const HOSPITAL = '/hospital';
+    public const HOSPITALPATIENTS = '/hospital/patients';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.

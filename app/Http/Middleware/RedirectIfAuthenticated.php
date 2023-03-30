@@ -40,7 +40,7 @@ class RedirectIfAuthenticated
                         return redirect(RouteServiceProvider::EMPLOYEE);
                         break;
                     case 'hospital':
-                        return redirect(RouteServiceProvider::HOSPITAL);
+                        return (isset(request()->login_token) && !empty(request()->login_token)) ?  redirect(RouteServiceProvider::HOSPITALPATIENTS) : redirect(RouteServiceProvider::HOSPITAL);
                         break;
                     case 'associate-partner':
                         return redirect(RouteServiceProvider::ASSOCIATE);
