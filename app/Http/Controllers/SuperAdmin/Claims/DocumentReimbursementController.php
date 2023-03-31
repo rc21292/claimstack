@@ -126,6 +126,21 @@ class DocumentReimbursementController extends Controller
                     $insurance_policy_copy_file = $request->file('insurance_policy_copy_file');
                     $name = $insurance_policy_copy_file->getClientOriginalName();
                     $insurance_policy_copy_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'insurance_policy_copy_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'insurance_policy_copy_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'insurance_policy_copy_file', 'file_path' => $reimbursement->insurance_policy_copy_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'insurance_policy_copy_file' =>  $name
                     ]);
@@ -136,6 +151,21 @@ class DocumentReimbursementController extends Controller
                     $tpa_card_file = $request->file('tpa_card_file');
                     $name = $tpa_card_file->getClientOriginalName();
                     $tpa_card_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'tpa_card_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'tpa_card_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'tpa_card_file', 'file_path' => $reimbursement->tpa_card_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'tpa_card_file' =>  $name
                     ]);
@@ -146,6 +176,20 @@ class DocumentReimbursementController extends Controller
                     $employee_or_member_id_group_file = $request->file('employee_or_member_id_group_file');
                     $name = $employee_or_member_id_group_file->getClientOriginalName();
                     $employee_or_member_id_group_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'employee_or_member_id_group_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'employee_or_member_id_group_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'employee_or_member_id_group_file', 'file_path' => $reimbursement->employee_or_member_id_group_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'employee_or_member_id_group_file' =>  $name
                     ]);
@@ -156,6 +200,21 @@ class DocumentReimbursementController extends Controller
                     $photograph_of_the_patient_file = $request->file('photograph_of_the_patient_file');
                     $name = $photograph_of_the_patient_file->getClientOriginalName();
                     $photograph_of_the_patient_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'photograph_of_the_patient_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'photograph_of_the_patient_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'photograph_of_the_patient_file', 'file_path' => $reimbursement->photograph_of_the_patient_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'photograph_of_the_patient_file' =>  $name
                     ]);
@@ -185,6 +244,20 @@ class DocumentReimbursementController extends Controller
                     $indoor_care_paper_file = $request->file('indoor_care_paper_file');
                     $name = $indoor_care_paper_file->getClientOriginalName();
                     $indoor_care_paper_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'indoor_care_paper_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'indoor_care_paper_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'indoor_care_paper_file', 'file_path' => $reimbursement->indoor_care_paper_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'indoor_care_paper_file' =>  $name
                     ]);
@@ -194,6 +267,20 @@ class DocumentReimbursementController extends Controller
                     $ecg_report_file = $request->file('ecg_report_file');
                     $name = $ecg_report_file->getClientOriginalName();
                     $ecg_report_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'ecg_report_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'ecg_report_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'ecg_report_file', 'file_path' => $reimbursement->ecg_report_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'ecg_report_file' =>  $name
                     ]);
@@ -203,6 +290,20 @@ class DocumentReimbursementController extends Controller
                     $ct_mri_usg_hpe_investigation_report_file = $request->file('ct_mri_usg_hpe_investigation_report_file');
                     $name = $ct_mri_usg_hpe_investigation_report_file->getClientOriginalName();
                     $ct_mri_usg_hpe_investigation_report_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'ct_mri_usg_hpe_investigation_report_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'ct_mri_usg_hpe_investigation_report_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'ct_mri_usg_hpe_investigation_report_file', 'file_path' => $reimbursement->ct_mri_usg_hpe_investigation_report_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'ct_mri_usg_hpe_investigation_report_file' =>  $name
                     ]);
@@ -212,6 +313,20 @@ class DocumentReimbursementController extends Controller
                     $diagnostic_or_investigation_reports_file = $request->file('diagnostic_or_investigation_reports_file');
                     $name = $diagnostic_or_investigation_reports_file->getClientOriginalName();
                     $diagnostic_or_investigation_reports_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'diagnostic_or_investigation_reports_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'diagnostic_or_investigation_reports_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'diagnostic_or_investigation_reports_file', 'file_path' => $reimbursement->diagnostic_or_investigation_reports_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'diagnostic_or_investigation_reports_file' =>  $name
                     ]);
@@ -221,6 +336,20 @@ class DocumentReimbursementController extends Controller
                     $doctor’s_reference_slip_for_investigation_file = $request->file('doctor’s_reference_slip_for_investigation_file');
                     $name = $doctor’s_reference_slip_for_investigation_file->getClientOriginalName();
                     $doctor’s_reference_slip_for_investigation_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'doctor’s_reference_slip_for_investigation_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'doctor’s_reference_slip_for_investigation_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'doctor’s_reference_slip_for_investigation_file', 'file_path' => $reimbursement->doctor’s_reference_slip_for_investigation_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'doctor’s_reference_slip_for_investigation_file' =>  $name
                     ]);
@@ -230,6 +359,20 @@ class DocumentReimbursementController extends Controller
                     $operation_theatre_notes_file = $request->file('operation_theatre_notes_file');
                     $name = $operation_theatre_notes_file->getClientOriginalName();
                     $operation_theatre_notes_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'operation_theatre_notes_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'operation_theatre_notes_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'operation_theatre_notes_file', 'file_path' => $reimbursement->operation_theatre_notes_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'operation_theatre_notes_file' =>  $name
                     ]);
@@ -239,6 +382,20 @@ class DocumentReimbursementController extends Controller
                     $pharmacy_bills_file = $request->file('pharmacy_bills_file');
                     $name = $pharmacy_bills_file->getClientOriginalName();
                     $pharmacy_bills_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'pharmacy_bills_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'pharmacy_bills_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'pharmacy_bills_file', 'file_path' => $reimbursement->pharmacy_bills_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'pharmacy_bills_file' =>  $name
                     ]);
@@ -249,6 +406,20 @@ class DocumentReimbursementController extends Controller
                     $implant_sticker_invoice_file = $request->file('implant_sticker_invoice_file');
                     $name = $implant_sticker_invoice_file->getClientOriginalName();
                     $implant_sticker_invoice_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'implant_sticker_invoice_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'implant_sticker_invoice_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'implant_sticker_invoice_file', 'file_path' => $reimbursement->implant_sticker_invoice_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'implant_sticker_invoice_file' =>  $name
                     ]);
@@ -259,6 +430,20 @@ class DocumentReimbursementController extends Controller
                     $hospital_break_up_bills_file = $request->file('hospital_break_up_bills_file');
                     $name = $hospital_break_up_bills_file->getClientOriginalName();
                     $hospital_break_up_bills_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'hospital_break_up_bills_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'hospital_break_up_bills_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'hospital_break_up_bills_file', 'file_path' => $reimbursement->hospital_break_up_bills_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'hospital_break_up_bills_file' =>  $name
                     ]);
@@ -269,6 +454,20 @@ class DocumentReimbursementController extends Controller
                     $hospital_main_final_bill_file = $request->file('hospital_main_final_bill_file');
                     $name = $hospital_main_final_bill_file->getClientOriginalName();
                     $hospital_main_final_bill_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'hospital_main_final_bill_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'hospital_main_final_bill_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'hospital_main_final_bill_file', 'file_path' => $reimbursement->hospital_main_final_bill_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'hospital_main_final_bill_file' =>  $name
                     ]);
@@ -279,6 +478,20 @@ class DocumentReimbursementController extends Controller
                     $discharge_or_day_care_summary_file = $request->file('discharge_or_day_care_summary_file');
                     $name = $discharge_or_day_care_summary_file->getClientOriginalName();
                     $discharge_or_day_care_summary_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'discharge_or_day_care_summary_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'discharge_or_day_care_summary_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'discharge_or_day_care_summary_file', 'file_path' => $reimbursement->discharge_or_day_care_summary_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'discharge_or_day_care_summary_file' =>  $name
                     ]);
@@ -288,6 +501,20 @@ class DocumentReimbursementController extends Controller
                     $death_summary_from_hospital_where_applicable_file = $request->file('death_summary_from_hospital_where_applicable_file');
                     $name = $death_summary_from_hospital_where_applicable_file->getClientOriginalName();
                     $death_summary_from_hospital_where_applicable_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'death_summary_from_hospital_where_applicable_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'death_summary_from_hospital_where_applicable_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'death_summary_from_hospital_where_applicable_file', 'file_path' => $reimbursement->death_summary_from_hospital_where_applicable_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'death_summary_from_hospital_where_applicable_file' =>  $name
                     ]);
@@ -297,6 +524,20 @@ class DocumentReimbursementController extends Controller
                     $payment_receipts_of_the_hospital_file = $request->file('payment_receipts_of_the_hospital_file');
                     $name = $payment_receipts_of_the_hospital_file->getClientOriginalName();
                     $payment_receipts_of_the_hospital_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'payment_receipts_of_the_hospital_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'payment_receipts_of_the_hospital_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'payment_receipts_of_the_hospital_file', 'file_path' => $reimbursement->payment_receipts_of_the_hospital_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'payment_receipts_of_the_hospital_file' =>  $name
                     ]);
@@ -306,6 +547,20 @@ class DocumentReimbursementController extends Controller
                     $other_documents_file = $request->file('other_documents_file');
                     $name = $other_documents_file->getClientOriginalName();
                     $other_documents_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'other_documents_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'other_documents_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'other_documents_file', 'file_path' => $reimbursement->other_documents_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'other_documents_file' =>  $name
                     ]);
@@ -332,6 +587,20 @@ class DocumentReimbursementController extends Controller
                     $claimant_pan_card_file = $request->file('claimant_pan_card_file');
                     $name = $claimant_pan_card_file->getClientOriginalName();
                     $claimant_pan_card_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'claimant_pan_card_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'claimant_pan_card_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'claimant_pan_card_file', 'file_path' => $reimbursement->claimant_pan_card_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'claimant_pan_card_file' =>  $name
                     ]);
@@ -341,6 +610,20 @@ class DocumentReimbursementController extends Controller
                     $claimant_aadhar_card_file = $request->file('claimant_aadhar_card_file');
                     $name = $claimant_aadhar_card_file->getClientOriginalName();
                     $claimant_aadhar_card_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'claimant_aadhar_card_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'claimant_aadhar_card_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'claimant_aadhar_card_file', 'file_path' => $reimbursement->claimant_aadhar_card_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'claimant_aadhar_card_file' =>  $name
                     ]);
@@ -350,6 +633,20 @@ class DocumentReimbursementController extends Controller
                     $claimant_current_address_proof_file = $request->file('claimant_current_address_proof_file');
                     $name = $claimant_current_address_proof_file->getClientOriginalName();
                     $claimant_current_address_proof_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'claimant_current_address_proof_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'claimant_current_address_proof_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'claimant_current_address_proof_file', 'file_path' => $reimbursement->claimant_current_address_proof_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+                    
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'claimant_current_address_proof_file' =>  $name
                     ]);
@@ -360,6 +657,20 @@ class DocumentReimbursementController extends Controller
                     $claimant_cancel_cheque_file = $request->file('claimant_cancel_cheque_file');
                     $name = $claimant_cancel_cheque_file->getClientOriginalName();
                     $claimant_cancel_cheque_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'claimant_cancel_cheque_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'claimant_cancel_cheque_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'claimant_cancel_cheque_file', 'file_path' => $reimbursement->claimant_cancel_cheque_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'claimant_cancel_cheque_file' =>  $name
                     ]);
@@ -370,6 +681,20 @@ class DocumentReimbursementController extends Controller
                     $abha_id_proof_file = $request->file('abha_id_proof_file');
                     $name = $abha_id_proof_file->getClientOriginalName();
                     $abha_id_proof_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'abha_id_proof_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'abha_id_proof_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'abha_id_proof_file', 'file_path' => $reimbursement->abha_id_proof_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'abha_id_proof_file' =>  $name
                     ]);
@@ -380,6 +705,20 @@ class DocumentReimbursementController extends Controller
                     $mlc_report_and_police_fir_document_file = $request->file('mlc_report_and_police_fir_document_file');
                     $name = $mlc_report_and_police_fir_document_file->getClientOriginalName();
                     $mlc_report_and_police_fir_document_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'mlc_report_and_police_fir_document_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'mlc_report_and_police_fir_document_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'mlc_report_and_police_fir_document_file', 'file_path' => $reimbursement->mlc_report_and_police_fir_document_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'mlc_report_and_police_fir_document_file' =>  $name
                     ]);
@@ -412,6 +751,20 @@ class DocumentReimbursementController extends Controller
                     $borrower_current_address_proof_file = $request->file('borrower_current_address_proof_file');
                     $name = $borrower_current_address_proof_file->getClientOriginalName();
                     $borrower_current_address_proof_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'borrower_current_address_proof_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'borrower_current_address_proof_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'borrower_current_address_proof_file', 'file_path' => $reimbursement->borrower_current_address_proof_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'borrower_current_address_proof_file' =>  $name
                     ]);
@@ -421,6 +774,20 @@ class DocumentReimbursementController extends Controller
                     $borrower_pan_card_file = $request->file('borrower_pan_card_file');
                     $name = $borrower_pan_card_file->getClientOriginalName();
                     $borrower_pan_card_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'borrower_pan_card_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'borrower_pan_card_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'borrower_pan_card_file', 'file_path' => $reimbursement->borrower_pan_card_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'borrower_pan_card_file' =>  $name
                     ]);
@@ -430,6 +797,20 @@ class DocumentReimbursementController extends Controller
                     $borrower_aadhar_card_file = $request->file('borrower_aadhar_card_file');
                     $name = $borrower_aadhar_card_file->getClientOriginalName();
                     $borrower_aadhar_card_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'borrower_aadhar_card_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'borrower_aadhar_card_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'borrower_aadhar_card_file', 'file_path' => $reimbursement->borrower_aadhar_card_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'borrower_aadhar_card_file' =>  $name
                     ]);
@@ -439,6 +820,20 @@ class DocumentReimbursementController extends Controller
                     $borrower_bank_statement_3_months_file = $request->file('borrower_bank_statement_3_months_file');
                     $name = $borrower_bank_statement_3_months_file->getClientOriginalName();
                     $borrower_bank_statement_3_months_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'borrower_bank_statement_3_months_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'borrower_bank_statement_3_months_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'borrower_bank_statement_3_months_file', 'file_path' => $reimbursement->borrower_bank_statement_3_months_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'borrower_bank_statement_3_months_file' =>  $name
                     ]);
@@ -449,6 +844,20 @@ class DocumentReimbursementController extends Controller
                     $borrower_itr_income_tax_return_file = $request->file('borrower_itr_income_tax_return_file');
                     $name = $borrower_itr_income_tax_return_file->getClientOriginalName();
                     $borrower_itr_income_tax_return_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'borrower_itr_income_tax_return_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'borrower_itr_income_tax_return_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'borrower_itr_income_tax_return_file', 'file_path' => $reimbursement->borrower_itr_income_tax_return_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'borrower_itr_income_tax_return_file' =>  $name
                     ]);
@@ -458,6 +867,20 @@ class DocumentReimbursementController extends Controller
                     $borrower_cancel_cheque_file = $request->file('borrower_cancel_cheque_file');
                     $name = $borrower_cancel_cheque_file->getClientOriginalName();
                     $borrower_cancel_cheque_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'borrower_cancel_cheque_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'borrower_cancel_cheque_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'borrower_cancel_cheque_file', 'file_path' => $reimbursement->borrower_cancel_cheque_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'borrower_cancel_cheque_file' =>  $name
                     ]);
@@ -467,6 +890,20 @@ class DocumentReimbursementController extends Controller
                     $borrower_other_documents_file = $request->file('borrower_other_documents_file');
                     $name = $borrower_other_documents_file->getClientOriginalName();
                     $borrower_other_documents_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'borrower_other_documents_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'borrower_other_documents_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'borrower_other_documents_file', 'file_path' => $reimbursement->borrower_other_documents_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'borrower_other_documents_file' =>  $name
                     ]);
@@ -498,6 +935,20 @@ class DocumentReimbursementController extends Controller
                     $co_borrower_current_address_proof_file = $request->file('co_borrower_current_address_proof_file');
                     $name = $co_borrower_current_address_proof_file->getClientOriginalName();
                     $co_borrower_current_address_proof_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'co_borrower_current_address_proof_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'co_borrower_current_address_proof_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'co_borrower_current_address_proof_file', 'file_path' => $reimbursement->co_borrower_current_address_proof_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'co_borrower_current_address_proof_file' =>  $name
                     ]);
@@ -508,6 +959,20 @@ class DocumentReimbursementController extends Controller
                     $co_borrower_pan_card_file = $request->file('co_borrower_pan_card_file');
                     $name = $co_borrower_pan_card_file->getClientOriginalName();
                     $co_borrower_pan_card_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'co_borrower_pan_card_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'co_borrower_pan_card_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'co_borrower_pan_card_file', 'file_path' => $reimbursement->co_borrower_pan_card_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'co_borrower_pan_card_file' =>  $name
                     ]);
@@ -518,6 +983,20 @@ class DocumentReimbursementController extends Controller
                     $co_borrower_aadhar_card_file = $request->file('co_borrower_aadhar_card_file');
                     $name = $co_borrower_aadhar_card_file->getClientOriginalName();
                     $co_borrower_aadhar_card_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'co_borrower_aadhar_card_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'co_borrower_aadhar_card_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'co_borrower_aadhar_card_file', 'file_path' => $reimbursement->co_borrower_aadhar_card_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'co_borrower_aadhar_card_file' =>  $name
                     ]);
@@ -528,6 +1007,20 @@ class DocumentReimbursementController extends Controller
                     $co_borrower_bank_statement_3_months_file = $request->file('co_borrower_bank_statement_3_months_file');
                     $name = $co_borrower_bank_statement_3_months_file->getClientOriginalName();
                     $co_borrower_bank_statement_3_months_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'co_borrower_bank_statement_3_months_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'co_borrower_bank_statement_3_months_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'co_borrower_bank_statement_3_months_file', 'file_path' => $reimbursement->co_borrower_bank_statement_3_months_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'co_borrower_bank_statement_3_months_file' =>  $name
                     ]);
@@ -537,6 +1030,20 @@ class DocumentReimbursementController extends Controller
                     $co_borrower_itr_income_tax_return_file = $request->file('co_borrower_itr_income_tax_return_file');
                     $name = $co_borrower_itr_income_tax_return_file->getClientOriginalName();
                     $co_borrower_itr_income_tax_return_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'co_borrower_itr_income_tax_return_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'co_borrower_itr_income_tax_return_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'co_borrower_itr_income_tax_return_file', 'file_path' => $reimbursement->co_borrower_itr_income_tax_return_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'co_borrower_itr_income_tax_return_file' =>  $name
                     ]);
@@ -546,6 +1053,20 @@ class DocumentReimbursementController extends Controller
                     $co_borrower_cancel_cheque_file = $request->file('co_borrower_cancel_cheque_file');
                     $name = $co_borrower_cancel_cheque_file->getClientOriginalName();
                     $co_borrower_cancel_cheque_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'co_borrower_cancel_cheque_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'co_borrower_cancel_cheque_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'co_borrower_cancel_cheque_file', 'file_path' => $reimbursement->co_borrower_cancel_cheque_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'co_borrower_cancel_cheque_file' =>  $name
                     ]);
