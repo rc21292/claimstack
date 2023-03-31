@@ -152,7 +152,7 @@ class DocumentReimbursementController extends Controller
                     $name = $tpa_card_file->getClientOriginalName();
                     $tpa_card_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->tpa_card_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'tpa_card_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -177,7 +177,7 @@ class DocumentReimbursementController extends Controller
                     $name = $employee_or_member_id_group_file->getClientOriginalName();
                     $employee_or_member_id_group_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->employee_or_member_id_group_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'employee_or_member_id_group_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -201,8 +201,7 @@ class DocumentReimbursementController extends Controller
                     $name = $photograph_of_the_patient_file->getClientOriginalName();
                     $photograph_of_the_patient_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->photograph_of_the_patient_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'photograph_of_the_patient_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -245,7 +244,7 @@ class DocumentReimbursementController extends Controller
                     $name = $indoor_care_paper_file->getClientOriginalName();
                     $indoor_care_paper_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->indoor_care_paper_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'indoor_care_paper_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -268,7 +267,7 @@ class DocumentReimbursementController extends Controller
                     $name = $ecg_report_file->getClientOriginalName();
                     $ecg_report_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->ecg_report_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'ecg_report_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -291,7 +290,7 @@ class DocumentReimbursementController extends Controller
                     $name = $ct_mri_usg_hpe_investigation_report_file->getClientOriginalName();
                     $ct_mri_usg_hpe_investigation_report_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->ct_mri_usg_hpe_investigation_report_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'ct_mri_usg_hpe_investigation_report_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -314,7 +313,7 @@ class DocumentReimbursementController extends Controller
                     $name = $diagnostic_or_investigation_reports_file->getClientOriginalName();
                     $diagnostic_or_investigation_reports_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->diagnostic_or_investigation_reports_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'diagnostic_or_investigation_reports_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -337,7 +336,7 @@ class DocumentReimbursementController extends Controller
                     $name = $doctor’s_reference_slip_for_investigation_file->getClientOriginalName();
                     $doctor’s_reference_slip_for_investigation_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->doctor’s_reference_slip_for_investigation_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'doctor’s_reference_slip_for_investigation_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -360,7 +359,7 @@ class DocumentReimbursementController extends Controller
                     $name = $operation_theatre_notes_file->getClientOriginalName();
                     $operation_theatre_notes_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->operation_theatre_notes_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'operation_theatre_notes_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -383,7 +382,7 @@ class DocumentReimbursementController extends Controller
                     $name = $pharmacy_bills_file->getClientOriginalName();
                     $pharmacy_bills_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->pharmacy_bills_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'pharmacy_bills_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -407,7 +406,7 @@ class DocumentReimbursementController extends Controller
                     $name = $implant_sticker_invoice_file->getClientOriginalName();
                     $implant_sticker_invoice_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->implant_sticker_invoice_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'implant_sticker_invoice_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -431,7 +430,7 @@ class DocumentReimbursementController extends Controller
                     $name = $hospital_break_up_bills_file->getClientOriginalName();
                     $hospital_break_up_bills_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->hospital_break_up_bills_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'hospital_break_up_bills_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -455,7 +454,7 @@ class DocumentReimbursementController extends Controller
                     $name = $hospital_main_final_bill_file->getClientOriginalName();
                     $hospital_main_final_bill_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->hospital_main_final_bill_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'hospital_main_final_bill_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -479,7 +478,7 @@ class DocumentReimbursementController extends Controller
                     $name = $discharge_or_day_care_summary_file->getClientOriginalName();
                     $discharge_or_day_care_summary_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->discharge_or_day_care_summary_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'discharge_or_day_care_summary_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -502,7 +501,7 @@ class DocumentReimbursementController extends Controller
                     $name = $death_summary_from_hospital_where_applicable_file->getClientOriginalName();
                     $death_summary_from_hospital_where_applicable_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->death_summary_from_hospital_where_applicable_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'death_summary_from_hospital_where_applicable_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -525,7 +524,7 @@ class DocumentReimbursementController extends Controller
                     $name = $payment_receipts_of_the_hospital_file->getClientOriginalName();
                     $payment_receipts_of_the_hospital_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->payment_receipts_of_the_hospital_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'payment_receipts_of_the_hospital_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -548,7 +547,7 @@ class DocumentReimbursementController extends Controller
                     $name = $other_documents_file->getClientOriginalName();
                     $other_documents_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->other_documents_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'other_documents_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -588,7 +587,7 @@ class DocumentReimbursementController extends Controller
                     $name = $claimant_pan_card_file->getClientOriginalName();
                     $claimant_pan_card_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->claimant_pan_card_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'claimant_pan_card_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -611,7 +610,7 @@ class DocumentReimbursementController extends Controller
                     $name = $claimant_aadhar_card_file->getClientOriginalName();
                     $claimant_aadhar_card_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->claimant_aadhar_card_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'claimant_aadhar_card_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -634,7 +633,7 @@ class DocumentReimbursementController extends Controller
                     $name = $claimant_current_address_proof_file->getClientOriginalName();
                     $claimant_current_address_proof_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->claimant_current_address_proof_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'claimant_current_address_proof_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -658,7 +657,7 @@ class DocumentReimbursementController extends Controller
                     $name = $claimant_cancel_cheque_file->getClientOriginalName();
                     $claimant_cancel_cheque_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->claimant_cancel_cheque_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'claimant_cancel_cheque_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -682,7 +681,7 @@ class DocumentReimbursementController extends Controller
                     $name = $abha_id_proof_file->getClientOriginalName();
                     $abha_id_proof_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->abha_id_proof_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'abha_id_proof_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -706,7 +705,7 @@ class DocumentReimbursementController extends Controller
                     $name = $mlc_report_and_police_fir_document_file->getClientOriginalName();
                     $mlc_report_and_police_fir_document_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->mlc_report_and_police_fir_document_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'mlc_report_and_police_fir_document_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -752,7 +751,7 @@ class DocumentReimbursementController extends Controller
                     $name = $borrower_current_address_proof_file->getClientOriginalName();
                     $borrower_current_address_proof_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->borrower_current_address_proof_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'borrower_current_address_proof_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -775,7 +774,7 @@ class DocumentReimbursementController extends Controller
                     $name = $borrower_pan_card_file->getClientOriginalName();
                     $borrower_pan_card_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->borrower_pan_card_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'borrower_pan_card_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -798,7 +797,7 @@ class DocumentReimbursementController extends Controller
                     $name = $borrower_aadhar_card_file->getClientOriginalName();
                     $borrower_aadhar_card_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->borrower_aadhar_card_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'borrower_aadhar_card_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -821,7 +820,7 @@ class DocumentReimbursementController extends Controller
                     $name = $borrower_bank_statement_3_months_file->getClientOriginalName();
                     $borrower_bank_statement_3_months_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->borrower_bank_statement_3_months_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'borrower_bank_statement_3_months_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -845,7 +844,7 @@ class DocumentReimbursementController extends Controller
                     $name = $borrower_itr_income_tax_return_file->getClientOriginalName();
                     $borrower_itr_income_tax_return_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->borrower_itr_income_tax_return_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'borrower_itr_income_tax_return_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -868,7 +867,7 @@ class DocumentReimbursementController extends Controller
                     $name = $borrower_cancel_cheque_file->getClientOriginalName();
                     $borrower_cancel_cheque_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->borrower_cancel_cheque_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'borrower_cancel_cheque_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -891,7 +890,7 @@ class DocumentReimbursementController extends Controller
                     $name = $borrower_other_documents_file->getClientOriginalName();
                     $borrower_other_documents_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->borrower_other_documents_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'borrower_other_documents_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -936,7 +935,7 @@ class DocumentReimbursementController extends Controller
                     $name = $co_borrower_current_address_proof_file->getClientOriginalName();
                     $co_borrower_current_address_proof_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->co_borrower_current_address_proof_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'co_borrower_current_address_proof_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -960,7 +959,7 @@ class DocumentReimbursementController extends Controller
                     $name = $co_borrower_pan_card_file->getClientOriginalName();
                     $co_borrower_pan_card_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->co_borrower_pan_card_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'co_borrower_pan_card_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -984,7 +983,7 @@ class DocumentReimbursementController extends Controller
                     $name = $co_borrower_aadhar_card_file->getClientOriginalName();
                     $co_borrower_aadhar_card_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->co_borrower_aadhar_card_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'co_borrower_aadhar_card_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -1008,7 +1007,7 @@ class DocumentReimbursementController extends Controller
                     $name = $co_borrower_bank_statement_3_months_file->getClientOriginalName();
                     $co_borrower_bank_statement_3_months_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->co_borrower_bank_statement_3_months_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'co_borrower_bank_statement_3_months_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -1031,7 +1030,7 @@ class DocumentReimbursementController extends Controller
                     $name = $co_borrower_itr_income_tax_return_file->getClientOriginalName();
                     $co_borrower_itr_income_tax_return_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->co_borrower_itr_income_tax_return_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'co_borrower_itr_income_tax_return_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
@@ -1054,7 +1053,7 @@ class DocumentReimbursementController extends Controller
                     $name = $co_borrower_cancel_cheque_file->getClientOriginalName();
                     $co_borrower_cancel_cheque_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
 
-                    if (!empty($reimbursement->insurance_policy_copy_file)) {
+                    if (!empty($reimbursement->co_borrower_cancel_cheque_file)) {
                         $exists = DocumentReimbursementFileHistory::where(['file_name' => 'co_borrower_cancel_cheque_file', 'patient_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
