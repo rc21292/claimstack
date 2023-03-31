@@ -59,9 +59,15 @@
                                                     <div class="btn-group">
                                                         <a href="{{ route('super-admin.claims.edit', @$claim->id) }}"
                                                             class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
-                                                        <a href="{{ route('super-admin.claimants.create', ['claim_id' => $claim->id]) }}"
+                                                            @if($claim->claimant && !empty($claim->claimant))
+                                                        <a href="{{ route('super-admin.claimants.edit', $claim->claimant) }}"
+                                                            class="btn btn-primary"><i class="mdi mdi-plus"></i> Edit
+                                                            Claimant</a>
+                                                            @else
+                                                            <a href="{{ route('super-admin.claimants.create', ['claim_id' => $claim->id]) }}"
                                                             class="btn btn-primary"><i class="mdi mdi-plus"></i> New
                                                             Claimant</a>
+                                                            @endif
                                                     </div>
                                                 </td>
                                             </tr>

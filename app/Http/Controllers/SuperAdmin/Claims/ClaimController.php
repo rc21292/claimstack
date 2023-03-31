@@ -5,6 +5,7 @@ namespace App\Http\Controllers\SuperAdmin\Claims;
 use App\Http\Controllers\Controller;
 use App\Models\AssociatePartner;
 use App\Models\Claim;
+use App\Models\Claimant;
 use App\Models\Hospital;
 use App\Models\Patient;
 use App\Models\ClaimProcessing;
@@ -374,7 +375,19 @@ class ClaimController extends Controller
                 });
             });
         }
+
         $claims = $claims->orderBy('id', 'desc')->paginate(20);
+
+        foreach ($claims as $key => $claim) {
+            $claimant = Claimant::where('claim_id', $claim->id)->exists();
+            if ($claimant) {
+                $claimant = Claimant::where('claim_id', $claim->id)->value('id');
+                $claims[$key]->claimant = $claim->id;
+            }else{
+                $claims[$key]->claimant = '';
+            }
+        }
+
 
         return view('super-admin.claims.claims.manage',  compact('claims', 'filter_search'));
     }
