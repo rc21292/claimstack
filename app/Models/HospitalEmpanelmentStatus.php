@@ -11,7 +11,8 @@ class HospitalEmpanelmentStatus extends Model
 
     protected $fillable = [
         'hospital_id',
-        'company_name',
+        'tpa_id',
+        'company_type',
         'empanelled',
         'empanelled_file',
         'hospital_id_as_per_the_selected_company',

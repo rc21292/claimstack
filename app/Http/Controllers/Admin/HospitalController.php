@@ -16,6 +16,7 @@ use App\Imports\ImportHospital;
 use App\Exports\ExportHospital;
 use App\Models\HospitalDocument;
 use App\Models\HospitalEmpanelmentStatus;
+use App\Models\Tpa;
 use App\Notifications\Hospital\CredentialsGeneratedNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -190,6 +191,7 @@ class HospitalController extends Controller
     {
         $hospital          = Hospital::find($id);
         $insurers          = Insurer::all();
+        $tpas              = Tpa::all();
         $associates = AssociatePartner::get(['name', 'city', 'state', 'id', 'associate_partner_id']);
         $hospital_tie_ups          = HospitalTieUp::where('hospital_id', $id)->first();
         if (!$hospital_tie_ups) {
@@ -220,7 +222,7 @@ class HospitalController extends Controller
         $hospitals         = Hospital::get();
         $users              = User::get();
 
-        return view('admin.hospitals.edit.edit',  compact('hospital', 'associates', 'hospitals', 'hospital_facility', 'hospital_nfrastructure', 'hospital_department', 'hospital_tie_ups', 'users', 'insurers', 'hospital_document', 'empanelment_status'));
+        return view('admin.hospitals.edit.edit',  compact('hospital', 'tpas','associates', 'hospitals', 'hospital_facility', 'hospital_nfrastructure', 'hospital_department', 'hospital_tie_ups', 'users', 'insurers', 'hospital_document', 'empanelment_status'));
     }
 
     /**
@@ -1174,6 +1176,7 @@ class HospitalController extends Controller
 
             $rules = [
                 'company_name'              => 'required',
+                'company_type'              => 'required',
                 'empanelled'                => 'required',
                 'empanelled_file'                => ($request->empanelled == 'Yes' && empty($empanelment_status->empanelled_file)) ? 'required' : '',
                 'hospital_id_as_per_the_selected_company'             => ($request->empanelled == 'Yes') ? 'required|max:25' : '',
@@ -1199,7 +1202,8 @@ class HospitalController extends Controller
             HospitalEmpanelmentStatus::updateOrCreate([
             'hospital_id' => $id],
             [
-                'company_name'             => $request->company_name,
+                'tpa_id'             => $request->company_name,
+                'company_type'             => $request->company_type,
                 'empanelled'               => $request->empanelled,
                 'hospital_id_as_per_the_selected_company'            => $request->hospital_id_as_per_the_selected_company,
                 'signed_mou'                   => $request->signed_mou,

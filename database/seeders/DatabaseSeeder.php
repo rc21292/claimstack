@@ -33,5 +33,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AssessmentStatusSeed::class);
         $this->call(LendingStatusSeed::class);
         $this->call(DischargeSeed::class);
+        $this->call(TpaSeed::class);
     }
 }

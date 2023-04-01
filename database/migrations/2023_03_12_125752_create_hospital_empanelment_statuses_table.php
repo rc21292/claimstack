@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('hospital_empanelment_statuses', function (Blueprint $table) {
             $table->id();
             $table->string('hospital_id')->nullable();
-            $table->string('company_name')->nullable();
+            $table->string('tpa_id')->nullable();
+            $table->string('company_type')->nullable();
             $table->enum('empanelled', ['Yes', 'No'])->nullable();
             $table->string('empanelled_file')->nullable();
             $table->string('hospital_id_as_per_the_selected_company')->nullable();

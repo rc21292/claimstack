@@ -12,13 +12,29 @@
 
             <div class="col-md-12 show-hide-empanelment mt-3">
                 <label for="company_name">Company Name<span class="text-danger">*</span></label>
-                <select class="form-select" id="company_name" name="company_name">
+                <select class="form-select select2" data-toggle="select2" id="company_name" name="company_name">
                     <option value="">Select Company Name</option>
-                    @foreach ($insurers as $insurer)
-                    <option value="{{ $insurer->id }}" {{ old('company_name', $empanelment_status->company_name ?? '') == $insurer->id ? 'selected' : '' }}>{{ $insurer->name }}</option>
+                    @foreach ($tpas as $tpa)
+                    <option value="{{ $tpa->id }}" {{ old('company_name', $empanelment_status->tpa_id ?? '') == $tpa->id ? 'selected' : '' }}>{{ $tpa->company }}</option>
                     @endforeach
                 </select>
                 @error('company_name')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="col-md-12 show-hide-empanelment mt-3">
+                <label for="company_type">Company Type<span class="text-danger">*</span></label>
+                <select class="form-select" id="company_type" name="company_type">
+                    <option value="">Select Company Type</option>
+                    <option value="Insurance Co." {{ old('company_type', $empanelment_status->company_type ?? '') == "Insurance Co." ? 'selected' : '' }}>Insurance Co.</option>
+                    <option value="TPA" {{ old('company_type', $empanelment_status->company_type ?? '') == "TPA" ? 'selected' : '' }}>TPA</option>
+                    <option value="BHC" {{ old('company_type', $empanelment_status->company_type ?? '') == "BHC" ? 'selected' : '' }}>BHC</option>
+                    <option value="Self" {{ old('company_type', $empanelment_status->company_type ?? '') == "Self" ? 'selected' : '' }}>Self</option>
+                    <option value="Government" {{ old('company_type', $empanelment_status->company_type ?? '') == "Government" ? 'selected' : '' }}>Government</option>
+                    <option value="PSU" {{ old('company_type', $empanelment_status->company_type ?? '') == "PSU" ? 'selected' : '' }}>PSU</option>
+                    <option value="Private Corporate" {{ old('company_type', $empanelment_status->company_type ?? '') == "Private Corporate" ? 'selected' : '' }}>Private Corporate</option>
+                </select>
+                @error('company_type')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
@@ -145,7 +161,7 @@
         @method('PUT')
         <input type="hidden" name="form_type" value="empanelment_status_update">
         <div class="form-group row">
-            
+
             <div class="card-header bg-dark text-white mt-3 show-hide-empanelment"> Claim Form for Reimbursement </div>
 
 

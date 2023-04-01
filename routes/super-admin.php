@@ -21,6 +21,7 @@ use App\Http\Controllers\SuperAdmin\Claims\ClaimProcessingController;
 use App\Http\Controllers\SuperAdmin\Claims\DischargeStatusController;
 use App\Http\Controllers\SuperAdmin\Claims\DocumentReimbursementController;
 use App\Http\Controllers\SuperAdmin\Claims\LendingStatusController;
+use App\Http\Controllers\Superadmin\TpaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -158,7 +159,7 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     | Borrower Route
     |--------------------------------------------------------------------------
     */
-    
+
     Route::resource('borrowers', BorrowerController::class);
 
     /*
@@ -166,7 +167,7 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     | Document Reimursement Route
     |--------------------------------------------------------------------------
     */
-    
+
     Route::resource('document-reimbursement', DocumentReimbursementController::class);
     Route::get('documents/view/{id}', [DocumentReimbursementController::class, 'showDocument'])->name('view-claim-documents');
     Route::post('document-reimbursement/update-document/{id}',[DocumentReimbursementController::class, 'updateDocument'])->name('document-reimbursement.update-document');
@@ -176,7 +177,7 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     | Assessment Status Controller Route
     |--------------------------------------------------------------------------
     */
-    
+
     Route::resource('assessment-status', AssessmentController::class);
 
     /*
@@ -184,7 +185,7 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     | Lending Status Controller Route
     |--------------------------------------------------------------------------
     */
-    
+
     Route::resource('lending-status', LendingStatusController::class);
 
     /*
@@ -192,7 +193,7 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     | Discharge Status Controller Route
     |--------------------------------------------------------------------------
     */
-    
+
     Route::resource('discharge-status', DischargeStatusController::class);
 
     /*
@@ -200,14 +201,16 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     | Claim Processing Controller Route
     |--------------------------------------------------------------------------
     */
-    
+
     Route::resource('claim-processing', ClaimProcessingController::class);
 
-   
+
 
     Route::get('claims/bill-entry', [ClaimController::class, 'billEntry'])->name('bill-entry');
 
     Route::resource('bill-entries', BillEntryController::class);
+
+    Route::resource('tpa', TpaController::class);
 
 
     /*
@@ -220,12 +223,12 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     Route::get('claims/processing', [ClaimController::class, 'processing'])->name('claims.processing');
     Route::post('claims/processing', [ClaimController::class, 'saveClaimProcessing'])->name('claims.processing');
     Route::get('claims/assessment-status', [ClaimController::class, 'assessmentStatus'])->name('claims.assessment-status');
-    
 
-    
+
+
     Route::put('claims/update-insurance-policy/{id}', [ClaimController::class, 'updateInsurancePolicy'])->name('claims.update-insurance-policy');
 
-    
+
 
     Route::get('claimants/lending-status/{id}', [ClaimantController::class, 'lendingStatus'])->name('claimants.lending-status');
     Route::get('claimants/discharge-status/{id}', [ClaimantController::class, 'dischargeStatus'])->name('claimants.discharge-status');
@@ -233,7 +236,7 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     Route::post('claimants/lending-status/{id}', [ClaimantController::class, 'saveLendingStatus'])->name('claimants.save-lending-tatus');
 
     Route::get('claimants/patient/{id}', [ClaimantController::class, 'fetchPaitientData'])->name('claimants.fetch-patient');
-    
+
     Route::get('claimants/claimant/{id}', [ClaimantController::class, 'fetchClaimentData'])->name('claimants.fetch-claimant');
 
     Route::post('claimants/update-borrower-details/{id}', [ClaimantController::class, 'borrowerDetails'])->name('claimants.update-borrower-details');
@@ -247,7 +250,7 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     |--------------------------------------------------------------------------
     */
     Route::get('patients/documents-reimbursement', [PatientController::class, 'documentsReimbursement']);
-    
+
     Route::post('patients/documents-reimbursement/{id}', [PatientController::class, 'saveDocumentsReimbursement'])->name('patients.save-documents-reimbursement');
     Route::post('patients/documents-reimbursement-1/{id}', [PatientController::class, 'saveDocumentsReimbursement1'])->name('patients.save-documents-reimbursement-1');
     Route::post('patients/documents-reimbursement-2/{id}', [PatientController::class, 'saveDocumentsReimbursement2'])->name('patients.save-documents-reimbursement-2');

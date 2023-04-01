@@ -157,10 +157,10 @@
                 <div class="collapse" id="tpa">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="javascript:Void(0)">Create TPA</a>
+                            <a href="{{ route('super-admin.tpa.create')}}">Create TPA</a>
                         </li>
                         <li>
-                            <a href="javascript:Void(0)">Manage TPA</a>
+                            <a href="{{ route('super-admin.tpa.index')}}">Manage TPA</a>
                         </li>
                     </ul>
                 </div>
@@ -211,7 +211,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </li>  
+                        </li>
                         <li class="side-nav-item">
                             <a data-bs-toggle="collapse" href="#claims-management" aria-expanded="true" aria-controls="claims-management" class="">
                                 <span> Claims </span>
@@ -227,7 +227,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </li> 
+                        </li>
                         <li class="side-nav-item">
                             <a data-bs-toggle="collapse" href="#claimant-management" aria-expanded="true" aria-controls="claimant-management" class="">
                                 <span> Claimants </span>
@@ -243,7 +243,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </li>   
+                        </li>
 
                         <li class="side-nav-item">
                             <a data-bs-toggle="collapse" href="#borrowers-management" aria-expanded="true" aria-controls="borrowers-management" class="">
@@ -260,7 +260,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </li>                      
+                        </li>
                     </ul>
                 </div>
             </li>

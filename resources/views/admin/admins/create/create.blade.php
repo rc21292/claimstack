@@ -237,11 +237,11 @@
                 case "yes":
                     $('.div_linked_employee').css('display', 'none');
                     break;
-                
+
                 case "no":
                     $('.div_linked_employee').css('display', 'block');
                     break;
-            
+
                 default:
                     $('.div_linked_employee').css('display', 'block');
                     break;
