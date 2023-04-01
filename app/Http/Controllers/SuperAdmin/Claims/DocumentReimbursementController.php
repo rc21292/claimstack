@@ -1085,7 +1085,7 @@ class DocumentReimbursementController extends Controller
                 break;
         }
 
-        return redirect()->back()->with('success', 'Reimbursement Documents updated successfully');
+        return redirect()->back()->with('success', 'Documents updated successfully');
     
     }
 
@@ -1632,7 +1632,7 @@ class DocumentReimbursementController extends Controller
                 break;
         }
 
-        return redirect()->back()->with('success', 'Reimbursement Documents updated successfully');
+        return redirect()->back()->with('success', 'Documents updated successfully');
     }
 
     /**
