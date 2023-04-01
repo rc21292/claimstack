@@ -39,6 +39,7 @@ class HospitalController extends Controller
         $id = Auth::user()->id;
         $hospital          = Hospital::find($id);
         $insurers          = Insurer::all();
+        $tpas              = Tpa::all();
 
         $associates = AssociatePartner::get(['name', 'city', 'state', 'id', 'associate_partner_id']);
 
@@ -84,7 +85,7 @@ class HospitalController extends Controller
 
         $users              = User::get();
 
-        return view('hospital.hospitals.edit.edit',  compact('hospital', 'associates', 'hospitals', 'hospital_facility', 'hospital_nfrastructure', 'hospital_department', 'hospital_tie_ups', 'users', 'insurers', 'empanelment_status', 'hospital_document'));
+        return view('hospital.hospitals.edit.edit',  compact('hospital', 'tpas', 'associates', 'hospitals', 'hospital_facility', 'hospital_nfrastructure', 'hospital_department', 'hospital_tie_ups', 'users', 'insurers', 'empanelment_status', 'hospital_document'));
     }
 
     /**

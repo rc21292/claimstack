@@ -48,7 +48,7 @@ class BillEntryController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
