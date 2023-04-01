@@ -21,9 +21,8 @@ use App\Http\Controllers\SuperAdmin\Claims\ClaimProcessingController;
 use App\Http\Controllers\SuperAdmin\Claims\DischargeStatusController;
 use App\Http\Controllers\SuperAdmin\Claims\DocumentReimbursementController;
 use App\Http\Controllers\SuperAdmin\Claims\LendingStatusController;
-use App\Http\Controllers\Superadmin\TpaController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Superadmin\TpaController;
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
