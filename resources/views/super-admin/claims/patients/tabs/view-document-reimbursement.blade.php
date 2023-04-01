@@ -1,6 +1,11 @@
 @extends('layouts.super-admin')
 @section('title', 'Create Associate Partners')
 @section('content')
+<style type="text/css">
+    a.active {
+   background-color: darkseagreen !important ; 
+}
+</style>
     <!-- Start Content-->
     <div class="container-fluid">
         <!-- start page title -->
