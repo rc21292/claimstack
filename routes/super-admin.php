@@ -22,7 +22,7 @@ use App\Http\Controllers\SuperAdmin\Claims\DischargeStatusController;
 use App\Http\Controllers\SuperAdmin\Claims\DocumentReimbursementController;
 use App\Http\Controllers\SuperAdmin\Claims\LendingStatusController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Superadmin\TpaController;
+use App\Http\Controllers\Superadmin\TpaCompanyController;
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -209,7 +209,7 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
 
     Route::resource('bill-entries', BillEntryController::class);
 
-    Route::resource('tpa', TpaController::class);
+    Route::resource('tpa', TpaCompanyController::class);
 
 
     /*

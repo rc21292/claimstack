@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Tpa;
 use Illuminate\Http\Request;
 
-class TpaController extends Controller
+class TpaCompanyController extends Controller
 {
     /**
      * Display a listing of the resource.
