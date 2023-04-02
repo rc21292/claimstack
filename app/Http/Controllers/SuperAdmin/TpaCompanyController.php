@@ -44,15 +44,17 @@ class TpaCompanyController extends Controller
     {
         $rules = [
         'company'                 => 'required|string',
+        'company_type'                 => 'required|string',
         ];
 
     $messages = [
         'company.required'             => 'Please enter Company Name',
+        'company_type.required'             => 'Please select Company Type',
     ];
 
     $this->validate($request, $rules, $messages);
 
-    $tpa                     =   Tpa::create($request->all());
+    $tpa =  Tpa::create($request->all());
 
     return redirect()->route('super-admin.tpa.index')->with('success', 'TPA created successfully');
     }
@@ -91,15 +93,17 @@ class TpaCompanyController extends Controller
     {
         $rules = [
             'company'                 => 'required|string',
+            'company_type'                 => 'required|string',
             ];
 
         $messages = [
             'company.required'             => 'Please enter Company Name',
+            'company_type.required'             => 'Please select Company Name',
         ];
 
         $this->validate($request, $rules, $messages);
 
-        $tpa                     =   Tpa::find($id)->update($request->all());
+        $tpa =  Tpa::find($id)->update($request->all());
 
         return redirect()->route('super-admin.tpa.index')->with('success', 'TPA updated successfully');
     }

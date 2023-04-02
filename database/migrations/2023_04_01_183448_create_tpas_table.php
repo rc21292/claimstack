@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('tpas', function (Blueprint $table) {
             $table->id();
             $table->string('company')->nullable();
+            $table->string('company_type')->nullable();
             $table->timestamps();
         });
     }

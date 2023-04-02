@@ -70,6 +70,7 @@ class TpaSeed extends Seeder
         foreach ($insurereArr as $key => $insurere) {
             Tpa::create([
                 'company' => $insurere['name'],
+                'company_type' => $insurere['type'],
             ]);
         }
     }

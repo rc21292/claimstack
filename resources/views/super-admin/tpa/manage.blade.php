@@ -14,6 +14,8 @@
                                 <input class="form-control" name="search" type="search"placeholder="Type here to Search">
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="submit">Search</button>
+                                  <a href="{{ route('super-admin.tpa.create') }}"
+                                    class="btn btn-primary"><i class="mdi mdi-plus"></i> TPA</a>
                                 </div>
                             </div>
                         </form>
@@ -36,6 +38,7 @@
                                     <thead class="thead-grey">
                                         <tr>
                                             <th scope="col">Company</th>
+                                            <th scope="col">Company Type</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                     </thead>
@@ -43,6 +46,7 @@
                                         @foreach ($tpas as $tpa)
                                             <tr>
                                                 <th scope="row">{{ $tpa->company }}</th>
+                                                <th scope="row">{{ $tpa->company_type }}</th>
                                                 <td>
                                                     <div class="btn-group">
                                                         <a href="{{ route('super-admin.tpa.edit', $tpa->id) }}"

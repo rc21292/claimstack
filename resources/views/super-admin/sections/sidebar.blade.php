@@ -33,6 +33,22 @@
             </li>
 
             <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#tpa" aria-expanded="false" aria-controls="tpa"
+                    class="side-nav-link">
+                    <i class="mdi mdi-doctor"></i>
+                    <span> Module Creation </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="tpa">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="{{ route('super-admin.tpa.index')}}">Hospital Empanelment</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#super-adminMenu" aria-expanded="false" aria-controls="super-adminMenu"
                     class="side-nav-link">
                     <i class="mdi mdi-shield-account"></i>
@@ -157,10 +173,10 @@
                 <div class="collapse" id="tpa">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="{{ route('super-admin.tpa.create')}}">Create TPA</a>
+                            <a {{-- href="{{ route('super-admin.tpa.create')}}" --}}>Create TPA</a>
                         </li>
                         <li>
-                            <a href="{{ route('super-admin.tpa.index')}}">Manage TPA</a>
+                            <a {{-- href="{{ route('super-admin.tpa.index')}}" --}}>Manage TPA</a>
                         </li>
                     </ul>
                 </div>

@@ -47,6 +47,23 @@
                                     @enderror
                                 </div>
 
+                                <div class="col-md-12 mt-3">
+                                    <label for="company">Company Type <span class="text-danger">*</span></label>
+                                    <select class="form-select" id="company_type" name="company_type">
+                                        <option value="">Select </option>
+                                        <option value="Insurance Co." {{ old('company_type', $tpa->company_type) == 'Insurance Co.' ? 'selected' : '' }}>Insurance Co.</option>
+                                        <option value="TPA" {{ old('company_type', $tpa->company_type) == 'TPA' ? 'selected' : '' }}>TPA</option>
+                                        <option value="BHC" {{ old('company_type', $tpa->company_type) == 'BHC' ? 'selected' : '' }}>BHC</option>
+                                        <option value="Self" {{ old('company_type', $tpa->company_type) == 'Self' ? 'selected' : '' }}>Self</option>
+                                        <option value="Government" {{ old('company_type', $tpa->company_type) == 'Government' ? 'selected' : '' }}>Government</option>
+                                        <option value="PSU" {{ old('company_type', $tpa->company_type) == 'PSU' ? 'selected' : '' }}>PSU</option>
+                                        <option value="Private Corporate" {{ old('company_type', $tpa->company_type) == 'Private Corporate' ? 'selected' : '' }}>Private Corporate</option>
+\                                </select>
+                                @error('company_type')
+                                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
+
                                 <div class="col-md-12 text-end mt-3">
                                     <button type="submit" class="btn btn-success" form="adminForm">Update
                                         TPA</button>

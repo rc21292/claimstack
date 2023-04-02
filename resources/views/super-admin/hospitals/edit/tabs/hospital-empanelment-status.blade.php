@@ -12,10 +12,10 @@
 
             <div class="col-md-12 show-hide-empanelment mt-3">
                 <label for="company_name">Company Name<span class="text-danger">*</span></label>
-                <select class="form-select select2" data-toggle="select2" id="company_name" name="company_name">
+                <select class="form-select select2" data-toggle="select2" onchange="setType()" id="company_name" name="company_name">
                     <option value="">Select Company Name</option>
                     @foreach ($tpas as $tpa)
-                    <option value="{{ $tpa->id }}" {{ old('company_name', $empanelment_status->tpa_id ?? '') == $tpa->id ? 'selected' : '' }}>{{ $tpa->company }}</option>
+                    <option company_type="{{ $tpa->company_type }}" value="{{ $tpa->id }}" {{ old('company_name', $empanelment_status->tpa_id ?? '') == $tpa->id ? 'selected' : '' }}>{{ $tpa->company }}</option>
                     @endforeach
                 </select>
                 @error('company_name')
@@ -235,6 +235,12 @@
             }
         }
 
+        function setType(){
+            var specialization = $("#company_name").select2().find(":selected").attr("company_type");
+            $('#company_type').val(specialization);
+        }
+
+
         $('select').on('change', function(){
             var id = $(this).attr('id');
             if($(this).val() == 'No'){
@@ -243,6 +249,7 @@
                 $("#"+id+"_file").attr('disabled',false);
             }
         });
+
         $(".show-hide-empanelment").toggle('fast');
 
         $(document).ready(function() {

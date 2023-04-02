@@ -46,6 +46,23 @@
                                     @enderror
                                 </div>
 
+                                <div class="col-md-12 mt-3">
+                                    <label for="company">Company Type <span class="text-danger">*</span></label>
+                                    <select class="form-select" id="company_type" name="company_type">
+                                        <option value="">Select </option>
+                                        <option value="Insurance Co." {{ old('company_type') }}>Insurance Co.</option>
+                                        <option value="TPA" {{ old('company_type') }}>TPA</option>
+                                        <option value="BHC" {{ old('company_type') }}>BHC</option>
+                                        <option value="Self" {{ old('company_type') }}>Self</option>
+                                        <option value="Government" {{ old('company_type') }}>Government</option>
+                                        <option value="PSU" {{ old('company_type') }}>PSU</option>
+                                        <option value="Private Corporate" {{ old('company_type') }}>Private Corporate</option>
+\                                </select>
+                                @error('company_type')
+                                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
+
                                 <div class="col-md-12 text-end mt-3">
                                     <button type="submit" class="btn btn-success" form="adminForm">Create
                                         TPA</button>
