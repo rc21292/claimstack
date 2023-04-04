@@ -56,6 +56,24 @@ class TpaCompanyController extends Controller
 
     $tpa =  Tpa::create($request->all());
 
+    if ($request->hasfile('claim_reimbursement_form')) {
+        $claim_reimbursement_form                    = $request->file('claim_reimbursement_form');
+        $name                       = $claim_reimbursement_form->getClientOriginalName();
+        $claim_reimbursement_form->storeAs('uploads/tpa/' . $tpa->id . '/', $name, 'public');
+        TPA::where('id', $tpa->id)->update([
+            'claim_reimbursement_form'               =>  $name
+        ]);
+    }
+
+    if ($request->hasfile('cashless_pre_authorization_request_form')) {
+        $cashless_pre_authorization_request_form                    = $request->file('cashless_pre_authorization_request_form');
+        $name                       = $cashless_pre_authorization_request_form->getClientOriginalName();
+        $cashless_pre_authorization_request_form->storeAs('uploads/tpa/' . $tpa->id . '/', $name, 'public');
+        TPA::where('id', $tpa->id)->update([
+            'cashless_pre_authorization_request_form'               =>  $name
+        ]);
+    }
+
     return redirect()->route('super-admin.tpa.index')->with('success', 'TPA created successfully');
     }
 
@@ -104,6 +122,26 @@ class TpaCompanyController extends Controller
         $this->validate($request, $rules, $messages);
 
         $tpa =  Tpa::find($id)->update($request->all());
+
+        $tpa =  Tpa::find($id);
+
+        if ($request->hasfile('claim_reimbursement_form')) {
+        $claim_reimbursement_form                    = $request->file('claim_reimbursement_form');
+        $name                       = $claim_reimbursement_form->getClientOriginalName();
+        $claim_reimbursement_form->storeAs('uploads/tpa/' . $tpa->id . '/', $name, 'public');
+        TPA::where('id', $tpa->id)->update([
+            'claim_reimbursement_form'               =>  $name
+        ]);
+    }
+
+    if ($request->hasfile('cashless_pre_authorization_request_form')) {
+        $cashless_pre_authorization_request_form                    = $request->file('cashless_pre_authorization_request_form');
+        $name                       = $cashless_pre_authorization_request_form->getClientOriginalName();
+        $cashless_pre_authorization_request_form->storeAs('uploads/tpa/' . $tpa->id . '/', $name, 'public');
+        TPA::where('id', $tpa->id)->update([
+            'cashless_pre_authorization_request_form'               =>  $name
+        ]);
+    }
 
         return redirect()->route('super-admin.tpa.index')->with('success', 'TPA updated successfully');
     }

@@ -12,5 +12,6 @@ class Tpa extends Model
     protected $fillable = [
         'company',
         'company_type',
+        'comment',
     ];
 }

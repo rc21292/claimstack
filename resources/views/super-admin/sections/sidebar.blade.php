@@ -42,7 +42,7 @@
                 <div class="collapse" id="tpa">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="{{ route('super-admin.tpa.index')}}">Hospital Empanelment</a>
+                            <a href="{{ route('super-admin.tpa.index')}}">Hospital Empanelment Status</a>
                         </li>
                     </ul>
                 </div>

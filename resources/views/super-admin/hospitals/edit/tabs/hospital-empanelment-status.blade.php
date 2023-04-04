@@ -9,7 +9,6 @@
                 <button style="float:right;" type="button" class="btn btn-danger show-empanelment"> <i class="mdi mdi-plus"></i> Add Insurance Co. / TPA / Other </button>
             </div>
 
-
             <div class="col-md-12 show-hide-empanelment mt-3">
                 <label for="company_name">Company Name<span class="text-danger">*</span></label>
                 <select class="form-select select2" data-toggle="select2" onchange="setType()" id="company_name" name="company_name">

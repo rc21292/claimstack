@@ -1,5 +1,5 @@
 @extends('layouts.super-admin')
-@section('title', 'TPA')
+@section('title', 'Company')
 @section('content')
     <!-- Start Content-->
     <div class="container-fluid">
@@ -15,12 +15,12 @@
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="submit">Search</button>
                                   <a href="{{ route('super-admin.tpa.create') }}"
-                                    class="btn btn-primary"><i class="mdi mdi-plus"></i> TPA</a>
+                                    class="btn btn-primary"><i class="mdi mdi-plus"></i> Company</a>
                                 </div>
                             </div>
                         </form>
                     </div>
-                    <h4 class="page-title">Manage TPA</h4>
+                    <h4 class="page-title">Manage Company</h4>
                 </div>
             </div>
         </div>

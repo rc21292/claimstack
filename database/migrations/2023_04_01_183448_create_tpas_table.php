@@ -17,6 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('company')->nullable();
             $table->string('company_type')->nullable();
+            $table->string('claim_reimbursement_form')->nullable();
+            $table->string('cashless_pre_authorization_request_form')->nullable();
+            $table->string('comment')->nullable();
             $table->timestamps();
         });
     }
