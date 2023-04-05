@@ -5,6 +5,7 @@ namespace App\Http\Controllers\SuperAdmin;
 use App\Http\Controllers\Controller;
 use App\Models\Tpa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File; 
 
 class TpaCompanyController extends Controller
 {
@@ -74,7 +75,7 @@ class TpaCompanyController extends Controller
         ]);
     }
 
-    return redirect()->route('super-admin.tpa.index')->with('success', 'TPA created successfully');
+    return redirect()->route('super-admin.tpa.index')->with('success', 'Company created successfully');
     }
 
     /**
@@ -143,7 +144,7 @@ class TpaCompanyController extends Controller
         ]);
     }
 
-        return redirect()->route('super-admin.tpa.index')->with('success', 'TPA updated successfully');
+        return redirect()->route('super-admin.tpa.index')->with('success', 'Company updated successfully');
     }
 
     /**
@@ -154,8 +155,20 @@ class TpaCompanyController extends Controller
      */
     public function destroy($id)
     {
-        $tpa                     =   Tpa::find($id)->delete();
+        $tpa  =  Tpa::find($id)->delete();
 
-        return redirect()->route('super-admin.tpa.index')->with('success', 'TPA deleted successfully');
+        return redirect()->route('super-admin.tpa.index')->with('success', 'Company deleted successfully');
+    }
+
+
+    public function deleteFile($id, $field)
+    {
+        $tpa = Tpa::where('id', $id)->first();
+        $filename = 'uploads/tpa/' . $id . '/'. $tpa->$field;
+        File::delete($filename);
+
+        $tpa = Tpa::where('id', $id)->update([$field => '']);
+
+        return redirect()->back()->with('success', 'Company file deleted successfully');
     }
 }

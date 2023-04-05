@@ -73,7 +73,7 @@
                                     <div class="input-group" style="line-height:36px;" >
                                         Claim Form for Reimbursement
                                         <div style="margin-left: 59%;">
-                                            <input type="file" name="claim_reimbursement_form" id="claim_reimbursement_form_upload" hidden />
+                                            <input type="file" name="claim_reimbursement_form" id="claim_reimbursement_form_upload" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                                             <label for="claim_reimbursement_form_upload" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
                                             <a href="avaScript:void(0)" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
                                             <a href="avaScript:void(0)" download="" class="btn btn-warning download-label"><i class="mdi mdi-trash-can"></i></a>
@@ -85,7 +85,7 @@
                                     <div class="input-group" style="line-height:36px;" >
                                         Cashless Pre - Authorization Request Form
                                         <div style="margin-left: 50%;">
-                                            <input type="file" name="cashless_pre_authorization_request_form" id="cashless_pre_authorization_request_form_upload" hidden />
+                                            <input type="file" name="cashless_pre_authorization_request_form" id="cashless_pre_authorization_request_form_upload" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                                             <label for="cashless_pre_authorization_request_form_upload" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
                                             <a href="avaScript:void(0)" disabled download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
                                             <a href="avaScript:void(0)" disabled download="" class="btn btn-warning download-label"><i class="mdi mdi-trash-can"></i></a>

@@ -209,6 +209,8 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
 
     Route::resource('bill-entries', BillEntryController::class);
 
+    Route::get('tpa-delete-file/{id}/{field}', [TpaCompanyController::class, 'deleteFile'])->name('delete-tpa-file');
+
     Route::resource('tpa', TpaCompanyController::class);
 
 

@@ -14,7 +14,7 @@
                 <select class="form-select select2" data-toggle="select2" onchange="setType()" id="company_name" name="company_name">
                     <option value="">Select Company Name</option>
                     @foreach ($tpas as $tpa)
-                    <option company_type="{{ $tpa->company_type }}" value="{{ $tpa->id }}" {{ old('company_name', $empanelment_status->tpa_id ?? '') == $tpa->id ? 'selected' : '' }}>{{ $tpa->company }}</option>
+                    <option company_type="{{ $tpa->company_type }}" form1="{{ $tpa->claim_reimbursement_form }}" form2="{{ $tpa->cashless_pre_authorization_request_form }}" value="{{ $tpa->id }}" {{ old('company_name', $empanelment_status->tpa_id ?? '') == $tpa->id ? 'selected' : '' }}>{{ $tpa->company }}</option>
                     @endforeach
                 </select>
                 @error('company_name')
@@ -165,9 +165,7 @@
                 <div class="input-group" style="line-height:36px;" >
                     Claim Form for Reimbursement
                     <div style="margin-left: 69%;">
-                        @isset($tpa->claim_reimbursement_form)
-                        <a href="{{ asset('storage/uploads/tpa/'.$tpa->id.'/'.$tpa->claim_reimbursement_form) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-                        @endisset
+                        <a id="form1" href="JavaScript:void(0)" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
                     </div>
                 </div> 
             </div>
@@ -176,9 +174,7 @@
                 <div class="input-group" style="line-height:36px;" >
                     Cashless Pre - Authorization Request Form
                     <div style="margin-left: 60%;">
-                        @isset($tpa->cashless_pre_authorization_request_form)
-                        <a href="{{ asset('storage/uploads/tpa/'.$tpa->id.'/'.$tpa->cashless_pre_authorization_request_form) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-                        @endisset
+                        <a id="form2" href="JavaScript:void(0)" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
                     </div>
                 </div> 
             </div>
@@ -253,7 +249,16 @@
 
         function setType(){
             var specialization = $("#company_name").select2().find(":selected").attr("company_type");
-            $('#company_type').val(specialization);
+            var id = $("#company_name").select2().find(":selected").val();
+            alert(id);
+            var form1 = $("#company_name").select2().find(":selected").attr("form1");
+            var form2 = $("#company_name").select2().find(":selected").attr("form2");
+
+            $('#company_type').val(specialization);            
+
+            $('#form1').attr('href',"{{ asset('storage/uploads/tpa/') }}/"+id+'/'+form1);
+
+            $('#form2').attr('href',"{{ asset('storage/uploads/tpa/') }}/"+id+'/'+form2);
         }
 
 
