@@ -250,7 +250,6 @@
         function setType(){
             var specialization = $("#company_name").select2().find(":selected").attr("company_type");
             var id = $("#company_name").select2().find(":selected").val();
-            alert(id);
             var form1 = $("#company_name").select2().find(":selected").attr("form1");
             var form2 = $("#company_name").select2().find(":selected").attr("form2");
 

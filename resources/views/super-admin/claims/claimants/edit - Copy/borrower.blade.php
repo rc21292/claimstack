@@ -232,7 +232,7 @@
                                         <div class="col-md-3 mt-1 mb-3">
                                             <input type="text" maxlength="25" class="form-control"
                                                 id="patient_middlename" name="patient_middlename" maxlength="30"
-                                                placeholder="Last name"
+                                                placeholder="Middle name"
                                                 value="{{ old('patient_middlename', @$claimant->patient->middlename) }}"
                                                 readonly>
                                             @error('patient_middlename')
@@ -507,12 +507,12 @@
                                         </div>
 
                                         <div class="col-md-4 mt-3">
-                                            <label for="dob">Borrower DOB <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" id="dob" name="dob"
-                                                max="{{ date('Y-m-d') }}" value="{{ old('dob', @$borrower->dob) }}"
+                                            <label for="borrower_dob">Borrower DOB <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="borrower_dob" name="borrower_dob"
+                                                max="{{ date('Y-m-d') }}" value="{{ old('borrower_dob', @$borrower->borrower_dob) }}"
                                                 onchange="calculateAge();" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
 
-                                            @error('dob')
+                                            @error('borrower_dob')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -582,20 +582,33 @@
                                                         {{ old('borrower_id_proof', @$borrower->patient_id_proof) == 'Passport' ? 'selected' : '' }}>
                                                         Passport</option>
                                                 </select>
+                                                @isset($borrower->borrower_id_proof_file)
+                                                    <a href="{{ asset('storage/uploads/borrower/'.$borrower->id.'/'.$borrower->borrower_id_proof_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+                                                @endisset
                                                 <a id="borrower_id_proof_file_download" style="display:none;"
                                                     href="" download=""
                                                     class="btn btn-warning download-label"><i
                                                         class="mdi mdi-download"></i></a>
+                                                <input type="file" name="borrower_id_proof_file"
+                                                    id="borrower_id_proof_file" hidden
+                                                    onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
+                                                <label for="borrower_id_proof_file"
+                                                    class="btn btn-primary upload-label"><i
+                                                        class="mdi mdi-upload"></i></label>
                                             </div>
 
                                             @error('borrower_id_proof')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
+                                            @error('borrower_id_proof_file')
+                                                <span id="name-error"
+                                                    class="error invalid-feedback">{{ $message }}</span>
+                                            @enderror
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="nature_of_income">Nature of Income</label>
+                                            <label for="nature_of_income">Nature of Income <span class="text-danger">*</span></label>
                                             <select class="form-control" id="nature_of_income" name="nature_of_income">
                                                 <option value="">Select</option>
                                                 <option @if (old('nature_of_income', @$borrower->nature_of_income) == 'Salaried') selected @endif value="Salaried">
@@ -610,7 +623,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="organization">Name of the Organization</label>
+                                            <label for="organization">Name of the Organization <span class="text-danger">*</span></label>
                                             <input type="text" maxlength="60" class="form-control" id="organization"
                                                 name="organization" placeholder="Name of the Organization"
                                                 value="{{ old('organization', @$borrower->organization) }}">
@@ -622,14 +635,14 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="member_or_employer_id">Member ID No./Employee ID (Client
-                                                ID)</label>
+                                                ID) </label>
                                                 <div class="input-group">
                                             <input type="text" maxlength="12" class="form-control"
                                                 id="member_or_employer_id" name="member_or_employer_id"
                                                 placeholder="Member ID No./Employee ID (Client ID)"
                                                 value="{{ old('member_or_employer_id', @$borrower->member_or_employer_id) }}">
                                                 @isset($borrower->member_or_employer_id_file)
-                                                    <a href="{{ asset('storage/uploads/borrower/'.$borrower->id.'/'.@$borrower->member_or_employer_id_file) }}" download=""  class="btn btn-warning download-label"><i  class="mdi mdi-download"></i></a>
+                                                    <a href="{{ asset('storage/uploads/borrower/'.$borrower->id.'/'.$borrower->member_or_employer_id_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
                                                 @endisset
                                                 <input type="file" name="member_or_employer_id_file"
                                                     id="member_or_employer_id_file" hidden
@@ -680,7 +693,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="borrower_official_email_id">Borrower official email id<span
-                                                    class="text-danger">*</span></label>
+                                                    class="text-danger"></span></label>
                                             <input type="email" class="form-control" id="borrower_official_email_id"
                                                 name="borrower_official_email_id" maxlength="45"
                                                 placeholder="Enter Borrower official email id"
@@ -702,8 +715,20 @@
                                                     href="" download=""
                                                     class="btn btn-warning download-label"><i
                                                         class="mdi mdi-download"></i></a>
+                                                 @isset($borrower->borrower_pan_no_file)
+                                                    <a href="{{ asset('storage/uploads/borrower/'.$borrower->id.'/'.$borrower->borrower_pan_no_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+                                                @endisset
+                                                <input type="file" name="borrower_pan_no_file"
+                                                    id="borrower_pan_no_file" hidden
+                                                    onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
+                                                <label for="borrower_pan_no_file" class="btn btn-primary upload-label"><i
+                                                        class="mdi mdi-upload"></i></label>
                                             </div>
                                             @error('borrower_pan_no')
+                                                <span id="name-error"
+                                                    class="error invalid-feedback">{{ $message }}</span>
+                                            @enderror
+                                            @error('borrower_pan_no_file')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -723,8 +748,21 @@
                                                     href="" download=""
                                                     class="btn btn-warning download-label"><i
                                                         class="mdi mdi-download"></i></a>
+                                                @isset($borrower->borrower_aadhar_no_file)
+                                                    <a href="{{ asset('storage/uploads/borrower/'.$borrower->id.'/'.$borrower->borrower_aadhar_no_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+                                                @endisset
+                                                <input type="file" name="borrower_aadhar_no_file"
+                                                    id="borrower_aadhar_no_file" hidden
+                                                    onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
+                                                <label for="borrower_aadhar_no_file"
+                                                    class="btn btn-primary upload-label"><i
+                                                        class="mdi mdi-upload"></i></label>
                                             </div>
                                             @error('borrower_aadhar_no')
+                                                <span id="name-error"
+                                                    class="error invalid-feedback">{{ $message }}</span>
+                                            @enderror
+                                            @error('borrower_aadhar_no_file')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -742,9 +780,21 @@
                                                         {{ old('bank_statement', @$borrower->bank_statement) == 'No' ? 'selected' : '' }}>
                                                         No </option>
                                                 </select>
+                                                @isset($borrower->bank_statement_file)
+                                                    <a href="{{ asset('storage/uploads/borrower/'.$borrower->id.'/'.$borrower->bank_statement_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+                                                @endisset
+                                                <input type="file" name="bank_statement_file" id="bank_statement_file"
+                                                    hidden
+                                                    onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
+                                                <label for="bank_statement_file" class="btn btn-primary upload-label"><i
+                                                        class="mdi mdi-upload"></i></label>
                                             </div>
 
                                             @error('bank_statement')
+                                                <span id="name-error"
+                                                    class="error invalid-feedback">{{ $message }}</span>
+                                            @enderror
+                                            @error('bank_statement_file')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -763,9 +813,20 @@
                                                         {{ old('itr', @$borrower->itr) == 'No' ? 'selected' : '' }}>No
                                                     </option>
                                                 </select>
+                                                @isset($borrower->itr_file)
+                                                    <a href="{{ asset('storage/uploads/borrower/'.$borrower->id.'/'.$borrower->itr_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+                                                @endisset
+                                                <input type="file" name="itr_file" id="itr_file" hidden
+                                                    onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
+                                                <label for="itr_file" class="btn btn-primary upload-label"><i
+                                                        class="mdi mdi-upload"></i></label>
                                             </div>
 
                                             @error('itr')
+                                                <span id="name-error"
+                                                    class="error invalid-feedback">{{ $message }}</span>
+                                            @enderror
+                                            @error('itr_file')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -773,7 +834,7 @@
 
 
                                         <div class="col-md-6 mt-3">
-                                            <label>Borrower Cancel Cheque</label>
+                                            <label>Borrower Cancel Cheque / Pass Book <span class="text-danger">*</span></label>
                                             <div class="input-group">
                                                 <select class="form-select" id="borrower_cancel_cheque"
                                                     name="borrower_cancel_cheque">
@@ -785,9 +846,22 @@
                                                         {{ old('borrower_cancel_cheque', @$borrower->borrower_cancel_cheque) == 'No' ? 'selected' : '' }}>
                                                         No </option>
                                                 </select>
+                                                @isset($borrower->borrower_cancel_cheque_file)
+                                                    <a href="{{ asset('storage/uploads/borrower/'.$borrower->id.'/'.$borrower->borrower_cancel_cheque_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+                                                @endisset
+                                                <input type="file" name="borrower_cancel_cheque_file"
+                                                    id="borrower_cancel_cheque_file" hidden
+                                                    onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
+                                                <label for="borrower_cancel_cheque_file"
+                                                    class="btn btn-primary upload-label"><i
+                                                        class="mdi mdi-upload"></i></label>
                                             </div>
 
                                             @error('borrower_cancel_cheque')
+                                                <span id="name-error"
+                                                    class="error invalid-feedback">{{ $message }}</span>
+                                            @enderror
+                                            @error('borrower_cancel_cheque_file')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -863,13 +937,26 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="co_borrower_nominee_dob">Co-Borrower / Nominee DOB <span
-                                                    class="text-danger">*</span></label>
+                                                    class="text-danger"></span></label>
                                             <div class="input-group">
                                                 <input type="text" class="form-control" id="co_borrower_nominee_dob"
                                                     max="{{ date('Y-m-d') }}" name="co_borrower_nominee_dob"
                                                     value="{{ old('co_borrower_nominee_dob', @$borrower->co_borrower_nominee_dob) }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
+                                                    @isset($borrower->co_borrower_nominee_dob_file)
+                                                    <a href="{{ asset('storage/uploads/borrower/'.$borrower->id.'/'.$borrower->co_borrower_nominee_dob_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+                                                @endisset
+                                                <input type="file" name="co_borrower_nominee_dob_file"
+                                                    id="co_borrower_nominee_dob_file" hidden
+                                                    onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
+                                                <label for="co_borrower_nominee_dob_file"
+                                                    class="btn btn-primary upload-label"><i
+                                                        class="mdi mdi-upload"></i></label>
                                             </div>
                                             @error('co_borrower_nominee_dob')
+                                                <span id="name-error"
+                                                    class="error invalid-feedback">{{ $message }}</span>
+                                            @enderror
+                                            @error('co_borrower_nominee_dob_file')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -895,8 +982,21 @@
                                                         Other
                                                     </option>
                                                 </select>
+                                                @isset($borrower->co_borrower_nominee_gender_file)
+                                                    <a href="{{ asset('storage/uploads/borrower/'.$borrower->id.'/'.$borrower->co_borrower_nominee_gender_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+                                                @endisset
+                                                <input type="file" name="co_borrower_nominee_gender_file"
+                                                    id="co_borrower_nominee_gender_file" hidden
+                                                    onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
+                                                <label for="co_borrower_nominee_gender_file"
+                                                    class="btn btn-primary upload-label"><i
+                                                        class="mdi mdi-upload"></i></label>
                                             </div>
                                             @error('co_borrower_nominee_gender')
+                                                <span id="name-error"
+                                                    class="error invalid-feedback">{{ $message }}</span>
+                                            @enderror
+                                            @error('co_borrower_nominee_gender_file')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -950,9 +1050,22 @@
                                                         {{ old('co_borrower_other_documents', @$borrower->co_borrower_other_documents) == 'No' ? 'selected' : '' }}>
                                                         No </option>
                                                 </select>
+                                                @isset($borrower->co_borrower_other_documents_file)
+                                                    <a href="{{ asset('storage/uploads/borrower/'.$borrower->id.'/'.$borrower->co_borrower_other_documents_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+                                                @endisset
+                                                <input type="file" name="co_borrower_other_documents_file"
+                                                    id="co_borrower_other_documents_file" hidden
+                                                    onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
+                                                <label for="co_borrower_other_documents_file"
+                                                    class="btn btn-primary upload-label"><i
+                                                        class="mdi mdi-upload"></i></label>
                                             </div>
 
                                             @error('co_borrower_other_documents')
+                                                <span id="name-error"
+                                                    class="error invalid-feedback">{{ $message }}</span>
+                                            @enderror
+                                            @error('co_borrower_other_documents_file')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -975,7 +1088,7 @@
                                         <div class="col-md-12 mt-3">
                                             <label for="co_borrower_comments">Co-Borrower / Borrower Comments </label>
                                             <textarea class="form-control" id="co_borrower_comments" name="co_borrower_comments" maxlength="250"
-                                                placeholder="Claimant Comments" rows="5">{{ old('co_borrower_comments', @$borrower->co_borrower_comments) }}</textarea>
+                                                placeholder="Co-Borrower / Borrower Comments" rows="5">{{ old('co_borrower_comments', @$borrower->co_borrower_comments) }}</textarea>
                                             @error('co_borrower_comments')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
@@ -1138,5 +1251,52 @@
                     break;
             }
         }
-    </script>
+
+        $('select').on('change', function(){
+            var id = $(this).attr('id');
+            if($(this).val() == 'No' || $(this).val() == 'NA'){
+                $("#"+id+"_file").attr('disabled',true);
+            }else{
+                $("#"+id+"_file").attr('disabled',false);
+            }
+        });
+
+        $( document ).ready(function() {
+            if($("#itr").val() == 'No'){
+                $("#itr_file").attr('disabled',true);
+            }else{
+                $("#itr_file").attr('disabled',false);
+            }
+
+            if($("#borrower_cancel_cheque").val() == 'No' || $("#borrower_cancel_cheque").val() == 'NA'){
+                $("#borrower_cancel_cheque_file").attr('disabled',true);
+            }else{
+                $("#borrower_cancel_cheque_file").attr('disabled',false);
+            }
+
+            if($("#co_borrower_other_documents").val() == 'No' || $("#co_borrower_other_documents").val() == 'NA'){
+                $("#co_borrower_other_documents_file").attr('disabled',true);
+            }else{
+                $("#co_borrower_other_documents_file").attr('disabled',false);
+            }
+
+            if($("#bank_statement").val() == 'No' || $("#bank_statement").val() == 'NA'){
+                $("#bank_statement_file").attr('disabled',true);
+            }else{
+                $("#bank_statement_file").attr('disabled',false);
+            }
+        });
+
+        $('#co_borrower_nominee_dob').datepicker({
+            endDate: '+0d',
+            autoclose: true,
+        });
+
+        $('#borrower_dob').datepicker({
+            endDate: '+0d',
+            autoclose: true,
+        });
+
+
+</script>
 @endpush

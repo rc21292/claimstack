@@ -50,6 +50,12 @@ class BorrowerController extends Controller
         ->select('claimants.*')
         ->get();
 
+        /*$claims = Claim::with(['hospital','patient'])->where('lending_required', 'Yes')->orWhere('lending_required', 'No')
+        ->leftJoin('borrowers','borrowers.claim_id','claims.id')
+        ->whereNull('borrowers.claim_id')
+        ->select('claims.*')
+        ->get();*/
+
         $insurers        = Insurer::get();
 
         return view('super-admin.claims.borrowers.create.create', compact('claimants', 'insurers'));
