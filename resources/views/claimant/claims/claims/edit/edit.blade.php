@@ -53,6 +53,14 @@
                             @endif
                         </li>
 
+                        <li class="nav-item">
+                            <a href="#claim_creation_tab" data-bs-toggle="tab" aria-expanded="true"
+                                class="nav-link rounded-0 active">
+                                <i class="mdi mdi-home-variant d-md-none d-block"></i>
+                                <span class="d-none d-md-block">Claim ID Creation / Intimation</span>
+                            </a>
+                        </li>
+
                     </ul>
 
                     <div class="tab-content">

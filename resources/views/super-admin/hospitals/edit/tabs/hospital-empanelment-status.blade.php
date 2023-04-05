@@ -51,7 +51,7 @@
                 @isset($empanelment_status->empanelled_file)
                     <a href="{{ asset('storage/uploads/hospital/empanelment_status/'.$empanelment_status->hospital_id.'/'.$empanelment_status->empanelled_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
                 @endisset
-                <input type="file" name="empanelled_file" id="empanelled_file_id" hidden />
+                <input type="file" name="empanelled_file" id="empanelled_file_id" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                     <label for="empanelled_file_id" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
                     </div>
@@ -84,7 +84,7 @@
                 @isset($empanelment_status->signed_mou_file)
                     <a href="{{ asset('storage/uploads/hospital/empanelment_status/'.$empanelment_status->hospital_id.'/'.$empanelment_status->signed_mou_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
                 @endisset
-                <input type="file" name="signed_mou_file" id="signed_mou_file_id" hidden />
+                <input type="file" name="signed_mou_file" id="signed_mou_file_id" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
                     <label for="signed_mou_file_id" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
                     </div>
@@ -108,7 +108,7 @@
                 @isset($empanelment_status->agreed_packages_and_tariff_pdf_other_images_file)
                     <a href="{{ asset('storage/uploads/hospital/empanelment_status/'.$empanelment_status->hospital_id.'/'.$empanelment_status->agreed_packages_and_tariff_pdf_other_images_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
                 @endisset
-                <input type="file" name="agreed_packages_and_tariff_pdf_other_images_file" id="agreed_packages_and_tariff_pdf_other_images_file_id" hidden />
+                <input type="file" name="agreed_packages_and_tariff_pdf_other_images_file" id="agreed_packages_and_tariff_pdf_other_images_file_id" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
                     <label for="agreed_packages_and_tariff_pdf_other_images_file_id" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
                     </div>
@@ -132,7 +132,7 @@
                 @isset($empanelment_status->upload_packages_and_tariff_excel_or_csv_file)
                     <a href="{{ asset('storage/uploads/hospital/empanelment_status/'.$empanelment_status->hospital_id.'/'.$empanelment_status->upload_packages_and_tariff_excel_or_csv_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
                 @endisset
-                <input type="file" name="upload_packages_and_tariff_excel_or_csv_file" @if($empanelment_status->upload_packages_and_tariff_excel_or_csv ?? '' == 'No') disabled @endif id="upload_packages_and_tariff_excel_or_csv_file" hidden />
+                <input type="file" name="upload_packages_and_tariff_excel_or_csv_file" @if($empanelment_status->upload_packages_and_tariff_excel_or_csv ?? '' == 'No') disabled @endif id="upload_packages_and_tariff_excel_or_csv_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
                     <label for="upload_packages_and_tariff_excel_or_csv_file" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
                     </div>
@@ -161,10 +161,27 @@
         <input type="hidden" name="form_type" value="empanelment_status_update">
         <div class="form-group row">
 
-            <div class="card-header bg-dark text-white mt-3 show-hide-empanelment"> Claim Form for Reimbursement </div>
+            <div class="card-header bg-dark text-white mt-3 show-hide-empanelment"> 
+                <div class="input-group" style="line-height:36px;" >
+                    Claim Form for Reimbursement
+                    <div style="margin-left: 69%;">
+                        @isset($tpa->claim_reimbursement_form)
+                        <a href="{{ asset('storage/uploads/tpa/'.$tpa->id.'/'.$tpa->claim_reimbursement_form) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+                        @endisset
+                    </div>
+                </div> 
+            </div>
 
-
-            <div class="card-header bg-dark text-white mt-3 show-hide-empanelment"> Cashless Pre - Authorization Request Form</div>
+            <div class="card-header bg-dark text-white mt-3 show-hide-empanelment"> 
+                <div class="input-group" style="line-height:36px;" >
+                    Cashless Pre - Authorization Request Form
+                    <div style="margin-left: 60%;">
+                        @isset($tpa->cashless_pre_authorization_request_form)
+                        <a href="{{ asset('storage/uploads/tpa/'.$tpa->id.'/'.$tpa->cashless_pre_authorization_request_form) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
+                        @endisset
+                    </div>
+                </div> 
+            </div>
 
 
             <div class="col-md-12 show-hide-empanelment mt-3">
@@ -178,7 +195,7 @@
                     @isset($empanelment_status->negative_listing_status_file)
                         <a href="{{ asset('storage/uploads/hospital/empanelment_status/'.$empanelment_status->hospital_id.'/'.$empanelment_status->negative_listing_status_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
                     @endisset
-                    <input type="file" name="negative_listing_status_file" @if($empanelment_status->negative_listing_status == 'No') disabled @endif id="negative_listing_status_file" hidden />
+                    <input type="file" name="negative_listing_status_file" @if($empanelment_status->negative_listing_status == 'No') disabled @endif id="negative_listing_status_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
                     <label for="negative_listing_status_file" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
                     </div>
