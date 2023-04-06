@@ -24,4 +24,9 @@ class HospitalEmpanelmentStatus extends Model
         'negative_listing_status_file',
         'hospital_empanelment_status_comments',
     ];
+
+    public function company()
+    {
+        return $this->belongsTo(TPA::class, 'tpa_id');
+    }
 }

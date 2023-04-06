@@ -1,9 +1,8 @@
 <div class="card-body">
-    <form action="{{ route('super-admin.hospitals.empanelment-status-store') }}" method="post" id="hospital-empanelment-form"
+    <form action="{{ route('super-admin.hospitals.empanelment-status', $hospital->id) }}" method="post" id="hospital-empanelment-form"
         enctype="multipart/form-data">
         @csrf
-        @method('POST')
-        <input type="hidden" name="id" value="{{$hospital->id}}">
+        @method('PUT')
         <input type="hidden" name="form_type" value="empanelment_status">
         <div class="form-group row">
             <div class="col-md-12">
@@ -15,7 +14,7 @@
                 <select class="form-select select2" data-toggle="select2" onchange="setType()" id="company_name" name="company_name">
                     <option value="">Select Company Name</option>
                     @foreach ($tpas as $tpa)
-                    <option company_type="{{ $tpa->company_type }}" form1="{{ $tpa->claim_reimbursement_form }}" form2="{{ $tpa->cashless_pre_authorization_request_form }}" value="{{ $tpa->id }}" {{ old('company_name') == $tpa->id ? '' : '' }}>{{ $tpa->company }}</option>
+                    <option company_type="{{ $tpa->company_type }}" form1="{{ $tpa->claim_reimbursement_form }}" form2="{{ $tpa->cashless_pre_authorization_request_form }}" value="{{ $tpa->id }}" {{ old('company_name', $empanelment_status->tpa_id ?? '') == $tpa->id ? 'selected' : '' }}>{{ $tpa->company }}</option>
                     @endforeach
                 </select>
                 @error('company_name')
@@ -26,13 +25,13 @@
                 <label for="company_type">Company Type<span class="text-danger">*</span></label>
                 <select class="form-select" id="company_type" name="company_type">
                     <option value="">Select Company Type</option>
-                    <option value="Insurance Co." {{ old('company_type') == "Insurance Co." ? '' : '' }}>Insurance Co.</option>
-                    <option value="TPA" {{ old('company_type') == "TPA" ? '' : '' }}>TPA</option>
-                    <option value="BHC" {{ old('company_type') == "BHC" ? '' : '' }}>BHC</option>
-                    <option value="Self" {{ old('company_type') == "Self" ? '' : '' }}>Self</option>
-                    <option value="Government" {{ old('company_type') == "Government" ? '' : '' }}>Government</option>
-                    <option value="PSU" {{ old('company_type') == "PSU" ? '' : '' }}>PSU</option>
-                    <option value="Private Corporate" {{ old('company_type') == "Private Corporate" ? '' : '' }}>Private Corporate</option>
+                    <option value="Insurance Co." {{ old('company_type', $empanelment_status->company_type ?? '') == "Insurance Co." ? 'selected' : '' }}>Insurance Co.</option>
+                    <option value="TPA" {{ old('company_type', $empanelment_status->company_type ?? '') == "TPA" ? 'selected' : '' }}>TPA</option>
+                    <option value="BHC" {{ old('company_type', $empanelment_status->company_type ?? '') == "BHC" ? 'selected' : '' }}>BHC</option>
+                    <option value="Self" {{ old('company_type', $empanelment_status->company_type ?? '') == "Self" ? 'selected' : '' }}>Self</option>
+                    <option value="Government" {{ old('company_type', $empanelment_status->company_type ?? '') == "Government" ? 'selected' : '' }}>Government</option>
+                    <option value="PSU" {{ old('company_type', $empanelment_status->company_type ?? '') == "PSU" ? 'selected' : '' }}>PSU</option>
+                    <option value="Private Corporate" {{ old('company_type', $empanelment_status->company_type ?? '') == "Private Corporate" ? 'selected' : '' }}>Private Corporate</option>
                 </select>
                 @error('company_type')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -46,12 +45,12 @@
                 <div class="input-group">
                 <select onchange="enableDisable()" class="form-select" id="empanelled" name="empanelled">
                     <option value="">Select Company Name</option>
-                    <option value="Yes" {{ old('empanelled') == 'Yes' ? '' : '' }}>Yes</option>
-                    <option value="No" {{ old('empanelled') == 'No' ? '' : '' }}>No</option>
+                    <option value="Yes" {{ old('empanelled', $empanelment_status->empanelled ?? '') == 'Yes' ? 'selected' : '' }}>Yes</option>
+                    <option value="No" {{ old('empanelled', $empanelment_status->empanelled ?? '') == 'No' ? 'selected' : '' }}>No</option>
                 </select>
-                {{-- @isset($empanelment_status->empanelled_file)
+                @isset($empanelment_status->empanelled_file)
                     <a href="{{ asset('storage/uploads/hospital/empanelment_status/'.$empanelment_status->hospital_id.'/'.$empanelment_status->empanelled_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-                @endisset --}} 
+                @endisset
                 <input type="file" name="empanelled_file" id="empanelled_file_id" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                     <label for="empanelled_file_id" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
@@ -68,7 +67,7 @@
             <div class="col-md-6 show-hide-empanelment mt-3">
                 <label for="hospital_id_as_per_the_selected_company">Hospital ID (as per the selected company) <span class="text-danger">*</span></label>
                 <input type="text" maxlength="25" readonly class="form-control" id="hospital_id_as_per_the_selected_company" name="hospital_id_as_per_the_selected_company"
-                placeholder="Enter Hospital ID" value="{{ old('hospital_id_as_per_the_selected_company') }}">
+                placeholder="Enter Hospital ID" value="{{ old('hospital_id_as_per_the_selected_company', $empanelment_status->hospital_id_as_per_the_selected_company ?? '') }}">
                 @error('hospital_id_as_per_the_selected_company')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -79,12 +78,12 @@
                 <div class="input-group">
                 <select disabled class="form-select" id="signed_mou" name="signed_mou">
                     <option value="">Select Signed MoU</option>
-                    <option value="Yes" {{ old('signed_mou') == 'Yes' ? 'selected' : '' }}>Yes</option>
-                    <option value="No" {{ old('signed_mou') == 'No' ? 'selected' : '' }}>No</option>
+                    <option value="Yes" {{ old('signed_mou', $empanelment_status->signed_mou ?? '') == 'Yes' ? 'selected' : '' }}>Yes</option>
+                    <option value="No" {{ old('signed_mou', $empanelment_status->signed_mou ?? '') == 'No' ? 'selected' : '' }}>No</option>
                 </select>
-                {{-- @isset($empanelment_status->signed_mou_file)
+                @isset($empanelment_status->signed_mou_file)
                     <a href="{{ asset('storage/uploads/hospital/empanelment_status/'.$empanelment_status->hospital_id.'/'.$empanelment_status->signed_mou_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-                @endisset --}}
+                @endisset
                 <input type="file" name="signed_mou_file" id="signed_mou_file_id" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
                     <label for="signed_mou_file_id" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
@@ -103,12 +102,12 @@
                 <div class="input-group">
                 <select disabled class="form-select" id="agreed_packages_and_tariff_pdf_other_images" name="agreed_packages_and_tariff_pdf_other_images">
                     <option value="">Select Agreed Packages and Tariff</option>
-                    <option value="Yes" {{ old('agreed_packages_and_tariff_pdf_other_images') == 'Yes' ? 'selected' : '' }}>Yes</option>
-                    <option value="As Per Hospital Tariff" {{ old('agreed_packages_and_tariff_pdf_other_images') == 'As Per Hospital Tariff' ? 'selected' : '' }}>As Per Hospital Tariff</option>
+                    <option value="Yes" {{ old('agreed_packages_and_tariff_pdf_other_images', $empanelment_status->agreed_packages_and_tariff_pdf_other_images ?? '') == 'Yes' ? 'selected' : '' }}>Yes</option>
+                    <option value="As Per Hospital Tariff" {{ old('agreed_packages_and_tariff_pdf_other_images', $empanelment_status->agreed_packages_and_tariff_pdf_other_images ?? '') == 'As Per Hospital Tariff' ? 'selected' : '' }}>As Per Hospital Tariff</option>
                 </select>
-                {{-- @isset($empanelment_status->agreed_packages_and_tariff_pdf_other_images_file)
+                @isset($empanelment_status->agreed_packages_and_tariff_pdf_other_images_file)
                     <a href="{{ asset('storage/uploads/hospital/empanelment_status/'.$empanelment_status->hospital_id.'/'.$empanelment_status->agreed_packages_and_tariff_pdf_other_images_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-                @endisset --}}
+                @endisset
                 <input type="file" name="agreed_packages_and_tariff_pdf_other_images_file" id="agreed_packages_and_tariff_pdf_other_images_file_id" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
                     <label for="agreed_packages_and_tariff_pdf_other_images_file_id" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
@@ -127,12 +126,12 @@
                 <div class="input-group">
                 <select class="form-select" id="upload_packages_and_tariff_excel_or_csv" name="upload_packages_and_tariff_excel_or_csv">
                     <option value="">Select Upload - Packages and Tariff</option>
-                    <option value="Yes" {{ old('upload_packages_and_tariff_excel_or_csv') == 'Yes' ? '' : '' }}>Yes</option>
-                    <option value="No" {{ old('upload_packages_and_tariff_excel_or_csv') == 'No' ? '' : '' }}>No</option>
+                    <option value="Yes" {{ old('upload_packages_and_tariff_excel_or_csv', $empanelment_status->upload_packages_and_tariff_excel_or_csv ?? '') == 'Yes' ? 'selected' : '' }}>Yes</option>
+                    <option value="No" {{ old('upload_packages_and_tariff_excel_or_csv', $empanelment_status->upload_packages_and_tariff_excel_or_csv ?? '') == 'No' ? 'selected' : '' }}>No</option>
                 </select>
-                {{-- @isset($empanelment_status->upload_packages_and_tariff_excel_or_csv_file)
+                @isset($empanelment_status->upload_packages_and_tariff_excel_or_csv_file)
                     <a href="{{ asset('storage/uploads/hospital/empanelment_status/'.$empanelment_status->hospital_id.'/'.$empanelment_status->upload_packages_and_tariff_excel_or_csv_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-                @endisset --}}
+                @endisset
                 <input type="file" name="upload_packages_and_tariff_excel_or_csv_file" @if($empanelment_status->upload_packages_and_tariff_excel_or_csv ?? '' == 'No') disabled @endif id="upload_packages_and_tariff_excel_or_csv_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
                     <label for="upload_packages_and_tariff_excel_or_csv_file" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
@@ -153,12 +152,19 @@
             </div>
 
             </div>
+        </form>
+
+    <form action="{{ route('super-admin.hospitals.empanelment-status', $hospital->id) }}" method="post" id="hospital-empanelment-status-form"
+        enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
+        <input type="hidden" name="form_type" value="empanelment_status_update">
         <div class="form-group row">
 
             <div class="card-header bg-dark text-white mt-3 show-hide-empanelment"> 
                 <div class="input-group" style="line-height:36px;" >
                     Claim Form for Reimbursement
-                    <div style="margin-left: 55%;">
+                    <div style="margin-left: 69%;">
                         <a id="form1" href="JavaScript:void(0)" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
                     </div>
                 </div> 
@@ -167,7 +173,7 @@
             <div class="card-header bg-dark text-white mt-3 show-hide-empanelment"> 
                 <div class="input-group" style="line-height:36px;" >
                     Cashless Pre - Authorization Request Form
-                    <div style="margin-left: 45%;">
+                    <div style="margin-left: 60%;">
                         <a id="form2" href="JavaScript:void(0)" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
                     </div>
                 </div> 
@@ -179,12 +185,12 @@
                 <div class="input-group">
                     <select class="form-select" id="negative_listing_status" name="negative_listing_status">
                         <option value="">Select Negative Listing Status</option>
-                        <option value="Yes" {{ old('negative_listing_status') == 'Yes' ? 'selected' : '' }}>Yes</option>
-                        <option value="No" {{ old('negative_listing_status') == 'No' ? 'selected' : '' }}>No</option>
+                        <option value="Yes" {{ old('negative_listing_status', $empanelment_status->negative_listing_status ?? '') == 'Yes' ? 'selected' : '' }}>Yes</option>
+                        <option value="No" {{ old('negative_listing_status', $empanelment_status->negative_listing_status ?? '') == 'No' ? 'selected' : '' }}>No</option>
                     </select>
-                    {{-- @isset($empanelment_status->negative_listing_status_file)
+                    @isset($empanelment_status->negative_listing_status_file)
                         <a href="{{ asset('storage/uploads/hospital/empanelment_status/'.$empanelment_status->hospital_id.'/'.$empanelment_status->negative_listing_status_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-                    @endisset --}}
+                    @endisset
                     <input type="file" name="negative_listing_status_file" @if($empanelment_status->negative_listing_status == 'No') disabled @endif id="negative_listing_status_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
                     <label for="negative_listing_status_file" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
@@ -200,7 +206,7 @@
 
                 <div class="col-md-12 show-hide-empanelment mt-3">
                     <label for="hospital_empanelment_status_comments">Hospital Empanelment Status Comments </label>
-                    <textarea class="form-control" id="hospital_empanelment_status_comments" name="hospital_empanelment_status_comments" maxlength="250" placeholder="Comments" rows="4">{{ old('hospital_empanelment_status_comments'??'') }}</textarea>
+                    <textarea class="form-control" id="hospital_empanelment_status_comments" name="hospital_empanelment_status_comments" maxlength="250" placeholder="Comments" rows="4">{{ old('hospital_empanelment_status_comments', $empanelment_status->hospital_empanelment_status_comments??'') }}</textarea>
                     @error('hospital_empanelment_status_comments')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
@@ -208,16 +214,12 @@
 
 
                 <div class="col-md-12 show-hide-empanelment text-end mt-3">
-                <button type="submit" class="btn btn-success" form="hospital-empanelment-form">Save / Update </button>
+                <button type="submit" class="btn btn-success" form="hospital-empanelment-status-form">Save / Update </button>
             </div>
 
 
             </div>
         </form>
-
-        <div>
-            @include('super-admin.hospitals.edit.tabs.hospital-empanelment-status-manage')
-        </div>
     </div>
     @push('scripts')
     <script>
@@ -271,7 +273,7 @@
         $(".show-hide-empanelment").toggle('fast');
 
         $(document).ready(function() {
-            var shsh = "{{ old('empanelled'}";
+            var shsh = "{{ old('empanelled', $empanelment_status->empanelled) }}";
 
             if(shsh == 'Yes' || shsh == 'No'){
                 $(".show-hide-empanelment").toggle('fast');
