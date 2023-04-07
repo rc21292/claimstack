@@ -202,7 +202,7 @@ class HospitalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         $hospital          = Hospital::find($id);
         $insurers          = Insurer::all();
@@ -235,10 +235,19 @@ class HospitalController extends Controller
         }
 
 
-        $empanelment_status          = HospitalEmpanelmentStatus::where('hospital_id', $id)->first();
+        /*$empanelment_status          = HospitalEmpanelmentStatus::where('hospital_id', $id)->first();
         if (!$empanelment_status) {
             HospitalEmpanelmentStatus::create(['hospital_id'=> $id]);
             $empanelment_status          = HospitalEmpanelmentStatus::where('hospital_id', $id)->first();
+        }else{
+            $empanelment_status          = null;
+        }*/
+
+
+        if (isset($request->company_id) && !empty($request->company_id)) {
+            $empanelment_status          = HospitalEmpanelmentStatus::where(['hospital_id' => $id, 'id' => $request->company_id])->first();
+        }else{
+            $empanelment_status          = null;
         }
 
         $hospital_department          = HospitalDepartment::where('hospital_id', $id)->first();
@@ -1273,7 +1282,7 @@ class HospitalController extends Controller
     {
         $hospital             = Hospital::find($id);
 
-        $empanelment_status          = HospitalEmpanelmentStatus::where('hospital_id', $id)->first();
+        $empanelment_status          = HospitalEmpanelmentStatus::where(['hospital_id' => $id, 'id' => $request->company_id])->first();
 
         if ($request->form_type == 'empanelment_status') {
 
@@ -1303,9 +1312,8 @@ class HospitalController extends Controller
             $this->validate($request, $rules, $messages);
 
             HospitalEmpanelmentStatus::updateOrCreate([
-            'hospital_id' => $id],
+            'hospital_id' => $id, 'tpa_id' => $request->company_name],
             [
-                'tpa_id'             => $request->company_name,
                 'company_type'             => $request->company_type,
                 'empanelled'               => $request->empanelled,
                 'hospital_id_as_per_the_selected_company'            => $request->hospital_id_as_per_the_selected_company,
@@ -1315,7 +1323,7 @@ class HospitalController extends Controller
             ]);
 
         }else{
-
+            echo "<pre>";print_r($request->all());"</pre>";exit;
             $rules = [
                 'negative_listing_status'           => 'required',
                 'negative_listing_status_file'           => ($request->empanelled == 'Yes' && $request->negative_listing_status == 'Yes' && empty($empanelment_status->negative_listing_status_file)) ? 'required' : '',
@@ -1329,7 +1337,7 @@ class HospitalController extends Controller
             $this->validate($request, $rules, $messages);
 
             HospitalEmpanelmentStatus::updateOrCreate([
-            'hospital_id' => $id],
+            'hospital_id' => $id, 'id' => $request->company_id],
             [
                 'negative_listing_status'          => $request->negative_listing_status,
                 'hospital_empanelment_status_comments'          => $request->hospital_empanelment_status_comments,
