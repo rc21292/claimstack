@@ -37,13 +37,11 @@ class LendingStatusController extends Controller
      */
     public function create(Request $request)
     {
-        $borrower           = Borrower::with(['claimant', 'claim', 'patient'])->find($request->borrower_id)->first();
+        $borrower           = Borrower::with(['claimant', 'claim', 'patient'])->find($request->borrower_id);
         $assessment         = AssessmentStatus::where('claimant_id', $borrower->claimant->id)->first();
         $lending_exists     = LendingStatus::where('borrower_id', $request->borrower_id)->exists();
         $lending_status     = $lending_exists ? LendingStatus::where('borrower_id', $request->borrower_id)->first() : null;
         $insurers           = Insurer::get();
-
-        // echo "<pre>";print_r($lending_status);"</pre>";exit;
 
         $associates = VendorServiceType::join('associate_partners', 'associate_partners.id', 'vendor_service_types.associate_partner_id')->where('vendor_service_types.medical_lending_patient', 'yes')->get(['associate_partners.id', 'associate_partners.name', 'associate_partners.associate_partner_id']);
 
@@ -144,7 +142,7 @@ class LendingStatusController extends Controller
                 
                 $this->validate($request, $rules, $messages);
 
-                LendingStatus::where('borrower_id', $id)->update([                  
+                $upadeted = LendingStatus::where('borrower_id', $id)->update([                  
                     'medical_lending_type'              =>  $request->medical_lending_type,
                     'vendor_partner_name_nbfc_or_bank'  =>  $request->vendor_partner_name_nbfc_or_bank,
                     'vendor_partner_id'                 =>  $request->vendor_partner_id,
