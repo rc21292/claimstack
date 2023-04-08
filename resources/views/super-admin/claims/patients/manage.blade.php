@@ -54,13 +54,29 @@
                                                 <td>{{ $patient->patient_current_city }}</td>
                                                 <td>{{ $patient->patient_current_pincode }}</td>
                                                 <td class="text-center">
-                                                    <div class="btn-group">
-                                                        <a title="Edit Patient" href="{{ route('super-admin.patients.edit', @$patient->id) }}"
-                                                            class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
-                                                        <a title="View Documents" href="{{ route('super-admin.view-claim-documents', $patient->id) }}"
-                                                            class="btn btn-info"><i class="mdi mdi-eye"></i></a>
-                                                        <a title="Create New Claim" href="{{ route('super-admin.claims.create', ['patient_id' => $patient->id]) }}"
-                                                            class="btn btn-primary"><i class="mdi mdi-plus"></i></a>
+                                                   <div class="btn-group">
+                                                        <button type="button" class="btn btn-primary">
+                                                            Action</button>
+                                                        <button type="button" class="btn btn-dark 
+                                                            dropdown-toggle dropdown-toggle-split" 
+                                                            data-bs-toggle="dropdown">
+                                                            <span class="visually-hidden">
+                                                                Toggle Dropdown
+                                                            </span>
+                                                        </button>
+                                                        <ul class="dropdown-menu">
+                                                            
+                                                            <li><a class="dropdown-item" href="{{ route('super-admin.patients.edit', @$patient->id) }}">
+                                                                <i class="mdi mdi-pencil"></i> Edit Patient</a> 
+                                                            </li>
+                                                            <li><a class="dropdown-item" href="{{ route('super-admin.view-claim-documents', $patient->id) }}"><i class="mdi mdi-eye"></i>
+                                                                View Documents</a>
+                                                            </li>
+
+                                                            <li><a class="dropdown-item" href="{{ route('super-admin.claims.create', ['patient_id' => $patient->id]) }}"> <i class="mdi mdi-plus"></i>
+                                                                Create New Claim</a>
+                                                            </li>
+                                                        </ul>
                                                     </div>
                                                 </td>
                                             </tr>

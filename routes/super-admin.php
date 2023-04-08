@@ -162,6 +162,7 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     */
 
     Route::resource('borrowers', BorrowerController::class);
+    Route::put('borrowers-update/{id}', [BorrowerController::class, 'updateBorrower'])->name('borrowers.borrowers-update');
 
     /*
     |--------------------------------------------------------------------------

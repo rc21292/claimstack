@@ -68,16 +68,17 @@
                                                         </button>
                                                         <ul class="dropdown-menu">
                                                             <li><a class="dropdown-item" href="{{ route('super-admin.claims.edit', @$claim->id) }}">
-                                                                <i class="mdi mdi-pencil"></i> Edit Claim</a></li>
+                                                                <i class="mdi mdi-pencil"></i> Edit Claim</a>
+                                                            </li>
                                                             @if($claim->claimant && !empty($claim->claimant))
                                                             <li><a class="dropdown-item" href="{{ route('super-admin.claimants.edit', $claim->claimant) }}">
-                                                               <i class="mdi mdi-pencil"></i> Edit Claimant</a></li>
+                                                                Claimant</a></li>
                                                             @else
                                                             <li><a class="dropdown-item" href="{{ route('super-admin.claimants.create', ['claim_id' => $claim->id]) }}">
-                                                                <i class="mdi mdi-plus"></i> New Claimant</a></li>
+                                                                 Claimant</a></li>
                                                             @endif
-                                                            <li><a class="dropdown-item" href="{{ route('super-admin.borrowers.create', ['claim_id' => $claim->id]) }}">
-                                                                New Borrower</a>
+                                                            <li><a class="dropdown-item" href="{{ route('super-admin.borrowers.edit', $claim->id) }}">
+                                                                Borrower</a>
                                                             </li>
                                                             <li><a class="dropdown-item" href="{{ route('super-admin.assessment-status.create', ['claim_id' => $claim->id]) }}">
                                                                 Assessment Status</a>
@@ -91,20 +92,6 @@
                                                             </li>
                                                         </ul>
                                                     </div>
-
-                                                    {{-- <div class="btn-group">
-                                                        <a href="{{ route('super-admin.claims.edit', @$claim->id) }}"
-                                                            class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
-                                                        @if($claim->claimant && !empty($claim->claimant))
-                                                            <a href="{{ route('super-admin.claimants.edit', $claim->claimant) }}"
-                                                            class="btn btn-primary"><i class="mdi mdi-plus"></i> Edit
-                                                            Claimant</a>
-                                                        @else
-                                                            <a href="{{ route('super-admin.claimants.create', ['claim_id' => $claim->id]) }}"
-                                                            class="btn btn-primary"><i class="mdi mdi-plus"></i> New
-                                                            Claimant</a>
-                                                        @endif
-                                                    </div> --}}
                                                 </td>
                                             </tr>
                                         @endforeach
