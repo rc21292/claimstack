@@ -61,8 +61,6 @@
                                                     <div class="btn-group">
                                                         <a href="{{ route('super-admin.borrowers.show', @$borrower->id) }}"
                                                             class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
-                                                        <a title="Create New Lending Status" href="{{ route('super-admin.lending-status.create', ['borrower_id' => $borrower->id]) }}"
-                                                            class="btn btn-primary"><i class="mdi mdi-plus"></i>Lending Status</a>
                                                     </div>
                                                 </td>
                                             </tr>

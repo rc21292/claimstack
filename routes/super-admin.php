@@ -179,7 +179,10 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     |--------------------------------------------------------------------------
     */
 
+    Route::put('update-assessment-status/{id}', [AssessmentController::class, 'updateAssessmentStatus'])->name('assessment-status.update-assessment-status');
+
     Route::resource('assessment-status', AssessmentController::class);
+
 
     /*
     |--------------------------------------------------------------------------
@@ -189,6 +192,8 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
 
     Route::resource('lending-status', LendingStatusController::class);
 
+    Route::put('lending-status-update/{id}', [LendingStatusController::class, 'updateLendingStatus'])->name('lending-status.lending-status-update');
+
     /*
     |--------------------------------------------------------------------------
     | Discharge Status Controller Route
@@ -196,6 +201,7 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     */
 
     Route::resource('discharge-status', DischargeStatusController::class);
+    Route::put('update-discharge-status/{id}', [DischargeStatusController::class, 'updateDischargeStatus'])->name('discharge-status.update-discharge-status');
 
     /*
     |--------------------------------------------------------------------------
@@ -204,6 +210,7 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     */
 
     Route::resource('claim-processing', ClaimProcessingController::class);
+    Route::put('claim-processing-update/{id}', [ClaimProcessingController::class, 'updateClaimProcessing'])->name('claim-processing.claim-processing-update');
 
 
 

@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('claim_processings', function (Blueprint $table) {
             $table->id();
-
             $table->string('patient_id')->nullable();
+            $table->string('claim_id')->nullable();
             $table->string('claimant_id')->nullable();
             $table->string('primary_diagnosis_icd_leveli_disease')->nullable();
             $table->string('primary_diagnosis_icd_leveli_code')->nullable();

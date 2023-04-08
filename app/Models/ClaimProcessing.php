@@ -12,6 +12,7 @@ class ClaimProcessing extends Model
     protected $fillable = [
         'patient_id',
         'claimant_id',
+        'claim_id',
         'primary_diagnosis_icd_leveli_disease',
         'primary_diagnosis_icd_leveli_code',
         'primary_diagnosis_icd_levelii_disease',
