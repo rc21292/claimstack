@@ -144,7 +144,7 @@
                 @isset($empanelment_status->upload_packages_and_tariff_excel_or_csv_file)
                     <a href="{{ asset('storage/uploads/hospital/empanelment_status/'.$empanelment_status->hospital_id.'/'.$empanelment_status->upload_packages_and_tariff_excel_or_csv_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
                 @endisset
-                <input type="file" name="upload_packages_and_tariff_excel_or_csv_file" @if($empanelment_status->upload_packages_and_tariff_excel_or_csv == 'No') disabled @endif id="upload_packages_and_tariff_excel_or_csv_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
+                <input type="file" name="upload_packages_and_tariff_excel_or_csv_file" @if(@$empanelment_status->upload_packages_and_tariff_excel_or_csv == 'No') disabled @endif id="upload_packages_and_tariff_excel_or_csv_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
                     <label for="upload_packages_and_tariff_excel_or_csv_file" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
                     </div>
