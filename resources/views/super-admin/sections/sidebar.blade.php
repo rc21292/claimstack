@@ -226,7 +226,7 @@
                             </a>
                             <div class="collapse show" id="claimant-management" style="">
                                 <ul class="side-nav-third-level">
-                                    <li>
+                                    <li style="display:none;">
                                         <a href="{{ route('super-admin.claimants.create') }}">Create Claimant</a>
                                     </li>
                                     <li>

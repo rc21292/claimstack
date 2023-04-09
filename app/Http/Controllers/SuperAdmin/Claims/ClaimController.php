@@ -380,14 +380,49 @@ class ClaimController extends Controller
 
         foreach ($claims as $key => $claim) {
             $claimant = Claimant::where('claim_id', $claim->id)->exists();
+
+            $borrower = Borrower::where('claim_id', $claim->id)->exists();
+
+            $assessment = AssessmentStatus::where('claim_id', $claim->id)->exists();
+            $discharge = DischargeStatus::where('claim_id', $claim->id)->exists();
+            $claim_processing = ClaimProcessing::where('claim_id', $claim->id)->exists();
+
             if ($claimant) {
                 $claimant = Claimant::where('claim_id', $claim->id)->value('id');
                 $claims[$key]->claimant = $claim->id;
             }else{
                 $claims[$key]->claimant = '';
             }
-        }
 
+            if ($borrower) {
+                $borrower = Borrower::where('claim_id', $claim->id)->value('id');
+                $claims[$key]->borrower = $claim->id;
+            }else{
+                $claims[$key]->borrower = '';
+            }
+
+            if ($assessment) {
+                $assessment = AssessmentStatus::where('claim_id', $claim->id)->value('id');
+                $claims[$key]->assessment = $claim->id;
+            }else{
+                $claims[$key]->assessment = '';
+            }
+
+            if ($discharge) {
+                $discharge = DischargeStatus::where('claim_id', $claim->id)->value('id');
+                $claims[$key]->discharge = $claim->id;
+            }else{
+                $claims[$key]->discharge = '';
+            }
+
+            if ($claim_processing) {
+                $claim_processing = ClaimProcessing::where('claim_id', $claim->id)->value('id');
+                $claims[$key]->claim_processing = $claim->id;
+            }else{
+                $claims[$key]->claim_processing = '';
+            }
+
+        }
 
         return view('super-admin.claims.claims.manage',  compact('claims', 'filter_search'));
     }
