@@ -249,6 +249,7 @@
     <script>
         $(document).ready(function() {
             enableDisable();
+            setType();
             // $(".show-hide-empanelment").hide();
             $("#show-doctor-empanelment").val(0);
 
