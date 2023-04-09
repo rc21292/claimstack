@@ -19,6 +19,8 @@ class HospitalEmpanelmentStatus extends Model
         'signed_mou',
         'signed_mou_file',
         'agreed_packages_and_tariff_pdf_other_images',
+        'upload_packages_and_tariff_excel_or_csv',
+        'upload_packages_and_tariff_excel_or_csv_file',
         'agreed_packages_and_tariff_pdf_other_images_file',
         'negative_listing_status',
         'negative_listing_status_file',

@@ -4,6 +4,7 @@
         enctype="multipart/form-data">
         @csrf
         @method('PUT')
+    <input type="hidden" name="company_id" value="{{ request()->company_id }}">
         @else
         <form action="{{ route('super-admin.hospitals.empanelment-status-store') }}" method="post" id="hospital-empanelment-form"
         enctype="multipart/form-data">
@@ -59,9 +60,9 @@
                     <option value="Yes" {{ old('empanelled',isset($empanelment_status) ? $empanelment_status->empanelled : '') == 'Yes' ? 'selected' : '' }}>Yes</option>
                     <option value="No" {{ old('empanelled',isset($empanelment_status) ? $empanelment_status->empanelled : '') == 'No' ? 'selected' : '' }}>No</option>
                 </select>
-                {{-- @isset($empanelment_status->empanelled_file)
+                @isset($empanelment_status->empanelled_file)
                     <a href="{{ asset('storage/uploads/hospital/empanelment_status/'.$empanelment_status->hospital_id.'/'.$empanelment_status->empanelled_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-                @endisset --}} 
+                @endisset 
                 <input type="file" name="empanelled_file" id="empanelled_file_id" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                     <label for="empanelled_file_id" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
@@ -92,9 +93,9 @@
                     <option value="Yes" {{ old('signed_mou',isset($empanelment_status) ? $empanelment_status->signed_mou : '') == 'Yes' ? 'selected' : '' }}>Yes</option>
                     <option value="No" {{ old('signed_mou',isset($empanelment_status) ? $empanelment_status->signed_mou : '') == 'No' ? 'selected' : '' }}>No</option>
                 </select>
-                {{-- @isset($empanelment_status->signed_mou_file)
+                @isset($empanelment_status->signed_mou_file)
                     <a href="{{ asset('storage/uploads/hospital/empanelment_status/'.$empanelment_status->hospital_id.'/'.$empanelment_status->signed_mou_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-                @endisset --}}
+                @endisset
                 <input type="file" name="signed_mou_file" id="signed_mou_file_id" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
                     <label for="signed_mou_file_id" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
@@ -116,9 +117,9 @@
                     <option value="Yes" {{ old('agreed_packages_and_tariff_pdf_other_images',isset($empanelment_status) ? $empanelment_status->agreed_packages_and_tariff_pdf_other_images : '') == 'Yes' ? 'selected' : '' }}>Yes</option>
                     <option value="As Per Hospital Tariff" {{ old('agreed_packages_and_tariff_pdf_other_images',isset($empanelment_status) ? $empanelment_status->agreed_packages_and_tariff_pdf_other_images : '') == 'As Per Hospital Tariff' ? 'selected' : '' }}>As Per Hospital Tariff</option>
                 </select>
-                {{-- @isset($empanelment_status->agreed_packages_and_tariff_pdf_other_images_file)
+                @isset($empanelment_status->agreed_packages_and_tariff_pdf_other_images_file)
                     <a href="{{ asset('storage/uploads/hospital/empanelment_status/'.$empanelment_status->hospital_id.'/'.$empanelment_status->agreed_packages_and_tariff_pdf_other_images_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-                @endisset --}}
+                @endisset
                 <input type="file" name="agreed_packages_and_tariff_pdf_other_images_file" id="agreed_packages_and_tariff_pdf_other_images_file_id" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
                     <label for="agreed_packages_and_tariff_pdf_other_images_file_id" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
@@ -140,9 +141,9 @@
                     <option value="Yes" {{ old('upload_packages_and_tariff_excel_or_csv',isset($empanelment_status) ? $empanelment_status->upload_packages_and_tariff_excel_or_csv : '') == 'Yes' ? 'selected' : '' }}>Yes</option>
                     <option value="No" {{ old('upload_packages_and_tariff_excel_or_csv',isset($empanelment_status) ? $empanelment_status->upload_packages_and_tariff_excel_or_csv : '') == 'No' ? 'selected' : '' }}>No</option>
                 </select>
-                {{-- @isset($empanelment_status->upload_packages_and_tariff_excel_or_csv_file)
+                @isset($empanelment_status->upload_packages_and_tariff_excel_or_csv_file)
                     <a href="{{ asset('storage/uploads/hospital/empanelment_status/'.$empanelment_status->hospital_id.'/'.$empanelment_status->upload_packages_and_tariff_excel_or_csv_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-                @endisset --}}
+                @endisset
                 <input type="file" name="upload_packages_and_tariff_excel_or_csv_file" @if($empanelment_status->upload_packages_and_tariff_excel_or_csv ?? '' == 'No') disabled @endif id="upload_packages_and_tariff_excel_or_csv_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
                     <label for="upload_packages_and_tariff_excel_or_csv_file" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>
@@ -171,6 +172,7 @@
             @csrf
             @method('PUT')
             <input type="hidden" name="form_type" value="empanelment_status_update">
+ <input type="hidden" name="company_id" value="{{ request()->company_id }}">
             @endif
 
         <div class="form-group row">
@@ -202,9 +204,9 @@
                         <option value="Yes" {{ old('negative_listing_status',isset($empanelment_status) ? $empanelment_status->negative_listing_status : '') == 'Yes' ? 'selected' : '' }}>Yes</option>
                         <option value="No" {{ old('negative_listing_status',isset($empanelment_status) ? $empanelment_status->negative_listing_status : '') == 'No' ? 'selected' : '' }}>No</option>
                     </select>
-                    {{-- @isset($empanelment_status->negative_listing_status_file)
+                    @isset($empanelment_status->negative_listing_status_file)
                         <a href="{{ asset('storage/uploads/hospital/empanelment_status/'.$empanelment_status->hospital_id.'/'.$empanelment_status->negative_listing_status_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-                    @endisset --}}
+                    @endisset
                     <input type="file" name="negative_listing_status_file" @if(old('negative_listing_status',isset($empanelment_status) ? $empanelment_status->negative_listing_status : '') == 'No' ) disabled @endif id="negative_listing_status_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
                     <label for="negative_listing_status_file" class="btn btn-primary upload-label"><i
                         class="mdi mdi-upload"></i></label>

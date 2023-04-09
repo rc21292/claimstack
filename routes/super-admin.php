@@ -121,6 +121,7 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     Route::get('hospitals/export',[HospitalController::class,'export'])->name('hospitals.export');
 
     Route::resource('hospitals', HospitalController::class);
+    Route::delete('hospitals/hospital-delete/{id}/{eid}', [HospitalController::class, 'destroyCompany'])->name('hospitals.hospital-delete');
 
     Route::put('hospitals/tie-ups/{id}', [HospitalController::class, 'updateHospitalTieUps'])->name('hospitals.tie-ups');
 

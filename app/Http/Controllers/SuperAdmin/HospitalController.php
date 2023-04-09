@@ -258,7 +258,7 @@ class HospitalController extends Controller
 
         $hospitals         = Hospital::get();
 
-        $empanelments         = HospitalEmpanelmentStatus::where('hospital_id', $id)->paginate(10);
+        $empanelments         = HospitalEmpanelmentStatus::where('hospital_id', $id)->latest()->paginate(10);
 
         $users              = User::get();
 
@@ -1323,7 +1323,6 @@ class HospitalController extends Controller
             ]);
 
         }else{
-            echo "<pre>";print_r($request->all());"</pre>";exit;
             $rules = [
                 'negative_listing_status'           => 'required',
                 'negative_listing_status_file'           => ($request->empanelled == 'Yes' && $request->negative_listing_status == 'Yes' && empty($empanelment_status->negative_listing_status_file)) ? 'required' : '',
@@ -1422,6 +1421,12 @@ class HospitalController extends Controller
     {
         Hospital::find($id)->delete();
         return redirect()->route('super-admin.hospitals.index')->with('success', 'Hospital deleted successfully');
+    }
+
+    public function destroyCompany($id,$eid)
+    {
+        HospitalEmpanelmentStatus::where(['hospital_id' => $id, 'id' => $eid])->delete();
+        return redirect()->route('super-admin.hospitals.edit',$id)->with('success', 'Company deleted successfully!');
     }
 
     public function updateHospitalDocuments(Request $request, $id)

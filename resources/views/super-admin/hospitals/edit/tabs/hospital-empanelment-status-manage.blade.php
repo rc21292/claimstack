@@ -15,6 +15,17 @@
                         <td scope="row">{{ $empanelment->company_type }}</td>
                         <td scope="row">
                             <a href="{{ route('super-admin.hospitals.edit', $hospital->id) }}?company_id={{ $empanelment->id }}" class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
+                            <button type="button" class="btn btn-danger"
+                            onclick="confirmDelete({{ $empanelment->id }})"><i
+                            class="uil uil-trash-alt"></i></button>
+
+                            <form id='delete-form{{ $empanelment->id }}'
+                                action='{{ route('super-admin.hospitals.hospital-delete', ['id' => $hospital->id, 'eid' => $empanelment->id]) }}'
+                                method='POST'>
+                                <input type='hidden' name='_token'
+                                value='{{ csrf_token() }}'>
+                                <input type='hidden' name='_method' value='DELETE'>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
@@ -25,3 +36,23 @@
     @endif
 </div>
 {{ $empanelments->withQueryString()->links('pagination::bootstrap-4') }}
+@push('scripts')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript">
+        function confirmDelete(no) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form' + no).submit();
+                }
+            })
+        };
+    </script>
+@endpush
