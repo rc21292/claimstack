@@ -7,6 +7,7 @@ use App\Models\Borrower;
 use App\Models\Claim;
 use App\Models\Claimant;
 use App\Models\Insurer;
+use App\Models\LendingStatus;
 use Illuminate\Http\Request;
 
 class BorrowerController extends Controller
@@ -24,6 +25,7 @@ class BorrowerController extends Controller
     public function index(Request $request)
     {
         $filter_search = $request->search;
+
         $borrowers = Borrower::query();
 
         if($filter_search){
@@ -31,6 +33,18 @@ class BorrowerController extends Controller
         }
 
         $borrowers = $borrowers->orderBy('id', 'desc')->paginate(20);
+
+        foreach ($borrowers as $key => $borrower) {
+
+            $lending_status = LendingStatus::where('claim_id', $borrower->claim_id)->exists();
+
+            if ($lending_status) {
+                $lending_status = LendingStatus::where('claim_id', $borrower->claim_id)->value('id');
+                $borrowers[$key]->lending_status = $lending_status;
+            }else{
+                $borrowers[$key]->lending_status = '';
+            }
+        }
 
         return view('super-admin.claims.borrowers.manage',  compact('borrowers', 'filter_search'));
     }
@@ -359,8 +373,8 @@ class BorrowerController extends Controller
      */
     public function edit($id)
     {
-        $claim        = Claim::with(['patient', 'hospital'])->find($id);
-        $claimant_exists        = Claimant::where('claim_id', $id)->exists();
+        $claim           = Claim::with(['patient', 'hospital'])->find($id);
+        $claimant_exists = Claimant::where('claim_id', $id)->exists();
         $claimant        = $claimant_exists ? Claimant::where('claim_id', $id)->first() : null;
         $borrower_exists = Borrower::where('claim_id', $id)->exists();
         $borrower        = $borrower_exists ? Borrower::where('claim_id', $id)->first() : null;

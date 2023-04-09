@@ -14,10 +14,10 @@
                             <li class="breadcrumb-item"><a href="{{ route('super-admin.dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('super-admin.claimants.index') }}">Claim Processing</a>
                             </li>
-                            <li class="breadcrumb-item active">New Claim Processing</li>
+                            <li class="breadcrumb-item active">@if(isset($claim_processing) && !empty($claim_processing)) Edit @else New @endif Claim Processing</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">New Claim Processing</h4>
+                    <h4 class="page-title">@if(isset($claim_processing) && !empty($claim_processing)) Edit @else New @endif Claim Processing</h4>
                 </div>
             </div>
         </div>

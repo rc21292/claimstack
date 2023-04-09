@@ -14,10 +14,10 @@
                             <li class="breadcrumb-item"><a href="{{ route('super-admin.dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('super-admin.claimants.index') }}">Lending Status</a>
                             </li>
-                            <li class="breadcrumb-item active">New Lending Status</li>
+                            <li class="breadcrumb-item active">@if(isset($lending_status) && !empty($lending_status)) Edit @else New @endif Lending Status</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">New Lending Status</h4>
+                    <h4 class="page-title">@if(isset($lending_status) && !empty($lending_status)) Edit @else New @endif Lending Status</h4>
                 </div>
             </div>
         </div>

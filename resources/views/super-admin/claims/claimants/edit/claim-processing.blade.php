@@ -10,14 +10,14 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ url('/') }}">Claimant Stack</a></li>
+                            <li class="breadcrumb-item"><a href="{{ url('/') }}">Claim Stack</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('super-admin.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('super-admin.claimants.index') }}">Claimant</a>
+                            <li class="breadcrumb-item"><a href="{{ route('super-admin.claimants.index') }}">Claim Processing</a>
                             </li>
-                            <li class="breadcrumb-item active">New Claimant</li>
+                            <li class="breadcrumb-item active">@if(isset($claim_processing) && !empty($claim_processing)) Edit @else New @endif Claim Processing</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">New Claimant</h4>
+                    <h4 class="page-title">@if(isset($claim_processing) && !empty($claim_processing)) Edit @else New @endif Claim Processing</h4>
                 </div>
             </div>
         </div>

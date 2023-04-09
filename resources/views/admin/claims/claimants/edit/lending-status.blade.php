@@ -10,7 +10,7 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ url('/') }}">Claimant Stack</a></li>
+                            <li class="breadcrumb-item"><a href="{{ url('/') }}">Claim Stack</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('admin.claimants.index') }}">Claimant</a>
                             </li>

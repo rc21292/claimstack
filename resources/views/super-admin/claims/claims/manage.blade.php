@@ -72,24 +72,52 @@
                                                             </li>
                                                             @if($claim->claimant && !empty($claim->claimant))
                                                             <li><a class="dropdown-item" href="{{ route('super-admin.claimants.edit', $claim->claimant) }}">
-                                                                Claimant</a></li>
+                                                                <i class="mdi mdi-pencil"></i> Claimant</a></li>
                                                             @else
                                                             <li><a class="dropdown-item" href="{{ route('super-admin.claimants.create', ['claim_id' => $claim->id]) }}">
-                                                                 Claimant</a></li>
+                                                                 <i class="mdi mdi-plus"></i> Claimant</a></li>
                                                             @endif
-                                                            <li><a class="dropdown-item" href="{{ route('super-admin.borrowers.edit', $claim->id) }}">
-                                                                Borrower</a>
-                                                            </li>
-                                                            <li><a class="dropdown-item" href="{{ route('super-admin.assessment-status.create', ['claim_id' => $claim->id]) }}">
-                                                                Assessment Status</a>
-                                                            </li>
-                                                            <li><a class="dropdown-item" href="{{ route('super-admin.discharge-status.create', ['claim_id' => $claim->id]) }}">
-                                                                Discharge Status</a>
-                                                            </li>
 
-                                                            <li><a class="dropdown-item" href="{{ route('super-admin.claim-processing.create', ['claim_id' => $claim->id]) }}">
-                                                                Claim Processing</a>
+                                                            @if($claim->borrower && !empty($claim->borrower))
+                                                            <li><a class="dropdown-item" href="{{ route('super-admin.borrowers.edit', $claim->id) }}">
+                                                                <i class="mdi mdi-pencil"></i> Borrower</a>
                                                             </li>
+                                                            @else
+                                                            <li><a class="dropdown-item" href="{{ route('super-admin.borrowers.edit', $claim->id) }}">
+                                                                <i class="mdi mdi-plus"></i> Borrower</a>
+                                                            </li>
+                                                            @endif
+
+                                                            @if($claim->assessment && !empty($claim->assessment))
+                                                            <li><a class="dropdown-item" href="{{ route('super-admin.assessment-status.create', ['claim_id' => $claim->id]) }}">
+                                                                <i class="mdi mdi-pencil"></i> Assessment Status</a>
+                                                            </li>
+                                                            @else
+                                                            <li><a class="dropdown-item" href="{{ route('super-admin.assessment-status.create', ['claim_id' => $claim->id]) }}">
+                                                                <i class="mdi mdi-plus"></i> Assessment Status</a>
+                                                            </li>
+                                                            @endif
+
+                                                            @if($claim->discharge && !empty($claim->discharge))
+                                                            <li><a class="dropdown-item" href="{{ route('super-admin.discharge-status.create', ['claim_id' => $claim->id]) }}">
+                                                                <i class="mdi mdi-pencil"></i> Discharge Status</a>
+                                                            </li>
+                                                            @else
+                                                            <li><a class="dropdown-item" href="{{ route('super-admin.discharge-status.create', ['claim_id' => $claim->id]) }}">
+                                                                <i class="mdi mdi-plus"></i> Discharge Status</a>
+                                                            </li>
+                                                            @endif
+
+                                                            @if($claim->claim_processing && !empty($claim->claim_processing))
+                                                            <li><a class="dropdown-item" href="{{ route('super-admin.claim-processing.create', ['claim_id' => $claim->id]) }}">
+                                                                <i class="mdi mdi-pencil"></i> Claim Processing</a>
+                                                            </li>
+                                                            @else
+                                                            <li><a class="dropdown-item" href="{{ route('super-admin.claim-processing.create', ['claim_id' => $claim->id]) }}">
+                                                                <i class="mdi mdi-plus"></i> Claim Processing</a>
+                                                            </li>
+                                                            @endif
+
                                                         </ul>
                                                     </div>
                                                 </td>

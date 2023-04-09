@@ -13,10 +13,10 @@
                             <li class="breadcrumb-item"><a href="{{ route('super-admin.dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('super-admin.claimants.index') }}">Discharge Status</a>
                             </li>
-                            <li class="breadcrumb-item active">New Discharge Status</li>
+                            <li class="breadcrumb-item active">@if(isset($discharge_status) && !empty($discharge_status)) Edit @else New @endif  Discharge Status</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">New Discharge Status</h4>
+                    <h4 class="page-title">@if(isset($discharge_status) && !empty($discharge_status)) Edit @else New @endif  Discharge Status</h4>
                 </div>
             </div>
         </div>

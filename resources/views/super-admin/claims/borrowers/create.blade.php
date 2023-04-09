@@ -13,10 +13,10 @@
                             <li class="breadcrumb-item"><a href="{{ route('super-admin.dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('super-admin.claimants.index') }}">Borrowers</a>
                             </li>
-                            <li class="breadcrumb-item active">New Borrower</li>
+                            <li class="breadcrumb-item active">@if(isset($borrower) && !empty($borrower)) Edit @else New @endif  Borrower</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">New Borrower</h4>
+                    <h4 class="page-title">@if(isset($borrower) && !empty($borrower)) Edit @else New @endif Borrower</h4>
                 </div>
             </div>
         </div>

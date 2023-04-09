@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\AssociatePartner;
 use App\Models\Claim;
 use App\Models\Claimant;
+use App\Models\Borrower;
+use App\Models\DischargeStatus;
 use App\Models\Hospital;
 use App\Models\Patient;
 use App\Models\ClaimProcessing;

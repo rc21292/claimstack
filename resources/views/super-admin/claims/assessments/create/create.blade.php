@@ -14,10 +14,10 @@
                             <li class="breadcrumb-item"><a href="{{ route('super-admin.dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('super-admin.claimants.index') }}">Assessment Status</a>
                             </li>
-                            <li class="breadcrumb-item active">New Assessment Status</li>
+                            <li class="breadcrumb-item active">@if(isset($assessment_status) && !empty($assessment_status)) Edit @else New @endif Assessment Status</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">New Assessment Status</h4>
+                    <h4 class="page-title"> @if(isset($assessment_status) && !empty($assessment_status)) Edit @else New @endif Assessment Status</h4>
                 </div>
             </div>
         </div>

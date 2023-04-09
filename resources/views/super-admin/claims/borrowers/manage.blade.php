@@ -72,9 +72,15 @@
                                                             <li><a class="dropdown-item" href="{{ route('super-admin.borrowers.show', @$borrower->id) }}">
                                                                 <i class="mdi mdi-pencil"></i> Edit Borrower</a>
                                                             </li>
+
+                                                            @if($borrower->lending_status && !empty($borrower->lending_status))
                                                             <li><a class="dropdown-item" href="{{ route('super-admin.lending-status.create', ['borrower_id' => $borrower->id]) }}">
-                                                                Lending Status</a>
-                                                            </li>
+                                                                <i class="mdi mdi-pencil"></i> Lending Status</a></li>
+                                                            @else
+                                                            <li><a class="dropdown-item" href="{{ route('super-admin.lending-status.create', ['borrower_id' => $borrower->id]) }}">
+                                                                 <i class="mdi mdi-plus"></i> Lending Status</a></li>
+                                                            @endif
+                                                            
                                                         </ul>
                                                     </div>
                                                 </td>
