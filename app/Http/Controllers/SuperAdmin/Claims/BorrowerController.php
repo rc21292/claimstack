@@ -385,7 +385,6 @@ class BorrowerController extends Controller
         $rules                                  = [
             'patient_id'                        => 'required',
             'claim_id'                          => 'required',
-            'claimant_id'                       => 'required',
             'hospital_id'                       => 'required',
             'hospital_name'                     => 'required',
             'hospital_address'                  => 'required',
@@ -490,7 +489,7 @@ class BorrowerController extends Controller
         ],
         [
             'patient_id'                        => $claim->patient_id,
-            'claimant_id'                        => $claimant->id,
+            'claimant_id'                        => @$claimant->id,
             'hospital_id'                       => $claim->hospital_id,
             'hospital_name'                     => $request->hospital_name,
             'hospital_address'                  => $request->hospital_address,

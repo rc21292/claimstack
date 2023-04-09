@@ -151,7 +151,7 @@ class AssessmentController extends Controller
 
                 AssessmentStatus::where('claim_id', $id)->update([
                     'patient_id'   => $claim->patient->id,
-                    'claimant_id'   => $claimant->id,
+                    'claimant_id'   => @$claimant->id,
                     'hospital_id'   => $claim->patient->hospital_id,
                     'hospital_on_the_panel_of_insurance_co'     => $request->hospital_on_the_panel_of_insurance_co,
                     'hospital_id_insurance_co'                  => $request->hospital_id_insurance_co,

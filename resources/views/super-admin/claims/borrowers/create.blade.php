@@ -1063,21 +1063,21 @@
     <script>
         function patientBorrowerSameOptions() {
             var is_patient_and_borrower_same    = $('#is_patient_and_borrower_same').val();
-            var address                         = {!! json_encode($claimant->patient->patient_current_address) !!};
-            var city                            = {!! json_encode($claimant->patient->patient_current_city) !!};
-            var state                           = {!! json_encode($claimant->patient->patient_current_state) !!};
-            var pincode                         = {!! json_encode($claimant->patient->patient_current_pincode) !!};
-            var id_proof                        = {!! json_encode($claimant->patient->id_proof) !!};
-            var borrower_personal_email_id      = {!! json_encode($claimant->patient->email) !!};
-            var borrower_mobile_number          = {!! json_encode($claimant->patient->phone) !!};
+            var address                         = {!! json_encode(@$claim->patient->patient_current_address) !!};
+            var city                            = {!! json_encode(@$claim->patient->patient_current_city) !!};
+            var state                           = {!! json_encode(@$claim->patient->patient_current_state) !!};
+            var pincode                         = {!! json_encode(@$claim->patient->patient_current_pincode) !!};
+            var id_proof                        = {!! json_encode(@$claim->patient->id_proof) !!};
+            var borrower_personal_email_id      = {!! json_encode(@$claim->patient->email) !!};
+            var borrower_mobile_number          = {!! json_encode(@$claim->patient->phone) !!};
             switch (is_patient_and_borrower_same) {
                 case 'Yes':
                     $('#is_claimant_and_borrower_same').val('');
                     $('#is_claimant_and_borrower_same').attr('disabled', true);
-                    $('#borrower_title').val("{{ $claimant->patient->title }}");
-                    $('#borrower_firstname').val("{{ $claimant->patient->firstname }}");
-                    $('#borrower_lastname').val("{{ $claimant->patient->lastname }}");
-                    $('#borrower_middlename').val("{{ $claimant->patient->middlename }}");
+                    $('#borrower_title').val("{{ @$claim->patient->title }}");
+                    $('#borrower_firstname').val("{{ @$claim->patient->firstname }}");
+                    $('#borrower_lastname').val("{{ @$claim->patient->lastname }}");
+                    $('#borrower_middlename').val("{{ @$claim->patient->middlename }}");
                     $('#borrower_address').val(address);
                     $('#borrower_city').val(city);
                     $('#borrower_state').val(state);
@@ -1122,27 +1122,27 @@
     <script>
         function claimantBorrowerSameOptions() {
             var is_claimant_and_borrower_same = $('#is_claimant_and_borrower_same').val();
-            var address                         = {!! json_encode($claimant->address) !!};
-            var city                            = {!! json_encode($claimant->city) !!};
-            var state                           = {!! json_encode($claimant->state) !!};
-            var pincode                         = {!! json_encode($claimant->pincode) !!};
-            var id_proof                        = {!! json_encode($claimant->patient->id_proof) !!};
-            var borrower_personal_email_id      = {!! json_encode($claimant->personal_email_id) !!};
-            var borrower_official_email_id      = {!! json_encode($claimant->official_email_id) !!};
-            var borrower_mobile_number          = {!! json_encode($claimant->mobile_no) !!};
-            var borrower_pan_no                 = {!! json_encode($claimant->pan_no) !!};
-            var borrower_aadhar_no              = {!! json_encode($claimant->aadhar_no) !!};
-            var borrower_bank_name              = {!! json_encode($claimant->bank_name) !!};
-            var borrower_bank_address           = {!! json_encode($claimant->bank_address) !!};
-            var borrower_ac_no                  = {!! json_encode($claimant->ac_no) !!};
-            var borrower_ifs_code               = {!! json_encode($claimant->ifs_code) !!};
+            var address                         = {!! json_encode(@$claimant->address) !!};
+            var city                            = {!! json_encode(@$claimant->city) !!};
+            var state                           = {!! json_encode(@$claimant->state) !!};
+            var pincode                         = {!! json_encode(@$claimant->pincode) !!};
+            var id_proof                        = {!! json_encode(@$claimant->patient->id_proof) !!};
+            var borrower_personal_email_id      = {!! json_encode(@$claimant->personal_email_id) !!};
+            var borrower_official_email_id      = {!! json_encode(@$claimant->official_email_id) !!};
+            var borrower_mobile_number          = {!! json_encode(@$claimant->mobile_no) !!};
+            var borrower_pan_no                 = {!! json_encode(@$claimant->pan_no) !!};
+            var borrower_aadhar_no              = {!! json_encode(@$claimant->aadhar_no) !!};
+            var borrower_bank_name              = {!! json_encode(@$claimant->bank_name) !!};
+            var borrower_bank_address           = {!! json_encode(@$claimant->bank_address) !!};
+            var borrower_ac_no                  = {!! json_encode(@$claimant->ac_no) !!};
+            var borrower_ifs_code               = {!! json_encode(@$claimant->ifs_code) !!};
 
             switch (is_claimant_and_borrower_same) {
                 case 'Yes':
-                    $('#borrower_title').val("{{ $claimant->title }}");
-                    $('#borrower_firstname').val("{{ $claimant->firstname }}");
-                    $('#borrower_lastname').val("{{ $claimant->lastname }}");
-                    $('#borrower_middlename').val("{{ $claimant->middlename }}");
+                    $('#borrower_title').val("{{ @$claimant->title }}");
+                    $('#borrower_firstname').val("{{ @$claimant->firstname }}");
+                    $('#borrower_lastname').val("{{ @$claimant->lastname }}");
+                    $('#borrower_middlename').val("{{ @$claimant->middlename }}");
                     $('#borrower_address').val(address);
                     $('#borrower_city').val(city);
                     $('#borrower_state').val(state);
