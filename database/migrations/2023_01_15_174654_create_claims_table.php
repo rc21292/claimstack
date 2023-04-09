@@ -18,6 +18,7 @@ return new class extends Migration
            $table->id();
            $table->string('uid')->nullable();
            $table->integer('patient_id')->nullable();
+           $table->integer('hospital_id')->nullable();
            $table->string('admission_date')->nullable();
            $table->time('admission_time')->nullable();
            $table->string('abha_id')->nullable();

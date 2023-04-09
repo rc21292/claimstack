@@ -12,6 +12,7 @@ class Claim extends Model
     protected $fillable = [
         'uid',
         'patient_id',
+        'hospital_id',
         'admission_date',
         'admission_time',
         'abha_id',

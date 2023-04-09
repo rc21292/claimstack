@@ -490,7 +490,7 @@ class BorrowerController extends Controller
         [
             'patient_id'                        => $claim->patient_id,
             'claimant_id'                        => @$claimant->id,
-            'hospital_id'                       => $claim->hospital_id,
+            'hospital_id'                       => $claim->patient->hospital_id,
             'hospital_name'                     => $request->hospital_name,
             'hospital_address'                  => $request->hospital_address,
             'hospital_city'                     => $request->hospital_city,

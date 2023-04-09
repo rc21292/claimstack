@@ -37,8 +37,12 @@ class LendingStatusController extends Controller
      */
     public function create(Request $request)
     {
-        $borrower           = Borrower::with(['claimant', 'claim', 'patient'])->find($request->borrower_id);
-        $assessment         = AssessmentStatus::where('claimant_id', $borrower->claimant->id)->first();
+        $borrower           = Borrower::with(['claimant', 'claim', 'patient', 'hospital'])->find($request->borrower_id);
+        if ($borrower->claimant) {
+            $assessment         = AssessmentStatus::where('claimant_id', $borrower->claimant->id)->first();
+        }else{
+            $assessment         = null;
+        }
         $lending_exists     = LendingStatus::where('borrower_id', $request->borrower_id)->exists();
         $lending_status     = $lending_exists ? LendingStatus::where('borrower_id', $request->borrower_id)->first() : null;
         $insurers           = Insurer::get();
@@ -111,19 +115,24 @@ class LendingStatusController extends Controller
     public function updateLendingStatus(Request $request, $id)
     {
         $borrower      = Borrower::find($id);
-        $assessment    = AssessmentStatus::where('claimant_id', $borrower->claimant->id)->first();
-
-        if (!$borrower || !$borrower->claimant || !$assessment) {
-            return redirect()->back()->with('warning', 'Please create/update borrower and/or assessment first!');
+        
+        if ($borrower->claimant) {
+            $assessment    = AssessmentStatus::where('claimant_id', $borrower->claimant->id)->first();
+        }else{
+            $assessment    = null;
         }
+
+        /*if (!$borrower || !$borrower->claimant || !$assessment) {
+            return redirect()->back()->with('warning', 'Please create/update borrower and/or assessment first!');
+        }*/
 
         $lending       = LendingStatus::updateOrCreate(
             ['borrower_id'   => $id],
             [
-            'patient_id'    => $borrower->claim_id,
-            'claim_id'      => $borrower->claimant->claim->id,
-            'claimant_id'   => $borrower->claimant->id,
-            'hospital_id'   => $borrower->claimant->claim->patient->hospital->id]
+            'patient_id'    => $borrower->patient_id,
+            'claim_id'      => $borrower->claim_id,
+            'claimant_id'   => @$borrower->claimant->id,
+            'hospital_id'   => $borrower->hospital_id]
         );
 
         switch ($request->form_type) {

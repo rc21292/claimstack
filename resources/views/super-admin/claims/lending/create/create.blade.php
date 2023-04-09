@@ -368,7 +368,6 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="vendor_partner_name_nbfc_or_bank">Vendor Partner Name (NBFC/Bank)
                                                 <span class="text-danger">*</span></label>
-                                                {{$lending_status->vendor_partner_name_nbfc_or_bank}}
                                             <select class="form-control select2" data-toggle="select2" id="vendor_partner_name_nbfc_or_bank" name="vendor_partner_name_nbfc_or_bank">
                                                 <option value="">Please Select</option>
                                                 @foreach ($associates as $associates)
