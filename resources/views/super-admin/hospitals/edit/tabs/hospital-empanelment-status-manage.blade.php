@@ -32,7 +32,7 @@
             </tbody>
         </table>
     @else
-        <p class="text-center">No TPA found.</p>
+        <p class="text-center">No Company found.</p>
     @endif
 </div>
 {{ $empanelments->withQueryString()->links('pagination::bootstrap-4') }}
