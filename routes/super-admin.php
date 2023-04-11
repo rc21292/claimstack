@@ -21,6 +21,7 @@ use App\Http\Controllers\SuperAdmin\Claims\ClaimProcessingController;
 use App\Http\Controllers\SuperAdmin\Claims\DischargeStatusController;
 use App\Http\Controllers\SuperAdmin\Claims\DocumentReimbursementController;
 use App\Http\Controllers\SuperAdmin\Claims\LendingStatusController;
+use App\Http\Controllers\SuperAdmin\Claims\ICClaimStatusController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuperAdmin\TpaCompanyController;
 /*
@@ -193,8 +194,18 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     */
 
     Route::resource('lending-status', LendingStatusController::class);
+    
 
     Route::put('lending-status-update/{id}', [LendingStatusController::class, 'updateLendingStatus'])->name('lending-status.lending-status-update');
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Insurance Company Claim Status Controller Route
+    |--------------------------------------------------------------------------
+    */
+
+    Route::resource('icclaim-status', ICClaimStatusController::class);
 
     /*
     |--------------------------------------------------------------------------
