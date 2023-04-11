@@ -219,7 +219,7 @@
                                             <input type="text" maxlength="25" readonly class="form-control"
                                                 id="claim_intimation_no" name="claim_intimation_no" maxlength="30"
                                                 placeholder="Claim Intimation No."
-                                                value="{{ old('claim_intimation_no', isset($icclaim_status) ? $icclaim_status->claim_intimation_no : '') }}">
+                                                value="{{ old('claim_intimation_no', isset($icclaim_status) ? $claimant->claim->claim_intimation_number_mail : '') }}">
                                             @error('claim_intimation_no')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
