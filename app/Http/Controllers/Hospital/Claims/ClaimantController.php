@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Claim;
 use App\Models\Claimant;
 use App\Models\Patient;
+use App\Models\ICClaimStatus;
 use Illuminate\Http\Request;
 
 class ClaimantController extends Controller
@@ -35,6 +36,18 @@ class ClaimantController extends Controller
         }
 
         $claimants      = $claimants->orderBy('id', 'desc')->paginate(20);
+
+        foreach ($claimants as $key => $claimant) {
+
+            $icclaim_status = ICClaimStatus::where('claimant_id', $claimant->id)->exists();
+
+            if ($icclaim_status) {
+                $icclaim_status = ICClaimStatus::where('claimant_id', $claimant->id)->value('id');
+                $claimants[$key]->icclaim_status = $icclaim_status;
+            }else{
+                $claimants[$key]->icclaim_status = '';
+            }
+        }
 
         return view('hospital.claims.claimants.manage',  compact('claimants', 'filter_search'));
     }

@@ -35,7 +35,7 @@ class ClaimantController extends Controller
 
         $claimants      = $claimants->orderBy('id', 'desc')->paginate(20);
 
-         foreach ($claimants as $key => $claimant) {
+        foreach ($claimants as $key => $claimant) {
 
             $icclaim_status = ICClaimStatus::where('claimant_id', $claimant->id)->exists();
 

@@ -1,4 +1,4 @@
-@extends('layouts.super-admin')
+@extends('layouts.admin')
 @section('title', 'New Claimant')
 @section('content')
     <!-- Start Content-->
@@ -11,8 +11,8 @@
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Claim Stack</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('super-admin.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('super-admin.claimants.index') }}">IC Claim Status</a>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.claimants.index') }}">IC Claim Status</a>
                             </li>
                             <li class="breadcrumb-item active">@if(isset($icclaim_status) && !empty($icclaim_status)) Edit @else New @endif IC Claim Status </li>
                         </ol>
@@ -21,7 +21,7 @@
                 </div>
             </div>
         </div>
-        @include('super-admin.sections.flash-message')
+        @include('admin.sections.flash-message')
         <!-- end page title -->
 
         <!-- start page content -->
@@ -33,7 +33,7 @@
                     <div class="tab-pane show active" id="icclaim_status_tab">
                         <div class="card">
                             <div class="card-body">
-                                <form action="{{ route('super-admin.icclaim-status.update', $claimant->id) }}"
+                                <form action="{{ route('admin.icclaim-status.update', $claimant->id) }}"
                                     method="POST" id="loan-application-form" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')

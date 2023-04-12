@@ -1,4 +1,4 @@
-@extends('layouts.super-admin')
+@extends('layouts.hospital')
 @section('title', 'New Claimant')
 @section('content')
     <!-- Start Content-->
@@ -11,8 +11,8 @@
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Claim Stack</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('super-admin.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('super-admin.claimants.index') }}">IC Claim Status</a>
+                            <li class="breadcrumb-item"><a href="{{ route('hospital.dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('hospital.claimants.index') }}">IC Claim Status</a>
                             </li>
                             <li class="breadcrumb-item active">@if(isset($icclaim_status) && !empty($icclaim_status)) Edit @else New @endif IC Claim Status </li>
                         </ol>
@@ -21,7 +21,7 @@
                 </div>
             </div>
         </div>
-        @include('super-admin.sections.flash-message')
+        @include('hospital.sections.flash-message')
         <!-- end page title -->
 
         <!-- start page content -->
@@ -33,7 +33,7 @@
                     <div class="tab-pane show active" id="icclaim_status_tab">
                         <div class="card">
                             <div class="card-body">
-                                <form action="{{ route('super-admin.icclaim-status.update', $claimant->id) }}"
+                                <form action="{{ route('hospital.icclaim-status.update', $claimant->id) }}"
                                     method="POST" id="loan-application-form" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
@@ -228,7 +228,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="date_receiving_main_claim_documents">Date of Receiving (Main Claim) Documents </label>
-                                            <input type="text"  class="form-control" id="date_receiving_main_claim_documents"
+                                            <input type="text"  class="form-control" disabled id="date_receiving_main_claim_documents"
                                                 name="date_receiving_main_claim_documents" value="{{ old('date_receiving_main_claim_documents', isset($icclaim_status) ? $icclaim_status->date_receiving_main_claim_documents : '') }}" placeholder="DD/MM/YYYY"
                                                 data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                             @error('date_receiving_main_claim_documents')
@@ -238,7 +238,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="date_dispatching_main_claim_documents_to_ic_or_tpa">Date of Dispatching (Main Claim) Documents to IC/TPA </label>
-                                            <input type="text"  class="form-control" id="date_dispatching_main_claim_documents_to_ic_or_tpa"
+                                            <input type="text"  class="form-control" disabled id="date_dispatching_main_claim_documents_to_ic_or_tpa"
                                                 name="date_dispatching_main_claim_documents_to_ic_or_tpa" value="{{ old('date_dispatching_main_claim_documents_to_ic_or_tpa', isset($icclaim_status) ? $icclaim_status->date_dispatching_main_claim_documents_to_ic_or_tpa : '') }}" placeholder="DD/MM/YYYY"
                                                 data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                             @error('date_dispatching_main_claim_documents_to_ic_or_tpa')
@@ -248,7 +248,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="date_receiving_pre_claim_documents">Date of Receiving (Pre Claim) Documents </label>
-                                            <input type="text"  class="form-control" id="date_receiving_pre_claim_documents"
+                                            <input type="text"  class="form-control" disabled id="date_receiving_pre_claim_documents"
                                                 name="date_receiving_pre_claim_documents" value="{{ old('date_receiving_pre_claim_documents', isset($icclaim_status) ? $icclaim_status->date_receiving_pre_claim_documents : '') }}" placeholder="DD/MM/YYYY"
                                                 data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                             @error('date_receiving_pre_claim_documents')
@@ -258,7 +258,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="date_dispatching_pre_claim_documents_to_ic_or_tpa">Date of Dispatching (Pre Claim) Documents to IC/TPA</label>
-                                            <input type="text"  class="form-control" id="date_dispatching_pre_claim_documents_to_ic_or_tpa"
+                                            <input type="text"  class="form-control" disabled id="date_dispatching_pre_claim_documents_to_ic_or_tpa"
                                                 name="date_dispatching_pre_claim_documents_to_ic_or_tpa" value="{{ old('date_dispatching_pre_claim_documents_to_ic_or_tpa', isset($icclaim_status) ? $icclaim_status->date_dispatching_pre_claim_documents_to_ic_or_tpa : '') }}" placeholder="DD/MM/YYYY"
                                                 data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                             @error('date_dispatching_pre_claim_documents_to_ic_or_tpa')
@@ -268,7 +268,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="date_receiving_post_claim_documents">Date of Receiving (Post Claim) Documents </label>
-                                            <input type="text"  class="form-control" id="date_receiving_post_claim_documents"
+                                            <input type="text"  class="form-control" disabled id="date_receiving_post_claim_documents"
                                                 name="date_receiving_post_claim_documents" value="{{ old('date_receiving_post_claim_documents', isset($icclaim_status) ? $icclaim_status->date_receiving_post_claim_documents : '') }}" placeholder="DD/MM/YYYY"
                                                 data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                             @error('date_receiving_post_claim_documents')
@@ -278,7 +278,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="date_dispatching_post_claim_documents_to_ic_or_tpa">Date of Dispatching (Post Claim) Documents to IC/TPA </label>
-                                            <input type="text"  class="form-control" id="date_dispatching_post_claim_documents_to_ic_or_tpa"
+                                            <input type="text"  class="form-control" disabled id="date_dispatching_post_claim_documents_to_ic_or_tpa"
                                                 name="date_dispatching_post_claim_documents_to_ic_or_tpa" value="{{ old('date_dispatching_post_claim_documents_to_ic_or_tpa', isset($icclaim_status) ? $icclaim_status->date_dispatching_post_claim_documents_to_ic_or_tpa : '') }}" placeholder="DD/MM/YYYY"
                                                 data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                             @error('date_dispatching_post_claim_documents_to_ic_or_tpa')
@@ -288,7 +288,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="date_receiving_query1_documents">Date of Receiving Query - 1 Documents </label>
-                                            <input type="text"  class="form-control" id="date_receiving_query1_documents"
+                                            <input type="text"  class="form-control" disabled id="date_receiving_query1_documents"
                                                 name="date_receiving_query1_documents" value="{{ old('date_receiving_query1_documents', isset($icclaim_status) ? $icclaim_status->date_receiving_query1_documents : '') }}" placeholder="DD/MM/YYYY"
                                                 data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                             @error('date_receiving_query1_documents')
@@ -298,7 +298,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="date_dispatching_query1_documents_to_ic_or_tpa">Date of Dispatching Query - 1 Documents to IC/TPA </label>
-                                            <input type="text"  class="form-control" id="date_dispatching_query1_documents_to_ic_or_tpa"
+                                            <input type="text"  class="form-control" disabled id="date_dispatching_query1_documents_to_ic_or_tpa"
                                                 name="date_dispatching_query1_documents_to_ic_or_tpa" value="{{ old('date_dispatching_query1_documents_to_ic_or_tpa', isset($icclaim_status) ? $icclaim_status->date_dispatching_query1_documents_to_ic_or_tpa : '') }}" placeholder="DD/MM/YYYY"
                                                 data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                             @error('date_dispatching_query1_documents_to_ic_or_tpa')
@@ -308,7 +308,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="date_receiving_query2_documents">Date of Receiving Query - 2 Documents </label>
-                                            <input type="text"  class="form-control" id="date_receiving_query2_documents"
+                                            <input type="text"  class="form-control" disabled id="date_receiving_query2_documents"
                                                 name="date_receiving_query2_documents" value="{{ old('date_receiving_query2_documents', isset($icclaim_status) ? $icclaim_status->date_receiving_query2_documents : '') }}" placeholder="DD/MM/YYYY"
                                                 data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                             @error('date_receiving_query2_documents')
@@ -318,7 +318,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="date_dispatching_query2_documents_to_ic_or_tpa">Date of Dispatching Query - 2 Documents to IC/TPA</label>
-                                            <input type="text"  class="form-control" id="date_dispatching_query2_documents_to_ic_or_tpa"
+                                            <input type="text"  class="form-control" disabled id="date_dispatching_query2_documents_to_ic_or_tpa"
                                                 name="date_dispatching_query2_documents_to_ic_or_tpa" value="{{ old('date_dispatching_query2_documents_to_ic_or_tpa', isset($icclaim_status) ? $icclaim_status->date_dispatching_query2_documents_to_ic_or_tpa : '') }}" placeholder="DD/MM/YYYY"
                                                 data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                             @error('date_dispatching_query2_documents_to_ic_or_tpa')
@@ -328,7 +328,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="date_receiving_query3_documents">Date of Receiving Query - 3 Documents </label>
-                                            <input type="text"  class="form-control" id="date_receiving_query3_documents"
+                                            <input type="text"  class="form-control" disabled id="date_receiving_query3_documents"
                                                 name="date_receiving_query3_documents" value="{{ old('date_receiving_query3_documents', isset($icclaim_status) ? $icclaim_status->date_receiving_query3_documents : '') }}" placeholder="DD/MM/YYYY"
                                                 data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                             @error('date_receiving_query3_documents')
@@ -338,7 +338,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="date_dispatching_query3_documents_to_ic_or_tpa">Date of Dispatching Query - 3 Documents to IC/TPA </label>
-                                            <input type="text"  class="form-control" id="date_dispatching_query3_documents_to_ic_or_tpa"
+                                            <input type="text"  class="form-control" disabled id="date_dispatching_query3_documents_to_ic_or_tpa"
                                                 name="date_dispatching_query3_documents_to_ic_or_tpa" value="{{ old('date_dispatching_query3_documents_to_ic_or_tpa', isset($icclaim_status) ? $icclaim_status->date_dispatching_query3_documents_to_ic_or_tpa : '') }}" placeholder="DD/MM/YYYY"
                                                 data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                             @error('date_dispatching_query3_documents_to_ic_or_tpa')
@@ -348,7 +348,7 @@
 
                                         <div class="col-md-12 mt-3">
                                             <label for="ic_claim_status">IC Claim Status <span class="text-danger">*</span></label>
-                                            <select class="form-select" id="ic_claim_status" name="ic_claim_status">
+                                            <select disabled class="form-select" id="ic_claim_status" name="ic_claim_status">
                                                 <option value="Waiting for the Claim Documents" {{ old('ic_claim_status', @$icclaim_status->ic_claim_status) == 'Waiting for the Claim Documents' ? 'selected' : '' }}>Waiting for the Claim Documents </option>
                                                 <option value="Claim Documents Dispatched to IC-TPA" {{ old('ic_claim_status', @$icclaim_status->ic_claim_status) == 'Claim Documents Dispatched to IC-TPA' ? 'selected' : '' }}>Claim Documents Dispatched to IC-TPA </option>
                                                 <option value="Waiting for Query Reply from Insured" {{ old('ic_claim_status', @$icclaim_status->ic_claim_status) == 'Waiting for Query Reply from Insured' ? 'selected' : '' }}>Waiting for Query Reply from Insured </option>
@@ -364,7 +364,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="date_settlement">Date of Settlement </label>
-                                            <input type="text"  class="form-control" id="date_settlement"
+                                            <input type="text"  class="form-control" disabled id="date_settlement"
                                                 name="date_settlement" value="{{ old('date_settlement', isset($icclaim_status) ? $icclaim_status->date_settlement : '') }}" placeholder="DD/MM/YYYY"
                                                 data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                             @error('date_settlement')
@@ -374,7 +374,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="settled_amount">Settled Amount </label>
-                                            <input type="number"pattern="/^-?\d+\.?\d*$/"
+                                            <input disabled type="number"pattern="/^-?\d+\.?\d*$/"
                                                     onKeyPress="if(this.value.length==8) return false;" onkeypress="return isNumberKey(event)" class="form-control"
                                                 id="settled_amount" placeholder="Settled Amount" name="settled_amount"
                                                 value="{{ old('settled_amount', isset($icclaim_status) ? $icclaim_status->settled_amount : '') }}">
@@ -385,7 +385,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="date_disbursement">Date of Disbursement </label>
-                                            <input type="text"  class="form-control" id="date_disbursement"
+                                            <input type="text"  class="form-control" disabled id="date_disbursement"
                                                 name="date_disbursement" value="{{ old('date_disbursement', isset($icclaim_status) ? $icclaim_status->date_disbursement : '') }}" placeholder="DD/MM/YYYY"
                                                 data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                             @error('date_disbursement')
@@ -396,7 +396,7 @@
 
                                         <div class="col-md-12 mt-3">
                                             <label for="ic_claim_status_comments">IC Claim Status Comments </label>
-                                            <textarea class="form-control" id="ic_claim_status_comments" name="ic_claim_status_comments" maxlength="250"
+                                            <textarea readonly class="form-control" id="ic_claim_status_comments" name="ic_claim_status_comments" maxlength="250"
                                                 placeholder="IC Claim Status Comments" rows="5">{{ old('ic_claim_status_comments', isset($icclaim_status) ? $icclaim_status->ic_claim_status_comments : '') }}</textarea>
                                             @error('ic_claim_status_comments')
                                                 <span id="name-error"
@@ -405,7 +405,7 @@
                                         </div>
 
                                         <div class="col-md-12 text-end mt-3">
-                                            <button type="submit" class="btn btn-success"
+                                            <button disabled type="submit" class="btn btn-success"
                                                 form="loan-application-form">
                                                 Save IC Claim Status</button>
                                         </div>

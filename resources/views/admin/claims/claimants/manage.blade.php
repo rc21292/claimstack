@@ -61,10 +61,33 @@
                                                 <td>{{ $claimant->pincode }}</td>
                                                 @if(auth()->check() && auth()->user()->hasDirectPermission('Claimant Updation/Editing Rights'))
                                                 <td>
+
                                                     <div class="btn-group">
-                                                        <a href="{{ route('admin.claimants.edit', @$claimant->id) }}"
-                                                            class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
+                                                        <button type="button" class="btn btn-primary">
+                                                            Action</button>
+                                                        <button type="button" class="btn btn-dark 
+                                                            dropdown-toggle dropdown-toggle-split" 
+                                                            data-bs-toggle="dropdown">
+                                                            <span class="visually-hidden">
+                                                                Toggle Dropdown
+                                                            </span>
+                                                        </button>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a class="dropdown-item" href="{{ route('admin.claimants.edit', @$claimant->id) }}">
+                                                                <i class="mdi mdi-pencil"></i> Edit Claimant</a>
+                                                            </li>
+
+                                                            @if(@$claimant->icclaim_status && !empty(@$claimant->icclaim_status))
+                                                            <li><a class="dropdown-item" href="{{ route('admin.icclaim-status.create', ['claimant_id' => $claimant->id]) }}">
+                                                                <i class="mdi mdi-pencil"></i> Insurance Company Claim Status</a></li>
+                                                            @else
+                                                            <li><a class="dropdown-item" href="{{ route('admin.icclaim-status.create', ['claimant_id' => $claimant->id]) }}">
+                                                                 <i class="mdi mdi-plus"></i> Insurance Company Claim Status</a></li>
+                                                            @endif
+                                                            
+                                                        </ul>
                                                     </div>
+                                                    
                                                 </td>
                                                 @endif
                                             </tr>

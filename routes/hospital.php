@@ -20,6 +20,7 @@ use App\Http\Controllers\Hospital\Claims\DischargeStatusController;
 use App\Http\Controllers\Hospital\Claims\DocumentReimbursementController;
 use App\Http\Controllers\Hospital\Claims\LendingStatusController;
 use App\Http\Controllers\Hospital\UtilityController;
+use App\Http\Controllers\Hospital\Claims\ICClaimStatusController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -126,6 +127,13 @@ Route::group(['prefix' => 'hospital', 'as' => 'hospital.'], function () {
 
     Route::resource('claimants', ClaimantController::class);
 
+    /*
+    |--------------------------------------------------------------------------
+    | Insurance Company Claim Status Controller Route
+    |--------------------------------------------------------------------------
+    */
+
+    Route::resource('icclaim-status', ICClaimStatusController::class);
 
     /*
     |--------------------------------------------------------------------------

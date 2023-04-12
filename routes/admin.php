@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\Claims\ClaimProcessingController;
 use App\Http\Controllers\Admin\Claims\DischargeStatusController;
 use App\Http\Controllers\Admin\Claims\DocumentReimbursementController;
 use App\Http\Controllers\Admin\Claims\LendingStatusController;
+use App\Http\Controllers\Admin\Claims\ICClaimStatusController;
 use App\Http\Controllers\Admin\UtilityController;
 use Illuminate\Support\Facades\Route;
 
@@ -234,6 +235,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::post('change-password', [ChangePasswordController::class,'changePassword'])->name('change-password');
 
     Route::put('claims/update-insurance-policy/{id}', [ClaimController::class, 'updateInsurancePolicy'])->name('claims.update-insurance-policy');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Insurance Company Claim Status Controller Route
+    |--------------------------------------------------------------------------
+    */
+
+    Route::resource('icclaim-status', ICClaimStatusController::class);
 
     /*
     |--------------------------------------------------------------------------
