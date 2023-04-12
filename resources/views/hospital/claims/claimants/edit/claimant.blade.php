@@ -14,10 +14,10 @@
                             <li class="breadcrumb-item"><a href="{{ route('hospital.dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('hospital.claimants.index') }}">Claimant</a>
                             </li>
-                            <li class="breadcrumb-item active">New Claimant</li>
+                            <li class="breadcrumb-item active">@if(isset($claimant) && !empty($claimant)) Edit @else New @endif Claimant</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">New Claimant</h4>
+                    <h4 class="page-title">@if(isset($claimant) && !empty($claimant)) Edit @else New @endif Claimant</h4>
                 </div>
             </div>
         </div>
@@ -41,20 +41,7 @@
                             <span class="d-none d-md-block">Borrower ID Creation</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{ route('hospital.document-reimbursement.show', $claimant->id) }}" aria-expanded="false"
-                            class="nav-link rounded-0">
-                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
-                            <span class="d-none d-md-block">Documents</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('hospital.assessment-status.show', $claimant->id) }}" aria-expanded="false"
-                            class="nav-link rounded-0">
-                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
-                            <span class="d-none d-md-block">Assessment Status</span>
-                        </a>
-                    </li>
+
                     <li class="nav-item">
                         <a href="{{ route('hospital.lending-status.show', $claimant->id) }}" aria-expanded="false"
                             class="nav-link rounded-0">
@@ -62,6 +49,15 @@
                             <span class="d-none d-md-block">Lending Status</span>
                         </a>
                     </li>
+                    
+                    <li class="nav-item">
+                        <a href="{{ route('hospital.assessment-status.show', $claimant->id) }}" aria-expanded="false"
+                            class="nav-link rounded-0">
+                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                            <span class="d-none d-md-block">Assessment Status</span>
+                        </a>
+                    </li>
+                    
                     <li class="nav-item">
                         <a href="{{ route('hospital.discharge-status.show', $claimant->id) }}" aria-expanded="false"
                             class="nav-link rounded-0">
@@ -240,7 +236,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="policy_type">Policy Type <span
                                                     class="text-danger">*</span></label>
-                                            <select disabled class="form-select" id="policy_type" name="policy_type"
+                                            <select class="form-select" id="policy_type" name="policy_type"
                                                 onchange="setGroupName();">
                                                 <option value="">Select Policy Type</option>
                                                 <option value="Group"
@@ -256,11 +252,9 @@
                                             @enderror
                                         </div>
 
-                                        <input type="hidden" name="policy_type" value="{{ old('policy_type', $claimant->policy_type) }}">
-
                                         <div class="col-md-6 mt-3">
-                                            <label for="group_name">Group Name <span class="text-danger">*</span></label>
-                                            <input type="text" readonly class="form-control" id="group_name" name="group_name"
+                                            <label for="group_name">Group Name <span class="text-danger"></span></label>
+                                            <input type="text" class="form-control" id="group_name" name="group_name"
                                                 placeholder="Enter Group Name" value="{{ old('group_name', $claimant->group_name) }}"
                                                 maxlength="75">
                                             @error('group_name')

@@ -58,6 +58,7 @@
                                                 <td>{{ $claimant->city }}</td>
                                                 <td>{{ $claimant->pincode }}</td>
                                                 <td>
+
                                                     <div class="btn-group">
                                                         <button type="button" class="btn btn-primary">
                                                             Action</button>

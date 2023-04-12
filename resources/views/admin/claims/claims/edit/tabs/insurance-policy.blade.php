@@ -270,7 +270,7 @@
             </div>
 
             <div class="col-md-6 mb-3">
-                <label for="agent_broker_code">Agent / Broker Code <span class="text-danger">*</span></label>
+                <label for="agent_broker_code">Agent / Broker Code <span class="text-danger"></span></label>
                 <input type="text" maxlength="10" class="form-control" id="agent_broker_code"
                     name="agent_broker_code" placeholder="Agent/Broker Code" value="{{ old('agent_broker_code', @$claim->policy->agent_broker_code) }}">
                 @error('agent_broker_code')
@@ -279,7 +279,7 @@
             </div>
 
             <div class="col-md-6 mb-3">
-                <label for="agent_broker_name">Agent / Broker Name <span class="text-danger">*</span></label>
+                <label for="agent_broker_name">Agent / Broker Name <span class="text-danger"></span></label>
                 <input type="text" maxlength="60" class="form-control" id="agent_broker_name"
                     name="agent_broker_name" placeholder="Agent/Broker Name" value="{{ old('agent_broker_name', @$claim->policy->agent_broker_name) }}">
                 @error('agent_broker_name')
@@ -589,7 +589,7 @@
                     @enderror
                 </div>
                 <div class="col-md-4 mb-2">
-                    <label>Comment <span class="text-danger">*</span></label>
+                    <label>Comment <span class="text-danger"></span></label>
                     <div class="row">
                         <div class="col-sm-12">
                             <input type="text" maxlength="250" class="form-control"
@@ -744,7 +744,7 @@
                     @enderror
                 </div>
                 <div class="col-md-4 mb-2">
-                    <label>Comment <span class="text-danger">*</span></label>
+                    <label>Comment <span class="text-danger"></span></label>
                     <div class="row">
                         <div class="col-sm-12">
                             <input type="text" maxlength="250" class="form-control"
@@ -759,7 +759,7 @@
 
     <div class="card-body">
         <div class="form-group text-end">
-            <button type="submit" class="btn btn-success" @if(auth()->check() && auth()->user()->hasDirectPermission('Insurance Policy Updation/Editing Rights')) @else disabled @endif form="insurance-form">Update</button>
+            <button type="submit" class="btn btn-success" form="insurance-form">Update</button>
         </div>
     </div>
 </form>

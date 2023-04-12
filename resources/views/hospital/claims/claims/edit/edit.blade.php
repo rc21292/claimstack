@@ -15,10 +15,10 @@
                             <li class="breadcrumb-item"><a href="javascript:void(0);">Claims</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('hospital.claims.index') }}">Claims</a>
                             </li>
-                            <li class="breadcrumb-item active">New Claim</li>
+                            <li class="breadcrumb-item active">Edit Claim</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">New Claim</h4>
+                    <h4 class="page-title">Claim ID Edit</h4>
                 </div>
             </div>
         </div>
@@ -293,15 +293,15 @@
         }
 
         $(document).ready(function(){
-        $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
-            localStorage.setItem('activeTab', $(e.target).attr('href'));
-        });
+            $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
+                localStorage.setItem('activeTab', $(e.target).attr('href'));
+            });
 
-        var activeTab = localStorage.getItem('activeTab');
-        if(activeTab){
-            $('a[href="' + activeTab + '"]').tab('show');
-        }
-    });
+            var activeTab = localStorage.getItem('activeTab');
+            if(activeTab){
+                $('a[href="' + activeTab + '"]').tab('show');
+            }
+        });
     </script>
     <script>
 

@@ -197,9 +197,9 @@
                             <div class="collapse show" id="claimant-management" style="">
                                 <ul class="side-nav-third-level">
                                     @if(auth()->check() && auth()->user()->hasDirectPermission('Claimant Login ID Creation Rights'))
-                                    <li>
+                                    {{-- <li>
                                         <a href="{{ route('admin.claimants.create') }}">Create Claimant</a>
-                                    </li>
+                                    </li> --}}
                                     @endif
                                     @if(auth()->check() && auth()->user()->hasDirectPermission('Claimant Updation/Editing Rights'))
                                     <li>
@@ -218,9 +218,9 @@
                             <div class="collapse show" id="borrowers-management" style="">
                                 <ul class="side-nav-third-level">
                                     @if(auth()->check() && auth()->user()->hasDirectPermission('Claimant Login ID Creation Rights'))
-                                    <li>
+                                    {{-- <li>
                                         <a href="{{ route('admin.borrowers.create') }}">Create Borrower</a>
-                                    </li>
+                                    </li> --}}
                                     @endif
                                     @if(auth()->check() && auth()->user()->hasDirectPermission('Claimant Updation/Editing Rights'))
                                     <li>

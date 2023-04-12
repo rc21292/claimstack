@@ -62,7 +62,7 @@
 
                                 <div class="col-md-6">
                                     <label for="hospital_name">Hospital Name <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="hospital_name" name="hospital_name"
+                                    <input type="text" readonly class="form-control" id="hospital_name" name="hospital_name"
                                         placeholder="Enter Hospital Name" value="{{ old('hospital_name') }}">
                                     @error('hospital_name')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -72,7 +72,7 @@
                                 <div class="col-md-12 mt-3">
                                     <label for="hospital_address">Hospital Address <span
                                             class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="hospital_address" name="hospital_address"
+                                    <input type="text" readonly class="form-control" id="hospital_address" name="hospital_address"
                                         placeholder="Address Line"
                                         value="{{ old('hospital_address') }}">
                                     @error('hospital_address')
@@ -81,7 +81,7 @@
                                 </div>
 
                                 <div class="col-md-4 mt-2">
-                                    <input type="text" class="form-control" id="hospital_city" name="hospital_city"
+                                    <input type="text" readonly class="form-control" id="hospital_city" name="hospital_city"
                                         placeholder="City" value="{{ old('hospital_city') }}">
                                     @error('hospital_city')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -89,7 +89,7 @@
                                 </div>
 
                                 <div class="col-md-4 mt-2">
-                                    <input type="text" class="form-control" id="hospital_state" name="hospital_state"
+                                    <input type="text" readonly class="form-control" id="hospital_state" name="hospital_state"
                                         placeholder="State" value="{{ old('hospital_state') }}">
                                     @error('hospital_state')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -97,7 +97,7 @@
                                 </div>
 
                                 <div class="col-md-4 mt-2">
-                                    <input type="number" class="form-control" id="hospital_pincode" name="hospital_pincode"
+                                    <input type="number" readonly class="form-control" id="hospital_pincode" name="hospital_pincode"
                                         placeholder="Pincode" value="{{ old('hospital_pincode') }}">
                                     @error('hospital_pincode')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -106,8 +106,8 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="associate_partner_id">Associate Partner ID <span
-                                            class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="associate_partner_id"
+                                            class="text-danger"></span></label>
+                                    <input type="text" readonly class="form-control" id="associate_partner_id"
                                         name="associate_partner_id" placeholder="Associate Partner ID"
                                         value="{{ old('associate_partner_id') }}">
                                     @error('associate_partner_id')
@@ -145,7 +145,7 @@
 
                                 <div class="col-md-6 mt-3">
                                  <label for="qualification">Qualification / Specilization <span class="text-danger">*</span></label>
-                                    <input type="text" maxlength="25" class="form-control" id="qualification"
+                                    <input type="text" readonly maxlength="25" class="form-control" id="qualification"
                                         name="qualification" placeholder="Qualification / Specilization"
                                         value="{{ old('qualification') }}">
                                     @error('qualification')
@@ -155,7 +155,7 @@
 
                                 <div class="col-md-6 mt-3">
                                  <label for="doctor_registration_no">Registration No. with State Code <span class="text-danger">*</span></label>
-                                    <input type="text" maxlength="20" class="form-control" id="doctor_registration_no"
+                                    <input type="text" readonly maxlength="20" class="form-control" id="doctor_registration_no"
                                         name="doctor_registration_no" placeholder="Registration No. with State Code"
                                         value="{{ old('doctor_registration_no') }}">
                                     @error('doctor_registration_no')
@@ -165,7 +165,7 @@
 
                                 <div class="col-md-6 mt-3">
                                  <label for="doctor_mobile_no">Contact No.(Mobile No.) <span class="text-danger">*</span></label>
-                                    <input maxlength="10" onkeypress="return isNumberKey(event)" class="form-control" id="doctor_mobile_no"
+                                    <input maxlength="10" readonly onkeypress="return isNumberKey(event)" class="form-control" id="doctor_mobile_no"
                                         name="doctor_mobile_no" placeholder="Contact No.(Mobile No.)"
                                         value="{{ old('doctor_mobile_no') }}">
                                     @error('doctor_mobile_no')

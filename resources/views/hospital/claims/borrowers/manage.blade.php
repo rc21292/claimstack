@@ -52,15 +52,36 @@
                                                 <th>{{ $borrower->patient->uid }}</th>
                                                 <th scope="row">{{ $borrower->claim->uid }}</th>
                                                 <th scope="row">{{ $borrower->uid }}</th>
-                                                <td>{{ @$borrower->patient->firstname }} {{ @$borrower->patient->middlename }} {{ @$borrower->patient->lastname }}</td>
+                                                <td>{{ @$borrower->patient->firstname }} {{ @$borrower->patient->middlename }} {{ @$borrower->patient->lastname }} </td>
                                                 <td>{{ @$borrower->hospital->name }}</td>
                                                 <td>{{ $borrower->borrower_state }}</td>
                                                 <td>{{ $borrower->borrower_city }}</td>
                                                 <td>{{ $borrower->borrower_pincode }}</td>
-                                                <td>
-                                                    <div class="btn-group">
-                                                        <a href="{{ route('hospital.borrowers.show', @$borrower->id) }}"
-                                                            class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
+                                                <td class="text-center">
+                                                   <div class="btn-group">
+                                                        <button type="button" class="btn btn-primary">
+                                                            Action</button>
+                                                        <button type="button" class="btn btn-dark 
+                                                            dropdown-toggle dropdown-toggle-split" 
+                                                            data-bs-toggle="dropdown">
+                                                            <span class="visually-hidden">
+                                                                Toggle Dropdown
+                                                            </span>
+                                                        </button>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a class="dropdown-item" href="{{ route('hospital.borrowers.edit', @$borrower->claim->id) }}">
+                                                                <i class="mdi mdi-pencil"></i> Edit Borrower</a>
+                                                            </li>
+
+                                                            @if($borrower->lending_status && !empty($borrower->lending_status))
+                                                            <li><a class="dropdown-item" href="{{ route('hospital.lending-status.create', ['borrower_id' => $borrower->id]) }}">
+                                                                <i class="mdi mdi-pencil"></i> Lending Status</a></li>
+                                                            @else
+                                                            <li><a class="dropdown-item" href="{{ route('hospital.lending-status.create', ['borrower_id' => $borrower->id]) }}">
+                                                                 <i class="mdi mdi-plus"></i> Lending Status</a></li>
+                                                            @endif
+                                                            
+                                                        </ul>
                                                     </div>
                                                 </td>
                                             </tr>

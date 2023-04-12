@@ -11,12 +11,12 @@
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Claim Stack</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('hospital.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('hospital.claimants.index') }}">Claimant</a>
+                            <li class="breadcrumb-item"><a href="{{ route('hospital.claimants.index') }}">Discharge Status</a>
                             </li>
-                            <li class="breadcrumb-item active">New Claimant</li>
+                            <li class="breadcrumb-item active">@if(isset($discharge_status) && !empty($discharge_status)) Edit @else New @endif Discharge Status</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">New Claimant</h4>
+                    <h4 class="page-title">@if(isset($discharge_status) && !empty($discharge_status)) Edit @else New @endif Discharge Status</h4>
                 </div>
             </div>
         </div>
@@ -41,20 +41,7 @@
                             <span class="d-none d-md-block">Borrower ID Creation</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{ route('hospital.document-reimbursement.show', $claimant->id) }}"
-                            aria-expanded="false" class="nav-link rounded-0">
-                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
-                            <span class="d-none d-md-block">Documents</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('hospital.assessment-status.show', $claimant->id) }}" aria-expanded="false"
-                            class="nav-link rounded-0">
-                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
-                            <span class="d-none d-md-block">Assessment Status</span>
-                        </a>
-                    </li>
+
                     <li class="nav-item">
                         <a href="{{ route('hospital.lending-status.show', $claimant->id) }}" aria-expanded="false"
                             class="nav-link rounded-0">
@@ -62,6 +49,15 @@
                             <span class="d-none d-md-block">Lending Status</span>
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('hospital.assessment-status.show', $claimant->id) }}" aria-expanded="false"
+                            class="nav-link rounded-0">
+                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                            <span class="d-none d-md-block">Assessment Status</span>
+                        </a>
+                    </li>
+                    
                     <li class="nav-item">
                         <a href="{{ route('hospital.discharge-status.show', $claimant->id) }}" aria-expanded="true"
                             class="nav-link rounded-0 active">
@@ -727,10 +723,10 @@
             $('#death_summary').attr('readonly',true);
         }
 
-        $('#maternity_date_of_delivery').datepicker({
-            endDate: '+0d',
-            autoclose: true,
-        });
+         $('#maternity_date_of_delivery').datepicker({
+                endDate: '+0d',
+                autoclose: true,
+            });
 
 
 

@@ -95,9 +95,7 @@
                             </a>
                             <div class="collapse show" id="claimant-management" style="">
                                 <ul class="side-nav-third-level">
-                                    <li>
-                                        <a href="{{ route('hospital.claimants.create') }}">Create Claimant</a>
-                                    </li>
+                                    
                                     <li>
                                         <a href="{{ route('hospital.claimants.index') }}">Manage Claimants</a>
                                     </li>
@@ -111,9 +109,7 @@
                             </a>
                             <div class="collapse show" id="borrowers-management" style="">
                                 <ul class="side-nav-third-level">
-                                    <li>
-                                        <a href="{{ route('hospital.borrowers.create') }}">Create Borrower</a>
-                                    </li>
+                                  
                                     <li>
                                         <a href="{{ route('hospital.borrowers.index') }}">Manage Borrowers</a>
                                     </li>

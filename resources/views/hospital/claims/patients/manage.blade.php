@@ -50,16 +50,33 @@
                                                 <th scope="row">{{ $patient->uid }}</th>
                                                 <td>{{ $patient->title }} {{ $patient->firstname }} {{ $patient->middlename }} {{ $patient->lastname }}</td>
                                                 <td>{{ @$patient->hospital->name }}</td>
-                                                <td>{{ $patient->patient_current_city }}</td>
                                                 <td>{{ $patient->patient_current_state }}</td>
+                                                <td>{{ $patient->patient_current_city }}</td>
                                                 <td>{{ $patient->patient_current_pincode }}</td>
                                                 <td class="text-center">
-                                                    <div class="btn-group">
-                                                        <a href="{{ route('hospital.patients.edit', @$patient->id) }}"
-                                                            class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
-                                                        <a href="{{ route('hospital.claims.create', ['patient_id' => $patient->id]) }}"
-                                                            class="btn btn-primary"><i class="mdi mdi-plus"></i> New
-                                                            Claim</a>
+                                                   <div class="btn-group">
+                                                        <button type="button" class="btn btn-primary">
+                                                            Action</button>
+                                                        <button type="button" class="btn btn-dark 
+                                                            dropdown-toggle dropdown-toggle-split" 
+                                                            data-bs-toggle="dropdown">
+                                                            <span class="visually-hidden">
+                                                                Toggle Dropdown
+                                                            </span>
+                                                        </button>
+                                                        <ul class="dropdown-menu">
+                                                            
+                                                            <li><a class="dropdown-item" href="{{ route('hospital.patients.edit', @$patient->id) }}">
+                                                                <i class="mdi mdi-pencil"></i> Edit Patient</a> 
+                                                            </li>
+                                                            <li><a class="dropdown-item" href="{{ route('hospital.view-claim-documents', $patient->id) }}"><i class="mdi mdi-eye"></i>
+                                                                View Documents</a>
+                                                            </li>
+
+                                                            <li><a class="dropdown-item" href="{{ route('hospital.claims.create', ['patient_id' => $patient->id]) }}"> <i class="mdi mdi-plus"></i>
+                                                                Create New Claim</a>
+                                                            </li>
+                                                        </ul>
                                                     </div>
                                                 </td>
                                             </tr>

@@ -12,12 +12,12 @@
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Claim Stack</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('hospital.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('hospital.claimants.index') }}">Claimant</a>
+                            <li class="breadcrumb-item"><a href="{{ route('hospital.claimants.index') }}">Claim Processing</a>
                             </li>
-                            <li class="breadcrumb-item active">New Claimant</li>
+                            <li class="breadcrumb-item active">@if(isset($claim_processing) && !empty($claim_processing)) Edit @else New @endif Claim Processing</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">New Claimant</h4>
+                    <h4 class="page-title">@if(isset($claim_processing) && !empty($claim_processing)) Edit @else New @endif Claim Processing</h4>
                 </div>
             </div>
         </div>
@@ -42,25 +42,20 @@
                             <span class="d-none d-md-block">Borrower ID Creation</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{ route('hospital.document-reimbursement.show', $claimant->id) }}"
-                            aria-expanded="false" class="nav-link rounded-0">
-                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
-                            <span class="d-none d-md-block">Documents</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('hospital.assessment-status.show', $claimant->id) }}" aria-expanded="false"
-                            class="nav-link rounded-0">
-                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
-                            <span class="d-none d-md-block">Assessment Status</span>
-                        </a>
-                    </li>
+
                     <li class="nav-item">
                         <a href="{{ route('hospital.lending-status.show', $claimant->id) }}" aria-expanded="false"
                             class="nav-link rounded-0">
                             <i class="mdi mdi-account-circle d-md-none d-block"></i>
                             <span class="d-none d-md-block">Lending Status</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('hospital.assessment-status.show', $claimant->id) }}" aria-expanded="false"
+                            class="nav-link rounded-0">
+                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                            <span class="d-none d-md-block">Assessment Status</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -732,7 +727,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="primary_diagnosis_icd_leveli_disease">ICD - Level - I - Disease <span class="text-danger">*</span></label>
 
-                                            <select class="form-control select2" data-toggle="select2" disabled id="primary_diagnosis_icd_leveli_disease" name="primary_diagnosis_icd_leveli_disease">
+                                            <select class="form-control select2" data-toggle="select2" id="primary_diagnosis_icd_leveli_disease" name="primary_diagnosis_icd_leveli_disease">
                                                 <option value="">Please Select</option>
                                                 @foreach ($icd_codes_level1 as $icd_code)
                                                     <option value="{{ $icd_code->level1 }}"
@@ -750,7 +745,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="primary_diagnosis_icd_leveli_code">ICD - Level - I - Code <span class="text-danger">*</span></label>
-                                            <input type="text" maxlength="16" class="form-control" readonly id="primary_diagnosis_icd_leveli_code" name="primary_diagnosis_icd_leveli_code" placeholder="Enter ICD - Level - I - Code" value="{{ old('primary_diagnosis_icd_leveli_code', isset($claim_processing) ? $claim_processing->primary_diagnosis_icd_leveli_code : '') }}">
+                                            <input type="text" maxlength="16" class="form-control" id="primary_diagnosis_icd_leveli_code" name="primary_diagnosis_icd_leveli_code" placeholder="Enter ICD - Level - I - Code" value="{{ old('primary_diagnosis_icd_leveli_code', isset($claim_processing) ? $claim_processing->primary_diagnosis_icd_leveli_code : '') }}">
                                             @error('primary_diagnosis_icd_leveli_code', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -759,7 +754,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="primary_diagnosis_icd_levelii_disease">ICD - Level - II - Disease <span class="text-danger">*</span></label>
 
-                                            <select class="form-control select2" data-toggle="select2" disabled id="primary_diagnosis_icd_levelii_disease" name="primary_diagnosis_icd_levelii_disease">
+                                            <select class="form-control select2" data-toggle="select2" id="primary_diagnosis_icd_levelii_disease" name="primary_diagnosis_icd_levelii_disease">
                                                 <option value="">Please Select</option>
                                                 @foreach ($icd_codes_level2 as $icd_code)
                                                     <option value="{{ $icd_code->level2 }}"
@@ -777,7 +772,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="primary_diagnosis_icd_levelii_code">ICD - Level - II - Code <span class="text-danger">*</span></label>
-                                            <input type="text" maxlength="16" class="form-control" readonly id="primary_diagnosis_icd_levelii_code" name="primary_diagnosis_icd_levelii_code"  placeholder="Enter ICD - Level - II - Code" value="{{ old('primary_diagnosis_icd_levelii_code', isset($claim_processing) ? $claim_processing->primary_diagnosis_icd_levelii_code : '') }}">
+                                            <input type="text" maxlength="16" class="form-control" id="primary_diagnosis_icd_levelii_code" name="primary_diagnosis_icd_levelii_code"  placeholder="Enter ICD - Level - II - Code" value="{{ old('primary_diagnosis_icd_levelii_code', isset($claim_processing) ? $claim_processing->primary_diagnosis_icd_levelii_code : '') }}">
                                             @error('primary_diagnosis_icd_levelii_code', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -787,7 +782,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="primary_diagnosis_icd_leveliii_disease">ICD - Level - III - Disease <span class="text-danger">*</span></label>
 
-                                            <select class="form-control select2" data-toggle="select2" disabled id="primary_diagnosis_icd_leveliii_disease" name="primary_diagnosis_icd_leveliii_disease">
+                                            <select class="form-control select2" data-toggle="select2" id="primary_diagnosis_icd_leveliii_disease" name="primary_diagnosis_icd_leveliii_disease">
                                                 <option value="">Please Select</option>
                                                 @foreach ($icd_codes_level3 as $icd_code)
                                                     <option value="{{ $icd_code->level3 }}"
@@ -805,7 +800,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="primary_diagnosis_icd_leveliii_code">ICD - Level - III - Code <span class="text-danger">*</span></label>
-                                            <input type="text" maxlength="16" class="form-control" readonly id="primary_diagnosis_icd_leveliii_code" name="primary_diagnosis_icd_leveliii_code"  placeholder="Enter ICD - Level - III - Code" value="{{ old('primary_diagnosis_icd_leveliii_code', isset($claim_processing) ? $claim_processing->primary_diagnosis_icd_leveliii_code : '') }}">
+                                            <input type="text" maxlength="16" class="form-control" id="primary_diagnosis_icd_leveliii_code" name="primary_diagnosis_icd_leveliii_code"  placeholder="Enter ICD - Level - III - Code" value="{{ old('primary_diagnosis_icd_leveliii_code', isset($claim_processing) ? $claim_processing->primary_diagnosis_icd_leveliii_code : '') }}">
                                             @error('primary_diagnosis_icd_leveliii_code', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -815,7 +810,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="primary_diagnosis_icd_leveliv_disease">ICD - Level - IV - Disease <span class="text-danger">*</span></label>
 
-                                            <select class="form-control select2" data-toggle="select2" disabled id="primary_diagnosis_icd_leveliv_disease" name="primary_diagnosis_icd_leveliv_disease">
+                                            <select class="form-control select2" data-toggle="select2" id="primary_diagnosis_icd_leveliv_disease" name="primary_diagnosis_icd_leveliv_disease">
                                                 <option value="">Please Select</option>
                                                 @foreach ($icd_codes_level4 as $icd_code)
                                                     <option value="{{ $icd_code->level4 }}"
@@ -833,7 +828,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="primary_diagnosis_icd_leveliv_code">ICD - Level - IV - Code <span class="text-danger">*</span></label>
-                                            <input type="text" maxlength="16" class="form-control" readonly id="primary_diagnosis_icd_leveliv_code" name="primary_diagnosis_icd_leveliv_code"
+                                            <input type="text" maxlength="16" class="form-control" id="primary_diagnosis_icd_leveliv_code" name="primary_diagnosis_icd_leveliv_code"
                                             placeholder="Enter ICD - Level - IV - Code" value="{{ old('primary_diagnosis_icd_leveliv_code', isset($claim_processing) ? $claim_processing->primary_diagnosis_icd_leveliv_code : '') }}">
                                             @error('primary_diagnosis_icd_leveliv_code', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -847,7 +842,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="additional_diagnosis_icd_leveli_disease">ICD - Level - I - Disease <span class="text-danger">*</span></label>
 
-                                            <select class="form-control select2" data-toggle="select2" disabled id="additional_diagnosis_icd_leveli_disease" name="additional_diagnosis_icd_leveli_disease">
+                                            <select class="form-control select2" data-toggle="select2" id="additional_diagnosis_icd_leveli_disease" name="additional_diagnosis_icd_leveli_disease">
                                                 <option value="">Please Select</option>
                                                 @foreach ($icd_codes_level1 as $icd_code)
                                                     <option value="{{ $icd_code->level1 }}"
@@ -865,7 +860,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="additional_diagnosis_icd_leveli_code">ICD - Level - I - Code <span class="text-danger">*</span></label>
-                                            <input type="text" maxlength="16" class="form-control" readonly id="additional_diagnosis_icd_leveli_code" name="additional_diagnosis_icd_leveli_code"
+                                            <input type="text" maxlength="16" class="form-control" id="additional_diagnosis_icd_leveli_code" name="additional_diagnosis_icd_leveli_code"
                                             placeholder="Enter ICD - Level - I - Code" value="{{ old('additional_diagnosis_icd_leveli_code', isset($claim_processing) ? $claim_processing->additional_diagnosis_icd_leveli_code : '') }}">
                                             @error('additional_diagnosis_icd_leveli_code', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -875,7 +870,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="additional_diagnosis_icd_levelii_disease">ICD - Level - II - Disease <span class="text-danger">*</span></label>
 
-                                            <select class="form-control select2" data-toggle="select2" disabled id="additional_diagnosis_icd_levelii_disease" name="additional_diagnosis_icd_levelii_disease">
+                                            <select class="form-control select2" data-toggle="select2" id="additional_diagnosis_icd_levelii_disease" name="additional_diagnosis_icd_levelii_disease">
                                                 <option value="">Please Select</option>
                                                 @foreach ($icd_codes_level2 as $icd_code)
                                                     <option value="{{ $icd_code->level2 }}"
@@ -893,7 +888,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="additional_diagnosis_icd_levelii_code">ICD - Level - II - Code <span class="text-danger">*</span></label>
-                                            <input type="text" maxlength="16" class="form-control" readonly id="additional_diagnosis_icd_levelii_code" name="additional_diagnosis_icd_levelii_code"  placeholder="Enter ICD - Level - II - Code" value="{{ old('additional_diagnosis_icd_levelii_code', isset($claim_processing) ? $claim_processing->additional_diagnosis_icd_levelii_code : '') }}">
+                                            <input type="text" maxlength="16" class="form-control" id="additional_diagnosis_icd_levelii_code" name="additional_diagnosis_icd_levelii_code"  placeholder="Enter ICD - Level - II - Code" value="{{ old('additional_diagnosis_icd_levelii_code', isset($claim_processing) ? $claim_processing->additional_diagnosis_icd_levelii_code : '') }}">
                                             @error('additional_diagnosis_icd_levelii_code', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -903,7 +898,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="additional_diagnosis_icd_leveliii_disease">ICD - Level - III - Disease <span class="text-danger">*</span></label>
 
-                                            <select class="form-control select2" data-toggle="select2" disabled id="additional_diagnosis_icd_leveliii_disease" name="additional_diagnosis_icd_leveliii_disease">
+                                            <select class="form-control select2" data-toggle="select2" id="additional_diagnosis_icd_leveliii_disease" name="additional_diagnosis_icd_leveliii_disease">
                                                 <option value="">Please Select</option>
                                                 @foreach ($icd_codes_level3 as $icd_code)
                                                     <option value="{{ $icd_code->level3 }}"
@@ -921,7 +916,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="additional_diagnosis_icd_leveliii_code">ICD - Level - III - Code <span class="text-danger">*</span></label>
-                                            <input type="text" maxlength="16" class="form-control" readonly id="additional_diagnosis_icd_leveliii_code" name="additional_diagnosis_icd_leveliii_code"  placeholder="Enter ICD - Level - III - Code" value="{{ old('additional_diagnosis_icd_leveliii_code', isset($claim_processing) ? $claim_processing->additional_diagnosis_icd_leveliii_code : '') }}">
+                                            <input type="text" maxlength="16" class="form-control" id="additional_diagnosis_icd_leveliii_code" name="additional_diagnosis_icd_leveliii_code"  placeholder="Enter ICD - Level - III - Code" value="{{ old('additional_diagnosis_icd_leveliii_code', isset($claim_processing) ? $claim_processing->additional_diagnosis_icd_leveliii_code : '') }}">
                                             @error('additional_diagnosis_icd_leveliii_code', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -930,7 +925,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="additional_diagnosis_icd_leveliv_disease">ICD - Level - IV - Disease <span class="text-danger">*</span></label>
-                                            <select class="form-control select2" data-toggle="select2" disabled id="additional_diagnosis_icd_leveliv_disease" name="additional_diagnosis_icd_leveliv_disease">
+                                            <select class="form-control select2" data-toggle="select2" id="additional_diagnosis_icd_leveliv_disease" name="additional_diagnosis_icd_leveliv_disease">
                                                 <option value="">Please Select</option>
                                                 @foreach ($icd_codes_level4 as $icd_code)
                                                     <option value="{{ $icd_code->level4 }}"
@@ -947,7 +942,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="additional_diagnosis_icd_leveliv_code">ICD - Level - IV - Code <span class="text-danger">*</span></label>
-                                            <input type="text" maxlength="16" class="form-control" readonly id="additional_diagnosis_icd_leveliv_code" name="additional_diagnosis_icd_leveliv_code"  placeholder="Enter ICD - Level - IV - Code" value="{{ old('additional_diagnosis_icd_leveliv_code', isset($claim_processing) ? $claim_processing->additional_diagnosis_icd_leveliv_code : '') }}">
+                                            <input type="text" maxlength="16" class="form-control" id="additional_diagnosis_icd_leveliv_code" name="additional_diagnosis_icd_leveliv_code"  placeholder="Enter ICD - Level - IV - Code" value="{{ old('additional_diagnosis_icd_leveliv_code', isset($claim_processing) ? $claim_processing->additional_diagnosis_icd_leveliv_code : '') }}">
                                             @error('additional_diagnosis_icd_leveliv_code', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -960,7 +955,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="co_morbidities_icd_leveli_disease">ICD - Level - I - Disease <span class="text-danger">*</span></label>
 
-                                            <select class="form-control select2" data-toggle="select2" disabled id="co_morbidities_icd_leveli_disease" name="co_morbidities_icd_leveli_disease">
+                                            <select class="form-control select2" data-toggle="select2" id="co_morbidities_icd_leveli_disease" name="co_morbidities_icd_leveli_disease">
                                                 <option value="">Please Select</option>
                                                 @foreach ($icd_codes_level1 as $icd_code)
                                                     <option value="{{ $icd_code->level1 }}"
@@ -978,7 +973,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="co_morbidities_icd_leveli_code">ICD - Level - I - Code <span class="text-danger">*</span></label>
-                                            <input type="text" maxlength="16" class="form-control" readonly id="co_morbidities_icd_leveli_code" name="co_morbidities_icd_leveli_code"
+                                            <input type="text" maxlength="16" class="form-control" id="co_morbidities_icd_leveli_code" name="co_morbidities_icd_leveli_code"
                                             placeholder="Enter ICD - Level - I - Code" value="{{ old('co_morbidities_icd_leveli_code', isset($claim_processing) ? $claim_processing->co_morbidities_icd_leveli_code : '') }}">
                                             @error('co_morbidities_icd_leveli_code', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -988,7 +983,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="co_morbidities_icd_levelii_disease">ICD - Level - II - Disease <span class="text-danger">*</span></label>
 
-                                            <select class="form-control select2" data-toggle="select2" disabled id="co_morbidities_icd_levelii_disease" name="co_morbidities_icd_levelii_disease">
+                                            <select class="form-control select2" data-toggle="select2" id="co_morbidities_icd_levelii_disease" name="co_morbidities_icd_levelii_disease">
                                                 <option value="">Please Select</option>
                                                 @foreach ($icd_codes_level2 as $icd_code)
                                                     <option value="{{ $icd_code->level2 }}"
@@ -1006,7 +1001,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="co_morbidities_icd_levelii_code">ICD - Level - II - Code <span class="text-danger">*</span></label>
-                                            <input type="text" maxlength="16" class="form-control" readonly id="co_morbidities_icd_levelii_code" name="co_morbidities_icd_levelii_code"
+                                            <input type="text" maxlength="16" class="form-control" id="co_morbidities_icd_levelii_code" name="co_morbidities_icd_levelii_code"
                                             placeholder="Enter ICD - Level - II - Code" value="{{ old('co_morbidities_icd_levelii_code', isset($claim_processing) ? $claim_processing->co_morbidities_icd_levelii_code : '') }}">
                                             @error('co_morbidities_icd_levelii_code', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -1017,7 +1012,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="co_morbidities_icd_leveliii_disease">ICD - Level - III - Disease <span class="text-danger">*</span></label>
 
-                                           <select class="form-control select2" data-toggle="select2" disabled id="co_morbidities_icd_leveliii_disease" name="co_morbidities_icd_leveliii_disease">
+                                           <select class="form-control select2" data-toggle="select2" id="co_morbidities_icd_leveliii_disease" name="co_morbidities_icd_leveliii_disease">
                                                 <option value="">Please Select</option>
                                                 @foreach ($icd_codes_level3 as $icd_code)
                                                     <option value="{{ $icd_code->level3 }}"
@@ -1034,7 +1029,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="co_morbidities_icd_leveliii_code">ICD - Level - III - Code <span class="text-danger">*</span></label>
-                                            <input type="text" maxlength="16" class="form-control" readonly id="co_morbidities_icd_leveliii_code" name="co_morbidities_icd_leveliii_code"
+                                            <input type="text" maxlength="16" class="form-control" id="co_morbidities_icd_leveliii_code" name="co_morbidities_icd_leveliii_code"
                                             placeholder="Enter ICD - Level - III - Code" value="{{ old('co_morbidities_icd_leveliii_code', isset($claim_processing) ? $claim_processing->co_morbidities_icd_leveliii_code : '') }}">
                                             @error('co_morbidities_icd_leveliii_code', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -1044,7 +1039,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="co_morbidities_icd_leveliv_disease">ICD - Level - IV - Disease <span class="text-danger">*</span></label>
-                                            <select class="form-control select2" data-toggle="select2" disabled id="co_morbidities_icd_leveliv_disease" name="co_morbidities_icd_leveliv_disease">
+                                            <select class="form-control select2" data-toggle="select2" id="co_morbidities_icd_leveliv_disease" name="co_morbidities_icd_leveliv_disease">
                                                 <option value="">Please Select</option>
                                                 @foreach ($icd_codes_level4 as $icd_code)
                                                     <option value="{{ $icd_code->level4 }}"
@@ -1061,7 +1056,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="co_morbidities_icd_leveliv_code">ICD - Level - IV - Code <span class="text-danger">*</span></label>
-                                            <input type="text" maxlength="16" class="form-control" readonly id="co_morbidities_icd_leveliv_code" name="co_morbidities_icd_leveliv_code"
+                                            <input type="text" maxlength="16" class="form-control" id="co_morbidities_icd_leveliv_code" name="co_morbidities_icd_leveliv_code"
                                             placeholder="Enter ICD - Level - IV - Code" value="{{ old('co_morbidities_icd_leveliv_code', isset($claim_processing) ? $claim_processing->co_morbidities_icd_leveliv_code : '') }}">
                                             @error('co_morbidities_icd_leveliv_code', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -1071,7 +1066,7 @@
 
                                         <div class="col-md-12 mt-3">
                                             <label for="co_morbidities_comments">Co-Morbidities - Comments </label>
-                                            <textarea readonly class="form-control" id="co_morbidities_comments" name="co_morbidities_comments" maxlength="250" placeholder="Comments"  rows="5">{{ old('co_morbidities_comments', isset($claim_processing) ? $claim_processing->co_morbidities_comments : '') }}</textarea>
+                                            <textarea class="form-control" id="co_morbidities_comments" name="co_morbidities_comments" maxlength="250" placeholder="Comments"  rows="5">{{ old('co_morbidities_comments', isset($claim_processing) ? $claim_processing->co_morbidities_comments : '') }}</textarea>
                                             @error('co_morbidities_comments', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -1085,7 +1080,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="procedure_name">Procedure Name <span class="text-danger">*</span></label>
-                                            <input readonly type="text" maxlength="100" class="form-control" id="procedure_name" name="procedure_name"
+                                            <input type="text" maxlength="100" class="form-control" id="procedure_name" name="procedure_name"
                                             placeholder="Enter Procedure Name" value="{{ old('procedure_name', isset($claim_processing) ? $claim_processing->procedure_name : '') }}">
                                             @error('procedure_name', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -1099,7 +1094,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="procedure_i_pcs_group_name">PCS Group - Name <span class="text-danger">*</span></label>
 
-                                            <select class="form-control select2" data-toggle="select2" disabled id="procedure_i_pcs_group_name" name="procedure_i_pcs_group_name">
+                                            <select class="form-control select2" data-toggle="select2" id="procedure_i_pcs_group_name" name="procedure_i_pcs_group_name">
                                                 <option value="">Please Select</option>
                                                 @foreach ($pcs_group_name as $pcs_group)
                                                     <option value="{{ $pcs_group->pcs_group_name }}"
@@ -1117,7 +1112,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="procedure_i_pcs_group_code">PCS Group - Code <span class="text-danger">*</span></label>
-                                            <input type="text" maxlength="16" class="form-control" readonly id="procedure_i_pcs_group_code" name="procedure_i_pcs_group_code"
+                                            <input type="text" maxlength="16" class="form-control" id="procedure_i_pcs_group_code" name="procedure_i_pcs_group_code"
                                             placeholder="Enter PCS Group - Code" value="{{ old('procedure_i_pcs_group_code', isset($claim_processing) ? $claim_processing->procedure_i_pcs_group_code : '') }}">
                                             @error('procedure_i_pcs_group_code', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -1126,7 +1121,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="procedure_i_pcs_sub_group_name">PCS Sub-Group - Name <span class="text-danger">*</span></label>
-                                            <select class="form-control select2" data-toggle="select2" disabled id="procedure_i_pcs_sub_group_name" name="procedure_i_pcs_sub_group_name">
+                                            <select class="form-control select2" data-toggle="select2" id="procedure_i_pcs_sub_group_name" name="procedure_i_pcs_sub_group_name">
                                                 <option value="">Please Select</option>
                                                 @foreach ($pcs_sub_group_name as $pcs_group)
                                                     <option value="{{ $pcs_group->pcs_sub_group_name }}"
@@ -1143,7 +1138,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="procedure_i_pcs_sub_group_code">PCS Sub-Group - Code <span class="text-danger">*</span></label>
-                                            <input type="text" maxlength="16" class="form-control" readonly id="procedure_i_pcs_sub_group_code" name="procedure_i_pcs_sub_group_code"
+                                            <input type="text" maxlength="16" class="form-control" id="procedure_i_pcs_sub_group_code" name="procedure_i_pcs_sub_group_code"
                                             placeholder="Enter PCS Group - Code" value="{{ old('procedure_i_pcs_sub_group_code', isset($claim_processing) ? $claim_processing->procedure_i_pcs_sub_group_code : '') }}">
                                             @error('procedure_i_pcs_sub_group_code', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -1153,7 +1148,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="procedure_i_pcs_short_name">PCS Short Name <span class="text-danger">*</span></label>
-                                            <select class="form-control select2" data-toggle="select2" disabled id="procedure_i_pcs_short_name" name="procedure_i_pcs_short_name">
+                                            <select class="form-control select2" data-toggle="select2" id="procedure_i_pcs_short_name" name="procedure_i_pcs_short_name">
                                                 <option value="">Please Select</option>
                                                 @foreach ($pcs_short_name as $pcs_group)
                                                     <option value="{{ $pcs_group->pcs_short_name }}"
@@ -1170,7 +1165,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="procedure_i_pcs_code">PCS Code <span class="text-danger">*</span></label>
-                                            <input type="text" maxlength="16" class="form-control" readonly id="procedure_i_pcs_code" name="procedure_i_pcs_code"
+                                            <input type="text" maxlength="16" class="form-control" id="procedure_i_pcs_code" name="procedure_i_pcs_code"
                                             placeholder="Enter PCS Code" value="{{ old('procedure_i_pcs_code', isset($claim_processing) ? $claim_processing->procedure_i_pcs_code : '') }}">
                                             @error('procedure_i_pcs_code', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -1179,7 +1174,7 @@
 
                                         <div class="col-md-12 mt-3">
                                             <label for="procedure_i_pcs_long_name">PCS Long Name <span class="text-danger">*</span></label>
-                                            <input type="text" maxlength="16" class="form-control" readonly id="procedure_i_pcs_long_name" name="procedure_i_pcs_long_name"
+                                            <input type="text" maxlength="16" class="form-control" id="procedure_i_pcs_long_name" name="procedure_i_pcs_long_name"
                                             placeholder="Enter PCS Long Name" value="{{ old('procedure_i_pcs_long_name', isset($claim_processing) ? $claim_processing->procedure_i_pcs_long_name : '') }}">
                                             @error('procedure_i_pcs_long_name', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -1191,7 +1186,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="procedure_ii_pcs_group_name">PCS Group - Name <span class="text-danger">*</span></label>
-                                            <select class="form-control select2" data-toggle="select2" disabled id="procedure_ii_pcs_group_name" name="procedure_ii_pcs_group_name">
+                                            <select class="form-control select2" data-toggle="select2" id="procedure_ii_pcs_group_name" name="procedure_ii_pcs_group_name">
                                                 <option value="">Please Select</option>
                                                 @foreach ($pcs_group_name as $pcs_group)
                                                     <option value="{{ $pcs_group->pcs_group_name }}"
@@ -1208,7 +1203,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="procedure_ii_pcs_group_code">PCS Group - Code <span class="text-danger">*</span></label>
-                                            <input type="text" maxlength="16" class="form-control" readonly id="procedure_ii_pcs_group_code" name="procedure_ii_pcs_group_code"
+                                            <input type="text" maxlength="16" class="form-control" id="procedure_ii_pcs_group_code" name="procedure_ii_pcs_group_code"
                                             placeholder="Enter PCS Group - Code" value="{{ old('procedure_ii_pcs_group_code', isset($claim_processing) ? $claim_processing->procedure_ii_pcs_group_code : '') }}">
                                             @error('procedure_ii_pcs_group_code', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -1217,7 +1212,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="procedure_ii_pcs_sub_group_name">PCS Sub-Group - Name <span class="text-danger">*</span></label>
-                                            <select class="form-control select2" data-toggle="select2" disabled id="procedure_ii_pcs_sub_group_name" name="procedure_ii_pcs_sub_group_name">
+                                            <select class="form-control select2" data-toggle="select2" id="procedure_ii_pcs_sub_group_name" name="procedure_ii_pcs_sub_group_name">
                                                 <option value="">Please Select</option>
                                                 @foreach ($pcs_sub_group_name as $pcs_group)
                                                     <option value="{{ $pcs_group->pcs_sub_group_name }}"
@@ -1234,7 +1229,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="procedure_ii_pcs_sub_group_code">PCS Sub-Group - Code <span class="text-danger">*</span></label>
-                                            <input type="text" maxlength="16" class="form-control" readonly id="procedure_ii_pcs_sub_group_code" name="procedure_ii_pcs_sub_group_code"
+                                            <input type="text" maxlength="16" class="form-control" id="procedure_ii_pcs_sub_group_code" name="procedure_ii_pcs_sub_group_code"
                                             placeholder="Enter PCS Sub-Group - Code " value="{{ old('procedure_ii_pcs_sub_group_code', isset($claim_processing) ? $claim_processing->procedure_ii_pcs_sub_group_code : '') }}">
                                             @error('procedure_ii_pcs_sub_group_code', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -1244,7 +1239,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="procedure_ii_pcs_short_name">PCS Short Name <span class="text-danger">*</span></label>
-                                            <select class="form-control select2" data-toggle="select2" disabled id="procedure_ii_pcs_short_name" name="procedure_ii_pcs_short_name">
+                                            <select class="form-control select2" data-toggle="select2" id="procedure_ii_pcs_short_name" name="procedure_ii_pcs_short_name">
                                                 <option value="">Please Select</option>
                                                 @foreach ($pcs_short_name as $pcs_group)
                                                     <option value="{{ $pcs_group->pcs_short_name }}"
@@ -1261,7 +1256,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="procedure_ii_pcs_code">PCS Code <span class="text-danger">*</span></label>
-                                            <input type="text" maxlength="16" class="form-control" readonly id="procedure_ii_pcs_code" name="procedure_ii_pcs_code"
+                                            <input type="text" maxlength="16" class="form-control" id="procedure_ii_pcs_code" name="procedure_ii_pcs_code"
                                             placeholder="Enter PCS Code " value="{{ old('procedure_ii_pcs_code', isset($claim_processing) ? $claim_processing->procedure_ii_pcs_code : '') }}">
                                             @error('procedure_ii_pcs_code', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -1270,7 +1265,7 @@
 
                                         <div class="col-md-12 mt-3">
                                             <label for="procedure_ii_pcs_long_name">PCS Long Name <span class="text-danger">*</span></label>
-                                            <input type="text" maxlength="16" class="form-control" readonly id="procedure_ii_pcs_long_name" name="procedure_ii_pcs_long_name"
+                                            <input type="text" maxlength="16" class="form-control" id="procedure_ii_pcs_long_name" name="procedure_ii_pcs_long_name"
                                             placeholder="Enter PCS Long Name" value="{{ old('procedure_ii_pcs_long_name', isset($claim_processing) ? $claim_processing->procedure_ii_pcs_long_name : '') }}">
                                             @error('procedure_ii_pcs_long_name', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -1282,7 +1277,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="procedure_iii_pcs_group_name">PCS Group - Name <span class="text-danger">*</span></label>
-                                            <select class="form-control select2" data-toggle="select2" disabled id="procedure_iii_pcs_group_name" name="procedure_iii_pcs_group_name">
+                                            <select class="form-control select2" data-toggle="select2" id="procedure_iii_pcs_group_name" name="procedure_iii_pcs_group_name">
                                                 <option value="">Please Select</option>
                                                 @foreach ($pcs_group_name as $pcs_group)
                                                     <option value="{{ $pcs_group->pcs_group_name }}"
@@ -1299,7 +1294,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="procedure_iii_pcs_group_code">PCS Group - Code <span class="text-danger">*</span></label>
-                                            <input type="text" maxlength="16" class="form-control" readonly id="procedure_iii_pcs_group_code" name="procedure_iii_pcs_group_code"
+                                            <input type="text" maxlength="16" class="form-control" id="procedure_iii_pcs_group_code" name="procedure_iii_pcs_group_code"
                                             placeholder="Enter PCS Group - Code" value="{{ old('procedure_iii_pcs_group_code', isset($claim_processing) ? $claim_processing->procedure_iii_pcs_group_code : '') }}">
                                             @error('procedure_iii_pcs_group_code', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -1308,7 +1303,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="procedure_iii_pcs_sub_group_name">PCS Sub-Group - Name <span class="text-danger">*</span></label>
-                                            <select class="form-control select2" data-toggle="select2" disabled id="procedure_iii_pcs_sub_group_name" name="procedure_iii_pcs_sub_group_name">
+                                            <select class="form-control select2" data-toggle="select2" id="procedure_iii_pcs_sub_group_name" name="procedure_iii_pcs_sub_group_name">
                                                 <option value="">Please Select</option>
                                                 @foreach ($pcs_sub_group_name as $pcs_group)
                                                     <option value="{{ $pcs_group->pcs_sub_group_name }}"
@@ -1325,7 +1320,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="procedure_iii_pcs_sub_group_code">PCS Sub-Group - Code <span class="text-danger">*</span></label>
-                                            <input type="text" maxlength="16" class="form-control" readonly id="procedure_iii_pcs_sub_group_code" name="procedure_iii_pcs_sub_group_code"
+                                            <input type="text" maxlength="16" class="form-control" id="procedure_iii_pcs_sub_group_code" name="procedure_iii_pcs_sub_group_code"
                                             placeholder="Enter PCS Sub-Group - Code" value="{{ old('procedure_iii_pcs_sub_group_code', isset($claim_processing) ? $claim_processing->procedure_iii_pcs_sub_group_code : '') }}">
                                             @error('procedure_iii_pcs_sub_group_code', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -1335,7 +1330,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="procedure_iii_pcs_short_name">PCS Short Name <span class="text-danger">*</span></label>
-                                            <select class="form-control select2" data-toggle="select2" disabled id="procedure_iii_pcs_short_name" name="procedure_iii_pcs_short_name">
+                                            <select class="form-control select2" data-toggle="select2" id="procedure_iii_pcs_short_name" name="procedure_iii_pcs_short_name">
                                                 <option value="">Please Select</option>
                                                 @foreach ($pcs_short_name as $pcs_group)
                                                     <option value="{{ $pcs_group->pcs_short_name }}"
@@ -1352,7 +1347,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="procedure_iii_pcs_code">PCS Code <span class="text-danger">*</span></label>
-                                            <input type="text" maxlength="16" class="form-control" readonly id="procedure_iii_pcs_code" name="procedure_iii_pcs_code"
+                                            <input type="text" maxlength="16" class="form-control" id="procedure_iii_pcs_code" name="procedure_iii_pcs_code"
                                             placeholder="Enter PCS Code" value="{{ old('procedure_iii_pcs_code', isset($claim_processing) ? $claim_processing->procedure_iii_pcs_code : '') }}">
                                             @error('procedure_iii_pcs_code', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -1361,7 +1356,7 @@
 
                                         <div class="col-md-12 mt-3">
                                             <label for="procedure_iii_pcs_long_name">PCS Long Name <span class="text-danger">*</span></label>
-                                            <input type="text" maxlength="16" class="form-control" readonly id="procedure_iii_pcs_long_name" name="procedure_iii_pcs_long_name"
+                                            <input type="text" maxlength="16" class="form-control" id="procedure_iii_pcs_long_name" name="procedure_iii_pcs_long_name"
                                             placeholder="Enter PCS Long Name" value="{{ old('procedure_iii_pcs_long_name', isset($claim_processing) ? $claim_processing->procedure_iii_pcs_long_name : '') }}">
                                             @error('procedure_iii_pcs_long_name', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -1371,7 +1366,7 @@
 
                                         <div class="col-md-12 mt-3">
                                             <label for="final_assessment_status">Final Assessment Status <span class="text-danger">*</span></label>
-                                            <select disabled class="form-select" id="final_assessment_status" name="final_assessment_status">
+                                            <select class="form-select" id="final_assessment_status" name="final_assessment_status">
                                                 <option value="Waiting for Final Assessment" {{ old('final_assessment_status', isset($claim_processing) ? $claim_processing->final_assessment_status : '') == 'Waiting for Final Assessment' ? 'selected' : '' }}>Waiting for Final Assessment </option>
                                                 <option value="Query Raised by BHC Team" {{ old('final_assessment_status', isset($claim_processing) ? $claim_processing->final_assessment_status : '') == 'Query Raised by BHC Team' ? 'selected' : '' }}>Query Raised by BHC Team </option>
                                                 <option value="Non Admissible as per the Policy TC" {{ old('final_assessment_status', isset($claim_processing) ? $claim_processing->final_assessment_status : '') == 'Non Admissible as per the Policy TC' ? 'selected' : '' }}>Non Admissible as per the Policy TC </option>
@@ -1417,6 +1412,11 @@
                                             @error('final_assessment_comments', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
+                                        </div>
+
+
+                                        <div class="col-md-12 text-end mt-3">
+                                            <button type="submit" class="btn btn-success" form="claim-processing-form">Save / Update Final Assessment</button>
                                         </div>
 
                                     </div>

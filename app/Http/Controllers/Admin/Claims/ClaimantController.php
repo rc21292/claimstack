@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin\Claims;
 use App\Http\Controllers\Controller;
 use App\Models\Claim;
 use App\Models\Claimant;
-use App\Models\Patient;
 use App\Models\ICClaimStatus;
+use App\Models\Patient;
 use Illuminate\Http\Request;
 
 class ClaimantController extends Controller

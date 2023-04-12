@@ -30,7 +30,7 @@ class PatientController extends Controller
         if ($filter_search) {
             $patients->where('uid', 'like', '%' . $filter_search . '%');
         }
-        $patients = $patients->where('hospital_id', auth()->user()->id)->orderBy('id', 'desc')->paginate(20);
+        $patients = $patients->orderBy('id', 'desc')->paginate(20);
 
         return view('hospital.claims.patients.manage',  compact('patients', 'filter_search'));
     }
@@ -2569,16 +2569,18 @@ class PatientController extends Controller
     {
         $hospital_id = $request->hospital_id;
         $associates = AssociatePartner::get();
-        $hospital = Hospital::where('id', auth()->user()->id)->first();
-        // echo "<pre>";print_r($hospital);"</pre>";exit;
+        $hospitals = Hospital::get();
         $doctors = HospitalDepartment::get();
-        if (isset($hospital->linked_associate_partner_id)) {
-            $hospital->ap_name = AssociatePartner::where('associate_partner_id', $hospital->linked_associate_partner_id)->value('name');
-        } else {
-            $hospital->ap_name = 'N/A';
+        foreach ($hospitals as $hospital) {
+            if (isset($hospital->linked_associate_partner_id)) {
+                $hospital->ap_name = AssociatePartner::where('associate_partner_id', $hospital->linked_associate_partner_id)->value('name');
+            } else {
+                $hospital->ap_name = 'N/A';
+            }
         }
 
-        return view('hospital.claims.patients.create',  compact('hospital_id', 'doctors','associates', 'hospital'));
+
+        return view('hospital.claims.patients.create',  compact('hospital_id', 'doctors','associates', 'hospitals'));
     }
 
     /**
@@ -2742,6 +2744,7 @@ class PatientController extends Controller
         $associates = AssociatePartner::get();
         $hospitals = Hospital::get();
         $doctors = HospitalDepartment::get();
+        $reimbursementdocument = ReimbursementDocument::where('patient_id', $id)->first();
         foreach ($hospitals as $hospital) {
             if (isset($hospital->linked_associate_partner_id)) {
                 $hospital->ap_name = AssociatePartner::where('associate_partner_id', $hospital->linked_associate_partner_id)->value('name');
@@ -2752,7 +2755,7 @@ class PatientController extends Controller
 
         $patient = Patient::with('hospital')->find($id);
 
-        return view('hospital.claims.patients.edit',  compact('patient', 'hospital_id', 'doctors', 'associates', 'hospitals'));
+        return view('hospital.claims.patients.edit',  compact('patient', 'hospital_id', 'doctors', 'associates', 'hospitals', 'reimbursementdocument'));
     }
 
     /**

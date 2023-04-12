@@ -143,6 +143,8 @@ Route::group(['prefix' => 'hospital', 'as' => 'hospital.'], function () {
     
     Route::resource('borrowers', BorrowerController::class);
 
+    Route::put('borrowers-update/{id}', [BorrowerController::class, 'updateBorrower'])->name('borrowers.borrowers-update');
+
 
     Route::resource('document-reimbursement', DocumentReimbursementController::class);
 
@@ -151,6 +153,7 @@ Route::group(['prefix' => 'hospital', 'as' => 'hospital.'], function () {
     | Assessment Status Controller Route
     |--------------------------------------------------------------------------
     */
+    Route::put('update-assessment-status/{id}', [AssessmentController::class, 'updateAssessmentStatus'])->name('assessment-status.update-assessment-status');
     
     Route::resource('assessment-status', AssessmentController::class);
 
@@ -167,8 +170,12 @@ Route::group(['prefix' => 'hospital', 'as' => 'hospital.'], function () {
     | Discharge Status Controller Route
     |--------------------------------------------------------------------------
     */
+
+    Route::put('lending-status-update/{id}', [LendingStatusController::class, 'updateLendingStatus'])->name('lending-status.lending-status-update');
     
     Route::resource('discharge-status', DischargeStatusController::class);
+
+    Route::put('update-discharge-status/{id}', [DischargeStatusController::class, 'updateDischargeStatus'])->name('discharge-status.update-discharge-status');
 
     /*
     |--------------------------------------------------------------------------
@@ -178,6 +185,10 @@ Route::group(['prefix' => 'hospital', 'as' => 'hospital.'], function () {
     
     Route::resource('claim-processing', ClaimProcessingController::class);
 
+    Route::put('claim-processing-update/{id}', [ClaimProcessingController::class, 'updateClaimProcessing'])->name('claim-processing.claim-processing-update');
+
+    Route::get('documents/view/{id}', [DocumentReimbursementController::class, 'showDocument'])->name('view-claim-documents');
+    Route::post('document-reimbursement/update-document/{id}',[DocumentReimbursementController::class, 'updateDocument'])->name('document-reimbursement.update-document');
 
     /*
     |--------------------------------------------------------------------------

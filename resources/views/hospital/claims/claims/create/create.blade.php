@@ -87,11 +87,13 @@
 
 
         $('#title').val(title);
+        $('#patient_title').val(title);
         $('#firstname').val(firstname);
         $('#middlename').val(middlename);
         $('#lastname').val(lastname);
         $('#age').val(age);
         $('#gender').val(gender);
+        $('#patient_gender').val(gender);
         $('#hospital_id').val(hospital).trigger('change');
         $('#hospital_id').prop('disabled', true);
         $('#registration_no').val(registrationno);

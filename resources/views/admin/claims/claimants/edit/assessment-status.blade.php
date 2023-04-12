@@ -12,12 +12,12 @@
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Claim Stack</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('admin.claimants.index') }}">Claimant</a>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.claimants.index') }}">Assessment Status</a>
                             </li>
-                            <li class="breadcrumb-item active">New Claimant</li>
+                            <li class="breadcrumb-item active">@if(isset($assessment_status) && !empty($assessment_status)) Edit @else New @endif Assessment Status</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">New Claimant</h4>
+                    <h4 class="page-title">@if(isset($assessment_status) && !empty($assessment_status)) Edit @else New @endif Assessment Status</h4>
                 </div>
             </div>
         </div>
@@ -42,25 +42,20 @@
                             <span class="d-none d-md-block">Borrower ID Creation</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{ route('admin.document-reimbursement.show', $claimant->id) }}"
-                            aria-expanded="false" class="nav-link rounded-0">
-                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
-                            <span class="d-none d-md-block">Documents</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('admin.assessment-status.show', $claimant->id) }}" aria-expanded="true"
-                            class="nav-link rounded-0 active">
-                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
-                            <span class="d-none d-md-block">Assessment Status</span>
-                        </a>
-                    </li>
+
                     <li class="nav-item">
                         <a href="{{ route('admin.lending-status.show', $claimant->id) }}" aria-expanded="false"
                             class="nav-link rounded-0">
                             <i class="mdi mdi-account-circle d-md-none d-block"></i>
                             <span class="d-none d-md-block">Lending Status</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('admin.assessment-status.show', $claimant->id) }}" aria-expanded="true"
+                            class="nav-link rounded-0 active">
+                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                            <span class="d-none d-md-block">Assessment Status</span>
                         </a>
                     </li>
                     <li class="nav-item">

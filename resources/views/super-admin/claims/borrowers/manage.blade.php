@@ -69,7 +69,7 @@
                                                             </span>
                                                         </button>
                                                         <ul class="dropdown-menu">
-                                                            <li><a class="dropdown-item" href="{{ route('super-admin.borrowers.show', @$borrower->id) }}">
+                                                            <li><a class="dropdown-item" href="{{ route('super-admin.borrowers.edit', @$borrower->claim->id) }}">
                                                                 <i class="mdi mdi-pencil"></i> Edit Borrower</a>
                                                             </li>
 

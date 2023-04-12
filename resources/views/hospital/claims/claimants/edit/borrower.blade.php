@@ -11,12 +11,12 @@
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Claim Stack</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('hospital.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('hospital.claimants.index') }}">Claimant</a>
+                            <li class="breadcrumb-item"><a href="{{ route('hospital.claimants.index') }}">Borrower</a>
                             </li>
-                            <li class="breadcrumb-item active">New Claimant</li>
+                            <li class="breadcrumb-item active">@if(isset($borrower) && !empty($borrower)) Edit @else New @endif Borrower</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">New Claimant</h4>
+                    <h4 class="page-title">@if(isset($borrower) && !empty($borrower)) Edit @else New @endif Borrower</h4>
                 </div>
             </div>
         </div>
@@ -41,20 +41,7 @@
                             <span class="d-none d-md-block">Borrower ID Creation</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{ route('hospital.document-reimbursement.show', $claimant->id) }}" aria-expanded="false"
-                            class="nav-link rounded-0">
-                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
-                            <span class="d-none d-md-block">Documents</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('hospital.assessment-status.show', $claimant->id) }}" aria-expanded="false"
-                            class="nav-link rounded-0">
-                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
-                            <span class="d-none d-md-block">Assessment Status</span>
-                        </a>
-                    </li>
+
                     <li class="nav-item">
                         <a href="{{ route('hospital.lending-status.show', $claimant->id) }}" aria-expanded="false"
                             class="nav-link rounded-0">
@@ -62,6 +49,15 @@
                             <span class="d-none d-md-block">Lending Status</span>
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('hospital.assessment-status.show', $claimant->id) }}" aria-expanded="false"
+                            class="nav-link rounded-0">
+                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                            <span class="d-none d-md-block">Assessment Status</span>
+                        </a>
+                    </li>
+                    
                     <li class="nav-item">
                         <a href="{{ route('hospital.discharge-status.show', $claimant->id) }}" aria-expanded="false"
                             class="nav-link rounded-0">
@@ -608,7 +604,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="nature_of_income">Nature of Income</label>
+                                            <label for="nature_of_income">Nature of Income <span class="text-danger">*</span></label>
                                             <select class="form-control" id="nature_of_income" name="nature_of_income">
                                                 <option value="">Select</option>
                                                 <option @if (old('nature_of_income', @$borrower->nature_of_income) == 'Salaried') selected @endif value="Salaried">
@@ -623,7 +619,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="organization">Name of the Organization</label>
+                                            <label for="organization">Name of the Organization <span class="text-danger">*</span></label>
                                             <input type="text" maxlength="60" class="form-control" id="organization"
                                                 name="organization" placeholder="Name of the Organization"
                                                 value="{{ old('organization', @$borrower->organization) }}">
@@ -635,7 +631,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="member_or_employer_id">Member ID No./Employee ID (Client
-                                                ID)</label>
+                                                ID) </label>
                                                 <div class="input-group">
                                             <input type="text" maxlength="12" class="form-control"
                                                 id="member_or_employer_id" name="member_or_employer_id"
@@ -693,7 +689,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="borrower_official_email_id">Borrower official email id<span
-                                                    class="text-danger">*</span></label>
+                                                    class="text-danger"></span></label>
                                             <input type="email" class="form-control" id="borrower_official_email_id"
                                                 name="borrower_official_email_id" maxlength="45"
                                                 placeholder="Enter Borrower official email id"
@@ -834,7 +830,7 @@
 
 
                                         <div class="col-md-6 mt-3">
-                                            <label>Borrower Cancel Cheque</label>
+                                            <label>Borrower Cancel Cheque / Pass Book <span class="text-danger">*</span></label>
                                             <div class="input-group">
                                                 <select class="form-select" id="borrower_cancel_cheque"
                                                     name="borrower_cancel_cheque">
@@ -937,7 +933,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="co_borrower_nominee_dob">Co-Borrower / Nominee DOB <span
-                                                    class="text-danger">*</span></label>
+                                                    class="text-danger"></span></label>
                                             <div class="input-group">
                                                 <input type="text" class="form-control" id="co_borrower_nominee_dob"
                                                     max="{{ date('Y-m-d') }}" name="co_borrower_nominee_dob"
@@ -1285,7 +1281,7 @@
             }else{
                 $("#bank_statement_file").attr('disabled',false);
             }
-        });        
+        });
 
         $('#co_borrower_nominee_dob').datepicker({
             endDate: '+0d',
@@ -1296,6 +1292,7 @@
             endDate: '+0d',
             autoclose: true,
         });
+
 
 </script>
 @endpush

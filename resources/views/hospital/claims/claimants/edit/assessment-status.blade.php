@@ -12,12 +12,12 @@
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Claim Stack</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('hospital.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('hospital.claimants.index') }}">Claimant</a>
+                            <li class="breadcrumb-item"><a href="{{ route('hospital.claimants.index') }}">Assessment Status</a>
                             </li>
-                            <li class="breadcrumb-item active">New Claimant</li>
+                            <li class="breadcrumb-item active">@if(isset($assessment_status) && !empty($assessment_status)) Edit @else New @endif Assessment Status</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">New Claimant</h4>
+                    <h4 class="page-title">@if(isset($assessment_status) && !empty($assessment_status)) Edit @else New @endif Assessment Status</h4>
                 </div>
             </div>
         </div>
@@ -42,25 +42,20 @@
                             <span class="d-none d-md-block">Borrower ID Creation</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{ route('hospital.document-reimbursement.show', $claimant->id) }}"
-                            aria-expanded="false" class="nav-link rounded-0">
-                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
-                            <span class="d-none d-md-block">Documents</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('hospital.assessment-status.show', $claimant->id) }}" aria-expanded="true"
-                            class="nav-link rounded-0 active">
-                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
-                            <span class="d-none d-md-block">Assessment Status</span>
-                        </a>
-                    </li>
+
                     <li class="nav-item">
                         <a href="{{ route('hospital.lending-status.show', $claimant->id) }}" aria-expanded="false"
                             class="nav-link rounded-0">
                             <i class="mdi mdi-account-circle d-md-none d-block"></i>
                             <span class="d-none d-md-block">Lending Status</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('hospital.assessment-status.show', $claimant->id) }}" aria-expanded="true"
+                            class="nav-link rounded-0 active">
+                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                            <span class="d-none d-md-block">Assessment Status</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -198,7 +193,7 @@
                                         </div>
 
                                         <div class="col-md-3 mt-1">
-                                            <select class="form-control" disabled id="patient_title" name="patient_title">
+                                            <select class="form-control" id="patient_title" name="patient_title">
                                                 <option disabled value="">Select</option>
                                                 <option disabled @if (old('patient_title', @$claimant->patient->title) == 'Mr.') selected @endif
                                                     value="Mr.">Mr.</option>
@@ -328,7 +323,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="hospital_on_the_panel_of_insurance_co">Hospital on the Panel of
                                                 Insurance Co. <span class="text-danger">*</span></label>
-                                            <select class="form-control" disabled id="hospital_on_the_panel_of_insurance_co"
+                                            <select class="form-control" id="hospital_on_the_panel_of_insurance_co"
                                                 name="hospital_on_the_panel_of_insurance_co">
                                                 <option value="">Select</option>
                                                 <option value="Yes"
@@ -349,7 +344,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="hospital_id_insurance_co">Hospital ID (Insurance Co.) <span
                                                     class="text-danger">*</span></label>
-                                            <input type="text" readonly maxlength="16" class="form-control"
+                                            <input type="text" maxlength="16" class="form-control"
                                                 id="hospital_id_insurance_co" name="hospital_id_insurance_co"
                                                 placeholder="Enter Hospital ID (Insurance Co.) "
                                                 value="{{ old('hospital_id_insurance_co', isset($assessment_status) ? $assessment_status->hospital_id_insurance_co : '') }}">
@@ -362,7 +357,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="pre_assessment_status">Pre-Assessment Status <span
                                                     class="text-danger">*</span></label>
-                                            <select class="form-select" disabled onchange="setStatus();" id="pre_assessment_status"
+                                            <select class="form-select" onchange="setStatus();" id="pre_assessment_status"
                                                 name="pre_assessment_status">
                                                 <option value="Waiting for Pre-Assessment"
                                                     {{ old('pre_assessment_status', isset($assessment_status) ? $assessment_status->pre_assessment_status : '') == 'Waiting for Pre-Assessment' ? 'selected' : '' }}>
@@ -402,7 +397,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="pre_assessment_amount">Pre-Assessment Amount <span
                                                     class="text-danger">*</span></label>
-                                            <input type="text" readonly maxlength="8" onkeypress="return isNumberKey(event)"  placeholder="Enter Pre-Assessment Amount"
+                                            <input type="text" maxlength="8" onkeypress="return isNumberKey(event)"  placeholder="Enter Pre-Assessment Amount"
                                                 class="form-control" id="pre_assessment_amount"
                                                 name="pre_assessment_amount"
                                                 value="{{ old('pre_assessment_amount', isset($assessment_status) ? $assessment_status->pre_assessment_amount : '') }}">
@@ -416,7 +411,7 @@
                                             <label for="pre_assessment_suspected_fraud">Pre-Assessment Suspected Fraud
                                                 <span class="text-danger">*</span></label>
 
-                                            <select disabled class="form-select pre_assessment_suspected_fraud"
+                                            <select class="form-select pre_assessment_suspected_fraud"
                                                 id="pre_assessment_suspected_fraud" name="pre_assessment_suspected_fraud">
                                                 <option value="">Select</option>
                                                 <option value="Yes"
@@ -438,7 +433,7 @@
                                         <div class="col-md-12 mt-3">
                                             <label for="pre_assessment_status_comments">Pre-Assessment Status Comments
                                             </label>
-                                            <textarea readonly class="form-control" id="pre_assessment_status_comments" name="pre_assessment_status_comments"
+                                            <textarea class="form-control" id="pre_assessment_status_comments" name="pre_assessment_status_comments"
                                                 maxlength="250" placeholder="Pre-Assessment Status Comments" rows="5">{{ old('pre_assessment_status_comments', isset($assessment_status) ? $assessment_status->pre_assessment_status_comments : '') }}</textarea>
                                             @error('pre_assessment_status_comments')
                                                 <span id="name-error"
@@ -448,7 +443,7 @@
 
 
                                         <div class="col-md-12 text-end mt-3">
-                                            <button type="submit" disabled class="btn btn-success"
+                                            <button type="submit" class="btn btn-success"
                                                 form="pre-assessment-status-form">Save / Update Pre-Assessment
                                                 Status</button>
                                         </div>
@@ -470,7 +465,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="final_assessment_status">Final Assessment Status <span
                                                     class="text-danger">*</span></label>
-                                            <select class="form-select final_assessment_status" disabled onchange="setStatusFinal();" id="final_assessment_status"
+                                            <select class="form-select final_assessment_status" onchange="setStatusFinal();" id="final_assessment_status"
                                                 name="final_assessment_status">
                                                 <option value="">Select</option>
                                                 <option value="Waiting for Final-Assessment"
@@ -503,7 +498,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="final_assessment_amount">Final Assessment Amount <span
                                                     class="text-danger">*</span></label>
-                                            <input type="text" maxlength="8" onkeypress="return isNumberKey(event)" placeholder="Enter Final Assessment Amount" readonly 
+                                            <input type="text" maxlength="8" onkeypress="return isNumberKey(event)" placeholder="Enter Final Assessment Amount"
                                                 class="form-control" id="final_assessment_amount"
                                                 name="final_assessment_amount"
                                                 value="{{ old('final_assessment_amount', isset($assessment_status) ? $assessment_status->final_assessment_amount : '0') }}">
@@ -512,8 +507,38 @@
                                             @enderror
                                         </div>
 
+                                        <div class="col-md-6 mt-3">
+                                            <label for="final_assessment_suspected_fraud">Final Assessment Suspected Fraud
+                                                <span class="text-danger">*</span></label>
+
+                                            <select class="form-select final_assessment_suspected_fraud"
+                                                id="final_assessment_suspected_fraud" name="final_assessment_suspected_fraud">
+                                                <option value="">Select</option>
+                                                <option value="Yes"
+                                                    {{ old('final_assessment_suspected_fraud', isset($assessment_status) ? $assessment_status->final_assessment_suspected_fraud : '') == 'Yes' ? 'selected' : '' }}>
+                                                    Yes </option>
+                                                <option value="No"
+                                                    {{ old('final_assessment_suspected_fraud', isset($assessment_status) ? $assessment_status->final_assessment_suspected_fraud : '') == 'No' ? 'selected' : '' }}>
+                                                    No</option>
+                                            </select>
+
+                                            @error('final_assessment_suspected_fraud')
+                                                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-md-12 mt-3">
+                                            <label for="final_assessment_status_comments">Final Assessment Status Comments
+                                            </label>
+                                            <textarea class="form-control" id="final_assessment_status_comments" name="final_assessment_status_comments"
+                                                maxlength="250" placeholder="Enter Final Assessment Status Comments" rows="5">{{ old('final_assessment_status_comments', isset($assessment_status) ? $assessment_status->final_assessment_status_comments : '') }}</textarea>
+                                            @error('final_assessment_status_comments')
+                                                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+
                                         <div class="col-md-12 text-end mt-3">
-                                            <button type="submit" disabled  class="btn btn-success"
+                                            <button type="submit" class="btn btn-success"
                                                 form="final-assessment-status-form">Save / Update Final Assessment
                                                 Status</button>
                                         </div>
@@ -530,8 +555,8 @@
 @push('scripts')
 <script type="text/javascript">
      $(document).ready(function() {
-            //setStatus();
-            //setStatusFinal();
+            setStatus();
+            setStatusFinal();
         });
 
         function setStatus() {

@@ -219,7 +219,7 @@
                 @enderror
             </div>
             <div class="col-md-12 mt-3">
-                <label for="abha_id">ABHA ID <span class="text-danger">*</span></label>
+                <label for="abha_id">ABHA ID <span class="text-danger"></span></label>
                 <div class="input-group">
                     <input type="text" maxlength="45" class="form-control" id="abha_id" name="abha_id"
                         placeholder="ABHA ID" value="{{ old('abha_id', $claim->abha_id) }}">

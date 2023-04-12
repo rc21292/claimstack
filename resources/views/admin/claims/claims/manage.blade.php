@@ -56,16 +56,69 @@
                                                 <td>{{ $claim->patient->patient_current_state }}</td>
                                                 <td>{{ $claim->patient->patient_current_pincode }}</td>
                                                 <td class="text-center">
-                                                    <div class="btn-group">
-                                                        @if(auth()->check() && auth()->user()->hasDirectPermission('Claim Intimation Updation/Editing Rights'))
-                                                        <a href="{{ route('admin.claims.edit', @$claim->id) }}"
-                                                            class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
-                                                        @endif
-                                                        @if(auth()->check() && auth()->user()->hasDirectPermission('Claimant Login ID Creation Rights'))
-                                                        <a href="{{ route('admin.claimants.create', ['claim_id' => $claim->id]) }}"
-                                                            class="btn btn-primary"><i class="mdi mdi-plus"></i> New
-                                                            Claimant</a>
-                                                        @endif
+                                                   <div class="btn-group">
+                                                        <button type="button" class="btn btn-primary">
+                                                            Action</button>
+                                                        <button type="button" class="btn btn-dark 
+                                                            dropdown-toggle dropdown-toggle-split" 
+                                                            data-bs-toggle="dropdown">
+                                                            <span class="visually-hidden">
+                                                                Toggle Dropdown
+                                                            </span>
+                                                        </button>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a class="dropdown-item" href="{{ route('admin.claims.edit', @$claim->id) }}">
+                                                                <i class="mdi mdi-pencil"></i> Edit Claim</a>
+                                                            </li>
+                                                            @if($claim->claimant && !empty($claim->claimant))
+                                                            <li><a class="dropdown-item" href="{{ route('admin.claimants.edit', $claim->claimant) }}">
+                                                                <i class="mdi mdi-pencil"></i> Claimant</a></li>
+                                                            @else
+                                                            <li><a class="dropdown-item" href="{{ route('admin.claimants.create', ['claim_id' => $claim->id]) }}">
+                                                                 <i class="mdi mdi-plus"></i> Claimant</a></li>
+                                                            @endif
+
+                                                            @if($claim->borrower && !empty($claim->borrower))
+                                                            <li><a class="dropdown-item" href="{{ route('admin.borrowers.edit', $claim->id) }}">
+                                                                <i class="mdi mdi-pencil"></i> Borrower</a>
+                                                            </li>
+                                                            @else
+                                                            <li><a class="dropdown-item" href="{{ route('admin.borrowers.edit', $claim->id) }}">
+                                                                <i class="mdi mdi-plus"></i> Borrower</a>
+                                                            </li>
+                                                            @endif
+
+                                                            @if($claim->assessment && !empty($claim->assessment))
+                                                            <li><a class="dropdown-item" href="{{ route('admin.assessment-status.create', ['claim_id' => $claim->id]) }}">
+                                                                <i class="mdi mdi-pencil"></i> Assessment Status</a>
+                                                            </li>
+                                                            @else
+                                                            <li><a class="dropdown-item" href="{{ route('admin.assessment-status.create', ['claim_id' => $claim->id]) }}">
+                                                                <i class="mdi mdi-plus"></i> Assessment Status</a>
+                                                            </li>
+                                                            @endif
+
+                                                            @if($claim->discharge && !empty($claim->discharge))
+                                                            <li><a class="dropdown-item" href="{{ route('admin.discharge-status.create', ['claim_id' => $claim->id]) }}">
+                                                                <i class="mdi mdi-pencil"></i> Discharge Status</a>
+                                                            </li>
+                                                            @else
+                                                            <li><a class="dropdown-item" href="{{ route('admin.discharge-status.create', ['claim_id' => $claim->id]) }}">
+                                                                <i class="mdi mdi-plus"></i> Discharge Status</a>
+                                                            </li>
+                                                            @endif
+
+                                                            @if($claim->claim_processing && !empty($claim->claim_processing))
+                                                            <li><a class="dropdown-item" href="{{ route('admin.claim-processing.create', ['claim_id' => $claim->id]) }}">
+                                                                <i class="mdi mdi-pencil"></i> Claim Processing</a>
+                                                            </li>
+                                                            @else
+                                                            <li><a class="dropdown-item" href="{{ route('admin.claim-processing.create', ['claim_id' => $claim->id]) }}">
+                                                                <i class="mdi mdi-plus"></i> Claim Processing</a>
+                                                            </li>
+                                                            @endif
+
+                                                        </ul>
                                                     </div>
                                                 </td>
                                             </tr>
