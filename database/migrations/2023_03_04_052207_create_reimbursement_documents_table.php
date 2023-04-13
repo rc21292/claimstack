@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('tpa_card_file')->nullable();
             $table->string('employee_or_member_id_group_file')->nullable();
             $table->string('photograph_of_the_patient_file')->nullable();
+            $table->string('bhc_assessment_formsi_and_ii_signed_stamped_file')->nullable();
             $table->string('indoor_care_paper_file')->nullable();
             $table->string('ecg_report_file')->nullable();
             $table->string('ct_mri_usg_hpe_investigation_report_file')->nullable();
@@ -47,6 +48,7 @@ return new class extends Migration
             $table->string('claimant_cancel_cheque_file')->nullable();
             $table->string('abha_id_proof_file')->nullable();
             $table->string('mlc_report_and_police_fir_document_file')->nullable();
+            $table->string('insurance_co_tpa_claim_form_signed_and_stamped_file')->nullable();
             $table->string('borrower_current_address_proof_file')->nullable();
             $table->string('borrower_pan_card_file')->nullable();
             $table->string('borrower_aadhar_card_file')->nullable();

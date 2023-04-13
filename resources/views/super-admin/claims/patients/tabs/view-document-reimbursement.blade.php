@@ -161,6 +161,24 @@
                                                 </tr> 
                                                 @endforeach
                                                 @endif
+
+
+                                                <tr>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->bhc_assessment_formsi_and_ii_signed_stamped_file) }}" >BHC Assessment Forms - I & II (Signed & Stamped)</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->bhc_assessment_formsi_and_ii_signed_stamped_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+
+                                                </tr>
+
+
+                                                @if($document_files && (count($document_files) > 0) && isset($document_files['bhc_assessment_formsi_and_ii_signed_stamped_file']) && $document_files['bhc_assessment_formsi_and_ii_signed_stamped_file'])
+                                                @foreach($document_files['bhc_assessment_formsi_and_ii_signed_stamped_file'] as $document_file)
+                                                <tr>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">BHC Assessment Forms - I & II (Signed & Stamped){{ $document_file->file_id }}</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+
+                                                </tr> 
+                                                @endforeach
+                                                @endif
                                         
 
                                             </tbody>
@@ -515,6 +533,24 @@
                                                 @foreach($document_files['mlc_report_and_police_fir_document_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">MLC Report & Police FIR Document{{ $document_file->file_id }}</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+
+                                                </tr> 
+                                                @endforeach
+                                                @endif
+
+
+                                                <tr>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->insurance_co_tpa_claim_form_signed_and_stamped_file) }}" >Insurance Co. TPA Claim Form (Signed & Stamped)</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->insurance_co_tpa_claim_form_signed_and_stamped_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+
+                                                </tr>
+
+
+                                                @if($document_files && (count($document_files) > 0) && isset($document_files['insurance_co_tpa_claim_form_signed_and_stamped_file']) && $document_files['insurance_co_tpa_claim_form_signed_and_stamped_file'])
+                                                @foreach($document_files['insurance_co_tpa_claim_form_signed_and_stamped_file'] as $document_file)
+                                                <tr>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Insurance Co. TPA Claim Form (Signed & Stamped){{ $document_file->file_id }}</a></td>
                                                     <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
