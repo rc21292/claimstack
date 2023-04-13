@@ -4,6 +4,7 @@ namespace App\Http\Controllers\SuperAdmin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tpa;
+use App\Models\HospitalEmpanelmentStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File; 
 
@@ -155,7 +156,10 @@ class TpaCompanyController extends Controller
      */
     public function destroy($id)
     {
+        HospitalEmpanelmentStatus::where('tpa_id',$id)->delete();
+
         $tpa  =  Tpa::find($id)->delete();
+
 
         return redirect()->route('super-admin.tpa.index')->with('success', 'Company deleted successfully');
     }
