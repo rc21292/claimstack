@@ -144,11 +144,10 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="associate_partner_name">Associate Partner Name <span
-                                                class="text-danger">*</span></label>
+                                            <label for="associate_partner_name">Associate Partner Name </label>
                                             <input type="text" readonly class="form-control" id="associate_partner_id"
                                                 name="associate_partner_name" placeholder="Enter associate partner name"
-                                                value="{{ old('associate_partner_name', $claimant->hospital->linked_associate_partner_id) }}">
+                                                value="{{ old('associate_partner_name', '[Name: '.$claimant->hospital->associate->name.'][City: '.$claimant->hospital->associate->city. '][State: '.$claimant->hospital->associate->state.']') }}">
                                             @error('associate_partner_name')
                                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -163,7 +162,7 @@
                                                 <option value="">Select IC</option>
                                                 @foreach ($insurers as $insurer)
                                                     <option value="{{ $insurer->id }}"
-                                                        {{ old('insurance_co_name', $claimant->claim->policy->insurance_company_other) == $insurer->id ? 'selected' : 'disabled' }}>
+                                                        {{ old('insurance_co_name', $claimant->claim->policy->insurer_id) == $insurer->id ? 'selected' : 'disabled' }}>
                                                         {{ $insurer->name }}
                                                     </option>
                                                 @endforeach

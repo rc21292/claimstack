@@ -118,4 +118,9 @@ class Hospital extends Authenticatable
     {
         return $this->hasOne(AssociatePartner::class);
     }
+
+    public function associate()
+    {
+        return $this->hasOne(AssociatePartner::class, 'linked_associate_partner');
+    }
 }
