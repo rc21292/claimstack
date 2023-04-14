@@ -5,6 +5,7 @@ namespace App\Http\Controllers\SuperAdmin\Claims;
 use App\Http\Controllers\Controller;
 use App\Models\AssessmentStatus;
 use App\Models\Claimant;
+use App\Models\ClaimProcessing;
 use App\Models\Claim;
 use App\Models\Insurer;
 use Illuminate\Http\Request;
@@ -34,10 +35,11 @@ class AssessmentController extends Controller
     public function create(Request $request)
     {
         $claim           = Claim::with('patient','hospital')->find($request->claim_id);
+        $processing_query   = ClaimProcessing::where('claim_id', $request->claim_id)->value('processing_query');
         $assessment_exists  = AssessmentStatus::where('claim_id', $request->claim_id)->exists();
         $assessment_status  = $assessment_exists ? AssessmentStatus::where('claim_id', $request->claim_id)->first() : null;
         $insurers           = Insurer::get();
-        return view('super-admin.claims.assessments.create.create', compact('claim', 'assessment_status', 'insurers'));
+        return view('super-admin.claims.assessments.create.create', compact('claim', 'assessment_status', 'insurers', 'processing_query'));
     }
 
     /**

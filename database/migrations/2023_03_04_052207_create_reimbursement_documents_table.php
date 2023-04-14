@@ -63,6 +63,12 @@ return new class extends Migration
             $table->string('co_borrower_itr_income_tax_return_file')->nullable();
             $table->string('co_borrower_cancel_cheque_file')->nullable();
             $table->string('co_borrower_other_documents_file')->nullable();
+            $table->string('loan_disbursement_letter_file')->nullable();
+            $table->string('loan_approval_letter_file')->nullable();
+            $table->string('insurance_other_documents_file')->nullable();
+            $table->string('settllement_letter_file')->nullable();
+            $table->string('claim_other_documents_file')->nullable();
+            $table->string('claim_intimation_documents')->nullable();
             $table->timestamps();
         });
     }

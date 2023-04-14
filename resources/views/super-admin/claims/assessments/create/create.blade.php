@@ -366,7 +366,7 @@
                                             <label for="pre_assessment_suspected_fraud">Pre-Assessment Suspected Fraud
                                                 <span class="text-danger">*</span></label>
 
-                                            <select class="form-select pre_assessment_suspected_fraud"
+                                            <select onchange="setAssStsus()" class="form-select pre_assessment_suspected_fraud"
                                                 id="pre_assessment_suspected_fraud" name="pre_assessment_suspected_fraud">
                                                 <option value="">Select</option>
                                                 <option value="Yes"
@@ -408,7 +408,7 @@
                         </div>
                         <div class="card">
                             <div class="card-header bg-dark text-white">
-                                Final-Assessment
+                                Final Assessment / Authorization
                             </div>
                             <div class="card-body">
                                 <form action="{{ route('super-admin.assessment-status.update-assessment-status', $claim->id) }}"
@@ -418,7 +418,7 @@
                                     <input type="hidden" name="form_type" value="final-assessment-status-form">
                                     <div class="form-group row">
                                         <div class="col-md-6 mt-3">
-                                            <label for="final_assessment_status">Final Assessment Status <span
+                                            <label for="final_assessment_status">Final Assessment / Authorization Status <span
                                                     class="text-danger">*</span></label>
                                             <select class="form-select final_assessment_status" onchange="setStatusFinal();" id="final_assessment_status"
                                                 name="final_assessment_status">
@@ -444,16 +444,16 @@
                                             <input type="text" placeholder="Enter Query - Final Assessment" readonly
                                                 class="form-control query_final_assessment" id="query_final_assessment"
                                                 name="query_final_assessment"
-                                                value="{{ old('query_final_assessment', isset($assessment_status) ? $assessment_status->query_final_assessment : '') }}">
+                                                value="{{ old('query_final_assessment', isset($assessment_status) ? $assessment_status->query_final_assessment : @$processing_query) }}">
                                             @error('query_final_assessment')
                                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="final_assessment_amount">Final Assessment Amount <span
+                                            <label for="final_assessment_amount">Final Assessment / Authorization Amount <span
                                                     class="text-danger">*</span></label>
-                                            <input type="number" maxlength="8" onkeypress="return isNumberKey(event)" placeholder="Enter Final Assessment Amount"
+                                            <input type="number" maxlength="8" onkeypress="return isNumberKey(event)" placeholder="Enter Final Assessment / Authorization Amount"
                                                 class="form-control" id="final_assessment_amount"
                                                 name="final_assessment_amount"
                                                 value="{{ old('final_assessment_amount', isset($assessment_status) ? $assessment_status->final_assessment_amount : '0') }}">
@@ -463,11 +463,11 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="final_assessment_suspected_fraud">Final Assessment Suspected Fraud
+                                            <label for="final_assessment_suspected_fraud">Final Assessment / Authorization Suspected Fraud
                                                 <span class="text-danger">*</span></label>
 
                                             <select class="form-select final_assessment_suspected_fraud"
-                                                id="final_assessment_suspected_fraud" name="final_assessment_suspected_fraud">
+                                                id="final_assessment_suspected_fraud" onchange="setAssFinaStsus()" name="final_assessment_suspected_fraud">
                                                 <option value="">Select</option>
                                                 <option value="Yes"
                                                     {{ old('final_assessment_suspected_fraud', isset($assessment_status) ? $assessment_status->final_assessment_suspected_fraud : '') == 'Yes' ? 'selected' : '' }}>
@@ -483,10 +483,10 @@
                                         </div>
 
                                         <div class="col-md-12 mt-3">
-                                            <label for="final_assessment_status_comments">Final Assessment Status Comments
+                                            <label for="final_assessment_status_comments">Final Assessment / Authorization Status Comments
                                             </label>
                                             <textarea class="form-control" id="final_assessment_status_comments" name="final_assessment_status_comments"
-                                                maxlength="250" placeholder="Enter Final Assessment Status Comments" rows="5">{{ old('final_assessment_status_comments', isset($assessment_status) ? $assessment_status->final_assessment_status_comments : '') }}</textarea>
+                                                maxlength="250" placeholder="Enter Final Assessment / Authorization Status Comments" rows="5">{{ old('final_assessment_status_comments', isset($assessment_status) ? $assessment_status->final_assessment_status_comments : '') }}</textarea>
                                             @error('final_assessment_status_comments')
                                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -494,8 +494,7 @@
 
                                         <div class="col-md-12 text-end mt-3">
                                             <button type="submit" class="btn btn-success"
-                                                form="final-assessment-status-form">Save / Update Final Assessment
-                                                Status</button>
+                                                form="final-assessment-status-form">Authorize Claim</button>
                                         </div>
                                     </div>
                                 </form>
@@ -511,10 +510,26 @@
 <script type="text/javascript">
      $(document).ready(function() {
             setStatus();
+            setAssStsus();
+            setAssFinaStsus();
             setStatusFinal();
         });
 
-        function setStatus() {
+     function setAssStsus() {
+        var status = $("#pre_assessment_suspected_fraud").val();
+        if (status == 'Yes') {
+            $("#pre_assessment_status").val('Non Admissible as per the Policy TC').trigger('change');
+        }
+    }
+
+    function setAssFinaStsus() {
+        var status = $("#final_assessment_suspected_fraud").val();
+        if (status == 'Yes') {
+            $("#final_assessment_status").val('Non Admissible as per the Policy TC').trigger('change');
+        }
+    }
+
+         function setStatus() {
             var status = $("#pre_assessment_status").val();
             switch (status) {
                 case 'Query Raised by BHC Team':
@@ -525,6 +540,7 @@
                     break;
             }
         }
+
 
         function setStatusFinal() {
             var status = $("#final_assessment_status").val();

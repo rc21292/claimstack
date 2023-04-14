@@ -57,5 +57,11 @@ class ReimbursementDocument extends Model
         'co_borrower_itr_income_tax_return_file',
         'co_borrower_cancel_cheque_file',
         'co_borrower_other_documents_file',
+        'claim_intimation_documents',
+        'claim_other_documents_file',
+        'settllement_letter_file',
+        'insurance_other_documents_file',
+        'loan_approval_letter_file',
+        'loan_disbursement_letter_file',
     ];
 }

@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header bg-dark text-white">
-        Documents for Initial Assessment
+        Documents for Pre-Assessment
     </div>
     <div class="card-body">
         <form action="{{ route('super-admin.document-reimbursement.update-document', $patient->id) }}"
@@ -235,6 +235,33 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
+                            placeholder="Claim Intimation Documents *">
+                        @isset($reimbursementdocument->claim_intimation_documents)
+                            <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->claim_intimation_documents) }}"
+                                target="_blank" class="btn btn-info download-label"><i
+                                    class="mdi mdi-eye"></i></a>
+                        @endisset
+                        @isset($reimbursementdocument->claim_intimation_documents)
+                            <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->claim_intimation_documents) }}"
+                                download="" class="btn btn-warning download-label"><i
+                                    class="mdi mdi-download"></i></a>
+                        @endisset
+                        <input type="file" name="claim_intimation_documents"
+                            id="claim_intimation_documents" hidden
+                            onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
+                        <label for="claim_intimation_documents"
+                            class="btn btn-primary upload-label"><i
+                                class="mdi mdi-upload"></i></label>
+                    </div>
+                    @error('claim_intimation_documents')
+                        <span id="name-error"
+                            class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="col-md-6 mt-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" readonly
                             placeholder="BHC Assessment Forms - I & II (Signed & Stamped) *">
                         @isset($reimbursementdocument->bhc_assessment_formsi_and_ii_signed_stamped_file)
                             <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->bhc_assessment_formsi_and_ii_signed_stamped_file) }}"
@@ -259,11 +286,37 @@
                     @enderror
                 </div>
 
+                <div class="col-md-6 mt-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" readonly
+                            placeholder="Other Documents *">
+                        @isset($reimbursementdocument->claim_other_documents_file)
+                            <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->claim_other_documents_file) }}"
+                                target="_blank" class="btn btn-info download-label"><i
+                                    class="mdi mdi-eye"></i></a>
+                        @endisset
+                        @isset($reimbursementdocument->claim_other_documents_file)
+                            <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->claim_other_documents_file) }}"
+                                download="" class="btn btn-warning download-label"><i
+                                    class="mdi mdi-download"></i></a>
+                        @endisset
+                        <input type="file" name="claim_other_documents_file"
+                            id="claim_other_documents_file" hidden
+                            onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
+                        <label for="claim_other_documents_file"
+                            class="btn btn-primary upload-label"><i
+                                class="mdi mdi-upload"></i></label>
+                    </div>
+                    @error('claim_other_documents_file')
+                        <span id="name-error"
+                            class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+
 
                 <div class="col-md-12 text-end mt-3">
                     <button type="submit" class="btn btn-success"
-                        form="initial-assessment-form">Save Documents for Initial
-                        Assessment</button>
+                        form="initial-assessment-form">Save Documents for Pre-Assessment</button>
                 </div>
             </div>
         </form>
@@ -769,7 +822,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Claimant Cancel Cheque *">
+                            placeholder="Claimant Cancel Cheque / Pass Book *">
                         @isset($reimbursementdocument->claimant_cancel_cheque_file)
                             <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->claimant_cancel_cheque_file) }}"
                                 target="_blank" class="btn btn-info download-label"><i
@@ -846,6 +899,7 @@
                     @enderror
                 </div>
 
+
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
@@ -875,9 +929,85 @@
 
                 <div class="col-md-12 text-end mt-3">
                     <button type="submit" class="btn btn-success"
-                        form="insurance-claim-form">Save Documents for Insurance Claim</button>
+                    form="insurance-claim-form">Save Documents for Insurance Claim</button>
                 </div>
             </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="card">
+    <div class="card-header bg-dark text-white">
+        Insurance Settlement Documents
+    </div>
+    <div class="card-body">
+        <form action="{{ route('super-admin.document-reimbursement.update-document', $patient->id) }}"
+            method="post" id="insurance-settlement-documents" enctype="multipart/form-data">
+            @csrf
+            @method('POST')
+            <input type="hidden" name="form_type" value="insurance_settlement_documents">
+            <div class="form-group row">
+                <div class="col-md-6 mt-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" readonly
+                            placeholder="Settllement Letter *">
+                        @isset($reimbursementdocument->settllement_letter_file)
+                            <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->settllement_letter_file) }}"
+                                target="_blank" class="btn btn-info download-label"><i
+                                    class="mdi mdi-eye"></i></a>
+                        @endisset
+                        @isset($reimbursementdocument->settllement_letter_file)
+                            <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->settllement_letter_file) }}"
+                                download="" class="btn btn-warning download-label"><i
+                                    class="mdi mdi-download"></i></a>
+                        @endisset
+                        <input type="file" name="settllement_letter_file"
+                            id="settllement_letter_file" hidden
+                            onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
+                        <label for="settllement_letter_file"
+                            class="btn btn-primary upload-label"><i
+                                class="mdi mdi-upload"></i></label>
+                    </div>
+                    @error('settllement_letter_file')
+                        <span id="name-error"
+                            class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="col-md-6 mt-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" readonly
+                            placeholder="Other Documents *">
+                        @isset($reimbursementdocument->insurance_other_documents_file)
+                            <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->insurance_other_documents_file) }}"
+                                target="_blank" class="btn btn-info download-label"><i
+                                    class="mdi mdi-eye"></i></a>
+                        @endisset
+                        @isset($reimbursementdocument->insurance_other_documents_file)
+                            <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->insurance_other_documents_file) }}"
+                                download="" class="btn btn-warning download-label"><i
+                                    class="mdi mdi-download"></i></a>
+                        @endisset
+                        <input type="file" name="insurance_other_documents_file"
+                            id="insurance_other_documents_file" hidden
+                            onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
+                        <label for="insurance_other_documents_file"
+                            class="btn btn-primary upload-label"><i
+                                class="mdi mdi-upload"></i></label>
+                    </div>
+                    @error('insurance_other_documents_file')
+                        <span id="name-error"
+                            class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="col-md-12 text-end mt-3">
+                    <button type="submit" class="btn btn-success"
+                        form="insurance-settlement-documents">Save Insurance Settlement Documents</button>
+                </div>
+            </div>
+
         </form>
     </div>
 </div>
@@ -1031,7 +1161,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Borrower Cancel Cheque *">
+                            placeholder="Borrower Cancel Cheque / Pass Book *">
                         @isset($reimbursementdocument->borrower_cancel_cheque_file)
                             <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->borrower_cancel_cheque_file) }}"
                                 target="_blank" class="btn btn-info download-label"><i
@@ -1240,7 +1370,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Co-Borrower Cancel Cheque *">
+                            placeholder="Co-Borrower Cancel Cheque / Pass Book *">
                         @isset($reimbursementdocument->co_borrower_cancel_cheque_file)
                             <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->co_borrower_cancel_cheque_file) }}"
                                 target="_blank" class="btn btn-info download-label"><i
@@ -1296,6 +1426,81 @@
                         Documents of Co-Borrower</button>
                 </div>
             </div>
+        </form>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header bg-dark text-white">
+        Lending Status
+    </div>
+    <div class="card-body">
+        <form action="{{ route('super-admin.document-reimbursement.update-document', $patient->id) }}"
+            method="post" id="lending-status" enctype="multipart/form-data">
+            @csrf
+            @method('POST')
+            <input type="hidden" name="form_type" value="lending_status_document">
+            <div class="form-group row">
+                <div class="col-md-6 mt-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" readonly
+                            placeholder="Loan Approval Letter *">
+                        @isset($reimbursementdocument->loan_approval_letter_file)
+                            <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->loan_approval_letter_file) }}"
+                                target="_blank" class="btn btn-info download-label"><i
+                                    class="mdi mdi-eye"></i></a>
+                        @endisset
+                        @isset($reimbursementdocument->loan_approval_letter_file)
+                            <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->loan_approval_letter_file) }}"
+                                download="" class="btn btn-warning download-label"><i
+                                    class="mdi mdi-download"></i></a>
+                        @endisset
+                        <input type="file" name="loan_approval_letter_file"
+                            id="loan_approval_letter_file" hidden
+                            onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
+                        <label for="loan_approval_letter_file"
+                            class="btn btn-primary upload-label"><i
+                                class="mdi mdi-upload"></i></label>
+                    </div>
+                    @error('loan_approval_letter_file')
+                        <span id="name-error"
+                            class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="col-md-6 mt-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" readonly
+                            placeholder="Loan Disbursement Letter *">
+                        @isset($reimbursementdocument->loan_disbursement_letter_file)
+                            <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->loan_disbursement_letter_file) }}"
+                                target="_blank" class="btn btn-info download-label"><i
+                                    class="mdi mdi-eye"></i></a>
+                        @endisset
+                        @isset($reimbursementdocument->loan_disbursement_letter_file)
+                            <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->loan_disbursement_letter_file) }}"
+                                download="" class="btn btn-warning download-label"><i
+                                    class="mdi mdi-download"></i></a>
+                        @endisset
+                        <input type="file" name="loan_disbursement_letter_file"
+                            id="loan_disbursement_letter_file" hidden
+                            onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
+                        <label for="loan_disbursement_letter_file"
+                            class="btn btn-primary upload-label"><i
+                                class="mdi mdi-upload"></i></label>
+                    </div>
+                    @error('loan_disbursement_letter_file')
+                        <span id="name-error"
+                            class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="col-md-12 text-end mt-3">
+                    <button type="submit" class="btn btn-success"
+                        form="lending-status">Save Lending Status Documents</button>
+                </div>
+            </div>
+
         </form>
     </div>
 </div>

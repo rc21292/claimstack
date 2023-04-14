@@ -221,6 +221,30 @@ class DocumentReimbursementController extends Controller
                     ]);
                 }
 
+
+                if ($request->hasfile('claim_intimation_documents')) {
+                    $claim_intimation_documents = $request->file('claim_intimation_documents');
+                    $name = $claim_intimation_documents->getClientOriginalName();
+                    $claim_intimation_documents->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->claim_intimation_documents)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'claim_intimation_documents', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'claim_intimation_documents', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'claim_intimation_documents', 'file_path' => $reimbursement->claim_intimation_documents, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
+                    ReimbursementDocument::where('id', $reimbursement->id)->update([
+                        'claim_intimation_documents' =>  $name
+                    ]);
+                }
+
                 if ($request->hasfile('bhc_assessment_formsi_and_ii_signed_stamped_file')) {
                     $bhc_assessment_formsi_and_ii_signed_stamped_file = $request->file('bhc_assessment_formsi_and_ii_signed_stamped_file');
                     $name = $bhc_assessment_formsi_and_ii_signed_stamped_file->getClientOriginalName();
@@ -243,6 +267,31 @@ class DocumentReimbursementController extends Controller
                         'bhc_assessment_formsi_and_ii_signed_stamped_file' =>  $name
                     ]);
                 }
+
+
+                if ($request->hasfile('claim_other_documents_file')) {
+                    $claim_other_documents_file = $request->file('claim_other_documents_file');
+                    $name = $claim_other_documents_file->getClientOriginalName();
+                    $claim_other_documents_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->claim_other_documents_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'claim_other_documents_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'claim_other_documents_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'claim_other_documents_file', 'file_path' => $reimbursement->claim_other_documents_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
+                    ReimbursementDocument::where('id', $reimbursement->id)->update([
+                        'claim_other_documents_file' =>  $name
+                    ]);
+                }
+
 
                 break;
             case 'final_assessment':
@@ -775,6 +824,67 @@ class DocumentReimbursementController extends Controller
                 }
 
                 break;
+            case 'insurance_settlement_documents':
+                $rules = [
+                    'settllement_letter_file'   => empty($reimbursement->settllement_letter_file) ? 'required' : [],
+                    'insurance_other_documents_file'                => empty($reimbursement->insurance_other_documents_file) ? 'required' : [],
+                    
+                ];
+                
+                $messages = [    
+                    'settllement_letter_file.required'      => 'Please select Settllement Letter File',
+                    'insurance_other_documents_file.required'                   => 'Please select Other Documents File' 
+                
+                ];
+                
+                $this->validate($request, $rules, $messages);
+
+                if ($request->hasfile('settllement_letter_file')) {
+                    $settllement_letter_file = $request->file('settllement_letter_file');
+                    $name = $settllement_letter_file->getClientOriginalName();
+                    $settllement_letter_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->settllement_letter_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'settllement_letter_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'settllement_letter_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'settllement_letter_file', 'file_path' => $reimbursement->settllement_letter_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
+                    ReimbursementDocument::where('id', $reimbursement->id)->update([
+                        'settllement_letter_file' =>  $name
+                    ]);
+                }
+        
+                if ($request->hasfile('insurance_other_documents_file')) {
+                    $insurance_other_documents_file = $request->file('insurance_other_documents_file');
+                    $name = $insurance_other_documents_file->getClientOriginalName();
+                    $insurance_other_documents_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->insurance_other_documents_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'insurance_other_documents_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'insurance_other_documents_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'insurance_other_documents_file', 'file_path' => $reimbursement->insurance_other_documents_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
+                    ReimbursementDocument::where('id', $reimbursement->id)->update([
+                        'insurance_other_documents_file' =>  $name
+                    ]);
+                }
+            break;
             case 'medical_loan_form':
                 $rules = [
                     'borrower_current_address_proof_file'   => empty($reimbursement->borrower_current_address_proof_file) ? 'required' : [],
@@ -1132,6 +1242,67 @@ class DocumentReimbursementController extends Controller
                     ]);
                 }
                 break;
+            case 'lending_status_document':
+                $rules = [
+                    'loan_approval_letter_file'   => empty($reimbursement->loan_approval_letter_file) ? 'required' : [],
+                    'loan_disbursement_letter_file'                => empty($reimbursement->loan_disbursement_letter_file) ? 'required' : [],
+                    
+                ];
+                
+                $messages = [    
+                    'loan_approval_letter_file.required'      => 'Please select Loan Approval Letter File',
+                    'loan_disbursement_letter_file.required'                   => 'Please select Loan Disbursement Letter File' 
+                
+                ];
+                
+                $this->validate($request, $rules, $messages);
+
+                if ($request->hasfile('loan_approval_letter_file')) {
+                    $loan_approval_letter_file = $request->file('loan_approval_letter_file');
+                    $name = $loan_approval_letter_file->getClientOriginalName();
+                    $loan_approval_letter_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->loan_approval_letter_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'loan_approval_letter_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'loan_approval_letter_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'loan_approval_letter_file', 'file_path' => $reimbursement->loan_approval_letter_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
+                    ReimbursementDocument::where('id', $reimbursement->id)->update([
+                        'loan_approval_letter_file' =>  $name
+                    ]);
+                }
+        
+                if ($request->hasfile('loan_disbursement_letter_file')) {
+                    $loan_disbursement_letter_file = $request->file('loan_disbursement_letter_file');
+                    $name = $loan_disbursement_letter_file->getClientOriginalName();
+                    $loan_disbursement_letter_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->loan_disbursement_letter_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'loan_disbursement_letter_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'loan_disbursement_letter_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'loan_disbursement_letter_file', 'file_path' => $reimbursement->loan_disbursement_letter_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
+                    ReimbursementDocument::where('id', $reimbursement->id)->update([
+                        'loan_disbursement_letter_file' =>  $name
+                    ]);
+                }
+            break;
             default:
                 # code...
                 break;

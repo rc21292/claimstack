@@ -2005,4 +2005,10 @@ class HospitalController extends Controller
         Hospital::find($id)->delete();
         return redirect()->route('hospital.hospitals.index')->with('success', 'Hospital deleted successfully');
     }
+
+    public function destroyCompany($id,$eid)
+    {
+        HospitalEmpanelmentStatus::where(['hospital_id' => $id, 'id' => $eid])->delete();
+        return redirect()->route('hospital.hospitals.edit',$id)->with('success', 'Company deleted successfully!');
+    }
 }
