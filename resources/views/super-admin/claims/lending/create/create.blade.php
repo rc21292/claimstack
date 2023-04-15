@@ -455,7 +455,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="date_of_loan_re_application">Date of Loan Re-Application (DD/MM/YYYY)<span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy" id="date_of_loan_re_application" disabled name="date_of_loan_re_application" value="{{ old('date_of_loan_re_application', isset($lending_status) ? ( !empty($lending_status->date_of_loan_re_application) ? $lending_status->date_of_loan_re_application : date('d-m-Y') ) : date('d-m-Y')) }}">
+                                            <input type="text" class="form-control" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy" id="date_of_loan_re_application" @if(empty(@$lending_status->loan_id_or_no)) readonly @endif name="date_of_loan_re_application" value="{{ old('date_of_loan_re_application', isset($lending_status) ? ( !empty($lending_status->date_of_loan_re_application) ? $lending_status->date_of_loan_re_application : date('d-m-Y') ) : date('d-m-Y')) }}">
 
                                             @error('date_of_loan_re_application')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -464,7 +464,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="time_of_loan_re_application">Time of Loan Re-Application (HH:MM) <span class="text-danger">*</span></label>
-                                            <input type="time" class="form-control" id="time_of_loan_re_application" disabled name="time_of_loan_re_application" value="{{ old('time_of_loan_re_application', isset($lending_status) ? ( !empty($lending_status->time_of_loan_re_application) ? $lending_status->time_of_loan_re_application : date('H:i') ) : date('H:i')) }}" >
+                                            <input type="time" class="form-control" id="time_of_loan_re_application" @if(empty(@$lending_status->loan_id_or_no)) disabled @endif name="time_of_loan_re_application" value="{{ old('time_of_loan_re_application', isset($lending_status) ? ( !empty($lending_status->time_of_loan_re_application) ? $lending_status->time_of_loan_re_application : date('H:i') ) : date('H:i')) }}" >
 
                                             @error('time_of_loan_re_application')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -637,7 +637,7 @@
                                     <div class="form-group row">
                                         <div class="col-md-6 mt-1">
                                             <label for="re_apply_loan_amount">Re-apply Loan Amount<span class="text-danger">*</span></label>
-                                            <input type="text" maxlength="8" onkeypress="return isNumberKey(event)" class="form-control" readonly id="re_apply_loan_amount" name="re_apply_loan_amount"
+                                            <input type="text" maxlength="8" onkeypress="return isNumberKey(event)" class="form-control" @if(empty(@$lending_status->loan_id_or_no)) readonly @endif id="re_apply_loan_amount" name="re_apply_loan_amount"
                                             value="{{ old('re_apply_loan_amount', isset($lending_status) ? $lending_status->re_apply_loan_amount : '') }}">
 
                                             @error('re_apply_loan_amount')
@@ -647,7 +647,7 @@
 
                                         <div class="col-md-6 mt-1">
                                             <label for="loan_re_application_status_comments">Loan Re-application Status comments<span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" readonly id="loan_re_application_status_comments" name="loan_re_application_status_comments"
+                                            <input type="text" class="form-control" @if(empty(@$lending_status->loan_id_or_no)) readonly @endif  id="loan_re_application_status_comments" name="loan_re_application_status_comments"
                                             value="{{ old('loan_re_application_status_comments', isset($lending_status) ? $lending_status->loan_re_application_status_comments : '') }}">
 
                                             @error('loan_re_application_status_comments')
@@ -687,8 +687,8 @@ function setClaimant() {
           $('#date_of_loan_application').removeAttr('disabled');
           $('#date_of_loan_disbursement').removeAttr('disabled');
           $('#time_of_loan_application').removeAttr('disabled');
-          $('#date_of_loan_re_application').removeAttr('disabled');
-          $('#time_of_loan_re_application').removeAttr('disabled');
+          // $('#date_of_loan_re_application').removeAttr('disabled');
+          // $('#time_of_loan_re_application').removeAttr('disabled');
           $('#loan_id_or_no').removeAttr('readonly');
           $('#loan_status').removeAttr('disabled');
           $('#loan_approved_amount').removeAttr('readonly');
@@ -701,8 +701,8 @@ function setClaimant() {
           $('#insurance_claim_settled_amount').removeAttr('readonly');
           $('#insurance_claim_amount_disbursement_date').removeAttr('disabled');
           $('#loan_application_status_comments').removeAttr('readonly');
-          $('#re_apply_loan_amount').removeAttr('readonly');
-          $('#loan_re_application_status_comments').removeAttr('readonly');
+          // $('#re_apply_loan_amount').removeAttr('readonly');
+          // $('#loan_re_application_status_comments').removeAttr('readonly');
 
 }
         $('#apply_loan').on('click',function(e){

@@ -183,8 +183,6 @@ class LendingStatusController extends Controller
                     LendingStatus::where('borrower_id', $id)->update([                   
                         'date_of_loan_application'                  => $request->date_of_loan_application,
                         'time_of_loan_application'                  => $request->time_of_loan_application,
-                        'date_of_loan_re_application'               => $request->date_of_loan_re_application,
-                        'time_of_loan_re_application'               => $request->time_of_loan_re_application,
                         'loan_id_or_no'                             => $request->loan_id_or_no,
                         'loan_status'                               => $request->loan_status,
                         'loan_approved_amount'                      => $request->loan_approved_amount,
@@ -202,10 +200,12 @@ class LendingStatusController extends Controller
                 }
                 break;
             case 'loan-reapplication-form':
-                LendingStatus::where('borrower_id', $id)->update([                   
-                    're_apply_loan_amount'                  =>  $request->re_apply_loan_amount,
-                    'loan_re_application_status_comments'   =>  $request->loan_re_application_status_comments,                         
-                ]);
+            LendingStatus::where('borrower_id', $id)->update([                   
+                're_apply_loan_amount'                  => $request->re_apply_loan_amount,
+                'loan_re_application_status_comments'   => $request->loan_re_application_status_comments,                     
+                'date_of_loan_re_application'           => $request->date_of_loan_re_application??date('d-m-Y'),
+                'time_of_loan_re_application'           => $request->time_of_loan_re_application??date('H:i:s'),                        
+            ]);
                 break;
             default:
                 # code...
