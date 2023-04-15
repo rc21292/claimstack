@@ -455,7 +455,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="date_of_loan_re_application">Date of Loan Re-Application (DD/MM/YYYY)<span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy" id="date_of_loan_re_application" @if(empty(@$lending_status->loan_id_or_no)) readonly @endif name="date_of_loan_re_application" value="{{ old('date_of_loan_re_application', isset($lending_status) ? ( !empty($lending_status->date_of_loan_re_application) ? $lending_status->date_of_loan_re_application : date('d-m-Y') ) : date('d-m-Y')) }}">
+                                            <input type="text" class="form-control" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy" id="date_of_loan_re_application" @if(empty(@$lending_status->loan_id_or_no)) disabled @endif name="date_of_loan_re_application" value="{{ old('date_of_loan_re_application', isset($lending_status) ? ( !empty($lending_status->date_of_loan_re_application) ? $lending_status->date_of_loan_re_application : date('d-m-Y') ) : date('d-m-Y')) }}">
 
                                             @error('date_of_loan_re_application')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -656,7 +656,7 @@
                                         </div>
 
                                         <div class="col-md-12 text-end mt-3">
-                                            <button type="submit" class="btn btn-success" form="loan-reapplication-form">
+                                            <button type="submit" @if(empty(@$lending_status->loan_id_or_no)) disabled @endif class="btn btn-success" form="loan-reapplication-form">
                                             Re-apply Loan</button>
                                         </div>
 
