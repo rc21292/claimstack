@@ -277,7 +277,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="hospital_on_the_panel_of_insurance_co">Hospital on the Panel of
-                                                Insurance Co. <span class="text-danger">*</span></label>
+                                                Insurance Co. <span class="text-danger"></span></label>
                                             <select class="form-control" id="hospital_on_the_panel_of_insurance_co"
                                                 name="hospital_on_the_panel_of_insurance_co" onchange="updateHospitalId('{{ $hospital_id_as_per_the_selected_company }}')">
                                                 <option value="">Select</option>
