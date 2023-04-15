@@ -398,7 +398,7 @@
                                             @enderror
                                         </div>
 
-                                        <div class="col-md-12 mt-3">
+                                        <div class="col-md-12 mt-3" style="display:none;">
                                             <label for="loan_application_comments">Loan application Comments </label>
                                             <textarea readonly class="form-control" id="loan_application_comments" name="loan_application_comments" maxlength="250"
                                                 placeholder="Loan application Comments" rows="5">{{ old('loan_application_comments', isset($lending_status) ? $lending_status->loan_application_comments : '') }}</textarea>
@@ -408,7 +408,7 @@
                                             @enderror
                                         </div>
 
-                                        <div class="col-md-12 text-end mt-3">
+                                        <div class="col-md-12 text-end mt-3" style="display:none;">
                                             <button type="submit" disabled class="btn btn-success"
                                                 form="loan-application-form">
                                                 Save Lending Status</button>
@@ -416,11 +416,10 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="col-md-12 text-end mt-3">
-                                            <button type="submit" disabled class="btn btn-success" id="apply_loan"
-                                                form="loan-application-form">
-                                                Apply Loan</button>
-                                        </div>
+                            <div class="col-md-12 text-end mt-3" style="display:none;">
+                                <button type="submit" disabled class="btn btn-success" id="apply_loan"
+                                form="loan-application-form"> Apply Loan</button>
+                            </div>
                         </div>
 
                         <div class="card">
@@ -604,7 +603,7 @@
                                         </div>
 
 
-                                        <div class="col-md-12 mt-3">
+                                        <div class="col-md-12 mt-3" style="display:none;">
                                             <label for="loan_application_status_comments">Loan Application Status comments </label>
                                             <textarea class="form-control" readonly id="loan_application_status_comments" name="loan_application_status_comments" maxlength="250" placeholder="Loan Application Status comments"
                                             rows="5">{{ old('loan_application_status_comments', isset($lending_status) ? $lending_status->loan_application_status_comments : '') }}</textarea>
@@ -615,9 +614,9 @@
 
                                         <input type="hidden" name="applyloan" id="applyloan" value="{{ old('applyloan', 0) }}">
 
-                                        <div class="col-md-12 text-end mt-3 mb-2">
+                                        <div class="col-md-12 text-end mt-3 mb-2" style="display:none;">
                                             <button type="submit" class="btn btn-success" disabled form="loan-application-status-form">
-                                            Update Loan Application Status</button>
+                                            Save / Update Loan Application Status</button>
                                         </div>
                                     </div>
                                 </form>
@@ -645,7 +644,7 @@
                                             @enderror
                                         </div>
 
-                                        <div class="col-md-6 mt-1">
+                                        <div class="col-md-6 mt-1" style="display:none;">
                                             <label for="loan_re_application_status_comments">Loan Re-application Status comments</label>
                                             <input type="text" readonly class="form-control" @if(empty(@$lending_status->loan_id_or_no)) readonly @endif  id="loan_re_application_status_comments" name="loan_re_application_status_comments"
                                             value="{{ old('loan_re_application_status_comments', isset($lending_status) ? $lending_status->loan_re_application_status_comments : '') }}">
@@ -655,7 +654,7 @@
                                             @enderror
                                         </div>
 
-                                        <div class="col-md-12 text-end mt-3">
+                                        <div class="col-md-12 text-end mt-3"  style="display:none;">
                                             <button type="submit" disabled @if(empty(@$lending_status->loan_id_or_no)) disabled @endif class="btn btn-success" form="loan-reapplication-form">
                                             Re-apply Loan</button>
                                         </div>

@@ -462,7 +462,7 @@
                                             @enderror
                                         </div>
 
-                                        <div class="col-md-6 mt-3">
+                                        <div class="col-md-6 mt-3" style="display:none;">
                                             <label for="final_assessment_suspected_fraud">Final Assessment / Authorization Suspected Fraud
                                                 <span class="text-danger">*</span></label>
 
@@ -482,7 +482,7 @@
                                             @enderror
                                         </div>
 
-                                        <div class="col-md-12 mt-3">
+                                        <div class="col-md-12 mt-3" style="display:none;">
                                             <label for="final_assessment_status_comments">Final Assessment / Authorization Status Comments
                                             </label>
                                             <textarea class="form-control" disabled id="final_assessment_status_comments" name="final_assessment_status_comments"
@@ -492,7 +492,7 @@
                                             @enderror
                                         </div>
 
-                                        <div class="col-md-12 text-end mt-3">
+                                        <div class="col-md-12 text-end mt-3" style="display:none;">
                                             <button type="submit" disabled class="btn btn-success"
                                                 form="final-assessment-status-form">Authorize Claim</button>
                                         </div>
