@@ -454,7 +454,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="date_of_loan_re_application">Date of Loan Re-Application (DD/MM/YYYY)<span class="text-danger">*</span></label>
+                                            <label for="date_of_loan_re_application">Date of Loan Re-Application (DD/MM/YYYY)</label>
                                             <input type="text" class="form-control" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy" id="date_of_loan_re_application" @if(empty(@$lending_status->loan_id_or_no)) disabled @endif name="date_of_loan_re_application" value="{{ old('date_of_loan_re_application', isset($lending_status) ? ( !empty($lending_status->date_of_loan_re_application) ? $lending_status->date_of_loan_re_application : date('d-m-Y') ) : date('d-m-Y')) }}">
 
                                             @error('date_of_loan_re_application')
@@ -497,7 +497,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="loan_approved_amount">Loan Approved Amount <span class="text-danger">*</span></label>
+                                            <label for="loan_approved_amount">Loan Approved Amount </label>
                                             <div class="input-group">
                                                 <input type="text" maxlength="8" onkeypress="return isNumberKey(event)" class="form-control" id="loan_approved_amount"
                                                 name="loan_approved_amount" maxlength="30" readonly placeholder="Enter Loan Approved Amount"  value="{{ old('loan_approved_amount', isset($lending_status) ? $lending_status->loan_approved_amount : '') }}">
@@ -508,7 +508,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="loan_disbursed_amount">Loan Disbursed Amount<span class="text-danger">*</span></label>
+                                            <label for="loan_disbursed_amount">Loan Disbursed Amount</label>
                                             <input type="text" maxlength="8" onkeypress="return isNumberKey(event)" class="form-control" id="loan_disbursed_amount" readonly 
                                             name="loan_disbursed_amount" maxlength="30" placeholder="Loan Disbursed Amount"  value="{{ old('loan_disbursed_amount', isset($lending_status) ? $lending_status->loan_disbursed_amount : '') }}">
                                             @error('loan_disbursed_amount')
@@ -517,7 +517,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="date_of_loan_disbursement">Date of Loan Disbursement (DD/MM/YYYY)<span class="text-danger">*</span></label>
+                                            <label for="date_of_loan_disbursement">Date of Loan Disbursement (DD/MM/YYYY)</label>
                                             <input type="text" class="form-control" id="date_of_loan_disbursement" disabled name="date_of_loan_disbursement"
                                             value="{{ old('date_of_loan_disbursement', isset($lending_status) ? $lending_status->date_of_loan_disbursement : '') }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
 
@@ -528,7 +528,7 @@
 
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="loan_tenure">Loan Tenure<span class="text-danger">*</span></label>
+                                            <label for="loan_tenure">Loan Tenure</label>
                                             <input type="text" readonly maxlength="2" onkeypress="return isNumberKey(event)" placeholder="Loan Tenure" class="form-control" id="loan_tenure" name="loan_tenure"
                                             value="{{ old('loan_tenure', isset($lending_status) ? $lending_status->loan_tenure : '') }}">
 
@@ -538,7 +538,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="loan_instalments">Loan Installments<span class="text-danger">*</span></label>
+                                            <label for="loan_instalments">Loan Installments</label>
                                             <input type="text" maxlength="2" onkeypress="return isNumberKey(event)" class="form-control" placeholder="Enter Loan Installments" readonly id="loan_instalments" name="loan_instalments"
                                             value="{{ old('loan_instalments', isset($lending_status) ? $lending_status->loan_instalments : '') }}">
 
@@ -550,7 +550,7 @@
 
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="loan_start_date">Loan Start Date  (DD/MM/YYYY)<span class="text-danger">*</span></label>
+                                            <label for="loan_start_date">Loan Start Date  (DD/MM/YYYY)</label>
                                             <input type="text" class="form-control" disabled id="loan_start_date" name="loan_start_date"
                                             value="{{ old('loan_start_date', isset($lending_status) ? $lending_status->loan_start_date : '') }}" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy">
 
@@ -560,7 +560,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="loan_end_date">Loan End Date  (DD/MM/YYYY)<span class="text-danger">*</span></label>
+                                            <label for="loan_end_date">Loan End Date  (DD/MM/YYYY)</label>
                                             <input type="text" class="form-control" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy" disabled id="loan_end_date" name="loan_end_date"
                                             value="{{ old('loan_end_date', isset($lending_status) ? $lending_status->loan_end_date : '') }}">
 
@@ -570,7 +570,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="insurance_claim_settlement_date">Insurance Claim Settlement Date (DD/MM/YYYY)<span class="text-danger">*</span></label>
+                                            <label for="insurance_claim_settlement_date">Insurance Claim Settlement Date (DD/MM/YYYY)</label>
                                             <input type="text" class="form-control" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy"  disabled id="insurance_claim_settlement_date" name="insurance_claim_settlement_date"
                                             value="{{ old('insurance_claim_settlement_date', isset($lending_status) ? $lending_status->insurance_claim_settlement_date : '') }}">
 
@@ -580,7 +580,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="insurance_claim_settled_amount">Insurance Claim Settled Amount<span class="text-danger">*</span></label>
+                                            <label for="insurance_claim_settled_amount">Insurance Claim Settled Amount</label>
                                             <div class="input-group">
                                                 <input type="number" readonly class="form-control" id="insurance_claim_settled_amount" placeholder="Enter Insurance Claim Settled Amount" name="insurance_claim_settled_amount" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==8) return false;"
                                                 value="{{ old('insurance_claim_settled_amount', isset($lending_status) ? $lending_status->insurance_claim_settled_amount : '') }}">
@@ -593,7 +593,7 @@
 
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="insurance_claim_amount_disbursement_date">Insurance Claim Amount Disbursement Date(DD/MM/YYYY)<span class="text-danger">*</span></label>
+                                            <label for="insurance_claim_amount_disbursement_date">Insurance Claim Amount Disbursement Date(DD/MM/YYYY)</label>
                                             <div class="input-group">
                                             <input type="text" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy" class="form-control" disabled id="insurance_claim_amount_disbursement_date" name="insurance_claim_amount_disbursement_date"
                                             value="{{ old('insurance_claim_amount_disbursement_date', isset($lending_status) ? $lending_status->insurance_claim_amount_disbursement_date : '') }}">
@@ -636,7 +636,7 @@
                                     <input type="hidden" name="form_type" value="loan-reapplication-form">
                                     <div class="form-group row">
                                         <div class="col-md-6 mt-1">
-                                            <label for="re_apply_loan_amount">Re-apply Loan Amount<span class="text-danger">*</span></label>
+                                            <label for="re_apply_loan_amount">Re-apply Loan Amount</label>
                                             <input type="text" maxlength="8" onkeypress="return isNumberKey(event)" class="form-control" @if(empty(@$lending_status->loan_id_or_no)) readonly @endif id="re_apply_loan_amount" name="re_apply_loan_amount"
                                             value="{{ old('re_apply_loan_amount', isset($lending_status) ? $lending_status->re_apply_loan_amount : '') }}">
 
@@ -646,7 +646,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-1">
-                                            <label for="loan_re_application_status_comments">Loan Re-application Status comments<span class="text-danger">*</span></label>
+                                            <label for="loan_re_application_status_comments">Loan Re-application Status comments</label>
                                             <input type="text" class="form-control" @if(empty(@$lending_status->loan_id_or_no)) readonly @endif  id="loan_re_application_status_comments" name="loan_re_application_status_comments"
                                             value="{{ old('loan_re_application_status_comments', isset($lending_status) ? $lending_status->loan_re_application_status_comments : '') }}">
 
