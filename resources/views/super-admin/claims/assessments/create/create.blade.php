@@ -419,7 +419,7 @@
                                     <div class="form-group row">
                                         <div class="col-md-6 mt-3">
                                             <label for="final_assessment_status">Final Assessment / Authorization Status <span
-                                                    class="text-danger">*</span></label>
+                                                    class="text-danger"></span></label>
                                             <select class="form-select final_assessment_status" onchange="setStatusFinal();" id="final_assessment_status"
                                                 name="final_assessment_status">
                                                 <option value="">Select</option>
@@ -452,7 +452,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="final_assessment_amount">Final Assessment / Authorization Amount <span
-                                                    class="text-danger">*</span></label>
+                                                    class="text-danger"></span></label>
                                             <input type="number" maxlength="8" onkeypress="return isNumberKey(event)" placeholder="Enter Final Assessment / Authorization Amount"
                                                 class="form-control" id="final_assessment_amount"
                                                 name="final_assessment_amount"
