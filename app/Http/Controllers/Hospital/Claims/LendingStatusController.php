@@ -38,8 +38,8 @@ class LendingStatusController extends Controller
     public function create(Request $request)
     {
         $borrower           = Borrower::with(['claimant', 'claim', 'patient', 'hospital'])->find($request->borrower_id);
-        if ($borrower->claimant) {
-            $assessment         = AssessmentStatus::where('claimant_id', $borrower->claimant->id)->first();
+        if ($borrower->claim) {
+            $assessment         = AssessmentStatus::where('claim_id', $borrower->claim->id)->first();
         }else{
             $assessment         = null;
         }
@@ -183,8 +183,6 @@ class LendingStatusController extends Controller
                     LendingStatus::where('borrower_id', $id)->update([                   
                         'date_of_loan_application'                  => $request->date_of_loan_application,
                         'time_of_loan_application'                  => $request->time_of_loan_application,
-                        'date_of_loan_re_application'               => $request->date_of_loan_re_application,
-                        'time_of_loan_re_application'               => $request->time_of_loan_re_application,
                         'loan_id_or_no'                             => $request->loan_id_or_no,
                         'loan_status'                               => $request->loan_status,
                         'loan_approved_amount'                      => $request->loan_approved_amount,
@@ -202,10 +200,12 @@ class LendingStatusController extends Controller
                 }
                 break;
             case 'loan-reapplication-form':
-                LendingStatus::where('borrower_id', $id)->update([                   
-                    're_apply_loan_amount'                  =>  $request->re_apply_loan_amount,
-                    'loan_re_application_status_comments'   =>  $request->loan_re_application_status_comments,                         
-                ]);
+            LendingStatus::where('borrower_id', $id)->update([                   
+                're_apply_loan_amount'                  => $request->re_apply_loan_amount,
+                'loan_re_application_status_comments'   => $request->loan_re_application_status_comments,                     
+                'date_of_loan_re_application'           => $request->date_of_loan_re_application??date('d-m-Y'),
+                'time_of_loan_re_application'           => $request->time_of_loan_re_application??date('H:i:s'),                        
+            ]);
                 break;
             default:
                 # code...

@@ -794,7 +794,7 @@
 
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="additional_diagnosis_icd_leveli_disease">ICD - Level - I - Disease <span class="text-danger">*</span></label>
+                                            <label for="additional_diagnosis_icd_leveli_disease">ICD - Level - I - Disease <span class="text-danger"></span></label>
 
                                             <select class="form-control select2" data-toggle="select2" id="additional_diagnosis_icd_leveli_disease" name="additional_diagnosis_icd_leveli_disease">
                                                 <option value="">Please Select</option>
@@ -813,7 +813,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="additional_diagnosis_icd_leveli_code">ICD - Level - I - Code <span class="text-danger">*</span></label>
+                                            <label for="additional_diagnosis_icd_leveli_code">ICD - Level - I - Code <span class="text-danger"></span></label>
                                             <input type="text" maxlength="16" class="form-control" id="additional_diagnosis_icd_leveli_code" name="additional_diagnosis_icd_leveli_code"
                                             placeholder="Enter ICD - Level - I - Code" value="{{ old('additional_diagnosis_icd_leveli_code', isset($claim_processing) ? $claim_processing->additional_diagnosis_icd_leveli_code : '') }}">
                                             @error('additional_diagnosis_icd_leveli_code', 'claim-processing-form')
@@ -822,7 +822,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="additional_diagnosis_icd_levelii_disease">ICD - Level - II - Disease <span class="text-danger">*</span></label>
+                                            <label for="additional_diagnosis_icd_levelii_disease">ICD - Level - II - Disease <span class="text-danger"></span></label>
 
                                             <select class="form-control select2" data-toggle="select2" id="additional_diagnosis_icd_levelii_disease" name="additional_diagnosis_icd_levelii_disease">
                                                 <option value="">Please Select</option>
@@ -841,7 +841,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="additional_diagnosis_icd_levelii_code">ICD - Level - II - Code <span class="text-danger">*</span></label>
+                                            <label for="additional_diagnosis_icd_levelii_code">ICD - Level - II - Code <span class="text-danger"></span></label>
                                             <input type="text" maxlength="16" class="form-control" id="additional_diagnosis_icd_levelii_code" name="additional_diagnosis_icd_levelii_code"  placeholder="Enter ICD - Level - II - Code" value="{{ old('additional_diagnosis_icd_levelii_code', isset($claim_processing) ? $claim_processing->additional_diagnosis_icd_levelii_code : '') }}">
                                             @error('additional_diagnosis_icd_levelii_code', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -850,7 +850,7 @@
 
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="additional_diagnosis_icd_leveliii_disease">ICD - Level - III - Disease <span class="text-danger">*</span></label>
+                                            <label for="additional_diagnosis_icd_leveliii_disease">ICD - Level - III - Disease <span class="text-danger"></span></label>
 
                                             <select class="form-control select2" data-toggle="select2" id="additional_diagnosis_icd_leveliii_disease" name="additional_diagnosis_icd_leveliii_disease">
                                                 <option value="">Please Select</option>
@@ -869,7 +869,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="additional_diagnosis_icd_leveliii_code">ICD - Level - III - Code <span class="text-danger">*</span></label>
+                                            <label for="additional_diagnosis_icd_leveliii_code">ICD - Level - III - Code <span class="text-danger"></span></label>
                                             <input type="text" maxlength="16" class="form-control" id="additional_diagnosis_icd_leveliii_code" name="additional_diagnosis_icd_leveliii_code"  placeholder="Enter ICD - Level - III - Code" value="{{ old('additional_diagnosis_icd_leveliii_code', isset($claim_processing) ? $claim_processing->additional_diagnosis_icd_leveliii_code : '') }}">
                                             @error('additional_diagnosis_icd_leveliii_code', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -878,7 +878,7 @@
 
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="additional_diagnosis_icd_leveliv_disease">ICD - Level - IV - Disease <span class="text-danger">*</span></label>
+                                            <label for="additional_diagnosis_icd_leveliv_disease">ICD - Level - IV - Disease <span class="text-danger"></span></label>
                                             <select class="form-control select2" data-toggle="select2" id="additional_diagnosis_icd_leveliv_disease" name="additional_diagnosis_icd_leveliv_disease">
                                                 <option value="">Please Select</option>
                                                 @foreach ($icd_codes_level4 as $icd_code)
@@ -895,7 +895,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="additional_diagnosis_icd_leveliv_code">ICD - Level - IV - Code <span class="text-danger">*</span></label>
+                                            <label for="additional_diagnosis_icd_leveliv_code">ICD - Level - IV - Code <span class="text-danger"></span></label>
                                             <input type="text" maxlength="16" class="form-control" id="additional_diagnosis_icd_leveliv_code" name="additional_diagnosis_icd_leveliv_code"  placeholder="Enter ICD - Level - IV - Code" value="{{ old('additional_diagnosis_icd_leveliv_code', isset($claim_processing) ? $claim_processing->additional_diagnosis_icd_leveliv_code : '') }}">
                                             @error('additional_diagnosis_icd_leveliv_code', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -907,7 +907,7 @@
 
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="co_morbidities_icd_leveli_disease">ICD - Level - I - Disease <span class="text-danger">*</span></label>
+                                            <label for="co_morbidities_icd_leveli_disease">ICD - Level - I - Disease <span class="text-danger"></span></label>
 
                                             <select class="form-control select2" data-toggle="select2" id="co_morbidities_icd_leveli_disease" name="co_morbidities_icd_leveli_disease">
                                                 <option value="">Please Select</option>
@@ -926,7 +926,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="co_morbidities_icd_leveli_code">ICD - Level - I - Code <span class="text-danger">*</span></label>
+                                            <label for="co_morbidities_icd_leveli_code">ICD - Level - I - Code <span class="text-danger"></span></label>
                                             <input type="text" maxlength="16" class="form-control" id="co_morbidities_icd_leveli_code" name="co_morbidities_icd_leveli_code"
                                             placeholder="Enter ICD - Level - I - Code" value="{{ old('co_morbidities_icd_leveli_code', isset($claim_processing) ? $claim_processing->co_morbidities_icd_leveli_code : '') }}">
                                             @error('co_morbidities_icd_leveli_code', 'claim-processing-form')
@@ -935,7 +935,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="co_morbidities_icd_levelii_disease">ICD - Level - II - Disease <span class="text-danger">*</span></label>
+                                            <label for="co_morbidities_icd_levelii_disease">ICD - Level - II - Disease <span class="text-danger"></span></label>
 
                                             <select class="form-control select2" data-toggle="select2" id="co_morbidities_icd_levelii_disease" name="co_morbidities_icd_levelii_disease">
                                                 <option value="">Please Select</option>
@@ -954,7 +954,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="co_morbidities_icd_levelii_code">ICD - Level - II - Code <span class="text-danger">*</span></label>
+                                            <label for="co_morbidities_icd_levelii_code">ICD - Level - II - Code <span class="text-danger"></span></label>
                                             <input type="text" maxlength="16" class="form-control" id="co_morbidities_icd_levelii_code" name="co_morbidities_icd_levelii_code"
                                             placeholder="Enter ICD - Level - II - Code" value="{{ old('co_morbidities_icd_levelii_code', isset($claim_processing) ? $claim_processing->co_morbidities_icd_levelii_code : '') }}">
                                             @error('co_morbidities_icd_levelii_code', 'claim-processing-form')
@@ -964,7 +964,7 @@
 
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="co_morbidities_icd_leveliii_disease">ICD - Level - III - Disease <span class="text-danger">*</span></label>
+                                            <label for="co_morbidities_icd_leveliii_disease">ICD - Level - III - Disease <span class="text-danger"></span></label>
 
                                            <select class="form-control select2" data-toggle="select2" id="co_morbidities_icd_leveliii_disease" name="co_morbidities_icd_leveliii_disease">
                                                 <option value="">Please Select</option>
@@ -982,7 +982,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="co_morbidities_icd_leveliii_code">ICD - Level - III - Code <span class="text-danger">*</span></label>
+                                            <label for="co_morbidities_icd_leveliii_code">ICD - Level - III - Code <span class="text-danger"></span></label>
                                             <input type="text" maxlength="16" class="form-control" id="co_morbidities_icd_leveliii_code" name="co_morbidities_icd_leveliii_code"
                                             placeholder="Enter ICD - Level - III - Code" value="{{ old('co_morbidities_icd_leveliii_code', isset($claim_processing) ? $claim_processing->co_morbidities_icd_leveliii_code : '') }}">
                                             @error('co_morbidities_icd_leveliii_code', 'claim-processing-form')
@@ -992,7 +992,7 @@
 
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="co_morbidities_icd_leveliv_disease">ICD - Level - IV - Disease <span class="text-danger">*</span></label>
+                                            <label for="co_morbidities_icd_leveliv_disease">ICD - Level - IV - Disease <span class="text-danger"></span></label>
                                             <select class="form-control select2" data-toggle="select2" id="co_morbidities_icd_leveliv_disease" name="co_morbidities_icd_leveliv_disease">
                                                 <option value="">Please Select</option>
                                                 @foreach ($icd_codes_level4 as $icd_code)
@@ -1009,7 +1009,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="co_morbidities_icd_leveliv_code">ICD - Level - IV - Code <span class="text-danger">*</span></label>
+                                            <label for="co_morbidities_icd_leveliv_code">ICD - Level - IV - Code <span class="text-danger"></span></label>
                                             <input type="text" maxlength="16" class="form-control" id="co_morbidities_icd_leveliv_code" name="co_morbidities_icd_leveliv_code"
                                             placeholder="Enter ICD - Level - IV - Code" value="{{ old('co_morbidities_icd_leveliv_code', isset($claim_processing) ? $claim_processing->co_morbidities_icd_leveliv_code : '') }}">
                                             @error('co_morbidities_icd_leveliv_code', 'claim-processing-form')
@@ -1033,7 +1033,7 @@
 
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="procedure_name">Procedure Name <span class="text-danger">*</span></label>
+                                            <label for="procedure_name">Procedure Name <span class="text-danger"></span></label>
                                             <input type="text" maxlength="100" class="form-control" id="procedure_name" name="procedure_name"
                                             placeholder="Enter Procedure Name" value="{{ old('procedure_name', isset($claim_processing) ? $claim_processing->procedure_name : '') }}">
                                             @error('procedure_name', 'claim-processing-form')
@@ -1046,7 +1046,7 @@
 
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="procedure_i_pcs_group_name">PCS Group - Name <span class="text-danger">*</span></label>
+                                            <label for="procedure_i_pcs_group_name">PCS Group - Name <span class="text-danger"></span></label>
 
                                             <select class="form-control select2" data-toggle="select2" id="procedure_i_pcs_group_name" name="procedure_i_pcs_group_name">
                                                 <option value="">Please Select</option>
@@ -1065,7 +1065,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="procedure_i_pcs_group_code">PCS Group - Code <span class="text-danger">*</span></label>
+                                            <label for="procedure_i_pcs_group_code">PCS Group - Code <span class="text-danger"></span></label>
                                             <input type="text" maxlength="16" class="form-control" id="procedure_i_pcs_group_code" name="procedure_i_pcs_group_code"
                                             placeholder="Enter PCS Group - Code" value="{{ old('procedure_i_pcs_group_code', isset($claim_processing) ? $claim_processing->procedure_i_pcs_group_code : '') }}">
                                             @error('procedure_i_pcs_group_code', 'claim-processing-form')
@@ -1074,7 +1074,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="procedure_i_pcs_sub_group_name">PCS Sub-Group - Name <span class="text-danger">*</span></label>
+                                            <label for="procedure_i_pcs_sub_group_name">PCS Sub-Group - Name <span class="text-danger"></span></label>
                                             <select class="form-control select2" data-toggle="select2" id="procedure_i_pcs_sub_group_name" name="procedure_i_pcs_sub_group_name">
                                                 <option value="">Please Select</option>
                                                 @foreach ($pcs_sub_group_name as $pcs_group)
@@ -1091,7 +1091,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="procedure_i_pcs_sub_group_code">PCS Sub-Group - Code <span class="text-danger">*</span></label>
+                                            <label for="procedure_i_pcs_sub_group_code">PCS Sub-Group - Code <span class="text-danger"></span></label>
                                             <input type="text" maxlength="16" class="form-control" id="procedure_i_pcs_sub_group_code" name="procedure_i_pcs_sub_group_code"
                                             placeholder="Enter PCS Group - Code" value="{{ old('procedure_i_pcs_sub_group_code', isset($claim_processing) ? $claim_processing->procedure_i_pcs_sub_group_code : '') }}">
                                             @error('procedure_i_pcs_sub_group_code', 'claim-processing-form')
@@ -1101,7 +1101,7 @@
 
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="procedure_i_pcs_short_name">PCS Short Name <span class="text-danger">*</span></label>
+                                            <label for="procedure_i_pcs_short_name">PCS Short Name <span class="text-danger"></span></label>
                                             <select class="form-control select2" data-toggle="select2" id="procedure_i_pcs_short_name" name="procedure_i_pcs_short_name">
                                                 <option value="">Please Select</option>
                                                 @foreach ($pcs_short_name as $pcs_group)
@@ -1118,7 +1118,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="procedure_i_pcs_code">PCS Code <span class="text-danger">*</span></label>
+                                            <label for="procedure_i_pcs_code">PCS Code <span class="text-danger"></span></label>
                                             <input type="text" maxlength="16" class="form-control" id="procedure_i_pcs_code" name="procedure_i_pcs_code"
                                             placeholder="Enter PCS Code" value="{{ old('procedure_i_pcs_code', isset($claim_processing) ? $claim_processing->procedure_i_pcs_code : '') }}">
                                             @error('procedure_i_pcs_code', 'claim-processing-form')
@@ -1127,7 +1127,7 @@
                                         </div>
 
                                         <div class="col-md-12 mt-3">
-                                            <label for="procedure_i_pcs_long_name">PCS Long Name <span class="text-danger">*</span></label>
+                                            <label for="procedure_i_pcs_long_name">PCS Long Name <span class="text-danger"></span></label>
                                             <input type="text" maxlength="16" class="form-control" id="procedure_i_pcs_long_name" name="procedure_i_pcs_long_name"
                                             placeholder="Enter PCS Long Name" value="{{ old('procedure_i_pcs_long_name', isset($claim_processing) ? $claim_processing->procedure_i_pcs_long_name : '') }}">
                                             @error('procedure_i_pcs_long_name', 'claim-processing-form')
@@ -1139,7 +1139,7 @@
 
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="procedure_ii_pcs_group_name">PCS Group - Name <span class="text-danger">*</span></label>
+                                            <label for="procedure_ii_pcs_group_name">PCS Group - Name <span class="text-danger"></span></label>
                                             <select class="form-control select2" data-toggle="select2" id="procedure_ii_pcs_group_name" name="procedure_ii_pcs_group_name">
                                                 <option value="">Please Select</option>
                                                 @foreach ($pcs_group_name as $pcs_group)
@@ -1156,7 +1156,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="procedure_ii_pcs_group_code">PCS Group - Code <span class="text-danger">*</span></label>
+                                            <label for="procedure_ii_pcs_group_code">PCS Group - Code <span class="text-danger"></span></label>
                                             <input type="text" maxlength="16" class="form-control" id="procedure_ii_pcs_group_code" name="procedure_ii_pcs_group_code"
                                             placeholder="Enter PCS Group - Code" value="{{ old('procedure_ii_pcs_group_code', isset($claim_processing) ? $claim_processing->procedure_ii_pcs_group_code : '') }}">
                                             @error('procedure_ii_pcs_group_code', 'claim-processing-form')
@@ -1165,7 +1165,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="procedure_ii_pcs_sub_group_name">PCS Sub-Group - Name <span class="text-danger">*</span></label>
+                                            <label for="procedure_ii_pcs_sub_group_name">PCS Sub-Group - Name <span class="text-danger"></span></label>
                                             <select class="form-control select2" data-toggle="select2" id="procedure_ii_pcs_sub_group_name" name="procedure_ii_pcs_sub_group_name">
                                                 <option value="">Please Select</option>
                                                 @foreach ($pcs_sub_group_name as $pcs_group)
@@ -1182,7 +1182,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="procedure_ii_pcs_sub_group_code">PCS Sub-Group - Code <span class="text-danger">*</span></label>
+                                            <label for="procedure_ii_pcs_sub_group_code">PCS Sub-Group - Code <span class="text-danger"></span></label>
                                             <input type="text" maxlength="16" class="form-control" id="procedure_ii_pcs_sub_group_code" name="procedure_ii_pcs_sub_group_code"
                                             placeholder="Enter PCS Sub-Group - Code " value="{{ old('procedure_ii_pcs_sub_group_code', isset($claim_processing) ? $claim_processing->procedure_ii_pcs_sub_group_code : '') }}">
                                             @error('procedure_ii_pcs_sub_group_code', 'claim-processing-form')
@@ -1192,7 +1192,7 @@
 
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="procedure_ii_pcs_short_name">PCS Short Name <span class="text-danger">*</span></label>
+                                            <label for="procedure_ii_pcs_short_name">PCS Short Name <span class="text-danger"></span></label>
                                             <select class="form-control select2" data-toggle="select2" id="procedure_ii_pcs_short_name" name="procedure_ii_pcs_short_name">
                                                 <option value="">Please Select</option>
                                                 @foreach ($pcs_short_name as $pcs_group)
@@ -1209,7 +1209,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="procedure_ii_pcs_code">PCS Code <span class="text-danger">*</span></label>
+                                            <label for="procedure_ii_pcs_code">PCS Code <span class="text-danger"></span></label>
                                             <input type="text" maxlength="16" class="form-control" id="procedure_ii_pcs_code" name="procedure_ii_pcs_code"
                                             placeholder="Enter PCS Code " value="{{ old('procedure_ii_pcs_code', isset($claim_processing) ? $claim_processing->procedure_ii_pcs_code : '') }}">
                                             @error('procedure_ii_pcs_code', 'claim-processing-form')
@@ -1218,7 +1218,7 @@
                                         </div>
 
                                         <div class="col-md-12 mt-3">
-                                            <label for="procedure_ii_pcs_long_name">PCS Long Name <span class="text-danger">*</span></label>
+                                            <label for="procedure_ii_pcs_long_name">PCS Long Name <span class="text-danger"></span></label>
                                             <input type="text" maxlength="16" class="form-control" id="procedure_ii_pcs_long_name" name="procedure_ii_pcs_long_name"
                                             placeholder="Enter PCS Long Name" value="{{ old('procedure_ii_pcs_long_name', isset($claim_processing) ? $claim_processing->procedure_ii_pcs_long_name : '') }}">
                                             @error('procedure_ii_pcs_long_name', 'claim-processing-form')
@@ -1230,7 +1230,7 @@
 
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="procedure_iii_pcs_group_name">PCS Group - Name <span class="text-danger">*</span></label>
+                                            <label for="procedure_iii_pcs_group_name">PCS Group - Name <span class="text-danger"></span></label>
                                             <select class="form-control select2" data-toggle="select2" id="procedure_iii_pcs_group_name" name="procedure_iii_pcs_group_name">
                                                 <option value="">Please Select</option>
                                                 @foreach ($pcs_group_name as $pcs_group)
@@ -1247,7 +1247,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="procedure_iii_pcs_group_code">PCS Group - Code <span class="text-danger">*</span></label>
+                                            <label for="procedure_iii_pcs_group_code">PCS Group - Code <span class="text-danger"></span></label>
                                             <input type="text" maxlength="16" class="form-control" id="procedure_iii_pcs_group_code" name="procedure_iii_pcs_group_code"
                                             placeholder="Enter PCS Group - Code" value="{{ old('procedure_iii_pcs_group_code', isset($claim_processing) ? $claim_processing->procedure_iii_pcs_group_code : '') }}">
                                             @error('procedure_iii_pcs_group_code', 'claim-processing-form')
@@ -1256,7 +1256,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="procedure_iii_pcs_sub_group_name">PCS Sub-Group - Name <span class="text-danger">*</span></label>
+                                            <label for="procedure_iii_pcs_sub_group_name">PCS Sub-Group - Name <span class="text-danger"></span></label>
                                             <select class="form-control select2" data-toggle="select2" id="procedure_iii_pcs_sub_group_name" name="procedure_iii_pcs_sub_group_name">
                                                 <option value="">Please Select</option>
                                                 @foreach ($pcs_sub_group_name as $pcs_group)
@@ -1273,7 +1273,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="procedure_iii_pcs_sub_group_code">PCS Sub-Group - Code <span class="text-danger">*</span></label>
+                                            <label for="procedure_iii_pcs_sub_group_code">PCS Sub-Group - Code <span class="text-danger"></span></label>
                                             <input type="text" maxlength="16" class="form-control" id="procedure_iii_pcs_sub_group_code" name="procedure_iii_pcs_sub_group_code"
                                             placeholder="Enter PCS Sub-Group - Code" value="{{ old('procedure_iii_pcs_sub_group_code', isset($claim_processing) ? $claim_processing->procedure_iii_pcs_sub_group_code : '') }}">
                                             @error('procedure_iii_pcs_sub_group_code', 'claim-processing-form')
@@ -1283,7 +1283,7 @@
 
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="procedure_iii_pcs_short_name">PCS Short Name <span class="text-danger">*</span></label>
+                                            <label for="procedure_iii_pcs_short_name">PCS Short Name <span class="text-danger"></span></label>
                                             <select class="form-control select2" data-toggle="select2" id="procedure_iii_pcs_short_name" name="procedure_iii_pcs_short_name">
                                                 <option value="">Please Select</option>
                                                 @foreach ($pcs_short_name as $pcs_group)
@@ -1300,7 +1300,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="procedure_iii_pcs_code">PCS Code <span class="text-danger">*</span></label>
+                                            <label for="procedure_iii_pcs_code">PCS Code <span class="text-danger"></span></label>
                                             <input type="text" maxlength="16" class="form-control" id="procedure_iii_pcs_code" name="procedure_iii_pcs_code"
                                             placeholder="Enter PCS Code" value="{{ old('procedure_iii_pcs_code', isset($claim_processing) ? $claim_processing->procedure_iii_pcs_code : '') }}">
                                             @error('procedure_iii_pcs_code', 'claim-processing-form')
@@ -1309,7 +1309,7 @@
                                         </div>
 
                                         <div class="col-md-12 mt-3">
-                                            <label for="procedure_iii_pcs_long_name">PCS Long Name <span class="text-danger">*</span></label>
+                                            <label for="procedure_iii_pcs_long_name">PCS Long Name <span class="text-danger"></span></label>
                                             <input type="text" maxlength="16" class="form-control" id="procedure_iii_pcs_long_name" name="procedure_iii_pcs_long_name"
                                             placeholder="Enter PCS Long Name" value="{{ old('procedure_iii_pcs_long_name', isset($claim_processing) ? $claim_processing->procedure_iii_pcs_long_name : '') }}">
                                             @error('procedure_iii_pcs_long_name', 'claim-processing-form')
@@ -1353,7 +1353,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="final_assessment_amount">Final Assessment Amount <span class="text-danger">*</span></label>
-                                            <input type="number" readonly pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==8) return false;" class="form-control final_assessment_amount"  id="final_assessment_amount" placeholder="Enter Final Assessment Amount" name="final_assessment_amount"
+                                            <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==8) return false;" class="form-control final_assessment_amount"  id="final_assessment_amount" placeholder="Enter Final Assessment Amount" name="final_assessment_amount"
                                             value="{{ old('final_assessment_amount', (isset($claim_processing) && !empty($claim_processing->final_assessment_amount))  ? $claim_processing->final_assessment_amount : $claim->estimated_amount) }}">
                                             @error('final_assessment_amount', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -1362,7 +1362,7 @@
 
                                         <div class="col-md-12 mt-3">
                                             <label for="final_assessment_comments">Final Assessment Comments </label>
-                                            <textarea readonly class="form-control" id="final_assessment_comments" name="final_assessment_comments" maxlength="250" placeholder="Enter Final Assessment Comments"  rows="5">{{ old('final_assessment_comments', isset($claim_processing) ? $claim_processing->final_assessment_comments : '') }}</textarea>
+                                            <textarea class="form-control" id="final_assessment_comments" name="final_assessment_comments" maxlength="250" placeholder="Enter Final Assessment Comments"  rows="5">{{ old('final_assessment_comments', isset($claim_processing) ? $claim_processing->final_assessment_comments : '') }}</textarea>
                                             @error('final_assessment_comments', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -1391,8 +1391,6 @@
     var add_query_clicked = "{{ old('add_query_clicked') }}";
 
     if(add_query_clicked == 1){
-        $(".final_assessment_amount").attr('readonly', false);
-            $("#final_assessment_comments").attr('readonly', false);
             $("#processing_query").attr('readonly', false);
     }
 
@@ -1400,8 +1398,6 @@
             $(".add-query").attr('disabled', false);
         }else{
             $(".add-query").attr('disabled', true);
-            $(".final_assessment_amount").attr('readonly', true);
-            $("#final_assessment_comments").attr('readonly', true);
             $("#processing_query").attr('readonly', true);
         }
 
@@ -1410,16 +1406,12 @@
             $(".add-query").attr('disabled', false);
         }else{
             $(".add-query").attr('disabled', true);
-            $(".final_assessment_amount").attr('readonly', true);
-            $("#final_assessment_comments").attr('readonly', true);
             $("#processing_query").attr('readonly', true);
         }
     });
 
     $(document).on('click', '.add-query', function(event) {
         $("#add_query_clicked").val(1);
-        $(".final_assessment_amount").attr('readonly', false);
-        $("#final_assessment_comments").attr('readonly', false);
         $("#processing_query").attr('readonly', false);
     });
 

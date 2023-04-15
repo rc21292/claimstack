@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Hospital\Claims;
 use App\Http\Controllers\Controller;
 use App\Models\Claim;
 use App\Models\Claimant;
-use App\Models\Patient;
 use App\Models\ICClaimStatus;
+use App\Models\Patient;
 use Illuminate\Http\Request;
 
 class ClaimantController extends Controller
@@ -20,8 +20,6 @@ class ClaimantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-    
     public function index(Request $request)
     {
         $filter_search  = $request->search;

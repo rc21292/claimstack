@@ -393,7 +393,7 @@
 
             <div class="col-md-6 mb-3">
                 <label for="hospitalized">Patient ever been hospitalized in the last 4 years since the inception of the
-                    contract <span class="text-danger">*</span></label>
+                    contract <span class="text-danger"></span></label>
                 <div class="mt-2">
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" id="hospitalized_yes" value="Yes"

@@ -113,10 +113,10 @@ class DischargeStatusController extends Controller
             'maternity_gravida_status_l'                            => ($claim->hospitalization_due_to == 'Maternity') ? 'required|numeric|digits_between:1,2' : [],
             'maternity_gravida_status_a'                            => ($claim->hospitalization_due_to == 'Maternity') ? 'required|numeric|digits_between:1,2' : [],
             'premature_baby'                                        => ($claim->hospitalization_due_to == 'Maternity') ? 'required' : [],
-            'date_of_discharge'                                     => ($request->maternity_date_of_delivery &&  $request->date_of_discharge) ? 'required|date|after_or_equal:maternity_date_of_delivery' : '',
+            'date_of_discharge'                                     => 'required|date|after_or_equal:maternity_date_of_delivery',
             'time_of_discharge'                                     => 'required',
             'discharge_status'                                      => 'required',
-            'death_summary'                                         => ($request->discharge_status == 'Deceased' && $request->death_summary) ? 'required|alpha_num|max:100':[],
+            'death_summary'                                         => ($request->discharge_status == 'Deceased') ? 'required|alpha_num|max:100':[],
             'discharge_status_comments'                             => 'max:250',
             // 'death_summary_file'                                    => ($request->death_summary) ? 'required' :[]
 

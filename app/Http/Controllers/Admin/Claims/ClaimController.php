@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin\Claims;
 use App\Http\Controllers\Controller;
 use App\Models\AssociatePartner;
 use App\Models\Claim;
+use App\Models\Claimant;
+use App\Models\Borrower;
+use App\Models\DischargeStatus;
 use App\Models\Hospital;
 use App\Models\Patient;
 use App\Models\ClaimProcessing;
@@ -374,7 +377,54 @@ class ClaimController extends Controller
                 });
             });
         }
+
         $claims = $claims->orderBy('id', 'desc')->paginate(20);
+
+        foreach ($claims as $key => $claim) {
+            $claimant = Claimant::where('claim_id', $claim->id)->exists();
+
+            $borrower = Borrower::where('claim_id', $claim->id)->exists();
+
+            $assessment = AssessmentStatus::where('claim_id', $claim->id)->exists();
+            $discharge = DischargeStatus::where('claim_id', $claim->id)->exists();
+            $claim_processing = ClaimProcessing::where('claim_id', $claim->id)->exists();
+
+            if ($claimant) {
+                $claimant = Claimant::where('claim_id', $claim->id)->value('id');
+                $claims[$key]->claimant = $claim->id;
+            }else{
+                $claims[$key]->claimant = '';
+            }
+
+            if ($borrower) {
+                $borrower = Borrower::where('claim_id', $claim->id)->value('id');
+                $claims[$key]->borrower = $claim->id;
+            }else{
+                $claims[$key]->borrower = '';
+            }
+
+            if ($assessment) {
+                $assessment = AssessmentStatus::where('claim_id', $claim->id)->value('id');
+                $claims[$key]->assessment = $claim->id;
+            }else{
+                $claims[$key]->assessment = '';
+            }
+
+            if ($discharge) {
+                $discharge = DischargeStatus::where('claim_id', $claim->id)->value('id');
+                $claims[$key]->discharge = $claim->id;
+            }else{
+                $claims[$key]->discharge = '';
+            }
+
+            if ($claim_processing) {
+                $claim_processing = ClaimProcessing::where('claim_id', $claim->id)->value('id');
+                $claims[$key]->claim_processing = $claim->id;
+            }else{
+                $claims[$key]->claim_processing = '';
+            }
+
+        }
 
         return view('admin.claims.claims.manage',  compact('claims', 'filter_search'));
     }
@@ -493,6 +543,7 @@ class ClaimController extends Controller
 
         $claim = Claim::create([
             'patient_id'                => $request->patient_id,
+            'hospital_id'                => $request->hospital_id,
             'admission_date'            => $request->admission_date,
             'admission_time'            => $request->admission_time,
             'abha_id'                   => $request->abha_id,
@@ -661,7 +712,7 @@ class ClaimController extends Controller
             'insurance_company_other'                   => $request->currently_covered == 'Yes' ? 'required|max:60' : '',
             'policy_no_other'                           => $request->currently_covered == 'Yes' ? 'required|max:16' : '',
             'sum_insured_other'                         => $request->currently_covered == 'Yes' ? 'required|max:8' : '',
-            'hospitalized'                              => 'required',
+            // 'hospitalized'                              => 'required',
             'admission_date_past'                       => $request->hospitalized == 'Yes' ? 'required|before:today' : '',
             'diagnosis'                                 => $request->hospitalized == 'Yes' ? 'required|max:60' : '',
             'primary_insured_firstname'                 => 'required|max:15',
@@ -934,6 +985,7 @@ class ClaimController extends Controller
 
         $claim = Claim::where('id', $id)->update([
             'patient_id'                            => $request->patient_id,
+            'hospital_id'                            => $request->hospital_id,
             'admission_date'                        => $request->admission_date,
             'admission_time'                        => $request->admission_time,
             'abha_id'                               => $request->abha_id,

@@ -696,15 +696,16 @@
         function setReferral() {
             var referred_by = $('#referred_by').val();
             if(referred_by == "BHC Direct"){
-                $("input[name='referral_name']").val('BHC');
+                $("input[name='referral_name']").val('BHC').attr('readonly', true);
             }else if(referred_by == "Hospital's Direct Patient"){
                 var hospital = $("#hospital_id").select2().find(":selected").data("name");
-                        $("input[name='referral_name']").val(hospital);
+                        $("input[name='referral_name']").val(hospital).attr('readonly', true);
             }else if(referred_by == "Associate Partner"){
                 var apname = $("#hospital_id").select2().find(":selected").data("apname");
-                        $("input[name='referral_name']").val(apname);
+                        $("input[name='referral_name']").val(apname).attr('readonly', true);
             }else{
-                $("input[name='referral_name']").val({{ old('referral_name') }});
+                $("input[name='referral_name']").val('').removeAttr('readonly');
+                $("input[name='referral_name']").val({{ old('referral_name','') }});
             }
         }
     </script>

@@ -37,7 +37,7 @@
                                         <tr>
                                             <th scope="col">Patient UID</th>
                                             <th scope="col">Claim UID</th>
-                                            <th scope="col">Claimant UID</th>
+                                            <th scope="col">Borrower UID</th>
                                             <th scope="col">Patient Name</th>
                                             <th scope="col">Hospital Name</th>
                                             <th scope="col">State</th>

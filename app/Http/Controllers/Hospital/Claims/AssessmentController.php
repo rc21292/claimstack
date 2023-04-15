@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Hospital\Claims;
 use App\Http\Controllers\Controller;
 use App\Models\AssessmentStatus;
 use App\Models\Claimant;
+use App\Models\HospitalEmpanelmentStatus;
+use App\Models\ClaimProcessing;
 use App\Models\Claim;
 use App\Models\Insurer;
 use Illuminate\Http\Request;
@@ -34,10 +36,19 @@ class AssessmentController extends Controller
     public function create(Request $request)
     {
         $claim           = Claim::with('patient','hospital')->find($request->claim_id);
+        $processing_query   = ClaimProcessing::where('claim_id', $request->claim_id)->value('processing_query');
         $assessment_exists  = AssessmentStatus::where('claim_id', $request->claim_id)->exists();
         $assessment_status  = $assessment_exists ? AssessmentStatus::where('claim_id', $request->claim_id)->first() : null;
         $insurers           = Insurer::get();
-        return view('hospital.claims.assessments.create.create', compact('claim', 'assessment_status', 'insurers'));
+
+        $policy_id = @$claim->policy->insurer_id;
+        $hospital_id = $claim->patient->hospital->id;
+
+       $hospital_id_as_per_the_selected_company = HospitalEmpanelmentStatus::where(['hospital_id' => $hospital_id, 'tpa_id' => $policy_id ])->exists() ?  HospitalEmpanelmentStatus::where(['hospital_id' => $hospital_id, 'tpa_id' => $policy_id ])->value('hospital_id_as_per_the_selected_company') : null;
+
+
+
+        return view('hospital.claims.assessments.create.create', compact('claim', 'assessment_status', 'insurers', 'processing_query', 'hospital_id_as_per_the_selected_company'));
     }
 
     /**

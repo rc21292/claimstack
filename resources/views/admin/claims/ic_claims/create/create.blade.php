@@ -142,12 +142,17 @@
                                                     class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
-
                                         <div class="col-md-6 mt-3">
                                             <label for="associate_partner_name">Associate Partner Name </label>
+                                            @if(isset($claimant->hospital->associate))
                                             <input type="text" readonly class="form-control" id="associate_partner_id"
                                                 name="associate_partner_name" placeholder="Enter associate partner name"
                                                 value="{{ old('associate_partner_name', '[Name: '.$claimant->hospital->associate->name.'][City: '.$claimant->hospital->associate->city. '][State: '.$claimant->hospital->associate->state.']') }}">
+                                                @else
+                                                <input type="text" readonly class="form-control" id="associate_partner_id"
+                                                name="associate_partner_name" placeholder="Enter associate partner name"
+                                                value="{{ old('associate_partner_name', '') }}">
+                                                @endif
                                             @error('associate_partner_name')
                                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror

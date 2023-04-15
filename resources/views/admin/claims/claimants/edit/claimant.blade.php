@@ -126,7 +126,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <label for="associate_partner_id">Associate Partner ID <span
-                                                    class="text-danger">*</span></label>
+                                                    class="text-danger"></span></label>
                                             <input type="text" class="form-control" id="associate_partner_id"
                                                 name="associate_partner_id" placeholder="Associate Partner ID"
                                                 value="{{ old('associate_partner_id', isset($claimant) ? $claimant->claim->patient->associate_partner_id : '') }}"
@@ -525,14 +525,14 @@
                                         </div>
 
                                         <div class="col-md-12 mt-3">
-                                            <label for="address">Claimant Cancel Cheque <span
+                                            <label for="address">Claimant Cancel Cheque / Pass Book <span
                                                     class="text-danger">*</span></label>
                                         </div>
 
                                         <div class="col-md-12 mt-2">
                                             <div class="input-group">
                                                 <select class="form-select" id="cancel_cheque" name="cancel_cheque">
-                                                    <option value="">Cancel Cheque</option>
+                                                    <option value="">Select Cancel Cheque / Pass Book</option>
                                                     <option value="Yes"
                                                         {{ old('cancel_cheque', $claimant->cancel_cheque) == 'Yes' ? 'selected' : '' }}>Yes </option>
                                                     <option value="No"
