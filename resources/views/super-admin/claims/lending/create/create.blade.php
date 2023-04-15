@@ -463,7 +463,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="time_of_loan_re_application">Time of Loan Re-Application (HH:MM) <span class="text-danger">*</span></label>
+                                            <label for="time_of_loan_re_application">Time of Loan Re-Application (HH:MM) </label>
                                             <input type="time" class="form-control" id="time_of_loan_re_application" @if(empty(@$lending_status->loan_id_or_no)) disabled @endif name="time_of_loan_re_application" value="{{ old('time_of_loan_re_application', isset($lending_status) ? ( !empty($lending_status->time_of_loan_re_application) ? $lending_status->time_of_loan_re_application : date('H:i') ) : date('H:i')) }}" >
 
                                             @error('time_of_loan_re_application')
