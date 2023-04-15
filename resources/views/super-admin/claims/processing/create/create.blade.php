@@ -679,7 +679,7 @@
 
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="primary_diagnosis_icd_leveli_disease">ICD - Level - I - Disease <span class="text-danger"></span></label>
+                                            <label for="primary_diagnosis_icd_leveli_disease">ICD - Level - I - Disease <span class="text-danger">*</span></label>
 
                                             <select class="form-control select2" data-toggle="select2" id="primary_diagnosis_icd_leveli_disease" name="primary_diagnosis_icd_leveli_disease">
                                                 <option value="">Please Select</option>
@@ -698,7 +698,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="primary_diagnosis_icd_leveli_code">ICD - Level - I - Code <span class="text-danger"></span></label>
+                                            <label for="primary_diagnosis_icd_leveli_code">ICD - Level - I - Code <span class="text-danger">*</span></label>
                                             <input type="text" maxlength="16" class="form-control" id="primary_diagnosis_icd_leveli_code" name="primary_diagnosis_icd_leveli_code" placeholder="Enter ICD - Level - I - Code" value="{{ old('primary_diagnosis_icd_leveli_code', isset($claim_processing) ? $claim_processing->primary_diagnosis_icd_leveli_code : '') }}">
                                             @error('primary_diagnosis_icd_leveli_code', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -706,7 +706,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="primary_diagnosis_icd_levelii_disease">ICD - Level - II - Disease <span class="text-danger"></span></label>
+                                            <label for="primary_diagnosis_icd_levelii_disease">ICD - Level - II - Disease <span class="text-danger">*</span></label>
 
                                             <select class="form-control select2" data-toggle="select2" id="primary_diagnosis_icd_levelii_disease" name="primary_diagnosis_icd_levelii_disease">
                                                 <option value="">Please Select</option>
@@ -725,7 +725,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="primary_diagnosis_icd_levelii_code">ICD - Level - II - Code <span class="text-danger"></span></label>
+                                            <label for="primary_diagnosis_icd_levelii_code">ICD - Level - II - Code <span class="text-danger">*</span></label>
                                             <input type="text" maxlength="16" class="form-control" id="primary_diagnosis_icd_levelii_code" name="primary_diagnosis_icd_levelii_code"  placeholder="Enter ICD - Level - II - Code" value="{{ old('primary_diagnosis_icd_levelii_code', isset($claim_processing) ? $claim_processing->primary_diagnosis_icd_levelii_code : '') }}">
                                             @error('primary_diagnosis_icd_levelii_code', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -734,7 +734,7 @@
 
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="primary_diagnosis_icd_leveliii_disease">ICD - Level - III - Disease <span class="text-danger"></span></label>
+                                            <label for="primary_diagnosis_icd_leveliii_disease">ICD - Level - III - Disease <span class="text-danger">*</span></label>
 
                                             <select class="form-control select2" data-toggle="select2" id="primary_diagnosis_icd_leveliii_disease" name="primary_diagnosis_icd_leveliii_disease">
                                                 <option value="">Please Select</option>
@@ -753,7 +753,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="primary_diagnosis_icd_leveliii_code">ICD - Level - III - Code <span class="text-danger"></span></label>
+                                            <label for="primary_diagnosis_icd_leveliii_code">ICD - Level - III - Code <span class="text-danger">*</span></label>
                                             <input type="text" maxlength="16" class="form-control" id="primary_diagnosis_icd_leveliii_code" name="primary_diagnosis_icd_leveliii_code"  placeholder="Enter ICD - Level - III - Code" value="{{ old('primary_diagnosis_icd_leveliii_code', isset($claim_processing) ? $claim_processing->primary_diagnosis_icd_leveliii_code : '') }}">
                                             @error('primary_diagnosis_icd_leveliii_code', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -762,7 +762,7 @@
 
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="primary_diagnosis_icd_leveliv_disease">ICD - Level - IV - Disease <span class="text-danger"></span></label>
+                                            <label for="primary_diagnosis_icd_leveliv_disease">ICD - Level - IV - Disease <span class="text-danger">*</span></label>
 
                                             <select class="form-control select2" data-toggle="select2" id="primary_diagnosis_icd_leveliv_disease" name="primary_diagnosis_icd_leveliv_disease">
                                                 <option value="">Please Select</option>
@@ -781,7 +781,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="primary_diagnosis_icd_leveliv_code">ICD - Level - IV - Code <span class="text-danger"></span></label>
+                                            <label for="primary_diagnosis_icd_leveliv_code">ICD - Level - IV - Code <span class="text-danger">*</span></label>
                                             <input type="text" maxlength="16" class="form-control" id="primary_diagnosis_icd_leveliv_code" name="primary_diagnosis_icd_leveliv_code"
                                             placeholder="Enter ICD - Level - IV - Code" value="{{ old('primary_diagnosis_icd_leveliv_code', isset($claim_processing) ? $claim_processing->primary_diagnosis_icd_leveliv_code : '') }}">
                                             @error('primary_diagnosis_icd_leveliv_code', 'claim-processing-form')
