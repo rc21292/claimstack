@@ -1391,8 +1391,6 @@
     var add_query_clicked = "{{ old('add_query_clicked') }}";
 
     if(add_query_clicked == 1){
-        $(".final_assessment_amount").attr('readonly', false);
-            $("#final_assessment_comments").attr('readonly', false);
             $("#processing_query").attr('readonly', false);
     }
 
@@ -1400,8 +1398,6 @@
             $(".add-query").attr('disabled', false);
         }else{
             $(".add-query").attr('disabled', true);
-            $(".final_assessment_amount").attr('readonly', true);
-            $("#final_assessment_comments").attr('readonly', true);
             $("#processing_query").attr('readonly', true);
         }
 
@@ -1410,16 +1406,12 @@
             $(".add-query").attr('disabled', false);
         }else{
             $(".add-query").attr('disabled', true);
-            $(".final_assessment_amount").attr('readonly', true);
-            $("#final_assessment_comments").attr('readonly', true);
             $("#processing_query").attr('readonly', true);
         }
     });
 
     $(document).on('click', '.add-query', function(event) {
         $("#add_query_clicked").val(1);
-        $(".final_assessment_amount").attr('readonly', false);
-        $("#final_assessment_comments").attr('readonly', false);
         $("#processing_query").attr('readonly', false);
     });
 
