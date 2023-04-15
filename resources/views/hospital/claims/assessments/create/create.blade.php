@@ -533,10 +533,10 @@
             var status = $("#pre_assessment_status").val();
             switch (status) {
                 case 'Query Raised by BHC Team':
-                    $("#query_pre_assessment").prop("readonly", false);
+                    // $("#query_pre_assessment").prop("readonly", false);
                     break;
                 default:
-                    $("#query_pre_assessment").prop("readonly", true);
+                    // $("#query_pre_assessment").prop("readonly", true);
                     break;
             }
         }
