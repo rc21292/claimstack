@@ -689,7 +689,7 @@
                 </div>
 
                 <div class="col-md-6 mt-3">
-                    <label for="co_borrower_nominee_name">Co-Borrower / Nominee Name <span class="text-danger">*</span></label>
+                    <label for="co_borrower_nominee_name">Co-Borrower / Nominee Name <span class="text-danger"></span></label>
                     <select class="form-select" id="co_borrower_nominee_name" name="co_borrower_nominee_name">
                         <option value="">Select Co-Borrower / Nominee Name</option>
                         <option value="Self" {{ old('co_borrower_nominee_name') == 'Self' ? 'selected' : '' }}>Self
@@ -719,7 +719,7 @@
                 </div>
 
                 <div class="col-md-6 mt-3">
-                    <label for="co_borrower_nominee_gender">Co-Borrower / Nominee Gender <span class="text-danger">*</span></label>
+                    <label for="co_borrower_nominee_gender">Co-Borrower / Nominee Gender <span class="text-danger"></span></label>
                     <div class="input-group">
                         <select class="form-select" id="co_borrower_nominee_gender" name="co_borrower_nominee_gender">
                             <option value="">Select Co-Borrower / Nominee Gender</option>
@@ -742,7 +742,7 @@
                 </div>
 
                 <div class="col-md-6 mt-3">
-                    <label for="co_borrower_nominee_relation">Co-Borrower / Nominee Relation <span class="text-danger">*</span></label>
+                    <label for="co_borrower_nominee_relation">Co-Borrower / Nominee Relation <span class="text-danger"></span></label>
                     <select class="form-select" id="co_borrower_nominee_relation" name="co_borrower_nominee_relation">
                         <option value="">Select Co-Borrower / Nominee Relation</option>
                         <option value="Husband" {{ old('co_borrower_nominee_relation') == 'Husband' ? 'selected' : '' }}>Husband </option>
