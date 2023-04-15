@@ -183,8 +183,7 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-12 mb-3">
-                                            <label for="injury_reason">If Injury, give Cause/Reason <span
-                                                    class="text-danger">*</span></label>
+                                            <label for="injury_reason">If Injury, give Cause/Reason </label>
                                             <div class="mt-2">
                                                 <div class="form-check form-check-inline">
                                                     <input disabled class="form-check-input" type="radio"
@@ -218,8 +217,7 @@
                                         </div>
                                         <div class="col-md-12 mb-3">
                                             <label for="injury_due_to_substance_abuse_alcohol_consumption">If Injury due to
-                                                Substance Abuse-Alcohol Consumption, Test conducted to establish this <span
-                                                    class="text-danger">*</span></label>
+                                                Substance Abuse-Alcohol Consumption, Test conducted to establish this </label>
                                             <div class="mt-2">
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" disabled
@@ -250,8 +248,7 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-12 mb-3">
-                                            <label for="if_medico_legal_case_mlc">If Medico Legal Case (MLC) <span
-                                                    class="text-danger">*</span></label>
+                                            <label for="if_medico_legal_case_mlc">If Medico Legal Case (MLC) </label>
                                             <div class="mt-2">
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" disabled
@@ -279,8 +276,7 @@
                                         </div>
 
                                         <div class="col-md-12 mb-3">
-                                            <label for="reported_to_police">Reported to Police <span
-                                                    class="text-danger">*</span></label>
+                                            <label for="reported_to_police">Reported to Police </label>
                                             <div class="mt-2">
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" disabled
@@ -305,7 +301,7 @@
                                         </div>
 
                                         <div class="col-md-12 mb-3">
-                                            <label for="mlc_report_and_police_fir_attached">MLC Report & Police FIR attached <span class="text-danger">*</span></label>
+                                            <label for="mlc_report_and_police_fir_attached">MLC Report & Police FIR attached </label>
                                             <div class="mt-2">
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" disabled
@@ -335,8 +331,7 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="fir_or_mlc_no">FIR No. / MLC No.<span
-                                                    class="text-danger">*</span></label>
+                                            <label for="fir_or_mlc_no">FIR No. / MLC No.</label>
                                             <input type="text" disabled maxlength="27" class="form-control" id="fir_or_mlc_no"
                                                 name="fir_or_mlc_no" placeholder="Enter FIR No. / MLC No"
                                                 value="{{ old('fir_or_mlc_no', isset($discharge_status) ? $discharge_status->fir_or_mlc_no : '') }}">
@@ -358,8 +353,7 @@
 
 
                                         <div class="col-md-12 mt-3">
-                                            <label for="maternity_date_of_delivery">If Maternity - Date of Delivery<span
-                                                    class="text-danger">*</span></label>
+                                            <label for="maternity_date_of_delivery">If Maternity - Date of Delivery</label>
                                             <input type="text" disabled class="form-control" id="maternity_date_of_delivery"
                                                 name="maternity_date_of_delivery" placeholder="DD-MM-YYYY" data-provide="datepicker" data-date-format="dd-mm-yyyy"
                                                 value="{{ old('maternity_date_of_delivery', isset($discharge_status) ? $discharge_status->maternity_date_of_delivery : '') }}">
@@ -380,7 +374,7 @@
                                 <div class="card-body">
                                     <div class="form-group row">
                                         <div class="col-md-3 mt-1">
-                                            <label for="maternity_gravida_status_g">G<span class="text-danger">*</span></label>
+                                            <label for="maternity_gravida_status_g">G</label>
                                             <input type="number" disabled pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==2) return false;" class="form-control" id="maternity_gravida_status_g"
                                             name="maternity_gravida_status_g" placeholder="Enter G"  value="{{ old('maternity_gravida_status_g', isset($discharge_status) ? $discharge_status->maternity_gravida_status_g : '') }}">
                                             @error('maternity_gravida_status_g')
@@ -389,7 +383,7 @@
                                         </div>
 
                                         <div class="col-md-3 mt-1">
-                                            <label for="maternity_gravida_status_p">P<span class="text-danger">*</span></label>
+                                            <label for="maternity_gravida_status_p">P</label>
                                             <input type="number" disabled pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==2) return false;" class="form-control" id="maternity_gravida_status_p"
                                             name="maternity_gravida_status_p" placeholder="Enter P"  value="{{ old('maternity_gravida_status_p', isset($discharge_status) ? $discharge_status->maternity_gravida_status_p : '') }}">
                                             @error('maternity_gravida_status_p')
@@ -398,7 +392,7 @@
                                         </div>
 
                                         <div class="col-md-3 mt-1">
-                                            <label for="maternity_gravida_status_l">L<span class="text-danger">*</span></label>
+                                            <label for="maternity_gravida_status_l">L</label>
                                             <input type="number" disabled pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==2) return false;" class="form-control" id="maternity_gravida_status_l"
                                             name="maternity_gravida_status_l" placeholder="Enter L"  value="{{ old('maternity_gravida_status_l', isset($discharge_status) ? $discharge_status->maternity_gravida_status_l : '') }}">
                                             @error('maternity_gravida_status_l')
@@ -407,7 +401,7 @@
                                         </div>
 
                                         <div class="col-md-3 mt-1">
-                                            <label for="maternity_gravida_status_a">A<span class="text-danger">*</span></label>
+                                            <label for="maternity_gravida_status_a">A</label>
                                             <input type="number" disabled pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==2) return false;" class="form-control" id="maternity_gravida_status_a"
                                             name="maternity_gravida_status_a" placeholder="Enter A"  value="{{ old('maternity_gravida_status_a', isset($discharge_status) ? $discharge_status->maternity_gravida_status_a : '') }}">
                                             @error('maternity_gravida_status_a')
@@ -416,8 +410,7 @@
                                         </div>
 
                                         <div class="col-md-6 mb-3 mt-3">
-                                            <label for="premature_baby">Premature Baby <span
-                                                    class="text-danger">*</span></label>
+                                            <label for="premature_baby">Premature Baby </label>
                                             <div class="mt-2">
                                                 <div class="form-check form-check-inline">
                                                     <input disabled class="form-check-input" type="radio"
@@ -490,7 +483,7 @@
                                         </div>
 
                                         <div class="col-md-12 mt-1">
-                                            <label for="discharge_status_comments">Discharge Status Comments<span class="text-danger">*</span></label>
+                                            <label for="discharge_status_comments">Discharge Status Comments</label>
                                             <textarea class="form-control" id="discharge_status_comments" name="discharge_status_comments" maxlength="250" placeholder="Enter Discharge Status Comments"
                                             rows="5">{{ old('discharge_status_comments', isset($discharge_status) ? $discharge_status->discharge_status_comments : '') }}</textarea>
 
