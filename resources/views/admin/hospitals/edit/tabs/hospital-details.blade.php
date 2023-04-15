@@ -190,7 +190,7 @@
                 data-toggle="select2" onchange="setLinkedAssociatePartnerId()">
                 <option value="">Select Associate Partner</option>
                 @foreach ($associates as $associate)
-                <option value="{{ $associate->name }}"
+                <option value="{{ $associate->id }}"
                     {{ old('linked_associate_partner', $hospital->linked_associate_partner) == $associate->name ? 'selected' : '' }}
                     data-id="{{ $associate->associate_partner_id }}">
                     [<strong>Name: </strong>{{ $associate->name }}]

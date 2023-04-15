@@ -142,7 +142,6 @@
                                                     class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
-
                                         <div class="col-md-6 mt-3">
                                             <label for="associate_partner_name">Associate Partner Name </label>
                                             @if(isset($claimant->hospital->associate))

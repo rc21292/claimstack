@@ -121,6 +121,6 @@ class Hospital extends Authenticatable
 
     public function associate()
     {
-        return $this->hasOne(AssociatePartner::class, 'linked_associate_partner');
+        return $this->hasOne(AssociatePartner::class, 'associate_partner_id', 'linked_associate_partner_id');
     }
 }
