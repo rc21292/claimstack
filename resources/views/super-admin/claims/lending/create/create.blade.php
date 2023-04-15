@@ -489,7 +489,7 @@
                                                 <option value="Waiting for the Approval" {{ old('loan_status', isset($lending_status) ? $lending_status->loan_status : 'Waiting for the Approval') == 'Waiting for the Approval' ? 'selected' : '' }}>Waiting for the Approval </option>
                                                 <option value="Approved" {{ old('loan_status', isset($lending_status) ? $lending_status->loan_status : '') == 'Approved' ? 'selected' : '' }}>Approved </option>
                                                 <option value="Rejected" {{ old('loan_status', isset($lending_status) ? $lending_status->loan_status : '') == 'Rejected' ? 'selected' : '' }}>Rejected </option>
-                                                <option value="Re-applied" {{ old('loan_status', isset($lending_status) ? $lending_status->loan_status : '') == 'Re-applied' ? 'selected' : '' }}>Re-applied </option>
+                                                <option value="Re-applied" {{ old('loan_status', isset($lending_status) ? $lending_status->loan_status : '') == 'Re-applied' ? 'selected' : '' }} @if(isset($lending_status) && !empty($lending_status->date_of_loan_re_application)) selected @endif>Re-applied </option>
                                             </select>
                                             @error('loan_status')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
