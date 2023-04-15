@@ -712,7 +712,7 @@ class ClaimController extends Controller
             'insurance_company_other'                   => $request->currently_covered == 'Yes' ? 'required|max:60' : '',
             'policy_no_other'                           => $request->currently_covered == 'Yes' ? 'required|max:16' : '',
             'sum_insured_other'                         => $request->currently_covered == 'Yes' ? 'required|max:8' : '',
-            'hospitalized'                              => 'required',
+            // 'hospitalized'                              => 'required',
             'admission_date_past'                       => $request->hospitalized == 'Yes' ? 'required|before:today' : '',
             'diagnosis'                                 => $request->hospitalized == 'Yes' ? 'required|max:60' : '',
             'primary_insured_firstname'                 => 'required|max:15',
