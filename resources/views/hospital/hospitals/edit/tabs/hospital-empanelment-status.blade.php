@@ -199,7 +199,8 @@
             <div class="col-md-12 show-hide-empanelment mt-3">
                 <label for="negative_listing_status">Negative Listing Status<span class="text-danger">*</span></label>
                 <div class="input-group">
-                    <select class="form-select" id="negative_listing_status" name="negative_listing_status">
+                    <input type="hidden" name="negative_listing_status" value="{{ old('negative_listing_status',isset($empanelment_status) ? $empanelment_status->negative_listing_status : '') }}">
+                    <select disabled class="form-select" id="negative_listing_status" name="negative_listing_status">
                         <option value="">Select Negative Listing Status</option>
                         <option value="Yes" {{ old('negative_listing_status',isset($empanelment_status) ? $empanelment_status->negative_listing_status : '') == 'Yes' ? 'selected' : '' }}>Yes</option>
                         <option value="No" {{ old('negative_listing_status',isset($empanelment_status) ? $empanelment_status->negative_listing_status : '') == 'No' ? 'selected' : '' }}>No</option>
@@ -222,7 +223,7 @@
 
                 <div class="col-md-12 show-hide-empanelment mt-3">
                     <label for="hospital_empanelment_status_comments">Hospital Empanelment Status Comments </label>
-                    <textarea class="form-control" id="hospital_empanelment_status_comments" name="hospital_empanelment_status_comments" maxlength="250" placeholder="Comments" rows="4">{{ old('hospital_empanelment_status_comments',isset($empanelment_status) ? $empanelment_status->hospital_empanelment_status_comments : ''??'') }}</textarea>
+                    <textarea readonly class="form-control" id="hospital_empanelment_status_comments" name="hospital_empanelment_status_comments" maxlength="250" placeholder="Comments" rows="4">{{ old('hospital_empanelment_status_comments',isset($empanelment_status) ? $empanelment_status->hospital_empanelment_status_comments : ''??'') }}</textarea>
                     @error('hospital_empanelment_status_comments')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
@@ -231,9 +232,9 @@
 
                 <div class="col-md-12 show-hide-empanelment text-end mt-3">
                 @if(isset(request()->company_id) && !empty(request()->company_id))
-                    <button type="submit" class="btn btn-success" form="hospital-empanelment-status-form">Save / Update </button>
+                    <button disabled type="submit" class="btn btn-success" form="hospital-empanelment-status-form">Save / Update </button>
                 @else
-                    <button type="submit" class="btn btn-success" form="hospital-empanelment-form">Save / Update </button>
+                    <button disabled type="submit" class="btn btn-success" form="hospital-empanelment-form">Save / Update </button>
                 @endif
             </div>
 
