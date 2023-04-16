@@ -541,9 +541,11 @@ class ClaimController extends Controller
 
         $this->validate($request, $rules, $messages);
 
+        $hospital_id = Patient::where('id', $request->patient_id)->value('hospital_id');
+
         $claim = Claim::create([
             'patient_id'                => $request->patient_id,
-            'hospital_id'                => $request->hospital_id,
+            'hospital_id'                => $hospital_id,
             'admission_date'            => $request->admission_date,
             'admission_time'            => $request->admission_time,
             'abha_id'                   => $request->abha_id,
