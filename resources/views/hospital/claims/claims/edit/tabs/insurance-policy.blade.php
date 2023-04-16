@@ -22,7 +22,7 @@
             </div>
             <div class="col-md-4 mb-3">
                 <label for="policy_no">Policy No. <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="policy_no" name="policy_no" maxlength="16"
+                <input type="text" readonly class="form-control" id="policy_no" name="policy_no" maxlength="16"
                     placeholder="Enter Policy No." value="{{ old('policy_no', $claim->policy_no) }}">
                 @error('policy_no')
                     <span id="policy-id-error" class="error invalid-feedback">{{ $message }}</span>
@@ -70,7 +70,7 @@
             </div>
             <div class="col-md-6 mb-3">
                 <label for="company_tpa_id_card_no">Company / TPA ID Card No. <span class="text-danger">*</span></label>
-                <input type="text" maxlength="16" class="form-control" id="company_tpa_id_card_no"
+                <input type="text" readonly maxlength="16" class="form-control" id="company_tpa_id_card_no"
                     placeholder="Company / TPA ID Card No." name="company_tpa_id_card_no"
                     value="{{ old('company_tpa_id_card_no', $claim->company_tpa_id_card_no) }}">
                 @error('company_tpa_id_card_no')

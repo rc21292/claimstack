@@ -635,7 +635,7 @@
                     <label>Borrower Cancel Cheque / Pass Book <span class="text-danger">*</span></label>
                     <div class="input-group">
                         <select class="form-select" id="borrower_cancel_cheque" name="borrower_cancel_cheque">
-                            <option value="">Select Borrower Cancel Cheque</option>
+                            <option value="">Select Borrower Cancel Cheque / Pass Book</option>
                             <option value="Yes" {{ old('borrower_cancel_cheque') == 'Yes' ? 'selected' : '' }}>Yes  </option>
                             <option value="No" {{ old('borrower_cancel_cheque', @$hospital->borrower_cancel_cheque) == 'No' ? 'selected' : '' }}>No </option>
                         </select>

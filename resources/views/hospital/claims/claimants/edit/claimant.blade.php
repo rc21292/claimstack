@@ -236,7 +236,7 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="policy_type">Policy Type <span
                                                     class="text-danger">*</span></label>
-                                            <select class="form-select" id="policy_type" name="policy_type"
+                                            <select disabled class="form-select" id="policy_type" name="policy_type"
                                                 onchange="setGroupName();">
                                                 <option value="">Select Policy Type</option>
                                                 <option value="Group"
@@ -246,6 +246,7 @@
                                                     {{ old('policy_type', $claimant->policy_type) == 'Retail' ? 'selected' : '' }}>Retail
                                                 </option>
                                             </select>
+                                            <input type="hidden" value="{{ old('policy_type',  @$claim->policy->policy_type)     }}" name="policy_type">
                                             @error('policy_type')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>

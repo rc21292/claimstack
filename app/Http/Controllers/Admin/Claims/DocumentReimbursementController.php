@@ -62,6 +62,7 @@ class DocumentReimbursementController extends Controller
                     'tpa_card_file'                                     => empty($reimbursement->tpa_card_file) ? 'required' : [],
                     'employee_or_member_id_group_file'                  => empty($reimbursement->employee_or_member_id_group_file) ? 'required' : [],
                     'photograph_of_the_patient_file'                    => empty($reimbursement->photograph_of_the_patient_file) ? 'required' : [],
+                    'claim_intimation_documents'                    => empty($reimbursement->claim_intimation_documents) ? 'required' : [],   
                     'bhc_assessment_formsi_and_ii_signed_stamped_file'                    => empty($reimbursement->bhc_assessment_formsi_and_ii_signed_stamped_file) ? 'required' : [],                       
                 ];
                 
@@ -72,6 +73,7 @@ class DocumentReimbursementController extends Controller
                     'tpa_card_file.required'                                    => 'Please select Tpa Card File',
                     'employee_or_member_id_group_file.required'                 => 'Please select Employee Or Member Id Group File',
                     'photograph_of_the_patient_file.required'                   => 'Please select Photograph Of The Patient File',   
+                    'claim_intimation_documents.required'                   => 'Please select claim intimation documents File',   
                     'bhc_assessment_formsi_and_ii_signed_stamped_file.required'                   => 'Please select BHC Assessment Forms - I & II (Signed & Stamped) File',   
                 
                 ];
@@ -1237,6 +1239,20 @@ class DocumentReimbursementController extends Controller
                     $co_borrower_other_documents_file = $request->file('co_borrower_other_documents_file');
                     $name = $co_borrower_other_documents_file->getClientOriginalName();
                     $co_borrower_other_documents_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->co_borrower_other_documents_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'co_borrower_other_documents_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'co_borrower_other_documents_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'co_borrower_other_documents_file', 'file_path' => $reimbursement->co_borrower_other_documents_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     ReimbursementDocument::where('id', $reimbursement->id)->update([
                         'co_borrower_other_documents_file' =>  $name
                     ]);
