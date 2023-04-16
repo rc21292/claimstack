@@ -89,7 +89,7 @@
                                     </tbody>
                                 </table>
                             @else
-                                <p class="text-center mt-5 mb-5">No Claimants found.</p>
+                                <p class="text-center mt-5 mb-5">No Borrower found.</p>
                             @endif
                         </div>
                         {{ $borrowers->withQueryString()->links('pagination::bootstrap-4') }}
