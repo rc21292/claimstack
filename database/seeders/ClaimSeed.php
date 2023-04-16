@@ -30,6 +30,7 @@ class ClaimSeed extends Seeder
             $claim = Claim::create([
                 'uid'                           => 'C-'.Carbon::now()->format('Y-m-d').'-'.$key+1,
                 'patient_id'                    => $patient->id,
+                'hospital_id'                    => $patient->hospital->id,
                 'admission_date'                => Carbon::now()->subYears(3)->format('d-m-Y'),
                 'admission_time'                => Carbon::now()->subYears(3)->format('H:i:s'),
                 'abha_id'                       => $faker->numerify('99-#2##-####-0###'),

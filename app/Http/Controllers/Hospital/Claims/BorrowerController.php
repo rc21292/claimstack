@@ -29,10 +29,10 @@ class BorrowerController extends Controller
         $borrowers = Borrower::query();
 
         if($filter_search){
-            $borrowers->where('patient_id', 'like','%' . $filter_search . '%');
+            $borrowers->where('hospital_id', auth()->user()->id)->where('patient_id', 'like','%' . $filter_search . '%');
         }
 
-        $borrowers = $borrowers->orderBy('id', 'desc')->paginate(20);
+        $borrowers = $borrowers->where('hospital_id', auth()->user()->id)->orderBy('id', 'desc')->paginate(20);
 
         foreach ($borrowers as $key => $borrower) {
 

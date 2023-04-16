@@ -7,7 +7,7 @@
                             <div class="form-group row">
                                 <div class="col-md-6">
                                     <label for="hospital_id">Hospital ID <span class="text-danger">*</span></label>
-                                    <select class="form-control select2" id="hospital_id" name="hospital_id"
+                                    <select disabled class="form-control select2" id="hospital_id" name="hospital_id"
                                         data-toggle="select2" onchange="setHospitalId()">
                                         <option value="">Search Hospital ID</option>
                                         @foreach ($hospitals as $hospital)
@@ -26,6 +26,9 @@
                                             </option>
                                         @endforeach
                                     </select>
+
+                                    <input type="hidden" id="hospital_id" name="hospital_id"
+                                        value="{{ old('hospital_id', $hospital->uid) }}">
                                     @error('hospital_id')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror

@@ -369,7 +369,7 @@ class ClaimController extends Controller
     public function index(Request $request)
     {
         $filter_search = $request->search;
-        $claims = Claim::with('patient');
+        $claims = Claim::where('hospital_id',auth()->user()->id)->with('patient');
         if ($filter_search) {
             $claims->whereHas('patient', function ($q) use ($filter_search) {
                 $q->where(function ($q) use ($filter_search) {
@@ -439,7 +439,7 @@ class ClaimController extends Controller
         $patient_id     = $request->patient_id;
         $hospitals      = Hospital::get();
         $patient        = isset($patient_id) ? Patient::find($request->patient_id) : null;
-        $patients       = Patient::get();
+        $patients       = Patient::where('hospital_id',auth()->user()->id)->get();
         return view('hospital.claims.claims.create.create',  compact('hospitals', 'patient_id', 'patient', 'patients'));
     }
 
@@ -543,7 +543,7 @@ class ClaimController extends Controller
 
         $claim = Claim::create([
             'patient_id'                => $request->patient_id,
-            'hospital_id'                => $request->hospital_id,
+            'hospital_id'               => auth()->user()->id,
             'admission_date'            => $request->admission_date,
             'admission_time'            => $request->admission_time,
             'abha_id'                   => $request->abha_id,
@@ -984,8 +984,6 @@ class ClaimController extends Controller
         $this->validate($request, $rules, $messages);
 
         $claim = Claim::where('id', $id)->update([
-            'patient_id'                            => $request->patient_id,
-            'hospital_id'                            => $request->hospital_id,
             'admission_date'                        => $request->admission_date,
             'admission_time'                        => $request->admission_time,
             'abha_id'                               => $request->abha_id,

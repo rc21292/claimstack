@@ -36,25 +36,9 @@
                             <div class="form-group row">
                                 <div class="col-md-6">
                                     <label for="hospital_id">Hospital ID <span class="text-danger">*</span></label>
-                                    <select class="form-control select2" id="hospital_id" name="hospital_id"
-                                        data-toggle="select2" onchange="setHospitalId()">
-                                        <option value="">Search Hospital ID</option>
-                                        @foreach ($hospitals as $hospital)
-                                            <option value="{{ $hospital->id }}"
-                                                {{ old('hospital_id', $hospital_id) == $hospital->id ? 'selected' : '' }}
-                                                data-name="{{ $hospital->name }}" data-id="{{ $hospital->uid }}"
-                                                data-address="{{ $hospital->address }}" data-city="{{ $hospital->city }}"
-                                                data-state="{{ $hospital->state }}"
-                                                data-pincode="{{ $hospital->pincode }}"
-                                                data-ap="{{ $hospital->linked_associate_partner_id }}"
-                                                data-apname="{{ $hospital->ap_name }}">
-                                                {{ $hospital->uid }}
-                                                [<strong>Name: </strong> {{ $hospital->name }}]
-                                                [<strong>City: </strong>{{ $hospital->city }}]
-                                                [<strong>State: </strong>{{ $hospital->state }}]
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                    <input type="text" readonly class="form-control" id="hospital_id" name="hospital_id"
+                                        placeholder="Address Line"
+                                        value="{{ old('hospital_id', $hospital->uid) }}">
                                     @error('hospital_id')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -63,7 +47,7 @@
                                 <div class="col-md-6">
                                     <label for="hospital_name">Hospital Name <span class="text-danger">*</span></label>
                                     <input type="text" readonly class="form-control" id="hospital_name" name="hospital_name"
-                                        placeholder="Enter Hospital Name" value="{{ old('hospital_name') }}">
+                                        placeholder="Enter Hospital Name" value="{{ old('hospital_name', $hospital->name) }}">
                                     @error('hospital_name')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -74,7 +58,7 @@
                                             class="text-danger">*</span></label>
                                     <input type="text" readonly class="form-control" id="hospital_address" name="hospital_address"
                                         placeholder="Address Line"
-                                        value="{{ old('hospital_address') }}">
+                                        value="{{ old('hospital_address', $hospital->address) }}">
                                     @error('hospital_address')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -82,7 +66,7 @@
 
                                 <div class="col-md-4 mt-2">
                                     <input type="text" readonly class="form-control" id="hospital_city" name="hospital_city"
-                                        placeholder="City" value="{{ old('hospital_city') }}">
+                                        placeholder="City" value="{{ old('hospital_city', $hospital->city) }}">
                                     @error('hospital_city')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -90,7 +74,7 @@
 
                                 <div class="col-md-4 mt-2">
                                     <input type="text" readonly class="form-control" id="hospital_state" name="hospital_state"
-                                        placeholder="State" value="{{ old('hospital_state') }}">
+                                        placeholder="State" value="{{ old('hospital_state', $hospital->state) }}">
                                     @error('hospital_state')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -98,7 +82,7 @@
 
                                 <div class="col-md-4 mt-2">
                                     <input type="number" readonly class="form-control" id="hospital_pincode" name="hospital_pincode"
-                                        placeholder="Pincode" value="{{ old('hospital_pincode') }}">
+                                        placeholder="Pincode" value="{{ old('hospital_pincode', $hospital->pincode) }}">
                                     @error('hospital_pincode')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -109,7 +93,7 @@
                                             class="text-danger"></span></label>
                                     <input type="text" readonly class="form-control" id="associate_partner_id"
                                         name="associate_partner_id" placeholder="Associate Partner ID"
-                                        value="{{ old('associate_partner_id') }}">
+                                        value="{{ old('associate_partner_id', $hospital->ap_name) }}">
                                     @error('associate_partner_id')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror

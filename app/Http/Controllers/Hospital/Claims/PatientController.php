@@ -28,9 +28,9 @@ class PatientController extends Controller
         $filter_search = $request->search;
         $patients = Patient::query();
         if ($filter_search) {
-            $patients->where('uid', 'like', '%' . $filter_search . '%');
+            $patients->where('hospital_id',auth()->user()->id)->where('uid', 'like', '%' . $filter_search . '%');
         }
-        $patients = $patients->orderBy('id', 'desc')->paginate(20);
+        $patients = $patients->where('hospital_id',auth()->user()->id)->orderBy('id', 'desc')->paginate(20);
 
         return view('hospital.claims.patients.manage',  compact('patients', 'filter_search'));
     }
@@ -2579,8 +2579,15 @@ class PatientController extends Controller
             }
         }
 
+        $hospital = Hospital::find(auth()->user()->id);
+        if (isset($hospital->linked_associate_partner_id)) {
+            $hospital->ap_name = AssociatePartner::where('associate_partner_id', $hospital->linked_associate_partner_id)->value('name');
+        } else {
+            $hospital->ap_name = 'N/A';
+        }
 
-        return view('hospital.claims.patients.create',  compact('hospital_id', 'doctors','associates', 'hospitals'));
+
+        return view('hospital.claims.patients.create',  compact('hospital_id', 'doctors','associates', 'hospitals', 'hospital'));
     }
 
     /**
@@ -2753,9 +2760,16 @@ class PatientController extends Controller
             }
         }
 
+        $hospital = Hospital::find(auth()->user()->id);
+        if (isset($hospital->linked_associate_partner_id)) {
+            $hospital->ap_name = AssociatePartner::where('associate_partner_id', $hospital->linked_associate_partner_id)->value('name');
+        } else {
+            $hospital->ap_name = 'N/A';
+        }
+
         $patient = Patient::with('hospital')->find($id);
 
-        return view('hospital.claims.patients.edit',  compact('patient', 'hospital_id', 'doctors', 'associates', 'hospitals', 'reimbursementdocument'));
+        return view('hospital.claims.patients.edit',  compact('patient', 'hospital_id', 'doctors', 'associates', 'hospitals', 'reimbursementdocument', 'hospital'));
     }
 
     /**

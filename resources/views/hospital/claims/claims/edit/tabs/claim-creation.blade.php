@@ -6,7 +6,7 @@
         <div class="form-group row">
             <div class="col-md-12 mb-3">
                 <label for="patient_id">Patient ID <span class="text-danger">*</span></label>
-                <select class="form-control select2" id="patient_id" name="patient_id" data-toggle="select2"
+                <select disabled class="form-control select2" id="patient_id" name="patient_id" data-toggle="select2"
                     onchange="setPatient()">
                     <option value="">Enter Patient ID</option>
                     @foreach ($patients as $row)
@@ -24,6 +24,8 @@
                     <span id="patient-id-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
+
+                <input type="hidden" name="patient_id" value="{{ old('patient_id', isset($claim->patient) ? $claim->patient->id : '' ) }}">
             <div class="col-md-6">
                 <label for="hospital_id">Hospital ID <span class="text-danger">*</span></label>
                 <select class="form-control select2" id="hospital_id" name="hospital_id" data-toggle="select2"
