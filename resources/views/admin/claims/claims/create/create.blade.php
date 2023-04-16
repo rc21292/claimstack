@@ -150,6 +150,7 @@
                     break;
                 default:
                     $("#treatment_category").val("Non Allopathic").attr('disabled', true);
+                    $("#treatment_category_id").val("Non Allopathic");
                     break;
             }
     }

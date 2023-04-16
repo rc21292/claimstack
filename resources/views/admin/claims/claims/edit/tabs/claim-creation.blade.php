@@ -479,6 +479,7 @@
                 @enderror
             </div>
            <div class="col-md-6 mt-3">
+                <input type="hidden" value="" name="treatment_category" id="treatment_category_id">
                 <label for="treatment_category">Treatment Category <span class="text-danger">*</span></label>
                 <select class="form-select" id="treatment_category" name="treatment_category">
                     <option value="">Select</option>
