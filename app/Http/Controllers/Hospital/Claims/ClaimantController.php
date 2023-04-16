@@ -58,7 +58,7 @@ class ClaimantController extends Controller
     public function create(Request $request)
     {
         $claim          = isset($request->claim_id) ? Claim::find($request->claim_id) : null;
-        $claims         = Claim::with([
+        $claims         = Claim::where('hospital_id', auth()->user()->id)->with([
             'patient' => function ($query) {
                 $query->select('id', 'uid', 'associate_partner_id', 'title', 'firstname', 'middlename', 'lastname', 'patient_current_address', 'patient_current_city', 'patient_current_state', 'patient_current_pincode', 'email', 'phone', 'id_proof', 'hospital_id');
             },
