@@ -196,7 +196,7 @@
             </div>
 
 
-            <div class="col-md-12 show-hide-empanelment mt-3">
+            {{-- <div class="col-md-12 show-hide-empanelment mt-3">
                 <label for="negative_listing_status">Negative Listing Status<span class="text-danger">*</span></label>
                 <div class="input-group">
                     <input type="hidden" name="negative_listing_status" value="{{ old('negative_listing_status',isset($empanelment_status) ? $empanelment_status->negative_listing_status : '') }}">
@@ -236,7 +236,7 @@
                 @else
                     <button disabled type="submit" class="btn btn-success" form="hospital-empanelment-form">Save / Update </button>
                 @endif
-            </div>
+            </div> --}}
 
 
             </div>

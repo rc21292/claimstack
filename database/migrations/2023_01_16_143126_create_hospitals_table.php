@@ -64,7 +64,7 @@ return new class extends Migration
             $table->string('medical_superintendent_qualification')->nullable();
             $table->string('medical_superintendent_mobile')->nullable();
             $table->string('pollution_clearance_certificate')->nullable();
-            $table->string('pollution_clearance_certificate_file')->nullable();
+            $table->text('pollution_clearance_certificate_file')->nullable();
             $table->string('fire_safety_clearance_certificate')->nullable();
             $table->string('fire_safety_clearance_certificate_file')->nullable();
             $table->string('certificate_of_incorporation')->nullable();
@@ -89,6 +89,7 @@ return new class extends Migration
             $table->string('iso_status')->nullable();
             $table->string('iso_status_file')->nullable();
             $table->longText('comments')->nullable();
+            $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
         });

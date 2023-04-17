@@ -74,11 +74,11 @@ class HospitalController extends Controller
         }
 
 
-        $empanelment_status          = HospitalEmpanelmentStatus::where('hospital_id', $id)->first();
+        /*$empanelment_status          = HospitalEmpanelmentStatus::where('hospital_id', $id)->first();
         if (!$empanelment_status) {
             HospitalEmpanelmentStatus::create(['hospital_id'=> $id]);
             $empanelment_status          = HospitalEmpanelmentStatus::where('hospital_id', $id)->first();
-        }
+        }*/
 
         if (isset($request->company_id) && !empty($request->company_id)) {
             $empanelment_status          = HospitalEmpanelmentStatus::where(['hospital_id' => $id, 'id' => $request->company_id])->first();
