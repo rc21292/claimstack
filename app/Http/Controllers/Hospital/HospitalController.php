@@ -1241,8 +1241,8 @@ class HospitalController extends Controller
             'signed_mou_file'                    => ($request->empanelled == 'Yes' && $request->signed_mou == 'Yes' && empty($empanelment_status->empanelled_file)) ? 'required' : '',
             'agreed_packages_and_tariff_pdf_other_images'           => ($request->empanelled == 'Yes') ? 'required' : '',
             'agreed_packages_and_tariff_pdf_other_images_file'           => ($request->empanelled == 'Yes' && $request->agreed_packages_and_tariff_pdf_other_images == 'Yes' && empty($empanelment_status->empanelled_file)) ? 'required' : '',
-            'negative_listing_status'           => 'required',
-            'negative_listing_status_file'           => ($request->empanelled == 'Yes' && $request->negative_listing_status == 'Yes' && empty($empanelment_status->negative_listing_status_file)) ? 'required' : '',
+            // 'negative_listing_status'           => 'required',
+            // 'negative_listing_status_file'           => ($request->empanelled == 'Yes' && $request->negative_listing_status == 'Yes' && empty($empanelment_status->negative_listing_status_file)) ? 'required' : '',
         ];
 
         $messages = [
