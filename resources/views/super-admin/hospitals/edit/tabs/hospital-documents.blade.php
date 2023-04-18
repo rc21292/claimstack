@@ -668,7 +668,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Hospital Pollution Clearance Certificate *">
+                            placeholder="Hospital Pollution Clearance Certificate">
                         @isset($hospital_document->hospital_pollution_clearance_certificate)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->hospital_pollution_clearance_certificate) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -691,7 +691,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Hospital Fire Safety Clearance Certificate*">
+                            placeholder="Hospital Fire Safety Clearance Certificate">
                         @isset($hospital_document->hospital_fire_safety_clearance_certificate)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->hospital_fire_safety_clearance_certificate) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -712,7 +712,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Hospital Certificate of Incorporation *">
+                            placeholder="Hospital Certificate of Incorporation ">
                         @isset($hospital_document->hospital_certificate_of_incorporation)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->hospital_certificate_of_incorporation) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -734,7 +734,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Hospital Certificate of Incorporation *">
+                            placeholder="Hospital Certificate of Incorporation ">
                         @isset($hospital_document->hospital_certificate_of_incorporation)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->hospital_certificate_of_incorporation) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -756,7 +756,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Hospital TAN Certificate *">
+                            placeholder="Hospital TAN Certificate ">
                         @isset($hospital_document->hospital_tan_certificate)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->hospital_tan_certificate) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -778,7 +778,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Hospital GST Certificate *">
+                            placeholder="Hospital GST Certificate ">
                         @isset($hospital_document->hospital_gst_certificate)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->hospital_gst_certificate) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -800,7 +800,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="NABL Certificate *">
+                            placeholder="NABL Certificate ">
                         @isset($hospital_document->nabl_certificate)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->nabl_certificate) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -822,7 +822,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="NABH Certificate *">
+                            placeholder="NABH Certificate ">
                         @isset($hospital_document->nabh_certificate)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->nabh_certificate) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -844,7 +844,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="JCI Certificate *">
+                            placeholder="JCI Certificate ">
                         @isset($hospital_document->jci_certificate)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->jci_certificate) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -866,7 +866,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="NQAC/NHSRC Certificate *">
+                            placeholder="NQAC/NHSRC Certificate ">
                         @isset($hospital_document->nqac_or_nhsrc_certificate)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->nqac_or_nhsrc_certificate) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -888,7 +888,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="HIPPA Certificate *">
+                            placeholder="HIPPA Certificate ">
                         @isset($hospital_document->hippa_certificate)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->hippa_certificate) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -910,7 +910,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="ISO Certificates *">
+                            placeholder="ISO Certificates ">
                         @isset($hospital_document->iso_certificates)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->iso_certificates) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -932,7 +932,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Other Certificates *">
+                            placeholder="Other Certificates ">
                         @isset($hospital_document->other_certificates)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->other_certificates) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -1040,7 +1040,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" readonly class="form-control"
-                            placeholder="MoU with BHC*">
+                            placeholder="MoU with BHC">
                         @isset($hospital_document->mou_with_bhc)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->mou_with_bhc) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -1061,7 +1061,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="MoUs with NBFCs / Banks (Triparty)*">
+                            placeholder="MoUs with NBFCs / Banks (Triparty)">
                         @isset($hospital_document->mous_with_nbfcs_banks_triparty)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->mous_with_nbfcs_banks_triparty) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -1084,7 +1084,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="MoUs (IC/TPA/Govt./PSU/Other Corporates*">
+                            placeholder="MoUs (IC/TPA/Govt./PSU/Other Corporates">
                         @isset($hospital_document->mous_ic_or_tpa_or_govt_or_psu_or_other_corporates)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->mous_ic_or_tpa_or_govt_or_psu_or_other_corporates) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -1128,7 +1128,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" readonly class="form-control"
-                            placeholder="Agreed Tariff and Packages*">
+                            placeholder="Agreed Tariff and Packages">
                         @isset($hospital_document->agreed_tariff_and_packages)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->agreed_tariff_and_packages) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -1149,7 +1149,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Other Packages*">
+                            placeholder="Other Packages">
                         @isset($hospital_document->other_packages)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->other_packages) }}"
                                 download="" class="btn btn-warning download-label"><i

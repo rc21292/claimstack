@@ -1655,35 +1655,11 @@ class HospitalController extends Controller
                 $rules = [
                     'hospital_registration_certificate'           => empty($document->hospital_registration_certificate) ? 'required' : [],
                     'hospital_rohini_certificate'    => empty($document->hospital_rohini_certificate) ? 'required' : [],
-                    'hospital_pollution_clearance_certificate'              => empty($document->hospital_pollution_clearance_certificate) ? 'required' : [],
-                    'hospital_fire_safety_clearance_certificate'           => empty($document->hospital_fire_safety_clearance_certificate) ? 'required' : [],
-                    'hospital_certificate_of_incorporation'    => empty($document->hospital_certificate_of_incorporation) ? 'required' : [],
-                    'hospital_tan_certificate'              => empty($document->hospital_tan_certificate) ? 'required' : [],
-                    'hospital_gst_certificate'           => empty($document->hospital_gst_certificate) ? 'required' : [],
-                    'nabl_certificate'    => empty($document->nabl_certificate) ? 'required' : [],
-                    'nabh_certificate'              => empty($document->nabh_certificate) ? 'required' : [],
-                    'jci_certificate'           => empty($document->jci_certificate) ? 'required' : [],
-                    'nqac_or_nhsrc_certificate'    => empty($document->nqac_or_nhsrc_certificate) ? 'required' : [],
-                    'hippa_certificate'              => empty($document->hippa_certificate) ? 'required' : [],
-                    'iso_certificates'    => empty($document->iso_certificates) ? 'required' : [],
-                    'other_certificates'              => empty($document->other_certificates) ? 'required' : [],
                 ];
 
                 $messages = [
                     'hospital_registration_certificate.required'            => 'Please upload Hospital Registration certiticate',
                     'hospital_rohini_certificate.required'              => 'Please upload Hospital Rohini Certificate',
-                    'hospital_pollution_clearance_certificate.required'           => 'Please upload Hospital Clearence Certificate.',
-                    'hospital_fire_safety_clearance_certificate.required'            => 'Please upload Hospital Fire clearance certificate',
-                    'hospital_certificate_of_incorporation.required'              => 'Please upload Hospital certificate of incorporation',
-                    'hospital_tan_certificate.required'           => 'Please upload Hospital TAN Certificate.',
-                    'hospital_gst_certificate.required'            => 'Please upload Hospital GST Certificate.',
-                    'nabl_certificate.required'     => 'Please upload Hospital NABL Certificate.',
-                    'nabh_certificate.required'               => 'Please upload Hospital NABH Certificate.',
-                    'jci_certificate.required'            => 'Please upload Hospital JCI Certificate.',
-                    'nqac_or_nhsrc_certificate.required'     => 'Please upload Hospital NQAC or NHSRC Certificate.',
-                    'hippa_certificate.required'               => 'Please upload Hospital Hippa Certificate.',
-                    'iso_certificates.required'     => 'Please upload Hospital ISO Certificate.',
-                    'other_certificates.required'               => 'Please upload Hospital Other Certificates.',
                 ];
 
                 $this->validate($request, $rules, $messages);
@@ -1851,17 +1827,7 @@ class HospitalController extends Controller
                 }
                 break;
             case 'hospital_mous':
-                $rules = [
-                    'mou_with_bhc'           => empty($document->mou_with_bhc) ? 'required' : [],
-                    'mous_with_nbfcs_banks_triparty'    => empty($document->mous_with_nbfcs_banks_triparty) ? 'required' : [],
-                ];
 
-                $messages = [
-                    'mou_with_bhc.required'            => 'Please upload MOU with BHC',
-                    'mous_with_nbfcs_banks_triparty.required'              => 'Please upload MOU with NBFC Banks / Triparty',
-                ];
-
-                $this->validate($request, $rules, $messages);
                 if ($request->hasfile('mou_with_bhc')) {
                     $file_data                    = $request->file('mou_with_bhc');
                     $name                       = $file_data->getClientOriginalName();
@@ -1890,17 +1856,7 @@ class HospitalController extends Controller
                 }
                 break;
             case 'hospital_packages':
-                $rules = [
-                    'agreed_tariff_and_packages'           => empty($document->agreed_tariff_and_packages) ? 'required' : [],
-                    'other_packages'    => empty($document->other_packages) ? 'required' : [],
-                ];
 
-                $messages = [
-                    'agreed_tariff_and_packages.required'            => 'Please upload Agreed tariff and packages',
-                    'other_packages.required'              => 'Please upload other Packages',
-                ];
-
-                $this->validate($request, $rules, $messages);
                 if ($request->hasfile('agreed_tariff_and_packages')) {
                     $file_data                    = $request->file('agreed_tariff_and_packages');
                     $name                       = $file_data->getClientOriginalName();

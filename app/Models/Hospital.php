@@ -51,6 +51,8 @@ class Hospital extends Authenticatable
         'gstfile',
         'owner_email',
         'owner_phone',
+        'owner_pan',
+        'owner_aadhar',
         'contact_person_firstname',
         'contact_person_lastname',
         'contact_person_email',

@@ -401,6 +401,23 @@
             @enderror
         </div>
 
+        <div class="col-md-6 mt-3">
+            <label for="owner_pan">Hospital Owner PAN Number <span class="text-danger">*</span></label>
+                <input type="text" maxlength="10" class="form-control" id="owner_pan" name="owner_pan" maxlength="10"
+                    placeholder="Enter Hospital Owner PAN no." value="{{ old('owner_pan', $hospital->owner_pan) }}">            
+            @error('owner_pan')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div class="col-md-6 mt-3">
+            <label for="owner_aadhar">Hospital Owner Aadhar Number <span class="text-danger">*</span></label>
+                <input type="text" maxlength="12" class="form-control" id="owner_aadhar" name="owner_aadhar" maxlength="10"
+                    placeholder="Enter Hospital Owner Aadhar no." value="{{ old('owner_aadhar', $hospital->owner_aadhar) }}">            
+            @error('owner_aadhar')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
 
         <div class="col-md-6 mt-3">
             <label for="contact_person_firstname">Contact Person Name <span class="text-danger">*</span></label>
