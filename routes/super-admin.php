@@ -22,6 +22,9 @@ use App\Http\Controllers\SuperAdmin\Claims\DischargeStatusController;
 use App\Http\Controllers\SuperAdmin\Claims\DocumentReimbursementController;
 use App\Http\Controllers\SuperAdmin\Claims\LendingStatusController;
 use App\Http\Controllers\SuperAdmin\Claims\ICClaimStatusController;
+use App\Http\Controllers\SuperAdmin\Authorizations\HospitalAuthorizationController;
+use App\Http\Controllers\SuperAdmin\Authorizations\ClaimantAuthorizationController;
+use App\Http\Controllers\SuperAdmin\Authorizations\BorrowerAuthorizationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuperAdmin\TpaCompanyController;
 /*
@@ -280,6 +283,17 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     Route::post('patients/documents-reimbursement-3/{id}', [PatientController::class, 'saveDocumentsReimbursement3'])->name('patients.save-documents-reimbursement-3');
     Route::post('patients/documents-reimbursement-4/{id}', [PatientController::class, 'saveDocumentsReimbursement4'])->name('patients.save-documents-reimbursement-4');
     Route::resource('patients', PatientController::class);
+
+    /*
+    |--------------------------------------------------------------------------
+    | Authorization Rights Route
+    |--------------------------------------------------------------------------
+    */
+
+    Route::resource('hospital-authorizations', HospitalAuthorizationController::class);
+    Route::resource('claimant-authorizations', ClaimantAuthorizationController::class);
+    Route::resource('borrower-authorizations', BorrowerAuthorizationController::class);
+
 
     /*
     |--------------------------------------------------------------------------

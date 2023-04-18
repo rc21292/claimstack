@@ -41,4 +41,20 @@ class UtilityController extends Controller
 
         return response()->json($html);
     }
+
+    public function getEmployeesById($id)
+    {
+        $user_exists  = User::where('id', $id)->exists();
+        if ($user_exists) {
+            return User::where('id', $id)->get(['id', 'firstname', 'lastname', 'employee_code'])->first();
+        }else{
+
+            $admin_exists  = Admin::where('id', $id)->exists();
+            if ($admin_exists) {
+                return Admin::where('id', $id)->get(['id', 'firstname', 'lastname', 'employee_code'])->first();
+            }else{
+                return "Not exist";
+            }
+        }
+    }
 }

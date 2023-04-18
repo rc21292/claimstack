@@ -71,6 +71,7 @@ class PermissionSeed extends Seeder
         Permission::create(['name' => 'Patient ID Authorization Rights', 'guard_name' => 'web']);
         Permission::create(['name' => 'Claim ID Authorization Rights', 'guard_name' => 'web']);
         Permission::create(['name' => 'Claimant ID Authorization Rights', 'guard_name' => 'web']);
+        Permission::create(['name' => 'Borrower ID Authorization Rights', 'guard_name' => 'web']);
         Permission::create(['name' => 'Insurance Co. ID Authorization Rights', 'guard_name' => 'web']);
         Permission::create(['name' => 'TPA ID Authorization Rights', 'guard_name' => 'web']);
         Permission::create(['name' => '2nd Level Authorization Rights', 'guard_name' => 'web']);
@@ -138,6 +139,7 @@ class PermissionSeed extends Seeder
         Permission::create(['name' => 'Patient ID Authorization Rights', 'guard_name' => 'admin']);
         Permission::create(['name' => 'Claim ID Authorization Rights', 'guard_name' => 'admin']);
         Permission::create(['name' => 'Claimant ID Authorization Rights', 'guard_name' => 'admin']);
+        Permission::create(['name' => 'Borrower ID Authorization Rights', 'guard_name' => 'admin']);
         Permission::create(['name' => 'Insurance Co. ID Authorization Rights', 'guard_name' => 'admin']);
         Permission::create(['name' => 'TPA ID Authorization Rights', 'guard_name' => 'admin']);
         Permission::create(['name' => '2nd Level Authorization Rights', 'guard_name' => 'admin']);
