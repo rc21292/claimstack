@@ -46,189 +46,189 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $claimant->uid }} </p>
+                                        <p class="card-text">: {{ $claimant->claim->patient->uid }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> Claim ID 
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $claimant->uid }} </p>
+                                        <p class="card-text">: {{ $claimant->claim->uid }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> Associate Partner ID 
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $claimant->uid }} </p>
+                                        <p class="card-text">: {{ $claimant->claim->patient->associate_partner_id }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> Hospital ID 
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $claimant->uid }} </p>
+                                        <p class="card-text">: {{ $claimant->claim->patient->hospital->uid }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> Patient Name 
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $claimant->uid }} </p>
+                                        <p class="card-text">: {{ $claimant->claim->patient->firstname }} {{ $claimant->claim->patient->middlename }} {{ $claimant->claim->patient->lastname }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> Patient ID Proof 
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $claimant->uid }} </p>
+                                        <p class="card-text">: {{ $claimant->claim->patient->id_proof }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> Policy Type 
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $claimant->uid }} </p>
+                                        <p class="card-text">: {{ $claimant->policy_type }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> Group Name 
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $claimant->uid }} </p>
+                                        <p class="card-text">: {{ $claimant->group_name }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> Employee ID / Member ID 
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $claimant->uid }} </p>
+                                        <p class="card-text">: {{ $claimant->employee_id_or_member_id }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> Are Patient and Claimant Same 
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $claimant->uid }} </p>
+                                        <p class="card-text">: {{ $claimant->are_patient_and_claimant_same }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> Claimant Name 
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $claimant->uid }} </p>
+                                        <p class="card-text">: {{ $claimant->firstname }} {{ $claimant->middlename }} {{ $claimant->lastname }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> Claimant PAN No. 
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $claimant->uid }} </p>
+                                        <p class="card-text">: {{ $claimant->pan_no }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> Claimant Aadhar No. 
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $claimant->uid }} </p>
+                                        <p class="card-text">: {{ $claimant->aadhar_no }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> Patient's Relation with Claimant 
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $claimant->uid }} </p>
+                                        <p class="card-text">: {{ $claimant->patients_relation_with_claimant }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> Please Specify 
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $claimant->uid }} </p>
+                                        <p class="card-text">: {{ $claimant->specify }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> Claimant Address 
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $claimant->uid }} </p>
+                                        <p class="card-text">: {{ $claimant->address }}   {{ $claimant->city }}   {{ $claimant->state }}   {{ $claimant->pincode }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> Claimant Personal email id 
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $claimant->uid }} </p>
+                                        <p class="card-text">: {{ $claimant->personal_email_id }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> Claimant official email id 
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $claimant->uid }} </p>
+                                        <p class="card-text">: {{ $claimant->official_email_id }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> Claimant Mobile No. 
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $claimant->uid }} </p>
+                                        <p class="card-text">: {{ $claimant->mobile_no }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> Claimant Cancel Cheque / Pass Book 
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $claimant->uid }} </p>
+                                        <p class="card-text">: {{ $claimant->cancel_cheque }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> Claimant Bank Details 
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $claimant->uid }} </p>
+                                        <p class="card-text">: {{ $claimant->bank_name }} </p>
                                     </dd>
 <dt class="col-sm-4">
                                         <h5 class="card-title"> Bank Name 
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $claimant->uid }} </p>
+                                        <p class="card-text">: {{ $claimant->bank_name }} </p>
                                     </dd>
 <dt class="col-sm-4">
                                         <h5 class="card-title"> Bank Address 
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $claimant->uid }} </p>
+                                        <p class="card-text">: {{ $claimant->bank_address }} </p>
                                     </dd>
 <dt class="col-sm-4">
                                         <h5 class="card-title"> A/C No. 
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $claimant->uid }} </p>
+                                        <p class="card-text">: {{ $claimant->ac_no }} </p>
                                     </dd>
 <dt class="col-sm-4">
                                         <h5 class="card-title"> IFS Code 
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $claimant->uid }} </p>
+                                        <p class="card-text">: {{ $claimant->ifs_code }} </p>
                                     </dd>
 <dt class="col-sm-4">
                                         <h5 class="card-title"> Estimated Amount 
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $claimant->uid }} </p>
+                                        <p class="card-text">: {{ $claimant->estimated_amount }} </p>
                                     </dd>
 <dt class="col-sm-4">
                                         <h5 class="card-title"> Claimant Comments 
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $claimant->uid }} </p>
+                                        <p class="card-text">: {{ $claimant->comments }} </p>
                                     </dd>
 <dt class="col-sm-4">
                                         <h5 class="card-title"> Linked Admin Name & ID(Assigned Employee's) 
@@ -241,10 +241,8 @@
                                         <h5 class="card-title"> Authorize Hospital ID 
                                         </h5>
                                     </dt>
-                                    <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $claimant->uid }} </p>
-                                    </dd>
                                     
+
                                     <dd class="col-sm-8">
 
                                     <button type="button" class="btn btn-danger"  onclick="confirmDelete({{ $claimant->id }})">

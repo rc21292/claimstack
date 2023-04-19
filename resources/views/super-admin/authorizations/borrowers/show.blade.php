@@ -48,7 +48,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->claim->patient->uid }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -56,7 +56,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->claim->uid }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -64,7 +64,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ @$borrower->claim->claimant->uid }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -72,7 +72,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->claim->patient->hospital->uid }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -80,7 +80,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->claim->patient->hospital->name }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -88,7 +88,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->claim->patient->hospital->address }}  {{ $borrower->claim->patient->hospital->city }}  {{ $borrower->claim->patient->hospital->state }}   {{ $borrower->claim->patient->hospital->pincode }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -96,7 +96,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->claim->patient->firstname }} {{ $borrower->claim->patient->middlename }} {{ $borrower->claim->patient->lastname }}  </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -104,7 +104,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->claim->policy_no }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -112,7 +112,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->claim->policy->insurer_id }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -120,7 +120,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->claim->policy->policy_id }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -128,7 +128,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->claim->certificate_no }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -136,7 +136,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->claim->company_tpa_id_card_no }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -144,7 +144,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->claim->tpa_name }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -152,7 +152,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->claim->policy->policy_type }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -160,7 +160,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->is_patient_and_borrower_same }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -168,7 +168,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->is_claimant_and_borrower_same }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -176,7 +176,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->borrower_firstname }} {{ $borrower->borrower_middlename }} {{ $borrower->borrower_lastname }}</p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -184,7 +184,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->borrowers_relation_with_patient }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -192,7 +192,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->borrower_dob }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -200,7 +200,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->gender }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -208,7 +208,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->borrower_address }} {{ $borrower->borrower_city }} {{ $borrower->borrower_state }} {{ $borrower->borrower_pincode }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -216,7 +216,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->borrower_id_proof }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -224,7 +224,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->nature_of_income }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -232,7 +232,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->organization }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -240,7 +240,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->member_or_employer_id }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -248,7 +248,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->borrower_personal_email_id }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -256,7 +256,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->borrower_official_email_id }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -264,7 +264,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->borrower_mobile_no }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -272,7 +272,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->borrower_pan_no }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -280,7 +280,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->borrower_aadhar_no }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -288,7 +288,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->bank_statement }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -296,7 +296,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->itr }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -304,7 +304,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->borrower_cancel_cheque }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -312,7 +312,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->borrower_bank_name }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -320,7 +320,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->borrower_bank_name }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -328,7 +328,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->borrower_bank_address }}  </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -336,7 +336,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->borrower_ac_no }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -344,7 +344,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->borrower_ifs_code }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -352,7 +352,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->co_borrower_nominee_name }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -360,7 +360,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->co_borrower_nominee_dob }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -376,7 +376,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->co_borrower_nominee_gender }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -384,7 +384,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->co_borrower_other_documents }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -392,7 +392,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->co_borrower_comments }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -400,7 +400,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->borrower_estimated_amount }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -415,9 +415,7 @@
                                             Authorize Hospital ID
                                         </h5>
                                     </dt>
-                                    <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->uid }} </p>
-                                    </dd>
+       
                                     <dd class="col-sm-8">
 
                                     <button type="button" class="btn btn-danger"  onclick="confirmDelete({{ $borrower->id }})">
