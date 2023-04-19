@@ -49,12 +49,21 @@
                                                 <th>{{ $borrower->uid }}</th>
                                                 <td>{{ $borrower->borrower_firstname }} {{ $borrower->borrower_middlename }} {{ $borrower->borrower_lastname }} </td>
                                                 <td>{{ $borrower->created_at }}</td>
-                                                <td>---</td>
+                                                <td>{{ $borrower->linked_employee_data->firstname}} {{ $borrower->linked_employee_data->firstname}} ({{ $borrower->linked_employee_data->employee_code}})</td>
                                                 <td>---</td>
                                                 <td class="text-center">
                                                    <div class="btn-group">
                                                         <a class="btn btn-primary" href="{{ route('super-admin.borrower-authorizations.show', $borrower->claim->id) }}">
                                                         <i class="mdi mdi-eye"></i> </a>
+
+                                                        <button type="button" title=" Authorize Hospital ID" class="btn btn-danger"  onclick="confirmDelete({{ $borrower->id }})"><i class="uil-shield-check"></i></button>
+                                                        <form id='delete-form{{ $borrower->id }}'
+                                                            action="{{ route('super-admin.borrower-authorizations.update', $borrower->id) }}"
+                                                            method='POST'>
+                                                            <input type='hidden' name='_token'
+                                                            value='{{ csrf_token() }}'>
+                                                            <input type='hidden' name='_method' value='PUT'>
+                                                        </form>
                                                             
                                                     </div>
                                                 </td>
@@ -90,7 +99,7 @@
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'Yes, Authorize it!'
             }).then((result) => {
                 if (result.isConfirmed) {
                     document.getElementById('delete-form' + no).submit();

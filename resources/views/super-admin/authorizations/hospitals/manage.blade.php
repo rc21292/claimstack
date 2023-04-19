@@ -55,6 +55,14 @@
                                                     <div class="btn-group">
                                                         <a href="{{ route('super-admin.hospital-authorizations.show', $hospital->id) }}"
                                                             class="btn btn-primary"><i class="mdi mdi-eye"></i></a>
+                                                            <button type="button" title=" Authorize Hospital ID" class="btn btn-danger"  onclick="confirmDelete({{ $hospital->id }})"><i class="uil-shield-check"></i></button>
+                                    <form id='delete-form{{ $hospital->id }}'
+                                        action="{{ route('super-admin.hospital-authorizations.update', $hospital->id) }}"
+                                        method='POST'>
+                                        <input type='hidden' name='_token'
+                                        value='{{ csrf_token() }}'>
+                                        <input type='hidden' name='_method' value='PUT'>
+                                    </form>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -122,7 +130,7 @@
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'Yes, Authorize it!'
             }).then((result) => {
                 if (result.isConfirmed) {
                     document.getElementById('delete-form' + no).submit();

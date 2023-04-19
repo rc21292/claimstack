@@ -49,7 +49,7 @@
                                             <th scope="row">{{ $claimant->uid }}</th>
                                             <td>{{ $claimant->firstname }} {{ $claimant->middlename }} {{ $claimant->lastname }}</td>
                                             <td>{{ $claimant->created_at }}</td>
-                                            <td>---</td>
+                                            <td>{{ $claimant->linked_employee_data->firstname}} {{ $claimant->linked_employee_data->firstname}} ({{ $claimant->linked_employee_data->employee_code}})</td>
                                             <td>---</td>
                                             <td>
 
@@ -58,6 +58,15 @@
                                                     <a class="btn btn-primary" href="{{ route('super-admin.claimant-authorizations.show', $claimant->id) }}">
                                                         <i class="mdi mdi-eye"></i>
                                                     </a>
+
+                                                    <button type="button" title=" Authorize Hospital ID" class="btn btn-danger"  onclick="confirmDelete({{ $claimant->id }})"><i class="uil-shield-check"></i></button>
+                                                    <form id='delete-form{{ $claimant->id }}'
+                                                        action="{{ route('super-admin.claimant-authorizations.update', $claimant->id) }}"
+                                                        method='POST'>
+                                                        <input type='hidden' name='_token'
+                                                        value='{{ csrf_token() }}'>
+                                                        <input type='hidden' name='_method' value='PUT'>
+                                                    </form>
 
                                                 </div>
                                             </td>
@@ -93,7 +102,7 @@
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'Yes, Authorize it!'
             }).then((result) => {
                 if (result.isConfirmed) {
                     document.getElementById('delete-form' + no).submit();

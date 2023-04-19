@@ -143,8 +143,18 @@
                                         <h5 class="card-title"> Authorize Hospital ID </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $hospital->uid }} 
-                                        </p>
+
+                                    <button type="button" class="btn btn-danger"  onclick="confirmDelete({{ $hospital->id }})">
+                                        <i class="uil-shield-check"></i>
+                                    Authorize Hospital ID</button>
+                                    <form id='delete-form{{ $hospital->id }}'
+                                        action="{{ route('super-admin.hospital-authorizations.update', $hospital->id) }}"
+                                        method='POST'>
+                                        <input type='hidden' name='_token'
+                                        value='{{ csrf_token() }}'>
+                                        <input type='hidden' name='_method' value='PUT'>
+                                    </form>
+
                                     </dd>
 
                                 </dl>
@@ -207,7 +217,7 @@
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'Yes, Authorize it!'
             }).then((result) => {
                 if (result.isConfirmed) {
                     document.getElementById('delete-form' + no).submit();

@@ -31,7 +31,7 @@ class HospitalAuthorizationController extends Controller
             $hospitals->orWhere('uid', 'like','%' . $filter_search . '%');
         }
 
-        $hospitals = $hospitals->orderBy('id', 'desc')->paginate(20);
+        $hospitals = $hospitals->where('status', 0)->orderBy('id', 'desc')->paginate(20);
 
         foreach ($hospitals as $key => $hospital) {
            $employee = $this->getEmployeesById($hospital->linked_employee);
@@ -100,7 +100,8 @@ class HospitalAuthorizationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Hospital::where('id', $id)->update(['status' => 1]);
+        return redirect()->route('super-admin.hospital-authorizations.index')->with('success', 'Hospital authorizied successfully');
     }
 
     /**

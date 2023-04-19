@@ -33,7 +33,13 @@ class ClaimantAuthorizationController extends Controller
             $claimants->orWhere('uid', 'like','%' . $filter_search . '%');
         }
 
-        $claimants      = $claimants->orderBy('id', 'desc')->paginate(20);
+        $claimants      = $claimants->where('status', 0)->orderBy('id', 'desc')->paginate(20);
+
+        foreach ($claimants as $key => $claimant) {
+           $employee = $this->getEmployeesById($claimant->hospital->linked_employee);
+
+           $claimants[$key]->linked_employee_data = $employee;
+        }
 
         return view('super-admin.authorizations.claimants.manage',  compact('claimants', 'filter_search'));
     }
@@ -67,7 +73,13 @@ class ClaimantAuthorizationController extends Controller
      */
     public function show($id)
     {
-        //
+        $claimant = Claimant::find($id);
+        
+        $employee = $this->getEmployeesById($claimant->hospital->linked_employee);
+
+        $claimant->linked_employee_data = $employee;
+
+        return view('super-admin.authorizations.claimants.show',  compact('claimant'));
     }
 
     /**
@@ -90,7 +102,8 @@ class ClaimantAuthorizationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Claimant::where('id', $id)->update(['status' => 1]);
+        return redirect()->route('super-admin.claimant-authorizations.index')->with('success', 'Claimant authorizied successfully');
     }
 
     /**

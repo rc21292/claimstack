@@ -34,7 +34,14 @@ class BorrowerAuthorizationController extends Controller
             $borrowers->orWhere('uid', 'like','%' . $filter_search . '%');
         }
 
-        $borrowers = $borrowers->orderBy('id', 'desc')->paginate(20);
+        $borrowers = $borrowers->where('status', 0)->orderBy('id', 'desc')->paginate(20);
+
+        
+        foreach ($borrowers as $key => $borrower) {
+           $employee = $this->getEmployeesById($borrower->hospital->linked_employee);
+
+           $borrowers[$key]->linked_employee_data = $employee;
+        }
 
         return view('super-admin.authorizations.borrowers.manage',  compact('borrowers', 'filter_search'));
     }
@@ -68,7 +75,13 @@ class BorrowerAuthorizationController extends Controller
      */
     public function show($id)
     {
-        //
+        $borrower = Borrower::find($id);
+        
+        $employee = $this->getEmployeesById($borrower->hospital->linked_employee);
+
+        $borrower->linked_employee_data = $employee;
+
+        return view('super-admin.authorizations.borrowers.show',  compact('borrower'));
     }
 
     /**
@@ -91,7 +104,8 @@ class BorrowerAuthorizationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Borrower::where('id', $id)->update(['status' => 1]);
+        return redirect()->route('super-admin.borrower-authorizations.index')->with('success', 'Borrower authorizied successfully');
     }
 
     /**
