@@ -10,6 +10,7 @@ use App\Http\Controllers\SuperAdmin\Auth\MyAccountController;
 use App\Http\Controllers\SuperAdmin\Auth\ResetPasswordController;
 use App\Http\Controllers\SuperAdmin\DashboardController;
 use App\Http\Controllers\SuperAdmin\HospitalController;
+use App\Http\Controllers\SuperAdmin\HospitalDocumentController;
 use App\Http\Controllers\SuperAdmin\Claims\ClaimController;
 use App\Http\Controllers\SuperAdmin\Claims\ClaimantController;
 use App\Http\Controllers\SuperAdmin\Claims\BorrowerController;
@@ -125,6 +126,7 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     Route::get('hospitals/export',[HospitalController::class,'export'])->name('hospitals.export');
 
     Route::resource('hospitals', HospitalController::class);
+    Route::resource('hospital-documents', HospitalDocumentController::class);
     Route::delete('hospitals/hospital-delete/{id}/{eid}', [HospitalController::class, 'destroyCompany'])->name('hospitals.hospital-delete');
 
     Route::put('hospitals/tie-ups/{id}', [HospitalController::class, 'updateHospitalTieUps'])->name('hospitals.tie-ups');

@@ -28,18 +28,13 @@ return new class extends Migration
             $table->string('no_of_rmos',)->nullable();
             $table->string('no_of_nurses',)->nullable();
             $table->string('nabl_approved_lab',)->nullable();
-            $table->string('nabl_approved_lab_file',)->nullable();
             $table->string('no_of_dialysis_units',)->nullable();
             $table->string('no_ambulance_normal',)->nullable();
             $table->string('no_ambulance_acls',)->nullable();
             $table->enum('nabh_status', ['Approved', 'Pre Approved', 'Applied', 'NA'])->default('NA');
-            $table->string('nabh_status_file',)->nullable();
             $table->enum('jci_status', ['Yes', 'No', 'Applied'])->default('No');
-            $table->string('jci_status_file',)->nullable();
             $table->enum('nqac_nhsrc_status', ['Approved', 'Pre Approved', 'Applied', 'NA'])->default('NA');
-            $table->string('nqac_nhsrc_status_file',)->nullable();
             $table->enum('hippa_status', ['Yes', 'No'])->default('No');
-            $table->string('hippa_status_file',)->nullable();
             $table->longText('comments')->nullable();
             $table->timestamps();
         });
