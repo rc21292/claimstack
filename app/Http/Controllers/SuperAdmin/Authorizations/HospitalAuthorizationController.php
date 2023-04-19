@@ -71,7 +71,13 @@ class HospitalAuthorizationController extends Controller
      */
     public function show($id)
     {
-        //
+        $hospital = Hospital::find($id);
+        
+        $employee = $this->getEmployeesById($hospital->linked_employee);
+
+        $hospital->linked_employee_data = $employee;
+
+        return view('super-admin.authorizations.hospitals.show',  compact('hospital'));
     }
 
     /**
