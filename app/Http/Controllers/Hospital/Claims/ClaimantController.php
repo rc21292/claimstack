@@ -26,14 +26,14 @@ class ClaimantController extends Controller
         $claimants      = Claimant::query();
 
         if ($filter_search) {
-            $claimants->where('hospital_id', auth()->user()->id)->whereHas('patient', function ($q) use ($filter_search) {
+            $claimants->where('status', 1)->where('hospital_id', auth()->user()->id)->whereHas('patient', function ($q) use ($filter_search) {
                 $q->where(function ($q) use ($filter_search) {
                     $q->where('uid', 'like', '%' . $filter_search . '%');
                 });
             });
         }
 
-        $claimants      = $claimants->where('hospital_id', auth()->user()->id)->orderBy('id', 'desc')->paginate(20);
+        $claimants      = $claimants->where('status', 1)->where('hospital_id', auth()->user()->id)->orderBy('id', 'desc')->paginate(20);
 
         foreach ($claimants as $key => $claimant) {
 

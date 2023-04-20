@@ -47,7 +47,7 @@ class LoginController extends Controller
         ]);
 
         // Attempt to log the user in
-        if(Auth::guard('hospital')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember))
+        if(Auth::guard('hospital')->attempt(['email' => $request->email, 'password' => $request->password, 'status' => 1], $request->remember))
         {
             return redirect()->intended(route('hospital.dashboard'));
 
