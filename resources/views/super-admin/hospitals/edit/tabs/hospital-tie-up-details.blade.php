@@ -436,10 +436,10 @@
                     break;
 
                 default:
-                    $("#claimstag_usage_services").val("{{ old('claimstag_usage_services', '') }}");
-                    $("#claims_reimbursement_insured_services").val("{{ old('claims_reimbursement_insured_services', '') }}");
-                    $("#cashless_claims_management_services").val("{{ old('cashless_claims_management_services', '') }}");
-                    $("#cashless_claims_management_services_charges").val("{{ old('cashless_claims_management_services_charges', '') }}");
+                    $("#claimstag_usage_services").val("{{ old('claimstag_usage_services', '') }}").removeAttr('disabled');
+                    $("#claims_reimbursement_insured_services").val("{{ old('claims_reimbursement_insured_services', '') }}").removeAttr('disabled');
+                    $("#cashless_claims_management_services").val("{{ old('cashless_claims_management_services', '') }}").removeAttr('disabled');
+                    $("#cashless_claims_management_services_charges").val("{{ old('cashless_claims_management_services_charges', '') }}").removeAttr('disabled');
                     break;
             }
         }
