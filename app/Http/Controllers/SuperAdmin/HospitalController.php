@@ -12,6 +12,7 @@ use App\Models\HospitalDepartment;
 use App\Models\HospitalTieUp;
 use App\Models\HospitalDocument;
 use App\Models\HospitalEmpanelmentStatus;
+use App\Models\HospitalDocumentHistory;
 use App\Models\User;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ImportHospital;
@@ -146,7 +147,7 @@ class HospitalController extends Controller
 
         Hospital::where('id', $hospital->id)->update([
             'uid'      => 'HSP'.$hospital->id
-        ]);
+        ]); 
 
         /*$response = Http::post(env('REMOTE_HOSPITAL_CREATE_URL'), [
             'name' => $request->name,
@@ -1030,49 +1031,121 @@ class HospitalController extends Controller
                 $this->validate($request, $rules, $messages);
 
                 if ($request->hasfile('hospital_pan_card')) {
-                    $file_data                  = $request->file('hospital_pan_card');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-                    HospitalDocument::where('hospital_id', $id)->update([
-                        'hospital_pan_card'               =>  $name
+                    $hospital_pan_card = $request->file('hospital_pan_card');
+                    $name = $hospital_pan_card->getClientOriginalName();
+                    $hospital_pan_card->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+
+                    if (!empty($document->hospital_pan_card)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'hospital_pan_card', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'hospital_pan_card', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'hospital_pan_card', 'file_path' => $document->hospital_pan_card, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
+                    HospitalDocument::where('id', $document->id)->update([
+                        'hospital_pan_card' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('hospital_cancel_cheque')) {
-                    $file_data                  = $request->file('hospital_cancel_cheque');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-                    HospitalDocument::where('hospital_id', $id)->update([
-                        'hospital_cancel_cheque'               =>  $name
+                    $hospital_cancel_cheque = $request->file('hospital_cancel_cheque');
+                    $name = $hospital_cancel_cheque->getClientOriginalName();
+                    $hospital_cancel_cheque->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+
+                    if (!empty($document->hospital_cancel_cheque)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'hospital_cancel_cheque', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'hospital_cancel_cheque', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'hospital_cancel_cheque', 'file_path' => $document->hospital_cancel_cheque, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
+                    HospitalDocument::where('id', $document->id)->update([
+                        'hospital_cancel_cheque' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('hospital_owners_pan_card')) {
-                    $file_data                    = $request->file('hospital_owners_pan_card');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-                    HospitalDocument::where('hospital_id', $id)->update([
-                        'hospital_owners_pan_card'               =>  $name
+                    $hospital_cancel_cheque = $request->file('hospital_owners_pan_card');
+                    $name = $hospital_owners_pan_card->getClientOriginalName();
+                    $hospital_owners_pan_card->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+
+                    if (!empty($document->hospital_owners_pan_card)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'hospital_owners_pan_card', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'hospital_owners_pan_card', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'hospital_owners_pan_card', 'file_path' => $document->hospital_owners_pan_card, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
+                    HospitalDocument::where('id', $document->id)->update([
+                        'hospital_owners_pan_card' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('hospital_owners_aadhar_card')) {
-                    $file_data                  = $request->file('hospital_owners_aadhar_card');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-                    HospitalDocument::where('hospital_id', $id)->update([
-                        'hospital_owners_aadhar_card'               =>  $name
+                    $hospital_cancel_cheque = $request->file('hospital_owners_aadhar_card');
+                    $name = $hospital_owners_aadhar_card->getClientOriginalName();
+                    $hospital_owners_aadhar_card->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+
+                    if (!empty($document->hospital_owners_aadhar_card)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'hospital_owners_aadhar_card', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'hospital_owners_aadhar_card', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'hospital_owners_aadhar_card', 'file_path' => $document->hospital_owners_aadhar_card, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
+                    HospitalDocument::where('id', $document->id)->update([
+                        'hospital_owners_aadhar_card' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('hospital_other_documents')) {
-                    $file_data                  = $request->file('hospital_other_documents');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-                    HospitalDocument::where('hospital_id', $id)->update([
-                        'hospital_other_documents'               =>  $name
+                    $hospital_cancel_cheque = $request->file('hospital_other_documents');
+                    $name = $hospital_other_documents->getClientOriginalName();
+                    $hospital_other_documents->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+
+                    if (!empty($document->hospital_other_documents)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'hospital_other_documents', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'hospital_other_documents', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'hospital_other_documents', 'file_path' => $document->hospital_other_documents, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
+                    HospitalDocument::where('id', $document->id)->update([
+                        'hospital_other_documents' =>  $name
                     ]);
                 }
+
+
                 break;
             case 'hospital_fi_form':
                 if ($request->hasfile('pharmacy')) {
