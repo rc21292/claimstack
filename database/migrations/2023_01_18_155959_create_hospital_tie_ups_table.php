@@ -26,6 +26,7 @@ return new class extends Migration
             $table->integer('discount_on_consumables')->default(0);
             $table->enum('referral_commission_offered',['Yes','No'])->nullable();
             $table->integer('referral')->default(0);
+            $table->enum('agreed_for',['Claims Servicing', 'ClaimStack2.O', 'Both'])->nullable();
             $table->enum('claimstag_usage_services',['Monthly','Half Yearly','Quarterly', 'Yearly','Pre Use','No'])->nullable();
             $table->double('claimstag_installation_charges')->default(0);
             $table->double('claimstag_usage_charges')->default(0);

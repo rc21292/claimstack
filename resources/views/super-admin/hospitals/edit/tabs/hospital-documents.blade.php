@@ -734,28 +734,6 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Hospital Certificate of Incorporation ">
-                        @isset($hospital_document->hospital_certificate_of_incorporation)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->hospital_certificate_of_incorporation) }}"
-                                download="" class="btn btn-warning download-label"><i
-                                    class="mdi mdi-download"></i></a>
-                        @endisset
-                        <input type="file" name="hospital_certificate_of_incorporation"
-                            id="hospital_certificate_of_incorporation" hidden
-                            onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                        <label for="hospital_certificate_of_incorporation"
-                            class="btn btn-primary upload-label"><i
-                                class="mdi mdi-upload"></i></label>
-                    </div>
-                    @error('hospital_certificate_of_incorporation')
-                        <span id="name-error"
-                            class="error invalid-feedback">{{ $message }}</span>
-                    @enderror
-                </div>
-
-                <div class="col-md-6 mt-3">
-                    <div class="input-group">
-                        <input type="text" class="form-control" readonly
                             placeholder="Hospital TAN Certificate ">
                         @isset($hospital_document->hospital_tan_certificate)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $hospital_document->hospital_id . '/' . $hospital_document->hospital_tan_certificate) }}"

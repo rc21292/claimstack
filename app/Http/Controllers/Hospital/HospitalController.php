@@ -295,7 +295,6 @@ class HospitalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // echo "<pre>";print_r($request->files);"</pre>";exit;
         $hospital             = Hospital::find($id);
 
         if ($request->hasfile('panfile')) {

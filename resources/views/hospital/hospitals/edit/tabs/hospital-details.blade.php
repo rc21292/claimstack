@@ -191,7 +191,7 @@
                 data-toggle="select2" onchange="setLinkedAssociatePartnerId()">
                 <option value="">Select Associate Partner</option>
                 @foreach ($associates as $associate)
-                <option value="{{ $associate->name }}"
+                <option value="{{ $associate->id }}"
                     {{ old('linked_associate_partner', $hospital->linked_associate_partner) == $associate->name ? 'selected' : '' }}
                     data-id="{{ $associate->associate_partner_id }}">
                     [<strong>Name: </strong>{{ $associate->name }}]
@@ -203,6 +203,8 @@
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
+
+            <input type="hidden" id="linked_associate_partner_data" value="{{ old('linked_associate_partner', $hospital->linked_associate_partner) }}" name="linked_associate_partner">
 
             <div class="col-md-6 mt-3">
                 <label for="linked_associate_partner_id">Associate Partner ID <span
@@ -841,7 +843,9 @@
  <script>
         function setLinkedAssociatePartnerId() {
             var linked_associate_partner = $("#linked_associate_partner").select2().find(":selected").data("id");
+            var linked_associate_partner_data = $("#linked_associate_partner").select2().find(":selected").val();
             $('#linked_associate_partner_id').val(linked_associate_partner);
+            $('#linked_associate_partner_data').val(linked_associate_partner_data);
         }
 
         function setAssignedEmployeeId() {

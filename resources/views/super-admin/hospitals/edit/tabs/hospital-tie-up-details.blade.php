@@ -113,6 +113,23 @@
         </div>
 
         <div class="col-md-6 mt-3">
+            <label for="agreed_for">Agreed for <span class="text-danger">*</span></label>
+            <select class="form-select" onchange="setNameField();" id="agreed_for" name="agreed_for">
+                <option value="">Select</option>
+                <option value="Claims Servicing" {{ old('agreed_for', $hospital_tie_ups->agreed_for??'') == 'Claims Servicing' ? 'selected' : '' }}>Claims Servicing
+                </option>
+                <option value="ClaimStack2.O"
+                    {{ old('agreed_for', $hospital_tie_ups->agreed_for??'') == 'ClaimStack2.O' ? 'selected' : '' }}>ClaimStack2.O
+                </option>
+                <option value="Both" {{ old('agreed_for', $hospital_tie_ups->agreed_for??'') == 'Both' ? 'selected' : '' }}>Both
+                </option>
+            </select>
+            @error('agreed_for')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div class="col-md-6 mt-3">
             <label for="claimstag_usage_services">ClaimStack Usage Services <span class="text-danger">*</span></label>
             <select class="form-select" id="claimstag_usage_services" name="claimstag_usage_services">
                 <option value="">Select</option>
@@ -130,6 +147,7 @@
                 <option value="No" {{ old('claimstag_usage_services', $hospital_tie_ups->claimstag_usage_services??'') == 'No' ? 'selected' : '' }}>No
                 </option>
             </select>
+            <input type="hidden" name="claimstag_usage_services" value="{{ old('claimstag_usage_services', $hospital_tie_ups->claimstag_usage_services) }}" id="claimstag_usage_services_data" >
             @error('claimstag_usage_services')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
@@ -179,6 +197,7 @@
                 <option value="No" {{ old('claims_reimbursement_insured_services', $hospital_tie_ups->claims_reimbursement_insured_services??'') == 'No' ? 'selected' : '' }}>No
                 </option>
             </select>
+            <input type="hidden" name="claims_reimbursement_insured_services" value="{{ old('claims_reimbursement_insured_services', $hospital_tie_ups->claims_reimbursement_insured_services) }}" id="claims_reimbursement_insured_services_data" >
             @error('claims_reimbursement_insured_services')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
@@ -216,6 +235,7 @@
                 <option value="No" {{ old('cashless_claims_management_services', $hospital_tie_ups->cashless_claims_management_services??'') == 'No' ? 'selected' : '' }}>No
                 </option>
             </select>
+            <input type="hidden" name="cashless_claims_management_services" value="{{ old('cashless_claims_management_services', $hospital_tie_ups->cashless_claims_management_services) }}" id="cashless_claims_management_services_data" >
             @error('cashless_claims_management_services')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
@@ -308,7 +328,7 @@
         </div>
 
         <div class="col-md-6 mt-3 show-hide-agrrement">
-            <label for="medical_lending_for_bill_invoice_discounting">Medical Lending for Bill/ Invoice Discounting <span class="text-danger">*</span></label>
+            <label for="medical_lending_for_bill_invoice_discounting">Medical Lending for Cashless Bill/ Invoice Discounting<span class="text-danger">*</span></label>
             <select class="form-select" id="medical_lending_for_bill_invoice_discounting" name="medical_lending_for_bill_invoice_discounting">
                 <option value="">Select</option>
                 <option value="Yes" {{ old('medical_lending_for_bill_invoice_discounting', $hospital_tie_ups->medical_lending_for_bill_invoice_discounting??'') == 'Yes' ? 'selected' : '' }}>Yes
@@ -396,6 +416,34 @@
 </form>
 @push('scripts')
 <script>
+
+    $(document).ready(function() {
+
+    setNameField();
+
+    });
+
+      function setNameField() {
+            var admitted_by = $('#agreed_for').val();
+            switch (admitted_by) {
+                case 'Claims Servicing':
+                    $("#claimstag_usage_services").val("Pre Use").attr('disabled', true);;
+                    $("#claimstag_usage_services_data").val("Pre Use");
+                    $("#claims_reimbursement_insured_services").val("Pre Use").attr('disabled', true);;
+                    $("#claims_reimbursement_insured_services_data").val("Pre Use");
+                    $("#cashless_claims_management_services").val("Pre Use").attr('disabled', true);;
+                    $("#cashless_claims_management_services_data").val("Pre Use");
+                    break;
+
+                default:
+                    $("#claimstag_usage_services").val("{{ old('claimstag_usage_services', '') }}");
+                    $("#claims_reimbursement_insured_services").val("{{ old('claims_reimbursement_insured_services', '') }}");
+                    $("#cashless_claims_management_services").val("{{ old('cashless_claims_management_services', '') }}");
+                    $("#cashless_claims_management_services_charges").val("{{ old('cashless_claims_management_services_charges', '') }}");
+                    break;
+            }
+        }
+
 
 var field = "{{ old('discount_on_medical_management_cases', $hospital_tie_ups->discount_on_medical_management_cases ?? '')  }}";
 

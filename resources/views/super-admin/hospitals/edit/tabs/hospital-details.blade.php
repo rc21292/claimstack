@@ -354,7 +354,7 @@
         </div>
 
         <div class="col-md-6 mt-3">
-            <label for="owner">Hospital Owner Email ID <span class="text-danger">*</span></label>
+            <label for="owner">Hospital Owner's Email ID <span class="text-danger">*</span></label>
             <input type="email" maxlength="45" class="form-control" id="owner_email" name="owner_email"
                 placeholder="Enter hospital Owner Email ID" value="{{ old('owner_email', $hospital->owner_email) }}">
             @error('owner_email')
@@ -363,7 +363,7 @@
         </div>
 
         <div class="col-md-6 mt-3">
-            <label for="owner_phone">Hospital Owner Mobile Number <span class="text-danger">*</span></label>
+            <label for="owner_phone">Hospital Owner's Mobile Number <span class="text-danger">*</span></label>
             <div class="input-group">
                 <label class="input-group-text" for="phone">+91</label>
                 <input  type="text" maxlength="10" onkeypress="return isNumberKey(event)" class="form-control" id="owner_phone" name="owner_phone" placeholder="Enter hospital Owner mobile number" value="{{ old('owner_phone', $hospital->owner_phone) }}">
@@ -374,18 +374,18 @@
         </div>
 
         <div class="col-md-6 mt-3">
-            <label for="owner_pan">Hospital Owner PAN Number <span class="text-danger">*</span></label>
+            <label for="owner_pan">Hospital Owner's PAN Number <span class="text-danger">*</span></label>
                 <input type="text" maxlength="10" class="form-control" id="owner_pan" name="owner_pan" maxlength="10"
-                    placeholder="Enter Hospital Owner PAN no." value="{{ old('owner_pan', $hospital->owner_pan) }}">            
+                    placeholder="Enter Hospital Owner's PAN no." value="{{ old('owner_pan', $hospital->owner_pan) }}">            
             @error('owner_pan')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
 
         <div class="col-md-6 mt-3">
-            <label for="owner_aadhar">Hospital Owner Aadhar Number <span class="text-danger">*</span></label>
+            <label for="owner_aadhar">Hospital Owner's Aadhar Number <span class="text-danger">*</span></label>
                 <input type="text" maxlength="12" class="form-control" id="owner_aadhar" name="owner_aadhar" maxlength="10"
-                    placeholder="Enter Hospital Owner Aadhar no." value="{{ old('owner_aadhar', $hospital->owner_aadhar) }}">            
+                    placeholder="Enter Hospital Owner's Aadhar no." value="{{ old('owner_aadhar', $hospital->owner_aadhar) }}">            
             @error('owner_aadhar')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
@@ -645,7 +645,7 @@
 
 
         <div class="col-md-6 mt-2">
-            <label for="certificate_of_incorporation">Hospital Signed MOUs*  (if yes upload) <span class="text-danger">*</span></label>
+            <label for="certificate_of_incorporation">Hospital Signed MOU with BHC<span class="text-danger">*</span></label>
                 <select class="form-select" id="signed_mous" name="signed_mous">
                     <option value="">Select</option>
                     <option value="Yes" {{ old('signed_mous', $hospital->signed_mous) == 'Yes' ? 'selected' : '' }}>Yes

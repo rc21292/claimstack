@@ -20,6 +20,7 @@ class HospitalTieUp extends Model
         'discount_on_consumables', 
         'referral_commission_offered', 
         'referral', 
+        'agreed_for', 
         'claimstag_usage_services', 
         'claimstag_installation_charges', 
         'claimstag_usage_charges', 
