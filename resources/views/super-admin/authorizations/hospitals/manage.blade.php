@@ -1,3 +1,6 @@
+@php
+use Carbon\Carbon;
+@endphp
 @extends('layouts.super-admin')
 @section('title', 'Manage Hospital')
 @section('content')
@@ -50,19 +53,24 @@
                                                 <td>{!! $hospital->name !!}</td>                  
                                                 <td>{{ $hospital->created_at }}</td>
                                                 <td>{{ $hospital->linked_employee_data->firstname}} {{ $hospital->linked_employee_data->firstname}} ({{ $hospital->linked_employee_data->employee_code}})</td>
-                                                <td>---</td>
+
+                                                @php
+                                                $startDate = Carbon::parse($hospital->created_at);
+                                                $endDate = Carbon::parse(Carbon::now()->toDateTimeString());
+                                                @endphp
+                                                <td>{{ $startDate->diff($endDate)->format('%D : %H:%I'); }}</td>
                                                 <td>
                                                     <div class="btn-group">
                                                         <a href="{{ route('super-admin.hospital-authorizations.show', $hospital->id) }}"
                                                             class="btn btn-primary"><i class="mdi mdi-eye"></i></a>
                                                             <button type="button" title=" Authorize Hospital ID" class="btn btn-danger"  onclick="confirmDelete({{ $hospital->id }})"><i class="uil-shield-check"></i></button>
-                                    <form id='delete-form{{ $hospital->id }}'
-                                        action="{{ route('super-admin.hospital-authorizations.update', $hospital->id) }}"
-                                        method='POST'>
-                                        <input type='hidden' name='_token'
-                                        value='{{ csrf_token() }}'>
-                                        <input type='hidden' name='_method' value='PUT'>
-                                    </form>
+                                                        <form id='delete-form{{ $hospital->id }}'
+                                                            action="{{ route('super-admin.hospital-authorizations.update', $hospital->id) }}"
+                                                            method='POST'>
+                                                            <input type='hidden' name='_token'
+                                                            value='{{ csrf_token() }}'>
+                                                            <input type='hidden' name='_method' value='PUT'>
+                                                        </form>
                                                     </div>
                                                 </td>
                                             </tr>

@@ -1,3 +1,6 @@
+@php
+use Carbon\Carbon;
+@endphp
 @extends('layouts.super-admin')
 @section('title', 'Manage Claimants')
 @section('content')
@@ -50,7 +53,11 @@
                                                 <td>{{ $borrower->borrower_firstname }} {{ $borrower->borrower_middlename }} {{ $borrower->borrower_lastname }} </td>
                                                 <td>{{ $borrower->created_at }}</td>
                                                 <td>{{ $borrower->linked_employee_data->firstname}} {{ $borrower->linked_employee_data->firstname}} ({{ $borrower->linked_employee_data->employee_code}})</td>
-                                                <td>---</td>
+                                                 @php
+                                                $startDate = Carbon::parse($borrower->created_at);
+                                                $endDate = Carbon::parse(Carbon::now()->toDateTimeString());
+                                                @endphp
+                                                <td>{{ $startDate->diff($endDate)->format('%D : %H:%I'); }}</td>
                                                 <td class="text-center">
                                                    <div class="btn-group">
                                                         <a class="btn btn-primary" href="{{ route('super-admin.borrower-authorizations.show', $borrower->claim->id) }}">

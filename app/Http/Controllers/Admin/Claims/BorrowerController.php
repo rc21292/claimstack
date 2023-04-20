@@ -97,7 +97,6 @@ class BorrowerController extends Controller
             'hospital_city'                     => 'required',
             'hospital_state'                    => 'required',
             'hospital_pincode'                  => 'required',
-            // 'patient_title'                     => 'required',
             'patient_firstname'                 => 'required|max:25',
             'patient_middlename'                => isset($request->patient_middlename) ? 'max:25' : '',
             'patient_lastname'                  => isset($request->patient_lastname) ? 'max:25' : '',
@@ -495,6 +494,12 @@ class BorrowerController extends Controller
 
         $this->validate($request, $rules, $messages);
 
+        if(auth()->check() && auth()->user()->hasDirectPermission('Borrower ID Authorization Rights')){
+            $status = 1;
+        }else{
+            $status = 0;
+        }
+
         $claimant_exists        = Claimant::where('claim_id', $id)->exists();
         $claimant        = $claimant_exists ? Claimant::where('claim_id', $id)->first() : null;
 
@@ -550,6 +555,7 @@ class BorrowerController extends Controller
             'co_borrower_other_documents'       => $request->co_borrower_other_documents,
             'borrower_estimated_amount'         => $request->borrower_estimated_amount,
             'co_borrower_comments'              => $request->co_borrower_comments,
+            'status'                            => $status,
         ]);
 
         if ($request->hasfile('borrower_id_proof_file')) {

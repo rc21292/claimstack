@@ -114,6 +114,13 @@ class HospitalController extends Controller
 
         $this->validate($request, $rules, $messages);
 
+
+        if(auth()->check() && auth()->user()->hasDirectPermission('Hospital ID Authorization Rights')){
+            $status = 1;
+        }else{
+            $status = 0;
+        }
+
         $hospital                      =  Hospital::create([
             'name'                     => $request->name,
             'onboarding'               => $request->onboarding,
@@ -139,7 +146,8 @@ class HospitalController extends Controller
             'assigned_employee_id'     => $request->assigned_employee_id,
             'linked_employee'          => $request->linked_employee,
             'linked_employee_id'       => $request->linked_employee_id,
-            'comments'                 => $request->comments
+            'comments'                 => $request->comments,
+            'status'                    => $status,
         ]);
 
         $password = '12345678';

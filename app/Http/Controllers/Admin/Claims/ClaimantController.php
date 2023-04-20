@@ -78,6 +78,7 @@ class ClaimantController extends Controller
      */
     public function store(Request $request)
     {
+
         $rules = [
             'patient_id'                      => 'required',
             'claim_id'                        => 'required',
@@ -150,6 +151,12 @@ class ClaimantController extends Controller
 
         $this->validate($request, $rules, $messages);
 
+        if(auth()->check() && auth()->user()->hasDirectPermission('Claimant ID Authorization Rights')){
+            $status = 1;
+        }else{
+            $status = 0;
+        }
+
         $claim                                  = Claim::find($request->claim_id);
 
         $claimant                               =  Claimant::create([
@@ -183,6 +190,7 @@ class ClaimantController extends Controller
             'ac_no'                              => $request->ac_no,
             'ifs_code'                           => $request->ifs_code,
             'comments'                           => $request->comments,
+            'status'                             => $status,
         ]);
 
         Claimant::where('id', $claimant->id)->update([

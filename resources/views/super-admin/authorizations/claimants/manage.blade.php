@@ -1,3 +1,6 @@
+@php
+use Carbon\Carbon;
+@endphp
 @extends('layouts.super-admin')
 @section('title', 'Manage Claimants')
 @section('content')
@@ -50,7 +53,11 @@
                                             <td>{{ $claimant->firstname }} {{ $claimant->middlename }} {{ $claimant->lastname }}</td>
                                             <td>{{ $claimant->created_at }}</td>
                                             <td>{{ $claimant->linked_employee_data->firstname}} {{ $claimant->linked_employee_data->firstname}} ({{ $claimant->linked_employee_data->employee_code}})</td>
-                                            <td>---</td>
+                                            @php
+                                            $startDate = Carbon::parse($claimant->created_at);
+                                            $endDate = Carbon::parse(Carbon::now()->toDateTimeString());
+                                            @endphp
+                                            <td>{{ $startDate->diff($endDate)->format('%D : %H:%I'); }}</td>
                                             <td>
 
                                                 <div class="btn-group">
