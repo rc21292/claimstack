@@ -54,7 +54,7 @@
                                 <a style="  font-size: 19px;" class="text-white px-2" href="#tab4" data-bs-toggle="tab">Hospital Infrastructure</a> ||
                                 <a style="  font-size: 19px;" class="text-white px-2" href="#tab5" data-bs-toggle="tab">Hospital Department</a> ||
                                 <a style="  font-size: 19px;" class="text-white px-2" href="#tab7" data-bs-toggle="tab">Hospital Empanelment Status</a> ||
-                                <a style="  font-size: 19px;" class="text-white px-2" href="#tab7" data-bs-toggle="tab">Other Documents</a>
+                                <a style="  font-size: 19px;" class="text-white px-2" href="#tab8" data-bs-toggle="tab">Other Documents</a>
                             </div>
                         </div>
                         <div class="card text-center">
@@ -1037,7 +1037,7 @@
                                         </table>
                                     </div>
 
-                                    <div class="tab-pane fade" id="tab5">
+                                    <div class="tab-pane fade" id="tab7">
                                         <table class="table">
                                             <tbody>
                                                  <tr>
@@ -1064,7 +1064,35 @@
                                     </div>
 
 
-                                    <div class="tab-pane fade" id="tab7">
+                                    <div class="tab-pane fade" id="tab5">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/hospital/documents/'.$id.'/'.$reimbursementdocument->hospital_other_documents) }}" >Hospital Other Documents</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/hospital/documents/'.$id.'/'.$reimbursementdocument->hospital_other_documents) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+
+                                                </tr>
+
+
+                                                @if($document_files && (count($document_files) > 0) && isset($document_files['hospital_other_documents']) && $document_files['hospital_other_documents'])
+                                                @foreach($document_files['hospital_other_documents'] as $document_file)
+                                                <tr>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/hospital/documents/'.$id.'/'.$document_file->file_path) }}">Hospital Other Documents{{ $document_file->file_id }}</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/hospital/documents/'.$id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+
+                                                </tr> 
+                                                @endforeach
+                                                @endif  
+                                                
+                                                
+
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+                                    <div class="tab-pane fade" id="tab8">
                                         <table class="table">
                                             <tbody>
                                                 <tr>
