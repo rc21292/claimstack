@@ -147,7 +147,6 @@
                 <option value="No" {{ old('claimstag_usage_services', $hospital_tie_ups->claimstag_usage_services??'') == 'No' ? 'selected' : '' }}>No
                 </option>
             </select>
-            <input type="hidden" name="claimstag_usage_services" value="{{ old('claimstag_usage_services', $hospital_tie_ups->claimstag_usage_services) }}" id="claimstag_usage_services_data" >
             @error('claimstag_usage_services')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
@@ -197,7 +196,6 @@
                 <option value="No" {{ old('claims_reimbursement_insured_services', $hospital_tie_ups->claims_reimbursement_insured_services??'') == 'No' ? 'selected' : '' }}>No
                 </option>
             </select>
-            <input type="hidden" name="claims_reimbursement_insured_services" value="{{ old('claims_reimbursement_insured_services', $hospital_tie_ups->claims_reimbursement_insured_services) }}" id="claims_reimbursement_insured_services_data" >
             @error('claims_reimbursement_insured_services')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
@@ -235,7 +233,6 @@
                 <option value="No" {{ old('cashless_claims_management_services', $hospital_tie_ups->cashless_claims_management_services??'') == 'No' ? 'selected' : '' }}>No
                 </option>
             </select>
-            <input type="hidden" name="cashless_claims_management_services" value="{{ old('cashless_claims_management_services', $hospital_tie_ups->cashless_claims_management_services) }}" id="cashless_claims_management_services_data" >
             @error('cashless_claims_management_services')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
