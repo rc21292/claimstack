@@ -66,7 +66,7 @@ return new class extends Migration
             $table->string('co_borrower_other_documents')->nullable();
             $table->string('borrower_estimated_amount')->nullable();
             $table->string('co_borrower_comments')->nullable();
-            $table->tinyInteger('status')->unsigned()->default(0)->nullable();
+            $table->tinyInteger('status')->unsigned()->default(1)->nullable();
             $table->timestamps();
         });
     }

@@ -420,7 +420,7 @@
 
                                     <button type="button" class="btn btn-danger"  onclick="confirmDelete({{ $borrower->id }})">
                                         <i class="uil-shield-check"></i>
-                                    Authorize Hospital ID</button>
+                                    Authorize Borrower ID</button>
                                     <form id='delete-form{{ $borrower->id }}'
                                         action="{{ route('super-admin.borrower-authorizations.update', $borrower->id) }}"
                                         method='POST'>

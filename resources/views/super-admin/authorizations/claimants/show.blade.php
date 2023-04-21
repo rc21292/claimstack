@@ -1,5 +1,5 @@
 @extends('layouts.super-admin')
-@section('title', 'Edit Hospitals')
+@section('title', 'Edit Claimants')
 @section('content')
     <!-- Start Content-->
     <div class="container-fluid">
@@ -12,11 +12,11 @@
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Claim Stack</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('super-admin.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="javascript:void(0);">Hospital</a></li>
-                            <li class="breadcrumb-item active">Pending for Hospital ID Authorization </li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Claimant</a></li>
+                            <li class="breadcrumb-item active">Pending for Claimant ID Authorization </li>
                         </ol>
                     </div>
-                    <h4 class="page-title">Pending for Hospital ID Authorization</h4>
+                    <h4 class="page-title">Pending for Claimant ID Authorization</h4>
                 </div>
             </div>
         </div>
@@ -238,7 +238,7 @@
                                         <p class="card-text">: {{ $claimant->uid }} </p>
                                     </dd>
 <dt class="col-sm-4">
-                                        <h5 class="card-title"> Authorize Hospital ID 
+                                        <h5 class="card-title"> Authorize Claimant ID 
                                         </h5>
                                     </dt>
                                     
@@ -247,7 +247,7 @@
 
                                     <button type="button" class="btn btn-danger"  onclick="confirmDelete({{ $claimant->id }})">
                                         <i class="uil-shield-check"></i>
-                                    Authorize Hospital ID</button>
+                                    Authorize Claimant ID</button>
                                     <form id='delete-form{{ $claimant->id }}'
                                         action="{{ route('super-admin.claimant-authorizations.update', $claimant->id) }}"
                                         method='POST'>

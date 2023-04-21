@@ -75,7 +75,7 @@ return new class extends Migration
             $table->string('other_documents')->nullable();
             $table->string('hrms_software')->nullable();
             $table->string('iso_status')->nullable();
-            $table->tinyInteger('status')->unsigned()->default(0)->nullable();
+            $table->tinyInteger('status')->unsigned()->default(1)->nullable();
             $table->longText('comments')->nullable();
             $table->rememberToken();
             $table->timestamps();
