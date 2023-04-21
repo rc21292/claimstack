@@ -244,7 +244,7 @@ class HospitalController extends Controller
 
         $users              = User::get();
 
-        return view('super-admin.hospitals.edit.edit',  compact('hospital','tpas', 'associates', 'hospitals', 'hospital_facility', 'hospital_nfrastructure', 'hospital_department', 'hospital_tie_ups', 'users', 'insurers', 'hospital_document', 'empanelment_status','empanelments'));
+        return view('super-admin.hospitals.edit.edit',  compact('hospital','tpas', 'associates', 'hospitals', 'hospital_facility', 'hospital_nfrastructure', 'hospital_department', 'hospital_tie_ups', 'users', 'insurers', 'hospital_document', 'empanelment_status','empanelments', 'id'));
     }
 
     /**
@@ -1037,7 +1037,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('hospital_pan_card')) {
                     $hospital_pan_card = $request->file('hospital_pan_card');
                     $name = $hospital_pan_card->getClientOriginalName();
-                    $hospital_pan_card->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $hospital_pan_card->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->hospital_pan_card)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'hospital_pan_card', 'hospital_id' => $id])->exists();
@@ -1052,7 +1052,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'hospital_pan_card' =>  $name
                     ]);
                 }
@@ -1060,7 +1060,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('hospital_cancel_cheque')) {
                     $hospital_cancel_cheque = $request->file('hospital_cancel_cheque');
                     $name = $hospital_cancel_cheque->getClientOriginalName();
-                    $hospital_cancel_cheque->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $hospital_cancel_cheque->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->hospital_cancel_cheque)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'hospital_cancel_cheque', 'hospital_id' => $id])->exists();
@@ -1075,7 +1075,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'hospital_cancel_cheque' =>  $name
                     ]);
                 }
@@ -1083,7 +1083,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('hospital_owners_pan_card')) {
                     $hospital_owners_pan_card = $request->file('hospital_owners_pan_card');
                     $name = $hospital_owners_pan_card->getClientOriginalName();
-                    $hospital_owners_pan_card->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $hospital_owners_pan_card->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->hospital_owners_pan_card)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'hospital_owners_pan_card', 'hospital_id' => $id])->exists();
@@ -1098,7 +1098,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'hospital_owners_pan_card' =>  $name
                     ]);
                 }
@@ -1106,7 +1106,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('hospital_owners_aadhar_card')) {
                     $hospital_owners_aadhar_card = $request->file('hospital_owners_aadhar_card');
                     $name = $hospital_owners_aadhar_card->getClientOriginalName();
-                    $hospital_owners_aadhar_card->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $hospital_owners_aadhar_card->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->hospital_owners_aadhar_card)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'hospital_owners_aadhar_card', 'hospital_id' => $id])->exists();
@@ -1121,7 +1121,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'hospital_owners_aadhar_card' =>  $name
                     ]);
                 }
@@ -1129,7 +1129,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('hospital_other_documents')) {
                     $hospital_other_documents = $request->file('hospital_other_documents');
                     $name = $hospital_other_documents->getClientOriginalName();
-                    $hospital_other_documents->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $hospital_other_documents->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->hospital_other_documents)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'hospital_other_documents', 'hospital_id' => $id])->exists();
@@ -1144,7 +1144,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'hospital_other_documents' =>  $name
                     ]);
                 }
@@ -1156,7 +1156,7 @@ class HospitalController extends Controller
             if ($request->hasfile('pharmacy')) {
                     $pharmacy = $request->file('pharmacy');
                     $name = $pharmacy->getClientOriginalName();
-                    $pharmacy->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $pharmacy->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->pharmacy)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'pharmacy', 'hospital_id' => $id])->exists();
@@ -1171,7 +1171,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'pharmacy' =>  $name
                     ]);
                 }
@@ -1179,7 +1179,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('lab')) {
                     $lab = $request->file('lab');
                     $name = $lab->getClientOriginalName();
-                    $lab->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $lab->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->lab)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'lab', 'hospital_id' => $id])->exists();
@@ -1194,7 +1194,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'lab' =>  $name
                     ]);
                 }
@@ -1202,7 +1202,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('ambulance')) {
                     $ambulance = $request->file('ambulance');
                     $name = $ambulance->getClientOriginalName();
-                    $ambulance->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $ambulance->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->ambulance)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'ambulance', 'hospital_id' => $id])->exists();
@@ -1217,7 +1217,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'ambulance' =>  $name
                     ]);
                 }
@@ -1225,7 +1225,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('operation_theatre')) {
                     $operation_theatre = $request->file('operation_theatre');
                     $name = $operation_theatre->getClientOriginalName();
-                    $operation_theatre->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $operation_theatre->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->operation_theatre)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'operation_theatre', 'hospital_id' => $id])->exists();
@@ -1240,7 +1240,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'operation_theatre' =>  $name
                     ]);
                 }
@@ -1248,7 +1248,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('icu')) {
                     $icu = $request->file('icu');
                     $name = $icu->getClientOriginalName();
-                    $icu->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $icu->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->icu)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'icu', 'hospital_id' => $id])->exists();
@@ -1263,7 +1263,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'icu' =>  $name
                     ]);
                 }
@@ -1271,7 +1271,7 @@ class HospitalController extends Controller
                if ($request->hasfile('iccu')) {
                     $iccu = $request->file('iccu');
                     $name = $iccu->getClientOriginalName();
-                    $iccu->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $iccu->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->iccu)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'iccu', 'hospital_id' => $id])->exists();
@@ -1286,7 +1286,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'iccu' =>  $name
                     ]);
                 }
@@ -1294,7 +1294,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('nicu')) {
                     $nicu = $request->file('nicu');
                     $name = $nicu->getClientOriginalName();
-                    $nicu->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $nicu->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->nicu)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'nicu', 'hospital_id' => $id])->exists();
@@ -1309,7 +1309,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'nicu' =>  $name
                     ]);
                 }
@@ -1317,7 +1317,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('csc_sterilization')) {
                     $csc_sterilization = $request->file('csc_sterilization');
                     $name = $csc_sterilization->getClientOriginalName();
-                    $csc_sterilization->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $csc_sterilization->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->csc_sterilization)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'csc_sterilization', 'hospital_id' => $id])->exists();
@@ -1332,7 +1332,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'csc_sterilization' =>  $name
                     ]);
                 }
@@ -1340,7 +1340,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('centralized_gas_ons')) {
                     $centralized_gas_ons = $request->file('centralized_gas_ons');
                     $name = $centralized_gas_ons->getClientOriginalName();
-                    $centralized_gas_ons->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $centralized_gas_ons->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->centralized_gas_ons)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'centralized_gas_ons', 'hospital_id' => $id])->exists();
@@ -1355,7 +1355,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'centralized_gas_ons' =>  $name
                     ]);
                 }
@@ -1363,7 +1363,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('centralized_ac')) {
                     $centralized_ac = $request->file('centralized_ac');
                     $name = $centralized_ac->getClientOriginalName();
-                    $centralized_ac->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $centralized_ac->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->centralized_ac)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'centralized_ac', 'hospital_id' => $id])->exists();
@@ -1378,7 +1378,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'centralized_ac' =>  $name
                     ]);
                 }
@@ -1386,7 +1386,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('kitchen')) {
                     $kitchen = $request->file('kitchen');
                     $name = $kitchen->getClientOriginalName();
-                    $kitchen->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $kitchen->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->kitchen)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'kitchen', 'hospital_id' => $id])->exists();
@@ -1401,7 +1401,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'kitchen' =>  $name
                     ]);
                 }
@@ -1409,7 +1409,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('usg_machine')) {
                     $usg_machine = $request->file('usg_machine');
                     $name = $usg_machine->getClientOriginalName();
-                    $usg_machine->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $usg_machine->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->usg_machine)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'usg_machine', 'hospital_id' => $id])->exists();
@@ -1424,7 +1424,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'usg_machine' =>  $name
                     ]);
                 }
@@ -1432,7 +1432,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('digital_x_ray')) {
                     $digital_x_ray = $request->file('digital_x_ray');
                     $name = $digital_x_ray->getClientOriginalName();
-                    $digital_x_ray->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $digital_x_ray->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->digital_x_ray)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'digital_x_ray', 'hospital_id' => $id])->exists();
@@ -1447,7 +1447,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'digital_x_ray' =>  $name
                     ]);
                 }
@@ -1455,7 +1455,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('ct')) {
                     $ct = $request->file('ct');
                     $name = $ct->getClientOriginalName();
-                    $ct->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $ct->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->ct)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'ct', 'hospital_id' => $id])->exists();
@@ -1470,7 +1470,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'ct' =>  $name
                     ]);
                 }
@@ -1478,7 +1478,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('mri')) {
                     $mri = $request->file('mri');
                     $name = $mri->getClientOriginalName();
-                    $mri->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $mri->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->mri)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'mri', 'hospital_id' => $id])->exists();
@@ -1493,7 +1493,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'mri' =>  $name
                     ]);
                 }
@@ -1501,7 +1501,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('pet_scan')) {
                     $pet_scan = $request->file('pet_scan');
                     $name = $pet_scan->getClientOriginalName();
-                    $pet_scan->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $pet_scan->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->pet_scan)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'pet_scan', 'hospital_id' => $id])->exists();
@@ -1516,7 +1516,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'pet_scan' =>  $name
                     ]);
                 }
@@ -1524,7 +1524,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('organ_transplant_unit')) {
                     $organ_transplant_unit = $request->file('organ_transplant_unit');
                     $name = $organ_transplant_unit->getClientOriginalName();
-                    $organ_transplant_unit->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $organ_transplant_unit->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->organ_transplant_unit)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'organ_transplant_unit', 'hospital_id' => $id])->exists();
@@ -1539,7 +1539,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'organ_transplant_unit' =>  $name
                     ]);
                 }
@@ -1547,7 +1547,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('burn_unit')) {
                     $burn_unit = $request->file('burn_unit');
                     $name = $burn_unit->getClientOriginalName();
-                    $burn_unit->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $burn_unit->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->burn_unit)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'burn_unit', 'hospital_id' => $id])->exists();
@@ -1562,7 +1562,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'burn_unit' =>  $name
                     ]);
                 }
@@ -1570,7 +1570,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('dialysis_unit')) {
                     $dialysis_unit = $request->file('dialysis_unit');
                     $name = $dialysis_unit->getClientOriginalName();
-                    $dialysis_unit->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $dialysis_unit->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->dialysis_unit)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'dialysis_unit', 'hospital_id' => $id])->exists();
@@ -1585,7 +1585,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'dialysis_unit' =>  $name
                     ]);
                 }
@@ -1593,7 +1593,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('blood_banks')) {
                     $blood_banks = $request->file('blood_banks');
                     $name = $blood_banks->getClientOriginalName();
-                    $blood_banks->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $blood_banks->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->blood_banks)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'blood_banks', 'hospital_id' => $id])->exists();
@@ -1608,7 +1608,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'blood_banks' =>  $name
                     ]);
                 }
@@ -1616,7 +1616,7 @@ class HospitalController extends Controller
                if ($request->hasfile('other')) {
                     $other = $request->file('other');
                     $name = $other->getClientOriginalName();
-                    $other->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $other->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->other)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'other', 'hospital_id' => $id])->exists();
@@ -1631,7 +1631,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'other' =>  $name
                     ]);
                 }
@@ -1651,7 +1651,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('hospital_registration_certificate')) {
                     $hospital_registration_certificate = $request->file('hospital_registration_certificate');
                     $name = $hospital_registration_certificate->getClientOriginalName();
-                    $hospital_registration_certificate->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $hospital_registration_certificate->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->hospital_registration_certificate)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'hospital_registration_certificate', 'hospital_id' => $id])->exists();
@@ -1666,7 +1666,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'hospital_registration_certificate' =>  $name
                     ]);
                 }
@@ -1674,7 +1674,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('hospital_rohini_certificate')) {
                     $hospital_rohini_certificate = $request->file('hospital_rohini_certificate');
                     $name = $hospital_rohini_certificate->getClientOriginalName();
-                    $hospital_rohini_certificate->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $hospital_rohini_certificate->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->hospital_rohini_certificate)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'hospital_rohini_certificate', 'hospital_id' => $id])->exists();
@@ -1689,7 +1689,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'hospital_rohini_certificate' =>  $name
                     ]);
                 }
@@ -1697,7 +1697,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('hospital_pollution_clearance_certificate')) {
                     $hospital_pollution_clearance_certificate = $request->file('hospital_pollution_clearance_certificate');
                     $name = $hospital_pollution_clearance_certificate->getClientOriginalName();
-                    $hospital_pollution_clearance_certificate->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $hospital_pollution_clearance_certificate->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->hospital_pollution_clearance_certificate)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'hospital_pollution_clearance_certificate', 'hospital_id' => $id])->exists();
@@ -1712,7 +1712,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'hospital_pollution_clearance_certificate' =>  $name
                     ]);
                 }
@@ -1720,7 +1720,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('hospital_fire_safety_clearance_certificate')) {
                     $hospital_fire_safety_clearance_certificate = $request->file('hospital_fire_safety_clearance_certificate');
                     $name = $hospital_fire_safety_clearance_certificate->getClientOriginalName();
-                    $hospital_fire_safety_clearance_certificate->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $hospital_fire_safety_clearance_certificate->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->hospital_fire_safety_clearance_certificate)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'hospital_fire_safety_clearance_certificate', 'hospital_id' => $id])->exists();
@@ -1735,7 +1735,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'hospital_fire_safety_clearance_certificate' =>  $name
                     ]);
                 }
@@ -1743,7 +1743,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('hospital_certificate_of_incorporation')) {
                     $hospital_certificate_of_incorporation = $request->file('hospital_certificate_of_incorporation');
                     $name = $hospital_certificate_of_incorporation->getClientOriginalName();
-                    $hospital_certificate_of_incorporation->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $hospital_certificate_of_incorporation->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->hospital_certificate_of_incorporation)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'hospital_certificate_of_incorporation', 'hospital_id' => $id])->exists();
@@ -1758,7 +1758,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'hospital_certificate_of_incorporation' =>  $name
                     ]);
                 }
@@ -1766,7 +1766,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('hospital_certificate_of_incorporation')) {
                     $hospital_certificate_of_incorporation = $request->file('hospital_certificate_of_incorporation');
                     $name = $hospital_certificate_of_incorporation->getClientOriginalName();
-                    $hospital_certificate_of_incorporation->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $hospital_certificate_of_incorporation->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->hospital_certificate_of_incorporation)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'hospital_certificate_of_incorporation', 'hospital_id' => $id])->exists();
@@ -1781,7 +1781,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'hospital_certificate_of_incorporation' =>  $name
                     ]);
                 }
@@ -1789,7 +1789,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('hospital_tan_certificate')) {
                     $hospital_tan_certificate = $request->file('hospital_tan_certificate');
                     $name = $hospital_tan_certificate->getClientOriginalName();
-                    $hospital_tan_certificate->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $hospital_tan_certificate->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->hospital_tan_certificate)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'hospital_tan_certificate', 'hospital_id' => $id])->exists();
@@ -1804,7 +1804,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'hospital_tan_certificate' =>  $name
                     ]);
                 }
@@ -1813,7 +1813,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('hospital_gst_certificate')) {
                     $hospital_gst_certificate = $request->file('hospital_gst_certificate');
                     $name = $hospital_gst_certificate->getClientOriginalName();
-                    $hospital_gst_certificate->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $hospital_gst_certificate->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->hospital_gst_certificate)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'hospital_gst_certificate', 'hospital_id' => $id])->exists();
@@ -1828,7 +1828,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'hospital_gst_certificate' =>  $name
                     ]);
                 }
@@ -1836,7 +1836,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('nabl_certificate')) {
                     $nabl_certificate = $request->file('nabl_certificate');
                     $name = $nabl_certificate->getClientOriginalName();
-                    $nabl_certificate->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $nabl_certificate->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->nabl_certificate)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'nabl_certificate', 'hospital_id' => $id])->exists();
@@ -1851,7 +1851,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'nabl_certificate' =>  $name
                     ]);
                 }
@@ -1859,7 +1859,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('nabh_certificate')) {
                     $nabh_certificate = $request->file('nabh_certificate');
                     $name = $nabh_certificate->getClientOriginalName();
-                    $nabh_certificate->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $nabh_certificate->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->nabh_certificate)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'nabh_certificate', 'hospital_id' => $id])->exists();
@@ -1874,7 +1874,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'nabh_certificate' =>  $name
                     ]);
                 }
@@ -1882,7 +1882,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('jci_certificate')) {
                     $jci_certificate = $request->file('jci_certificate');
                     $name = $jci_certificate->getClientOriginalName();
-                    $jci_certificate->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $jci_certificate->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->jci_certificate)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'jci_certificate', 'hospital_id' => $id])->exists();
@@ -1897,7 +1897,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'jci_certificate' =>  $name
                     ]);
                 }
@@ -1905,7 +1905,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('nqac_or_nhsrc_certificate')) {
                     $nqac_or_nhsrc_certificate = $request->file('nqac_or_nhsrc_certificate');
                     $name = $nqac_or_nhsrc_certificate->getClientOriginalName();
-                    $nqac_or_nhsrc_certificate->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $nqac_or_nhsrc_certificate->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->nqac_or_nhsrc_certificate)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'nqac_or_nhsrc_certificate', 'hospital_id' => $id])->exists();
@@ -1920,7 +1920,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'nqac_or_nhsrc_certificate' =>  $name
                     ]);
                 }
@@ -1928,7 +1928,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('hippa_certificate')) {
                     $hippa_certificate = $request->file('hippa_certificate');
                     $name = $hippa_certificate->getClientOriginalName();
-                    $hippa_certificate->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $hippa_certificate->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->hippa_certificate)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'hippa_certificate', 'hospital_id' => $id])->exists();
@@ -1943,7 +1943,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'hippa_certificate' =>  $name
                     ]);
                 }
@@ -1951,7 +1951,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('iso_certificates')) {
                     $iso_certificates = $request->file('iso_certificates');
                     $name = $iso_certificates->getClientOriginalName();
-                    $iso_certificates->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $iso_certificates->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->iso_certificates)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'iso_certificates', 'hospital_id' => $id])->exists();
@@ -1966,7 +1966,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'iso_certificates' =>  $name
                     ]);
                 }
@@ -1974,7 +1974,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('other_certificates')) {
                     $other_certificates = $request->file('other_certificates');
                     $name = $other_certificates->getClientOriginalName();
-                    $other_certificates->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $other_certificates->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->other_certificates)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'other_certificates', 'hospital_id' => $id])->exists();
@@ -1989,7 +1989,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'other_certificates' =>  $name
                     ]);
                 }
@@ -2009,7 +2009,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('medical_superintendents_registration_certificate')) {
                     $medical_superintendents_registration_certificate = $request->file('medical_superintendents_registration_certificate');
                     $name = $medical_superintendents_registration_certificate->getClientOriginalName();
-                    $medical_superintendents_registration_certificate->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $medical_superintendents_registration_certificate->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->medical_superintendents_registration_certificate)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'medical_superintendents_registration_certificate', 'hospital_id' => $id])->exists();
@@ -2024,7 +2024,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'medical_superintendents_registration_certificate' =>  $name
                     ]);
                 }
@@ -2032,7 +2032,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('doctors_registration_certificate_other')) {
                     $doctors_registration_certificate_other = $request->file('doctors_registration_certificate_other');
                     $name = $doctors_registration_certificate_other->getClientOriginalName();
-                    $doctors_registration_certificate_other->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $doctors_registration_certificate_other->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->doctors_registration_certificate_other)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'doctors_registration_certificate_other', 'hospital_id' => $id])->exists();
@@ -2047,7 +2047,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'doctors_registration_certificate_other' =>  $name
                     ]);
                 }
@@ -2059,7 +2059,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('mou_with_bhc')) {
                     $mou_with_bhc = $request->file('mou_with_bhc');
                     $name = $mou_with_bhc->getClientOriginalName();
-                    $mou_with_bhc->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $mou_with_bhc->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->mou_with_bhc)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'mou_with_bhc', 'hospital_id' => $id])->exists();
@@ -2074,7 +2074,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'mou_with_bhc' =>  $name
                     ]);
                 }
@@ -2082,7 +2082,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('mous_with_nbfcs_banks_triparty')) {
                     $mous_with_nbfcs_banks_triparty = $request->file('mous_with_nbfcs_banks_triparty');
                     $name = $mous_with_nbfcs_banks_triparty->getClientOriginalName();
-                    $mous_with_nbfcs_banks_triparty->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $mous_with_nbfcs_banks_triparty->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->mous_with_nbfcs_banks_triparty)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'mous_with_nbfcs_banks_triparty', 'hospital_id' => $id])->exists();
@@ -2097,7 +2097,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'mous_with_nbfcs_banks_triparty' =>  $name
                     ]);
                 }
@@ -2105,7 +2105,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('mous_ic_or_tpa_or_govt_or_psu_or_other_corporates')) {
                     $mous_ic_or_tpa_or_govt_or_psu_or_other_corporates = $request->file('mous_ic_or_tpa_or_govt_or_psu_or_other_corporates');
                     $name = $mous_ic_or_tpa_or_govt_or_psu_or_other_corporates->getClientOriginalName();
-                    $mous_ic_or_tpa_or_govt_or_psu_or_other_corporates->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $mous_ic_or_tpa_or_govt_or_psu_or_other_corporates->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->mous_ic_or_tpa_or_govt_or_psu_or_other_corporates)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'mous_ic_or_tpa_or_govt_or_psu_or_other_corporates', 'hospital_id' => $id])->exists();
@@ -2120,7 +2120,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'mous_ic_or_tpa_or_govt_or_psu_or_other_corporates' =>  $name
                     ]);
                 }
@@ -2131,7 +2131,7 @@ class HospitalController extends Controller
             if ($request->hasfile('agreed_tariff_and_packages')) {
                     $agreed_tariff_and_packages = $request->file('agreed_tariff_and_packages');
                     $name = $agreed_tariff_and_packages->getClientOriginalName();
-                    $agreed_tariff_and_packages->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $agreed_tariff_and_packages->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->agreed_tariff_and_packages)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'agreed_tariff_and_packages', 'hospital_id' => $id])->exists();
@@ -2146,7 +2146,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'agreed_tariff_and_packages' =>  $name
                     ]);
                 }
@@ -2155,7 +2155,7 @@ class HospitalController extends Controller
                 if ($request->hasfile('other_packages')) {
                     $other_packages = $request->file('other_packages');
                     $name = $other_packages->getClientOriginalName();
-                    $other_packages->storeAs('uploads/hospital/documents/' . $document->id . '/', $name, 'public');
+                    $other_packages->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
                     if (!empty($document->other_packages)) {
                         $exists = HospitalDocumentHistory::where(['file_name' => 'other_packages', 'hospital_id' => $id])->exists();
@@ -2170,7 +2170,7 @@ class HospitalController extends Controller
                         );
                     }
 
-                    HospitalDocument::where('id', $document->id)->update([
+                    HospitalDocument::where('hospital_id', $id)->update([
                         'other_packages' =>  $name
                     ]);
                 }

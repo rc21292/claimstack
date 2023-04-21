@@ -67,7 +67,7 @@ class HospitalDocumentController extends Controller
         ->groupBy('file_name')
         ->map(function ($pb) { return $pb->keyBy('file_id'); });
 
-        return view('super-admin.hospitals.edit.tabs.view-hospital-documents',  compact('hospital_document', 'document_files', 'reimbursementdocument'));
+        return view('super-admin.hospitals.edit.tabs.view-hospital-documents',  compact('hospital_document', 'document_files', 'reimbursementdocument', 'id'));
 
         
 
