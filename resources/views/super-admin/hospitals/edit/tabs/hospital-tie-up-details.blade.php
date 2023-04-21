@@ -433,11 +433,11 @@
                     break;
 
                 default:
-                    $("#claimstag_usage_services").val("{{ old('claimstag_usage_services', '') }}").removeAttr('disabled');
+                    $("#claimstag_usage_services").val("{{ old('claimstag_usage_services', @$hospital_tie_ups->claimstag_usage_services) }}").removeAttr('disabled');
                     $("#claimstag_usage_services").find('option[value!=""]').removeAttr('disabled');
-                    $("#claims_reimbursement_insured_services").val("{{ old('claims_reimbursement_insured_services', '') }}").removeAttr('disabled');
+                    $("#claims_reimbursement_insured_services").val("{{ old('claims_reimbursement_insured_services', @$hospital_tie_ups->claims_reimbursement_insured_services) }}").removeAttr('disabled');
                     $("#claims_reimbursement_insured_services").find('option[value!=""]').removeAttr('disabled');
-                    $("#cashless_claims_management_services").val("{{ old('cashless_claims_management_services', '') }}").removeAttr('disabled');
+                    $("#cashless_claims_management_services").val("{{ old('cashless_claims_management_services', @$hospital_tie_ups->cashless_claims_management_services) }}").removeAttr('disabled');
                     $("#cashless_claims_management_services").find('option[value!=""]').removeAttr('disabled');
                     break;
             }
