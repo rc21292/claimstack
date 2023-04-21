@@ -133,12 +133,23 @@
                                         </p>
                                     </dd>
                                     <dt class="col-sm-4">
-                                        <h5 class="card-title"> Linked Admin Name & ID(Assigned Employee's) </h5>
+                                        <h5 class="card-title"> 
+                                            Linked Admin Name & ID
+                                        </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $hospital->uid }} 
-                                        </p>
+                                        <p class="card-text">: {{ $hospital->linked_employee_data->firstname}} {{ $hospital->linked_employee_data->firstname}} ({{ $hospital->linked_employee_data->employee_code}}) </p>
                                     </dd>
+
+                                    <dt class="col-sm-4">
+                                        <h5 class="card-title"> 
+                                            Assigned Employee's Name & ID
+                                        </h5>
+                                    </dt>
+                                    <dd class="col-sm-8">
+                                        <p class="card-text">: {{ $hospital->assigned_employee_data->firstname}} {{ $hospital->assigned_employee_data->firstname}} ({{ $hospital->assigned_employee_data->employee_code}}) </p>
+                                    </dd>
+                                    
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> Authorize Hospital ID </h5>
                                     </dt>

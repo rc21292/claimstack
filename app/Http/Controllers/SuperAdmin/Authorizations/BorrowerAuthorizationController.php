@@ -81,6 +81,10 @@ class BorrowerAuthorizationController extends Controller
 
         $borrower->linked_employee_data = $employee;
 
+        $assigned_employee = $this->getEmployeesById($borrower->hospital->assigned_employee);
+
+        $borrower->assigned_employee_data = $assigned_employee;
+
         return view('super-admin.authorizations.borrowers.show',  compact('borrower'));
     }
 

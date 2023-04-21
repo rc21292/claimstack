@@ -77,6 +77,10 @@ class HospitalAuthorizationController extends Controller
 
         $hospital->linked_employee_data = $employee;
 
+        $assigned_employee = $this->getEmployeesById($hospital->assigned_employee);
+
+        $hospital->assigned_employee_data = $assigned_employee;
+
         return view('super-admin.authorizations.hospitals.show',  compact('hospital'));
     }
 

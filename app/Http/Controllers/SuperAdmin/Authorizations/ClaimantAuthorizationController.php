@@ -79,6 +79,10 @@ class ClaimantAuthorizationController extends Controller
 
         $claimant->linked_employee_data = $employee;
 
+        $assigned_employee = $this->getEmployeesById($claimant->hospital->assigned_employee);
+
+        $claimant->assigned_employee_data = $assigned_employee;
+
         return view('super-admin.authorizations.claimants.show',  compact('claimant'));
     }
 

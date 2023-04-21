@@ -188,56 +188,68 @@
                                     <dd class="col-sm-8">
                                         <p class="card-text">: {{ $claimant->bank_name }} </p>
                                     </dd>
-<dt class="col-sm-4">
+                                    <dt class="col-sm-4">
                                         <h5 class="card-title"> Bank Name 
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
                                         <p class="card-text">: {{ $claimant->bank_name }} </p>
                                     </dd>
-<dt class="col-sm-4">
+                                    <dt class="col-sm-4">
                                         <h5 class="card-title"> Bank Address 
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
                                         <p class="card-text">: {{ $claimant->bank_address }} </p>
                                     </dd>
-<dt class="col-sm-4">
+                                    <dt class="col-sm-4">
                                         <h5 class="card-title"> A/C No. 
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
                                         <p class="card-text">: {{ $claimant->ac_no }} </p>
                                     </dd>
-<dt class="col-sm-4">
+                                    <dt class="col-sm-4">
                                         <h5 class="card-title"> IFS Code 
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
                                         <p class="card-text">: {{ $claimant->ifs_code }} </p>
                                     </dd>
-<dt class="col-sm-4">
+                                    <dt class="col-sm-4">
                                         <h5 class="card-title"> Estimated Amount 
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
                                         <p class="card-text">: {{ $claimant->estimated_amount }} </p>
                                     </dd>
-<dt class="col-sm-4">
+                                    <dt class="col-sm-4">
                                         <h5 class="card-title"> Claimant Comments 
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
                                         <p class="card-text">: {{ $claimant->comments }} </p>
                                     </dd>
-<dt class="col-sm-4">
-                                        <h5 class="card-title"> Linked Admin Name & ID(Assigned Employee's) 
+
+                                    <dt class="col-sm-4">
+                                        <h5 class="card-title"> 
+                                            Linked Admin Name & ID
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $claimant->uid }} </p>
+                                        <p class="card-text">: {{ $claimant->linked_employee_data->firstname}} {{ $claimant->linked_employee_data->firstname}} ({{ $claimant->linked_employee_data->employee_code}}) </p>
                                     </dd>
-<dt class="col-sm-4">
+
+                                    <dt class="col-sm-4">
+                                        <h5 class="card-title"> 
+                                            Assigned Employee's Name & ID
+                                        </h5>
+                                    </dt>
+                                    <dd class="col-sm-8">
+                                        <p class="card-text">: {{ $claimant->assigned_employee_data->firstname}} {{ $claimant->assigned_employee_data->firstname}} ({{ $claimant->assigned_employee_data->employee_code}}) </p>
+                                    </dd>
+                                    
+                                    <dt class="col-sm-4">
                                         <h5 class="card-title"> Authorize Claimant ID 
                                         </h5>
                                     </dt>

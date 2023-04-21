@@ -1068,7 +1068,7 @@
                                         <table class="table">
                                             <tbody>
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/hospital/documents/'.$id.'/'.$reimbursementdocument->hospital_other_documents) }}" >Hospital Other Documents</a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/hospital/documents/'.$id.'/'.$reimbursementdocument->hospital_other_documents) }}" >Upload</a></td>
                                                     <td><a href="{{ asset('storage/uploads/hospital/documents/'.$id.'/'.$reimbursementdocument->hospital_other_documents) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
@@ -1077,7 +1077,7 @@
                                                 @if($document_files && (count($document_files) > 0) && isset($document_files['hospital_other_documents']) && $document_files['hospital_other_documents'])
                                                 @foreach($document_files['hospital_other_documents'] as $document_file)
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/hospital/documents/'.$id.'/'.$document_file->file_path) }}">Hospital Other Documents{{ $document_file->file_id }}</a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/hospital/documents/'.$id.'/'.$document_file->file_path) }}">Upload{{ $document_file->file_id }}</a></td>
                                                     <td><a href="{{ asset('storage/uploads/hospital/documents/'.$id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
