@@ -427,18 +427,21 @@
             var admitted_by = $('#agreed_for').val();
             switch (admitted_by) {
                 case 'Claims Servicing':
-                    $("#claimstag_usage_services").val("Pre Use").attr('disabled', true);;
-                    $("#claimstag_usage_services_data").val("Pre Use");
-                    $("#claims_reimbursement_insured_services").val("Pre Use").attr('disabled', true);;
-                    $("#claims_reimbursement_insured_services_data").val("Pre Use");
-                    $("#cashless_claims_management_services").val("Pre Use").attr('disabled', true);;
-                    $("#cashless_claims_management_services_data").val("Pre Use");
+                    $("#claimstag_usage_services").val("Pre Use");
+                    $("#claimstag_usage_services").find('option[value!="Pre Use"]').prop('disabled',true);
+                    $("#claims_reimbursement_insured_services").val("Pre Use");
+                    $("#claims_reimbursement_insured_services").find('option[value!="Pre Use"]').prop('disabled',true);
+                    $("#cashless_claims_management_services").val("Pre Use");
+                    $("#cashless_claims_management_services").find('option[value!="Pre Use"]').prop('disabled',true);
                     break;
 
                 default:
                     $("#claimstag_usage_services").val("{{ old('claimstag_usage_services', '') }}").removeAttr('disabled');
+                    $("#claimstag_usage_services").find('option[value!=""]').removeAttr('disabled');
                     $("#claims_reimbursement_insured_services").val("{{ old('claims_reimbursement_insured_services', '') }}").removeAttr('disabled');
+                    $("#claims_reimbursement_insured_services").find('option[value!=""]').removeAttr('disabled');
                     $("#cashless_claims_management_services").val("{{ old('cashless_claims_management_services', '') }}").removeAttr('disabled');
+                    $("#cashless_claims_management_services").find('option[value!=""]').removeAttr('disabled');
                     break;
             }
         }

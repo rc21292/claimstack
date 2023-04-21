@@ -84,13 +84,16 @@
             @enderror
         </div>
 
-        <div class="col-md-6 show-hide mt-32" style="margin-top: 45px !important;">
+        <div class="col-md-6 show-hide mt-3">
+
+            <label for="email_id">Upload Doctor's Registration Certificate <span class="text-danger">*</span></label>
+            <br>
             @isset($hospital_department->upload)
                     <a href="{{ asset('storage/uploads/hospital/department/'.$hospital_department->hospital_id.'/'.$hospital_department->upload) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
                 @endisset
             <input type="file" name="upload" id="dofsupload" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');"/>
             <label for="dofsupload" class="btn btn-primary upload-label">
-                Upload Doctor's Registration Certificate <i class="mdi mdi-upload"></i></label>
+                 <i class="mdi mdi-upload"></i></label>
                 @error('upload')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
