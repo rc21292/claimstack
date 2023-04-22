@@ -125,17 +125,9 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="pan">Hospital PAN Number <span class="text-danger">*</span></label>
-                                    <div class="input-group">
                                         <input type="text" maxlength="10" class="form-control" id="pan" name="pan" maxlength="10"
                                             placeholder="Enter Hospital PAN no." value="{{ old('pan') }}">
-                                        <input type="file" name="panfile" id="upload" hidden />
-                                        <label for="upload" class="btn btn-primary upload-label"><i
-                                                class="mdi mdi-upload"></i></label>
-                                    </div>
                                     @error('pan')
-                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                    @enderror
-                                    @error('panfile')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -187,19 +179,13 @@
 
                                 <div class="col-md-12 mt-3">
                                     <label for="rohini">Rohini Code <span class="text-danger">*</span></label>
-                                    <div class="input-group">
                                         <input type="text" maxlength="13" class="form-control" id="rohini" name="rohini"
                                             placeholder="Enter rohini code." value="{{ old('rohini') }}">
-                                        <input type="file" name="rohinifile" id="rohinifile" hidden />
-                                        <label for="rohinifile" class="btn btn-primary upload-label"><i
-                                                class="mdi mdi-upload"></i></label>
-                                    </div>
+                                        
                                     @error('rohini')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
-                                    @error('rohinifile')
-                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                    @enderror
+                                   
                                 </div>
 
                                 <div class="col-md-6 mt-3">

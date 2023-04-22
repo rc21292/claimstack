@@ -101,7 +101,7 @@
 
         <div class="col-md-12 text-end mt-3">
             <button type="submit" class="btn btn-success" form="hospital-department-form">Update
-                Hospital Facility</button>
+                Hospital Department</button>
         </div>
     </div>
 </form>
