@@ -682,10 +682,10 @@
             if(referred_by == "BHC Direct"){
                 $("input[name='referral_name']").val('BHC').attr('readonly', true);
             }else if(referred_by == "Hospital's Direct Patient"){
-                var hospital = $("#hospital_id").select2().find(":selected").data("name");
+                var hospital = "{{ $hospital->name }}";
                         $("input[name='referral_name']").val(hospital).attr('readonly', true);
             }else if(referred_by == "Associate Partner"){
-                var apname = $("#hospital_id").select2().find(":selected").data("apname");
+                var apname = "{{ $hospital->ap_name }}";
                         $("input[name='referral_name']").val(apname).attr('readonly', true);
             }else{
                 $("input[name='referral_name']").val('').removeAttr('readonly');
