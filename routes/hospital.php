@@ -10,6 +10,7 @@ use App\Http\Controllers\Hospital\Auth\MyAccountController;
 use App\Http\Controllers\Hospital\Auth\ResetPasswordController;
 use App\Http\Controllers\Hospital\DashboardController;
 use App\Http\Controllers\Hospital\HospitalController;
+use App\Http\Controllers\Hospital\HospitalDocumentController;
 use App\Http\Controllers\Hospital\Claims\ClaimController;
 use App\Http\Controllers\Hospital\Claims\PatientController;
 use App\Http\Controllers\Hospital\Claims\ClaimantController;
@@ -91,6 +92,8 @@ Route::group(['prefix' => 'hospital', 'as' => 'hospital.'], function () {
     */
 
     Route::resource('hospitals', HospitalController::class);
+
+    Route::resource('hospital-documents', HospitalDocumentController::class);
 
     Route::delete('hospitals/hospital-delete/{id}/{eid}', [HospitalController::class, 'destroyCompany'])->name('hospitals.hospital-delete');
 

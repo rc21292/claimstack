@@ -1497,410 +1497,968 @@ class HospitalController extends Controller
                 $this->validate($request, $rules, $messages);
 
                 if ($request->hasfile('hospital_pan_card')) {
-                    $file_data                  = $request->file('hospital_pan_card');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $hospital_pan_card = $request->file('hospital_pan_card');
+                    $name = $hospital_pan_card->getClientOriginalName();
+                    $hospital_pan_card->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->hospital_pan_card)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'hospital_pan_card', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'hospital_pan_card', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'hospital_pan_card', 'file_path' => $document->hospital_pan_card, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'hospital_pan_card'               =>  $name
+                        'hospital_pan_card' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('hospital_cancel_cheque')) {
-                    $file_data                  = $request->file('hospital_cancel_cheque');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $hospital_cancel_cheque = $request->file('hospital_cancel_cheque');
+                    $name = $hospital_cancel_cheque->getClientOriginalName();
+                    $hospital_cancel_cheque->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->hospital_cancel_cheque)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'hospital_cancel_cheque', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'hospital_cancel_cheque', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'hospital_cancel_cheque', 'file_path' => $document->hospital_cancel_cheque, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'hospital_cancel_cheque'               =>  $name
+                        'hospital_cancel_cheque' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('hospital_owners_pan_card')) {
-                    $file_data                    = $request->file('hospital_owners_pan_card');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $hospital_owners_pan_card = $request->file('hospital_owners_pan_card');
+                    $name = $hospital_owners_pan_card->getClientOriginalName();
+                    $hospital_owners_pan_card->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->hospital_owners_pan_card)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'hospital_owners_pan_card', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'hospital_owners_pan_card', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'hospital_owners_pan_card', 'file_path' => $document->hospital_owners_pan_card, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'hospital_owners_pan_card'               =>  $name
+                        'hospital_owners_pan_card' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('hospital_owners_aadhar_card')) {
-                    $file_data                  = $request->file('hospital_owners_aadhar_card');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $hospital_owners_aadhar_card = $request->file('hospital_owners_aadhar_card');
+                    $name = $hospital_owners_aadhar_card->getClientOriginalName();
+                    $hospital_owners_aadhar_card->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->hospital_owners_aadhar_card)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'hospital_owners_aadhar_card', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'hospital_owners_aadhar_card', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'hospital_owners_aadhar_card', 'file_path' => $document->hospital_owners_aadhar_card, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'hospital_owners_aadhar_card'               =>  $name
+                        'hospital_owners_aadhar_card' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('hospital_other_documents')) {
-                    $file_data                  = $request->file('hospital_other_documents');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $hospital_other_documents = $request->file('hospital_other_documents');
+                    $name = $hospital_other_documents->getClientOriginalName();
+                    $hospital_other_documents->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->hospital_other_documents)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'hospital_other_documents', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'hospital_other_documents', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'hospital_other_documents', 'file_path' => $document->hospital_other_documents, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'hospital_other_documents'               =>  $name
+                        'hospital_other_documents' =>  $name
                     ]);
                 }
+
+
                 break;
             case 'hospital_fi_form':
-                if ($request->hasfile('pharmacy')) {
-                    $file_data                    = $request->file('pharmacy');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+            if ($request->hasfile('pharmacy')) {
+                    $pharmacy = $request->file('pharmacy');
+                    $name = $pharmacy->getClientOriginalName();
+                    $pharmacy->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->pharmacy)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'pharmacy', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'pharmacy', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'pharmacy', 'file_path' => $document->pharmacy, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'pharmacy'               =>  $name
+                        'pharmacy' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('lab')) {
-                    $file_data                    = $request->file('lab');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $lab = $request->file('lab');
+                    $name = $lab->getClientOriginalName();
+                    $lab->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->lab)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'lab', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'lab', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'lab', 'file_path' => $document->lab, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'lab'               =>  $name
+                        'lab' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('ambulance')) {
-                    $file_data                    = $request->file('ambulance');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $ambulance = $request->file('ambulance');
+                    $name = $ambulance->getClientOriginalName();
+                    $ambulance->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->ambulance)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'ambulance', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'ambulance', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'ambulance', 'file_path' => $document->ambulance, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'ambulance'               =>  $name
+                        'ambulance' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('operation_theatre')) {
-                    $file_data                    = $request->file('operation_theatre');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $operation_theatre = $request->file('operation_theatre');
+                    $name = $operation_theatre->getClientOriginalName();
+                    $operation_theatre->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->operation_theatre)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'operation_theatre', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'operation_theatre', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'operation_theatre', 'file_path' => $document->operation_theatre, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'operation_theatre'               =>  $name
+                        'operation_theatre' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('icu')) {
-                    $file_data                    = $request->file('icu');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $icu = $request->file('icu');
+                    $name = $icu->getClientOriginalName();
+                    $icu->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->icu)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'icu', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'icu', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'icu', 'file_path' => $document->icu, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'icu'               =>  $name
+                        'icu' =>  $name
                     ]);
                 }
 
-                if ($request->hasfile('iccu')) {
-                    $file_data                    = $request->file('iccu');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+               if ($request->hasfile('iccu')) {
+                    $iccu = $request->file('iccu');
+                    $name = $iccu->getClientOriginalName();
+                    $iccu->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->iccu)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'iccu', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'iccu', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'iccu', 'file_path' => $document->iccu, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'iccu'               =>  $name
+                        'iccu' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('nicu')) {
-                    $file_data                    = $request->file('nicu');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $nicu = $request->file('nicu');
+                    $name = $nicu->getClientOriginalName();
+                    $nicu->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->nicu)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'nicu', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'nicu', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'nicu', 'file_path' => $document->nicu, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'nicu'               =>  $name
+                        'nicu' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('csc_sterilization')) {
-                    $file_data                    = $request->file('csc_sterilization');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $csc_sterilization = $request->file('csc_sterilization');
+                    $name = $csc_sterilization->getClientOriginalName();
+                    $csc_sterilization->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->csc_sterilization)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'csc_sterilization', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'csc_sterilization', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'csc_sterilization', 'file_path' => $document->csc_sterilization, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'csc_sterilization'               =>  $name
+                        'csc_sterilization' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('centralized_gas_ons')) {
-                    $file_data                    = $request->file('centralized_gas_ons');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $centralized_gas_ons = $request->file('centralized_gas_ons');
+                    $name = $centralized_gas_ons->getClientOriginalName();
+                    $centralized_gas_ons->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->centralized_gas_ons)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'centralized_gas_ons', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'centralized_gas_ons', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'centralized_gas_ons', 'file_path' => $document->centralized_gas_ons, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'centralized_gas_ons'               =>  $name
+                        'centralized_gas_ons' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('centralized_ac')) {
-                    $file_data                    = $request->file('centralized_ac');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $centralized_ac = $request->file('centralized_ac');
+                    $name = $centralized_ac->getClientOriginalName();
+                    $centralized_ac->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->centralized_ac)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'centralized_ac', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'centralized_ac', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'centralized_ac', 'file_path' => $document->centralized_ac, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'centralized_ac'               =>  $name
+                        'centralized_ac' =>  $name
                     ]);
                 }
 
-                 if ($request->hasfile('kitchen')) {
-                    $file_data                    = $request->file('kitchen');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                if ($request->hasfile('kitchen')) {
+                    $kitchen = $request->file('kitchen');
+                    $name = $kitchen->getClientOriginalName();
+                    $kitchen->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->kitchen)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'kitchen', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'kitchen', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'kitchen', 'file_path' => $document->kitchen, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'kitchen'               =>  $name
+                        'kitchen' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('usg_machine')) {
-                    $file_data                    = $request->file('usg_machine');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $usg_machine = $request->file('usg_machine');
+                    $name = $usg_machine->getClientOriginalName();
+                    $usg_machine->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->usg_machine)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'usg_machine', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'usg_machine', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'usg_machine', 'file_path' => $document->usg_machine, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'usg_machine'               =>  $name
+                        'usg_machine' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('digital_x_ray')) {
-                    $file_data                    = $request->file('digital_x_ray');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $digital_x_ray = $request->file('digital_x_ray');
+                    $name = $digital_x_ray->getClientOriginalName();
+                    $digital_x_ray->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->digital_x_ray)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'digital_x_ray', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'digital_x_ray', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'digital_x_ray', 'file_path' => $document->digital_x_ray, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'digital_x_ray'               =>  $name
+                        'digital_x_ray' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('ct')) {
-                    $file_data                    = $request->file('ct');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $ct = $request->file('ct');
+                    $name = $ct->getClientOriginalName();
+                    $ct->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->ct)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'ct', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'ct', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'ct', 'file_path' => $document->ct, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'ct'               =>  $name
+                        'ct' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('mri')) {
-                    $file_data                    = $request->file('mri');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $mri = $request->file('mri');
+                    $name = $mri->getClientOriginalName();
+                    $mri->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->mri)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'mri', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'mri', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'mri', 'file_path' => $document->mri, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'mri'               =>  $name
+                        'mri' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('pet_scan')) {
-                    $file_data                    = $request->file('pet_scan');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $pet_scan = $request->file('pet_scan');
+                    $name = $pet_scan->getClientOriginalName();
+                    $pet_scan->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->pet_scan)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'pet_scan', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'pet_scan', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'pet_scan', 'file_path' => $document->pet_scan, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'pet_scan'               =>  $name
+                        'pet_scan' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('organ_transplant_unit')) {
-                    $file_data                    = $request->file('organ_transplant_unit');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $organ_transplant_unit = $request->file('organ_transplant_unit');
+                    $name = $organ_transplant_unit->getClientOriginalName();
+                    $organ_transplant_unit->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->organ_transplant_unit)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'organ_transplant_unit', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'organ_transplant_unit', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'organ_transplant_unit', 'file_path' => $document->organ_transplant_unit, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'organ_transplant_unit'               =>  $name
+                        'organ_transplant_unit' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('burn_unit')) {
-                    $file_data                    = $request->file('burn_unit');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $burn_unit = $request->file('burn_unit');
+                    $name = $burn_unit->getClientOriginalName();
+                    $burn_unit->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->burn_unit)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'burn_unit', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'burn_unit', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'burn_unit', 'file_path' => $document->burn_unit, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'burn_unit'               =>  $name
+                        'burn_unit' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('dialysis_unit')) {
-                    $file_data                    = $request->file('dialysis_unit');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $dialysis_unit = $request->file('dialysis_unit');
+                    $name = $dialysis_unit->getClientOriginalName();
+                    $dialysis_unit->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->dialysis_unit)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'dialysis_unit', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'dialysis_unit', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'dialysis_unit', 'file_path' => $document->dialysis_unit, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'dialysis_unit'               =>  $name
+                        'dialysis_unit' =>  $name
                     ]);
                 }
 
-                if ($request->hasfile('blood_banks')) {
-                    $file_data                    = $request->file('blood_banks');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                if ($request->hasfile('blood_bank')) {
+                    $blood_bank = $request->file('blood_bank');
+                    $name = $blood_bank->getClientOriginalName();
+                    $blood_bank->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->blood_bank)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'blood_bank', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'blood_bank', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'blood_bank', 'file_path' => $document->blood_bank, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'blood_banks'               =>  $name
+                        'blood_bank' =>  $name
                     ]);
                 }
 
-                if ($request->hasfile('other')) {
-                    $file_data                    = $request->file('other');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+               if ($request->hasfile('other')) {
+                    $other = $request->file('other');
+                    $name = $other->getClientOriginalName();
+                    $other->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->other)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'other', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'other', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'other', 'file_path' => $document->other, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'other'               =>  $name
+                        'other' =>  $name
                     ]);
                 }
+
                 break;
             case 'hospital_certificates':
+
                 $rules = [
                     'hospital_registration_certificate'           => empty($document->hospital_registration_certificate) ? 'required' : [],
                     'hospital_rohini_certificate'    => empty($document->hospital_rohini_certificate) ? 'required' : [],
-                    'hospital_pollution_clearance_certificate'              => empty($document->hospital_pollution_clearance_certificate) ? 'required' : [],
-                    'hospital_fire_safety_clearance_certificate'           => empty($document->hospital_fire_safety_clearance_certificate) ? 'required' : [],
-                    'hospital_certificate_of_incorporation'    => empty($document->hospital_certificate_of_incorporation) ? 'required' : [],
-                    'hospital_tan_certificate'              => empty($document->hospital_tan_certificate) ? 'required' : [],
-                    'hospital_gst_certificate'           => empty($document->hospital_gst_certificate) ? 'required' : [],
-                    'nabl_certificate'    => empty($document->nabl_certificate) ? 'required' : [],
-                    'nabh_certificate'              => empty($document->nabh_certificate) ? 'required' : [],
-                    'jci_certificate'           => empty($document->jci_certificate) ? 'required' : [],
-                    'nqac_or_nhsrc_certificate'    => empty($document->nqac_or_nhsrc_certificate) ? 'required' : [],
-                    'hippa_certificate'              => empty($document->hippa_certificate) ? 'required' : [],
-                    'iso_certificates'    => empty($document->iso_certificates) ? 'required' : [],
-                    'other_certificates'              => empty($document->other_certificates) ? 'required' : [],
                 ];
 
                 $messages = [
                     'hospital_registration_certificate.required'            => 'Please upload Hospital Registration certiticate',
-                    'hospital_rohini_certificate.required'              => 'Please upload Hospital Rohini Certificate',
-                    'hospital_pollution_clearance_certificate.required'           => 'Please upload Hospital Clearence Certificate.',
-                    'hospital_fire_safety_clearance_certificate.required'            => 'Please upload Hospital Fire clearance certificate',
-                    'hospital_certificate_of_incorporation.required'              => 'Please upload Hospital certificate of incorporation',
-                    'hospital_tan_certificate.required'           => 'Please upload Hospital TAN Certificate.',
-                    'hospital_gst_certificate.required'            => 'Please upload Hospital GST Certificate.',
-                    'nabl_certificate.required'     => 'Please upload Hospital NABL Certificate.',
-                    'nabh_certificate.required'               => 'Please upload Hospital NABH Certificate.',
-                    'jci_certificate.required'            => 'Please upload Hospital JCI Certificate.',
-                    'nqac_or_nhsrc_certificate.required'     => 'Please upload Hospital NQAC or NHSRC Certificate.',
-                    'hippa_certificate.required'               => 'Please upload Hospital Hippa Certificate.',
-                    'iso_certificates.required'     => 'Please upload Hospital ISO Certificate.',
-                    'other_certificates.required'               => 'Please upload Hospital Other Certificates.',
+                    'hospital_rohini_certificate.required'              => 'Please upload Hospital Rohini Certificate'
                 ];
 
                 $this->validate($request, $rules, $messages);
+
                 if ($request->hasfile('hospital_registration_certificate')) {
-                    $file_data                    = $request->file('hospital_registration_certificate');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $hospital_registration_certificate = $request->file('hospital_registration_certificate');
+                    $name = $hospital_registration_certificate->getClientOriginalName();
+                    $hospital_registration_certificate->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->hospital_registration_certificate)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'hospital_registration_certificate', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'hospital_registration_certificate', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'hospital_registration_certificate', 'file_path' => $document->hospital_registration_certificate, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'hospital_registration_certificate'               =>  $name
+                        'hospital_registration_certificate' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('hospital_rohini_certificate')) {
-                    $file_data                    = $request->file('hospital_rohini_certificate');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $hospital_rohini_certificate = $request->file('hospital_rohini_certificate');
+                    $name = $hospital_rohini_certificate->getClientOriginalName();
+                    $hospital_rohini_certificate->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->hospital_rohini_certificate)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'hospital_rohini_certificate', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'hospital_rohini_certificate', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'hospital_rohini_certificate', 'file_path' => $document->hospital_rohini_certificate, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'hospital_rohini_certificate'               =>  $name
+                        'hospital_rohini_certificate' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('hospital_pollution_clearance_certificate')) {
-                    $file_data                    = $request->file('hospital_pollution_clearance_certificate');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $hospital_pollution_clearance_certificate = $request->file('hospital_pollution_clearance_certificate');
+                    $name = $hospital_pollution_clearance_certificate->getClientOriginalName();
+                    $hospital_pollution_clearance_certificate->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->hospital_pollution_clearance_certificate)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'hospital_pollution_clearance_certificate', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'hospital_pollution_clearance_certificate', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'hospital_pollution_clearance_certificate', 'file_path' => $document->hospital_pollution_clearance_certificate, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'hospital_pollution_clearance_certificate'               =>  $name
+                        'hospital_pollution_clearance_certificate' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('hospital_fire_safety_clearance_certificate')) {
-                    $file_data                    = $request->file('hospital_fire_safety_clearance_certificate');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
-                    HospitalDocument::where('hospital_id', $id)->update([
-                        'hospital_fire_safety_clearance_certificate'               =>  $name
-                    ]);
-                }
+                    $hospital_fire_safety_clearance_certificate = $request->file('hospital_fire_safety_clearance_certificate');
+                    $name = $hospital_fire_safety_clearance_certificate->getClientOriginalName();
+                    $hospital_fire_safety_clearance_certificate->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
-                 if ($request->hasfile('hospital_certificate_of_incorporation')) {
-                    $file_data                    = $request->file('hospital_certificate_of_incorporation');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    if (!empty($document->hospital_fire_safety_clearance_certificate)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'hospital_fire_safety_clearance_certificate', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'hospital_fire_safety_clearance_certificate', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'hospital_fire_safety_clearance_certificate', 'file_path' => $document->hospital_fire_safety_clearance_certificate, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'hospital_certificate_of_incorporation'               =>  $name
+                        'hospital_fire_safety_clearance_certificate' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('hospital_certificate_of_incorporation')) {
-                    $file_data                    = $request->file('hospital_certificate_of_incorporation');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $hospital_certificate_of_incorporation = $request->file('hospital_certificate_of_incorporation');
+                    $name = $hospital_certificate_of_incorporation->getClientOriginalName();
+                    $hospital_certificate_of_incorporation->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->hospital_certificate_of_incorporation)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'hospital_certificate_of_incorporation', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'hospital_certificate_of_incorporation', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'hospital_certificate_of_incorporation', 'file_path' => $document->hospital_certificate_of_incorporation, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'hospital_certificate_of_incorporation'               =>  $name
+                        'hospital_certificate_of_incorporation' =>  $name
+                    ]);
+                }
+
+                if ($request->hasfile('hospital_certificate_of_incorporation')) {
+                    $hospital_certificate_of_incorporation = $request->file('hospital_certificate_of_incorporation');
+                    $name = $hospital_certificate_of_incorporation->getClientOriginalName();
+                    $hospital_certificate_of_incorporation->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->hospital_certificate_of_incorporation)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'hospital_certificate_of_incorporation', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'hospital_certificate_of_incorporation', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'hospital_certificate_of_incorporation', 'file_path' => $document->hospital_certificate_of_incorporation, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
+                    HospitalDocument::where('hospital_id', $id)->update([
+                        'hospital_certificate_of_incorporation' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('hospital_tan_certificate')) {
-                    $file_data                    = $request->file('hospital_tan_certificate');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $hospital_tan_certificate = $request->file('hospital_tan_certificate');
+                    $name = $hospital_tan_certificate->getClientOriginalName();
+                    $hospital_tan_certificate->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->hospital_tan_certificate)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'hospital_tan_certificate', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'hospital_tan_certificate', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'hospital_tan_certificate', 'file_path' => $document->hospital_tan_certificate, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'hospital_tan_certificate'               =>  $name
+                        'hospital_tan_certificate' =>  $name
                     ]);
                 }
 
+
                 if ($request->hasfile('hospital_gst_certificate')) {
-                    $file_data                    = $request->file('hospital_gst_certificate');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $hospital_gst_certificate = $request->file('hospital_gst_certificate');
+                    $name = $hospital_gst_certificate->getClientOriginalName();
+                    $hospital_gst_certificate->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->hospital_gst_certificate)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'hospital_gst_certificate', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'hospital_gst_certificate', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'hospital_gst_certificate', 'file_path' => $document->hospital_gst_certificate, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'hospital_gst_certificate'               =>  $name
+                        'hospital_gst_certificate' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('nabl_certificate')) {
-                    $file_data                    = $request->file('nabl_certificate');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $nabl_certificate = $request->file('nabl_certificate');
+                    $name = $nabl_certificate->getClientOriginalName();
+                    $nabl_certificate->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->nabl_certificate)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'nabl_certificate', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'nabl_certificate', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'nabl_certificate', 'file_path' => $document->nabl_certificate, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'nabl_certificate'               =>  $name
+                        'nabl_certificate' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('nabh_certificate')) {
-                    $file_data                    = $request->file('nabh_certificate');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $nabh_certificate = $request->file('nabh_certificate');
+                    $name = $nabh_certificate->getClientOriginalName();
+                    $nabh_certificate->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->nabh_certificate)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'nabh_certificate', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'nabh_certificate', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'nabh_certificate', 'file_path' => $document->nabh_certificate, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'nabh_certificate'               =>  $name
+                        'nabh_certificate' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('jci_certificate')) {
-                    $file_data                    = $request->file('jci_certificate');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $jci_certificate = $request->file('jci_certificate');
+                    $name = $jci_certificate->getClientOriginalName();
+                    $jci_certificate->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->jci_certificate)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'jci_certificate', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'jci_certificate', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'jci_certificate', 'file_path' => $document->jci_certificate, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'jci_certificate'               =>  $name
+                        'jci_certificate' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('nqac_or_nhsrc_certificate')) {
-                    $file_data                    = $request->file('nqac_or_nhsrc_certificate');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $nqac_or_nhsrc_certificate = $request->file('nqac_or_nhsrc_certificate');
+                    $name = $nqac_or_nhsrc_certificate->getClientOriginalName();
+                    $nqac_or_nhsrc_certificate->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->nqac_or_nhsrc_certificate)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'nqac_or_nhsrc_certificate', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'nqac_or_nhsrc_certificate', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'nqac_or_nhsrc_certificate', 'file_path' => $document->nqac_or_nhsrc_certificate, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'nqac_or_nhsrc_certificate'               =>  $name
+                        'nqac_or_nhsrc_certificate' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('hippa_certificate')) {
-                    $file_data                    = $request->file('hippa_certificate');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $hippa_certificate = $request->file('hippa_certificate');
+                    $name = $hippa_certificate->getClientOriginalName();
+                    $hippa_certificate->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->hippa_certificate)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'hippa_certificate', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'hippa_certificate', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'hippa_certificate', 'file_path' => $document->hippa_certificate, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'hippa_certificate'               =>  $name
+                        'hippa_certificate' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('iso_certificates')) {
-                    $file_data                    = $request->file('iso_certificates');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $iso_certificates = $request->file('iso_certificates');
+                    $name = $iso_certificates->getClientOriginalName();
+                    $iso_certificates->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->iso_certificates)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'iso_certificates', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'iso_certificates', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'iso_certificates', 'file_path' => $document->iso_certificates, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'iso_certificates'               =>  $name
+                        'iso_certificates' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('other_certificates')) {
-                    $file_data                    = $request->file('other_certificates');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $other_certificates = $request->file('other_certificates');
+                    $name = $other_certificates->getClientOriginalName();
+                    $other_certificates->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->other_certificates)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'other_certificates', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'other_certificates', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'other_certificates', 'file_path' => $document->other_certificates, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'other_certificates'               =>  $name
+                        'other_certificates' =>  $name
                     ]);
                 }
+
                 break;
             case 'doctor_registration':
                 $rules = [
@@ -1912,92 +2470,176 @@ class HospitalController extends Controller
                 ];
 
                 $this->validate($request, $rules, $messages);
+
                 if ($request->hasfile('medical_superintendents_registration_certificate')) {
-                    $file_data                    = $request->file('medical_superintendents_registration_certificate');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $medical_superintendents_registration_certificate = $request->file('medical_superintendents_registration_certificate');
+                    $name = $medical_superintendents_registration_certificate->getClientOriginalName();
+                    $medical_superintendents_registration_certificate->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->medical_superintendents_registration_certificate)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'medical_superintendents_registration_certificate', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'medical_superintendents_registration_certificate', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'medical_superintendents_registration_certificate', 'file_path' => $document->medical_superintendents_registration_certificate, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'medical_superintendents_registration_certificate'               =>  $name
+                        'medical_superintendents_registration_certificate' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('doctors_registration_certificate_other')) {
-                    $file_data                    = $request->file('doctors_registration_certificate_other');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $doctors_registration_certificate_other = $request->file('doctors_registration_certificate_other');
+                    $name = $doctors_registration_certificate_other->getClientOriginalName();
+                    $doctors_registration_certificate_other->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->doctors_registration_certificate_other)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'doctors_registration_certificate_other', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'doctors_registration_certificate_other', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'doctors_registration_certificate_other', 'file_path' => $document->doctors_registration_certificate_other, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'doctors_registration_certificate_other'               =>  $name
+                        'doctors_registration_certificate_other' =>  $name
                     ]);
                 }
+
+                
                 break;
             case 'hospital_mous':
-                $rules = [
-                    'mou_with_bhc'           => empty($document->mou_with_bhc) ? 'required' : [],
-                    'mous_with_nbfcs_banks_triparty'    => empty($document->mous_with_nbfcs_banks_triparty) ? 'required' : [],
-                ];
 
-                $messages = [
-                    'mou_with_bhc.required'            => 'Please upload MOU with BHC',
-                    'mous_with_nbfcs_banks_triparty.required'              => 'Please upload MOU with NBFC Banks / Triparty',
-                ];
-
-                $this->validate($request, $rules, $messages);
                 if ($request->hasfile('mou_with_bhc')) {
-                    $file_data                    = $request->file('mou_with_bhc');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $mou_with_bhc = $request->file('mou_with_bhc');
+                    $name = $mou_with_bhc->getClientOriginalName();
+                    $mou_with_bhc->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->mou_with_bhc)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'mou_with_bhc', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'mou_with_bhc', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'mou_with_bhc', 'file_path' => $document->mou_with_bhc, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'mou_with_bhc'               =>  $name
+                        'mou_with_bhc' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('mous_with_nbfcs_banks_triparty')) {
-                    $file_data                    = $request->file('mous_with_nbfcs_banks_triparty');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $mous_with_nbfcs_banks_triparty = $request->file('mous_with_nbfcs_banks_triparty');
+                    $name = $mous_with_nbfcs_banks_triparty->getClientOriginalName();
+                    $mous_with_nbfcs_banks_triparty->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->mous_with_nbfcs_banks_triparty)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'mous_with_nbfcs_banks_triparty', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'mous_with_nbfcs_banks_triparty', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'mous_with_nbfcs_banks_triparty', 'file_path' => $document->mous_with_nbfcs_banks_triparty, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'mous_with_nbfcs_banks_triparty'               =>  $name
+                        'mous_with_nbfcs_banks_triparty' =>  $name
                     ]);
                 }
 
                 if ($request->hasfile('mous_ic_or_tpa_or_govt_or_psu_or_other_corporates')) {
-                    $file_data                    = $request->file('mous_ic_or_tpa_or_govt_or_psu_or_other_corporates');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $mous_ic_or_tpa_or_govt_or_psu_or_other_corporates = $request->file('mous_ic_or_tpa_or_govt_or_psu_or_other_corporates');
+                    $name = $mous_ic_or_tpa_or_govt_or_psu_or_other_corporates->getClientOriginalName();
+                    $mous_ic_or_tpa_or_govt_or_psu_or_other_corporates->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->mous_ic_or_tpa_or_govt_or_psu_or_other_corporates)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'mous_ic_or_tpa_or_govt_or_psu_or_other_corporates', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'mous_ic_or_tpa_or_govt_or_psu_or_other_corporates', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'mous_ic_or_tpa_or_govt_or_psu_or_other_corporates', 'file_path' => $document->mous_ic_or_tpa_or_govt_or_psu_or_other_corporates, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'mous_ic_or_tpa_or_govt_or_psu_or_other_corporates'               =>  $name
+                        'mous_ic_or_tpa_or_govt_or_psu_or_other_corporates' =>  $name
                     ]);
                 }
+
                 break;
             case 'hospital_packages':
-                $rules = [
-                    'agreed_tariff_and_packages'           => empty($document->agreed_tariff_and_packages) ? 'required' : [],
-                    'other_packages'    => empty($document->other_packages) ? 'required' : [],
-                ];
 
-                $messages = [
-                    'agreed_tariff_and_packages.required'            => 'Please upload Agreed tariff and packages',
-                    'other_packages.required'              => 'Please upload other Packages',
-                ];
+            if ($request->hasfile('agreed_tariff_and_packages')) {
+                    $agreed_tariff_and_packages = $request->file('agreed_tariff_and_packages');
+                    $name = $agreed_tariff_and_packages->getClientOriginalName();
+                    $agreed_tariff_and_packages->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
-                $this->validate($request, $rules, $messages);
-                if ($request->hasfile('agreed_tariff_and_packages')) {
-                    $file_data                    = $request->file('agreed_tariff_and_packages');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    if (!empty($document->agreed_tariff_and_packages)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'agreed_tariff_and_packages', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'agreed_tariff_and_packages', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'agreed_tariff_and_packages', 'file_path' => $document->agreed_tariff_and_packages, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'agreed_tariff_and_packages'               =>  $name
+                        'agreed_tariff_and_packages' =>  $name
                     ]);
                 }
+
 
                 if ($request->hasfile('other_packages')) {
-                    $file_data                    = $request->file('other_packages');
-                    $name                       = $file_data->getClientOriginalName();
-                    $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                    $other_packages = $request->file('other_packages');
+                    $name = $other_packages->getClientOriginalName();
+                    $other_packages->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+
+                    if (!empty($document->other_packages)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'other_packages', 'hospital_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'other_packages', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        HospitalDocumentHistory::insert(
+                            ['file_name' => 'other_packages', 'file_path' => $document->other_packages, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'other_packages'               =>  $name
+                        'other_packages' =>  $name
                     ]);
                 }
+
                 break;
             default:
                 # code...

@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\Auth\MyAccountController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HospitalController;
+use App\Http\Controllers\Admin\HospitalDocumentController;
 use App\Http\Controllers\Admin\Claims\ClaimController;
 use App\Http\Controllers\Admin\Claims\PatientController;
 use App\Http\Controllers\Admin\Claims\BorrowerController;
@@ -121,6 +122,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('hospitals/export',[HospitalController::class,'export'])->name('hospitals.export');
 
     Route::resource('hospitals', HospitalController::class);
+
+    Route::resource('hospital-documents', HospitalDocumentController::class);
 
     Route::delete('hospitals/hospital-delete/{id}/{eid}', [HospitalController::class, 'destroyCompany'])->name('hospitals.hospital-delete');
 

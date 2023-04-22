@@ -43,6 +43,9 @@
                         <li>
                             <a href="{{ route('hospital.hospitals.index') }}">Manage Hospital</a>
                         </li>
+                        <li>
+                            <a href="{{ route('hospital.hospital-documents.show', auth('hospital')->user()->id) }}">View Documents</a>
+                        </li>
                     </ul>
                 </div>
             </li>

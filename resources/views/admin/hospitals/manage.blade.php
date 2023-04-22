@@ -53,6 +53,8 @@
                                                     <div class="btn-group">
                                                         <a href="{{ route('admin.hospitals.edit', $hospital->id) }}"
                                                             class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
+                                                        <a href="{{ route('admin.hospital-documents.show', $hospital->id) }}"
+                                                            class="btn btn-primary"><i class="mdi mdi-eye"></i></a>
                                                         <button type="button" class="btn btn-danger"
                                                             onclick="confirmDelete({{ $hospital->id }})"><i
                                                                 class="uil uil-trash-alt"></i></button>
