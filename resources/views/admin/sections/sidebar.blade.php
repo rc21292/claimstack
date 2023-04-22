@@ -289,7 +289,7 @@
                     <span> Authorization </span>
                     <span class="menu-arrow"></span>
                 </a>
-                @if(auth()->check() && auth()->user()->hasDirectPermission('Authorization Module Creation/Editing Rights'))
+                @if(auth()->check() && auth()->user()->hasDirectPermission('2nd Level Authorization Rights'))
                 <div class="collapse" id="authorization">
                     <ul class="side-nav-second-level">
                         <li>
