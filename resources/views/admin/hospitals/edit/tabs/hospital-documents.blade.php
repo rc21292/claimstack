@@ -217,9 +217,9 @@
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
-                        <input type="file" name="operation_theatre" id="operation_theatre" hidden
+                        <input type="file" name="operation_theatre" id="operation_theatre_upload" hidden
                             onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                        <label for="hi_operation_theatre" class="btn btn-primary upload-label"><i
+                        <label for="operation_theatre_upload" class="btn btn-primary upload-label"><i
                                 class="mdi mdi-upload"></i></label>
                     </div>
                     @error('operation_theatre')
