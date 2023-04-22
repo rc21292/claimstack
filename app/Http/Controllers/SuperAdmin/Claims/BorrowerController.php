@@ -393,6 +393,7 @@ class BorrowerController extends Controller
 
     public function updateBorrower(Request $request, $id)
     {
+      
         $claim                                  = Claim::with('patient')->find($id);
         $borrower_exists                        = Borrower::where('claim_id', $id)->exists();
         $borrower                               = $borrower_exists ? Borrower::where('claim_id', $id)->first() : null;
@@ -423,17 +424,17 @@ class BorrowerController extends Controller
             'borrower_state'                    => 'required|max:40',
             'borrower_pincode'                  => 'required',
             'borrower_id_proof'                 => 'required',
-            'borrower_id_proof_file'            => (($request->is_patient_and_borrower_same == '' || $request->is_patient_and_borrower_same == 'No') && empty($borrower->borrower_id_proof_file) ) ? 'required' : [],
+            //'borrower_id_proof_file'            => (($request->is_patient_and_borrower_same == '' || $request->is_patient_and_borrower_same == 'No') && empty($borrower->borrower_id_proof_file) ) ? 'required' : [],
             'nature_of_income'                  => 'required',
             'organization'                      => 'required',
             'borrower_mobile_no'                => 'required|digits:10',
             'borrower_estimated_amount'         => 'required|digits_between:1,8',
             'borrower_pan_no'                   => isset($borrower) ? 'required|alpha_num|size:10|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/u|unique:borrowers,borrower_pan_no,'.$borrower->id : 'required|alpha_num|size:10|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/u|unique:borrowers',
-            'borrower_pan_no_file'              => (($request->is_claimant_and_borrower_same == '' || $request->is_claimant_and_borrower_same == 'No') && empty($borrower->borrower_pan_no_file) ) ? 'required' : [],
+            //'borrower_pan_no_file'              => (($request->is_claimant_and_borrower_same == '' || $request->is_claimant_and_borrower_same == 'No') && empty($borrower->borrower_pan_no_file) ) ? 'required' : [],
             'borrower_aadhar_no'                => 'required|numeric|digits:12',
-            'borrower_aadhar_no_file'           => (($request->is_claimant_and_borrower_same == '' || $request->is_claimant_and_borrower_same == 'No') && empty($borrower->borrower_aadhar_no_file) ) ? 'required' : [],
+            //'borrower_aadhar_no_file'           => (($request->is_claimant_and_borrower_same == '' || $request->is_claimant_and_borrower_same == 'No') && empty($borrower->borrower_aadhar_no_file) ) ? 'required' : [],
             'borrower_cancel_cheque'            => 'required',
-            'borrower_cancel_cheque_file'       => ($request->borrower_cancel_cheque != 'No' && empty($borrower->borrower_cancel_cheque_file)) ? 'required' : [],
+            //'borrower_cancel_cheque_file'       => ($request->borrower_cancel_cheque != 'No' && empty($borrower->borrower_cancel_cheque_file)) ? 'required' : [],
             'borrower_personal_email_id'        => 'required',
             'borrower_bank_name'                => 'required|max:45',
             'borrower_bank_address'             => 'required|max:80',
