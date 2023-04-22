@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Claimant;
 use App\Models\User;
 use App\Models\Admin;
+use DB;
 
 class ClaimantAuthorizationController extends Controller
 {
@@ -24,6 +25,8 @@ class ClaimantAuthorizationController extends Controller
     public function index(Request $request)
     {
         $filter_search  = $request->search;
+
+        DB::enableQueryLog();
         $claimants      = Claimant::query();
 
         if ($filter_search) {
@@ -35,17 +38,20 @@ class ClaimantAuthorizationController extends Controller
 
         // $claimants      = $claimants->where('status', 0)->orderBy('id', 'desc')->paginate(20);
 
-        $claimants = claimants::where('status', 0)->with(array('hospital' => function($query)
+        $claimants = $claimants->where('status', 0)->whereHas('hospital' , function($query)
         {
-            $query->where('linked_employee', auth('admin')->user()->id)
-                    ->orWhere('assigned_employee', auth('admin')->user()->id);
-        }))->orderBy('id', 'DESC')->paginate(20);
+            $query->where('hospitals.linked_employee', auth('admin')->user()->id)
+                ->orWhere('hospitals.assigned_employee', auth('admin')->user()->id);
+        })->orderBy('id', 'DESC')->paginate(20);
+
 
         foreach ($claimants as $key => $claimant) {
            $employee = $this->getEmployeesById($claimant->hospital->linked_employee);
 
            $claimants[$key]->linked_employee_data = $employee;
         }
+
+        // dd(DB::getQueryLog());
 
         return view('admin.authorizations.claimants.manage',  compact('claimants', 'filter_search'));
     }

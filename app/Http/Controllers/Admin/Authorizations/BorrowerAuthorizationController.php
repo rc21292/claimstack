@@ -34,7 +34,13 @@ class BorrowerAuthorizationController extends Controller
             $borrowers->orWhere('uid', 'like','%' . $filter_search . '%');
         }
 
-        $borrowers = $borrowers->where('status', 0)->orderBy('id', 'desc')->paginate(20);
+        // $borrowers = $borrowers->where('status', 0)->orderBy('id', 'desc')->paginate(20);
+
+        $borrowers = $borrowers->where('status', 0)->whereHas('hospital' , function($query)
+        {
+            $query->where('hospitals.linked_employee', auth('admin')->user()->id)
+                ->orWhere('hospitals.assigned_employee', auth('admin')->user()->id);
+        })->orderBy('id', 'DESC')->paginate(20);
 
         
         foreach ($borrowers as $key => $borrower) {
