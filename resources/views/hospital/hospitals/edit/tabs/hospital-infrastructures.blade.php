@@ -129,19 +129,12 @@
                     {{ old('nabl_approved_lab', $hospital_nfrastructure->nabl_approved_lab ?? '') == 'No' ? 'selected' : '' }}>No
                 </option>            
             </select>
-            @isset($hospital_nfrastructure->nabl_approved_lab_file)
-                    <a href="{{ asset('storage/uploads/hospital/infrastructure/'.$hospital_nfrastructure->hospital_id.'/'.$hospital_nfrastructure->nabl_approved_lab_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-                @endisset
-            <input type="file" name="nabl_approved_lab_file" @if(old('nabl_approved_lab', $hospital_nfrastructure->nabl_approved_lab ?? '') == 'No' ) disabled @endif id="nabl_approved_lab_file" hidden />
-            <label for="nabl_approved_lab_file" class="btn btn-primary upload-label"><i
-                class="mdi mdi-upload"></i></label>
+       
         </div>
             @error('nabl_approved_lab')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-            @error('nabl_approved_lab_file')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
+          
         </div>
 
         <div class="col-md-6 mt-3">
@@ -188,20 +181,11 @@
                 </option>
             </select>
             
-            @isset($hospital_nfrastructure->nabh_status_file)
-                <a href="{{ asset('storage/uploads/hospital/infrastructure/'.$hospital_nfrastructure->hospital_id.'/'.$hospital_nfrastructure->nabh_status_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-            @endisset
-
-            <input type="file" name="nabh_status_file" @if(old('nabh_status', $hospital_nfrastructure->nabh_status ?? '') == 'NA' ) disabled @endif id="nabh_status_file" hidden />
-            <label for="nabh_status_file" class="btn btn-primary upload-label"><i
-                class="mdi mdi-upload"></i></label>
             </div>
             @error('nabh_status')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-            @error('nabh_status_file')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
+         
         </div>
 
         <div class="col-md-6 mt-3">
@@ -218,20 +202,12 @@
                 </option>
             </select>
             
-            @isset($hospital_nfrastructure->jci_status_file)
-                <a href="{{ asset('storage/uploads/hospital/infrastructure/'.$hospital_nfrastructure->hospital_id.'/'.$hospital_nfrastructure->jci_status_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-            @endisset
-
-            <input type="file" name="jci_status_file" @if(old('jci_status', $hospital_nfrastructure->jci_status ?? '') == 'No' ) disabled @endif id="jci_status_file" hidden />
-            <label for="jci_status_file" class="btn btn-primary upload-label"><i
-                class="mdi mdi-upload"></i></label>
+      
             </div>
             @error('jci_status')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-            @error('jci_status_file')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
+          
         </div>
 
         <div class="col-md-6 mt-3">
@@ -250,20 +226,12 @@
                 </option>
             </select>
             
-            @isset($hospital_nfrastructure->nqac_nhsrc_status_file)
-                <a href="{{ asset('storage/uploads/hospital/infrastructure/'.$hospital_nfrastructure->hospital_id.'/'.$hospital_nfrastructure->nqac_nhsrc_status_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-            @endisset
-
-            <input type="file" name="nqac_nhsrc_status_file" @if(old('nqac_nhsrc_status', $hospital_nfrastructure->nqac_nhsrc_status ?? '') == 'NA' ) disabled @endif id="nqac_nhsrc_status_file" hidden />
-            <label for="nqac_nhsrc_status_file" class="btn btn-primary upload-label"><i
-                class="mdi mdi-upload"></i></label>
+        
             </div>
             @error('nqac_nhsrc_status')
             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-            @error('nqac_nhsrc_status_file')
-            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
+          
         </div>
 
         <div class="col-md-6 mt-3">
@@ -278,20 +246,12 @@
                 </option>
             </select>
             
-            @isset($hospital_nfrastructure->hippa_status_file)
-                <a href="{{ asset('storage/uploads/hospital/infrastructure/'.$hospital_nfrastructure->hospital_id.'/'.$hospital_nfrastructure->hippa_status_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-            @endisset
-
-            <input type="file" name="hippa_status_file" @if(old('hippa_status', $hospital_nfrastructure->hippa_status ?? '') == 'No' ) disabled @endif id="hippa_status_file" hidden />
-            <label for="hippa_status_file" class="btn btn-primary upload-label"><i
-                class="mdi mdi-upload"></i></label>
+          
             </div>
             @error('hippa_status')
             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-            @error('hippa_status_file')
-            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
+           
         </div>
 
         <div class="col-md-12 mt-3">

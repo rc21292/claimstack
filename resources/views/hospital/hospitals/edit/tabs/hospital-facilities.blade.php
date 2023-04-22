@@ -14,20 +14,12 @@
             @error('pharmacy')
             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-            @error('pharmacy_file')
-            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
+       
 
         </div>
 
 
         <div class="col-md-2 mt-32" style="margin-top: 45px !important;">
-            @isset($hospital_facility->pharmacy_file)
-                <a href="{{ asset('storage/uploads/hospital/facility/'.$hospital_facility->hospital_id.'/'.$hospital_facility->pharmacy_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-            @endisset
-            <input type="file" name="pharmacy_file" @if(old('pharmacy', $hospital_facility->pharmacy) == 'No') disabled @endif id="pharmacy_file" hidden />
-            <label for="pharmacy_file" class="btn btn-primary upload-label"><i
-                class="mdi mdi-upload"></i></label>
                 
             </div>
 
@@ -44,19 +36,11 @@
             @error('lab')
             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-            @error('lab_file')
-            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
+           
 
         </div>
 
         <div class="col-md-2 mt-32" style="margin-top: 45px !important;">
-            @isset($hospital_facility->lab_file)
-                <a href="{{ asset('storage/uploads/hospital/facility/'.$hospital_facility->hospital_id.'/'.$hospital_facility->lab_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-            @endisset
-            <input type="file" name="lab_file" @if(old('lab', $hospital_facility->lab) == 'No') disabled @endif id="lab_file" hidden />
-            <label for="lab_file" class="btn btn-primary upload-label"><i
-                class="mdi mdi-upload"></i></label>
                 
             </div>
 
@@ -73,19 +57,11 @@
             @error('ambulance')
             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-            @error('ambulance_file')
-            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
+         
 
         </div>
 
         <div class="col-md-2 mt-32" style="margin-top: 45px !important;">
-            @isset($hospital_facility->ambulance_file)
-                <a href="{{ asset('storage/uploads/hospital/facility/'.$hospital_facility->hospital_id.'/'.$hospital_facility->ambulance_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-            @endisset
-            <input type="file" name="ambulance_file" @if(old('ambulance', $hospital_facility->ambulance) == 'No') disabled @endif id="ambulance_file" hidden />
-            <label for="ambulance_file" class="btn btn-primary upload-label"><i
-                class="mdi mdi-upload"></i></label>
                 
             </div>
 
@@ -102,20 +78,12 @@
             @error('operation_theatre')
             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-            @error('operation_theatre_file')
-            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
+          
 
         </div>
 
 
         <div class="col-md-2 mt-32" style="margin-top: 45px !important;">
-            @isset($hospital_facility->operation_theatre_file)
-                <a href="{{ asset('storage/uploads/hospital/facility/'.$hospital_facility->hospital_id.'/'.$hospital_facility->operation_theatre_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-            @endisset
-            <input type="file" name="operation_theatre_file" @if(old('operation_theatre', $hospital_facility->operation_theatre) == 'No') disabled @endif id="operation_theatre_file" hidden />
-            <label for="operation_theatre_file" class="btn btn-primary upload-label"><i
-                class="mdi mdi-upload"></i></label>
                 
             </div>
 
@@ -132,20 +100,12 @@
             @error('icu')
             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-            @error('icu_file')
-            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
+          
 
         </div>
 
         <div class="col-md-2 mt-32" style="margin-top: 45px !important;">
-            @isset($hospital_facility->icu_file)
-                <a href="{{ asset('storage/uploads/hospital/facility/'.$hospital_facility->hospital_id.'/'.$hospital_facility->icu_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-            @endisset
-            <input type="file" name="icu_file" @if(old('icu', $hospital_facility->icu) == 'No') disabled @endif id="icu_file" hidden />
-            <label for="icu_file" class="btn btn-primary upload-label"><i
-                class="mdi mdi-upload"></i></label>
-                
+          
             </div>
 
             <div class="col-md-4 mt-3">
@@ -161,19 +121,11 @@
             @error('iccu')
             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-            @error('iccu_file')
-            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
+          
 
         </div>
 
         <div class="col-md-2 mt-32" style="margin-top: 45px !important;">
-            @isset($hospital_facility->iccu_file)
-                <a href="{{ asset('storage/uploads/hospital/facility/'.$hospital_facility->hospital_id.'/'.$hospital_facility->iccu_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-            @endisset
-            <input type="file" name="iccu_file" @if(old('iccu', $hospital_facility->iccu) == 'No') disabled @endif id="iccu_file" hidden />
-            <label for="iccu_file" class="btn btn-primary upload-label"><i
-                class="mdi mdi-upload"></i></label>
                 
             </div>
 
@@ -190,20 +142,12 @@
             @error('nicu')
             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-            @error('nicu_file')
-            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
+         
 
         </div>
 
         <div class="col-md-2 mt-32" style="margin-top: 45px !important;">
-            @isset($hospital_facility->nicu_file)
-                <a href="{{ asset('storage/uploads/hospital/facility/'.$hospital_facility->hospital_id.'/'.$hospital_facility->nicu_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-            @endisset
-            <input type="file" name="nicu_file" @if(old('nicu', $hospital_facility->nicu) == 'No') disabled @endif id="nicu_file" hidden />
-            <label for="nicu_file" class="btn btn-primary upload-label"><i
-                class="mdi mdi-upload"></i></label>
-                
+          
             </div>
 
             <div class="col-md-4 mt-3">
@@ -219,20 +163,12 @@
             @error('csc_sterilization')
             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-            @error('csc_sterilization_file')
-            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
+         
 
         </div>
 
         <div class="col-md-2 mt-32" style="margin-top: 45px !important;">
-            @isset($hospital_facility->csc_sterilization_file)
-                <a href="{{ asset('storage/uploads/hospital/facility/'.$hospital_facility->hospital_id.'/'.$hospital_facility->csc_sterilization_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-            @endisset
-            <input type="file" name="csc_sterilization_file" @if(old('csc_sterilization', $hospital_facility->csc_sterilization) == 'No') disabled @endif id="csc_sterilization_file" hidden />
-            <label for="csc_sterilization_file" class="btn btn-primary upload-label"><i
-                class="mdi mdi-upload"></i></label>
-                
+          
             </div>
 
             <div class="col-md-4 mt-3">
@@ -248,20 +184,10 @@
             @error('centralized_gas_ons')
             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-            @error('centralized_gas_ons_file')
-            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
-
         </div>
 
         <div class="col-md-2 mt-32" style="margin-top: 45px !important;">
-            @isset($hospital_facility->centralized_gas_ons_file)
-                <a href="{{ asset('storage/uploads/hospital/facility/'.$hospital_facility->hospital_id.'/'.$hospital_facility->centralized_gas_ons_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-            @endisset
-            <input type="file" name="centralized_gas_ons_file" @if(old('centralized_gas_ons', $hospital_facility->centralized_gas_ons) == 'No') disabled @endif id="centralized_gas_ons_file" hidden />
-            <label for="centralized_gas_ons_file" class="btn btn-primary upload-label"><i
-                class="mdi mdi-upload"></i></label>
-                
+         
             </div>
 
             <div class="col-md-4 mt-3">
@@ -277,20 +203,12 @@
             @error('centralized_ac')
             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-            @error('centralized_ac_file')
-            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
+          
 
         </div>
 
         <div class="col-md-2 mt-32" style="margin-top: 45px !important;">
-            @isset($hospital_facility->centralized_ac_file)
-                <a href="{{ asset('storage/uploads/hospital/facility/'.$hospital_facility->hospital_id.'/'.$hospital_facility->centralized_ac_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-            @endisset
-            <input type="file" name="centralized_ac_file" @if(old('centralized_ac', $hospital_facility->centralized_ac) == 'No') disabled @endif id="centralized_ac_file" hidden />
-            <label for="centralized_ac_file" class="btn btn-primary upload-label"><i
-                class="mdi mdi-upload"></i></label>
-                
+        
             </div>
 
             <div class="col-md-4 mt-3">
@@ -306,20 +224,12 @@
             @error('kitchen')
             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-            @error('kitchen_file')
-            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
+          
 
         </div>
 
         <div class="col-md-2 mt-32" style="margin-top: 45px !important;">
-            @isset($hospital_facility->kitchen_file)
-                <a href="{{ asset('storage/uploads/hospital/facility/'.$hospital_facility->hospital_id.'/'.$hospital_facility->kitchen_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-            @endisset
-            <input type="file" name="kitchen_file" @if(old('kitchen', $hospital_facility->kitchen) == 'No') disabled @endif id="kitchen_file" hidden />
-            <label for="kitchen_file" class="btn btn-primary upload-label"><i
-                class="mdi mdi-upload"></i></label>
-                
+       
             </div>
 
             <div class="col-md-4 mt-3">
@@ -335,20 +245,12 @@
             @error('usg_machine')
             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-            @error('usg_machine_file')
-            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
+          
 
         </div>
 
         <div class="col-md-2 mt-32" style="margin-top: 45px !important;">
-            @isset($hospital_facility->usg_machine_file)
-                <a href="{{ asset('storage/uploads/hospital/facility/'.$hospital_facility->hospital_id.'/'.$hospital_facility->usg_machine_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-            @endisset
-            <input type="file" name="usg_machine_file" @if(old('usg_machine', $hospital_facility->usg_machine) == 'No') disabled @endif id="usg_machine_file" hidden />
-            <label for="usg_machine_file" class="btn btn-primary upload-label"><i
-                class="mdi mdi-upload"></i></label>
-                
+        
             </div>
 
             <div class="col-md-4 mt-3">
@@ -364,20 +266,11 @@
             @error('digital_xray')
             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-            @error('digital_xray_file')
-            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
-
+          
         </div>
 
         <div class="col-md-2 mt-32" style="margin-top: 45px !important;">
-            @isset($hospital_facility->digital_xray_file)
-                <a href="{{ asset('storage/uploads/hospital/facility/'.$hospital_facility->hospital_id.'/'.$hospital_facility->digital_xray_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-            @endisset
-            <input type="file" name="digital_xray_file" @if(old('digital_xray', $hospital_facility->digital_xray) == 'No') disabled @endif id="digital_xray_file" hidden />
-            <label for="digital_xray_file" class="btn btn-primary upload-label"><i
-                class="mdi mdi-upload"></i></label>
-                
+          
             </div>
 
             <div class="col-md-4 mt-3">
@@ -393,20 +286,12 @@
             @error('ct')
             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-            @error('ct_file')
-            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
+        
 
         </div>
 
         <div class="col-md-2 mt-32" style="margin-top: 45px !important;">
-            @isset($hospital_facility->ct_file)
-                <a href="{{ asset('storage/uploads/hospital/facility/'.$hospital_facility->hospital_id.'/'.$hospital_facility->ct_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-            @endisset
-            <input type="file" name="ct_file" @if(old('ct', $hospital_facility->ct) == 'No') disabled @endif id="ct_file" hidden />
-            <label for="ct_file" class="btn btn-primary upload-label"><i
-                class="mdi mdi-upload"></i></label>
-                
+          
             </div>
 
             <div class="col-md-4 mt-3">
@@ -422,20 +307,12 @@
             @error('mri')
             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-            @error('mri_file')
-            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
+         
 
         </div>
 
         <div class="col-md-2 mt-32" style="margin-top: 45px !important;">
-            @isset($hospital_facility->mri_file)
-                <a href="{{ asset('storage/uploads/hospital/facility/'.$hospital_facility->hospital_id.'/'.$hospital_facility->mri_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-            @endisset
-            <input type="file" name="mri_file" @if(old('mri', $hospital_facility->mri) == 'No') disabled @endif id="mri_file" hidden />
-            <label for="mri_file" class="btn btn-primary upload-label"><i
-                class="mdi mdi-upload"></i></label>
-                
+         
             </div>
 
             <div class="col-md-4 mt-3">
@@ -451,20 +328,12 @@
             @error('pet_scan')
             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-            @error('pet_scan_file')
-            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
+         
 
         </div>
 
         <div class="col-md-2 mt-32" style="margin-top: 45px !important;">
-            @isset($hospital_facility->pet_scan_file)
-                <a href="{{ asset('storage/uploads/hospital/facility/'.$hospital_facility->hospital_id.'/'.$hospital_facility->pet_scan_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-            @endisset
-            <input type="file" name="pet_scan_file" @if(old('pet_scan', $hospital_facility->pet_scan) == 'No') disabled @endif id="pet_scan_file" hidden />
-            <label for="pet_scan_file" class="btn btn-primary upload-label"><i
-                class="mdi mdi-upload"></i></label>
-                
+         
             </div>
 
             <div class="col-md-4 mt-3">
@@ -480,20 +349,11 @@
             @error('organ_transplant_unit')
             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-            @error('organ_transplant_unit_file')
-            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
-
+          
         </div>
 
         <div class="col-md-2 mt-32" style="margin-top: 45px !important;">
-            @isset($hospital_facility->organ_transplant_unit_file)
-                <a href="{{ asset('storage/uploads/hospital/facility/'.$hospital_facility->hospital_id.'/'.$hospital_facility->organ_transplant_unit_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-            @endisset
-            <input type="file" name="organ_transplant_unit_file" @if(old('organ_transplant_unit', $hospital_facility->organ_transplant_unit) == 'No') disabled @endif id="organ_transplant_unit_file" hidden />
-            <label for="organ_transplant_unit_file" class="btn btn-primary upload-label"><i
-                class="mdi mdi-upload"></i></label>
-                
+           
             </div>
 
             <div class="col-md-4 mt-3">
@@ -509,20 +369,11 @@
             @error('burn_unit')
             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-            @error('burn_unit_file')
-            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
-
+          
         </div>
 
         <div class="col-md-2 mt-32" style="margin-top: 45px !important;">
-            @isset($hospital_facility->burn_unit_file)
-                <a href="{{ asset('storage/uploads/hospital/facility/'.$hospital_facility->hospital_id.'/'.$hospital_facility->burn_unit_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-            @endisset
-            <input type="file" name="burn_unit_file" @if(old('burn_unit', $hospital_facility->burn_unit) == 'No') disabled @endif id="burn_unit_file" hidden />
-            <label for="burn_unit_file" class="btn btn-primary upload-label"><i
-                class="mdi mdi-upload"></i></label>
-                
+         
             </div>
 
             <div class="col-md-4 mt-3">
@@ -538,20 +389,12 @@
             @error('dialysis_unit')
             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-            @error('dialysis_unit_file')
-            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
+           
 
         </div>
 
         <div class="col-md-2 mt-32" style="margin-top: 45px !important;">
-            @isset($hospital_facility->dialysis_unit_file)
-                <a href="{{ asset('storage/uploads/hospital/facility/'.$hospital_facility->hospital_id.'/'.$hospital_facility->dialysis_unit_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-            @endisset
-            <input type="file" name="dialysis_unit_file" @if(old('dialysis_unit', $hospital_facility->dialysis_unit) == 'No') disabled @endif id="dialysis_unit_file" hidden />
-            <label for="dialysis_unit_file" class="btn btn-primary upload-label"><i
-                class="mdi mdi-upload"></i></label>
-                
+           
             </div>
 
             <div class="col-md-4 mt-3">
@@ -567,21 +410,13 @@
             @error('blood_bank')
             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-            @error('blood_bank_file')
-            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-            @enderror
+           
 
         </div>       
 
 
         <div class="col-md-2 mt-32" style="margin-top: 45px !important;">
-            @isset($hospital_facility->blood_bank_file)
-                <a href="{{ asset('storage/uploads/hospital/facility/'.$hospital_facility->hospital_id.'/'.$hospital_facility->blood_bank_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-            @endisset
-            <input type="file" name="blood_bank_file" @if(old('blood_bank', $hospital_facility->blood_bank) == 'No') disabled @endif id="blood_bank_file" hidden />
-            <label for="blood_bank_file" class="btn btn-primary upload-label"><i
-                class="mdi mdi-upload"></i></label>
-                
+          
         </div>
 
         <div class="col-md-12 mt-3">

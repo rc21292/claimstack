@@ -116,6 +116,23 @@
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
+        
+        <div class="col-md-6 mt-3">
+            <label for="agreed_for">Agreed for <span class="text-danger">*</span></label>
+            <select class="form-select" onchange="setNameField();" id="agreed_for" name="agreed_for">
+                <option value="">Select</option>
+                <option value="Claims Servicing" disabled {{ old('agreed_for', $hospital_tie_ups->agreed_for??'') == 'Claims Servicing' ? 'selected' : '' }}>Claims Servicing
+                </option>
+                <option disabled value="ClaimStack2.O"
+                    {{ old('agreed_for', $hospital_tie_ups->agreed_for??'') == 'ClaimStack2.O' ? 'selected' : '' }}>ClaimStack2.O
+                </option>
+                <option disabled value="Both" {{ old('agreed_for', $hospital_tie_ups->agreed_for??'') == 'Both' ? 'selected' : '' }}>Both
+                </option>
+            </select>
+            @error('agreed_for')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
 
         <div class="col-md-6 mt-3">
             <label for="claimstag_usage_services">ClaimStack Usage Services <span class="text-danger">*</span></label>
@@ -407,6 +424,34 @@
 </form>
 @push('scripts')
 <script>
+     $(document).ready(function() {
+
+        setNameField();
+
+        });
+
+  function setNameField() {
+        var admitted_by = $('#agreed_for').val();
+        switch (admitted_by) {
+            case 'Claims Servicing':
+                $("#claimstag_usage_services").val("Pre Use");
+                $("#claimstag_usage_services").find('option[value!="Pre Use"]').prop('disabled',true);
+                $("#claims_reimbursement_insured_services").val("Pre Use");
+                $("#claims_reimbursement_insured_services").find('option[value!="Pre Use"]').prop('disabled',true);
+                $("#cashless_claims_management_services").val("Pre Use");
+                $("#cashless_claims_management_services").find('option[value!="Pre Use"]').prop('disabled',true);
+                break;
+
+            default:
+                $("#claimstag_usage_services").val("{{ old('claimstag_usage_services', @$hospital_tie_ups->claimstag_usage_services) }}").removeAttr('disabled');
+                $("#claimstag_usage_services").find('option[value!=""]').removeAttr('disabled');
+                $("#claims_reimbursement_insured_services").val("{{ old('claims_reimbursement_insured_services', @$hospital_tie_ups->claims_reimbursement_insured_services) }}").removeAttr('disabled');
+                $("#claims_reimbursement_insured_services").find('option[value!=""]').removeAttr('disabled');
+                $("#cashless_claims_management_services").val("{{ old('cashless_claims_management_services', @$hospital_tie_ups->cashless_claims_management_services) }}").removeAttr('disabled');
+                $("#cashless_claims_management_services").find('option[value!=""]').removeAttr('disabled');
+                break;
+        }
+    }
 
 var field = "{{ old('discount_on_medical_management_cases', $hospital_tie_ups->discount_on_medical_management_cases ?? '')  }}";
 
