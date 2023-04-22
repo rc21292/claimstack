@@ -296,6 +296,7 @@ class HospitalController extends Controller
     public function update(Request $request, $id)
     {
         $hospital             = Hospital::find($id);
+        //dd($request->all());
 
         if ($request->hasfile('panfile')) {
             $panfile                    = $request->file('panfile');
@@ -431,9 +432,9 @@ class HospitalController extends Controller
             'onboarding'                                => 'required',
             'by'                                        => 'required',
             'pan'                                       => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|size:10|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/u' : [],
-            'panfile'                                   => ($request->onboarding == 'Tie Up' && empty($hospital->panfile)) ? 'required' : [],
+            //'panfile'                                   => ($request->onboarding == 'Tie Up' && empty($hospital->panfile)) ? 'required' : [],
             'rohini'                                    => 'required|size:13',
-            'rohinifile'                                => (empty($hospital->rohinifile)) ?  'required' : [],
+            //'rohinifile'                                => ($request->rohini != null && empty($hospital->rohinifile)) ?  'required' : [],
             'code'                                      => 'required|numeric|digits:3',
             'landline'                                  => 'required|numeric|digits_between:1,10',
             'email'                                     => 'required|email|min:1|max:45|unique:hospitals,email,'.$id,
@@ -451,11 +452,15 @@ class HospitalController extends Controller
             // 'linked_employee'                           => 'required',
             // 'linked_employee_id'                        => 'required',
             'tan'                                       => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|min:1|max:10' : [],
-            'tanfile'                                   => ($request->onboarding == 'Tie Up' && empty($hospital->tanfile)) ? 'required' : [],
+            //'tanfile'                                   => ($request->onboarding == 'Tie Up' && empty($hospital->tanfile)) ? 'required' : [],
             'gst'                                       => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|min:1|max:15' : [],
-            'gstfile'                                   => ($request->onboarding == 'Tie Up' && empty($hospital->gstfile)) ? 'required' : [],
+            //'gstfile'                                   => ($request->onboarding == 'Tie Up' && empty($hospital->gstfile)) ? 'required' : [],
             'owner_email'                               => ($request->onboarding == 'Tie Up') ? 'required|email|min:1|max:45' : [],
             'owner_phone'                               => ($request->onboarding == 'Tie Up') ? 'required|numeric|digits:10' : [],
+         
+            'owner_pan'                                 => 'required|alpha_num|size:10|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/u',
+            'owner_aadhar'                              => 'required|size:12',
+         
             'contact_person_firstname'                  => ($request->onboarding == 'Tie Up') ? 'required|min:1|max:15' : [],
             'contact_person_lastname'                  => ($request->onboarding == 'Tie Up') ? 'required|min:1|max:30' : [],
             'contact_person_email'                      => ($request->onboarding == 'Tie Up') ? 'required|email|min:1|max:45' : [],
@@ -468,27 +473,27 @@ class HospitalController extends Controller
             'medical_superintendent_registration_no'    => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|min:1|max:20' : [],
             'medical_superintendent_qualification'      => ($request->onboarding == 'Tie Up') ? 'required|min:1|max:30' : [],
             'pollution_clearance_certificate'           => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'pollution_clearance_certificate_file'      => ($request->onboarding == 'Tie Up' && $request->pollution_clearance_certificate != 'No' && empty($hospital->pollution_clearance_certificate_file)) ? 'required' : [],
+            //'pollution_clearance_certificate_file'      => ($request->onboarding == 'Tie Up' && $request->pollution_clearance_certificate != 'No' && empty($hospital->pollution_clearance_certificate_file)) ? 'required' : [],
             'fire_safety_clearance_certificate'         => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'fire_safety_clearance_certificate_file'    => ($request->onboarding == 'Tie Up' && $request->fire_safety_clearance_certificate != 'No' && empty($hospital->fire_safety_clearance_certificate_file)) ? 'required' : [],
+            //'fire_safety_clearance_certificate_file'    => ($request->onboarding == 'Tie Up' && $request->fire_safety_clearance_certificate != 'No' && empty($hospital->fire_safety_clearance_certificate_file)) ? 'required' : [],
             'certificate_of_incorporation'              => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'certificate_of_incorporation_file'         => ($request->onboarding == 'Tie Up' && $request->certificate_of_incorporation != 'No' && empty($hospital->certificate_of_incorporation_file)) ? 'required' : [],
+            //'certificate_of_incorporation_file'         => ($request->onboarding == 'Tie Up' && $request->certificate_of_incorporation != 'No' && empty($hospital->certificate_of_incorporation_file)) ? 'required' : [],
             'bank_name'                                 => ($request->onboarding == 'Tie Up') ? 'required|min:1|max:45' : [],
             'bank_address'                              => ($request->onboarding == 'Tie Up') ? 'required|min:1|max:80' : [],
             'cancel_cheque'                             => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'cancel_cheque_file'                      => ($request->onboarding == 'Tie Up' && $request->cancel_cheque == 'Yes' && empty($hospital->cancel_cheque_file)) ? 'required' : [],
+            //'cancel_cheque_file'                      => ($request->onboarding == 'Tie Up' && $request->cancel_cheque == 'Yes' && empty($hospital->cancel_cheque_file)) ? 'required' : [],
             'bank_account_no'                           => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|min:1|max:20' : [],
             'bank_ifs_code'                             => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|min:1|max:11' : [],
             'nabh_registration_no'                      => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|min:1|max:15' : [],
-            'nabh_registration_file'                    => ($request->onboarding == 'Tie Up' && empty($hospital->nabh_registration_file)) ? 'required' : [],
+            //'nabh_registration_file'                    => ($request->onboarding == 'Tie Up' && empty($hospital->nabh_registration_file)) ? 'required' : [],
             'nabl_registration_no'                      => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|min:1|max:15' : [],
-            'nabl_registration_file'                    => ($request->onboarding == 'Tie Up' && empty($hospital->nabl_registration_file)) ? 'required' : [],
+            //'nabl_registration_file'                    => ($request->onboarding == 'Tie Up' && empty($hospital->nabl_registration_file)) ? 'required' : [],
             'tariff_list_soc'                           => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'tariff_list_soc_file'                      => ($request->onboarding == 'Tie Up' && $request->tariff_list_soc == 'Yes' && empty($hospital->tariff_list_soc_file)) ? 'required' : [],
+            //'tariff_list_soc_file'                      => ($request->onboarding == 'Tie Up' && $request->tariff_list_soc == 'Yes' && empty($hospital->tariff_list_soc_file)) ? 'required' : [],
             'signed_mous'                               => ($request->onboarding == 'Tie Up') ? 'required' : [],
             'signed_mous_file'                          => ($request->onboarding == 'Tie Up' && $request->signed_mous == 'Yes' && empty($hospital->signed_mous_file)) ? 'required' : [],
             'other_documents'                           => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'other_documents_file'                      => ($request->onboarding == 'Tie Up' && $request->other_documents == 'Yes' && empty($hospital->other_documents_file)) ? 'required' : [],
+            //'other_documents_file'                      => ($request->onboarding == 'Tie Up' && $request->other_documents == 'Yes' && empty($hospital->other_documents_file)) ? 'required' : [],
             'iso_status'                                => ($request->onboarding == 'Tie Up') ? 'required' : [],
             'iso_status_file'                           => ($request->onboarding == 'Tie Up' && $request->iso_status == 'Yes' && empty($hospital->iso_status_file)) ? 'required' : [],
             'hrms_software'                             => ($request->onboarding == 'Tie Up') ? 'required' : [],
@@ -541,6 +546,8 @@ class HospitalController extends Controller
             'other_documents.required'                          => 'Please Enter Other Documents',
             'hrms_software.required'                            => 'Please Select Hrms Software',
             'iso_status.required'                               => 'Please Enter Iso Status',
+            'owner_pan.required'                                => 'Please Enter Owner Pan No.',
+            'owner_aadhar'                                      => 'Please Enter Valid Owner adhaar no.',
         ];
 
         $this->validate($request, $rules, $messages);
@@ -574,6 +581,8 @@ class HospitalController extends Controller
             'gst'                                       => $request->gst,
             'owner_email'                               => $request->owner_email,
             'owner_phone'                               => $request->owner_phone,
+            'owner_pan'                                 => $request->owner_pan,
+            'owner_aadhar'                              => $request->owner_aadhar,
             'contact_person_firstname'                  => $request->contact_person_firstname,
             'contact_person_lastname'                   => $request->contact_person_lastname,
             'contact_person_email'                      => $request->contact_person_email,
@@ -665,7 +674,8 @@ class HospitalController extends Controller
             'comments_on_invoice_discounting'               => ($hospital->onboarding == 'Tie Up' && $request->lending_finance_company_agreement == 'Yes') ? 'required|max:40' : [],
             'hospital_management_system_installation'       => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
             'hms_services'                                  => ($hospital->onboarding == 'Tie Up' && $request->hospital_management_system_installation == 'Yes') ? 'required' : [],
-            'hms_charges'                                   => ($hospital->onboarding == 'Tie Up' && $request->hospital_management_system_installation == 'Yes') ? 'required|numeric' : []
+            'hms_charges'                                   => ($hospital->onboarding == 'Tie Up' && $request->hospital_management_system_installation == 'Yes') ? 'required|numeric' : [],
+            'agreed_for'                                    =>'required'
         ];
 
         $messages = [
@@ -729,7 +739,8 @@ class HospitalController extends Controller
                 'hms_services'                                      => $request->hms_services,
                 'hospital_management_system_installation'           => $request->hospital_management_system_installation,
                 'hms_charges'                                       => $request->hms_charges,
-                'comments'                                          => $request->comments
+                'comments'                                          => $request->comments,
+                'agreed_for'                                        => $request->agreed_for,
             ]);
 
         HospitalTieUp::where('hospital_id', $id)->update([
@@ -925,45 +936,45 @@ class HospitalController extends Controller
         }
         $rules = [
             'pharmacy'                          => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
-            'pharmacy_file'                     => ($hospital->onboarding == 'Tie Up' && $request->pharmacy == 'Yes' && empty($facility->pharmacy_file)) ? 'required' : [],
+            //'pharmacy_file'                     => ($hospital->onboarding == 'Tie Up' && $request->pharmacy == 'Yes' && empty($facility->pharmacy_file)) ? 'required' : [],
             'lab'                               => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
-            'lab_file'                          => ($hospital->onboarding == 'Tie Up' && $request->lab == 'Yes' && empty($facility->lab_file)) ? 'required' : [],
+            //'lab_file'                          => ($hospital->onboarding == 'Tie Up' && $request->lab == 'Yes' && empty($facility->lab_file)) ? 'required' : [],
             'ambulance'                         => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
-            'ambulance_file'                    => ($hospital->onboarding == 'Tie Up' && $request->ambulance == 'Yes' && empty($facility->ambulance_file)) ? 'required' : [],
+            //'ambulance_file'                    => ($hospital->onboarding == 'Tie Up' && $request->ambulance == 'Yes' && empty($facility->ambulance_file)) ? 'required' : [],
             'operation_theatre'                 => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
-            'operation_theatre_file'            => ($hospital->onboarding == 'Tie Up' && $request->operation_theatre == 'Yes' && empty($facility->operation_theatre_file)) ? 'required' : [],
+            //'operation_theatre_file'            => ($hospital->onboarding == 'Tie Up' && $request->operation_theatre == 'Yes' && empty($facility->operation_theatre_file)) ? 'required' : [],
             'icu'                               => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
-            'icu_file'                          => ($hospital->onboarding == 'Tie Up' && $request->icu == 'Yes' && empty($facility->icu_file)) ? 'required' : [],
+            //'icu_file'                          => ($hospital->onboarding == 'Tie Up' && $request->icu == 'Yes' && empty($facility->icu_file)) ? 'required' : [],
             'iccu'                              => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
-            'iccu_file'                         => ($hospital->onboarding == 'Tie Up' && $request->iccu == 'Yes' && empty($facility->iccu_file)) ? 'required' : [],
+            //'iccu_file'                         => ($hospital->onboarding == 'Tie Up' && $request->iccu == 'Yes' && empty($facility->iccu_file)) ? 'required' : [],
             'nicu'                              => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
-            'nicu_file'                         => ($hospital->onboarding == 'Tie Up' && $request->nicu == 'Yes' && empty($facility->nicu_file)) ? 'required' : [],
+            //'nicu_file'                         => ($hospital->onboarding == 'Tie Up' && $request->nicu == 'Yes' && empty($facility->nicu_file)) ? 'required' : [],
             'csc_sterilization'                 => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
-            'csc_sterilization_file'            => ($hospital->onboarding == 'Tie Up' && $request->csc_sterilization == 'Yes' && empty($facility->csc_sterilization_file)) ? 'required' : [],
+            //'csc_sterilization_file'            => ($hospital->onboarding == 'Tie Up' && $request->csc_sterilization == 'Yes' && empty($facility->csc_sterilization_file)) ? 'required' : [],
             'centralized_gas_ons'               => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
-            'centralized_gas_ons_file'          => ($hospital->onboarding == 'Tie Up' && $request->centralized_gas_ons == 'Yes' && empty($facility->centralized_gas_ons_file)) ? 'required' : [],
+            //'centralized_gas_ons_file'          => ($hospital->onboarding == 'Tie Up' && $request->centralized_gas_ons == 'Yes' && empty($facility->centralized_gas_ons_file)) ? 'required' : [],
             'centralized_ac'                    => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
-            'centralized_ac_file'               => ($hospital->onboarding == 'Tie Up' && $request->centralized_ac == 'Yes' && empty($facility->centralized_ac_file)) ? 'required' : [],
+            //'centralized_ac_file'               => ($hospital->onboarding == 'Tie Up' && $request->centralized_ac == 'Yes' && empty($facility->centralized_ac_file)) ? 'required' : [],
             'kitchen'                           => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
-            'kitchen_file'                      => ($hospital->onboarding == 'Tie Up' && $request->kitchen == 'Yes' && empty($facility->kitchen_file)) ? 'required' : [],
+            //'kitchen_file'                      => ($hospital->onboarding == 'Tie Up' && $request->kitchen == 'Yes' && empty($facility->kitchen_file)) ? 'required' : [],
             'usg_machine'                       => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
-            'usg_machine_file'                  => ($hospital->onboarding == 'Tie Up' && $request->usg_machine == 'Yes' && empty($facility->usg_machine_file)) ? 'required' : [],
+            //'usg_machine_file'                  => ($hospital->onboarding == 'Tie Up' && $request->usg_machine == 'Yes' && empty($facility->usg_machine_file)) ? 'required' : [],
             'digital_xray'                      => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
-            'digital_xray_file'                 => ($hospital->onboarding == 'Tie Up' && $request->digital_xray == 'Yes' && empty($facility->digital_xray_file)) ? 'required' : [],
+            //'digital_xray_file'                 => ($hospital->onboarding == 'Tie Up' && $request->digital_xray == 'Yes' && empty($facility->digital_xray_file)) ? 'required' : [],
             'ct'                                => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
-            'ct_file'                           => ($hospital->onboarding == 'Tie Up' && $request->ct == 'Yes' && empty($facility->ct_file)) ? 'required' : [],
+            //'ct_file'                           => ($hospital->onboarding == 'Tie Up' && $request->ct == 'Yes' && empty($facility->ct_file)) ? 'required' : [],
             'mri'                               => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
-            'mri_file'                          => ($hospital->onboarding == 'Tie Up' && $request->mri == 'Yes' && empty($facility->mri_file)) ? 'required' : [],
+           // 'mri_file'                          => ($hospital->onboarding == 'Tie Up' && $request->mri == 'Yes' && empty($facility->mri_file)) ? 'required' : [],
             'pet_scan'                          => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
-            'pet_scan_file'                     => ($hospital->onboarding == 'Tie Up' && $request->pet_scan == 'Yes' && empty($facility->pet_scan_file)) ? 'required' : [],
+            //'pet_scan_file'                     => ($hospital->onboarding == 'Tie Up' && $request->pet_scan == 'Yes' && empty($facility->pet_scan_file)) ? 'required' : [],
             'organ_transplant_unit'             => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
-            'organ_transplant_unit_file'        => ($hospital->onboarding == 'Tie Up' && $request->organ_transplant_unit == 'Yes' && empty($facility->organ_transplant_unit_file)) ? 'required' : [],
+            //'organ_transplant_unit_file'        => ($hospital->onboarding == 'Tie Up' && $request->organ_transplant_unit == 'Yes' && empty($facility->organ_transplant_unit_file)) ? 'required' : [],
             'burn_unit'                         => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
-            'burn_unit_file'                    => ($hospital->onboarding == 'Tie Up' && $request->burn_unit == 'Yes' && empty($facility->burn_unit_file)) ? 'required' : [],
+            //'burn_unit_file'                    => ($hospital->onboarding == 'Tie Up' && $request->burn_unit == 'Yes' && empty($facility->burn_unit_file)) ? 'required' : [],
             'dialysis_unit'                     => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
-            'dialysis_unit_file'                => ($hospital->onboarding == 'Tie Up' && $request->dialysis_unit == 'Yes' && empty($facility->dialysis_unit_file)) ? 'required' : [],
+            //'dialysis_unit_file'                => ($hospital->onboarding == 'Tie Up' && $request->dialysis_unit == 'Yes' && empty($facility->dialysis_unit_file)) ? 'required' : [],
             'blood_bank'                        => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
-            'blood_bank_file'                   => ($hospital->onboarding == 'Tie Up' && $request->blood_bank == 'Yes' && empty($facility->blood_bank_file)) ? 'required' : []
+            //'blood_bank_file'                   => ($hospital->onboarding == 'Tie Up' && $request->blood_bank == 'Yes' && empty($facility->blood_bank_file)) ? 'required' : []
         ];
 
         $messages = [
@@ -1115,13 +1126,13 @@ class HospitalController extends Controller
             'no_ambulance_normal'               => ($hospital->onboarding == 'Tie Up') ? 'required|numeric|digits_between:1,3' : [],
             'no_ambulance_acls'                 => ($hospital->onboarding == 'Tie Up') ? 'required|numeric|digits_between:1,3' : [],
             'nabh_status'                       => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
-            'nabh_status_file'                  => ($hospital->onboarding == 'Tie Up' && $request->nabh_status != 'NA'  && empty($infrastructure->nabh_status_file)) ? 'required' : [],
+            //'nabh_status_file'                  => ($hospital->onboarding == 'Tie Up' && $request->nabh_status != 'NA'  && empty($infrastructure->nabh_status_file)) ? 'required' : [],
             'jci_status'                        => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
-            'jci_status_file'                   => ($hospital->onboarding == 'Tie Up' && $request->jci_status != 'No' && empty($infrastructure->jci_status_file)) ? 'required' : [],
+           // 'jci_status_file'                   => ($hospital->onboarding == 'Tie Up' && $request->jci_status != 'No' && empty($infrastructure->jci_status_file)) ? 'required' : [],
             'nqac_nhsrc_status'                 => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
-            'nqac_nhsrc_status_file'            => ($hospital->onboarding == 'Tie Up' && $request->nqac_nhsrc_status != 'NA' && empty($infrastructure->nqac_nhsrc_status_file)) ? 'required' : [],
+            //'nqac_nhsrc_status_file'            => ($hospital->onboarding == 'Tie Up' && $request->nqac_nhsrc_status != 'NA' && empty($infrastructure->nqac_nhsrc_status_file)) ? 'required' : [],
             'hippa_status'                      => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
-            'hippa_status_file'                 => ($hospital->onboarding == 'Tie Up' && $request->hippa_status != 'No' && empty($infrastructure->hippa_status_file)) ? 'required' : []
+            //'hippa_status_file'                 => ($hospital->onboarding == 'Tie Up' && $request->hippa_status != 'No' && empty($infrastructure->hippa_status_file)) ? 'required' : []
         ];
 
         $messages = [
