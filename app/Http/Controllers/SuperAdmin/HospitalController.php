@@ -1638,6 +1638,7 @@ class HospitalController extends Controller
 
                 break;
             case 'hospital_certificates':
+
                 $rules = [
                     'hospital_registration_certificate'           => empty($document->hospital_registration_certificate) ? 'required' : [],
                     'hospital_rohini_certificate'    => empty($document->hospital_rohini_certificate) ? 'required' : [],
@@ -1647,6 +1648,8 @@ class HospitalController extends Controller
                     'hospital_registration_certificate.required'            => 'Please upload Hospital Registration certiticate',
                     'hospital_rohini_certificate.required'              => 'Please upload Hospital Rohini Certificate'
                 ];
+
+                $this->validate($request, $rules, $messages);
 
                 if ($request->hasfile('hospital_registration_certificate')) {
                     $hospital_registration_certificate = $request->file('hospital_registration_certificate');
