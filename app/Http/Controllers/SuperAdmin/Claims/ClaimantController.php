@@ -235,6 +235,8 @@ class ClaimantController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
+        
         $claim                                = Claim::find($request->claim_id);
         $claimant                             = Claimant::find($id);
 
