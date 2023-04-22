@@ -183,6 +183,7 @@ class ClaimantController extends Controller
             'ac_no'                              => $request->ac_no,
             'ifs_code'                           => $request->ifs_code,
             'comments'                           => $request->comments,
+            'status'                             => 0
         ]);
 
         Claimant::where('id', $claimant->id)->update([
