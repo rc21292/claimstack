@@ -62,6 +62,7 @@ class Borrower extends Model
         'co_borrower_other_documents',
         'borrower_estimated_amount',
         'co_borrower_comments',
+        'status'
 
     ];
 

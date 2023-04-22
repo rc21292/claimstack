@@ -85,6 +85,7 @@ class Hospital extends Authenticatable
         'other_documents_file',
         'hrms_software',
         'iso_status',
+        'status',
         'comments',
     ];
 

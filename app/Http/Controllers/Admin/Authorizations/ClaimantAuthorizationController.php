@@ -33,7 +33,13 @@ class ClaimantAuthorizationController extends Controller
             $claimants->orWhere('uid', 'like','%' . $filter_search . '%');
         }
 
-        $claimants      = $claimants->where('status', 0)->orderBy('id', 'desc')->paginate(20);
+        // $claimants      = $claimants->where('status', 0)->orderBy('id', 'desc')->paginate(20);
+
+        $claimants = claimants::where('status', 0)->with(array('hospital' => function($query)
+        {
+            $query->where('linked_employee', auth('admin')->user()->id)
+                    ->orWhere('assigned_employee', auth('admin')->user()->id);
+        }))->orderBy('id', 'DESC')->paginate(20);
 
         foreach ($claimants as $key => $claimant) {
            $employee = $this->getEmployeesById($claimant->hospital->linked_employee);

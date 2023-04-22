@@ -49,6 +49,7 @@ class Claimant extends Authenticatable
         'bank_address',
         'ac_no',
         'ifs_code',
+        'status',
         'comments',
     ];
 
