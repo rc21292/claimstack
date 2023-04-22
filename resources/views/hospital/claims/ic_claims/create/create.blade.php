@@ -168,7 +168,7 @@
                                                 <option value="">Select IC</option>
                                                 @foreach ($insurers as $insurer)
                                                     <option value="{{ $insurer->id }}"
-                                                        {{ old('insurance_co_name', $claimant->claim->policy->insurer_id) == $insurer->id ? 'selected' : 'disabled' }}>
+                                                        {{ old('insurance_co_name', @$claimant->claim->policy->insurer_id) == $insurer->id ? 'selected' : 'disabled' }}>
                                                         {{ $insurer->name }}
                                                     </option>
                                                 @endforeach
@@ -183,7 +183,7 @@
                                             <label for="policy_no">Policy No. </label>
                                             <input type="text" class="form-control" id="policy_no" name="policy_no"
                                                 maxlength="16" placeholder="Enter Policy No."
-                                                value="{{ old('policy_no', $claimant->claim->policy->policy_no) }}" readonly>
+                                                value="{{ old('policy_no', @$claimant->claim->policy->policy_no) }}" readonly>
                                             @error('policy_no')
                                                 <span id="policy-id-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
