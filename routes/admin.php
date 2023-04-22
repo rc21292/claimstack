@@ -22,6 +22,9 @@ use App\Http\Controllers\Admin\Claims\DocumentReimbursementController;
 use App\Http\Controllers\Admin\Claims\LendingStatusController;
 use App\Http\Controllers\Admin\Claims\ICClaimStatusController;
 use App\Http\Controllers\Admin\UtilityController;
+use App\Http\Controllers\Admin\Authorizations\HospitalAuthorizationController;
+use App\Http\Controllers\Admin\Authorizations\ClaimantAuthorizationController;
+use App\Http\Controllers\Admin\Authorizations\BorrowerAuthorizationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -256,6 +259,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     */
 
     Route::resource('icclaim-status', ICClaimStatusController::class);
+
+        /*
+    |--------------------------------------------------------------------------
+    | Authorization Rights Route
+    |--------------------------------------------------------------------------
+    */
+
+    Route::resource('hospital-authorizations', HospitalAuthorizationController::class);
+    Route::resource('claimant-authorizations', ClaimantAuthorizationController::class);
+    Route::resource('borrower-authorizations', BorrowerAuthorizationController::class);
+    
 
     /*
     |--------------------------------------------------------------------------

@@ -293,10 +293,13 @@
                 <div class="collapse" id="authorization">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="javascript:Void(0)">Hospital Authorization</a>
+                            <a href="{{ route('admin.hospital-authorizations.index') }}">Hospital Authorization</a>
                         </li>
                         <li>
-                            <a href="javascript:Void(0)">Associate Partner Authorization</a>
+                            <a href="{{ route('admin.claimant-authorizations.index') }}">Claimant Authorization</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.borrower-authorizations.index') }}">Borrower Authorization</a>
                         </li>
                     </ul>
                 </div>
