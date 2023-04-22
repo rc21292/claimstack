@@ -558,19 +558,19 @@
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
                             placeholder="Blood Bank *">
-                        @isset($hospital_document->blood_banks)
-                            <a href="{{ asset('storage/uploads/hospital/documents/' . $id . '/' . $hospital_document->blood_banks) }}"
+                        @isset($hospital_document->blood_bank)
+                            <a href="{{ asset('storage/uploads/hospital/documents/' . $id . '/' . $hospital_document->blood_bank) }}"
                                 download="" class="btn btn-warning download-label"><i
                                     class="mdi mdi-download"></i></a>
                         @endisset
-                        <input type="file" name="blood_banks"
-                            id="blood_banks" hidden
+                        <input type="file" name="blood_bank"
+                            id="blood_bank_upload" hidden
                             onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                        <label for="blood_banks"
+                        <label for="blood_bank_upload"
                             class="btn btn-primary upload-label"><i
                                 class="mdi mdi-upload"></i></label>
                     </div>
-                    @error('blood_banks')
+                    @error('blood_bank')
                         <span id="name-error"
                             class="error invalid-feedback">{{ $message }}</span>
                     @enderror

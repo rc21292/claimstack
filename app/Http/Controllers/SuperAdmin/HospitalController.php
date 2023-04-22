@@ -1590,26 +1590,26 @@ class HospitalController extends Controller
                     ]);
                 }
 
-                if ($request->hasfile('blood_banks')) {
-                    $blood_banks = $request->file('blood_banks');
-                    $name = $blood_banks->getClientOriginalName();
-                    $blood_banks->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
+                if ($request->hasfile('blood_bank')) {
+                    $blood_bank = $request->file('blood_bank');
+                    $name = $blood_bank->getClientOriginalName();
+                    $blood_bank->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
 
-                    if (!empty($document->blood_banks)) {
-                        $exists = HospitalDocumentHistory::where(['file_name' => 'blood_banks', 'hospital_id' => $id])->exists();
+                    if (!empty($document->blood_bank)) {
+                        $exists = HospitalDocumentHistory::where(['file_name' => 'blood_bank', 'hospital_id' => $id])->exists();
                         if (!$exists) {
                             $file_id = 0;
                         }else{
-                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'blood_banks', 'hospital_id' => $id])->latest('id')->first();
+                            $file_id1 =  HospitalDocumentHistory::where(['file_name' => 'blood_bank', 'hospital_id' => $id])->latest('id')->first();
                             $file_id = $file_id1->file_id;
                         }
                         HospitalDocumentHistory::insert(
-                            ['file_name' => 'blood_banks', 'file_path' => $document->blood_banks, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                            ['file_name' => 'blood_bank', 'file_path' => $document->blood_bank, 'hospital_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
                         );
                     }
 
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'blood_banks' =>  $name
+                        'blood_bank' =>  $name
                     ]);
                 }
 

@@ -1232,12 +1232,12 @@ class HospitalController extends Controller
                     ]);
                 }
 
-                if ($request->hasfile('blood_banks')) {
-                    $file_data                    = $request->file('blood_banks');
+                if ($request->hasfile('blood_bank')) {
+                    $file_data                    = $request->file('blood_bank');
                     $name                       = $file_data->getClientOriginalName();
                     $file_data->storeAs('uploads/hospital/documents/' . $id . '/', $name, 'public');
                     HospitalDocument::where('hospital_id', $id)->update([
-                        'blood_banks'               =>  $name
+                        'blood_bank'               =>  $name
                     ]);
                 }
 
