@@ -34,7 +34,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Hospital Cancel Cheque*">
+                            placeholder="Hospital Cancel Cheque">
                         @isset($hospital_document->hospital_cancel_cheque)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $id . '/' . $hospital_document->hospital_cancel_cheque) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -101,7 +101,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Hospital Other Documents *">
+                            placeholder="Hospital Other Documents ">
                         @isset($hospital_document->hospital_other_documents)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $id . '/' . $hospital_document->hospital_other_documents) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -144,7 +144,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" readonly class="form-control"
-                            placeholder="Pharmacy*">
+                            placeholder="Pharmacy">
                         @isset($hospital_document->pharmacy)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $id . '/' . $hospital_document->pharmacy) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -165,7 +165,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Lab*">
+                            placeholder="Lab">
                         @isset($hospital_document->lab)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $id . '/' . $hospital_document->lab) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -188,7 +188,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Ambulance *">
+                            placeholder="Ambulance ">
                         @isset($hospital_document->ambulance)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $id . '/' . $hospital_document->ambulance) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -211,7 +211,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Operation Theatre*">
+                            placeholder="Operation Theatre">
                         @isset($hospital_document->operation_theatre)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $id . '/' . $hospital_document->operation_theatre) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -232,7 +232,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="ICU *">
+                            placeholder="ICU ">
                         @isset($hospital_document->icu)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $id . '/' . $hospital_document->icu) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -254,7 +254,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="ICCU *">
+                            placeholder="ICCU ">
                         @isset($hospital_document->iccu)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $id . '/' . $hospital_document->iccu) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -276,7 +276,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="NICU *">
+                            placeholder="NICU ">
                         @isset($hospital_document->nicu)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $id . '/' . $hospital_document->nicu) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -292,13 +292,12 @@
                     @error('nicu')
                         <span id="name-error"
                             class="error invalid-feedback">{{ $message }}</span>
-                    @enderror
-                </div>
+                    @enderror                </div>
 
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="CSC (Sterilization) *">
+                            placeholder="CSC (Sterilization) ">
                         @isset($hospital_document->csc_sterilization)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $id . '/' . $hospital_document->csc_sterilization) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -320,7 +319,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Centralized-Gas (ONS) *">
+                            placeholder="Centralized-Gas (ONS) ">
                         @isset($hospital_document->centralized_gas_ons)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $id . '/' . $hospital_document->centralized_gas_ons) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -342,7 +341,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Centralized-AC *">
+                            placeholder="Centralized-AC ">
                         @isset($hospital_document->centralized_ac)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $id . '/' . $hospital_document->centralized_ac) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -364,7 +363,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Kitchen *">
+                            placeholder="Kitchen ">
                         @isset($hospital_document->kitchen)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $id . '/' . $hospital_document->kitchen) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -386,7 +385,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="USG Machine *">
+                            placeholder="USG Machine ">
                         @isset($hospital_document->usg_machine)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $id . '/' . $hospital_document->usg_machine) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -408,7 +407,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Digital X-Ray *">
+                            placeholder="Digital X-Ray ">
                         @isset($hospital_document->digital_x_ray)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $id . '/' . $hospital_document->digital_x_ray) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -430,7 +429,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="CT *">
+                            placeholder="CT ">
                         @isset($hospital_document->ct)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $id . '/' . $hospital_document->ct) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -452,7 +451,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="MRI *">
+                            placeholder="MRI ">
                         @isset($hospital_document->mri)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $id . '/' . $hospital_document->mri) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -474,7 +473,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="PET Scan *">
+                            placeholder="PET Scan ">
                         @isset($hospital_document->pet_scan)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $id . '/' . $hospital_document->pet_scan) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -496,7 +495,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Organ Transplant Unit *">
+                            placeholder="Organ Transplant Unit ">
                         @isset($hospital_document->organ_transplant_unit)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $id . '/' . $hospital_document->organ_transplant_unit) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -518,7 +517,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Burn Unit *">
+                            placeholder="Burn Unit ">
                         @isset($hospital_document->burn_unit)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $id . '/' . $hospital_document->burn_unit) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -540,7 +539,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Dialysis Unit *">
+                            placeholder="Dialysis Unit ">
                         <input type="file" name="dialysis_unit"
                             id="hi_dialysis_unit" hidden
                             onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
@@ -557,7 +556,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Blood Bank *">
+                            placeholder="Blood Bank ">
                         @isset($hospital_document->blood_bank)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $id . '/' . $hospital_document->blood_bank) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -579,7 +578,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Other *">
+                            placeholder="Other ">
                         @isset($hospital_document->other)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $id . '/' . $hospital_document->other) }}"
                                 download="" class="btn btn-warning download-label"><i
@@ -974,7 +973,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Doctor's Registration Certificate (Other)*">
+                            placeholder="Doctor's Registration Certificate (Other)">
                         @isset($hospital_document->doctors_registration_certificate_other)
                             <a href="{{ asset('storage/uploads/hospital/documents/' . $id . '/' . $hospital_document->doctors_registration_certificate_other) }}"
                                 download="" class="btn btn-warning download-label"><i

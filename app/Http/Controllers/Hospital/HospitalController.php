@@ -10,6 +10,7 @@ use App\Models\HospitalFacility;
 use App\Models\HospitalInfrastructure;
 use App\Models\HospitalDepartment;
 use App\Models\HospitalTieUp;
+use App\Models\HospitalDocumentHistory;
 use App\Models\User;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ImportHospital;

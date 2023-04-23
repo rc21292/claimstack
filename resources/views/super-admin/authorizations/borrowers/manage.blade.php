@@ -60,7 +60,7 @@ use Carbon\Carbon;
                                                 <td>{{ $startDate->diff($endDate)->format('%D : %H:%I'); }}</td>
                                                 <td class="text-center">
                                                    <div class="btn-group">
-                                                        <a class="btn btn-primary" href="{{ route('super-admin.borrower-authorizations.show', $borrower->claim->id) }}">
+                                                        <a class="btn btn-primary" href="{{ route('super-admin.borrower-authorizations.show', $borrower->id) }}">
                                                         <i class="mdi mdi-eye"></i> </a>
 
                                                         <button type="button" title=" Authorize Hospital ID" class="btn btn-danger"  onclick="confirmDelete({{ $borrower->id }})"><i class="uil-shield-check"></i></button>
