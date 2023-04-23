@@ -391,7 +391,7 @@ class ClaimController extends Controller
 
             if ($claimant) {
                 $claimant = Claimant::where('claim_id', $claim->id)->value('id');
-                $claims[$key]->claimant = $claim->id;
+                $claims[$key]->claimant = $claimant;
             }else{
                 $claims[$key]->claimant = '';
             }

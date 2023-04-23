@@ -391,7 +391,7 @@ class ClaimController extends Controller
 
             if ($claimant) {
                 $claimant = Claimant::where('claim_id', $claim->id)->value('id');
-                $claims[$key]->claimant = $claim->id;
+                $claims[$key]->claimant = $claimant;
             }else{
                 $claims[$key]->claimant = '';
             }
@@ -545,7 +545,7 @@ class ClaimController extends Controller
 
         $claim = Claim::create([
             'patient_id'                => $request->patient_id,
-            'hospital_id'                => $hospital_id,
+            'hospital_id'               => $hospital_id,
             'admission_date'            => $request->admission_date,
             'admission_time'            => $request->admission_time,
             'abha_id'                   => $request->abha_id,
@@ -987,7 +987,6 @@ class ClaimController extends Controller
 
         $claim = Claim::where('id', $id)->update([
             'patient_id'                            => $request->patient_id,
-            'hospital_id'                            => $request->hospital_id,
             'admission_date'                        => $request->admission_date,
             'admission_time'                        => $request->admission_time,
             'abha_id'                               => $request->abha_id,
