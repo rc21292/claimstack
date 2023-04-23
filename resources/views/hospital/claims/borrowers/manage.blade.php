@@ -69,7 +69,7 @@
                                                             </span>
                                                         </button>
                                                         <ul class="dropdown-menu">
-                                                            <li><a class="dropdown-item" href="{{ route('hospital.borrowers.edit', @$borrower->claim->id) }}">
+                                                            <li><a class="dropdown-item" @if(!$borrower->status) style="pointer-events: none; display: inline-block;" @endif href="{{ route('hospital.borrowers.edit', @$borrower->claim->id) }}">
                                                                 <i class="mdi mdi-pencil"></i> Edit Borrower</a>
                                                             </li>
 

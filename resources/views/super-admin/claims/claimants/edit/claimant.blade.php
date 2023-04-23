@@ -27,52 +27,6 @@
         <!-- start page content -->
         <div class="row">
             <div class="col-12">
-                <ul class="nav nav-pills  bg-nav-pills  nav-justified mb-3">
-                    <li class="nav-item">
-                        <a href="{{ route('super-admin.claimants.edit', $claimant->id)}}" aria-expanded="true" class="nav-link rounded-0 active">
-                            <i class="mdi mdi-home-variant d-md-none d-block"></i>
-                            <span class="d-none d-md-block">Claimant ID Creation / Intimation</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('super-admin.borrowers.show', $claimant->id)}}" aria-expanded="false"
-                            class="nav-link rounded-0">
-                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
-                            <span class="d-none d-md-block">Borrower ID Creation</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="{{ route('super-admin.lending-status.show', $claimant->id) }}" aria-expanded="false"
-                            class="nav-link rounded-0">
-                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
-                            <span class="d-none d-md-block">Lending Status</span>
-                        </a>
-                    </li>
-                    
-                    <li class="nav-item">
-                        <a href="{{ route('super-admin.assessment-status.show', $claimant->id) }}" aria-expanded="false"
-                            class="nav-link rounded-0">
-                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
-                            <span class="d-none d-md-block">Assessment Status</span>
-                        </a>
-                    </li>
-                    
-                    <li class="nav-item">
-                        <a href="{{ route('super-admin.discharge-status.show', $claimant->id) }}" aria-expanded="false"
-                            class="nav-link rounded-0">
-                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
-                            <span class="d-none d-md-block">Discharge Status</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('super-admin.claim-processing.show', $claimant->id) }}" aria-expanded="false"
-                            class="nav-link rounded-0">
-                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
-                            <span class="d-none d-md-block">Claim Processing</span>
-                        </a>
-                    </li>
-                </ul>
 
                 <div class="tab-content">
                     <div class="tab-pane show active" id="claimant_tab">
