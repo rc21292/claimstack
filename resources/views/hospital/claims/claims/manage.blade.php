@@ -71,7 +71,7 @@
                                                                 <i class="mdi mdi-pencil"></i> Edit Claim</a>
                                                             </li>
                                                             @if($claim->claimant && !empty($claim->claimant))
-                                                            <li><a class="dropdown-item" href="{{ route('hospital.claimants.edit', $claim->claimant) }}">
+                                                            <li><a class="dropdown-item" @if(!$claim->claimant_status) style="pointer-events: none; display: inline-block;" @endif href="{{ route('hospital.claimants.edit', $claim->claimant) }}">
                                                                 <i class="mdi mdi-pencil"></i> Claimant</a></li>
                                                             @else
                                                             <li><a class="dropdown-item" href="{{ route('hospital.claimants.create', ['claim_id' => $claim->id]) }}">
@@ -79,7 +79,7 @@
                                                             @endif
 
                                                             @if($claim->borrower && !empty($claim->borrower))
-                                                            <li><a class="dropdown-item" href="{{ route('hospital.borrowers.edit', $claim->id) }}">
+                                                            <li><a class="dropdown-item" @if(!$claim->borrower_status) style="pointer-events: none; display: inline-block;" @endif  href="{{ route('hospital.borrowers.edit', $claim->id) }}">
                                                                 <i class="mdi mdi-pencil"></i> Borrower</a>
                                                             </li>
                                                             @else

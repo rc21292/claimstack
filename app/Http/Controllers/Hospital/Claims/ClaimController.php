@@ -391,14 +391,18 @@ class ClaimController extends Controller
 
             if ($claimant) {
                 $claimant = Claimant::where('claim_id', $claim->id)->value('id');
+                $claimant_status = Claimant::where('claim_id', $claim->id)->value('status');
                 $claims[$key]->claimant = $claimant;
+                $claims[$key]->claimant_status = $claimant_status;
             }else{
                 $claims[$key]->claimant = '';
             }
 
             if ($borrower) {
                 $borrower = Borrower::where('claim_id', $claim->id)->value('id');
+                $borrower_status = Borrower::where('claim_id', $claim->id)->value('status');
                 $claims[$key]->borrower = $claim->id;
+                $claims[$key]->borrower_status = $borrower_status;
             }else{
                 $claims[$key]->borrower = '';
             }
@@ -425,6 +429,8 @@ class ClaimController extends Controller
             }
 
         }
+
+        // echo "<pre>";print_r($claims->toArray());"</pre>";exit;
 
         return view('hospital.claims.claims.manage',  compact('claims', 'filter_search'));
     }
