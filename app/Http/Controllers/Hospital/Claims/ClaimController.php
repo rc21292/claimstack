@@ -426,6 +426,8 @@ class ClaimController extends Controller
 
         }
 
+        echo "<pre>";print_r($claims);"</pre>";exit;
+
         return view('hospital.claims.claims.manage',  compact('claims', 'filter_search'));
     }
 
