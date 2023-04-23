@@ -52,7 +52,7 @@ use Carbon\Carbon;
                                             <th scope="row">{{ $claimant->uid }}</th>
                                             <td>{{ $claimant->firstname }} {{ $claimant->middlename }} {{ $claimant->lastname }}</td>
                                             <td>{{ $claimant->created_at }}</td>
-                                            <td>{{ $claimant->linked_employee_data->firstname}} {{ $claimant->linked_employee_data->firstname}} ({{ $claimant->linked_employee_data->employee_code}})</td>
+                                            <td>{{ $claimant->linked_employee_data->firstname}} {{ $claimant->linked_employee_data->lastname}} ({{ $claimant->linked_employee_data->employee_code}})</td>
                                             @php
                                             $startDate = Carbon::parse($claimant->created_at);
                                             $endDate = Carbon::parse(Carbon::now()->toDateTimeString());
