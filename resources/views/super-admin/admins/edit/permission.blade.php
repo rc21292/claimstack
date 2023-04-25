@@ -58,7 +58,7 @@
                         <input class="form-check-input me-1 float-end lcr" name="permission[]" type="checkbox" {{ in_array($permission->name, $admin->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
                         {{ $permission->name }}
                     </li>
-                    @if($loop->iteration == 19)
+                    @if($loop->iteration == 20)
                         @break
                     @endif
                     @endforeach
@@ -86,14 +86,14 @@
                         <button type="button" class="btn btn-sm btn-danger  me-1 float-end" onclick="$('.uer').prop('checked', false);">Deselect All</button>
                     </li>
                     @foreach ($permissions as $permission)
-                    @if($loop->iteration < 20)
+                    @if($loop->iteration < 21)
                         @continue
                     @endif
                     <li class="list-group-item">
                         <input class="form-check-input me-1 float-end uer" name="permission[]" type="checkbox" {{ in_array($permission->name, $admin->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
                         {{ $permission->name }}
                     </li>
-                    @if($loop->iteration == 34)
+                    @if($loop->iteration == 36)
                         @break
                     @endif
                     @endforeach
@@ -121,14 +121,14 @@
                         <button type="button" class="btn btn-sm btn-danger  me-1 float-end" onclick="$('.cr').prop('checked', false);">Deselect All</button>
                     </li>
                     @foreach ($permissions as $permission)
-                    @if($loop->iteration < 35)
+                    @if($loop->iteration < 37)
                         @continue
                     @endif
                     <li class="list-group-item">
                         <input class="form-check-input me-1 float-end cr" name="permission[]" type="checkbox" {{ in_array($permission->name, $admin->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
                         {{ $permission->name }}
                     </li>
-                    @if($loop->iteration == 39)
+                    @if($loop->iteration == 40)
                         @break
                     @endif
                     @endforeach
@@ -156,14 +156,14 @@
                         <button type="button" class="btn btn-sm btn-danger  me-1 float-end" onclick="$('.ar').prop('checked', false);">Deselect All</button>
                     </li>
                     @foreach ($permissions as $permission)
-                    @if($loop->iteration < 40)
+                    @if($loop->iteration < 41)
                         @continue
                     @endif
                     <li class="list-group-item">
                         <input class="form-check-input me-1 float-end ar" name="permission[]" type="checkbox" {{ in_array($permission->name, $admin->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
                         {{ $permission->name }}
                     </li>
-                    @if($loop->iteration == 49)
+                    @if($loop->iteration == 51)
                         @break
                     @endif
                     @endforeach
@@ -191,14 +191,14 @@
                         <button type="button" class="btn btn-sm btn-danger  me-1 float-end" onclick="$('.cvr').prop('checked', false);">Deselect All</button>
                     </li>
                     @foreach ($permissions as $permission)
-                    @if($loop->iteration < 50)
+                    @if($loop->iteration < 52)
                         @continue
                     @endif
                     <li class="list-group-item">
                         <input class="form-check-input me-1 float-end cvr" name="permission[]" type="checkbox" {{ in_array($permission->name, $admin->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
                         {{ $permission->name }}
                     </li>
-                    @if($loop->iteration == 52)
+                    @if($loop->iteration == 54)
                         @break
                     @endif
                     @endforeach
@@ -233,7 +233,7 @@
                         <input class="form-check-input me-1 float-end or" name="permission[]" type="checkbox" {{ in_array($permission->name, $admin->permissions) ? 'checked' : '' }} value="{{ $permission->name }}">
                         {{ $permission->name }}
                     </li>
-                    @if($loop->iteration == 58)
+                    @if($loop->iteration == 61)
                         @break
                     @endif
                     @endforeach

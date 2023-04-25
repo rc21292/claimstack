@@ -115,9 +115,9 @@ class HospitalController extends Controller
 
 
         if(auth()->check() && auth()->user()->hasDirectPermission("2nd Level Authorization Required (for User's works)")){
-            $status = 1;
-        }else{
             $status = 0;
+        }else{
+            $status = 1;
         }
 
         $hospital                      =  Hospital::create([

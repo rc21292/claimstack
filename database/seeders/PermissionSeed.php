@@ -136,8 +136,8 @@ class PermissionSeed extends Seeder
         Permission::create(['name' => 'Claim Final Assessment Rights', 'guard_name' => 'admin']);
         Permission::create(['name' => 'Claim Bill Entry Rights (Including Editing)', 'guard_name' => 'admin']);
         Permission::create(['name' => 'Claim Processing Rights (Including Editing)', 'guard_name' => 'admin']);
-        Permission::create(['name' => 'Claim Authorization Rights', 'guard_name' => 'admin']);
 
+        Permission::create(['name' => 'Claim Authorization Rights', 'guard_name' => 'admin']);
         Permission::create(['name' => 'Associate Partner ID Authorization Rights', 'guard_name' => 'admin']);
         Permission::create(['name' => 'Hospital ID Authorization Rights', 'guard_name' => 'admin']);
         Permission::create(['name' => 'Patient ID Authorization Rights', 'guard_name' => 'admin']);

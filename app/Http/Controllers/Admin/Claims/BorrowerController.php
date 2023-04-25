@@ -495,9 +495,9 @@ class BorrowerController extends Controller
         $this->validate($request, $rules, $messages);
 
         if(auth()->check() && auth()->user()->hasDirectPermission("2nd Level Authorization Required (for User's works)")){
-            $status = 1;
-        }else{
             $status = 0;
+        }else{
+            $status = 1;
         }
 
         $claimant_exists        = Claimant::where('claim_id', $id)->exists();
