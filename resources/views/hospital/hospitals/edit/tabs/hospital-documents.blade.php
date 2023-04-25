@@ -1,5 +1,5 @@
 @php
-$id = $hospital_document->hospital_id;
+$id = $hospital->id;
 @endphp
 <div class="card">
     <div class="card-header bg-dark text-white">
