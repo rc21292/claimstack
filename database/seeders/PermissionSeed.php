@@ -41,6 +41,7 @@ class PermissionSeed extends Seeder
         Permission::create(['name' => 'Patient Login ID Creation Rights', 'guard_name' => 'web']);
         Permission::create(['name' => 'Claim ID Creation/Claim Intimation Rights', 'guard_name' => 'web']);
         Permission::create(['name' => 'Claimant Login ID Creation Rights', 'guard_name' => 'web']);
+        Permission::create(['name' => 'Borrower Login ID Creation Rights', 'guard_name' => 'web']);
         Permission::create(['name' => 'Insurance Co. Login ID Creation Rights', 'guard_name' => 'web']);
         Permission::create(['name' => 'TPA Login ID Creation Rights', 'guard_name' => 'web']);
 
@@ -51,6 +52,7 @@ class PermissionSeed extends Seeder
         Permission::create(['name' => 'Patient Updation/Editing Rights', 'guard_name' => 'web']);
         Permission::create(['name' => 'Claim Intimation Updation/Editing Rights', 'guard_name' => 'web']);
         Permission::create(['name' => 'Claimant Updation/Editing Rights', 'guard_name' => 'web']);
+        Permission::create(['name' => 'Borrower Updation/Editing Rights', 'guard_name' => 'web']);
         Permission::create(['name' => 'Insurance Co. Updation/Editing Rights', 'guard_name' => 'web']);
         Permission::create(['name' => 'TPA Updation/Editing Rights', 'guard_name' => 'web']);
         Permission::create(['name' => 'Insurance Policy Updation/Editing Rights', 'guard_name' => 'web']);
@@ -109,6 +111,7 @@ class PermissionSeed extends Seeder
         Permission::create(['name' => 'Patient Login ID Creation Rights', 'guard_name' => 'admin']);
         Permission::create(['name' => 'Claim ID Creation/Claim Intimation Rights', 'guard_name' => 'admin']);
         Permission::create(['name' => 'Claimant Login ID Creation Rights', 'guard_name' => 'admin']);
+        Permission::create(['name' => 'Borrower Login ID Creation Rights', 'guard_name' => 'admin']);
         Permission::create(['name' => 'Insurance Co. Login ID Creation Rights', 'guard_name' => 'admin']);
         Permission::create(['name' => 'TPA Login ID Creation Rights', 'guard_name' => 'admin']);
 
@@ -119,6 +122,7 @@ class PermissionSeed extends Seeder
         Permission::create(['name' => 'Patient Updation/Editing Rights', 'guard_name' => 'admin']);
         Permission::create(['name' => 'Claim Intimation Updation/Editing Rights', 'guard_name' => 'admin']);
         Permission::create(['name' => 'Claimant Updation/Editing Rights', 'guard_name' => 'admin']);
+        Permission::create(['name' => 'Borrower Updation/Editing Rights', 'guard_name' => 'admin']);
         Permission::create(['name' => 'Insurance Co. Updation/Editing Rights', 'guard_name' => 'admin']);
         Permission::create(['name' => 'TPA Updation/Editing Rights', 'guard_name' => 'admin']);
         Permission::create(['name' => 'Insurance Policy Updation/Editing Rights', 'guard_name' => 'admin']);
