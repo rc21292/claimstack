@@ -303,7 +303,28 @@
                         </li>
                     </ul>
                 </div>
+                @elseif(auth()->check() && !auth()->user()->hasDirectPermission('2nd Level Authorization Rights'))
+                <div class="collapse" id="authorization">
+                    <ul class="side-nav-second-level">
+                        @if(auth()->check() && auth()->user()->hasDirectPermission('Hospital ID Authorization Rights'))
+                        <li>
+                            <a href="{{ route('admin.hospital-authorizations.index') }}">Hospital Authorization</a>
+                        </li>
+                        @endif
+                        @if(auth()->check() && auth()->user()->hasDirectPermission('Claimant ID Authorization Rights'))
+                        <li>
+                            <a href="{{ route('admin.claimant-authorizations.index') }}">Claimant Authorization</a>
+                        </li>
+                        @endif
+                        @if(auth()->check() && auth()->user()->hasDirectPermission('Borrower ID Authorization Rights'))
+                        <li>
+                            <a href="{{ route('admin.borrower-authorizations.index') }}">Borrower Authorization</a>
+                        </li>
+                        @endif
+                    </ul>
+                </div>
                 @endif
+                
             </li>
             @if(auth()->check() && auth()->user()->hasDirectPermission('File Management Module Creation/Editing Rights'))
             <li class="side-nav-item">
