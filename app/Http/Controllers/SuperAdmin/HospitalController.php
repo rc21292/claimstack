@@ -5,6 +5,7 @@ namespace App\Http\Controllers\SuperAdmin;
 use App\Http\Controllers\Controller;
 use App\Models\AssociatePartner;
 use App\Models\Insurer;
+use App\Models\Patient;
 use App\Models\Hospital;
 use App\Models\HospitalFacility;
 use App\Models\HospitalInfrastructure;
@@ -998,6 +999,12 @@ class HospitalController extends Controller
 
     public function destroy($id)
     {
+        $patient = Patient::where('hospital_id', $id)->exists();
+
+        if ($patient) {
+            return redirect()->back()->with('success', 'This Hospital is assigned to Patient so you can not deleted it!!');
+        }
+
         Hospital::find($id)->delete();
         return redirect()->route('super-admin.hospitals.index')->with('success', 'Hospital deleted successfully');
     }
