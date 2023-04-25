@@ -5,6 +5,7 @@ namespace App\Http\Controllers\SuperAdmin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\User;
+use App\Models\Hospital;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ImportAdmin;
 use App\Exports\ExportAdmin;
@@ -77,7 +78,7 @@ class AdminController extends Controller
         $messages = [
             'firstname.required'             => 'Please enter firstname',
             'uid.required'                   => 'Please enter employee code.',
-'uid.unique'                   => 'This Employee Code is already taken.',
+            'uid.unique'                   => 'This Employee Code is already taken.',
             'designation.required'           => 'Please enter designation.',
             'email.required'                 => 'Please enter official mail ID.',
             'phone.required'                 => 'Please enter contact number.',
@@ -210,6 +211,15 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
+        $linked_employee = Admin::where('linked_employee', $id)->exists();
+
+        $linked_employee_hospital = Hospital::where('linked_employee', $id)->exists();
+
+        $assigned_employee = Hospital::where('assigned_employee', $id)->exists();
+
+        if ($linked_employee || $assigned_employee || $linked_employee_hospital) {
+            return redirect()->back()->with('success', 'This admin assigned or linked to another Admin or Hospital so you can not deleted it!!');
+        }
         Admin::find($id)->delete();
         return redirect()->route('super-admin.admins.index')->with('success', 'Admin deleted successfully');
     }
