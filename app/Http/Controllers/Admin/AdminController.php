@@ -210,7 +210,17 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        Admin::find($id)->delete();
+        $linked_employee = Admin::where('linked_employee', $id)->exists();
+
+        $linked_employee_hospital = Hospital::where('linked_employee', $id)->exists();
+
+        $assigned_employee = Hospital::where('assigned_employee', $id)->exists();
+
+        if ($linked_employee || $assigned_employee || $linked_employee_hospital) {
+            return redirect()->back()->with('success', 'This admin assigned or linked to another Admin or Hospital so you can not deleted it!!');
+        }
+        Admin::find($id)->delete();    
+
         return redirect()->route('admin.admins.index')->with('success', 'Admin deleted successfully');
     }
 
