@@ -52,7 +52,7 @@ use Carbon\Carbon;
                                                 <th>{{ $borrower->uid }}</th>
                                                 <td>{{ $borrower->borrower_firstname }} {{ $borrower->borrower_middlename }} {{ $borrower->borrower_lastname }} </td>
                                                 <td>{{ $borrower->created_at }}</td>
-                                                <td>{{ $borrower->linked_employee_data->firstname}} {{ $borrower->linked_employee_data->lastname}} ({{ $borrower->linked_employee_data->employee_code}})</td>
+                                                <td>{{ @$borrower->linked_employee_data->firstname}} {{ @$borrower->linked_employee_data->lastname}} ({{ @$borrower->linked_employee_data->employee_code}})</td>
                                                  @php
                                                 $startDate = Carbon::parse($borrower->created_at);
                                                 $endDate = Carbon::parse(Carbon::now()->toDateTimeString());
