@@ -64,7 +64,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ @$borrower->claim->claimant->uid }} </p>
+                                        <p class="card-text">: {{ $borrower->claim->claimant->uid }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -112,7 +112,10 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ @$borrower->claim->policy->insurer_id }} </p>
+                                        @php
+                                        $insurar = \DB::table('insurers')->where('id', @$borrower->claim->policy->insurer_id)->value('name');
+                                        @endphp
+                                        <p class="card-text">: {{ @$insurar }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -120,7 +123,10 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ @$borrower->claim->policy->policy_id }} </p>
+                                        @php
+                                        $poloo = \DB::table('insurers')->where('id', @$borrower->claim->policy->policy_id)->value('name');
+                                        @endphp
+                                        <p class="card-text">: {{ @$poloo }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -136,7 +142,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->claim->company_tpa_id_card_no }} </p>
+                                        <p class="card-text">: {{ @$borrower->claim->policy->company_tpa_id_card_no }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
@@ -144,7 +150,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->claim->tpa_name }} </p>
+                                        <p class="card-text">: {{ @$borrower->claim->policy->tpa_name }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
