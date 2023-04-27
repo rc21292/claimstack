@@ -237,7 +237,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $claimant->linked_employee_data->firstname}} {{ $claimant->linked_employee_data->lastname}} ({{ $claimant->linked_employee_data->employee_code}}) </p>
+                                        <p class="card-text">: {{ @$claimant->linked_employee_data->firstname}} {{ @$claimant->linked_employee_data->lastname}} ({{ @$claimant->linked_employee_data->employee_code}}) </p>
                                     </dd>
 
                                     <dt class="col-sm-4">

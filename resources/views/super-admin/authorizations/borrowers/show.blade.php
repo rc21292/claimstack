@@ -408,7 +408,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->linked_employee_data->firstname}} {{ $borrower->linked_employee_data->lastname}} ({{ $borrower->linked_employee_data->employee_code}}) </p>
+                                        <p class="card-text">: {{ @$borrower->linked_employee_data->firstname}} {{ @$borrower->linked_employee_data->lastname}} ({{ @$borrower->linked_employee_data->employee_code}}) </p>
                                     </dd>
 
                                     <dt class="col-sm-4">
@@ -417,7 +417,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->assigned_employee_data->firstname}} {{ $borrower->assigned_employee_data->lastname}} ({{ $borrower->assigned_employee_data->employee_code}}) </p>
+                                        <p class="card-text">: {{ @$borrower->assigned_employee_data->firstname}} {{ @$borrower->assigned_employee_data->lastname}} ({{ @$borrower->assigned_employee_data->employee_code}}) </p>
                                     </dd>
 
                                     <dt class="col-sm-4">
