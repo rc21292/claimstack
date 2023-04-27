@@ -115,7 +115,7 @@ class BorrowerAuthorizationController extends Controller
     public function update(Request $request, $id)
     {
         Borrower::where('id', $id)->update(['status' => 1]);
-        return redirect()->route('admin.borrower-authorizations.index')->with('success', 'Borrower authorizied successfully');
+        return redirect()->route('admin.borrower-authorizations.index')->with('success', 'Borrower Authorised successfully');
     }
 
     /**

@@ -119,7 +119,7 @@ class ClaimantAuthorizationController extends Controller
     public function update(Request $request, $id)
     {
         Claimant::where('id', $id)->update(['status' => 1]);
-        return redirect()->route('admin.claimant-authorizations.index')->with('success', 'Claimant authorizied successfully');
+        return redirect()->route('admin.claimant-authorizations.index')->with('success', 'Claimant Authorised successfully');
     }
 
     /**

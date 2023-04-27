@@ -105,7 +105,7 @@ class HospitalAuthorizationController extends Controller
     public function update(Request $request, $id)
     {
         Hospital::where('id', $id)->update(['status' => 1]);
-        return redirect()->route('super-admin.hospital-authorizations.index')->with('success', 'Hospital authorizied successfully');
+        return redirect()->route('super-admin.hospital-authorizations.index')->with('success', 'Hospital Authorised successfully');
     }
 
     /**
