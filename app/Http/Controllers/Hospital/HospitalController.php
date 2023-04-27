@@ -297,134 +297,6 @@ class HospitalController extends Controller
     public function update(Request $request, $id)
     {
         $hospital             = Hospital::find($id);
-        //dd($request->all());
-
-        if ($request->hasfile('panfile')) {
-            $panfile                    = $request->file('panfile');
-            $name                       = $panfile->getClientOriginalName();
-            $panfile->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
-            Hospital::where('id', $hospital->id)->update([
-                'panfile'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('tanfile')) {
-            $tanfile                    = $request->file('tanfile');
-            $name                       = $tanfile->getClientOriginalName();
-            $tanfile->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
-            Hospital::where('id', $hospital->id)->update([
-                'tanfile'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('gstfile')) {
-            $gstfile                    = $request->file('gstfile');
-            $name                       = $gstfile->getClientOriginalName();
-            $gstfile->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
-            Hospital::where('id', $hospital->id)->update([
-                'gstfile'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('cancel_cheque_file')) {
-            $cancel_cheque_file                    = $request->file('cancel_cheque_file');
-            $name                       = $cancel_cheque_file->getClientOriginalName();
-            $cancel_cheque_file->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
-            Hospital::where('id', $hospital->id)->update([
-                'cancel_cheque_file'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('tariff_list_soc_file')) {
-            $tariff_list_soc_file                    = $request->file('tariff_list_soc_file');
-            $name                       = $tariff_list_soc_file->getClientOriginalName();
-            $tariff_list_soc_file->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
-            Hospital::where('id', $hospital->id)->update([
-                'tariff_list_soc_file'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('nabh_registration_file')) {
-            $nabh_registration_file                    = $request->file('nabh_registration_file');
-            $name                       = $nabh_registration_file->getClientOriginalName();
-            $nabh_registration_file->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
-            Hospital::where('id', $hospital->id)->update([
-                'nabh_registration_file'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('nabl_registration_file')) {
-            $nabl_registration_file                    = $request->file('nabl_registration_file');
-            $name                       = $nabl_registration_file->getClientOriginalName();
-            $nabl_registration_file->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
-            Hospital::where('id', $hospital->id)->update([
-                'nabl_registration_file'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('signed_mous_file')) {
-            $signed_mous_file                    = $request->file('signed_mous_file');
-            $name                       = $signed_mous_file->getClientOriginalName();
-            $signed_mous_file->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
-            Hospital::where('id', $hospital->id)->update([
-                'signed_mous_file'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('other_documents_file')) {
-            $other_documents_file                    = $request->file('other_documents_file');
-            $name                       = $other_documents_file->getClientOriginalName();
-            $other_documents_file->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
-            Hospital::where('id', $hospital->id)->update([
-                'other_documents_file'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('iso_status_file')) {
-            $iso_status_file                    = $request->file('iso_status_file');
-            $name                       = $iso_status_file->getClientOriginalName();
-            $iso_status_file->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
-            Hospital::where('id', $hospital->id)->update([
-                'iso_status_file'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('pollution_clearance_certificate_file')) {
-            $pollution_clearance_certificate_file   = $request->file('pollution_clearance_certificate_file');
-            $name = $pollution_clearance_certificate_file->getClientOriginalName();
-            $pollution_clearance_certificate_file->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
-            Hospital::where('id', $hospital->id)->update([
-                'pollution_clearance_certificate_file'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('certificate_of_incorporation_file')) {
-            $certificate_of_incorporation_file                    = $request->file('certificate_of_incorporation_file');
-            $name                       = $certificate_of_incorporation_file->getClientOriginalName();
-            $certificate_of_incorporation_file->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
-            Hospital::where('id', $hospital->id)->update([
-                'certificate_of_incorporation_file'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('fire_safety_clearance_certificate_file')) {
-            $fire_safety_clearance_certificate_file                    = $request->file('fire_safety_clearance_certificate_file');
-            $name                       = $fire_safety_clearance_certificate_file->getClientOriginalName();
-            $fire_safety_clearance_certificate_file->storeAs('uploads/hospital/' . $hospital->id . '/', $name, 'public');
-            Hospital::where('id', $hospital->id)->update([
-                'fire_safety_clearance_certificate_file'               =>  $name
-            ]);
-        }
-
-        if ($request->hasfile('rohinifile')) {
-            $rohinifile                    = $request->file('rohinifile');
-            $rhnname                       = $rohinifile->getClientOriginalName();
-            $rohinifile->storeAs('uploads/hospital/' . $hospital->id . '/', $rhnname, 'public');
-            Hospital::where('id', $hospital->id)->update([
-                'rohinifile'               =>  $rhnname
-            ]);
-        }
-
 
         $rules = [
             'name'                                      => 'required|min:1|max:60',
@@ -433,29 +305,19 @@ class HospitalController extends Controller
             'onboarding'                                => 'required',
             'by'                                        => 'required',
             'pan'                                       => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|size:10|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/u' : [],
-            //'panfile'                                   => ($request->onboarding == 'Tie Up' && empty($hospital->panfile)) ? 'required' : [],
             'rohini'                                    => 'required|size:13',
-            //'rohinifile'                                => ($request->rohini != null && empty($hospital->rohinifile)) ?  'required' : [],
             'code'                                      => 'required|numeric|digits:3',
             'landline'                                  => 'required|numeric|digits_between:1,10',
             'email'                                     => 'required|email|min:1|max:45|unique:hospitals,email,'.$id,
             'address'                                   => 'required',
             'city'                                      => 'required',
-            // 'assigned_employee_department'        => 'required',
-            // 'linked_employee_department'        => 'required',
             'state'                                     => 'required',
             'pincode'                                   => 'required|numeric',
             'phone'                                     => 'required|numeric|digits:10',
             'linked_associate_partner_id'               => ($request->by == 'Associate Partner') ? 'required' : [],
             'linked_associate_partner'                  => ($request->by == 'Associate Partner') ? 'required' : [],
-            // 'assigned_employee'                         => 'required',
-            // 'assigned_employee_id'                      => 'required',
-            // 'linked_employee'                           => 'required',
-            // 'linked_employee_id'                        => 'required',
             'tan'                                       => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|min:1|max:10' : [],
-            //'tanfile'                                   => ($request->onboarding == 'Tie Up' && empty($hospital->tanfile)) ? 'required' : [],
             'gst'                                       => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|min:1|max:15' : [],
-            //'gstfile'                                   => ($request->onboarding == 'Tie Up' && empty($hospital->gstfile)) ? 'required' : [],
             'owner_email'                               => ($request->onboarding == 'Tie Up') ? 'required|email|min:1|max:45' : [],
             'owner_phone'                               => ($request->onboarding == 'Tie Up') ? 'required|numeric|digits:10' : [],
          
@@ -474,27 +336,19 @@ class HospitalController extends Controller
             'medical_superintendent_registration_no'    => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|min:1|max:20' : [],
             'medical_superintendent_qualification'      => ($request->onboarding == 'Tie Up') ? 'required|min:1|max:30' : [],
             'pollution_clearance_certificate'           => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            //'pollution_clearance_certificate_file'      => ($request->onboarding == 'Tie Up' && $request->pollution_clearance_certificate != 'No' && empty($hospital->pollution_clearance_certificate_file)) ? 'required' : [],
             'fire_safety_clearance_certificate'         => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            //'fire_safety_clearance_certificate_file'    => ($request->onboarding == 'Tie Up' && $request->fire_safety_clearance_certificate != 'No' && empty($hospital->fire_safety_clearance_certificate_file)) ? 'required' : [],
             'certificate_of_incorporation'              => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            //'certificate_of_incorporation_file'         => ($request->onboarding == 'Tie Up' && $request->certificate_of_incorporation != 'No' && empty($hospital->certificate_of_incorporation_file)) ? 'required' : [],
             'bank_name'                                 => ($request->onboarding == 'Tie Up') ? 'required|min:1|max:45' : [],
             'bank_address'                              => ($request->onboarding == 'Tie Up') ? 'required|min:1|max:80' : [],
             'cancel_cheque'                             => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            //'cancel_cheque_file'                      => ($request->onboarding == 'Tie Up' && $request->cancel_cheque == 'Yes' && empty($hospital->cancel_cheque_file)) ? 'required' : [],
             'bank_account_no'                           => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|min:1|max:20' : [],
             'bank_ifs_code'                             => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|min:1|max:11' : [],
             'nabh_registration_no'                      => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|min:1|max:15' : [],
-            //'nabh_registration_file'                    => ($request->onboarding == 'Tie Up' && empty($hospital->nabh_registration_file)) ? 'required' : [],
             'nabl_registration_no'                      => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|min:1|max:15' : [],
-            //'nabl_registration_file'                    => ($request->onboarding == 'Tie Up' && empty($hospital->nabl_registration_file)) ? 'required' : [],
             'tariff_list_soc'                           => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            //'tariff_list_soc_file'                      => ($request->onboarding == 'Tie Up' && $request->tariff_list_soc == 'Yes' && empty($hospital->tariff_list_soc_file)) ? 'required' : [],
             'signed_mous'                               => ($request->onboarding == 'Tie Up') ? 'required' : [],
             'signed_mous_file'                          => ($request->onboarding == 'Tie Up' && $request->signed_mous == 'Yes' && empty($hospital->signed_mous_file)) ? 'required' : [],
             'other_documents'                           => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            //'other_documents_file'                      => ($request->onboarding == 'Tie Up' && $request->other_documents == 'Yes' && empty($hospital->other_documents_file)) ? 'required' : [],
             'iso_status'                                => ($request->onboarding == 'Tie Up') ? 'required' : [],
             'iso_status_file'                           => ($request->onboarding == 'Tie Up' && $request->iso_status == 'Yes' && empty($hospital->iso_status_file)) ? 'required' : [],
             'hrms_software'                             => ($request->onboarding == 'Tie Up') ? 'required' : [],
@@ -572,12 +426,6 @@ class HospitalController extends Controller
             'rohini'                                    => $request->rohini,
             'linked_associate_partner'                  => $request->linked_associate_partner,
             'linked_associate_partner_id'               => $request->linked_associate_partner_id,
-            'assigned_employee'                         => $request->assigned_employee,
-            'assigned_employee_department'              => $request->assigned_employee_department,
-            'linked_employee_department'                => $request->linked_employee_department,
-            'assigned_employee_id'                      => $request->assigned_employee_id,
-            'linked_employee'                           => $request->linked_employee,
-            'linked_employee_id'                        => $request->linked_employee_id,
             'tan'                                       => $request->tan,
             'gst'                                       => $request->gst,
             'owner_email'                               => $request->owner_email,
