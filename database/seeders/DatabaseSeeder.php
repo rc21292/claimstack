@@ -15,24 +15,24 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(PermissionSeed::class);
-        /*$this->call(EmployeeSeed::class);
+        $this->call(EmployeeSeed::class);
         $this->call(UserSeed::class);
-        $this->call(AdminSeed::class);*/
+        $this->call(AdminSeed::class);
         $this->call(SuperAdminSeed::class);
-        /*$this->call(AssociatePartnerSeed::class);
+        $this->call(AssociatePartnerSeed::class);
         $this->call(HospitalSeeder::class);
         $this->call(HospitalTieUpSeeder::class);
-        $this->call(PatientSeed::class);*/
+        $this->call(PatientSeed::class);
         $this->call(InsurerSeed::class);
-       /* $this->call(ClaimSeed::class);*/
+        $this->call(ClaimSeed::class);
         $this->call(InsurancePolicySeed::class);
-        /*$this->call(ClaimantSeed::class);*/
+        $this->call(ClaimantSeed::class);
         $this->call(IcdCodesTableSeeder::class);
         $this->call(PcsCodesTableSeeder::class);
-        /*$this->call(BorrowerSeed::class);
+        $this->call(BorrowerSeed::class);
         $this->call(AssessmentStatusSeed::class);
         $this->call(LendingStatusSeed::class);
-        $this->call(DischargeSeed::class);*/
+        $this->call(DischargeSeed::class);
         $this->call(TpaSeed::class);
     }
 }

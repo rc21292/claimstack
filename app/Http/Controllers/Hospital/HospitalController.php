@@ -347,10 +347,8 @@ class HospitalController extends Controller
             'nabl_registration_no'                      => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|min:1|max:15' : [],
             'tariff_list_soc'                           => ($request->onboarding == 'Tie Up') ? 'required' : [],
             'signed_mous'                               => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'signed_mous_file'                          => ($request->onboarding == 'Tie Up' && $request->signed_mous == 'Yes' && empty($hospital->signed_mous_file)) ? 'required' : [],
             'other_documents'                           => ($request->onboarding == 'Tie Up') ? 'required' : [],
             'iso_status'                                => ($request->onboarding == 'Tie Up') ? 'required' : [],
-            'iso_status_file'                           => ($request->onboarding == 'Tie Up' && $request->iso_status == 'Yes' && empty($hospital->iso_status_file)) ? 'required' : [],
             'hrms_software'                             => ($request->onboarding == 'Tie Up') ? 'required' : [],
         ];
 
@@ -384,11 +382,8 @@ class HospitalController extends Controller
             'medical_superintendent_registration_no.required'   => 'Please Enter Medical Superintendent Registration No',
             'medical_superintendent_qualification.required'     => 'Please Enter Medical Superintendent Qualification',
             'pollution_clearance_certificate.required'          => 'Please Enter Pollution Clearance Certificate',
-            'pollution_clearance_certificate_file.required'     => 'Please Enter Pollution Clearance Certificate File',
             'fire_safety_clearance_certificate.required'        => 'Please Enter Fire Safety Clearance Certificate',
-            'fire_safety_clearance_certificate_file.required'   => 'Please Enter Fire Safety Clearance Certificate File',
             'certificate_of_incorporation.required'             => 'Please Enter Certificate Of Incorporation',
-            'certificate_of_incorporation_file.required'        => 'Please Enter Certificate Of Incorporation File',
             'bank_name.required'                                => 'Please Enter Bank Name',
             'bank_address.required'                             => 'Please Enter Bank Address',
             'cancel_cheque.required'                            => 'Please Enter Cancel Cheque',
