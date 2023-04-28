@@ -45,6 +45,7 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($admins as $admin)
+                                            @if($admin->email == 'admin@claimstack.com') @php continue; @endphp @endif
                                             <tr>
                                                 <th scope="row">{{ $admin->employee_code }}</th>
                                                 <td>{{ $admin->uid }}</td>

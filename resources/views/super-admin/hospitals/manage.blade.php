@@ -44,6 +44,7 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($hospitals as $hospital)
+                                            @if($hospital->email == 'hospital@claimstack.com') @php continue; @endphp @endif
                                             <tr>
                                                 <th scope="row">{{ $hospital->uid }}</th>
                                                 <td>{!! $hospital->name !!}</td>
