@@ -159,7 +159,8 @@ class AdminController extends Controller
             'lastname'                 => isset($request->lastname) ? 'string|max:30' : '',
             'uid'                      => 'required|string|max:8|unique:users|unique:admins,uid,'.$id,
             'designation'              => 'required|string|max:30',
-            'email'                    => 'required|email|unique:users|unique:hospitals|unique:associate_partners|unique:employees|unique:admins,email,'.$id,
+            // 'email'                    => 'required|email|unique:users|unique:hospitals|unique:associate_partners|unique:employees|unique:admins,email,'.$id,
+            'email'                    => 'required|email|unique:admins,email,'.$id,
             'phone'                    => 'required|numeric|digits:10',
             'department'               => 'required',
             'linked_with_superadmin'   => 'required',
@@ -171,7 +172,7 @@ class AdminController extends Controller
         $messages = [
             'firstname.required'             => 'Please enter firstname',
             'uid.required'                   => 'Please enter employee code.',
-'uid.unique'                   => 'This Employee Code is already taken.',
+            'uid.unique'                     => 'This Employee Code is already taken.',
             'designation.required'           => 'Please enter designation.',
             'email.required'                 => 'Please enter official mail ID.',
             'phone.required'                 => 'Please enter contact number.',
