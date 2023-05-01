@@ -115,14 +115,14 @@
                                         <h5 class="card-title"> Associate Partner Company  Name </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $hospital->associate->name }}
+                                        <p class="card-text">: {{ @$hospital->associate->name }}
                                         </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> Associate Partner ID </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $hospital->linked_associate_partner_id }} 
+                                        <p class="card-text">: {{ @$hospital->linked_associate_partner_id }} 
                                         </p>
                                     </dd>
                                     <dt class="col-sm-4">
