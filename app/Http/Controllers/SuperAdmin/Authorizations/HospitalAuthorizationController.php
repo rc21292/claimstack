@@ -24,7 +24,10 @@ class HospitalAuthorizationController extends Controller
 
     public function index(Request $request)
     {
+       
         $filter_search = $request->search;
+       
+
         $hospitals = Hospital::query();
         if($filter_search){
             $hospitals->where('name', 'like','%' . $filter_search . '%');
@@ -32,7 +35,7 @@ class HospitalAuthorizationController extends Controller
         }
 
         $hospitals = $hospitals->where('status', 0)->orderBy('id', 'desc')->paginate(20);
-
+      
         foreach ($hospitals as $key => $hospital) {
            $employee = $this->getEmployeesById($hospital->linked_employee);
 

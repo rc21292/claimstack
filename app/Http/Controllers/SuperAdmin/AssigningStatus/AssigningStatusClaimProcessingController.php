@@ -19,21 +19,47 @@ class AssigningStatusClaimProcessingController extends Controller
     {
         \DB::connection()->enableQueryLog();
         $filter_search = $request->search;
+        $filter_claim_id = $request->claim_id;
+        $filter_date_from_to = $request->date_from_to;
+        $filter_status = $request->status;
+
         $claims = Claim::query();
         if($filter_search){
             $claims->where('name', 'like','%' . $filter_search . '%');
             $claims->orWhere('uid', 'like','%' . $filter_search . '%');
+        }  
+          
+
+        if($filter_claim_id){
+            $claims->where('uid', '=',  $filter_claim_id );
         }
 
+        if($filter_date_from_to){
+
+            $d = explode('-',$filter_date_from_to);
+            $claims->whereDate('created_at', '>=',  Carbon::parse($d[0])->format('Y-m-d') );
+            $claims->whereDate('created_at','<=',Carbon::parse($d[1])->format('Y-m-d') );
+        }
+
+        if($filter_status){
+           
+        }
+
+       
+
+        ( is_null($filter_claim_id) && is_null($filter_date_from_to) ) ?
+            
         $claims = $claims->whereHas('claimProcessing', function ($q) {
-                $q->whereNotNull('claim_id');
-            })->where('insurance_coverage', 'Yes')->orWhere('lending_required', 'Yes')->orWhere(['insurance_coverage' => 'Yes', 'lending_required' => 'Yes'])->orderBy('id', 'desc')->paginate(20);
+            $q->whereNotNull('claim_id');
+        })->where('insurance_coverage', 'Yes')->orWhere('lending_required', 'Yes')->orWhere(['insurance_coverage' => 'Yes', 'lending_required' => 'Yes'])->orderBy('id', 'desc')->paginate(20)
+        
+        :  $claims = $claims->orderBy('id', 'desc')->paginate(20);
 
         $queries = \DB::getQueryLog();
 
         $last_query = end($queries);
 
-        return view('super-admin.assigning-status.processing.manage',  compact('claims', 'filter_search'));
+        return view('super-admin.assigning-status.processing.manage',  compact('claims', 'filter_search','filter_claim_id','filter_date_from_to','filter_status'));
     }
 
     /**

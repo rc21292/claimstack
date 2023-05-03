@@ -4,6 +4,7 @@ use Carbon\Carbon;
 @extends('layouts.super-admin')
 @section('title', 'Manage Hospital')
 @section('content')
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <!-- Start Content-->
     <div class="container-fluid">
 
@@ -12,6 +13,7 @@ use Carbon\Carbon;
             <div class="col-12">
                 <div class="page-title-box">
                     <div class="page-title-right">
+                    
                         <form action="{{ route('super-admin.hospital-authorizations.index') }}">
                             <div class="input-group">
                                 <input class="form-control" value="{{ $filter_search }}" name="search" type="search" placeholder="Type here to Search">
@@ -21,9 +23,38 @@ use Carbon\Carbon;
                             </div>
                         </form>  
                     </div>
-                    <h4 class="page-title">Assigning Status for Pre-Assessment </h4>
+                    <h4 class="page-title">Assigning Status for Pre-Assessment  </h4>
                 </div>
             </div>
+           
+            <div class="container">
+            <form action="{{ route('super-admin.assigning-pre-assessment.index') }}">
+               
+                <div class="row pb-4">
+
+                    <div class="col-sm-3">
+                    <input class="form-control" value="{{ $filter_claim_id }}" name="claim_id" type="search" placeholder="Enter Claim ID">
+                    </div>
+                    <div class="col-sm-3">
+                    <input type="text" name="date_from_to" class="form-control" value="{{ $filter_date_from_to}}"   >
+                    </div>
+                    <div class="col-sm-3">
+                    <input class="form-control" value="{{ $filter_status }}" name="status" type="search" placeholder="Select Status">
+                    </div>
+
+                    <div class="col-sm-3">
+                    <button class="btn btn-primary" type="submit">Filter</button>
+                        <a class="btn btn-warning" href='./assigning-pre-assessment' >Reset</a>
+                    </div>
+                   
+                </div>
+                
+             </form>
+            
+
+           
+            </div>
+
         </div>
         @include('super-admin.sections.flash-message')
         <!-- end page title -->
@@ -85,6 +116,19 @@ use Carbon\Carbon;
 @endsection
 
 @push('scripts')
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script>
+$(function() {
+    
+  $('input[name="date_from_to"]').daterangepicker({
+    opens: 'left'
+  }, function(start, end, label) {
+    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+  });
+});
+</script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript">
         localStorage.setItem('activeTab', '');
