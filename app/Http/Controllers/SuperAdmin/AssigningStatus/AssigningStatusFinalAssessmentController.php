@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Claim;
 use App\Models\Insurer;
 use App\Models\Admin;
+use Carbon\Carbon;
 
 class AssigningStatusFinalAssessmentController extends Controller
 {
@@ -43,8 +44,19 @@ class AssigningStatusFinalAssessmentController extends Controller
         }
 
         ( is_null($filter_claim_id) && is_null($filter_date_from_to) ) ?
-        $claims = $claims->has('dischargeStatus')->where('insurance_coverage', 'Yes')->orWhere('lending_required', 'Yes')->orWhere(['insurance_coverage' => 'Yes', 'lending_required' => 'Yes'])->orderBy('id', 'desc')->paginate(20)
-        :  $claims = $claims->orderBy('id', 'desc')->paginate(20);
+
+        $claims = $claims->whereHas('dischargeStatus', function ($q) {
+                $q->whereNotNull('claim_id');
+            })->where( function($query) {
+                return $query->where('insurance_coverage', 'Yes')
+                ->orWhere('lending_required', 'Yes')
+                ->orWhere(['insurance_coverage' => 'Yes', 'lending_required' => 'Yes']);
+            })->orderBy('id', 'desc')->paginate(20)
+
+            :  $claims = $claims->orderBy('id', 'desc')->paginate(20);
+            
+
+        /*$claims = $claims->has('dischargeStatus')->where('insurance_coverage', 'Yes')->orWhere('lending_required', 'Yes')->orWhere(['insurance_coverage' => 'Yes', 'lending_required' => 'Yes'])->orderBy('id', 'desc')->paginate(20);*/
 
         return view('super-admin.assigning-status.final-assessment.manage',  compact('claims', 'filter_search', 'filter_claim_id','filter_date_from_to','filter_status'));
     }

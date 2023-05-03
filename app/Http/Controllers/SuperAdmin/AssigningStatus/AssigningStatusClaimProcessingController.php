@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Claim;
 use App\Models\Insurer;
 use App\Models\Admin;
+use Carbon\Carbon;
 
 class AssigningStatusClaimProcessingController extends Controller
 {
@@ -50,10 +51,14 @@ class AssigningStatusClaimProcessingController extends Controller
         ( is_null($filter_claim_id) && is_null($filter_date_from_to) ) ?
             
         $claims = $claims->whereHas('claimProcessing', function ($q) {
-            $q->whereNotNull('claim_id');
-        })->where('insurance_coverage', 'Yes')->orWhere('lending_required', 'Yes')->orWhere(['insurance_coverage' => 'Yes', 'lending_required' => 'Yes'])->orderBy('id', 'desc')->paginate(20)
+                $q->whereNotNull('claim_id');
+            })->where( function($query) {
+                return $query->where('insurance_coverage', 'Yes')
+                ->orWhere('lending_required', 'Yes')
+                ->orWhere(['insurance_coverage' => 'Yes', 'lending_required' => 'Yes']);
+            })->orderBy('id', 'desc')->paginate(20)
         
-        :  $claims = $claims->orderBy('id', 'desc')->paginate(20);
+            :  $claims = $claims->orderBy('id', 'desc')->paginate(20);
 
         $queries = \DB::getQueryLog();
 
