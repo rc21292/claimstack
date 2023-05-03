@@ -24,7 +24,17 @@ class AssigningStatusFinalAssessmentController extends Controller
             $claims->orWhere('uid', 'like','%' . $filter_search . '%');
         }
 
-        $claims = $claims->has('dischargeStatus')->where('insurance_coverage', 'Yes')->orWhere('lending_required', 'Yes')->orWhere(['insurance_coverage' => 'Yes', 'lending_required' => 'Yes'])->orderBy('id', 'desc')->paginate(20);
+
+        $claims = $claims->whereHas('dischargeStatus', function ($q) {
+                $q->whereNotNull('claim_id');
+            })->where( function($query) {
+                return $query->where('insurance_coverage', 'Yes')
+                ->orWhere('lending_required', 'Yes')
+                ->orWhere(['insurance_coverage' => 'Yes', 'lending_required' => 'Yes']);
+            })->orderBy('id', 'desc')->paginate(20);
+            
+
+        /*$claims = $claims->has('dischargeStatus')->where('insurance_coverage', 'Yes')->orWhere('lending_required', 'Yes')->orWhere(['insurance_coverage' => 'Yes', 'lending_required' => 'Yes'])->orderBy('id', 'desc')->paginate(20);*/
 
         return view('super-admin.assigning-status.final-assessment.manage',  compact('claims', 'filter_search'));
     }

@@ -27,7 +27,11 @@ class AssigningStatusClaimProcessingController extends Controller
 
         $claims = $claims->whereHas('claimProcessing', function ($q) {
                 $q->whereNotNull('claim_id');
-            })->where('insurance_coverage', 'Yes')->orWhere('lending_required', 'Yes')->orWhere(['insurance_coverage' => 'Yes', 'lending_required' => 'Yes'])->orderBy('id', 'desc')->paginate(20);
+            })->where( function($query) {
+                return $query->where('insurance_coverage', 'Yes')
+                ->orWhere('lending_required', 'Yes')
+                ->orWhere(['insurance_coverage' => 'Yes', 'lending_required' => 'Yes']);
+            })->orderBy('id', 'desc')->paginate(20);
 
         $queries = \DB::getQueryLog();
 
