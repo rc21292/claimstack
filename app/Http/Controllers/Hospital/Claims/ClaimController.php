@@ -896,6 +896,9 @@ class ClaimController extends Controller
     {
         $claim = Claim::find($id);
 
+        switch ($request->form_type) {
+            case 'claim-edit-form':
+
         $rules =  [
             'patient_id'                => 'required',
             'hospital_name'             => 'required',
@@ -943,8 +946,6 @@ class ClaimController extends Controller
             'family_physician'          => $request->has_family_physician == 'Yes' ? 'required' : '',
             'family_physician_contact_no'=> $request->has_family_physician == 'Yes' ? 'required' : '',
             'comments'                  => isset($request->comments) ? 'max:250' : '',
-            'claim_intimation_done'         => $request->insurance_coverage == 'Yes' ? 'required' : '',
-            'claim_intimation_number_mail'  => $request->claim_intimation_done == 'Yes' ? 'required' : '',
         ];
 
         $messages =  [
@@ -983,8 +984,6 @@ class ClaimController extends Controller
             'disease_name.required'                 => 'Please enter disease name',
             'disease_type.required'                 => 'Please select disease type',
             'estimated_amount.required'             => 'Please enter estimated amount',
-            'claim_intimation_done.required'        => 'Please select if claim intimation is done or not',
-            'claim_intimation_number_mail.required' => 'Please enter claim intimation number / mail',
         ];
 
         $this->validate($request, $rules, $messages);
@@ -1022,8 +1021,6 @@ class ClaimController extends Controller
             'has_family_physician'                  => $request->has_family_physician,
             'family_physician'                      => $request->family_physician,
             'family_physician_contact_no'           => $request->family_physician_contact_no,
-            'claim_intimation_done'                 => $request->claim_intimation_done,
-            'claim_intimation_number_mail'          => $request->claim_intimation_number_mail,
         ]);
 
 
@@ -1042,6 +1039,34 @@ class ClaimController extends Controller
             'hospital_pincode'                  => $request->hospital_pincode,
             'associate_partner_id'              => $request->associate_partner_id,
         ]);
+
+        break;
+
+        case 'claim-intimation-form':
+        
+        $rules =  [
+            'claim_intimation_done'         => $request->insurance_coverage == 'Yes' ? 'required' : '',
+            'claim_intimation_number_mail'  => $request->claim_intimation_done == 'Yes' ? 'required' : '',
+        ];
+
+        $messages =  [
+            'claim_intimation_done.required'        => 'Please select if claim intimation is done or not',
+            'claim_intimation_number_mail.required' => 'Please enter claim intimation number / mail',
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+        $claim = Claim::where('id', $id)->update([
+            'claim_intimation_done'                 => $request->claim_intimation_done,
+            'claim_intimation_number_mail'          => $request->claim_intimation_number_mail,
+        ]);
+                
+        break;
+            
+        default:
+            // code...
+            break;
+        }
 
 
 

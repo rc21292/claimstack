@@ -2,6 +2,7 @@
     enctype="multipart/form-data">
     @csrf
     @method('PUT')
+    <input type="hidden" name="form_type" value="claim-edit-form">
     <div class="card-body mb-4">
         <div class="form-group row">
             <div class="col-md-12 mb-3">
@@ -704,12 +705,25 @@
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
+
+            <div class="col-md-12 text-end mt-3">
+                <button type="submit" class="btn btn-success" form="claim-form">Update Claim</button>
+            </div>
+
         </div>
+        </form>
 
     </div>
-    <div class="card-body">
+    <div class="card-body show-hide-intimation" @if(old('insurance_coverage', $claim->insurance_coverage) != 'Yes') style="display:none;" @endif>
         <h4 class="page-title mb-2">Claim Intimation</h4>
+         <form action="{{ route('super-admin.claims.update', $claim->id) }}" method="post" id="claim-intimation-edit-form"
+        enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
         <div class="form-group row">
+
+           
+        <input type="hidden" name="form_type" value="claim-intimation-form">
             <div class="col-md-6 mb-3">
                 <label for="claim_intimation_done">Claim Intimation Done <span class="text-danger">*</span></label>
                 <select class="form-select" id="claim_intimation_done" name="claim_intimation_done"
@@ -738,8 +752,9 @@
                 @enderror
             </div>
             <div class="col-md-12 text-end mt-3">
-                <button type="submit" class="btn btn-success" form="claim-form">Update</button>
+                <button type="submit" class="btn btn-success" form="claim-intimation-edit-form">Update Intimation</button>
             </div>
         </div>
+    </form>
     </div>
 </form>
