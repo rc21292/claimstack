@@ -13,16 +13,6 @@ use Carbon\Carbon;
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box">
-                    <div class="page-title-right">
-                        <form action="{{ route('super-admin.hospital-authorizations.index') }}">
-                            <div class="input-group">
-                                <input class="form-control" value="{{ $filter_search }}" name="search" type="search" placeholder="Type here to Search">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="submit">Search</button>
-                                </div>
-                            </div>
-                        </form>  
-                    </div>
                     <h4 class="page-title">Assigning Status for Claim Processing</h4>
                 </div>
             </div>
@@ -33,20 +23,20 @@ use Carbon\Carbon;
                 <div class="row pb-4">
 
                     <div class="col-sm-3">
-                    <input class="form-control" value="{{ $filter_claim_id }}" name="claim_id" type="search" placeholder="Enter Claim ID">
+                        <input class="form-control" value="{{ $filter_claim_id }}" name="claim_id" type="search" placeholder="Enter Claim ID">
                     </div>
                     <div class="col-sm-3">
-                    <input type="text" name="date_from_to" class="form-control" value="{{ $filter_date_from_to}}"   >
+                        <input type="text" name="date_from_to" class="form-control" value="{{ $filter_date_from_to}}"   >
                     </div>
-                    <div class="col-sm-3">
-                    <input class="form-control" value="{{ $filter_status }}" name="status" type="search" placeholder="Select Status">
-                    </div>
+                    {{-- <div class="col-sm-3">
+                        <input class="form-control" value="{{ $filter_status }}" name="status" type="search" placeholder="Select Status">
+                    </div> --}}
 
                     <div class="col-sm-3">
-                    <button class="btn btn-primary" type="submit">Filter</button>
+                        <button class="btn btn-primary" type="submit">Filter</button>
                         <a class="btn btn-warning" href='./assigning-pre-assessment' >Reset</a>
                     </div>
-                   
+                    
                 </div>
                 
              </form>
