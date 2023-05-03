@@ -126,4 +126,20 @@ class Hospital extends Authenticatable
     {
         return $this->hasOne(AssociatePartner::class, 'associate_partner_id', 'linked_associate_partner_id');
     }
+
+    public function getEmployeesById($id)
+    {
+        $user_exists  = User::where('id', $id)->exists();
+        if ($user_exists) {
+            return User::where('id', $id)->get(['id', 'firstname', 'lastname', 'employee_code'])->first();
+        }else{
+
+            $admin_exists  = Admin::where('id', $id)->exists();
+            if ($admin_exists) {
+                return Admin::where('id', $id)->get(['id', 'firstname', 'lastname', 'employee_code'])->first();
+            }else{
+                return "Not exist";
+            }
+        }
+    }
 }

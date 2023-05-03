@@ -47,6 +47,21 @@ class Claim extends Model
         'has_family_physician',
         'family_physician',
         'family_physician_contact_no',
+        'assign_to',
+        'assigned_at',
+        're_assign_to',
+        're_assigned_at',
+        'assign_to_claim_processing',
+        'assigned_at_claim_processing',
+        're_assign_to_claim_processing',
+        're_assigned_at_claim_processing',
+        'assign_to_assessment',
+        'assigned_at_assessment',
+        're_assign_to_assessment',
+        're_assigned_at_assessment',
+        'status',
+        'claim_processing_status',
+        'assessment_status',
     ];
 
 
@@ -60,9 +75,41 @@ class Claim extends Model
         return $this->hasOne(Claimant::class, 'id');
     }
 
+    public function claimProcessing()
+    {
+        return $this->hasOne(ClaimProcessing::class, 'claim_id');
+    }
+
+
+    public function assessmentStatus()
+    {
+        return $this->hasOne(AssessmentStatus::class, 'claim_id');
+    }
+
+    public function dischargeStatus()
+    {
+        return $this->hasOne(DischargeStatus::class, 'claim_id');
+    }
+
     public function hospital()
     {
         return $this->belongsTo(Hospital::class, 'hospital_id');
+    }
+
+
+    public function assignTo()
+    {
+        return $this->belongsTo(Admin::class, 'assign_to');
+    }
+
+    public function assignToClaimProcessing()
+    {
+        return $this->belongsTo(Admin::class, 'assign_to_claim_processing');
+    }
+
+    public function assignToAssessment()
+    {
+        return $this->belongsTo(Admin::class, 'assign_to_assessment');
     }
 
     public function policy()
