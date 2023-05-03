@@ -58,15 +58,15 @@
                                                 <td>{{ $borrower->borrower_city }}</td>
                                                 <td>{{ $borrower->borrower_pincode }}</td>
                                                 <td class="text-center">
-                                                   <div class="btn-group">
+                                                   <div class="input-group">
                                                         <button type="button" class="btn btn-primary 
-                                                            dropdown-toggle dropdown-toggle-split" 
+                                                            dropdown-toggle " 
                                                             data-bs-toggle="dropdown">
                                                             <span class="">
                                                                 Action &nbsp;
                                                             </span>
                                                         </button>
-                                                        <ul class="dropdown-menu">
+                                                        <ul class="dropdown-menu dropdown-menu-end">
                                                             <li><a class="dropdown-item" href="{{ route('super-admin.borrowers.edit', @$borrower->claim->id) }}">
                                                                 <i class="mdi mdi-pencil"></i> Edit Borrower</a>
                                                             </li>

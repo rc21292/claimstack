@@ -170,7 +170,7 @@ class AdminController extends Controller
         $messages = [
             'firstname.required'             => 'Please enter firstname',
             'uid.required'                   => 'Please enter employee code.',
-'uid.unique'                   => 'This Employee Code is already taken.',
+            'uid.unique'                     => 'This Employee Code is already taken.',
             'designation.required'           => 'Please enter designation.',
             'email.required'                 => 'Please enter official mail ID.',
             'phone.required'                 => 'Please enter contact number.',
@@ -197,7 +197,10 @@ class AdminController extends Controller
             'linked_employee_id'  =>  $request->linked_employee_id
         ]);
         $perm_admin = Admin::find($id);
-        $perm_admin->syncPermissions($request->permission);
+
+        if(auth()->user()->id != $id){
+            $perm_admin->syncPermissions($request->permission);
+        }
 
         return redirect()->route('admin.admins.index')->with('success', 'Admin updated successfully');
     }
