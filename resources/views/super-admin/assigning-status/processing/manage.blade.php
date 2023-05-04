@@ -106,6 +106,8 @@ use Carbon\Carbon;
 @endsection
 
 
+
+
 @push('scripts')
 @push('scripts')
 <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
