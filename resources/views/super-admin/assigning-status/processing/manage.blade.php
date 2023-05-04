@@ -26,7 +26,7 @@ use Carbon\Carbon;
                         <input class="form-control" value="{{ $filter_claim_id }}" name="claim_id" type="search" placeholder="Enter Claim ID">
                     </div>
                     <div class="col-sm-3">
-                        <input type="text" name="date_from_to" class="form-control" value="{{ $filter_date_from_to}}"   >
+                        <input type="text" name="date_from_to" placeholder="Select Date from to Date to" class="form-control" value="{{ $filter_date_from_to}}"   >
                     </div>
                     {{-- <div class="col-sm-3">
                         <input class="form-control" value="{{ $filter_status }}" name="status" type="search" placeholder="Select Status">
