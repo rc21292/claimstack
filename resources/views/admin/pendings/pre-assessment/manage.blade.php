@@ -50,6 +50,12 @@ use Carbon\Carbon;
                                     </thead>
                                     <tbody>
                                         @foreach ($claims as $claim)
+                                        {{-- @if($claim->linked_employee_data->id != auth()->user()->id)
+                                        @php continue; @endphp
+                                        @endif
+                                         @if($claim->assignTo->id != auth()->user()->id)
+                                        @php continue; @endphp
+                                        @endif --}}
                                             <tr>
                                                 <th scope="row">{{ $claim->uid }}</th>
                                                 <td>{{ $claim->patient->firstname }} {{ $claim->patient->lastname }} ({{ $claim->patient->uid }})</td>                  

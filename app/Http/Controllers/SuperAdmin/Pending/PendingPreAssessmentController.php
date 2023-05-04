@@ -100,17 +100,12 @@ class PendingPreAssessmentController extends Controller
 
     public function getEmployeesById($id)
     {
-        $user_exists  = User::where('id', $id)->exists();
-        if ($user_exists) {
-            return User::where('id', $id)->get(['id', 'firstname', 'lastname', 'employee_code'])->first();
+        $admin_exists  = Admin::where('id', $id)->exists();
+        if ($admin_exists) {
+            $linked = Admin::where('id', $id)->value('linked_employee');
+            return Admin::where('id', $linked)->get(['id', 'firstname', 'lastname', 'employee_code'])->first();
         }else{
-
-            $admin_exists  = Admin::where('id', $id)->exists();
-            if ($admin_exists) {
-                return Admin::where('id', $id)->get(['id', 'firstname', 'lastname', 'employee_code'])->first();
-            }else{
-                return "Not exist";
-            }
+            return "Not exist";
         }
     }
 

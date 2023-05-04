@@ -31,7 +31,11 @@ class HospitalTieUpAuthorizationController extends Controller
             $hospitals_tie_ups->orWhere('uid', 'like','%' . $filter_search . '%');
         }
 
-        $hospitals_tie_ups = $hospitals_tie_ups->where('status', 0)->orderBy('id', 'desc')->paginate(20);
+        $hospitals_tie_ups = $hospitals_tie_ups->where('status', 0)->whereHas('hospital' , function($query)
+        {
+            $query->where('hospitals.linked_employee', auth('admin')->user()->id)
+                ->orWhere('hospitals.assigned_employee', auth('admin')->user()->id);
+        })->orderBy('id', 'DESC')->paginate(20);
 
         foreach ($hospitals_tie_ups as $key => $hospitals_tie_up) {
            $employee = $this->getEmployeesById($hospitals_tie_up->hospital->linked_employee);
