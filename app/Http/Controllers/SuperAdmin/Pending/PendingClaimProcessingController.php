@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Claim;
 use App\Models\Insurer;
 use App\Models\Admin;
+use App\Models\User;
 
 class PendingClaimProcessingController extends Controller
 {
@@ -25,23 +26,12 @@ class PendingClaimProcessingController extends Controller
 
         $filter_search = '';
         
-    /*
-        \DB::connection()->enableQueryLog();
-        $filter_search = $request->search;
-        $claims = Claim::query();
-        if($filter_search){
-            $claims->where('name', 'like','%' . $filter_search . '%');
-            $claims->orWhere('uid', 'like','%' . $filter_search . '%');
+        foreach ($claims as $key => $claim) {
+           $employee = $this->getEmployeesById($claim->hospital->assignedEmployee->id);
+
+           $claims[$key]->linked_employee_data = $employee;
         }
 
-        $claims = $claims->whereHas('claimProcessing', function ($q) {
-                $q->whereNotNull('claim_id');
-            })->where('insurance_coverage', 'Yes')->orWhere('lending_required', 'Yes')->orWhere(['insurance_coverage' => 'Yes', 'lending_required' => 'Yes'])->orderBy('id', 'desc')->paginate(20);
-
-        $queries = \DB::getQueryLog();
-
-        $last_query = end($queries);
-*/
         return view('super-admin.pendings.processing.manage',  compact('claims', 'filter_search'));
     }
 
@@ -107,6 +97,23 @@ class PendingClaimProcessingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function getEmployeesById($id)
+    {
+        $user_exists  = User::where('id', $id)->exists();
+        if ($user_exists) {
+            return User::where('id', $id)->get(['id', 'firstname', 'lastname', 'employee_code'])->first();
+        }else{
+
+            $admin_exists  = Admin::where('id', $id)->exists();
+            if ($admin_exists) {
+                return Admin::where('id', $id)->get(['id', 'firstname', 'lastname', 'employee_code'])->first();
+            }else{
+                return "Not exist";
+            }
+        }
+    }
+
     public function destroy($id)
     {
         //

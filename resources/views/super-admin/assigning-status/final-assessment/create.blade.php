@@ -288,7 +288,7 @@
                                     @csrf
                                     @method('PUT')
                                     <input type="hidden" name="form_type" value="pre_assessment_re_assign_form">
-
+                                    <div class="form-group row">
                                     <div class="col-md-6 mt-3">
                                             <label for="final_assessment_status">Final-Assessment/ Authorization Status <span
                                                     class="text-danger"></span></label>
@@ -323,7 +323,7 @@
                                         <div class="col-md-12 mt-3">
                                             <label for="re_assign_to_assessment">Re-Assign to <span
                                                     class="text-danger">*</span></label>
-                                            <select class="form-select" id="re_assign_to_assessment"  name="re_assign_to_assessment">
+                                            <select @if(!$claim->assign_to_assessment) disabled @endif  class="form-select" id="re_assign_to_assessment"  name="re_assign_to_assessment">
                                                 <option value="">Please Select</option>
                                                 @foreach($admins as $admin)
                                                 <option {{ old('re_assign_to_assessment', $claim->re_assign_to_assessment) == $admin->id ? 'selected' : '' }} value="{{ $admin->id }}" >{{ $admin->employee_code.'['. $admin->name .']'  }} </option>
@@ -338,16 +338,15 @@
 
 
                                         <div class="col-md-12 text-end mt-3">
-                                            <button type="submit" class="btn btn-success"
+                                            <button type="submit" @if(!$claim->assign_to_assessment) disabled @endif  class="btn btn-success"
                                                 form="assigning-re-assessment-form">Re-Assign
                                                 </button>
                                         </div>
-
+                                    </div>
                                     </form>
 
 
                                     </div>
-                                </form>
                             </div>
                         </div>
                         <div class="card">

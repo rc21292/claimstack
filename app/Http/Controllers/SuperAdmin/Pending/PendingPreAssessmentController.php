@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Claim;
 use App\Models\Insurer;
 use App\Models\Admin;
+use App\Models\User;
 
 class PendingPreAssessmentController extends Controller
 {
@@ -22,6 +23,12 @@ class PendingPreAssessmentController extends Controller
             $query->whereNotNull('assign_to')
             ->orWhereNotNull('re_assign_to');
         })->orderBy('id', 'desc')->paginate(20);
+
+        foreach ($claims as $key => $claim) {
+           $employee = $this->getEmployeesById($claim->hospital->assignedEmployee->id);
+
+           $claims[$key]->linked_employee_data = $employee;
+        }
 
         $filter_search = '';
 
@@ -90,6 +97,23 @@ class PendingPreAssessmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function getEmployeesById($id)
+    {
+        $user_exists  = User::where('id', $id)->exists();
+        if ($user_exists) {
+            return User::where('id', $id)->get(['id', 'firstname', 'lastname', 'employee_code'])->first();
+        }else{
+
+            $admin_exists  = Admin::where('id', $id)->exists();
+            if ($admin_exists) {
+                return Admin::where('id', $id)->get(['id', 'firstname', 'lastname', 'employee_code'])->first();
+            }else{
+                return "Not exist";
+            }
+        }
+    }
+
     public function destroy($id)
     {
         //

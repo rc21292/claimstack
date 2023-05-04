@@ -127,18 +127,18 @@ class Hospital extends Authenticatable
         return $this->hasOne(AssociatePartner::class, 'associate_partner_id', 'linked_associate_partner_id');
     }
 
-    public function getEmployeesById($id)
+    public function assignedEmployee()
     {
-        $user_exists  = User::where('id', $id)->exists();
+        $user_exists  = User::where('id', $this->assigned_employee)->exists();
         if ($user_exists) {
-            return User::where('id', $id)->get(['id', 'firstname', 'lastname', 'employee_code'])->first();
+            return $this->belongsTo(User::class, 'assigned_employee');
         }else{
 
-            $admin_exists  = Admin::where('id', $id)->exists();
+            $admin_exists  = Admin::where('id', $this->assigned_employee)->exists();
             if ($admin_exists) {
-                return Admin::where('id', $id)->get(['id', 'firstname', 'lastname', 'employee_code'])->first();
+                return $this->belongsTo(Admin::class, 'assigned_employee');
             }else{
-                return "Not exist";
+                return Admin::first();
             }
         }
     }
