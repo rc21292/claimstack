@@ -282,6 +282,58 @@
                 @endif
             </li>
 
+            @if(auth()->check() && auth()->user()->hasDirectPermission('2nd Level Authorization Rights'))
+
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#claimProcessingModule" aria-expanded="false" aria-controls="claimProcessingModule"
+                    class="side-nav-link">
+                    <i class="mdi mdi-hospital-building"></i>
+                    <span> Claim Processing Assigning Module </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="claimProcessingModule">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="{{ route('admin.assigning-pre-assessment.index') }}">Assigning Status for Pre-Assessment</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.assigning-claim-processing.index') }}">Assigning Status for Claim Processing</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.assigning-final-assessment.index') }}">Assigning Status for Final-Assessment / Claim Authorization</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            @endif
+
+            @if(auth()->check() && auth()->user()->hasDirectPermission('2nd Level Authorization Rights'))
+
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#claimProcessingPendingModule" aria-expanded="false" aria-controls="claimProcessingPendingModule"
+                    class="side-nav-link">
+                    <i class="mdi mdi-hospital-building"></i>
+                    <span> Pending for Claim Processing </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="claimProcessingPendingModule">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="{{ route('admin.pending-pre-assessment.index') }}">Pending for Pre-Assessment</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.pending-claim-processing.index') }}">Pending for Claim Processing</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.pending-final-assessment.index') }}">Pending for Final-Assessment</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            @endif
+
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#authorization" aria-expanded="false"
                     aria-controls="authorization" class="side-nav-link">
@@ -292,8 +344,31 @@
                 @if(auth()->check() && auth()->user()->hasDirectPermission('2nd Level Authorization Rights'))
                 <div class="collapse" id="authorization">
                     <ul class="side-nav-second-level">
-                        <li>
-                            <a href="{{ route('admin.hospital-authorizations.index') }}">Hospital Authorization</a>
+                        <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#hospiatl-authorization" aria-expanded="true" aria-controls="hospiatl-authorization" class="">
+                                <span> Hospitals </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse show" id="hospiatl-authorization" style="">
+                                <ul class="side-nav-third-level">                                    
+
+
+                                    <li>
+                                        <a href="{{ route('admin.hospital-authorizations.index') }}">Hospital Authorization</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="{{ route('admin.hospital-tie-up-authorizations.index') }}">Tie Ups</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="{{ route('admin.hospital-empstatus-authorizations.index') }}">Emanelment Status</a>
+                                    </li>
+
+                                    
+
+                                </ul>
+                            </div>
                         </li>
                         <li>
                             <a href="{{ route('admin.claimant-authorizations.index') }}">Claimant Authorization</a>
@@ -306,11 +381,43 @@
                 @elseif(auth()->check() && !auth()->user()->hasDirectPermission('2nd Level Authorization Rights'))
                 <div class="collapse" id="authorization">
                     <ul class="side-nav-second-level">
-                        @if(auth()->check() && auth()->user()->hasDirectPermission('Hospital ID Authorization Rights'))
-                        <li>
-                            <a href="{{ route('admin.hospital-authorizations.index') }}">Hospital Authorization</a>
+                        
+                        <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#hospiatl-authorization" aria-expanded="true" aria-controls="hospiatl-authorization" class="">
+                                <span> Hospitals </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse show" id="hospiatl-authorization" style="">
+                                <ul class="side-nav-third-level">                                    
+
+                                    @if(auth()->check() && auth()->user()->hasDirectPermission('Hospital ID Authorization Rights'))
+
+                                    <li>
+                                        <a href="{{ route('admin.hospital-authorizations.index') }}">Hospital Authorization</a>
+                                    </li>
+
+                                    @endif
+
+                                    @if(auth()->check() && auth()->user()->hasDirectPermission('Hospital ID Authorization Rights'))
+
+                                    <li>
+                                        <a href="{{ route('admin.hospital-tie-up-authorizations.index') }}">Tie Ups</a>
+                                    </li>
+
+                                    @endif
+
+                                    @if(auth()->check() && auth()->user()->hasDirectPermission('Hospital ID Authorization Rights'))
+
+                                    <li>
+                                        <a href="{{ route('admin.hospital-empstatus-authorizations.index') }}">Emanelment Status</a>
+                                    </li>
+
+                                    @endif
+                                
+                                </ul>
+                            </div>
                         </li>
-                        @endif
+                        
                         @if(auth()->check() && auth()->user()->hasDirectPermission('Claimant ID Authorization Rights'))
                         <li>
                             <a href="{{ route('admin.claimant-authorizations.index') }}">Claimant Authorization</a>
