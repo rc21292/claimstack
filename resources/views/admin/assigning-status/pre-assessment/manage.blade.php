@@ -27,11 +27,21 @@ use Carbon\Carbon;
                     <div class="col-sm-3">
                         <input type="text" name="date_from_to" placeholder="Select Date from to Date to" class="form-control" value="{{ $filter_date_from_to}}"   >
                     </div>
-                    {{-- <div class="col-sm-3">
-                        <input class="form-control" value="{{ $filter_status }}" name="status" type="search" placeholder="Select Status">
-                    </div> --}}
+                    <div class="col-sm-4">
 
-                    <div class="col-sm-3">
+                        <select class="form-select" name="status">
+                            <option>Select Status</option>
+                            <option value="All" @if($filter_status == 'All') selected @endif >All</option> 
+                            <option value="Waiting for Assigning for Pre-Assessment" @if($filter_status == 'Waiting for Assigning for Pre-Assessment') selected @endif >Waiting for Assigning for Pre-Assessment</option>
+                            <option value="Waiting for Pre-Assessment" @if($filter_status == 'Waiting for Pre-Assessment') selected @endif >  Waiting for Pre-Assessment </option>
+                            <option value="Query Raised by BHC Team" @if($filter_status == 'Query Raised by BHC Team') selected @endif > Query Raised by BHC Team </option>
+                            <option value="Non Admissible as per the Policy TC" @if($filter_status == 'Non Admissible as per the Policy TC') selected @endif > Non Admissible as per the Policy TC </option>
+                            <option value="Non Admissible as per the Treatment Received" @if($filter_status == 'Non Admissible as per the Treatment Received') selected @endif > Non Admissible as per the Treatment Received </option>
+                            <option value="Admissible" @if($filter_status == 'Admissible') selected @endif >Admissible</option>
+                        </select>
+                    </div> 
+
+                    <div class="col-sm-2">
                         <button class="btn btn-primary" type="submit">Filter</button>
                         <a class="btn btn-warning" href='./assigning-pre-assessment' >Reset</a>
                     </div>

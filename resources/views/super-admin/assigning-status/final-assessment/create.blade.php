@@ -224,8 +224,8 @@
                                                     class="text-danger"></span></label>
                                             <select disabled class="form-select final_assessment_status" id="final_assessment_status"
                                                 name="final_assessment_status">
-                                                @if(@$claim->claimProcessing->final_assessment_status)
-                                                <option>{{ @$claim->claimProcessing->final_assessment_status }}</option>
+                                                @if(@$claim->assessmentStatus->final_assessment_status)
+                                                <option>{{ @$claim->assessmentStatus->final_assessment_status }}</option>
                                                 @else
                                                 <option> </option>
                                                 @endif                                                

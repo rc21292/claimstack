@@ -282,7 +282,7 @@
                 @endif
             </li>
 
-            @if(auth()->check() && auth()->user()->hasDirectPermission('2nd Level Authorization Rights'))
+            {{-- @if(auth()->check() && auth()->user()->hasDirectPermission('2nd Level Authorization Rights')) --}}
 
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#claimProcessingModule" aria-expanded="false" aria-controls="claimProcessingModule"
@@ -293,20 +293,26 @@
                 </a>
                 <div class="collapse" id="claimProcessingModule">
                     <ul class="side-nav-second-level">
+                        @if(auth()->check() && auth()->user()->hasDirectPermission('Pre-assessment Assigning Rights'))
                         <li>
                             <a href="{{ route('admin.assigning-pre-assessment.index') }}">Assigning Status for Pre-Assessment</a>
                         </li>
+                        @endif
+                        @if(auth()->check() && auth()->user()->hasDirectPermission('Claim Processing Assigning Rights'))
                         <li>
                             <a href="{{ route('admin.assigning-claim-processing.index') }}">Assigning Status for Claim Processing</a>
                         </li>
+                        @endif
+                        @if(auth()->check() && auth()->user()->hasDirectPermission('Final-assessment Assigning Rights'))
                         <li>
                             <a href="{{ route('admin.assigning-final-assessment.index') }}">Assigning Status for Final-Assessment / Claim Authorization</a>
                         </li>
+                        @endif
                     </ul>
                 </div>
             </li>
 
-            @endif
+            {{-- @endif --}}
 
             @if(auth()->check() && auth()->user()->hasDirectPermission('2nd Level Authorization Rights'))
 

@@ -39,11 +39,13 @@ class AssigningStatusFinalAssessmentController extends Controller
             $claims->whereDate('created_at','<=',Carbon::parse($d[1])->format('Y-m-d') );
         }
 
-        if($filter_status){
-           
+        if($filter_status && $filter_status != 'All' && $filter_status != 'Waiting for Assigning for Final-Assessment'){
+            $claims->whereHas('assessmentStatus', function ($q) use ($filter_status) {
+                $q->where('final_assessment_status', $filter_status);
+            });
         }
 
-        ( is_null($filter_claim_id) && is_null($filter_date_from_to) ) ?
+        ( is_null($filter_claim_id) && is_null($filter_date_from_to) && is_null($filter_status) ) ?
 
         $claims = $claims->whereHas('dischargeStatus', function ($q) {
                 $q->whereNotNull('claim_id');
@@ -54,9 +56,6 @@ class AssigningStatusFinalAssessmentController extends Controller
             })->orderBy('id', 'desc')->paginate(20)
 
             :  $claims = $claims->orderBy('id', 'desc')->paginate(20);
-            
-
-        /*$claims = $claims->has('dischargeStatus')->where('insurance_coverage', 'Yes')->orWhere('lending_required', 'Yes')->orWhere(['insurance_coverage' => 'Yes', 'lending_required' => 'Yes'])->orderBy('id', 'desc')->paginate(20);*/
 
         return view('super-admin.assigning-status.final-assessment.manage',  compact('claims', 'filter_search', 'filter_claim_id','filter_date_from_to','filter_status'));
     }

@@ -11,16 +11,6 @@ use Carbon\Carbon;
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box">
-                    <div class="page-title-right">
-                        <form action="{{ route('admin.hospital-authorizations.index') }}">
-                            <div class="input-group">
-                                <input class="form-control" value="{{ $filter_search }}" name="search" type="search" placeholder="Type here to Search">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="submit">Search</button>
-                                </div>
-                            </div>
-                        </form>  
-                    </div>
                     <h4 class="page-title">Pending for Pre-Assessment</h4>
                 </div>
             </div>
@@ -73,14 +63,7 @@ use Carbon\Carbon;
                                                     <div class="btn-group">
                                                         <a href="{{ route('admin.assessment-status.create', ['claim_id' => $claim->id]) }}"
                                                             class="btn btn-primary"><i class="mdi mdi-eye"></i></a>
-                                                            <button type="button" title=" Authorize Claim ID" class="btn btn-danger"  onclick="confirmDelete({{ $claim->id }})"><i class="uil-shield-check"></i></button>
-                                                        <form id='delete-form{{ $claim->id }}'
-                                                            action="{{ route('admin.pending-pre-assessment.update', $claim->id) }}"
-                                                            method='POST'>
-                                                            <input type='hidden' name='_token'
-                                                            value='{{ csrf_token() }}'>
-                                                            <input type='hidden' name='_method' value='PUT'>
-                                                        </form>
+                                                            
                                                     </div>
                                                 </td>
                                             </tr>

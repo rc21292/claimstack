@@ -67,14 +67,7 @@ use Carbon\Carbon;
                                                     <div class="btn-group">
                                                         <a href="{{ route('super-admin.assessment-status.create', ['claim_id' => $claim->id]) }}"
                                                             class="btn btn-primary"><i class="mdi mdi-eye"></i></a>
-                                                            <button type="button" title=" Authorize Claim ID" class="btn btn-danger"  onclick="confirmDelete({{ $claim->id }})"><i class="uil-shield-check"></i></button>
-                                                        <form id='delete-form{{ $claim->id }}'
-                                                            action="{{ route('super-admin.pending-final-assessment.update', $claim->id) }}"
-                                                            method='POST'>
-                                                            <input type='hidden' name='_token'
-                                                            value='{{ csrf_token() }}'>
-                                                            <input type='hidden' name='_method' value='PUT'>
-                                                        </form>
+                                                            
                                                     </div>
                                                 </td>
                                             </tr>

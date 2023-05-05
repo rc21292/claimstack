@@ -250,12 +250,12 @@
                                     <input type="hidden" name="form_type" value="pre_assessment_re_assign_form">
                                     <div class="form-group row">
                                         <div class="col-md-6 mt-3">
-                                            <label for="final_assessment_status">Pre-Assessment Status <span
+                                            <label for="pre_assessment_status">Pre-Assessment Status <span
                                                     class="text-danger"></span></label>
-                                            <select disabled class="form-select final_assessment_status" id="final_assessment_status"
-                                                name="final_assessment_status">
-                                                @if(@$claim->assessmentStatus->final_assessment_status)
-                                                <option>{{ @$claim->assessmentStatus->final_assessment_status }}</option>
+                                            <select disabled class="form-select pre_assessment_status" id="pre_assessment_status"
+                                                name="pre_assessment_status">
+                                                @if(@$claim->assessmentStatus->pre_assessment_status)
+                                                <option>{{ @$claim->assessmentStatus->pre_assessment_status }}</option>
                                                 @else
                                                 <option> </option>
                                                 @endif                                                

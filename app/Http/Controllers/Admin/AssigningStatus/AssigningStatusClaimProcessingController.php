@@ -21,6 +21,7 @@ class AssigningStatusClaimProcessingController extends Controller
     {
         $this->middleware('auth:admin');
     }
+
     
     public function index(Request $request)
     {
@@ -49,23 +50,16 @@ class AssigningStatusClaimProcessingController extends Controller
         }
 
         if($filter_status){
-           
+            $claims->whereHas('claimProcessing', function ($q) use ($filter_status) {
+                $q->where('final_assessment_status', $filter_status);
+            });
         }
 
-       
+        ( is_null($filter_claim_id) && is_null($filter_date_from_to) && is_null($filter_status) ) ?
 
-        ( is_null($filter_claim_id) && is_null($filter_date_from_to) ) ?
-            
-        $claims = $claims->whereHas('claimProcessing', function ($q) {
-                $q->whereNotNull('claim_id');
-            })->where( function($query) {
-                return $query->where('insurance_coverage', 'Yes')
-                ->orWhere('lending_required', 'Yes')
-                ->orWhere(['insurance_coverage' => 'Yes', 'lending_required' => 'Yes']);
-            })->orderBy('id', 'desc')->paginate(20)
+            $claims = $claims->where('insurance_coverage', 'Yes')->orWhere('lending_required', 'Yes')->orWhere(['insurance_coverage' => 'Yes', 'lending_required' => 'Yes'])->orderBy('id', 'desc')->paginate(20)
+        :  $claims = $claims->orderBy('id', 'desc')->paginate(20);
         
-            :  $claims = $claims->orderBy('id', 'desc')->paginate(20);
-
         $queries = \DB::getQueryLog();
 
         $last_query = end($queries);
