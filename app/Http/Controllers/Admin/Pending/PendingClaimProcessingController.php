@@ -38,7 +38,7 @@ class PendingClaimProcessingController extends Controller
             $claims =  Claim::where('claim_processing_status', 0)
             ->where(function ($query) {
                 $query->where('assign_to_claim_processing', auth()->user()->id)
-                ->orWhere('re_assign_to_claim_processing', auth()->user()->id);
+                ->orWhere('linked_admin', auth()->user()->id);
             })->orderBy('id', 'desc')->paginate(20);
             
         }

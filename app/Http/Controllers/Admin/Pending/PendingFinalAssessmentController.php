@@ -36,7 +36,7 @@ class PendingFinalAssessmentController extends Controller
 
             $claims =  Claim::where('assessment_status', 0)
             ->where(function ($query) {
-                $query->where('assign_to', auth()->user()->id)
+                $query->where('assign_to_assessment', auth()->user()->id)
                 ->orWhere('linked_admin', auth()->user()->id);
             })->orderBy('id', 'desc')->paginate(20);
         }
