@@ -153,3 +153,101 @@ div.scroll {
 .bg-white {
     background-color: #fff !important;
 }
+
+
+/* ershad alam */
+
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&family=Open+Sans:wght@300&display=swap');
+
+
+  /* left menu */
+body{
+    font-family: 'Inter', sans-serif !important;
+    color: #000 !important;
+}
+
+body[data-leftbar-theme=dark] .side-nav .side-nav-link{
+    color: #fff
+}
+body[data-leftbar-theme=dark] .side-nav .side-nav-second-level li a{
+    color: #fff
+}
+
+body[data-leftbar-theme=dark] .side-nav .side-nav-link:active, body[data-leftbar-theme=dark] .side-nav .side-nav-link:focus, body[data-leftbar-theme=dark] .side-nav .side-nav-link:hover{
+    background-color: #fff;
+    color: #263238;
+}
+body[data-leftbar-theme=dark] .side-nav .side-nav-link:active, 
+body[data-leftbar-theme=dark] .side-nav .side-nav-link:focus, 
+body[data-leftbar-theme=dark] .side-nav .side-nav-link:hover,
+body[data-leftbar-theme=dark] .side-nav .menuitem-active .side-nav-link:hover{
+    background-color: #fff;
+    color: #263238 !important;
+}
+
+body[data-leftbar-theme=dark] .side-nav .side-nav-link:active::before, body[data-leftbar-theme=dark] .side-nav .side-nav-link:focus::before, body[data-leftbar-theme=dark] .side-nav .side-nav-link:hover::before{
+    width: 15px;
+    height: 100%;
+    background-color: #EB3239;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.menuitem-active.active::before{
+    width: 15px;
+    height: 100%;
+    background-color: #EB3239;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+
+}
+.side-nav-forth-level li a, .side-nav-second-level li a, .side-nav-third-level li a,
+.side-nav .side-nav-link{
+    font-size: 1rem !important;
+}
+
+body[data-leftbar-theme=dark][data-leftbar-compact-mode=condensed] .side-nav .side-nav-item:hover>.collapse>ul{
+    background-color: #3E4097;
+}
+/*  */
+.navbar-custom .topbar-menu .nav-user {
+    color: #3E4097;
+}
+
+/* table */
+.table{
+    color: #000;
+}
+.table tbody th{
+    font-weight:normal
+}
+.card .card-body label{
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif !important;
+}
+.card .card-body .input-group-text{
+    margin-bottom: 8px;
+
+}
+.card .card-body .form-group .form-control{
+    height: 37px;
+}
+
+
+.custom-accordion .card-header{
+    background-color: #fff;
+    border: solid 1px #ccc;
+    border-radius: 4px !important;
+}
+.accordion>.card>.card-header{
+    margin-bottom: -5px;
+}
+
+.card .card-body h5{
+    font-weight: 500 !important;
+    font-family: 'Inter', sans-serif;
+}
