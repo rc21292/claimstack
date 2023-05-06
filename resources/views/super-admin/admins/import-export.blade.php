@@ -30,13 +30,14 @@
                     <div class="card-body">
                         <form action="{{ route('super-admin.admins.import') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <div class="form-group mb-4">
-                                <div class="custom-file text-left">
-                                    <input type="file" required name="file" class="custom-file-input" id="customFile">
-                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                            <div class="form-group row mb-4">
+                                <div class="col-6">
+                                    <input class="form-control" name="file" type="file" id="inputGroupFile04">
+                                </div>
+                                <div class="col-6">
+                                    <button class="btn btn-primary">Import Admins</button>
                                 </div>
                             </div>
-                            <button class="btn btn-primary">Import Admins</button>
                             <a class="btn btn-success" href="{{ route('super-admin.admins.export') }}">Export Admins</a>
                         </form>
                     </div>
