@@ -46,7 +46,7 @@ use Carbon\Carbon;
                                                 <td>{{ $claim->patient->firstname }} {{ $claim->patient->lastname }} ({{ $claim->patient->uid }})</td>                  
                                                 <td>{{ $claim->hospital->name }} ({{ $claim->hospital->uid }})</td>
                                                 <td>{{ Carbon::parse($claim->assigned_at_claim_processing)->format('d-m-Y H:i:s'); }}</td>
-                                                <td>{{ $claim->assignToClaimProcessing->firstname }} {{ $claim->assignToClaimProcessing->lastname }}</td>
+                                                <td>{{ @$claim->assignToClaimProcessing->firstname }} {{ @$claim->assignToClaimProcessing->lastname }}</td>
                                                 <td>{{ $claim->linked_employee_data->firstname }} {{ $claim->linked_employee_data->lastname }}</td>
 
                                                 @php
@@ -66,7 +66,7 @@ use Carbon\Carbon;
                                     </tbody>
                                 </table>
                             @else
-                                <p class="text-center">No Hospital found.</p>
+                                <p class="text-center">No Data found.</p>
                             @endif
                         </div>
                         {{ $claims->withQueryString()->links('pagination::bootstrap-4') }}

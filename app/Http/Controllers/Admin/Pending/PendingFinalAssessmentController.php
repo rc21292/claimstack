@@ -24,11 +24,22 @@ class PendingFinalAssessmentController extends Controller
     
     public function index(Request $request)
     {
-        $claims =  Claim::where('assessment_status', 0)
+        if(auth()->check() && auth()->user()->hasDirectPermission('Final-assessment Assigning Rights')){
+
+            $claims =  Claim::where('assessment_status', 0)
             ->where(function ($query) {
-            $query->whereNotNull('assign_to_assessment')
-            ->orWhereNotNull('re_assign_to_assessment');
-        })->orderBy('id', 'desc')->paginate(20);
+                $query->whereNotNull('assign_to_assessment')
+                ->orWhereNotNull('re_assign_to_assessment');
+            })->orderBy('id', 'desc')->paginate(20);
+
+        }else{
+
+            $claims =  Claim::where('assessment_status', 0)
+            ->where(function ($query) {
+                $query->where('assign_to', auth()->user()->id)
+                ->orWhere('linked_admin', auth()->user()->id);
+            })->orderBy('id', 'desc')->paginate(20);
+        }
 
         foreach ($claims as $key => $claim) {
            $employee = $this->getEmployeesById($claim->hospital->assignedEmployee->id);

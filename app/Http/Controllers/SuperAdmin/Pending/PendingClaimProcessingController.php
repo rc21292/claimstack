@@ -30,6 +30,8 @@ class PendingClaimProcessingController extends Controller
            $employee = $this->getEmployeesById($claim->hospital->assignedEmployee->id);
 
            $claims[$key]->linked_employee_data = $employee;
+
+           Claim::where('id', $claim->id)->update(['linked_admin' => $employee->id]);
         }
 
         return view('super-admin.pendings.processing.manage',  compact('claims', 'filter_search'));

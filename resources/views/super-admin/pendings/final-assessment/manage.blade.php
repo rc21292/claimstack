@@ -11,16 +11,6 @@ use Carbon\Carbon;
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box">
-                    <div class="page-title-right">
-                        <form action="{{ route('super-admin.hospital-authorizations.index') }}">
-                            <div class="input-group">
-                                <input class="form-control" value="{{ $filter_search }}" name="search" type="search" placeholder="Type here to Search">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="submit">Search</button>
-                                </div>
-                            </div>
-                        </form>  
-                    </div>
                     <h4 class="page-title">Pending for Final-Assessment</h4>
                 </div>
             </div>
@@ -75,7 +65,7 @@ use Carbon\Carbon;
                                     </tbody>
                                 </table>
                             @else
-                                <p class="text-center">No Hospital found.</p>
+                                <p class="text-center">No Data found.</p>
                             @endif
                         </div>
                         {{ $claims->withQueryString()->links('pagination::bootstrap-4') }}

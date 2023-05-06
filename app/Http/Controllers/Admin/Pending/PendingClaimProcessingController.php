@@ -24,11 +24,24 @@ class PendingClaimProcessingController extends Controller
     
     public function index(Request $request)
     {
+
+        if(auth()->check() && auth()->user()->hasDirectPermission('Claim Processing Assigning Rights')){
+
         $claims =  Claim::where('claim_processing_status', 0)
             ->where(function ($query) {
             $query->whereNotNull('assign_to_claim_processing')
             ->orWhereNotNull('re_assign_to_claim_processing');
         })->orderBy('id', 'desc')->paginate(20);
+
+        }else{
+
+            $claims =  Claim::where('claim_processing_status', 0)
+            ->where(function ($query) {
+                $query->where('assign_to_claim_processing', auth()->user()->id)
+                ->orWhere('re_assign_to_claim_processing', auth()->user()->id);
+            })->orderBy('id', 'desc')->paginate(20);
+            
+        }
 
         $filter_search = '';
         

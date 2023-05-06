@@ -22,8 +22,7 @@ class AssigningStatusPreAssessmentController extends Controller
     }
     
     public function index(Request $request)
-    {
-        
+    {        
         $filter_search = $request->search;
 
         $filter_claim_id = $request->claim_id;

@@ -24,15 +24,24 @@ class PendingPreAssessmentController extends Controller
 
     public function index()
     {
-        $claims =  Claim::where('status', 0)
+        if(auth()->check() && auth()->user()->hasDirectPermission('Pre-assessment Assigning Rights')){
+            $claims =  Claim::where('status', 0)
             ->where(function ($query) {
             $query->whereNotNull('assign_to')
             ->orWhereNotNull('re_assign_to');
         })->orderBy('id', 'desc')->paginate(20);
 
+        }else{
+
+            $claims =  Claim::where('status', 0)
+            ->where(function ($query) {
+                $query->where('assign_to', auth()->user()->id)
+                ->orWhere('linked_admin', auth()->user()->id);
+            })->orderBy('id', 'desc')->paginate(20);
+        }
+
         foreach ($claims as $key => $claim) {
            $employee = $this->getEmployeesById($claim->hospital->assignedEmployee->id);
-
            $claims[$key]->linked_employee_data = $employee;
         }
 

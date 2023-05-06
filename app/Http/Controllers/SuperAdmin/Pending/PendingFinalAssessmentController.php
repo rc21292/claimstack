@@ -28,6 +28,7 @@ class PendingFinalAssessmentController extends Controller
            $employee = $this->getEmployeesById($claim->hospital->assignedEmployee->id);
 
            $claims[$key]->linked_employee_data = $employee;
+           Claim::where('id', $claim->id)->update(['linked_admin' => $employee->id]);
         }
 
         $filter_search = $request->search;

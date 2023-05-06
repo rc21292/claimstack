@@ -30,7 +30,7 @@ use Carbon\Carbon;
                     <div class="col-sm-4">
 
                         <select class="form-select" name="status">
-                            <option>Select Status</option>
+                            <option value="">Select Status</option>
                             <option value="All" @if($filter_status == 'All') selected @endif >All</option> 
                             <option value="Waiting for Assigning for Pre-Assessment" @if($filter_status == 'Waiting for Assigning for Pre-Assessment') selected @endif >Waiting for Assigning for Pre-Assessment</option>
                             <option value="Waiting for Pre-Assessment" @if($filter_status == 'Waiting for Pre-Assessment') selected @endif >  Waiting for Pre-Assessment </option>
@@ -100,7 +100,7 @@ use Carbon\Carbon;
                                     </tbody>
                                 </table>
                             @else
-                                <p class="text-center">No Hospital found.</p>
+                                <p class="text-center">No Data found.</p>
                             @endif
                         </div>
                         {{ $claims->withQueryString()->links('pagination::bootstrap-4') }}
