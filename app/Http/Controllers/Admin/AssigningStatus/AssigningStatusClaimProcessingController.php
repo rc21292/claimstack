@@ -49,7 +49,7 @@ class AssigningStatusClaimProcessingController extends Controller
             $claims->whereDate('created_at','<=',Carbon::parse($d[1])->format('Y-m-d') );
         }
 
-        if($filter_status){
+        if($filter_status && $filter_status != 'All'){
             $claims->whereHas('claimProcessing', function ($q) use ($filter_status) {
                 $q->where('final_assessment_status', $filter_status);
             });

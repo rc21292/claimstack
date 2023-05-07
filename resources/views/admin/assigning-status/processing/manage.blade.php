@@ -32,6 +32,7 @@ use Carbon\Carbon;
 
                         <select class="form-select" name="status">
                             <option value="">Select Status</option>
+                            <option value="All" @if($filter_status == 'All') selected @endif>All</option>
                             <option value="Waiting for Pre-Assessment" @if($filter_status == 'Waiting for Pre-Assessment') selected @endif> Waiting for Pre-Assessment</option>
                             <option value="Query Raised by BHC Team" @if($filter_status == 'Query Raised by BHC Team') selected @endif> Query Raised by BHC Team</option>
                             <option value="Non Admissible as per the Policy TC" @if($filter_status == 'Non Admissible as per the Policy TC') selected @endif> Non Admissible as per the Policy TC</option>
