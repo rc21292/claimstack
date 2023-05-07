@@ -8,6 +8,7 @@ use App\Models\Hospital;
 use App\Models\HospitalTieUp;
 use App\Models\User;
 use App\Models\Admin;
+use DB;
 
 class HospitalTieUpAuthorizationController extends Controller
 {
@@ -24,6 +25,15 @@ class HospitalTieUpAuthorizationController extends Controller
     
     public function index(Request $request)
     {
+        $hospitals_tie_ups = HospitalTieUp::where('status', 0)->orderBy('id', 'desc')->paginate(20);
+
+        foreach ($hospitals_tie_ups as $key => $hospitals_tie_up) {
+           $employee = $this->getEmployeesById($hospitals_tie_up->hospital->assignedEmployee->id);
+           HospitalTieUp::where('id', $hospitals_tie_up->id)->update(['linked_admin' => $employee->id]);
+        }
+
+        DB::connection()->enableQueryLog();
+
         $filter_search = $request->search;
         $hospitals_tie_ups = HospitalTieUp::query();
         if($filter_search){
@@ -37,11 +47,16 @@ class HospitalTieUpAuthorizationController extends Controller
                 })
         ->whereHas('hospital' , function($query)
         {
-            $query->where('hospitals.linked_employee', auth('admin')->user()->id)
+            $query->orWhere('hospitals.linked_employee', auth('admin')->user()->id)
                 ->orWhere('hospitals.assigned_employee', auth('admin')->user()->id);
         })->orderBy('id', 'DESC')->paginate(20);
 
+        $queries = DB::getQueryLog();
+
+        $last_query = end($queries);
+
         foreach ($hospitals_tie_ups as $key => $hospitals_tie_up) {
+        
            $employee = $this->getEmployeesById($hospitals_tie_up->hospital->assignedEmployee->id);
 
            HospitalTieUp::where('id', $hospitals_tie_up->id)->update(['linked_admin' => $employee->id]);

@@ -40,7 +40,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a href="#hospital_tie_up_details" @if((auth()->check() && auth()->user()->hasDirectPermission("2nd Level Authorization Required (for User's works)")) && ($hospital_tie_ups->status == 0)) disabled @endif data-bs-toggle="tab" aria-expanded="false"
+                                <a href="#hospital_tie_up_details" data-bs-toggle="tab" aria-expanded="false"
                                     class="nav-link rounded-0 ">
                                     <i class="mdi mdi-home-variant d-md-none d-block"></i>
                                     <span class="d-none d-md-block">Hospital Tie-Ups</span>
