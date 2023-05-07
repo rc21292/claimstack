@@ -41,9 +41,9 @@
                                     <p class="mb-0 me-2">{{$associate->name }}<br> Associate Partner Status | UID</p>
                                 </div>
                             </div>
-                            <div class="col-12 nav nav-tabs" id="myTab" >
-                                <a class="text-white px-2 active" href="#home" c data-bs-toggle="tab">Documents</a>
-                                <a class="text-white px-2" href="#profile" data-bs-toggle="tab">MOU</a>
+                            <div class="col-12 nav nav-tabs custom-tab" id="myTab" style="font-size: 17px;" >
+                                <a class="px-1 active" href="#home" c data-bs-toggle="tab"> Documents</a>
+                                <a class="px-1" href="#profile" data-bs-toggle="tab">MOU</a>
                             </div>
                         </div>
                         <div class="card text-center">

@@ -519,7 +519,8 @@ class HospitalController extends Controller
                 'hms_services'                                      => $request->hms_services,
                 'hospital_management_system_installation'           => $request->hospital_management_system_installation,
                 'hms_charges'                                       => $request->hms_charges,
-                'comments'                                          => $request->comments
+                'comments'                                          => $request->comments,
+                'status'                                                => 0
             ]);
 
         HospitalTieUp::where('hospital_id', $id)->update([

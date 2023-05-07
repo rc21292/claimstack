@@ -35,18 +35,11 @@ class HospitalAuthorizationController extends Controller
             $hospitals->orWhere('uid', 'like','%' . $filter_search . '%');
         }
 
-        // $hospitals = $hospitals->where('status', 0)->orderBy('id', 'desc')->paginate(20);
-
-
         $hospitals = $hospitals->where('status', 0)
         ->where(function ($query) {
             $query->where('linked_employee', auth('admin')->user()->id)
                 ->orWhere('assigned_employee', auth('admin')->user()->id);
                 })->orderBy('id', 'desc')->paginate(20);
-
-         // $hospitals = $hospitals->where('status', 0)->orWhere(['linked_employee' => auth('admin')->user()->id, 'assigned_employee' => auth('admin')->user()->id])->orderBy('id', 'desc')->paginate(20);
-
-        // dd(DB::getQueryLog());
 
         foreach ($hospitals as $key => $hospital) {
            $employee = $this->getEmployeesById($hospital->linked_employee);

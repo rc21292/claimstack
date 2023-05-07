@@ -159,6 +159,11 @@ class PermissionSeed extends Seeder
         Permission::create(['name' => 'Hospital Activation Rights', 'guard_name' => 'admin']);
         Permission::create(['name' => 'Hospital Deactivation Rights', 'guard_name' => 'admin']);
         Permission::create(['name' => 'Downloading Rights', 'guard_name' => 'admin']);
+
+        Permission::create(['name' => 'Pre-assessment Assigning Rights', 'guard_name' => 'admin']);
+        Permission::create(['name' => 'Claim Processing Assigning Rights', 'guard_name' => 'admin']);
+        Permission::create(['name' => 'Final-assessment Assigning Rights', 'guard_name' => 'admin']);
+
         $user_permissions = Permission::where('guard_name', 'web')->get();
 
         foreach($user_permissions as $user_permission){

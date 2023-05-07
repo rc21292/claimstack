@@ -38,7 +38,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a href="#hospital_tie_up_details" data-bs-toggle="tab" aria-expanded="false"
+                                <a  @if(!$hospital_tie_ups->status) disabled @endif href="#hospital_tie_up_details" data-bs-toggle="tab" aria-expanded="false"
                                     class="nav-link rounded-0 ">
                                     <i class="mdi mdi-home-variant d-md-none d-block"></i>
                                     <span class="d-none d-md-block">Hospital Tie-Ups</span>

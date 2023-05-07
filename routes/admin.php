@@ -25,6 +25,15 @@ use App\Http\Controllers\Admin\UtilityController;
 use App\Http\Controllers\Admin\Authorizations\HospitalAuthorizationController;
 use App\Http\Controllers\Admin\Authorizations\ClaimantAuthorizationController;
 use App\Http\Controllers\Admin\Authorizations\BorrowerAuthorizationController;
+use App\Http\Controllers\Admin\AssigningStatus\AssigningStatusPreAssessmentController;
+use App\Http\Controllers\Admin\AssigningStatus\AssigningStatusClaimProcessingController;
+use App\Http\Controllers\Admin\AssigningStatus\AssigningStatusFinalAssessmentController;
+use App\Http\Controllers\Admin\Authorizations\HospitalTieUpAuthorizationController;
+use App\Http\Controllers\Admin\Authorizations\HospitalEmanelmentStatusAuthorizationController;
+use App\Http\Controllers\Admin\Pending\PendingPreAssessmentController;
+use App\Http\Controllers\Admin\Pending\PendingClaimProcessingController;
+use App\Http\Controllers\Admin\Pending\PendingFinalAssessmentController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -267,8 +276,20 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     */
 
     Route::resource('hospital-authorizations', HospitalAuthorizationController::class);
+    Route::resource('hospital-tie-up-authorizations', HospitalTieUpAuthorizationController::class);
+    Route::resource('hospital-empstatus-authorizations', HospitalEmanelmentStatusAuthorizationController::class);
     Route::resource('claimant-authorizations', ClaimantAuthorizationController::class);
     Route::resource('borrower-authorizations', BorrowerAuthorizationController::class);
+
+
+    Route::resource('assigning-pre-assessment', AssigningStatusPreAssessmentController::class);
+    Route::resource('assigning-claim-processing', AssigningStatusClaimProcessingController::class);
+    Route::resource('assigning-final-assessment', AssigningStatusFinalAssessmentController::class);
+
+
+    Route::resource('pending-pre-assessment', PendingPreAssessmentController::class);
+    Route::resource('pending-claim-processing', PendingClaimProcessingController::class);
+    Route::resource('pending-final-assessment', PendingFinalAssessmentController::class);
     
 
     /*

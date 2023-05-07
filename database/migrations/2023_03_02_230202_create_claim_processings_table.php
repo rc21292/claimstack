@@ -69,7 +69,7 @@ return new class extends Migration
             $table->text('processing_query')->nullable();
             $table->double('final_assessment_amount')->nullable();
             $table->text('final_assessment_comments')->nullable();
-
+            $table->tinyInteger('status')->unsigned()->default(1)->nullable();
             $table->timestamps();
         });
     }
