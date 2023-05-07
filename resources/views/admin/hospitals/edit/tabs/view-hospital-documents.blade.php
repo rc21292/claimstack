@@ -32,7 +32,7 @@
             <div class="col-12">
                 <div class="card no-shadow">
                     <div class="card-body p-0" >
-                        <div class="" style="background:#3E4097">
+                        <div class="">
                             <div class="d-flex align-items-center mb-2" >
                                 <div class="flex-shrink-0">
                                     <div class="avatar-md" style="margin-top: 10px;margin-left:20px ;">
@@ -42,19 +42,16 @@
                                     </div>
 
                                 </div>
-                                <div class="d-flex flex-row align-items-center m-2 text-white">
+                                <div class="d-flex flex-row align-items-center m-2">
                                     <p class="mb-0 me-2"><br> Hospital Documents</p>
                                 </div>                        
                             </div>
-                            <div class="col-12 nav nav-tabs" id="myTab" style="font-size: 17px;">
-                                <a  class="text-white px-1 active" href="#tab1" data-bs-toggle="tab">Hospital Documents</a> 
-                                <a  class="text-white px-1" href="#tab2" data-bs-toggle="tab">Hospital Tariff</a> 
-                                <a  class="text-white px-1" href="#tab3" data-bs-toggle="tab">BCH Agreement</a> 
-                                <a  class="text-white px-1" href="#tab6" data-bs-toggle="tab">Hospital Facilities</a> 
-                                <a  class="text-white px-1" href="#tab4" data-bs-toggle="tab">Hospital Infrastructure</a> 
-                                <a  class="text-white px-1" href="#tab5" data-bs-toggle="tab">Hospital Department</a> 
-                                <a  class="text-white px-1" href="#tab7" data-bs-toggle="tab">Hospital Empanelment Status</a> 
-                                <a  class="text-white px-1" href="#tab8" data-bs-toggle="tab">Other Documents</a>
+                            <div class="col-12 nav nav-tabs custom-tab" id="myTab" >
+                                <a class="px-1 active" href="#tab6" data-bs-toggle="tab">Hospital Facilities</a> 
+                                <a class="px-1" href="#tab4" data-bs-toggle="tab">Hospital Infrastructure</a> 
+                                <a class="px-1" href="#tab5" data-bs-toggle="tab">Hospital Department</a> 
+                                <a class="px-1" href="#tab7" data-bs-toggle="tab">Hospital Empanelment Status</a> 
+                                <a class="px-1" href="#tab8" data-bs-toggle="tab">Other Documents</a>
                             </div>
                         </div>
                         <div class="card text-center">
