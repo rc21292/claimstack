@@ -23,9 +23,17 @@ use App\Http\Controllers\SuperAdmin\Claims\DischargeStatusController;
 use App\Http\Controllers\SuperAdmin\Claims\DocumentReimbursementController;
 use App\Http\Controllers\SuperAdmin\Claims\LendingStatusController;
 use App\Http\Controllers\SuperAdmin\Claims\ICClaimStatusController;
+use App\Http\Controllers\SuperAdmin\Pending\PendingPreAssessmentController;
+use App\Http\Controllers\SuperAdmin\Pending\PendingClaimProcessingController;
+use App\Http\Controllers\SuperAdmin\Pending\PendingFinalAssessmentController;
 use App\Http\Controllers\SuperAdmin\Authorizations\HospitalAuthorizationController;
 use App\Http\Controllers\SuperAdmin\Authorizations\ClaimantAuthorizationController;
 use App\Http\Controllers\SuperAdmin\Authorizations\BorrowerAuthorizationController;
+use App\Http\Controllers\SuperAdmin\AssigningStatus\AssigningStatusPreAssessmentController;
+use App\Http\Controllers\SuperAdmin\AssigningStatus\AssigningStatusClaimProcessingController;
+use App\Http\Controllers\SuperAdmin\AssigningStatus\AssigningStatusFinalAssessmentController;
+use App\Http\Controllers\SuperAdmin\Authorizations\HospitalTieUpAuthorizationController;
+use App\Http\Controllers\SuperAdmin\Authorizations\HospitalEmanelmentStatusAuthorizationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuperAdmin\TpaCompanyController;
 /*
@@ -293,8 +301,20 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     */
 
     Route::resource('hospital-authorizations', HospitalAuthorizationController::class);
+    Route::resource('hospital-tie-up-authorizations', HospitalTieUpAuthorizationController::class);
+    Route::resource('hospital-empstatus-authorizations', HospitalEmanelmentStatusAuthorizationController::class);
     Route::resource('claimant-authorizations', ClaimantAuthorizationController::class);
     Route::resource('borrower-authorizations', BorrowerAuthorizationController::class);
+
+
+    Route::resource('assigning-pre-assessment', AssigningStatusPreAssessmentController::class);
+    Route::resource('assigning-claim-processing', AssigningStatusClaimProcessingController::class);
+    Route::resource('assigning-final-assessment', AssigningStatusFinalAssessmentController::class);
+
+
+    Route::resource('pending-pre-assessment', PendingPreAssessmentController::class);
+    Route::resource('pending-claim-processing', PendingClaimProcessingController::class);
+    Route::resource('pending-final-assessment', PendingFinalAssessmentController::class);
 
 
     /*

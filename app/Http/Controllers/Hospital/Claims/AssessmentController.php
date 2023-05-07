@@ -171,8 +171,12 @@ class AssessmentController extends Controller
                     'pre_assessment_amount'                     => $request->pre_assessment_amount,
                     'pre_assessment_suspected_fraud'            => $request->pre_assessment_suspected_fraud,
                     'pre_assessment_status_comments'            => $request->pre_assessment_status_comments,
-
                 ]);
+
+                Claim::where('id', $id)->update([
+                    'status'   => 1,
+                ]);
+
                 break;
             case 'final-assessment-status-form':
                 $rules =  [
@@ -195,7 +199,10 @@ class AssessmentController extends Controller
                     'final_assessment_amount'                   => $request->final_assessment_amount,
                     'final_assessment_suspected_fraud'          => $request->final_assessment_suspected_fraud,
                     'final_assessment_status_comments'          => $request->final_assessment_status_comments,
+                ]);
 
+                Claim::where('id', $id)->update([
+                    'assessment_status'   => 1,
                 ]);
 
                 break;

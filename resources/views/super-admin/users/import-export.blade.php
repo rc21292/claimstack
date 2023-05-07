@@ -1,5 +1,5 @@
 @extends('layouts.super-admin')
-@section('title', 'Import Export User')
+@section('title', 'Import Export Hospital')
 @section('content')
     <!-- Start Content-->
     <div class="container-fluid">
@@ -12,7 +12,7 @@
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Claim Stack</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('super-admin.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="javascript:void(0);">User</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Hospital</a></li>
                             <li class="breadcrumb-item active">Import Export</li>
                         </ol>
                     </div>
@@ -28,16 +28,27 @@
             <div class="col-12">
                 <div class="card no-shadow">
                     <div class="card-body">
-                        <form action="{{ route('super-admin.users.import') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('super-admin.users.import') }}" method="POST" id="submit-form" enctype="multipart/form-data">
                             @csrf
-                            <div class="form-group mb-4">
-                                <div class="custom-file text-left">
-                                    <input required type="file" name="file" class="custom-file-input" id="customFile">
-                                    <label class="custom-file-label" for="customFile">Choose file</label>
+
+                            <div class="form-group row mb-4">
+                                <div class="col-2">
+                                    <div class="input-group">
+                                        <input type="file" name="file" id="file_hospital_import" hidden="" onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');">
+                                        
+                                        <label for="file_hospital_import" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i> <br> <span style="font-size: 18px;">Import Users</span></label>
+                                    </div>
+                                </div>
+
+                                <div class="col-4">
+
+                                    <div class="input-group">
+                                        <a href="{{ route('super-admin.users.export') }}" download="" class="btn btn-danger download-label"><i class="mdi mdi-download"></i> <br><span style="font-size: 18px;">Export Users</span> </a>
+
+                                    </div>
                                 </div>
                             </div>
-                            <button class="btn btn-primary">Import Users</button>
-                            <a class="btn btn-success" href="{{ route('super-admin.users.export') }}">Export Users</a>
+
                         </form>
                     </div>
                 </div>
@@ -46,10 +57,9 @@
     </div>
 @endsection
 @push('scripts')
-    <script>
-        function setLinkedWithEmployeeId() {
-            var linked_employee = $("#linked_employee").select2().find(":selected").data("id");
-            $('#linked_employee_id').val(linked_employee);
-        }
-    </script>
+<script>
+    $('#file_hospital_import').change(function() {
+      $('#submit-form').submit();
+  });
+</script>
 @endpush

@@ -80,6 +80,7 @@
                             </li>
 
                             <li class="nav-item">
+                                {{-- @if(auth()->check() && auth()->user()->hasDirectPermission("2nd Level Authorization Required (for User's works)")) disabled @endif --}}
                                 <a href="#empanelment_status" data-bs-toggle="tab" aria-expanded="false"
                                     class="nav-link rounded-0 ">
                                     <i class="mdi mdi-home-variant d-md-none d-block"></i>

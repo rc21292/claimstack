@@ -195,7 +195,7 @@ class HospitalController extends Controller
 
         $hospital_tie_ups          = HospitalTieUp::where('hospital_id', $id)->first();
         if (!$hospital_tie_ups) {
-            HospitalTieUp::create(['hospital_id'=> $id]);
+            HospitalTieUp::create(['hospital_id'=> $id, 'status' => 1]);
             $hospital_tie_ups          = HospitalTieUp::where('hospital_id', $id)->first();
         }
 
@@ -216,15 +216,6 @@ class HospitalController extends Controller
             HospitalDocument::create(['hospital_id'=> $id]);
             $hospital_document          = HospitalDocument::where('hospital_id', $id)->first();
         }
-
-
-        /*$empanelment_status          = HospitalEmpanelmentStatus::where('hospital_id', $id)->first();
-        if (!$empanelment_status) {
-            HospitalEmpanelmentStatus::create(['hospital_id'=> $id]);
-            $empanelment_status          = HospitalEmpanelmentStatus::where('hospital_id', $id)->first();
-        }else{
-            $empanelment_status          = null;
-        }*/
 
 
         if (isset($request->company_id) && !empty($request->company_id)) {
@@ -770,7 +761,6 @@ class HospitalController extends Controller
 
         $rules = [
             'company_name'              => 'required',
-            // 'company_type'              => 'required',
             'empanelled'                => 'required',
             'empanelled_file'                => ($request->empanelled == 'Yes' && empty($empanelment_status->empanelled_file)) ? 'required' : '',
             'hospital_id_as_per_the_selected_company'             => ($request->empanelled == 'Yes') ? 'required|max:25' : '',
@@ -808,6 +798,7 @@ class HospitalController extends Controller
             'upload_packages_and_tariff_excel_or_csv'          => $request->upload_packages_and_tariff_excel_or_csv,
             'negative_listing_status'          => $request->negative_listing_status,
             'hospital_empanelment_status_comments'          => $request->hospital_empanelment_status_comments,
+            'status' => 1
         ]);
 
         if ($request->hasfile('empanelled_file')) {

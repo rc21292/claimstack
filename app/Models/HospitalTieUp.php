@@ -38,6 +38,13 @@ class HospitalTieUp extends Model
         'hms_services', 
         'hospital_management_system_installation', 
         'hms_charges', 
-        'comments'
+        'comments',
+        'status'
     ];
+
+
+    public function hospital()
+    {
+        return $this->belongsTo(Hospital::class, 'hospital_id');
+    }
 }

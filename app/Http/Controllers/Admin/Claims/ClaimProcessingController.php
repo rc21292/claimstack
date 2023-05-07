@@ -202,6 +202,10 @@ class ClaimProcessingController extends Controller
             'final_assessment_comments' => $request->final_assessment_comments,
         ]);
 
+        Claim::where('id', $id)->update([
+            'claim_processing_status'   => 1,
+        ]);
+
         return redirect()->back()->with('success', 'Claim Processing created/updated successfully');
 
     }

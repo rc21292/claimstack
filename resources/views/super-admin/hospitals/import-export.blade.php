@@ -28,16 +28,27 @@
             <div class="col-12">
                 <div class="card no-shadow">
                     <div class="card-body">
-                        <form action="{{ route('super-admin.hospitals.import') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('super-admin.hospitals.import') }}" method="POST" id="submit-form" enctype="multipart/form-data">
                             @csrf
-                            <div class="form-group mb-4">
-                                <div class="custom-file text-left">
-                                    <input type="file" required name="file" class="custom-file-input" id="customFile">
-                                    <label class="custom-file-label" for="customFile">Choose file</label>
+
+                            <div class="form-group row mb-4">
+                                <div class="col-3">
+                                    <div class="input-group">
+                                        <input type="file" name="file" id="file_hospital_import" hidden="" onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');">
+                                        
+                                        <label for="file_hospital_import" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i> <br> <span style="font-size: 18px;">Import Hospitals</span></label>
+                                    </div>
+                                </div>
+
+                                <div class="col-4">
+
+                                    <div class="input-group">
+                                        <a href="{{ route('super-admin.hospitals.export') }}" download="" class="btn btn-danger download-label"><i class="mdi mdi-download"></i> <br><span style="font-size: 18px;">Export Hospitals</span> </a>
+
+                                    </div>
                                 </div>
                             </div>
-                            <button class="btn btn-primary">Import Hospital</button>
-                            <a class="btn btn-success" href="{{ route('super-admin.hospitals.export') }}">Export Hospitals</a>
+
                         </form>
                     </div>
                 </div>
@@ -46,10 +57,9 @@
     </div>
 @endsection
 @push('scripts')
-    <script>
-        function setLinkedWithEmployeeId() {
-            var linked_employee = $("#linked_employee").select2().find(":selected").data("id");
-            $('#linked_employee_id').val(linked_employee);
-        }
-    </script>
+<script>
+    $('#file_hospital_import').change(function() {
+      $('#submit-form').submit();
+  });
+</script>
 @endpush
