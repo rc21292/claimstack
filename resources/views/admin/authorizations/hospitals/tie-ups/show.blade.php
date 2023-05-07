@@ -206,7 +206,7 @@
                                         <h5 class="card-title">  Medical Lending for Cashless Bill/ Invoice Discounting </h5>
                                     </dt>
                                     <dd class="col-sm-6">
-                                        <p class="card-text">: {{ $hospital_tie_up->hospital_id }} 
+                                        <p class="card-text">: {{ $hospital_tie_up->medical_lending_for_bill_invoice_discounting }} 
                                         </p>
                                     </dd>
                                     <dt class="col-sm-6">

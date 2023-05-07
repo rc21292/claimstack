@@ -40,7 +40,7 @@ use Carbon\Carbon;
                                         <tr>
                                             <th scope="col">Hospital ID</th>
                                             <th scope="col">Hospital Name</th>
-                                            <th scope="col">Date & Time of ID Creation</th>
+                                            <th scope="col">Date & Time of Tie-up update (Last)</th>
                                             <th scope="col">Linked Admin Name & ID(Assigned Employee's)</th>
                                             <th scope="col">Pending TAT</th>
                                             <th scope="col">Action</th>
@@ -51,11 +51,11 @@ use Carbon\Carbon;
                                             <tr>
                                                 <th scope="row">{{ $hospitals_tie_up->hospital->uid }}</th>
                                                 <td>{!! $hospitals_tie_up->hospital->name !!}</td>                  
-                                                <td>{{ $hospitals_tie_up->created_at }}</td>
+                                                <td>{{ $hospitals_tie_up->updated_at }}</td>
                                                 <td>{{ $hospitals_tie_up->linked_employee_data->firstname}} {{ $hospitals_tie_up->linked_employee_data->lastname}} ({{ $hospitals_tie_up->linked_employee_data->employee_code}})</td>
 
                                                 @php
-                                                $startDate = Carbon::parse($hospitals_tie_up->created_at);
+                                                $startDate = Carbon::parse($hospitals_tie_up->updated_at);
                                                 $endDate = Carbon::parse(Carbon::now()->toDateTimeString());
                                                 @endphp
                                                 <td>{{ $startDate->diff($endDate)->format('%D : %H:%I'); }}</td>

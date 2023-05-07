@@ -28,7 +28,9 @@ class HospitalTieUpAuthorizationController extends Controller
         $hospitals_tie_ups = $hospitals_tie_ups->where('status', 0)->orderBy('id', 'desc')->paginate(20);
 
         foreach ($hospitals_tie_ups as $key => $hospitals_tie_up) {
-           $employee = $this->getEmployeesById($hospitals_tie_up->hospital->linked_employee);
+           $employee = $this->getEmployeesById($hospitals_tie_up->hospital->assignedEmployee->id);
+
+           HospitalTieUp::where('id', $hospitals_tie_up->id)->update(['linked_admin' => $employee->id]);
 
            $hospitals_tie_ups[$key]->linked_employee_data = $employee;
         }
@@ -102,7 +104,7 @@ class HospitalTieUpAuthorizationController extends Controller
         return redirect()->route('super-admin.hospital-tie-up-authorizations.index')->with('success', 'Hospital Tie Ups Authorised successfully');
     }
 
-    public function getEmployeesById($id)
+    /*public function getEmployeesById($id)
     {
         $user_exists  = User::where('id', $id)->exists();
         if ($user_exists) {
@@ -116,7 +118,7 @@ class HospitalTieUpAuthorizationController extends Controller
                 return "Not exist";
             }
         }
-    }
+    }*/
 
     /**
      * Remove the specified resource from storage.
@@ -124,6 +126,18 @@ class HospitalTieUpAuthorizationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function getEmployeesById($id)
+    {
+        $admin_exists  = Admin::where('id', $id)->exists();
+        if ($admin_exists) {
+            $linked = Admin::where('id', $id)->value('linked_employee');
+            return Admin::where('id', $linked)->get(['id', 'firstname', 'lastname', 'employee_code'])->first();
+        }else{
+            return "Not exist";
+        }
+    }
+
     public function destroy($id)
     {
         //
