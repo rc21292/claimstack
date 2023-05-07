@@ -33,7 +33,7 @@ class HospitalTieUpAuthorizationController extends Controller
 
         $hospitals_tie_ups = $hospitals_tie_ups->where('status', 0)
         ->where(function ($query) {
-            $query->orWhere('linked_admin', auth('admin')->user()->id)
+            $query->orWhere('linked_admin', auth('admin')->user()->id);
                 })
         ->whereHas('hospital' , function($query)
         {
