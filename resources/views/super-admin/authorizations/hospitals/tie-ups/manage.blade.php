@@ -52,7 +52,7 @@ use Carbon\Carbon;
                                                 <th scope="row">{{ $hospitals_tie_up->hospital->uid }}</th>
                                                 <td>{!! $hospitals_tie_up->hospital->name !!}</td>                  
                                                 <td>{{ $hospitals_tie_up->updated_at }}</td>
-                                                <td>{{ $hospitals_tie_up->linked_employee_data->firstname}} {{ $hospitals_tie_up->linked_employee_data->lastname}} ({{ $hospitals_tie_up->linked_employee_data->employee_code}})</td>
+                                                <td>{{ @$hospitals_tie_up->linked_employee_data->firstname}} {{ @$hospitals_tie_up->linked_employee_data->lastname}} ({{ @$hospitals_tie_up->linked_employee_data->employee_code}})</td>
 
                                                 @php
                                                 $startDate = Carbon::parse($hospitals_tie_up->updated_at);
