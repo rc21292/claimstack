@@ -24,7 +24,8 @@ class PendingPreAssessmentController extends Controller
 
     public function index()
     {
-        if(auth()->check() && auth()->user()->hasDirectPermission('Pre-assessment Assigning Rights')){
+        // if(auth()->check() && auth()->user()->hasDirectPermission('Pre-assessment Assigning Rights')){
+        if(true){
             $claims =  Claim::where('status', 0)
             ->where(function ($query) {
             $query->whereNotNull('assign_to')
