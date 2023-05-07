@@ -32,7 +32,7 @@ class HospitalTieUpAuthorizationController extends Controller
             if(isset($hospitals_tie_up->hospital->assigned_employee) && !empty($hospitals_tie_up->hospital->assigned_employee)){
            $employee = $this->getEmployeesById($hospitals_tie_up->hospital->assignedEmployee->id);
 
-           HospitalTieUp::where('id', $hospitals_tie_up->id)->update(['linked_admin' => $employee->id]);
+           HospitalTieUp::where('id', $hospitals_tie_up->id)->update(['linked_admin' => @$employee->id]);
 
            $hospitals_tie_ups[$key]->linked_employee_data = $employee;
        }else{
