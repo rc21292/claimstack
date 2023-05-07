@@ -282,8 +282,6 @@
                 @endif
             </li>
 
-            {{-- @if(auth()->check() && auth()->user()->hasDirectPermission('2nd Level Authorization Rights')) --}}
-
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#claimProcessingModule" aria-expanded="false" aria-controls="claimProcessingModule"
                     class="side-nav-link">
@@ -312,10 +310,6 @@
                 </div>
             </li>
 
-            {{-- @endif --}}
-
-            @if(auth()->check() && auth()->user()->hasDirectPermission('2nd Level Authorization Rights'))
-
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#claimProcessingPendingModule" aria-expanded="false" aria-controls="claimProcessingPendingModule"
                     class="side-nav-link">
@@ -325,20 +319,25 @@
                 </a>
                 <div class="collapse" id="claimProcessingPendingModule">
                     <ul class="side-nav-second-level">
+                        @if(auth()->check() && auth()->user()->hasDirectPermission('Pre-assessment Assigning Rights'))
                         <li>
                             <a href="{{ route('admin.pending-pre-assessment.index') }}">Pending for Pre-Assessment</a>
                         </li>
+                        @endif
+                        @if(auth()->check() && auth()->user()->hasDirectPermission('Claim Processing Assigning Rights'))
                         <li>
                             <a href="{{ route('admin.pending-claim-processing.index') }}">Pending for Claim Processing</a>
                         </li>
+                        @endif
+                        @if(auth()->check() && auth()->user()->hasDirectPermission('Final-assessment Assigning Rights'))
                         <li>
                             <a href="{{ route('admin.pending-final-assessment.index') }}">Pending for Final-Assessment</a>
                         </li>
+                        @endif
                     </ul>
                 </div>
             </li>
 
-            @endif
 
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#authorization" aria-expanded="false"
