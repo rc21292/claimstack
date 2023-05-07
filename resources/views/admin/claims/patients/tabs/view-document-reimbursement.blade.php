@@ -46,14 +46,14 @@
                                     <p class="mb-0 me-2"><br> Claims Documents</p>
                                 </div>                        
                             </div>
-                            <div class="col-12 nav nav-tabs" id="myTab" >
-                                <a style="  font-size: 19px;" class="text-white px-2 active" href="#tab1" c data-bs-toggle="tab">Pre-Assessment Documents</a> ||
-                                <a style="  font-size: 19px;" class="text-white px-2" href="#tab2" data-bs-toggle="tab">Final Assessment Documents</a> ||
-                                <a style="  font-size: 19px;" class="text-white px-2" href="#tab3" data-bs-toggle="tab">Insurance Claim Documents</a> ||
-                                <a style="  font-size: 19px;" class="text-white px-2" href="#tab6" data-bs-toggle="tab">Insurance Settlement Documents</a> ||
-                                <a style="  font-size: 19px;" class="text-white px-2" href="#tab4" data-bs-toggle="tab">Medical Loan (Borrower) Documents</a> ||
-                                <a style="  font-size: 19px;" class="text-white px-2" href="#tab5" data-bs-toggle="tab">Loan (Co-Borrower) Documents</a> ||
-                                <a style="  font-size: 19px;" class="text-white px-2" href="#tab7" data-bs-toggle="tab">Lending Status Documents</a>
+                             <div class="col-12 nav nav-tabs custom-tab" id="myTab" style="font-size: 17px;" >
+                                <a class="px-1 active" href="#tab1" c data-bs-toggle="tab">Pre-Assessment Documents</a>
+                                <a class="px-1" href="#tab2" data-bs-toggle="tab">Final Assessment Documents</a>
+                                <a class="px-1" href="#tab3" data-bs-toggle="tab">Insurance Claim Documents</a>
+                                <a class="px-1" href="#tab6" data-bs-toggle="tab">Insurance Settlement Documents</a>
+                                <a class="px-1" href="#tab4" data-bs-toggle="tab">Medical Loan (Borrower) Documents</a>
+                                <a class="px-1" href="#tab5" data-bs-toggle="tab">Loan (Co-Borrower) Documents</a>
+                                <a class="px-1" href="#tab7" data-bs-toggle="tab">Lending Status Documents</a>
                             </div>
                         </div>
                         <div class="card text-center">
