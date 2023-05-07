@@ -46,15 +46,15 @@
                                     <p class="mb-0 me-2"><br> Hospital Documents</p>
                                 </div>                        
                             </div>
-                            <div class="col-12 nav nav-tabs" id="myTab" style="font-size: 17px;">
-                                <a  class="text-white px-1 active" href="#tab1" data-bs-toggle="tab">Hospital Documents</a> 
-                                <a  class="text-white px-1" href="#tab2" data-bs-toggle="tab">Hospital Tariff</a> 
-                                <a  class="text-white px-1" href="#tab3" data-bs-toggle="tab">BCH Agreement</a> 
-                                <a  class="text-white px-1" href="#tab6" data-bs-toggle="tab">Hospital Facilities</a> 
-                                <a  class="text-white px-1" href="#tab4" data-bs-toggle="tab">Hospital Infrastructure</a> 
-                                <a  class="text-white px-1" href="#tab5" data-bs-toggle="tab">Hospital Department</a> 
-                                <a  class="text-white px-1" href="#tab7" data-bs-toggle="tab">Hospital Empanelment Status</a> 
-                                <a  class="text-white px-1" href="#tab8" data-bs-toggle="tab">Other Documents</a>
+                            <div class="col-12 nav nav-tabs custom-tab" id="myTab" style="font-size: 17px;">
+                                <a  class="px-1 active" href="#tab1" data-bs-toggle="tab">Hospital Documents</a> 
+                                <a  class="px-1" href="#tab2" data-bs-toggle="tab">Hospital Tariff</a> 
+                                <a  class="px-1" href="#tab3" data-bs-toggle="tab">BCH Agreement</a> 
+                                <a  class="px-1" href="#tab6" data-bs-toggle="tab">Hospital Facilities</a> 
+                                <a  class="px-1" href="#tab4" data-bs-toggle="tab">Hospital Infrastructure</a> 
+                                <a  class="px-1" href="#tab5" data-bs-toggle="tab">Hospital Department</a> 
+                                <a  class="px-1" href="#tab7" data-bs-toggle="tab">Hospital Empanelment Status</a> 
+                                <a  class="px-1" href="#tab8" data-bs-toggle="tab">Other Documents</a>
                             </div>
                         </div>
                         <div class="card text-center">
