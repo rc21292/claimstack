@@ -142,4 +142,22 @@ class Hospital extends Authenticatable
             }
         }
     }
+
+
+    public function linkedEmployee()
+    {
+        $user_exists  = User::where('id', $this->linked_employee)->exists();
+        if ($user_exists) {
+            return $this->belongsTo(User::class, 'linked_employee');
+        }else{
+
+            $admin_exists  = Admin::where('id', $this->linked_employee)->exists();
+            if ($admin_exists) {
+                return $this->belongsTo(Admin::class, 'linked_employee');
+            }else{
+                return Admin::first();
+            }
+        }
+    }
+
 }

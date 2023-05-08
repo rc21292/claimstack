@@ -49,7 +49,7 @@ use Carbon\Carbon;
                                     <tbody>
                                         @foreach ($hospitals_tie_ups as $hospitals_tie_up)
                                             <tr>
-                                                <th scope="row">{{ $hospitals_tie_up->hospital->uid }}</th>
+                                                <th scope="row">{{ @$hospitals_tie_up->hospital->uid }}</th>
                                                 <td>{!! $hospitals_tie_up->hospital->name !!}</td>                  
                                                 <td>{{ $hospitals_tie_up->updated_at }}</td>
                                                 <td>{{ @$hospitals_tie_up->linked_employee_data->firstname}} {{ @$hospitals_tie_up->linked_employee_data->lastname}} ({{ @$hospitals_tie_up->linked_employee_data->employee_code}})</td>

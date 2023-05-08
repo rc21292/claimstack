@@ -75,11 +75,11 @@ class HospitalTieUpAuthorizationController extends Controller
     {
         $hospital_tie_up = HospitalTieUp::find($id);
         
-        $employee = $this->getEmployeesById($hospital_tie_up->hospital->linked_employee);
+        $employee = $this->getEmployeesById($hospitals_tie_up->hospital->linkedEmployee->id);
 
         $hospital_tie_up->linked_employee_data = $employee;
 
-        $assigned_employee = $this->getEmployeesById($hospital_tie_up->hospital->assigned_employee);
+        $assigned_employee = $this->getEmployeesById($hospitals_tie_up->hospital->assignedEmployee->id);
 
         $hospital_tie_up->assigned_employee_data = $assigned_employee;
 
