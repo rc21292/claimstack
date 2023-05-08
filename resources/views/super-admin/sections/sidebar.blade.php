@@ -258,7 +258,7 @@
                 <a data-bs-toggle="collapse" href="#claimProcessingModule" aria-expanded="false" aria-controls="claimProcessingModule"
                     class="side-nav-link">
                     <i class="mdi mdi-hospital-building"></i>
-                    <span> Claim Processing Assigning Module </span>
+                    <span> Pending for Assigning </span>
                     <span class="menu-arrow"></span>
                 </a>
                 <div class="collapse" id="claimProcessingModule">
@@ -281,7 +281,7 @@
                 <a data-bs-toggle="collapse" href="#claimProcessingPendingModule" aria-expanded="false" aria-controls="claimProcessingPendingModule"
                     class="side-nav-link">
                     <i class="mdi mdi-hospital-building"></i>
-                    <span> Pending for Claim Processing </span>
+                    <span> Pending for Processing </span>
                     <span class="menu-arrow"></span>
                 </a>
                 <div class="collapse" id="claimProcessingPendingModule">

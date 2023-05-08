@@ -303,3 +303,8 @@ body[data-leftbar-theme=dark][data-leftbar-compact-mode=condensed] .side-nav .si
     background-color: #727cf5 !important;
     color: #fff !important;
 }
+
+
+.side-nav-link .menu-arrow{
+    margin-right: -11px !important;
+}
