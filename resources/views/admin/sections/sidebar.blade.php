@@ -291,21 +291,21 @@
                 </a>
                 <div class="collapse" id="claimProcessingModule">
                     <ul class="side-nav-second-level">
-                        {{-- @if(auth()->check() && auth()->user()->hasDirectPermission('Pre-assessment Assigning Rights')) --}}
+                        @if(auth()->check() && auth()->user()->hasDirectPermission('Pre-assessment Assigning Rights'))
                         <li>
                             <a href="{{ route('admin.assigning-pre-assessment.index') }}">Assigning Status for Pre-Assessment</a>
                         </li>
-                        {{-- @endif --}}
-                        {{-- @if(auth()->check() && auth()->user()->hasDirectPermission('Claim Processing Assigning Rights')) --}}
+                        @endif
+                        @if(auth()->check() && auth()->user()->hasDirectPermission('Claim Processing Assigning Rights'))
                         <li>
                             <a href="{{ route('admin.assigning-claim-processing.index') }}">Assigning Status for Claim Processing</a>
                         </li>
-                        {{-- @endif --}}
-                        {{-- @if(auth()->check() && auth()->user()->hasDirectPermission('Final-assessment Assigning Rights')) --}}
+                        @endif
+                        @if(auth()->check() && auth()->user()->hasDirectPermission('Final-assessment Assigning Rights'))
                         <li>
                             <a href="{{ route('admin.assigning-final-assessment.index') }}">Assigning Status for Final-Assessment / Claim Authorization</a>
                         </li>
-                        {{-- @endif --}}
+                        @endif
                     </ul>
                 </div>
             </li>
@@ -319,21 +319,21 @@
                 </a>
                 <div class="collapse" id="claimProcessingPendingModule">
                     <ul class="side-nav-second-level">
-                        {{-- @if(auth()->check() && auth()->user()->hasDirectPermission('Pre-assessment Assigning Rights')) --}}
+                        @if(auth()->check() && auth()->user()->hasDirectPermission('Pre-assessment Assigning Rights'))
                         <li>
                             <a href="{{ route('admin.pending-pre-assessment.index') }}">Pending for Pre-Assessment</a>
                         </li>
-                        {{-- @endif --}}
-                        {{-- @if(auth()->check() && auth()->user()->hasDirectPermission('Claim Processing Assigning Rights')) --}}
+                        @endif
+                        @if(auth()->check() && auth()->user()->hasDirectPermission('Claim Processing Assigning Rights'))
                         <li>
                             <a href="{{ route('admin.pending-claim-processing.index') }}">Pending for Claim Processing</a>
                         </li>
-                        {{-- @endif --}}
-                        {{-- @if(auth()->check() && auth()->user()->hasDirectPermission('Final-assessment Assigning Rights')) --}}
+                        @endif
+                        @if(auth()->check() && auth()->user()->hasDirectPermission('Final-assessment Assigning Rights'))
                         <li>
                             <a href="{{ route('admin.pending-final-assessment.index') }}">Pending for Final-Assessment</a>
                         </li>
-                        {{-- @endif --}}
+                        @endif
                     </ul>
                 </div>
             </li>
