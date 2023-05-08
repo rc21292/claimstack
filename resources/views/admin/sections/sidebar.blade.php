@@ -289,7 +289,7 @@
                     <span> Pending for Assigning </span>
                     <span class="menu-arrow"></span>
                 </a>
-                < div class="collapse" id="claimProcessingModule">
+                <div class="collapse" id="claimProcessingModule">
                     <ul class="side-nav-second-level">
                         @if(auth()->check() && auth()->user()->hasDirectPermission('Pre-assessment Assigning Rights'))
                         <li>
