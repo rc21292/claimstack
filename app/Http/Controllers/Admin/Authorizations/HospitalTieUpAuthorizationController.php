@@ -28,8 +28,12 @@ class HospitalTieUpAuthorizationController extends Controller
         $hospitals_tie_ups = HospitalTieUp::where('status', 0)->orderBy('id', 'desc')->paginate(20);
 
         foreach ($hospitals_tie_ups as $key => $hospitals_tie_up) {
-           $employee = $this->getEmployeesById($hospitals_tie_up->hospital->assignedEmployee->id);
-           HospitalTieUp::where('id', $hospitals_tie_up->id)->update(['linked_admin' => $employee->id]);
+            if(isset($hospitals_tie_up->hospital->assigned_employee) && !empty($hospitals_tie_up->hospital->assigned_employee)){
+                $employee = $this->getEmployeesById($hospitals_tie_up->hospital->assignedEmployee->id);
+                HospitalTieUp::where('id', $hospitals_tie_up->id)->update(['linked_admin' => $employee->id]);
+            }else{
+                continue;
+            }
         }
 
         DB::connection()->enableQueryLog();
