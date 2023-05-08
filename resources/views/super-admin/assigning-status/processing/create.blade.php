@@ -219,7 +219,7 @@
                                                     class="text-danger"></span></label>
                                             <select disabled class="form-select final_assessment_status" id="final_assessment_status"
                                                 name="final_assessment_status">
-                                                @if($claim->dischargeStatus->discharge_status)
+                                                @if($claim->dischargeStatus)
                                                 <option>{{ $claim->dischargeStatus->discharge_status }}</option>
                                                 @else
                                                 <option> </option>
