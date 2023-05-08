@@ -25,8 +25,8 @@ class PendingClaimProcessingController extends Controller
     public function index(Request $request)
     {
 
-        if(true){
-        // if(auth()->check() && auth()->user()->hasDirectPermission('Claim Processing Assigning Rights')){
+        // if(true){
+        if(auth()->check() && auth()->user()->hasDirectPermission('Claim Processing Assigning Rights')){
 
         $claims =  Claim::where('claim_processing_status', 0)
             ->where(function ($query) {
