@@ -267,7 +267,7 @@ body[data-leftbar-theme=dark][data-leftbar-compact-mode=condensed] .side-nav .si
     margin-bottom: 8px;
 
 }
-.card .card-body .form-group .form-control{
+.card .card-body .form-group input.form-control{
     height: 38px !important;
 }
 
@@ -309,7 +309,11 @@ body[data-leftbar-theme=dark][data-leftbar-compact-mode=condensed] .side-nav .si
     color: #fff !important;
 }
 
-
 .side-nav-link .menu-arrow{
     margin-right: -11px !important;
+}
+
+.show-hide-empanelment .input-group div{
+    position: absolute !important;
+    margin-left: 75% !important;
 }

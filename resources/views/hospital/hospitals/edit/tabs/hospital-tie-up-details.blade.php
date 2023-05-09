@@ -337,7 +337,7 @@
             @enderror
         </div>
 
-        <div class="col-md-12 mt-3">
+        <div class="col-md-6 mt-3">
             <label for="hospital_management_system_installation">Hospital Management System Installation (HMS) <span class="text-danger">*</span></label>
             <select class="form-select" id="hospital_management_system_installation" name="hospital_management_system_installation">
                 <option value="">Select</option>
