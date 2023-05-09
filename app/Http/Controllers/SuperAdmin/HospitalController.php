@@ -798,7 +798,7 @@ class HospitalController extends Controller
             'upload_packages_and_tariff_excel_or_csv'          => $request->upload_packages_and_tariff_excel_or_csv,
             'negative_listing_status'          => $request->negative_listing_status,
             'hospital_empanelment_status_comments'          => $request->hospital_empanelment_status_comments,
-            'status' => 1
+            'status' => 0
         ]);
 
         if ($request->hasfile('empanelled_file')) {
