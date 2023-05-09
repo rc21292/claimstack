@@ -19,7 +19,9 @@ class HospitalTieUpAuthorizationController extends Controller
     public function index(Request $request)
     {
         $filter_search = $request->search;
-        $hospitals_tie_ups = HospitalTieUp::query();
+        $hospitals_tie_ups = HospitalTieUp::whereHas('hospital', function ($q) {
+                $q->whereNotNull('id');
+            });
         if($filter_search){
             $hospitals_tie_ups->where('name', 'like','%' . $filter_search . '%');
             $hospitals_tie_ups->orWhere('uid', 'like','%' . $filter_search . '%');
