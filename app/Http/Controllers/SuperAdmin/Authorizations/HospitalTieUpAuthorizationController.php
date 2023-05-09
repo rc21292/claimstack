@@ -76,14 +76,26 @@ class HospitalTieUpAuthorizationController extends Controller
     public function show($id)
     {
         $hospital_tie_up = HospitalTieUp::find($id);
-        
-        $employee = $this->getEmployeesById($hospital_tie_up->hospital->linkedEmployee->id);
 
-        $hospital_tie_up->linked_employee_data = $employee;
+        if(isset($hospital_tie_up->hospital->linked_employee) && !empty($hospital_tie_up->hospital->linked_employee))
+        {
+            $employee = $this->getEmployeesById($hospital_tie_up->hospital->linkedEmployee->id);
 
-        $assigned_employee = $this->getEmployeesById($hospital_tie_up->hospital->assignedEmployee->id);
+            $hospital_tie_up->linked_employee_data = $employee;
+        }else{
+            $hospital_tie_up->linked_employee_data = $employee;
 
-        $hospital_tie_up->assigned_employee_data = $assigned_employee;
+        }
+
+        if(isset($hospital_tie_up->hospital->assigned_employee) && !empty($hospital_tie_up->hospital->assigned_employee))
+        {
+            $assigned_employee = $this->getEmployeesById($hospital_tie_up->hospital->assignedEmployee->id);
+
+            $hospital_tie_up->assigned_employee_data = $assigned_employee;
+        }else{
+            $hospital_tie_up->assigned_employee_data = '';
+
+        }
 
         return view('super-admin.authorizations.hospitals.tie-ups.show',  compact('hospital_tie_up'));
     }
