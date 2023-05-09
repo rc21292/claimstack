@@ -83,7 +83,7 @@ class HospitalTieUpAuthorizationController extends Controller
 
             $hospital_tie_up->linked_employee_data = $employee;
         }else{
-            $hospital_tie_up->linked_employee_data = $employee;
+            $hospital_tie_up->linked_employee_data = '';
 
         }
 
