@@ -489,7 +489,7 @@ class HospitalController extends Controller
 
         $this->validate($request, $rules, $messages);
 
-          $hospitalT =  HospitalTieUp::updateOrCreate([
+        $hospitalT =  HospitalTieUp::updateOrCreate([
                 'hospital_id' => $id],
                 [
                 'mou_inception_date'                                => $request->mou_inception_date,

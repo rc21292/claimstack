@@ -58,6 +58,7 @@ body {
     color: black;
     padding: 0px 13px 2px 13px;
     font-size: 23px;
+    margin-bottom: 8px !important;
     cursor: pointer;
 }
 body[data-leftbar-theme="dark"] .leftside-menu {
@@ -267,7 +268,11 @@ body[data-leftbar-theme=dark][data-leftbar-compact-mode=condensed] .side-nav .si
 
 }
 .card .card-body .form-group .form-control{
-    height: 37px;
+    height: 38px !important;
+}
+
+.card .card-body .form-group .form-select{
+    height: 38px !important;
 }
 
 
