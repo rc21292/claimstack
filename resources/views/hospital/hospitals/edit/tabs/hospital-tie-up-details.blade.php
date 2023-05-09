@@ -15,7 +15,6 @@
 
         <div class="col-md-6 mt-3">
             <label for="bhc_packages_for_surgical_procedures_accepted">BHC Packages for Surgical Procedures Accepted <span class="text-danger">*</span></label>
-            <div class="input-group">
             <select class="form-select" id="bhc_packages_for_surgical_procedures_accepted" name="bhc_packages_for_surgical_procedures_accepted">
                 <option value="">Select</option>
                 <option disabled value="Yes" {{ old('bhc_packages_for_surgical_procedures_accepted', $hospital_tie_ups->bhc_packages_for_surgical_procedures_accepted ?? '') == 'Yes' ? 'selected' : '' }}>Yes
@@ -24,19 +23,9 @@
                     {{ old('bhc_packages_for_surgical_procedures_accepted', $hospital_tie_ups->bhc_packages_for_surgical_procedures_accepted ?? '') == 'No' ? 'selected' : '' }}>No
                 </option>
             </select>
-            @isset($hospital_tie_ups->bhc_packages_for_surgical_procedures_accepted_file)
-                <a href="{{ asset('storage/uploads/hospital/'.$hospital_tie_ups->hospital_id.'/'.$hospital_tie_ups->bhc_packages_for_surgical_procedures_accepted_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-            @endisset
-            <input type="file" disabled name="bhc_packages_for_surgical_procedures_accepted_file" @if(old('bhc_packages_for_surgical_procedures_accepted',$hospital_tie_ups->bhc_packages_for_surgical_procedures_accepted) == 'No') disabled @endif id="bhc_packages_for_surgical_procedures_accepted_file" hidden />
-            <label for="bhc_packages_for_surgical_procedures_accepted_file" class="btn btn-primary upload-label"><i
-                class="mdi mdi-upload"></i></label>
-            </div>
             @error('bhc_packages_for_surgical_procedures_accepted')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-            @error('bhc_packages_for_surgical_procedures_accepted_file')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
         </div>
 
         <div class="col-md-6 mt-3">
@@ -259,7 +248,6 @@
 
         <div class="col-md-6 mt-3">
             <label for="lending_finance_company_agreement">Lending / Finance Company's Agreement <span class="text-danger">*</span></label>
-            <div class="input-group">
             <select class="form-select" id="lending_finance_company_agreement" name="lending_finance_company_agreement">
                 <option value="">Select</option>
                 <option disabled value="Yes" {{ old('lending_finance_company_agreement', $hospital_tie_ups->lending_finance_company_agreement ?? '') == 'Yes' ? 'selected' : '' }}>Yes
@@ -268,19 +256,9 @@
                     {{ old('lending_finance_company_agreement', $hospital_tie_ups->lending_finance_company_agreement ?? '') == 'No' ? 'selected' : '' }}>No
                 </option>
             </select>
-            @isset($hospital_tie_ups->lending_finance_company_agreement_file)
-                <a href="{{ asset('storage/uploads/hospital/'.$hospital_tie_ups->hospital_id.'/'.$hospital_tie_ups->lending_finance_company_agreement_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-            @endisset
-            <input type="file" disabled name="lending_finance_company_agreement_file" @if($hospital_tie_ups->lending_finance_company_agreement == 'No') disabled @endif id="lending_finance_company_agreement_file" hidden />
-            <label for="lending_finance_company_agreement_file" class="btn btn-primary upload-label"><i
-                class="mdi mdi-upload"></i></label>
-            </div>
             @error('lending_finance_company_agreement')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror
-            @error('lending_finance_company_agreement_file')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
         </div>
 
         <div class="col-md-6 mt-3 show-hide-agrrement">
