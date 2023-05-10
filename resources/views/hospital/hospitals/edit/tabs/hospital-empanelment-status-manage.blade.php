@@ -1,6 +1,6 @@
 <div class="table-responsive mt-3">
     @if (count($empanelments) > 0)
-        <table id="basics-datatable" class="table table-hover">
+        <table id="basics-datatable" class="table table-hover table-striped">
             <thead class="thead-grey">
                 <tr>
                     <th scope="col">Company</th>

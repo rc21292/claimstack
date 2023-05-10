@@ -65,7 +65,7 @@ use Carbon\Carbon;
                     <div class="card-body p-0">
                         <div class="table-responsive">
                             @if (count($claims) > 0)
-                                <table id="basics-datatable" class="table table-hover">
+                                <table id="basics-datatable" class="table table-hover table-striped">
                                     <thead class="thead-grey">
                                         <tr>
                                             <th scope="col">Claim ID</th>
