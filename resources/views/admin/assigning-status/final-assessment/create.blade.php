@@ -185,9 +185,15 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="associate_partner_id">Associate Partner ID (Name) <span
                                                     class="text-danger">*</span></label>
+                                            @if($claim->hospital->associate)
                                             <input type="text" readonly class="form-control" id="associate_partner_id"
                                                 name="associate_partner_id" placeholder="Associate Partner ID"
                                                 value="{{ old('associate_partner_id',@$claim->hospital->associate->associate_partner_id. ' ('.@$claim->hospital->associate->name.')') }}">
+                                            @else
+                                            <input type="text" readonly class="form-control" id="associate_partner_id"
+                                                name="associate_partner_id" placeholder="Associate Partner ID"
+                                                value="N/A">
+                                            @endif
                                             @error('associate_partner_id')
                                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror

@@ -191,7 +191,7 @@
                                             @else
                                             <input type="text" readonly class="form-control" id="associate_partner_id"
                                                 name="associate_partner_id" placeholder="Associate Partner ID"
-                                                value="">
+                                                value="N/A">
                                             @endif
 
                                             @error('associate_partner_id')
@@ -264,7 +264,7 @@
                                                 @if(@$claim->assessmentStatus->pre_assessment_status)
                                                 <option>{{ @$claim->assessmentStatus->pre_assessment_status }}</option>
                                                 @else
-                                                <option> </option>
+                                                <option> Waiting for Pre-Assessment </option>
                                                 @endif                                                
                                             </select>
                                         </div> 
