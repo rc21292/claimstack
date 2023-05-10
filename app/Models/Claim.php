@@ -99,17 +99,32 @@ class Claim extends Model
 
     public function assignTo()
     {
-        return $this->belongsTo(Admin::class, 'assign_to');
+        if(isset($this->re_assign_to) && !empty($this->re_assign_to)){
+            return $this->belongsTo(Admin::class, 're_assign_to');
+        }else{
+            return $this->belongsTo(Admin::class, 'assign_to');
+
+        }
     }
 
     public function assignToClaimProcessing()
     {
-        return $this->belongsTo(Admin::class, 'assign_to_claim_processing');
+        if(isset($this->re_assign_to) && !empty($this->re_assign_to)){
+            return $this->belongsTo(Admin::class, 're_assign_to_claim_processing');
+        }else{
+            return $this->belongsTo(Admin::class, 'assign_to_claim_processing');
+
+        }
     }
 
     public function assignToAssessment()
     {
-        return $this->belongsTo(Admin::class, 'assign_to_assessment');
+        if(isset($this->re_assign_to) && !empty($this->re_assign_to)){
+            return $this->belongsTo(Admin::class, 're_assign_to_assessment');
+        }else{
+            return $this->belongsTo(Admin::class, 'assign_to_assessment');
+
+        }
     }
 
     public function policy()
