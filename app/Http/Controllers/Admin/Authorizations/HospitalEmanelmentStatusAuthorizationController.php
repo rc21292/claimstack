@@ -31,7 +31,7 @@ class HospitalEmanelmentStatusAuthorizationController extends Controller
             $hospital_empanelments->orWhere('uid', 'like','%' . $filter_search . '%');
         }
 
-        $hospital_empanelments = $hospital_empanelments->where('status', 0)->whereHas('hospital' , function($query)
+        $hospital_empanelments = $hospital_empanelments->where('status', 1)->whereHas('hospital' , function($query)
         {
             $query->where('hospitals.linked_employee', auth('admin')->user()->id)
                 ->orWhere('hospitals.assigned_employee', auth('admin')->user()->id);
