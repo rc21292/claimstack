@@ -272,7 +272,7 @@
                                         <i class="uil-shield-check"></i>
                                     Hospital Tie-up Updates Authorize</button>
                                     <form id='delete-form{{ $hospital_tie_up->id }}'
-                                        action="{{ route('admin.hospital-authorizations.update', $hospital_tie_up->id) }}"
+                                        action="{{ route('admin.hospital-tie-up-authorizations.update', $hospital_tie_up->id) }}"
                                         method='POST'>
                                         <input type='hidden' name='_token'
                                         value='{{ csrf_token() }}'>

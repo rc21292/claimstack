@@ -272,7 +272,7 @@
                                         <i class="uil-shield-check"></i>
                                     Hospital Tie-up Updates Authorize</button>
                                     <form id='delete-form{{ $hospital_tie_up->id }}'
-                                        action="{{ route('super-admin.hospital-authorizations.update', $hospital_tie_up->id) }}"
+                                        action="{{ route('super-admin.hospital-tie-up-authorizations.update', $hospital_tie_up->id) }}"
                                         method='POST'>
                                         <input type='hidden' name='_token'
                                         value='{{ csrf_token() }}'>
@@ -292,39 +292,6 @@
         <!-- end page content -->
 
     </div> <!-- container -->
-    <div id="modal-password" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-passwordLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header modal-colored-header bg-primary">
-                    <p class="modal-title text-center" id="primary-header-modalLabel"><strong>Want to Change Password of UMP-</strong><span id="uid">{{ old('uid') }}</span></p>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" id="changePasswordForm" action="{{ route('super-admin.hospitals.change-password') }}">
-                        @csrf
-                        <input type="hidden" value="{{ old('id') }}" name="id" id="id">
-                        <input type="hidden" value="{{ old('uid') }}" name="uid" id="employee_code">
-                        <div class="form-group mb-2 {{ $errors->has('new_password') ? 'has-error' : '' }}">
-                            <label for="new_password">New password *</label>
-                            <input type="password" id="new_password" name="new_password" placeholder="Enter new password" class="form-control">
-                            @error('new_password')
-                                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="form-group mb-2 {{ $errors->has('new_password_confirmation') ? 'has-error' : '' }}">
-                            <label for="new_password_confirmation">Confirm password *</label>
-                            <input type="password" id="new_password_confirmation" name="new_password_confirmation"
-                                class="form-control" placeholder="Re-enter new password">                           
-                        </div>
-                    </form>
-                </div>
-                <div class="text-center mb-3">
-                    <button type="button" class="btn btn-sm btn-light" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" form="changePasswordForm" class="btn btn-sm btn-success">Confirm</button>
-                </div>
-            </div>
-        </div>
-    </div>
 @endsection
 {{-- @push('filter')
     @include('super-admin.filters.question-filter')
