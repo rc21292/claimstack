@@ -190,7 +190,7 @@
                     <ul class="side-nav-second-level">
 
                         <li class="side-nav-item">
-                            <a data-bs-toggle="collapse" href="#sidebarSecondLevel" aria-expanded="false" aria-controls="sidebarSecondLevel" class="collapsed">
+                            <a data-bs-toggle="collapse" href="#sidebarSecondLevel" aria-expanded="false" aria-controls="sidebarSecondLevel" class="">
                                 <span>  Patients  </span>
                                 <span class="menu-arrow"></span>
                             </a>
@@ -207,7 +207,7 @@
                         </li>
 
                         <li class="side-nav-item">
-                            <a data-bs-toggle="collapse" href="#sidebarThirdLevel" aria-expanded="false" aria-controls="sidebarThirdLevel" class="collapsed">
+                            <a data-bs-toggle="collapse" href="#sidebarThirdLevel" aria-expanded="false" aria-controls="sidebarThirdLevel" class="">
                                 <span> Claims </span>
                                 <span class="menu-arrow"></span>
                             </a>
@@ -224,7 +224,7 @@
                         </li>
 
                         <li class="side-nav-item">
-                            <a data-bs-toggle="collapse" href="#sidebarFourthLevel" aria-expanded="false" aria-controls="sidebarFourthLevel" class="collapsed">
+                            <a data-bs-toggle="collapse" href="#sidebarFourthLevel" aria-expanded="false" aria-controls="sidebarFourthLevel" class="">
                                 <span> Claimants </span>
                                 <span class="menu-arrow"></span>
                             </a>
@@ -242,7 +242,7 @@
 
 
                         <li class="side-nav-item">
-                            <a data-bs-toggle="collapse" href="#sidebarFifthLevel" aria-expanded="false" aria-controls="sidebarFifthLevel" class="collapsed">
+                            <a data-bs-toggle="collapse" href="#sidebarFifthLevel" aria-expanded="false" aria-controls="sidebarFifthLevel" class="">
                                 <span> Borrowers </span>
                                 <span class="menu-arrow"></span>
                             </a>
@@ -259,7 +259,7 @@
                 </div>
             </li>
 
-            {{-- <li class="side-nav-item">
+           {{--  <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#claims" aria-expanded="false" aria-controls="claims" class="side-nav-link collapsed">
                     <i class="mdi mdi-doctor"></i>
                     <span> Claims </span>
