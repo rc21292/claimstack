@@ -155,11 +155,11 @@
                                         <div class="input-group">
                                             <div class="col-3">
                                                 <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length>=3) return false;" class="form-control input-md" id="code" name="code"
-                                                placeholder="Code" value="{{ old('code') }}">
+                                                placeholder="Code" value="{{ old('code', '000') }}">
                                             </div>
                                             <div class="col-9">
                                                 <input type="number" class="form-control" id="landline" name="landline"
-                                                placeholder="Enter hospital landline number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length >= 10) return false;" value="{{ old('landline') }}">
+                                                placeholder="Enter hospital landline number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length >= 10) return false;" value="{{ old('landline', '0000000000') }}">
                                             </div>
                                         </div>
                                         @error('code')

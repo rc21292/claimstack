@@ -448,13 +448,13 @@
                                             <input type="number" pattern="/^-?\d+\.?\d*$/"
                                                 onKeyPress="if(this.value.length>=3) return false;"
                                                 class="form-control input-md" id="code" name="code"
-                                                placeholder="Code" value="{{ old('code') }}">
+                                                placeholder="Code" value="{{ old('code', '000') }}">
                                         </div>
                                         <div class="col-9">
                                             <input type="text" maxlength="10" onkeypress="return isNumberKey(event)"
                                                 class="form-control" id="landline" name="landline"
                                                 placeholder="Enter Patient landline number"
-                                                value="{{ old('landline') }}">
+                                                value="{{ old('landline', '0000000000') }}">
                                         </div>
                                     </div>
                                     @error('code')
