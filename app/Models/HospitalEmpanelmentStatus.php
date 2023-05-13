@@ -30,7 +30,7 @@ class HospitalEmpanelmentStatus extends Model
 
     public function company()
     {
-        return $this->belongsTo(TPA::class, 'tpa_id');
+        return $this->belongsTo(Tpa::class, 'tpa_id');
     }
 
     public function hospital()

@@ -30,7 +30,7 @@ class HospitalTieUpAuthorizationController extends Controller
         foreach ($hospitals_tie_ups as $key => $hospitals_tie_up) {
             if(isset($hospitals_tie_up->hospital->assigned_employee) && !empty($hospitals_tie_up->hospital->assigned_employee)){
                 $employee = $this->getEmployeesById($hospitals_tie_up->hospital->assignedEmployee->id);
-                HospitalTieUp::where('id', $hospitals_tie_up->id)->update(['linked_admin' => @$employee->id]);
+                HospitalTieUp::where('id', $hospitals_tie_up->id)->update(['linked_admin' => @$employee->id, 'updated_at' => \DB::raw('updated_at')]);
             }else{
                 continue;
             }
@@ -65,7 +65,7 @@ class HospitalTieUpAuthorizationController extends Controller
 
                 $employee = $this->getEmployeesById($hospitals_tie_up->hospital->assignedEmployee->id);
 
-                HospitalTieUp::where('id', $hospitals_tie_up->id)->update(['linked_admin' => $employee->id]);
+                HospitalTieUp::where('id', $hospitals_tie_up->id)->update(['linked_admin' => $employee->id, 'updated_at' => \DB::raw('updated_at')]);
 
                 $hospitals_tie_ups[$key]->linked_employee_data = $employee;
             }else{

@@ -25,7 +25,7 @@ class HospitalEmanelmentStatusAuthorizationController extends Controller
             $hospital_empanelments->orWhere('uid', 'like','%' . $filter_search . '%');
         }
 
-        $hospital_empanelments = $hospital_empanelments->where('status', 0)->orderBy('id', 'desc')->paginate(20);
+        $hospital_empanelments = $hospital_empanelments->where('status', 1)->orderBy('id', 'desc')->paginate(20);
 
         foreach ($hospital_empanelments as $key => $hospital_empanelment) {
            $employee = $this->getEmployeesById($hospital_empanelment->hospital->linked_employee);
