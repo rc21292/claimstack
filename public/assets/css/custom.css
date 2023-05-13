@@ -164,12 +164,10 @@ div.scroll {
 
 /* ershad alam */
 
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&family=Open+Sans:wght@300&display=swap');
 
 
   /* left menu */
 body{
-    font-family: 'Inter', sans-serif !important;
     color: #000 !important;
 }
 
@@ -268,7 +266,6 @@ body[data-leftbar-theme=dark][data-leftbar-compact-mode=condensed] .side-nav .si
 .card .card-body label{
     margin-bottom: 8px;
     font-weight: 500;
-    font-family: 'Inter', sans-serif !important;
 }
 .card .card-body .input-group-text{
     margin-bottom: 8px;
@@ -294,7 +291,6 @@ body[data-leftbar-theme=dark][data-leftbar-compact-mode=condensed] .side-nav .si
 
 .card .card-body h5{
     font-weight: 500 !important;
-    font-family: 'Inter', sans-serif;
 }
 
 
