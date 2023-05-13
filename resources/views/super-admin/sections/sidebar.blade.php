@@ -179,7 +179,87 @@
                 </div>
             </li>
 
+
             <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarMultiLevel" aria-expanded="false" aria-controls="sidebarMultiLevel" class="side-nav-link">
+                    <i class="uil-folder-plus"></i>
+                    <span> Claims </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarMultiLevel" style="">
+                    <ul class="side-nav-second-level">
+
+                        <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#sidebarSecondLevel" aria-expanded="false" aria-controls="sidebarSecondLevel" class="collapsed">
+                                <span>  Patients  </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="sidebarSecondLevel" style="">
+                                <ul class="side-nav-third-level">
+                                    <li>
+                                        <a href="{{ route('super-admin.patients.create') }}">Create Patient</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('super-admin.patients.index') }}">Manage Patient</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#sidebarThirdLevel" aria-expanded="false" aria-controls="sidebarThirdLevel" class="collapsed">
+                                <span> Claims </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="sidebarThirdLevel" style="">
+                                <ul class="side-nav-third-level">
+                                    <li>
+                                        <a href="{{ route('super-admin.claims.create') }}">Create Claim</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('super-admin.claims.index') }}">Manage Claims</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#sidebarFourthLevel" aria-expanded="false" aria-controls="sidebarFourthLevel" class="collapsed">
+                                <span> Claimants </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="sidebarFourthLevel" style="">
+                                <ul class="side-nav-third-level">
+                                    <li style="display:none;">
+                                        <a href="{{ route('super-admin.claimants.create') }}">Create Claimant</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('super-admin.claimants.index') }}">Manage Claimants</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+
+                        <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#sidebarFifthLevel" aria-expanded="false" aria-controls="sidebarFifthLevel" class="collapsed">
+                                <span> Borrowers </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="sidebarFifthLevel" style="">
+                                <ul class="side-nav-third-level">
+                                    <li>
+                                        <a href="{{ route('super-admin.borrowers.index') }}">Manage Borrowers</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+
+            {{-- <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#claims" aria-expanded="false" aria-controls="claims" class="side-nav-link collapsed">
                     <i class="mdi mdi-doctor"></i>
                     <span> Claims </span>
@@ -251,7 +331,7 @@
                         </li>
                     </ul>
                 </div>
-            </li>
+            </li> --}}
 
 
             <li class="side-nav-item">

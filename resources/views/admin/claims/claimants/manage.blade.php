@@ -57,19 +57,14 @@
                                                 <td>{{ $claimant->state }}</td>
                                                 <td>{{ $claimant->city }}</td>
                                                 <td>{{ $claimant->pincode }}</td>
-                                                <td>
-
-                                                    <div class="btn-group">
-                                                        <button type="button" class="btn btn-primary">
-                                                            Action</button>
-                                                        <button type="button" class="btn btn-dark 
-                                                            dropdown-toggle dropdown-toggle-split" 
+                                                <td class="text-center">
+                                                    <div class="input-group">
+                                                        <button type="button" class="btn btn-primary 
+                                                            dropdown-toggle" 
                                                             data-bs-toggle="dropdown">
-                                                            <span class="visually-hidden">
-                                                                Toggle Dropdown
-                                                            </span>
+                                                                Action
                                                         </button>
-                                                        <ul class="dropdown-menu">
+                                                        <ul class="dropdown-menu dropdown-menu-end">
                                                             <li><a class="dropdown-item" href="{{ route('admin.claimants.edit', @$claimant->id) }}">
                                                                 <i class="mdi mdi-pencil"></i> Edit Claimant</a>
                                                             </li>

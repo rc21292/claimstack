@@ -57,14 +57,14 @@
                                                 <td>{{ $claimant->state }}</td>
                                                 <td>{{ $claimant->city }}</td>
                                                 <td>{{ $claimant->pincode }}</td>
-                                                <td>
+                                                <td class="text-center">
 
                                                     <div class="input-group">
 
                                                         <button type="button" class="btn btn-primary 
                                                             dropdown-toggle" 
                                                             data-bs-toggle="dropdown">
-                                                                Action &nbsp;
+                                                                Action
                                                         </button>
                                                         
                                                         <ul class="dropdown-menu dropdown-menu-end">
