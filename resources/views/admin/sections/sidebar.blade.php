@@ -142,7 +142,7 @@
 
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarMultiLevel" aria-expanded="false" aria-controls="sidebarMultiLevel" class="side-nav-link">
-                    <i class="uil-folder-plus"></i>
+                    <i class="mdi mdi-doctor"></i>
                     <span> Claims </span>
                     <span class="menu-arrow"></span>
                 </a>

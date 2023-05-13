@@ -51,6 +51,86 @@
             </li>
 
             <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarMultiLevel" aria-expanded="false" aria-controls="sidebarMultiLevel" class="side-nav-link">
+                    <i class="mdi mdi-doctor"></i>
+                    <span> Claims </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarMultiLevel" style="">
+                    <ul class="side-nav-second-level">
+
+                        <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#sidebarSecondLevel" aria-expanded="false" aria-controls="sidebarSecondLevel" class="">
+                                <span>  Patients  </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="sidebarSecondLevel" style="">
+                                <ul class="side-nav-third-level">
+                                    <li>
+                                        <a href="{{ route('hospital.patients.create') }}">Create Patient</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('hospital.patients.index') }}">Manage Patient</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#sidebarThirdLevel" aria-expanded="false" aria-controls="sidebarThirdLevel" class="">
+                                <span> Claims </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="sidebarThirdLevel" style="">
+                                <ul class="side-nav-third-level">
+                                    <li>
+                                        <a href="{{ route('hospital.claims.create') }}">Create Claim</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('hospital.claims.index') }}">Manage Claims</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#sidebarFourthLevel" aria-expanded="false" aria-controls="sidebarFourthLevel" class="">
+                                <span> Claimants </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="sidebarFourthLevel" style="">
+                                <ul class="side-nav-third-level">
+                                    <li style="display:none;">
+                                        <a href="{{ route('hospital.claimants.create') }}">Create Claimant</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('hospital.claimants.index') }}">Manage Claimants</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+
+                        <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#sidebarFifthLevel" aria-expanded="false" aria-controls="sidebarFifthLevel" class="">
+                                <span> Borrowers </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="sidebarFifthLevel" style="">
+                                <ul class="side-nav-third-level">
+                                    <li>
+                                        <a href="{{ route('hospital.borrowers.index') }}">Manage Borrowers</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+            
+
+            {{-- <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#claims" aria-expanded="false" aria-controls="claims" class="side-nav-link collapsed">
                     <i class="mdi mdi-doctor"></i>
                     <span> Claims </span>
@@ -122,7 +202,7 @@
                     </ul>
                 </div>
 
-            </li>
+            </li> --}}
 
         </ul>
 
