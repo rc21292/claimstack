@@ -35,16 +35,7 @@
             </div>
             <div class="col-md-12 show-hide-empanelment mt-3">
                 <label for="company_type">Company Type<span class="text-danger">*</span></label>
-                <select class="form-select" id="company_type" name="company_type">
-                    <option value="">Select Company Type</option>
-                    <option value="Insurance Co." {{ old('company_type',isset($empanelment_status) ? $empanelment_status->company_type : '') == "Insurance Co." ? 'selected' : '' }}>Insurance Co.</option>
-                    <option value="TPA" {{ old('company_type',isset($empanelment_status) ? $empanelment_status->company_type : '') == "TPA" ? 'selected' : '' }}>TPA</option>
-                    <option value="BHC" {{ old('company_type',isset($empanelment_status) ? $empanelment_status->company_type : '') == "BHC" ? 'selected' : '' }}>BHC</option>
-                    <option value="Self" {{ old('company_type',isset($empanelment_status) ? $empanelment_status->company_type : '') == "Self" ? 'selected' : '' }}>Self</option>
-                    <option value="Government" {{ old('company_type',isset($empanelment_status) ? $empanelment_status->company_type : '') == "Government" ? 'selected' : '' }}>Government</option>
-                    <option value="PSU" {{ old('company_type',isset($empanelment_status) ? $empanelment_status->company_type : '') == "PSU" ? 'selected' : '' }}>PSU</option>
-                    <option value="Private Corporate" {{ old('company_type',isset($empanelment_status) ? $empanelment_status->company_type : '') == "Private Corporate" ? 'selected' : '' }}>Private Corporate</option>
-                </select>
+                <input type="text" class="form-select" placeholder="Please select company type" id="company_type" name="company_type" readonly>
                 @error('company_type')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -54,23 +45,13 @@
 
             <div class="col-md-6 show-hide-empanelment mt-3">
                 <label for="empanelled">Empanelled<span class="text-danger">*</span></label>
-                <div class="input-group">
                 <select onchange="enableDisable()" class="form-select" id="empanelled" name="empanelled">
                     <option value="">Select Company Name</option>
                     <option value="Yes" {{ old('empanelled',isset($empanelment_status) ? $empanelment_status->empanelled : '') == 'Yes' ? 'selected' : '' }}>Yes</option>
                     <option value="No" {{ old('empanelled',isset($empanelment_status) ? $empanelment_status->empanelled : '') == 'No' ? 'selected' : '' }}>No</option>
                 </select>
-                @isset($empanelment_status->empanelled_file)
-                    <a href="{{ asset('storage/uploads/hospital/empanelment_status/'.$empanelment_status->hospital_id.'/'.$empanelment_status->empanelled_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
-                @endisset 
-                <input type="file" name="empanelled_file" id="empanelled_file_id" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
-                    <label for="empanelled_file_id" class="btn btn-primary upload-label"><i
-                        class="mdi mdi-upload"></i></label>
-                    </div>
+                
                 @error('empanelled')
-                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-                @error('empanelled_file')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
