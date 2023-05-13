@@ -552,7 +552,7 @@
                                 </div>     
 
                                 <div class="col-md-6 mt-3">
-                                    <label for="any_other_aliment_details">Any other aliment details</label>
+                                    <label for="any_other_aliment_details">Any other ailment details</label>
                                     <input type="text" class="form-control" {{ old('any_other_aliment_details') }} id="any_other_aliment_details" name="any_other_aliment_details"  placeholder="Probable Date of Discharge"></input>
                                     @error('any_other_aliment_details')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>

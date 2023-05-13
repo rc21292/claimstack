@@ -641,10 +641,10 @@
                 @enderror
             </div>
             <div class="col-md-6 mt-3">
-                <label for="ailment_details">Any other aliment details <span class="text-danger">*</span></label>
+                <label for="ailment_details">Any other ailment details <span class="text-danger">*</span></label>
                 <input type="text" maxlength="45" class="form-control" id="ailment_details"
                     name="ailment_details" value="{{ old('ailment_details') }}"
-                    placeholder="Any other aliment details">
+                    placeholder="Any other ailment details">
                 @error('ailment_details')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
