@@ -108,7 +108,7 @@
                                 </div>
                                 <div class="col-md-12 mt-3">
                                     <label for="department">Department <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="department" name="department" onchange="loadEmployees()">
+                                    <select class="form-select" id="department" name="department">
                                         <option value="">Select Department</option>
                                         <option value="Operations"
                                             {{ old('department', $admin->department) == 'Operations' ? 'selected' : '' }}>
