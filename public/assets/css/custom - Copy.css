@@ -62,19 +62,13 @@ body {
     cursor: pointer;
 }
 body[data-leftbar-theme="dark"] .leftside-menu {
-    background: #f4f4f4;
+    background: #3e4097;
 }
-
 body[data-leftbar-theme="dark"] .leftside-menu .logo {
-    background: #f4f4f4; !important;
+    background: #e9faff !important;
 }
-
-body[data-leftbar-theme=dark] .leftside-menu .logo {
-    background: #f4f4f4!important;
-}
-
 .navbar-custom {
-    background-color: #f4f4f4 !important;
+    background-color: #e9faff !important;
 }
 .navbar-custom {
     -webkit-box-shadow: none;
@@ -217,7 +211,7 @@ body[data-leftbar-theme=dark] .side-nav .side-nav-link:active::before, body[data
 }
 body[data-leftbar-theme=dark] .side-nav .menuitem-active>a{
 
-    color: black !important;
+    color: #fff;
 }
 /* .side-nav-second-level .menuitem-active > a.active{
     background-color: #fff;
@@ -235,7 +229,6 @@ body[data-leftbar-theme=dark] .side-nav .menuitem-active>a{
 .side-nav-forth-level li a, .side-nav-second-level li a, .side-nav-third-level li a,
 .side-nav .side-nav-link{
     font-size: 1rem !important;
-    color: black !important ;
 }
 
 body[data-leftbar-theme=dark][data-leftbar-compact-mode=condensed] .side-nav .side-nav-item:hover>.collapse>ul{
