@@ -644,10 +644,10 @@ class DocumentReimbursementController extends Controller
                 break;
             case 'insurance_claim':
                 $rules = [   
-                    'claimant_pan_card_file'                => empty($reimbursement->claimant_pan_card_file) ? 'required' : [],
+                    /*'claimant_pan_card_file'                => empty($reimbursement->claimant_pan_card_file) ? 'required' : [],
                     'claimant_aadhar_card_file'             => empty($reimbursement->claimant_aadhar_card_file) ? 'required' : [],
                     'claimant_current_address_proof_file'   => empty($reimbursement->claimant_current_address_proof_file) ? 'required' : [],
-                    'claimant_cancel_cheque_file'           => empty($reimbursement->claimant_cancel_cheque_file) ? 'required' : [],
+                    'claimant_cancel_cheque_file'           => empty($reimbursement->claimant_cancel_cheque_file) ? 'required' : [],*/
                     'insurance_co_tpa_claim_form_signed_and_stamped_file'           => empty($reimbursement->insurance_co_tpa_claim_form_signed_and_stamped_file) ? 'required' : [],
                 ];
                 
@@ -889,16 +889,18 @@ class DocumentReimbursementController extends Controller
             break;
             case 'medical_loan_form':
                 $rules = [
-                    'borrower_current_address_proof_file'   => empty($reimbursement->borrower_current_address_proof_file) ? 'required' : [],
+                    'photograph_of_the_borrower_file'   => empty($reimbursement->photograph_of_the_borrower_file) ? 'required' : [],
+                    // 'borrower_current_address_proof_file'   => empty($reimbursement->borrower_current_address_proof_file) ? 'required' : [],
                     'borrower_pan_card_file'                => empty($reimbursement->borrower_pan_card_file) ? 'required' : [],
                     'borrower_aadhar_card_file'             => empty($reimbursement->borrower_aadhar_card_file) ? 'required' : [],
-                    'borrower_bank_statement_3_months_file' => empty($reimbursement->borrower_bank_statement_3_months_file) ? 'required' : [],   
+                    // 'borrower_bank_statement_3_months_file' => empty($reimbursement->borrower_bank_statement_3_months_file) ? 'required' : [],   
                     'borrower_cancel_cheque_file'           => empty($reimbursement->borrower_cancel_cheque_file) ? 'required' : [],
-                    'borrower_other_documents_file'         => empty($reimbursement->borrower_other_documents_file) ? 'required' : [],   
+                    // 'borrower_other_documents_file'         => empty($reimbursement->borrower_other_documents_file) ? 'required' : [],   
                     
                 ];
                 
                 $messages = [    
+                    'photograph_of_the_borrower_file.required'          => 'Please select Borrower Photograph File',
                     'borrower_current_address_proof_file.required'      => 'Please select Borrower Current Address Proof File',
                     'borrower_pan_card_file.required'                   => 'Please select Borrower Pan Card File',
                     'borrower_aadhar_card_file.required'                => 'Please select Borrower Aadhar Card File',
@@ -909,6 +911,29 @@ class DocumentReimbursementController extends Controller
                 ];
                 
                 $this->validate($request, $rules, $messages);
+
+                if ($request->hasfile('photograph_of_the_borrower_file')) {
+                    $photograph_of_the_borrower_file = $request->file('photograph_of_the_borrower_file');
+                    $name = $photograph_of_the_borrower_file->getClientOriginalName();
+                    $photograph_of_the_borrower_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->photograph_of_the_borrower_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'photograph_of_the_borrower_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'photograph_of_the_borrower_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'photograph_of_the_borrower_file', 'file_path' => $reimbursement->photograph_of_the_borrower_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
+                    ReimbursementDocument::where('id', $reimbursement->id)->update([
+                        'photograph_of_the_borrower_file' =>  $name
+                    ]);
+                }
 
                 if ($request->hasfile('borrower_current_address_proof_file')) {
                     $borrower_current_address_proof_file = $request->file('borrower_current_address_proof_file');
@@ -1074,17 +1099,19 @@ class DocumentReimbursementController extends Controller
                 break;
             case 'borrower_loan_form':
                 $rules = [    
-                    'co_borrower_current_address_proof_file'    => empty($reimbursement->co_borrower_current_address_proof_file) ? 'required' : [],
+                    'photograph_of_the_co_borrower_file'    => empty($reimbursement->photograph_of_the_co_borrower_file) ? 'required' : [],
+                    // 'co_borrower_current_address_proof_file'    => empty($reimbursement->co_borrower_current_address_proof_file) ? 'required' : [],
                     'co_borrower_pan_card_file'                 => empty($reimbursement->co_borrower_pan_card_file) ? 'required' : [],
                     'co_borrower_aadhar_card_file'              => empty($reimbursement->co_borrower_aadhar_card_file) ? 'required' : [],
-                    'co_borrower_bank_statement_3_months_file'  => empty($reimbursement->co_borrower_bank_statement_3_months_file) ? 'required' : [],   
+                    /*'co_borrower_bank_statement_3_months_file'  => empty($reimbursement->co_borrower_bank_statement_3_months_file) ? 'required' : [],   
                     'co_borrower_cancel_cheque_file'            => empty($reimbursement->co_borrower_cancel_cheque_file) ? 'required' : [],
-                    'co_borrower_other_documents_file'          => empty($reimbursement->co_borrower_other_documents_file) ? 'required' : [],
+                    'co_borrower_other_documents_file'          => empty($reimbursement->co_borrower_other_documents_file) ? 'required' : [],*/
                     
                 ];
                 
                 $messages = [   
                     'co_borrower_current_address_proof_file.required'   => 'Please select Co Borrower Current Address Proof File',
+                    'photograph_of_the_co_borrower_file.required'       => 'Please select Co Borrower Photograph File',
                     'co_borrower_pan_card_file.required'                => 'Please select Co Borrower Pan Card File',
                     'co_borrower_aadhar_card_file.required'             => 'Please select Co Borrower Aadhar Card File',
                     'co_borrower_bank_statement_3_months_file.required' => 'Please select Co Borrower Bank Statement 3 Months File',    
@@ -1094,6 +1121,30 @@ class DocumentReimbursementController extends Controller
                 ];
                 
                 $this->validate($request, $rules, $messages);
+
+                if ($request->hasfile('photograph_of_the_co_borrower_file')) {
+                    $photograph_of_the_co_borrower_file = $request->file('photograph_of_the_co_borrower_file');
+                    $name = $photograph_of_the_co_borrower_file->getClientOriginalName();
+                    $photograph_of_the_co_borrower_file->storeAs('uploads/reimbursement/documents/' . $reimbursement->id . '/', $name, 'public');
+
+                    if (!empty($reimbursement->photograph_of_the_co_borrower_file)) {
+                        $exists = DocumentReimbursementFileHistory::where(['file_name' => 'photograph_of_the_co_borrower_file', 'patient_id' => $id])->exists();
+                        if (!$exists) {
+                            $file_id = 0;
+                        }else{
+                            $file_id1 =  DocumentReimbursementFileHistory::where(['file_name' => 'photograph_of_the_co_borrower_file', 'patient_id' => $id])->latest('id')->first();
+                            $file_id = $file_id1->file_id;
+                        }
+                        DocumentReimbursementFileHistory::insert(
+                            ['file_name' => 'photograph_of_the_co_borrower_file', 'file_path' => $reimbursement->photograph_of_the_co_borrower_file, 'patient_id' => $id, 'created_at' => now(), 'file_id' => $file_id+1]
+                        );
+                    }
+
+                    ReimbursementDocument::where('id', $reimbursement->id)->update([
+                        'photograph_of_the_co_borrower_file' =>  $name
+                    ]);
+                }
+
                 if ($request->hasfile('co_borrower_current_address_proof_file')) {
                     $co_borrower_current_address_proof_file = $request->file('co_borrower_current_address_proof_file');
                     $name = $co_borrower_current_address_proof_file->getClientOriginalName();

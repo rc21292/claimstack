@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('hospital_tie_ups', function (Blueprint $table) {
+        Schema::create('hospital_pending_tie_ups', function (Blueprint $table) {
             $table->id();
             $table->string('uid')->nullable();            
             $table->integer('hospital_id')->unsigned()->nullable();
@@ -57,6 +57,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hospital_tie_ups');
+        Schema::dropIfExists('hospital_pending_tie_ups');
     }
 };

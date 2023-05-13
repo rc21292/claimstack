@@ -1023,6 +1023,34 @@
             @method('POST')
             <input type="hidden" name="form_type" value="medical_loan_form">
             <div class="form-group row">
+
+                <div class="col-md-6 mt-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" readonly
+                            placeholder="Photograph of the Borrower *">
+                        @isset($reimbursementdocument->photograph_of_the_borrower_file)
+                            <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->photograph_of_the_borrower_file) }}"
+                                target="_blank" class="btn btn-info download-label"><i
+                                    class="mdi mdi-eye"></i></a>
+                        @endisset
+                        @isset($reimbursementdocument->photograph_of_the_borrower_file)
+                            <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->photograph_of_the_borrower_file) }}"
+                                download="" class="btn btn-warning download-label"><i
+                                    class="mdi mdi-download"></i></a>
+                        @endisset
+                        <input type="file" name="photograph_of_the_borrower_file"
+                            id="photograph_of_the_borrower_file" hidden
+                            onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
+                        <label for="photograph_of_the_borrower_file"
+                            class="btn btn-primary upload-label"><i
+                                class="mdi mdi-upload"></i></label>
+                    </div>
+                    @error('photograph_of_the_borrower_file')
+                        <span id="name-error"
+                            class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
@@ -1232,6 +1260,35 @@
             @method('POST')
             <input type="hidden" name="form_type" value="borrower_loan_form">
             <div class="form-group row">
+
+                <div class="col-md-6 mt-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" readonly
+                            placeholder="Photograph of the Co Borrower *">
+                        @isset($reimbursementdocument->photograph_of_the_co_borrower_file)
+                            <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->photograph_of_the_co_borrower_file) }}"
+                                target="_blank" class="btn btn-info download-label"><i
+                                    class="mdi mdi-eye"></i></a>
+                        @endisset
+                        @isset($reimbursementdocument->photograph_of_the_co_borrower_file)
+                            <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->photograph_of_the_co_borrower_file) }}"
+                                download="" class="btn btn-warning download-label"><i
+                                    class="mdi mdi-download"></i></a>
+                        @endisset
+                        <input type="file" name="photograph_of_the_co_borrower_file"
+                            id="photograph_of_the_co_borrower_file" hidden
+                            onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
+                        <label for="photograph_of_the_co_borrower_file"
+                            class="btn btn-primary upload-label"><i
+                                class="mdi mdi-upload"></i></label>
+                    </div>
+                    @error('photograph_of_the_co_borrower_file')
+                        <span id="name-error"
+                            class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+
+
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
