@@ -195,17 +195,43 @@
                 case 'Group':
                     $("#group_name").prop("readonly", false);
                     $("#previous_policy_no").prop("readonly", true);
+                    $("#policy_name").prop("disabled", true);
                     break;
                 case 'Retail':
+                    loadRetailPolicies();
                     $("#group_name").prop("readonly", true);
                     $("#previous_policy_no").prop("readonly", false);
+                    $("#policy_name").prop("disabled", false);
                     break;
                 default:
                     $("#group_name").prop("readonly", true);
                     $("#previous_policy_no").prop("readonly", true);
+                    $("#policy_name").prop("disabled", false);
                     break;
             }
         }
+    </script>
+    <script>
+        function loadRetailPolicies() {
+            var insurance_company = $("#insurance_company").select2().find(":selected").text();
+            var url = '{{ url('super-admin/get-retail-policies') }}/'+insurance_company;
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    $('#policy_name').html()
+                    $('#policy_name').html(data)
+                    $('#policy_name').val('{{ old('policy_name', @$claim->policy->policy_id) }}')
+                    $('#policy_name').select2().trigger('change');
+                }
+            });
+        }
+
+        $("#insurance_company").change(function(event) {
+            $("#policy_type").val('').change('');
+        });
     </script>
     <script>
         function setPrimaryInsuredAddress() {
