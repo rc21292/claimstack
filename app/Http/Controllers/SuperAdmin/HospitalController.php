@@ -223,11 +223,17 @@ class HospitalController extends Controller
         }else{
             $empanelment_status          = null;
         }
-
-        $hospital_department          = HospitalDepartment::where('hospital_id', $id)->first();
-        if (!$hospital_department) {
-            HospitalDepartment::create(['hospital_id'=> $id]);
-            $hospital_department          = HospitalDepartment::where('hospital_id', $id)->first();
+        
+        $hospital_department          = HospitalDepartment::where('hospital_id', $id)->get();
+        // if (!$hospital_department) {
+        //     HospitalDepartment::create(['hospital_id'=> $id]);
+        //     $hospital_department          = HospitalDepartment::where('hospital_id', $id)->first();
+        // }
+        
+        if(isset($request->doctor_id)){ 
+            $hospital_doctor = HospitalDepartment::where('id', $request->doctor_id)->get()->first();
+        } else{
+            $hospital_doctor = [];
         }
 
         $hospitals         = Hospital::get();
@@ -236,7 +242,7 @@ class HospitalController extends Controller
 
         $users              = User::get();
 
-        return view('super-admin.hospitals.edit.edit',  compact('hospital','tpas', 'associates', 'hospitals', 'hospital_facility', 'hospital_nfrastructure', 'hospital_department', 'hospital_tie_ups', 'users', 'insurers', 'hospital_document', 'empanelment_status','empanelments', 'id'));
+        return view('super-admin.hospitals.edit.edit',  compact('hospital','tpas', 'associates', 'hospitals', 'hospital_facility', 'hospital_nfrastructure', 'hospital_department','hospital_doctor', 'hospital_tie_ups', 'users', 'insurers', 'hospital_document', 'empanelment_status','empanelments', 'id'));
     }
 
     /**
@@ -710,8 +716,9 @@ class HospitalController extends Controller
 
     public function updateHospitalDepartment(Request $request, $id)
     {
+       
         $hospital             = Hospital::find($id);
-
+        
         if ($request->hasfile('upload')) {
             $upload                    = $request->file('upload');
             $name                      = $upload->getClientOriginalName();
@@ -722,11 +729,11 @@ class HospitalController extends Controller
         }
 
         $rules = [
-            'specialization'              => 'required',
-            'doctors_firstname'           => ($request->show_doctor == 1) ? 'required' : [],
-            'registration_no'             => ($request->show_doctor == 1) ? 'required|max:20' : [],
-            'email_id'                    => ($request->show_doctor == 1) ? 'required|email|max:45' : [],
-            'doctors_mobile_no'           => ($request->show_doctor == 1) ? 'required|numeric|digits:10' : [],
+            'specialization'              =>  'required',
+            'doctors_firstname'           =>  'required',
+            'registration_no'             =>  'required|max:20',
+            'email_id'                    =>  'required|email|max:45',
+            'doctors_mobile_no'           =>  'required|numeric|digits:10',
         ];
 
         $messages = [
@@ -738,10 +745,10 @@ class HospitalController extends Controller
         ];
 
         $this->validate($request, $rules, $messages);
-
-        HospitalDepartment::updateOrCreate([
-            'hospital_id' => $id],
+    if(isset($request->doctor_id)):
+        HospitalDepartment::where('id',$request->doctor_id)->update(
             [
+                'hospital_id'                =>$id,
                 'specialization'             => $request->specialization,
                 'doctors_firstname'          => $request->doctors_firstname,
                 'doctors_lastname'           => $request->doctors_lastname,
@@ -749,10 +756,30 @@ class HospitalController extends Controller
                 'email_id'                   => $request->email_id,
                 'doctors_mobile_no'          => $request->doctors_mobile_no,
         ]);
+        $msg = 'Doctor Updated Successfully';
+    else:
+        HospitalDepartment::Create(
+            [
+                'hospital_id'                =>$id,
+                'specialization'             => $request->specialization,
+                'doctors_firstname'          => $request->doctors_firstname,
+                'doctors_lastname'           => $request->doctors_lastname,
+                'registration_no'            => $request->registration_no,
+                'email_id'                   => $request->email_id,
+                'doctors_mobile_no'          => $request->doctors_mobile_no,
+        ]);
+        $msg = 'Doctor Added Successfully';
+    endif;
 
 
 
-        return redirect()->back()->with('success', 'Hospital updated successfully');
+        return redirect()->back()->with('success', $msg);
+    }
+
+    public function deleteDoctor(Request $request,$id){
+
+        HospitalDepartment::where('id',$id)->delete();
+        return redirect()->back()->with('success', 'Doctor Deleted Successfully');
     }
 
     public function storeHospitalEmpanelmentStatus(Request $request)
