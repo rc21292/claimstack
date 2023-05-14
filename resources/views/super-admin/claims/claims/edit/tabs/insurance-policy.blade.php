@@ -20,7 +20,7 @@
                     <span id="patient-id-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
-            <div class="col-md-4 mb-3">
+            <div class="col-md-6 mb-3">
                 <label for="policy_no">Policy No. <span class="text-danger">*</span></label>
                 <input type="text" readonly class="form-control" id="policy_no" name="policy_no" maxlength="16"
                     placeholder="Enter Policy No." value="{{ old('policy_no', $claim->policy_no) }}">
@@ -29,7 +29,7 @@
                 @enderror
             </div>
 
-            <div class="col-md-4 mb-3">
+            <div class="col-md-6 mb-3">
                 <label for="insurance_company">Insurance Company<span class="text-danger">*</span></label>
                 <select class="form-control select2" id="insurance_company" name="insurance_company"
                     data-toggle="select2">
@@ -45,7 +45,21 @@
                 @enderror
             </div>
 
-            <div class="col-md-4 mb-3">
+            <div class="col-md-6 mb-3">
+                <label for="policy_type">Policy Type <span class="text-danger">*</span></label>
+                <select class="form-select" id="policy_type" name="policy_type" onchange="setGroupName();">
+                    <option value="">Select Policy Type</option>
+                    <option value="Group" {{ old('policy_type', @$claim->policy->policy_type) == 'Group' ? 'selected' : '' }}>Group
+                    </option>
+                    <option value="Retail" {{ old('policy_type', @$claim->policy->policy_type) == 'Retail' ? 'selected' : '' }}>Retail
+                    </option>
+                </select>
+                @error('policy_type')
+                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="col-md-6 mb-3">
                 <label for="policy_name">Policy Name <span class="text-danger">*</span></label>
                 <select class="form-control select2" id="policy_name" name="policy_name" data-toggle="select2">
                     <option value="">Select Policy</option>
@@ -82,20 +96,6 @@
                 <input type="text" class="form-control" id="tpa_name" name="tpa_name" placeholder="Enter TPA Name"
                     value="{{ old('tpa_name', @$claim->policy->tpa_name) }}" maxlength="75">
                 @error('tpa_name')
-                    <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                @enderror
-            </div>
-
-            <div class="col-md-6 mb-3">
-                <label for="policy_type">Policy Type <span class="text-danger">*</span></label>
-                <select class="form-select" id="policy_type" name="policy_type" onchange="setGroupName();">
-                    <option value="">Select Policy Type</option>
-                    <option value="Group" {{ old('policy_type', @$claim->policy->policy_type) == 'Group' ? 'selected' : '' }}>Group
-                    </option>
-                    <option value="Retail" {{ old('policy_type', @$claim->policy->policy_type) == 'Retail' ? 'selected' : '' }}>Retail
-                    </option>
-                </select>
-                @error('policy_type')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>

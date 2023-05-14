@@ -195,14 +195,17 @@
                 case 'Group':
                     $("#group_name").prop("readonly", false);
                     $("#previous_policy_no").prop("readonly", true);
+                    $("#policy_name").prop("disabled", false);
                     break;
                 case 'Retail':
                     $("#group_name").prop("readonly", true);
                     $("#previous_policy_no").prop("readonly", false);
+                    $("#policy_name").prop("disabled", true);
                     break;
                 default:
                     $("#group_name").prop("readonly", true);
                     $("#previous_policy_no").prop("readonly", true);
+                    $("#policy_name").prop("disabled", false);
                     break;
             }
         }
