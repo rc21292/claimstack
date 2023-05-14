@@ -124,7 +124,7 @@
             <td scope="row">{{ $hod->registration_no }}</td>
             <td scope="row">{{ $hod->specialization }}</td>
             <td scope="row">
-               <a href="{{ url('super-admin/hospitals/'.$hod->hospital_id.'/edit?show_doctor=1&&doctor_id=').$hod->id }}" class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
+               <a href="{{ url('super-admin/hospitals/'.$hod->hospital_id.'/edit?show_doctor=1&doctor_id=').$hod->id }}" class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
                <button type="button" class="btn btn-danger" onclick="confirmDeleteDoctor({{$hod->id}})"><i class="uil uil-trash-alt"></i></button>
                <form id="delete-form{{ $hod->id }}" action="{{ route('super-admin.hospitals.doctor-delete', $hod->id ) }}" method="POST">
                 @csrf  

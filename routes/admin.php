@@ -298,5 +298,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     |--------------------------------------------------------------------------
     */
     Route::get('get-employees-by-department/{department}', [UtilityController::class,'getEmployeesByDepartment'])->name('get.employees');
-
+    Route::post('hospitals/doctor-delete/{id}',[HospitalController::class,'deleteDoctor'])->name('hospitals.doctor-delete');
 });

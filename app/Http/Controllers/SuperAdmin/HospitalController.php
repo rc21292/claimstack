@@ -745,31 +745,32 @@ class HospitalController extends Controller
         ];
 
         $this->validate($request, $rules, $messages);
-    if(isset($request->doctor_id)):
-        HospitalDepartment::where('id',$request->doctor_id)->update(
-            [
-                'hospital_id'                =>$id,
-                'specialization'             => $request->specialization,
-                'doctors_firstname'          => $request->doctors_firstname,
-                'doctors_lastname'           => $request->doctors_lastname,
-                'registration_no'            => $request->registration_no,
-                'email_id'                   => $request->email_id,
-                'doctors_mobile_no'          => $request->doctors_mobile_no,
-        ]);
-        $msg = 'Doctor Updated Successfully';
-    else:
-        HospitalDepartment::Create(
-            [
-                'hospital_id'                =>$id,
-                'specialization'             => $request->specialization,
-                'doctors_firstname'          => $request->doctors_firstname,
-                'doctors_lastname'           => $request->doctors_lastname,
-                'registration_no'            => $request->registration_no,
-                'email_id'                   => $request->email_id,
-                'doctors_mobile_no'          => $request->doctors_mobile_no,
-        ]);
-        $msg = 'Doctor Added Successfully';
-    endif;
+        
+        if(isset($request->doctor_id)):
+            HospitalDepartment::where('id',$request->doctor_id)->update(
+                [
+                    'hospital_id'                =>$id,
+                    'specialization'             => $request->specialization,
+                    'doctors_firstname'          => $request->doctors_firstname,
+                    'doctors_lastname'           => $request->doctors_lastname,
+                    'registration_no'            => $request->registration_no,
+                    'email_id'                   => $request->email_id,
+                    'doctors_mobile_no'          => $request->doctors_mobile_no,
+                ]);
+            $msg = 'Doctor Updated Successfully';
+        else:
+            HospitalDepartment::Create(
+                [
+                    'hospital_id'                =>$id,
+                    'specialization'             => $request->specialization,
+                    'doctors_firstname'          => $request->doctors_firstname,
+                    'doctors_lastname'           => $request->doctors_lastname,
+                    'registration_no'            => $request->registration_no,
+                    'email_id'                   => $request->email_id,
+                    'doctors_mobile_no'          => $request->doctors_mobile_no,
+                ]);
+            $msg = 'Doctor Added Successfully';
+        endif;
 
 
 
