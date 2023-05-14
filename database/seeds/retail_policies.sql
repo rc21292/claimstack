@@ -291,7 +291,7 @@ INSERT INTO `retail_policies` (`id`, `policy_name`, `plan_name`) VALUES
 (291, 'Iffco Tokio general insurance', 'IFFCO-TOKIO MOS-BITE PROTECTOR POLICY UIN: IFFHLIP20071V011920 Diseases covered are as below:  a) Dengue fever  b) Malaria  c) Lymphatic Filariasis  d) Kala-azar  e) Chikungunya  f) Japanese Encephalitisg) Zika Virus'),
 (292, 'Kotak Mahindra General Insurance Company Ltd.', 'kotak-secure-shield--policy-wording-(effective-prior-to-01-oct-2020)CRITICAL ILLNESS +ACCIDENTAL INSURANCE (optional cover)'),
 (293, 'Kotak Mahindra General Insurance Company Ltd.', 'kotak-group-secure-shield--micro-insurance-policy-wording KOTHMGP074V011819'),
-(294, 'Kotak Mahindra General Insurance Company Ltd.', '\"kotak-group-secure-shield--micro-insurance-policy-wording-(effective-prior-to-01-oct-2020) KOTHMGP074V011819\"'),
+(294, 'Kotak Mahindra General Insurance Company Ltd.', 'kotak-group-secure-shield--micro-insurance-policy-wording-(effective-prior-to-01-oct-2020) KOTHMGP074V011819'),
 (295, 'Kotak Mahindra General Insurance Company Ltd.', 'Arogya Sanjeevani Policy KOTHLIP20159V011920'),
 (296, 'Kotak Mahindra General Insurance Company Ltd.', 'Corona Kavach Group Policy KOTHLGP21144V012021'),
 (297, 'Kotak Mahindra General Insurance Company Ltd.', 'Corona Kavach Policy KOTHLIP21097V012021'),
