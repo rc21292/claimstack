@@ -2571,6 +2571,7 @@ class PatientController extends Controller
         $associates = AssociatePartner::get();
         $hospitals = Hospital::get();
         $doctors = HospitalDepartment::get();
+        $doctors = HospitalDepartment::where('hospital_id', auth()->user()->id)->get();
         foreach ($hospitals as $hospital) {
             if (isset($hospital->linked_associate_partner_id)) {
                 $hospital->ap_name = AssociatePartner::where('associate_partner_id', $hospital->linked_associate_partner_id)->value('name');

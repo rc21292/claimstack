@@ -612,11 +612,14 @@
 
         function setHospitalId() {
             var name = $("#hospital_id").select2().find(":selected").data("name");
+            var hospital_id = $("#hospital_id").select2().find(":selected").val();
             var address = $("#hospital_id").select2().find(":selected").data("address");
             var city = $("#hospital_id").select2().find(":selected").data("city");
             var state = $("#hospital_id").select2().find(":selected").data("state");
             var pincode = $("#hospital_id").select2().find(":selected").data("pincode");
             var associate_partner_id = $("#hospital_id").select2().find(":selected").data("ap");
+
+            loadHospitalDoctors(hospital_id);
 
             $('#hospital_name').val(name);
             $('#hospital_address').val(address);
@@ -625,6 +628,23 @@
             $('#hospital_pincode').val(pincode);
             $('#hospital_pincode').val(pincode);
             $('#associate_partner_id').val(associate_partner_id);
+        }
+    </script>
+    <script>
+        function loadHospitalDoctors(hospital_id){
+            var url         = '{{ route("super-admin.get.hospital-doctors", ":hospital") }}';
+            url             = url.replace(':hospital', hospital_id);
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                   $('#treating_doctor').html('')
+                   $('#treating_doctor').html(data)
+                   $('#treating_doctor').val('{{ old("treating_doctor") }}')
+                }
+            });
         }
     </script>
     <script>

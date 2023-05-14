@@ -597,6 +597,10 @@
             var pincode = $("#hospital_id").select2().find(":selected").data("pincode");
             var associate_partner_id = $("#hospital_id").select2().find(":selected").data("ap");
 
+            var hospital_id = $("#hospital_id").select2().find(":selected").val();
+
+            loadHospitalDoctors(hospital_id);
+            
             $('#hospital_name').val(name);
             $('#hospital_address').val(address);
             $('#hospital_city').val(city);
@@ -606,6 +610,25 @@
             $('#associate_partner_id').val(associate_partner_id);
         }
     </script>
+
+     <script>
+        function loadHospitalDoctors(hospital_id){
+            var url         = '{{ route("super-admin.get.hospital-doctors", ":hospital") }}';
+            url             = url.replace(':hospital', hospital_id);
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                   $('#treating_doctor').html('')
+                   $('#treating_doctor').html(data)
+                   $('#treating_doctor').val('{{ old("treating_doctor", $patient->treating_doctor) }}')
+                }
+            });
+        }
+    </script>
+
     <script>
         function calculateAge() {
             var dob = $('#dob').val();

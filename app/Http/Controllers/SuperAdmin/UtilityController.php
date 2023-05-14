@@ -4,6 +4,7 @@ namespace App\Http\Controllers\SuperAdmin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\HospitalDepartment;
 use App\Models\User;
 use App\Models\RetailPolicy;
 use Illuminate\Http\Request;
@@ -11,6 +12,24 @@ use DB;
 
 class UtilityController extends Controller
 {
+
+    public function getHospitalDoctors($hospital)
+    {
+        $doctors = HospitalDepartment::where('hospital_id',$hospital)->get(['id','doctors_firstname', 'doctors_lastname', 'registration_no', 'doctors_mobile_no', 'specialization']);
+
+        $html  = '<option value="">Select</option>';
+        if (count($doctors) > 0) {
+            foreach ($doctors as $employee) {
+                $html .= '<option value=' . $employee->id . ' data-specialization="'. $employee->specialization . '" data-registration="'. $employee->registration_no . '" data-mobile="'. $employee->doctors_mobile_no. '" >' . $employee->doctors_firstname . ' '.  $employee->doctors_lastname . '</option>';
+            }
+        } else {
+            $html  = 'Not Found.';
+        }
+
+
+        return response()->json($html);
+
+    }
 
     public function getRetailPolicies($policy)
     {

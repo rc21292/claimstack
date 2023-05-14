@@ -350,7 +350,11 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     |--------------------------------------------------------------------------
     */
     Route::get('get-employees-by-department/{department}', [UtilityController::class,'getEmployeesByDepartment'])->name('get.employees');
+
+    Route::get('get.hospital-doctors/{id}', [UtilityController::class,'getHospitalDoctors'])->name('get.hospital-doctors');
+
     Route::post('hospitals/doctor-delete/{id}',[HospitalController::class,'deleteDoctor'])->name('hospitals.doctor-delete');
+
     Route::get('get-retail-policies/{policy}', [UtilityController::class,'getRetailPolicies'])->name('get.retail_policies');
 
 });
