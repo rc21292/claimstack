@@ -5,10 +5,35 @@ namespace App\Http\Controllers\SuperAdmin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\User;
+use App\Models\RetailPolicy;
 use Illuminate\Http\Request;
+use DB;
 
 class UtilityController extends Controller
 {
+
+    public function getRetailPolicies($policy)
+    {
+        DB::connection()->enableQueryLog();
+        $data =  RetailPolicy::where('policy_name',trim($policy))->orWhere('policy_name', str_replace('.', '', $policy))->orWhere('policy_name',' '. str_replace('.', '', $policy))->get(['id','policy_name','plan_name']);
+        $queries = DB::getQueryLog();
+        $last_query = end($queries);
+
+        $html  = '<option value="">Select</option>';
+        if (count($data) > 0) {
+            foreach ($data as $employee) {
+                $html .= '<option value=' . $employee->id . '  data-policy=' . $employee->policy_name . '>' . $employee->plan_name . '</option>';
+            }
+        } else {
+            $html  = 'Not Found.';
+        }
+
+
+        return response()->json($html);
+
+        return $data;
+    }
+
     public function getEmployeesByDepartment($department)
     {
         $users  = User::/*where('department', $department)->*/get(['id', 'firstname', 'lastname', 'department', 'employee_code'])->collect();

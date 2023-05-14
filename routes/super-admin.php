@@ -350,5 +350,6 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     |--------------------------------------------------------------------------
     */
     Route::get('get-employees-by-department/{department}', [UtilityController::class,'getEmployeesByDepartment'])->name('get.employees');
+    Route::get('get-retail-policies/{policy}', [UtilityController::class,'getRetailPolicies'])->name('get.retail_policies');
 
 });

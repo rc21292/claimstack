@@ -683,7 +683,7 @@ class ClaimController extends Controller
             'claim_id'                                  => 'required',
             'policy_no'                                 => 'required|max:16',
             'insurance_company'                         => 'required',
-            'policy_name'                               => $request->policy_type != 'Retail' ? 'required' : '',
+            'policy_name'                               => $request->policy_type != 'Group' ? 'required' : '',
             'certificate_no'                            => 'required|max:16',
             'company_tpa_id_card_no'                    => 'required|max:16',
             'tpa_name'                                  => 'required|max:75',
