@@ -55,30 +55,7 @@ class DocumentReimbursementController extends Controller
         );
         switch ($request->form_type) {
             case 'initial_assessment':
-                $rules = [                    
-                    'patient_id_proof_file'                             => empty($reimbursement->patient_id_proof_file) ? 'required' : [],
-                    'doctor_prescriptions_or_consultation_papers_file'  => empty($reimbursement->doctor_prescriptions_or_consultation_papers_file) ? 'required'  : [],
-                    'insurance_policy_copy_file'                        => empty($reimbursement->insurance_policy_copy_file) ? 'required' : [],
-                    'tpa_card_file'                                     => empty($reimbursement->tpa_card_file) ? 'required' : [],
-                    'employee_or_member_id_group_file'                  => empty($reimbursement->employee_or_member_id_group_file) ? 'required' : [],
-                    'photograph_of_the_patient_file'                    => empty($reimbursement->photograph_of_the_patient_file) ? 'required' : [],
-                    'claim_intimation_documents'                    => empty($reimbursement->claim_intimation_documents) ? 'required' : [],                       
-                    'bhc_assessment_formsi_and_ii_signed_stamped_file'                    => empty($reimbursement->bhc_assessment_formsi_and_ii_signed_stamped_file) ? 'required' : [],                       
-                ];
                 
-                $messages = [                   
-                    'patient_id_proof_file.required'                            => 'Please select Patient Id Proof File',
-                    'doctor_prescriptions_or_consultation_papers_file.required' => 'Please select Doctor Prescriptions Or Consultation Papers File',
-                    'insurance_policy_copy_file.required'                       => 'Please select Insurance Policy Copy File',
-                    'tpa_card_file.required'                                    => 'Please select Tpa Card File',
-                    'employee_or_member_id_group_file.required'                 => 'Please select Employee Or Member Id Group File',
-                    'photograph_of_the_patient_file.required'                   => 'Please select Photograph Of The Patient File',   
-                    'claim_intimation_documents.required'                   => 'Please select claim intimation documents File',   
-                    'bhc_assessment_formsi_and_ii_signed_stamped_file.required'                   => 'Please select BHC Assessment Forms - I & II (Signed & Stamped) File',   
-                
-                ];
-                
-                $this->validate($request, $rules, $messages);
 
                 if ($request->hasfile('patient_id_proof_file')) {
                     $patient_id_proof_file = $request->file('patient_id_proof_file');
@@ -297,25 +274,7 @@ class DocumentReimbursementController extends Controller
 
                 break;
             case 'final_assessment':
-                $rules = [       
-                    'diagnostic_or_investigation_reports_file'              => empty($reimbursement->diagnostic_or_investigation_reports_file) ? 'required' : [],   
-                    'pharmacy_bills_file'                                   => empty($reimbursement->pharmacy_bills_file) ? 'required' : [],   
-                    'hospital_break_up_bills_file'                          => empty($reimbursement->hospital_break_up_bills_file) ? 'required' : [],
-                    'hospital_main_final_bill_file'                         => empty($reimbursement->hospital_main_final_bill_file) ? 'required' : [],
-                    'discharge_or_day_care_summary_file'                    => empty($reimbursement->discharge_or_day_care_summary_file) ? 'required' : [],   
-                    'payment_receipts_of_the_hospital_file'                 => empty($reimbursement->payment_receipts_of_the_hospital_file) ? 'required' : [], 
-                ];
-
-                $messages = [   
-                    'diagnostic_or_investigation_reports_file.required'     => 'Please select Diagnostic Or Investigation Reports File',    
-                    'pharmacy_bills_file.required'                          => 'Please select Pharmacy Bills File',    
-                    'hospital_break_up_bills_file.required'                 => 'Please select Hospital Break Up Bills File',
-                    'hospital_main_final_bill_file.required'                => 'Please select Hospital Main Final Bill File',
-                    'discharge_or_day_care_summary_file.required'           => 'Please select Discharge Or Day Care Summary File',
-                    'payment_receipts_of_the_hospital_file.required'        => 'Please select Payment Receipts Of The Hospital File',  
-                ];
-
-                $this->validate($request, $rules, $messages);
+                
                 if ($request->hasfile('indoor_care_paper_file')) {
                     $indoor_care_paper_file = $request->file('indoor_care_paper_file');
                     $name = $indoor_care_paper_file->getClientOriginalName();
@@ -644,10 +603,6 @@ class DocumentReimbursementController extends Controller
                 break;
             case 'insurance_claim':
                 $rules = [   
-                    /*'claimant_pan_card_file'                => empty($reimbursement->claimant_pan_card_file) ? 'required' : [],
-                    'claimant_aadhar_card_file'             => empty($reimbursement->claimant_aadhar_card_file) ? 'required' : [],
-                    'claimant_current_address_proof_file'   => empty($reimbursement->claimant_current_address_proof_file) ? 'required' : [],
-                    'claimant_cancel_cheque_file'           => empty($reimbursement->claimant_cancel_cheque_file) ? 'required' : [],*/
                     'insurance_co_tpa_claim_form_signed_and_stamped_file'           => empty($reimbursement->insurance_co_tpa_claim_form_signed_and_stamped_file) ? 'required' : [],
                 ];
                 
@@ -827,19 +782,6 @@ class DocumentReimbursementController extends Controller
 
                 break;
             case 'insurance_settlement_documents':
-                $rules = [
-                    'settllement_letter_file'   => empty($reimbursement->settllement_letter_file) ? 'required' : [],
-                    'insurance_other_documents_file'                => empty($reimbursement->insurance_other_documents_file) ? 'required' : [],
-                    
-                ];
-                
-                $messages = [    
-                    'settllement_letter_file.required'      => 'Please select Settllement Letter File',
-                    'insurance_other_documents_file.required'                   => 'Please select Other Documents File' 
-                
-                ];
-                
-                $this->validate($request, $rules, $messages);
 
                 if ($request->hasfile('settllement_letter_file')) {
                     $settllement_letter_file = $request->file('settllement_letter_file');
@@ -890,12 +832,9 @@ class DocumentReimbursementController extends Controller
             case 'medical_loan_form':
                 $rules = [
                     'photograph_of_the_borrower_file'   => empty($reimbursement->photograph_of_the_borrower_file) ? 'required' : [],
-                    // 'borrower_current_address_proof_file'   => empty($reimbursement->borrower_current_address_proof_file) ? 'required' : [],
                     'borrower_pan_card_file'                => empty($reimbursement->borrower_pan_card_file) ? 'required' : [],
                     'borrower_aadhar_card_file'             => empty($reimbursement->borrower_aadhar_card_file) ? 'required' : [],
-                    // 'borrower_bank_statement_3_months_file' => empty($reimbursement->borrower_bank_statement_3_months_file) ? 'required' : [],   
                     'borrower_cancel_cheque_file'           => empty($reimbursement->borrower_cancel_cheque_file) ? 'required' : [],
-                    // 'borrower_other_documents_file'         => empty($reimbursement->borrower_other_documents_file) ? 'required' : [],   
                     
                 ];
                 
@@ -1100,13 +1039,8 @@ class DocumentReimbursementController extends Controller
             case 'borrower_loan_form':
                 $rules = [    
                     'photograph_of_the_co_borrower_file'    => empty($reimbursement->photograph_of_the_co_borrower_file) ? 'required' : [],
-                    // 'co_borrower_current_address_proof_file'    => empty($reimbursement->co_borrower_current_address_proof_file) ? 'required' : [],
                     'co_borrower_pan_card_file'                 => empty($reimbursement->co_borrower_pan_card_file) ? 'required' : [],
-                    'co_borrower_aadhar_card_file'              => empty($reimbursement->co_borrower_aadhar_card_file) ? 'required' : [],
-                    /*'co_borrower_bank_statement_3_months_file'  => empty($reimbursement->co_borrower_bank_statement_3_months_file) ? 'required' : [],   
-                    'co_borrower_cancel_cheque_file'            => empty($reimbursement->co_borrower_cancel_cheque_file) ? 'required' : [],
-                    'co_borrower_other_documents_file'          => empty($reimbursement->co_borrower_other_documents_file) ? 'required' : [],*/
-                    
+                    'co_borrower_aadhar_card_file'              => empty($reimbursement->co_borrower_aadhar_card_file) ? 'required' : [],                    
                 ];
                 
                 $messages = [   
@@ -1311,19 +1245,6 @@ class DocumentReimbursementController extends Controller
                 
                 break;
             case 'lending_status_document':
-                $rules = [
-                    'loan_approval_letter_file'   => empty($reimbursement->loan_approval_letter_file) ? 'required' : [],
-                    'loan_disbursement_letter_file'                => empty($reimbursement->loan_disbursement_letter_file) ? 'required' : [],
-                    
-                ];
-                
-                $messages = [    
-                    'loan_approval_letter_file.required'      => 'Please select Loan Approval Letter File',
-                    'loan_disbursement_letter_file.required'                   => 'Please select Loan Disbursement Letter File' 
-                
-                ];
-                
-                $this->validate($request, $rules, $messages);
 
                 if ($request->hasfile('loan_approval_letter_file')) {
                     $loan_approval_letter_file = $request->file('loan_approval_letter_file');

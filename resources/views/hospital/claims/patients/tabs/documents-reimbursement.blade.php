@@ -127,7 +127,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Insurance Policy Copy *">
+                            placeholder="Insurance Policy Copy">
                         @isset($reimbursementdocument->insurance_policy_copy_file)
                             <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->insurance_policy_copy_file) }}"
                                 target="_blank" class="btn btn-info download-label"><i
@@ -155,7 +155,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="TPA Card*">
+                            placeholder="TPA Card">
                         @isset($reimbursementdocument->tpa_card_file)
                             <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->tpa_card_file) }}"
                                 target="_blank" class="btn btn-info download-label"><i
@@ -181,7 +181,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Employee / Member ID (Group) *">
+                            placeholder="Employee / Member ID (Group)">
                         @isset($reimbursementdocument->employee_or_member_id_group_file)
                             <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->employee_or_member_id_group_file) }}"
                                 target="_blank" class="btn btn-info download-label"><i
@@ -208,7 +208,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Photograph of the Patient *">
+                            placeholder="Photograph of the Patient">
                         @isset($reimbursementdocument->photograph_of_the_patient_file)
                             <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->photograph_of_the_patient_file) }}"
                                 target="_blank" class="btn btn-info download-label"><i
@@ -235,7 +235,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Claim Intimation Documents *">
+                            placeholder="Claim Intimation Documents">
                         @isset($reimbursementdocument->claim_intimation_documents)
                             <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->claim_intimation_documents) }}"
                                 target="_blank" class="btn btn-info download-label"><i
@@ -262,7 +262,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="BHC Assessment Forms - I & II (Signed & Stamped) *">
+                            placeholder="BHC Assessment Forms - I & II (Signed & Stamped)">
                         @isset($reimbursementdocument->bhc_assessment_formsi_and_ii_signed_stamped_file)
                             <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->bhc_assessment_formsi_and_ii_signed_stamped_file) }}"
                                 target="_blank" class="btn btn-info download-label"><i
@@ -289,7 +289,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Other Documents *">
+                            placeholder="Other Documents">
                         @isset($reimbursementdocument->claim_other_documents_file)
                             <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->claim_other_documents_file) }}"
                                 target="_blank" class="btn btn-info download-label"><i
@@ -417,7 +417,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Diagnostic / Investigation Reports *">
+                            placeholder="Diagnostic / Investigation Reports">
                         @isset($reimbursementdocument->diagnostic_or_investigation_reports_file)
                             <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->diagnostic_or_investigation_reports_file) }}"
                                 target="_blank" class="btn btn-info download-label"><i
@@ -501,7 +501,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Pharmacy Bills *">
+                            placeholder="Pharmacy Bills">
                         @isset($reimbursementdocument->pharmacy_bills_file)
                             <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->pharmacy_bills_file) }}"
                                 target="_blank" class="btn btn-info download-label"><i
@@ -555,7 +555,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Hospital Break-up Bills *">
+                            placeholder="Hospital Break-up Bills">
                         @isset($reimbursementdocument->hospital_break_up_bills_file)
                             <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->hospital_break_up_bills_file) }}"
                                 target="_blank" class="btn btn-info download-label"><i
@@ -583,7 +583,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Hospital (Main) Final Bill *">
+                            placeholder="Hospital (Main) Final Bill">
                         @isset($reimbursementdocument->hospital_main_final_bill_file)
                             <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->hospital_main_final_bill_file) }}"
                                 target="_blank" class="btn btn-info download-label"><i
@@ -610,7 +610,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Discharge / Day-care Summary *">
+                            placeholder="Discharge / Day-care Summary">
                         @isset($reimbursementdocument->discharge_or_day_care_summary_file)
                             <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->discharge_or_day_care_summary_file) }}"
                                 target="_blank" class="btn btn-info download-label"><i
@@ -666,7 +666,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Payment Receipts of the Hospital *">
+                            placeholder="Payment Receipts of the Hospital">
                         @isset($reimbursementdocument->payment_receipts_of_the_hospital_file)
                             <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->payment_receipts_of_the_hospital_file) }}"
                                 target="_blank" class="btn btn-info download-label"><i
@@ -741,7 +741,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Claimant PAN Card *">
+                            placeholder="Claimant PAN Card">
                         @isset($reimbursementdocument->claimant_pan_card_file)
                             <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->claimant_pan_card_file) }}"
                                 target="_blank" class="btn btn-info download-label"><i
@@ -768,7 +768,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Claimant Aadhar Card *">
+                            placeholder="Claimant Aadhar Card">
                         @isset($reimbursementdocument->claimant_aadhar_card_file)
                             <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->claimant_aadhar_card_file) }}"
                                 target="_blank" class="btn btn-info download-label"><i
@@ -795,7 +795,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Claimant Current Address Proof *">
+                            placeholder="Claimant Current Address Proof">
                         @isset($reimbursementdocument->claimant_current_address_proof_file)
                             <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->claimant_current_address_proof_file) }}"
                                 target="_blank" class="btn btn-info download-label"><i
@@ -822,7 +822,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Claimant Cancel Cheque / Pass Book *">
+                            placeholder="Claimant Cancel Cheque / Pass Book">
                         @isset($reimbursementdocument->claimant_cancel_cheque_file)
                             <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->claimant_cancel_cheque_file) }}"
                                 target="_blank" class="btn btn-info download-label"><i
@@ -951,7 +951,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Settllement Letter *">
+                            placeholder="Settllement Letter">
                         @isset($reimbursementdocument->settllement_letter_file)
                             <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->settllement_letter_file) }}"
                                 target="_blank" class="btn btn-info download-label"><i
@@ -978,7 +978,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Other Documents *">
+                            placeholder="Other Documents">
                         @isset($reimbursementdocument->insurance_other_documents_file)
                             <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->insurance_other_documents_file) }}"
                                 target="_blank" class="btn btn-info download-label"><i
@@ -1055,7 +1055,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Borrower Current Address Proof *">
+                            placeholder="Borrower Current Address Proof">
                         @isset($reimbursementdocument->borrower_current_address_proof_file)
                             <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->borrower_current_address_proof_file) }}"
                                 target="_blank" class="btn btn-info download-label"><i
@@ -1217,7 +1217,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Borrower Other Documents *">
+                            placeholder="Borrower Other Documents ">
                         @isset($reimbursementdocument->borrower_other_documents_file)
                             <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->borrower_other_documents_file) }}"
                                 target="_blank" class="btn btn-info download-label"><i
@@ -1374,7 +1374,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Co-Borrower Bank Statement (3 months) *">
+                            placeholder="Co-Borrower Bank Statement (3 months) ">
                         @isset($reimbursementdocument->co_borrower_bank_statement_3_months_file)
                             <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->co_borrower_bank_statement_3_months_file) }}"
                                 target="_blank" class="btn btn-info download-label"><i
@@ -1428,7 +1428,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Co-Borrower Cancel Cheque / Pass Book *">
+                            placeholder="Co-Borrower Cancel Cheque / Pass Book ">
                         @isset($reimbursementdocument->co_borrower_cancel_cheque_file)
                             <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->co_borrower_cancel_cheque_file) }}"
                                 target="_blank" class="btn btn-info download-label"><i
@@ -1455,7 +1455,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Co-Borrower Other Documents *">
+                            placeholder="Co-Borrower Other Documents ">
                         @isset($reimbursementdocument->co_borrower_other_documents_file)
                             <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->co_borrower_other_documents_file) }}"
                                 target="_blank" class="btn btn-info download-label"><i
@@ -1502,7 +1502,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Loan Approval Letter *">
+                            placeholder="Loan Approval Letter ">
                         @isset($reimbursementdocument->loan_approval_letter_file)
                             <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->loan_approval_letter_file) }}"
                                 target="_blank" class="btn btn-info download-label"><i
@@ -1529,7 +1529,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Loan Disbursement Letter *">
+                            placeholder="Loan Disbursement Letter ">
                         @isset($reimbursementdocument->loan_disbursement_letter_file)
                             <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->loan_disbursement_letter_file) }}"
                                 target="_blank" class="btn btn-info download-label"><i
