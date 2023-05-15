@@ -17,6 +17,8 @@ class IcdCodesTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('icd_codes')->delete();
+        
         LazyCollection::make(function () {
           $handle = fopen(public_path("ic_data.csv"), 'r');
 
