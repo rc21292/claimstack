@@ -744,10 +744,10 @@ class HospitalController extends Controller
 
         $rules = [
             'specialization'              => 'required',
-            'doctors_firstname'           => ($request->show_doctor == 1) ? 'required' : [],
-            'registration_no'             => ($request->show_doctor == 1) ? 'required|max:20' : [],
-            'email_id'                    => ($request->show_doctor == 1) ? 'required|email|max:45' : [],
-            'doctors_mobile_no'           => ($request->show_doctor == 1) ? 'required|numeric|digits:10' : [],
+            'doctors_firstname'           => 'required',
+            'registration_no'             => 'required|max:20',
+            'email_id'                    => 'required|email|max:45',
+            'doctors_mobile_no'           => 'required|numeric|digits:10',
         ];
 
         $messages = [
