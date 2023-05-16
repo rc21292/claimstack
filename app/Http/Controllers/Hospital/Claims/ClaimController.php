@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\AssociatePartner;
 use App\Models\Claim;
 use App\Models\Claimant;
+use App\Models\Tpa;
 use App\Models\Borrower;
 use App\Models\DischargeStatus;
 use App\Models\Hospital;
@@ -880,9 +881,10 @@ class ClaimController extends Controller
     {
         $hospitals      = Hospital::get();
         $insurers       = Insurer::get();
+        $tpas            = Tpa::get();
         $claim          = Claim::with('patient')->find($id);
         $patients       = Patient::get();
-        return view('hospital.claims.claims.edit.edit',  compact('hospitals', 'claim', 'patients', 'insurers'));
+        return view('hospital.claims.claims.edit.edit',  compact('hospitals', 'claim', 'patients', 'insurers', 'tpas'));
     }
 
     /**

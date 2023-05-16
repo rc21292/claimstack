@@ -18,13 +18,13 @@ class UtilityController extends Controller
     {
         $doctors = HospitalDepartment::where('hospital_id',$hospital)->get(['id','doctors_firstname', 'doctors_lastname', 'registration_no', 'doctors_mobile_no', 'specialization']);
 
-        $html  = '<option value="">Select</option>';
+        $html  = '<option value="">Search Treating Doctor</option>';
         if (count($doctors) > 0) {
             foreach ($doctors as $employee) {
                 $html .= '<option value=' . $employee->id . ' data-specialization="'. $employee->specialization . '" data-registration="'. $employee->registration_no . '" data-mobile="'. $employee->doctors_mobile_no. '" >' . $employee->doctors_firstname . ' '.  $employee->doctors_lastname . '</option>';
             }
         } else {
-            $html  = 'Not Found.';
+            $html  = '<option value="">Search Treating Doctor</option>';
         }
 
 
@@ -34,18 +34,15 @@ class UtilityController extends Controller
 
     public function getRetailPolicies($policy)
     {
-        DB::connection()->enableQueryLog();
         $data =  RetailPolicy::where('policy_name',trim($policy))->orWhere('policy_name', str_replace('.', '', $policy))->orWhere('policy_name',' '. str_replace('.', '', $policy))->get(['id','policy_name','plan_name']);
-        $queries = DB::getQueryLog();
-        $last_query = end($queries);
 
-        $html  = '<option value="">Select</option>';
+        $html  = '<option value="">Select Policy</option>';
         if (count($data) > 0) {
             foreach ($data as $employee) {
                 $html .= '<option value=' . $employee->id . '  data-policy=' . $employee->policy_name . '>' . $employee->plan_name . '</option>';
             }
         } else {
-            $html  = 'Not Found.';
+           $html  = '<option value="">Select Policy</option>';
         }
 
 

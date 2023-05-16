@@ -214,6 +214,7 @@
         
         $("#insurance_company").change(function(event) {
             $("#policy_type").val('').change('');
+            $("#policy_name").val('').change('');
         });
     </script>
      <script>
@@ -225,7 +226,7 @@
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {
-                    $('#policy_name').html()
+                    // $('#policy_name').html()
                     $('#policy_name').html(data)
                     $('#policy_name').val('{{ old('policy_name', @$claim->policy->policy_id) }}')
                     $('#policy_name').select2().trigger('change');

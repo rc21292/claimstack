@@ -13,6 +13,7 @@ use App\Models\Patient;
 use App\Models\ClaimProcessing;
 use App\Models\InsurancePolicy;
 use App\Models\Insurer;
+use App\Models\Tpa;
 use App\Models\AssessmentStatus;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -876,9 +877,10 @@ class ClaimController extends Controller
     {
         $hospitals      = Hospital::get();
         $insurers       = Insurer::get();
+        $tpas            = Tpa::get();
         $claim          = Claim::with('patient')->find($id);
         $patients       = Patient::get();
-        return view('super-admin.claims.claims.edit.edit',  compact('hospitals', 'claim', 'patients', 'insurers'));
+        return view('super-admin.claims.claims.edit.edit',  compact('hospitals', 'claim', 'patients', 'insurers','tpas'));
     }
 
     /**

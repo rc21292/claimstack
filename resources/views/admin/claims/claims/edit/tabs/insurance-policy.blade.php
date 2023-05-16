@@ -97,9 +97,9 @@
                 <select class="form-control select2" id="tpa_name" name="tpa_name"
                     data-toggle="select2">
                     <option value="">Select TPA Name</option>
-                    @foreach ($insurers as $insurer)
-                        <option value="{{ $insurer->id }}"
-                            {{ old('tpa_name', @$claim->policy->tpa_name) == $insurer->id ? 'selected' : '' }}> {{ $insurer->name }}
+                    @foreach ($tpas as $tpa)
+                        <option value="{{ $tpa->id }}"
+                            {{ old('tpa_name', @$claim->policy->tpa_name) == $tpa->id ? 'selected' : '' }}> {{ $tpa->company }}
                         </option>
                     @endforeach
                 </select>

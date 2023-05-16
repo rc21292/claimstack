@@ -16,7 +16,6 @@ class TpaSeed extends Seeder
     public function run()
     {
         $insurereArr = [
-            [ 'name' => 'Name of TPA ( Add Only on the TPA Dropdown Field listing )', 'type' => 'TPA' ],
             [ 'name' => 'Medvantage Insurance TPA Pvt. Ltd.', 'type' => 'TPA' ],
             [ 'name' => 'Medi Assist Insurance TPA Pvt. Ltd. ', 'type' => 'TPA' ],
             [ 'name' => 'MDIndia Health Insurance TPA Pvt. Ltd.', 'type' => 'TPA' ],

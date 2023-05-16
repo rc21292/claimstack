@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Claims;
 use App\Http\Controllers\Controller;
 use App\Models\AssociatePartner;
 use App\Models\Claim;
+use App\Models\Tpa;
 use App\Models\Claimant;
 use App\Models\Borrower;
 use App\Models\DischargeStatus;
@@ -876,9 +877,10 @@ class ClaimController extends Controller
     {
         $hospitals      = Hospital::get();
         $insurers       = Insurer::get();
+        $tpas            = Tpa::get();
         $claim          = Claim::with('patient')->find($id);
         $patients       = Patient::get();
-        return view('admin.claims.claims.edit.edit',  compact('hospitals', 'claim', 'patients', 'insurers'));
+        return view('admin.claims.claims.edit.edit',  compact('hospitals', 'claim', 'patients', 'insurers', 'tpas'));
     }
 
     /**
