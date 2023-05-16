@@ -21,7 +21,7 @@ class InsurerSeed extends Seeder
             [ 'name' => 'Acko General Insurance Ltd.', 'type' => 'TPA' ],
             [ 'name' => 'Aditya Birla Health Insurance Co. Ltd.', 'type' => 'TPA' ],
             [ 'name' => 'Bajaj Allianz General Insurance Company Ltd.', 'type' => 'TPA' ],
-            [ 'name' => 'Care Health Insurance Ltd. (Religare Health Insurance Co. Ltd.)Ltd.', 'type' => 'TPA' ],
+            [ 'name' => 'Care Health Insurance Ltd. (Religare Health Insurance Co. Ltd.)', 'type' => 'TPA' ],
             [ 'name' => 'Cholamandalam MS General Insurance Co Ltd.', 'type' => 'TPA' ],
             [ 'name' => 'Edelweiss General Insurance Co. Ltd.', 'type' => 'TPA' ],
             [ 'name' => 'Future Generali India Insurance Co Ltd.', 'type' => 'TPA' ],

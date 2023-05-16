@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\HospitalDepartment;
 use App\Models\User;
+use App\Models\IcdCode;
 use App\Models\RetailPolicy;
 use Illuminate\Http\Request;
 use DB;
@@ -84,5 +85,30 @@ class UtilityController extends Controller
 
 
         return response()->json($html);
+    }
+
+     public function getdataforselect2(Request $request)
+     {
+        if ($request->ajax()) {
+
+            $term = trim($request->term);
+            $icd_codes_level4 = IcdCode::distinct('level4_code')->select('id', 'level4 as text','level4_code')
+                ->where('level4', 'LIKE',  '%' . $term. '%')
+                ->orderBy('level4', 'asc')->simplePaginate(10);
+
+            $morePages=true;
+            $pagination_obj= json_encode($icd_codes_level4);
+            if (empty($icd_codes_level4->nextPageUrl())){
+                $morePages=false;
+            }
+            $results = array(
+              "results" => $icd_codes_level4->items(),
+              "pagination" => array(
+                "more" => $morePages
+            )
+          );
+
+            return \Response::json($results);
+        }
     }
 }

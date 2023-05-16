@@ -1387,6 +1387,27 @@
 @push('scripts')
 <script>
 
+    /*  (function() {
+
+  $("#primary_diagnosis_icd_leveliv_disease").select2({
+    placeholder: 'Please Select',
+    // width: '350px',
+    allowClear: true,
+    ajax: {
+        url: '/super-admin/dataforselect2',
+        dataType: 'json',
+        delay: 250,
+        data: function(params) {
+            return {
+                term: params.term || '',
+                page: params.page || 1
+            }
+        },
+        cache: true
+    }
+});
+})();*/
+
     var final_assessment_status = "{{ old('final_assessment_status', @$claim_processing->final_assessment_status) }}";
     var add_query_clicked = "{{ old('add_query_clicked') }}";
 

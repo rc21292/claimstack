@@ -357,4 +357,6 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
 
     Route::get('get-retail-policies/{policy}', [UtilityController::class,'getRetailPolicies'])->name('get.retail_policies');
 
+    Route::get('dataforselect2', [UtilityController::class,'getdataforselect2'])->name('dataforselect2');
+
 });

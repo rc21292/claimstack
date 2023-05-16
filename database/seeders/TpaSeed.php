@@ -16,10 +16,30 @@ class TpaSeed extends Seeder
     public function run()
     {
         $insurereArr = [
+            [ 'name' => 'Name of TPA ( Add Only on the TPA Dropdown Field listing )', 'type' => 'TPA' ],
+            [ 'name' => 'Medvantage Insurance TPA Pvt. Ltd.', 'type' => 'TPA' ],
+            [ 'name' => 'Medi Assist Insurance TPA Pvt. Ltd. ', 'type' => 'TPA' ],
+            [ 'name' => 'MDIndia Health Insurance TPA Pvt. Ltd.', 'type' => 'TPA' ],
+            [ 'name' => 'Paramount Health Services & Insurance TPA Pvt. Ltd. ', 'type' => 'TPA' ],
+            [ 'name' => 'Heritage Health Insurance TPA Pvt. Ltd.', 'type' => 'TPA' ],
+            [ 'name' => 'Family Health Plan Insurance TPA Ltd.', 'type' => 'TPA' ],
+            [ 'name' => 'Raksha Health Insurance TPA Pvt. Ltd.', 'type' => 'TPA' ],
+            [ 'name' => 'Vidal Health Insurance TPA Pvt. Ltd.', 'type' => 'TPA' ],
+            [ 'name' => 'East West Assist Insurance TPA Pvt. Ltd.', 'type' => 'TPA' ],
+            [ 'name' => 'Medsave Health Insurance TPA Ltd.', 'type' => 'TPA' ],
+            [ 'name' => 'Genins India Insurance TPA Ltd.', 'type' => 'TPA' ],
+            [ 'name' => 'Health India Insurance TPA Services Pvt. Ltd.', 'type' => 'TPA' ],
+            [ 'name' => 'Good Health Insurance TPA Ltd.', 'type' => 'TPA' ],
+            [ 'name' => 'Park Mediclaim Insurance TPA Pvt. Ltd.', 'type' => 'TPA' ],
+            [ 'name' => 'Safeway Insurance TPA Pvt. Ltd.', 'type' => 'TPA' ],
+            [ 'name' => 'Anmol Medicare Insurance TPA Ltd.', 'type' => 'TPA' ],
+            [ 'name' => 'Ericson Insurance TPA Pvt. Ltd.', 'type' => 'TPA' ],
+            [ 'name' => 'Health Insurance TPA of India Ltd.', 'type' => 'TPA' ],
+            [ 'name' => 'Vision Digital Insurance TPA Pvt. Ltd. ', 'type' => 'TPA' ],
             [ 'name' => 'Acko General Insurance Ltd.', 'type' => 'TPA' ],
             [ 'name' => 'Aditya Birla Health Insurance Co. Ltd.', 'type' => 'TPA' ],
             [ 'name' => 'Bajaj Allianz General Insurance Company Ltd.', 'type' => 'TPA' ],
-            [ 'name' => 'Care Health Insurance Ltd. (Religare Health Insurance Co. Ltd.)Ltd.', 'type' => 'TPA' ],
+            [ 'name' => 'Care Health Insurance Ltd. (Religare Health Insurance Co. Ltd.)', 'type' => 'TPA' ],
             [ 'name' => 'Cholamandalam MS General Insurance Co Ltd.', 'type' => 'TPA' ],
             [ 'name' => 'Edelweiss General Insurance Co. Ltd.', 'type' => 'TPA' ],
             [ 'name' => 'Future Generali India Insurance Co Ltd.', 'type' => 'TPA' ],
@@ -43,8 +63,7 @@ class TpaSeed extends Seeder
             [ 'name' => 'Tata AIG General Insurance Co. Ltd.', 'type' => 'TPA' ],
             [ 'name' => 'The New India Assurance Co. Ltd', 'type' => 'TPA' ],
             [ 'name' => 'The Oriental Insurance Company Ltd.', 'type' => 'TPA' ],
-            [ 'name' => 'United India Insurance Company Ltd.', 'type' => 'TPA' ],
-            [ 'name' => 'Universal Sompo General Insurance Co. Ltd.', 'type' => 'TPA' ],
+            [ 'name' => 'United India Insurance Company Ltd.', 'type' => 'TPA' ]
         ];
 
         foreach ($insurereArr as $key => $insurere) {
