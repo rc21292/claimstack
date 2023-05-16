@@ -272,12 +272,6 @@ class HospitalController extends Controller
             $hospital_nfrastructure          = HospitalInfrastructure::where('hospital_id', $id)->first();
         }
 
-        $hospital_department          = HospitalDepartment::where('hospital_id', $id)->first();
-        if (!$hospital_department) {
-            HospitalDepartment::create(['hospital_id'=> $id]);
-            $hospital_department          = HospitalDepartment::where('hospital_id', $id)->first();
-        }
-
         $hospitals         = Hospital::get();
 
         $users              = User::get();

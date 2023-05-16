@@ -225,10 +225,6 @@ class HospitalController extends Controller
         }
         
         $hospital_department          = HospitalDepartment::where('hospital_id', $id)->get();
-        // if (!$hospital_department) {
-        //     HospitalDepartment::create(['hospital_id'=> $id]);
-        //     $hospital_department          = HospitalDepartment::where('hospital_id', $id)->first();
-        // }
         
         if(isset($request->doctor_id)){ 
             $hospital_doctor = HospitalDepartment::where('id', $request->doctor_id)->get()->first();
