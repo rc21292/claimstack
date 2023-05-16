@@ -583,7 +583,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Hospital (Main) Final Bill">
+                            placeholder="Hospital (Main) Final Bill *">
                         @isset($reimbursementdocument->hospital_main_final_bill_file)
                             <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->hospital_main_final_bill_file) }}"
                                 target="_blank" class="btn btn-info download-label"><i
@@ -610,7 +610,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Discharge / Day-care Summary">
+                            placeholder="Discharge / Day-care Summary *">
                         @isset($reimbursementdocument->discharge_or_day_care_summary_file)
                             <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->discharge_or_day_care_summary_file) }}"
                                 target="_blank" class="btn btn-info download-label"><i

@@ -274,6 +274,18 @@ class DocumentReimbursementController extends Controller
 
                 break;
             case 'final_assessment':
+
+                $rules = [ 
+                    'discharge_or_day_care_summary_file'           => empty($reimbursement->discharge_or_day_care_summary_file) ? 'required' : [],
+                    'hospital_main_final_bill_file'           => empty($reimbursement->hospital_main_final_bill_file) ? 'required' : [],
+                ];
+                
+                $messages = [
+                    'hospital_main_final_bill_file.required'          => 'Please select Hospital Main Final Bill File',
+                    'discharge_or_day_care_summary_file.required'          => 'Please select Discharge Or Day Care Summary File',
+                ];
+                
+                $this->validate($request, $rules, $messages);
                 
                 if ($request->hasfile('indoor_care_paper_file')) {
                     $indoor_care_paper_file = $request->file('indoor_care_paper_file');

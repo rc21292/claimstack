@@ -328,7 +328,7 @@
 
                                 <div class="col-md-6 mt-3">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" readonly placeholder="Discharge / Day-care Summary">
+                                        <input type="text" class="form-control" readonly placeholder="Discharge / Day-care Summary *">
                                         @isset($reimbursementdocument->discharge_or_day_care_summary_file)
                                         <a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->discharge_or_day_care_summary_file) }}" download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
                                         @endisset
