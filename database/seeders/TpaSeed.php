@@ -15,6 +15,8 @@ class TpaSeed extends Seeder
      */
     public function run()
     {
+        Tpa::truncate();
+
         $insurereArr = [
             [ 'name' => 'Medvantage Insurance TPA Pvt. Ltd.', 'type' => 'Insurance Company' ],
             [ 'name' => 'Medi Assist Insurance TPA Pvt. Ltd. ', 'type' => 'Insurance Company' ],
