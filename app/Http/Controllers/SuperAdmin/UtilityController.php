@@ -53,16 +53,29 @@ class UtilityController extends Controller
 
     public function getEmployeesByDepartment($department)
     {
-        $users  = User::/*where('department', $department)->*/get(['id', 'firstname', 'lastname', 'department', 'employee_code'])->collect();
-        $users->map(function ($item) {
-            $item->name = $item->firstname . ' ' . $item->lastname;
-            $item->role = 'User';
-            unset($item->firstname);
-            unset($item->lastname);
-            return $item;
-        });
+        if ($department && $department == 'all') {
+            $users  = User::get(['id', 'firstname', 'lastname', 'department', 'employee_code'])->collect();
+            $users->map(function ($item) {
+                $item->name = $item->firstname . ' ' . $item->lastname;
+                $item->role = 'User';
+                unset($item->firstname);
+                unset($item->lastname);
+                return $item;
+            });
 
-        $admins = Admin::/*where('department', $department)->*/get(['id', 'firstname', 'lastname', 'department', 'employee_code'])->collect();
+            $admins = Admin::get(['id', 'firstname', 'lastname', 'department', 'employee_code'])->collect();
+        }else{
+            $users  = User::where('department', $department)->get(['id', 'firstname', 'lastname', 'department', 'employee_code'])->collect();
+            $users->map(function ($item) {
+                $item->name = $item->firstname . ' ' . $item->lastname;
+                $item->role = 'User';
+                unset($item->firstname);
+                unset($item->lastname);
+                return $item;
+            });
+
+            $admins = Admin::where('department', $department)->get(['id', 'firstname', 'lastname', 'department', 'employee_code'])->collect();
+        }
         $admins->map(function ($item) {
             $item->name = $item->firstname . ' ' . $item->lastname;
             $item->role = 'Admin';

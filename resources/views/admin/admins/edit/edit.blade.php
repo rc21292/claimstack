@@ -218,7 +218,7 @@
         function loadEmployees(){
             var department  = $("#department").val();
             var url         = '{{ route("admin.get.employees", ":department") }}';
-            url             = url.replace(':department', department);
+            url             = url.replace(':department', 'all');
 
             $.ajax({
                 url: url,
