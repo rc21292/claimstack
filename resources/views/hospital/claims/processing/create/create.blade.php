@@ -1438,6 +1438,18 @@
         $("#"+new_id_id).val($(this).select2().find(":selected").data("long_name"));
     });
 
+    if($('#primary_diagnosis_icd_leveli_disease').val() == ''){
+        $('#primary_diagnosis_icd_leveli_disease').val("").trigger('change');
+    }
+
+    if($('#additional_diagnosis_icd_leveli_disease').val() == ''){
+        $('#additional_diagnosis_icd_leveli_disease').val("").trigger('change');
+    }
+
+    if($('#co_morbidities_icd_leveli_disease').val() == ''){
+        $('#co_morbidities_icd_leveli_disease').val("").trigger('change');
+    }
+
 </script>
 @endpush
 
