@@ -1293,7 +1293,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Co-Borrower  Current Address Proof *">
+                            placeholder="Co-Borrower  Current Address Proof">
                         @isset($reimbursementdocument->co_borrower_current_address_proof_file)
                             <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->co_borrower_current_address_proof_file) }}"
                                 target="_blank" class="btn btn-info download-label"><i
