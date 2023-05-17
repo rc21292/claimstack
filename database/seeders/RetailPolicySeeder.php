@@ -15,6 +15,8 @@ class RetailPolicySeeder extends Seeder
      */
     public function run()
     {
+
+      DB::table('retail_policies')->truncate();
        $sql = file_get_contents(database_path() . '/seeds/retail_policies.sql');
     
         DB::statement($sql);
