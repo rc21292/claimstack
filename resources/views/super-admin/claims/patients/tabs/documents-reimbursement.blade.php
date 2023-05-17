@@ -1135,7 +1135,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="input-group">
                         <input type="text" class="form-control" readonly
-                            placeholder="Borrower Bank Statement (3 months) *">
+                            placeholder="Borrower Bank Statement (3 months) ">
                         @isset($reimbursementdocument->borrower_bank_statement_3_months_file)
                             <a href="{{ asset('storage/uploads/reimbursement/documents/' . $reimbursementdocument->id . '/' . $reimbursementdocument->borrower_bank_statement_3_months_file) }}"
                                 target="_blank" class="btn btn-info download-label"><i
