@@ -84,7 +84,7 @@ class UtilityController extends Controller
             return $item;
         });
         $employees = $users->merge($admins);
-        $html  = '<option value="">Select Linked With Employee</option>';
+        $html  = '<option value="">Select Employee</option>';
         if (count($employees) > 0) {
             foreach ($employees as $employee) {
                 $html .= '<option value=' . $employee->id . '  data-id=' . $employee->employee_code . '>' . $employee->name . '[' . $employee->employee_code . '][' . $employee->department . ']</option>';

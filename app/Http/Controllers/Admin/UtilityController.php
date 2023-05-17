@@ -11,16 +11,30 @@ class UtilityController extends Controller
 {
     public function getEmployeesByDepartment($department)
     {
-        $users  = User::/*where('department', $department)->*/get(['id', 'firstname', 'lastname', 'department', 'employee_code'])->collect();
-        $users->map(function ($item) {
-            $item->name = $item->firstname . ' ' . $item->lastname;
-            $item->role = 'User';
-            unset($item->firstname);
-            unset($item->lastname);
-            return $item;
-        });
+        if ($department && $department == 'all') {
+            $users  = User::get(['id', 'firstname', 'lastname', 'department', 'employee_code'])->collect();
+            $users->map(function ($item) {
+                $item->name = $item->firstname . ' ' . $item->lastname;
+                $item->role = 'User';
+                unset($item->firstname);
+                unset($item->lastname);
+                return $item;
+            });
 
-        $admins = Admin::/*where('department', $department)->*/get(['id', 'firstname', 'lastname', 'department', 'employee_code'])->collect();
+            $admins = Admin::get(['id', 'firstname', 'lastname', 'department', 'employee_code'])->collect();
+        }else{
+
+            $users  = User::where('department', $department)->get(['id', 'firstname', 'lastname', 'department', 'employee_code'])->collect();
+            $users->map(function ($item) {
+                $item->name = $item->firstname . ' ' . $item->lastname;
+                $item->role = 'User';
+                unset($item->firstname);
+                unset($item->lastname);
+                return $item;
+            });
+
+            $admins = Admin::where('department', $department)->get(['id', 'firstname', 'lastname', 'department', 'employee_code'])->collect();
+        }
         $admins->map(function ($item) {
             $item->name = $item->firstname . ' ' . $item->lastname;
             $item->role = 'Admin';
@@ -29,7 +43,7 @@ class UtilityController extends Controller
             return $item;
         });
         $employees = $users->merge($admins);
-        $html  = '<option value="">Select Linked With Employee</option>';
+        $html  = '<option value="">Select Employee</option>';
         if (count($employees) > 0) {
             foreach ($employees as $employee) {
                 $html .= '<option value=' . $employee->id . '  data-id=' . $employee->employee_code . '>' . $employee->name . '[' . $employee->employee_code . '][' . $employee->department . ']</option>';
