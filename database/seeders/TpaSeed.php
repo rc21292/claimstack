@@ -63,6 +63,7 @@ class TpaSeed extends Seeder
             [ 'name' => 'The New India Assurance Co. Ltd', 'type' => 'TPA' ],
             [ 'name' => 'The Oriental Insurance Company Ltd.', 'type' => 'TPA' ],
             [ 'name' => 'United India Insurance Company Ltd.', 'type' => 'TPA' ]
+            [ 'name' => 'Universal Sompo General Insurance Co. Ltd.', 'type' => 'TPA' ]
         ];
 
         foreach ($insurereArr as $key => $insurere) {
