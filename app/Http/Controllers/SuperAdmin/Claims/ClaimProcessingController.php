@@ -42,10 +42,11 @@ class ClaimProcessingController extends Controller
         $claim_processing_exists        = ClaimProcessing::where('claim_id', $claim->id)->exists();
         $claim_processing               = $claim_processing_exists ? ClaimProcessing::where('claim_id', $claim->id)->first() : null;
         $insurers                       = Insurer::get();
-        $icd_codes_level1               = IcdCode::distinct('level1_code')->get(['level1','level1_code']);
-        $icd_codes_level2               = IcdCode::distinct('level2_code')->get(['level2','level2_code']);
-        $icd_codes_level3               = IcdCode::distinct('level3_code')->get(['level3','level3_code']);
-        $icd_codes_level4               = IcdCode::distinct('level4_code')->get(['level4','level4_code']);
+        $icd_codes_level1               = IcdCode::distinct('level1')->get(['level1','level1_code']);
+        $icd_codes_level2               = IcdCode::distinct('level2')->get(['level2','level2_code']);
+        $icd_codes_level3               = IcdCode::distinct('level3')->get(['level3','level3_code']);
+        $icd_codes_level4               = IcdCode::distinct('level4')->get(['level4','level4_code']);
+        
         $pcs_group_name                 = PcsCode::distinct('pcs_group_code')->get(['pcs_group_name','pcs_group_code']);
         $pcs_sub_group_name             = PcsCode::distinct('pcs_sub_group_code')->get(['pcs_sub_group_name','pcs_sub_group_code']);
         $pcs_short_name                 = PcsCode::distinct('pcs_code')->get(['pcs_short_name', 'pcs_long_name', 'pcs_code']);

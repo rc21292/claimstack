@@ -681,11 +681,11 @@
                                         <div class="col-md-6 mt-3">
                                             <label for="primary_diagnosis_icd_leveli_disease">ICD - Level - I - Disease <span class="text-danger">*</span></label>
 
-                                            <select class="form-control select2" data-toggle="select2" id="primary_diagnosis_icd_leveli_disease" name="primary_diagnosis_icd_leveli_disease">
+                                            <select class="form-control select2" data-toggle="select2" id="primary_diagnosis_icd_leveli_disease" placeholder="Please Select" name="primary_diagnosis_icd_leveli_disease">
                                                 <option value="">Please Select</option>
                                                 @foreach ($icd_codes_level1 as $icd_code)
                                                     <option value="{{ $icd_code->level1 }}"
-                                                        {{ old('primary_diagnosis_icd_leveli_disease', isset($claim_processing) ? $claim_processing->primary_diagnosis_icd_leveli_disease : '') == $icd_code->level1 ? 'selected' : '' }}
+                                                        {{ old('primary_diagnosis_icd_leveli_disease', isset($claim_processing) ? $claim_processing->primary_diagnosis_icd_leveli_disease : '') == trim($icd_code->level1) ? 'selected' : '' }}
                                                         data-code="{{ $icd_code->level1_code }}">
                                                         {{ $icd_code->level1 }}
                                                     </option>
@@ -712,7 +712,7 @@
                                                 <option value="">Please Select</option>
                                                 @foreach ($icd_codes_level2 as $icd_code)
                                                     <option value="{{ $icd_code->level2 }}"
-                                                        {{ old('primary_diagnosis_icd_levelii_disease', isset($claim_processing) ? $claim_processing->primary_diagnosis_icd_levelii_disease : '') == $icd_code->level2 ? 'selected' : '' }}
+                                                        {{ old('primary_diagnosis_icd_levelii_disease', isset($claim_processing) ? $claim_processing->primary_diagnosis_icd_levelii_disease : '') == trim($icd_code->level2) ? 'selected' : '' }}
                                                         data-code="{{ $icd_code->level2_code }}">
                                                         {{ $icd_code->level2 }}
                                                     </option>
@@ -768,7 +768,7 @@
                                                 <option value="">Please Select</option>
                                                 @foreach ($icd_codes_level4 as $icd_code)
                                                     <option value="{{ $icd_code->level4 }}"
-                                                        {{ old('primary_diagnosis_icd_leveliv_disease', isset($claim_processing) ? $claim_processing->primary_diagnosis_icd_leveliv_disease : '') == $icd_code->level4 ? 'selected' : '' }}
+                                                        {{ old('primary_diagnosis_icd_leveliv_disease', isset($claim_processing) ? $claim_processing->primary_diagnosis_icd_leveliv_disease : '') == trim($icd_code->level4) ? 'selected' : '' }}
                                                         data-code="{{ $icd_code->level4_code }}">
                                                         {{ $icd_code->level4 }}
                                                     </option>
@@ -1387,27 +1387,6 @@
 @push('scripts')
 <script>
 
-    /*  (function() {
-
-  $("#primary_diagnosis_icd_leveliv_disease").select2({
-    placeholder: 'Please Select',
-    // width: '350px',
-    allowClear: true,
-    ajax: {
-        url: '/super-admin/dataforselect2',
-        dataType: 'json',
-        delay: 250,
-        data: function(params) {
-            return {
-                term: params.term || '',
-                page: params.page || 1
-            }
-        },
-        cache: true
-    }
-});
-})();*/
-
     var final_assessment_status = "{{ old('final_assessment_status', @$claim_processing->final_assessment_status) }}";
     var add_query_clicked = "{{ old('add_query_clicked') }}";
 
@@ -1458,6 +1437,18 @@
         $("#"+new_id).val($(this).select2().find(":selected").data("code"));
         $("#"+new_id_id).val($(this).select2().find(":selected").data("long_name"));
     });
+
+    if($('#primary_diagnosis_icd_leveli_disease').val() == ''){
+        $('#primary_diagnosis_icd_leveli_disease').val("").trigger('change');
+    }
+
+    if($('#additional_diagnosis_icd_leveli_disease').val() == ''){
+        $('#additional_diagnosis_icd_leveli_disease').val("").trigger('change');
+    }
+
+    if($('#co_morbidities_icd_leveli_disease').val() == ''){
+        $('#co_morbidities_icd_leveli_disease').val("").trigger('change');
+    }
 
 </script>
 @endpush
