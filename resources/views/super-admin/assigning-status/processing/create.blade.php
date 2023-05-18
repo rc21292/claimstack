@@ -235,7 +235,13 @@
 
                                         @php
                                             use Carbon\Carbon;
-                                            $startDate = Carbon::parse($claim->dischargeStatus ? $claim->dischargeStatus->created_at : Carbon::now()->toDateTimeString());
+
+                                            if($claim->assigned_at && !empty($claim->assigned_at)){
+                                                $startDate = Carbon::parse(@$claim->assigned_at);
+                                            }else{
+                                                $startDate = Carbon::parse($claim->dischargeStatus ? $claim->dischargeStatus->created_at : Carbon::now()->toDateTimeString());
+                                            }                                        
+                                           
                                             $endDate = Carbon::parse(Carbon::now()->toDateTimeString());
                                         @endphp
 
