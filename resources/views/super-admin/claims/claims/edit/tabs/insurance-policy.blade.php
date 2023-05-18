@@ -926,7 +926,7 @@
 
 @push('scripts')
 <script type="text/javascript">
-    var i = "{{ $key? $key : 0 }}";
+    var i = "{{ @$key? @$key : 0 }}";
     $("#addDependentInsured").click(function () {
         ++i;
 
