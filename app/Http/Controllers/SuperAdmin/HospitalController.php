@@ -86,12 +86,12 @@ class HospitalController extends Controller
             'phone'                    => 'required|numeric|digits:10',
             'linked_associate_partner_id'     => ($request->by == 'Associate Partner') ? 'required' : [],
             'linked_associate_partner'   => ($request->by == 'Associate Partner') ? 'required' : [],
-            // 'assigned_employee'        => 'required',
+            'assigned_employee'        => 'required',
             'assigned_employee_id'     => 'required',
-            // 'assigned_employee_department'        => 'required',
+            'assigned_employee_department'        => 'required',
             'linked_employee_department'        => 'required',
-            // 'linked_employee'          => 'required',
-            // 'linked_employee_id'       => 'required',
+            'linked_employee'          => 'required',
+            'linked_employee_id'       => 'required',
         ];
 
         $messages = [
@@ -275,9 +275,9 @@ class HospitalController extends Controller
             'phone'                                     => 'required|numeric|digits:10',
             'linked_associate_partner_id'               => ($request->by == 'Associate Partner') ? 'required' : [],
             'linked_associate_partner'                  => ($request->by == 'Associate Partner') ? 'required' : [],
-            // 'assigned_employee'                         => 'required',
+            'assigned_employee'                         => 'required',
             'assigned_employee_id'                      => 'required',
-            // 'linked_employee'                           => 'required',
+            'linked_employee'                           => 'required',
             'linked_employee_id'                        => 'required',
             'tan'                                       => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|size:10' : [],
             'gst'                                       => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|size:15' : [],
