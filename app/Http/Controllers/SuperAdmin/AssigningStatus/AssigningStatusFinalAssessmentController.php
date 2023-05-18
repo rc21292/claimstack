@@ -144,7 +144,7 @@ class AssigningStatusFinalAssessmentController extends Controller
 
                 Claim::where('id', $id)->update([
                     'assign_to_assessment'                                => $request->assign_to_assessment,
-                    'assigned_at'                                => Now()
+                    'assign_at_assessment'                                => Now()
                 ]);
                 break;
             case 'pre_assessment_re_assign_form':
