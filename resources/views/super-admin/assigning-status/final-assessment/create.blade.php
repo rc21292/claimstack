@@ -251,7 +251,7 @@
                                         @php
                                             use Carbon\Carbon;
 
-                                            $startDate = Carbon::parse($claim->assessmentStatus ? $claim->assessmentStatus->created_at : Carbon::now()->toDateTimeString());
+                                            $startDate = Carbon::parse($claim->dischargeStatus ? $claim->dischargeStatus->created_at : Carbon::now()->toDateTimeString());
                                             
                                             $endDate = Carbon::parse(Carbon::now()->toDateTimeString());
                                         @endphp
