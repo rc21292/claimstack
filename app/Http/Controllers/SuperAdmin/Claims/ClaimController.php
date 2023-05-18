@@ -860,14 +860,12 @@ class ClaimController extends Controller
 
         $request->validate([
             'dependent_insured.*.firstname' => 'required',
-            'dependent_insured.*.lastname' => 'required',
             'dependent_insured.*.gender' => 'required',
             'dependent_insured.*.age' => 'required',
             'dependent_insured.*.relation' => 'required',
             'dependent_insured.*.sum_insured' => 'required',
             'dependent_insured.*.cumulative_bonus' => 'required',
             'dependent_insured.*.balance_sum_insured' => 'required',
-            'dependent_insured.*.comment' => 'required',
         ]);
     
         if ($request->dependent_insured) {

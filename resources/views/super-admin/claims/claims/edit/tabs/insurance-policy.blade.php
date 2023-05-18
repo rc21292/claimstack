@@ -458,7 +458,7 @@
     </div>
 
     {{-- Primary Insured --}}
-    <div class="card-body bg-white mb-4 addInsured" style="display:none">
+    <div class="card-body bg-white mb-4 addInsured" @if(old('primary_insured_firstname', @$claim->policy->primary_insured_firstname)) style="display:block" @else style="display:none" @endif>
         <div class="form-group row">
             <h4>Primary Insured</h4>
             <div class="form-group row">
@@ -554,7 +554,7 @@
                     @enderror
                 </div>
 
-                <div class="col-md-4 mb-2">
+                <div class="col-md-3 mb-2">
                     <label>Sum Insured <span class="text-danger">*</span></label>
                     <div class="row">
                         <div class="col-sm-12">
@@ -582,7 +582,7 @@
                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="col-md-2 mb-2">
+                <div class="col-md-3 mb-2">
                     <label>Balance Sum Insured <span class="text-danger">*</span></label>
                     <div class="row">
                         <div class="col-sm-12">
@@ -611,7 +611,7 @@
     </div>
 
     {{-- Dependent Insured --}}
-    <div class="card-body bg-white mb-4 addInsured" style="display:none">
+    <div class="card-body bg-white mb-4 addInsured" @if(old('primary_insured_firstname', @$claim->policy->primary_insured_firstname)) style="display:block" @else style="display:none" @endif>
         <div class="form-group row">
             <h4>Dependent Insured</h4>
             <div class="form-group row">
@@ -708,7 +708,7 @@
                     @enderror
                 </div>
 
-                <div class="col-md-4 mb-2">
+                <div class="col-md-3 mb-2">
                     <label>Sum Insured <span class="text-danger">*</span></label>
                     <div class="row">
                         <div class="col-sm-12">
@@ -736,7 +736,7 @@
                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="col-md-2 mb-2">
+                <div class="col-md-3 mb-2">
                     <label>Balance Sum Insured <span class="text-danger">*</span></label>
                     <div class="row">
                         <div class="col-sm-12">
@@ -765,12 +765,7 @@
         </div>
     </div>
 
-    <div class="card-body">
-
-        <div class="form-group text-end" style="margin-top:10px;">
-            <button type="button" id="addDependentInsured" class="btn btn-sm btn-success"><i class="mdi mdi-plus"></i> Add Dependent Insured</button>
-        </div>
-    </div>
+    
 
 
 <div id="dynamicAddRemove" style="margin-top:30px;">
@@ -871,7 +866,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4 mb-2">
+                <div class="col-md-3 mb-2">
                     <label>Sum Insured <span class="text-danger">*</span></label>
                     <div class="row">
                         <div class="col-sm-12">
@@ -894,7 +889,7 @@
                     </div>
 
                 </div>
-                <div class="col-md-2 mb-2">
+                <div class="col-md-3 mb-2">
                     <label>Balance Sum Insured <span class="text-danger">*</span></label>
                     <div class="row">
                         <div class="col-sm-12">
@@ -1028,7 +1023,7 @@
 '                    @enderror' + 
 '                </div>' + 
 '' + 
-'                <div class="col-md-4 mb-2">' + 
+'                <div class="col-md-3 mb-2">' + 
 '                    <label>Sum Insured <span class="text-danger">*</span></label>' + 
 '                    <div class="row">' + 
 '                        <div class="col-sm-12">' + 
@@ -1056,7 +1051,7 @@
 '                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>' + 
 '                    @enderror' + 
 '                </div>' + 
-'                <div class="col-md-2 mb-2">' + 
+'                <div class="col-md-3 mb-2">' + 
 '                    <label>Balance Sum Insured <span class="text-danger">*</span></label>' + 
 '                    <div class="row">' + 
 '                        <div class="col-sm-12">' + 
@@ -1090,11 +1085,15 @@
 </script>
 @endpush
 
+<div class="card-body">
 
+        <div class="form-group text-end" style="margin-top:10px;">
+            <button type="button" id="addDependentInsured" class="btn btn-sm btn-success"><i class="mdi mdi-plus"></i> Add Dependent Insured</button>
+        </div>
 
-    <div class="card-body">
-        <div class="form-group text-end">
+        <div class="form-group text-end" style="margin-top:6px;">
             <button type="submit" class="btn btn-success" form="insurance-form">Update</button>
         </div>
     </div>
+
 </form>
