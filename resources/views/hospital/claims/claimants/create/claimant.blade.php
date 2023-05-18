@@ -431,7 +431,7 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="official_email_id">Claimant official email id<span
-                                                    class="text-danger">*</span></label>
+                                                    class="text-danger"></span></label>
                                             <input type="email" class="form-control" id="official_email_id"
                                                 name="official_email_id" maxlength="45"
                                                 placeholder="Enter Claimant official email id"
