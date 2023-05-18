@@ -858,7 +858,7 @@ class ClaimController extends Controller
         ]);
 
 
-        /*$request->validate([
+        $request->validate([
             'dependent_insured.*.firstname' => 'required',
             'dependent_insured.*.lastname' => 'required',
             'dependent_insured.*.gender' => 'required',
@@ -877,7 +877,7 @@ class ClaimController extends Controller
                 $input['insurance_policy_id'] = $id;
                 DependentInsured::create($input);
             }
-        }*/
+        }
 
         return redirect()->route('super-admin.claims.index')->with('success', 'Claim updated successfully');
 
