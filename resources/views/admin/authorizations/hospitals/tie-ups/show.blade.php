@@ -251,7 +251,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-6">
-                                        <p class="card-text">: {{ @$hospital_tie_up->linked_employee_data->firstname}} {{ @$hospital_tie_up->linked_employee_data->lastname}} ({{ @$hospital_tie_up->linked_employee_data->employee_code}}) </p>
+                                        <p class="card-text">: {{ @$hospital_tie_up->assigned_employee_data->firstname}} {{ @$hospital_tie_up->assigned_employee_data->lastname}} ({{ @$hospital_tie_up->assigned_employee_data->employee_code}}) </p>
                                     </dd>
 
                                     <dt class="col-sm-6">
@@ -260,7 +260,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-6">
-                                        <p class="card-text">: {{ $hospital_tie_up->assigned_employee_data->firstname}} {{ $hospital_tie_up->assigned_employee_data->lastname}} ({{ $hospital_tie_up->assigned_employee_data->employee_code}}) </p>
+                                        <p class="card-text">: {{ @$hospital_tie_up->hospital->assignedEmployee->firstname}} {{ @$hospital_tie_up->hospital->assignedEmployee->lastname}} ({{ @$hospital_tie_up->hospital->assignedEmployee->employee_code}}) </p>
                                     </dd>
                                     
                                     <dt class="col-sm-6">
@@ -272,7 +272,7 @@
                                         <i class="uil-shield-check"></i>
                                     Hospital Tie-up Updates Authorize</button>
                                     <form id='delete-form{{ $hospital_tie_up->id }}'
-                                        action="{{ route('admin.hospital-authorizations.update', $hospital_tie_up->id) }}"
+                                        action="{{ route('admin.hospital-tie-up-authorizations.update', $hospital_tie_up->id) }}"
                                         method='POST'>
                                         <input type='hidden' name='_token'
                                         value='{{ csrf_token() }}'>

@@ -496,6 +496,12 @@ class HospitalController extends Controller
 
         $this->validate($request, $rules, $messages);
 
+        if(auth()->check() && auth()->user()->hasDirectPermission("2nd Level Authorization Required (for User's works)")){
+            $status = 0;
+        }else{
+            $status = 1;
+        }
+
         $hospitalT =  HospitalTieUp::updateOrCreate([
                 'hospital_id' => $id],
                 [
@@ -527,7 +533,7 @@ class HospitalController extends Controller
                 'hospital_management_system_installation'           => $request->hospital_management_system_installation,
                 'hms_charges'                                       => $request->hms_charges,
                 'comments'                                          => $request->comments,
-                'status'                                                => 0
+                'status'                                            => $status
             ]);
 
         HospitalTieUp::where('hospital_id', $id)->update([
