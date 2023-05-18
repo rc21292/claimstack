@@ -27,7 +27,7 @@ class PendingClaimProcessingController extends Controller
         $filter_search = '';
         
         foreach ($claims as $key => $claim) {
-           $employee = $this->getEmployeesById($claim->hospital->assignedEmployee->id);
+           $employee = $this->getEmployeesById($claim->hospital->assigned_employee->id);
 
            $claims[$key]->linked_employee_data = $employee;
 
