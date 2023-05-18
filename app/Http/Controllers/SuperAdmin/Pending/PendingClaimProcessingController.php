@@ -19,7 +19,7 @@ class PendingClaimProcessingController extends Controller
     public function index(Request $request)
     {
         $claims =  Claim::where('claim_processing_status', 0)
-            ->where(function ($query) {
+        ->where(function ($query) {
             $query->whereNotNull('assign_to_claim_processing')
             ->orWhereNotNull('re_assign_to_claim_processing');
         })->orderBy('id', 'desc')->paginate(20);
@@ -27,15 +27,19 @@ class PendingClaimProcessingController extends Controller
         $filter_search = '';
         
         foreach ($claims as $key => $claim) {
-           $employee = $this->getEmployeesById($claim->hospital->assigned_employee->id);
+            if($claim->hospital->assignedEmployee){
+             $employee = $this->getEmployeesById($claim->hospital->assignedEmployee->id);
 
-           $claims[$key]->linked_employee_data = $employee;
+             $claims[$key]->linked_employee_data = $employee;
 
-           Claim::where('id', $claim->id)->update(['linked_admin' => $employee->id]);
+             Claim::where('id', $claim->id)->update(['linked_admin' => $employee->id]);
+         }else{
+            $claims[$key]->linked_employee_data = [];
         }
-
-        return view('super-admin.pendings.processing.manage',  compact('claims', 'filter_search'));
     }
+
+    return view('super-admin.pendings.processing.manage',  compact('claims', 'filter_search'));
+}
 
     /**
      * Show the form for creating a new resource.
