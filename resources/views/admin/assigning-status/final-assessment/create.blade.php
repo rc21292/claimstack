@@ -250,7 +250,9 @@
 
                                         @php
                                             use Carbon\Carbon;
-                                            $startDate = Carbon::parse($claim->assessmentStatus->created_at);
+
+                                            $startDate = Carbon::parse($claim->dischargeStatus ? $claim->dischargeStatus->created_at : Carbon::now()->toDateTimeString());
+                                            
                                             $endDate = Carbon::parse(Carbon::now()->toDateTimeString());
                                         @endphp
 
@@ -306,11 +308,15 @@
                                                 <option> </option>
                                                 @endif                                                
                                             </select>
-                                        </div> 
+                                        </div>
 
                                         @php
+                                        if($claim->assign_at_assessment && !empty($claim->assign_at_assessment)){
+                                            $startDate = Carbon::parse(@$claim->assign_at_assessment);
+                                        }else{
                                             $startDate = Carbon::parse(@$claim->claimProcessing->created_at);
-                                            $endDate = Carbon::parse(Carbon::now()->toDateTimeString());
+                                        }
+                                        $endDate = Carbon::parse(Carbon::now()->toDateTimeString());
                                         @endphp
 
                                         <div class="col-md-6 mt-3">

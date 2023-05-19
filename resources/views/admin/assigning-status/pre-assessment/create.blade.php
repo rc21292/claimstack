@@ -269,7 +269,11 @@
                                         </div> 
 
                                         @php
+                                        if($claim->assigned_at && !empty($claim->assigned_at)){
+                                            $startDate = Carbon::parse(@$claim->assigned_at);
+                                        }else{
                                             $startDate = Carbon::parse(@$claim->assessmentStatus->created_at);
+                                        }
                                             $endDate = Carbon::parse(Carbon::now()->toDateTimeString());
                                         @endphp
 

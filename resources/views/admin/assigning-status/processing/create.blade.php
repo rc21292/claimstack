@@ -235,7 +235,13 @@
 
                                         @php
                                             use Carbon\Carbon;
-                                            $startDate = Carbon::parse($claim->dischargeStatus ? $claim->dischargeStatus->created_at : Carbon::now()->toDateTimeString());
+
+                                            if($claim->assigned_at && !empty($claim->assigned_at)){
+                                                $startDate = Carbon::parse(@$claim->assigned_at);
+                                            }else{
+                                                $startDate = Carbon::parse($claim->dischargeStatus ? $claim->dischargeStatus->created_at : Carbon::now()->toDateTimeString());
+                                            }                                        
+                                           
                                             $endDate = Carbon::parse(Carbon::now()->toDateTimeString());
                                         @endphp
 
@@ -295,9 +301,14 @@
                                         </div> 
 
                                         @php
+                                        if($claim->assigned_at_claim_processing && !empty($claim->assigned_at_claim_processing)){
+                                            $startDate = Carbon::parse(@$claim->assigned_at_claim_processing);
+                                        }else{
                                             $startDate = Carbon::parse(@$claim->claimProcessing->created_at);
+                                        }
                                             $endDate = Carbon::parse(Carbon::now()->toDateTimeString());
                                         @endphp
+
 
                                         <div class="col-md-6 mt-3">
                                             <label for="hospital_name">Final-Assessment Pending TAT <span
