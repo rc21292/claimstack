@@ -271,7 +271,7 @@
                                         <div class="col-md-12 mt-3">
                                             <label for="assign_to_assessment">Assign to <span
                                                     class="text-danger">*</span></label>
-                                            <select @if($claim->assign_to_assessment) disabled @endif class="form-select" id="assign_to_assessment"  name="assign_to_assessment">
+                                            <select @if($claim->assign_to_assessment) disabled @endif class="form-select select2" id="assign_to_assessment" data-toggle="select2" name="assign_to_assessment">
                                                 <option value="">Please Select</option>
                                                 @foreach($admins as $admin)
                                                 <option {{ old('assign_to_assessment', $claim->assign_to_assessment) == $admin->id ? 'selected' : '' }} value="{{ $admin->id }}" >{{ $admin->employee_code.'['. $admin->name .']'  }} </option>
@@ -335,7 +335,7 @@
                                         <div class="col-md-12 mt-3">
                                             <label for="re_assign_to_assessment">Re-Assign to <span
                                                     class="text-danger">*</span></label>
-                                            <select @if(!$claim->assign_to_assessment) disabled @endif  class="form-select" id="re_assign_to_assessment"  name="re_assign_to_assessment">
+                                            <select @if(!$claim->assign_to_assessment) disabled @endif  class="form-select select2" id="re_assign_to_assessment" data-toggle="select2" name="re_assign_to_assessment">
                                                 <option value="">Please Select</option>
                                                 @foreach($admins as $admin)
                                                 <option {{ old('re_assign_to_assessment', $claim->re_assign_to_assessment) == $admin->id ? 'selected' : '' }} value="{{ $admin->id }}" >{{ $admin->employee_code.'['. $admin->name .']'  }} </option>

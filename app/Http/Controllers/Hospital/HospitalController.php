@@ -329,8 +329,8 @@ class HospitalController extends Controller
             'owner_email'                               => ($request->onboarding == 'Tie Up') ? 'required|email|min:1|max:45' : [],
             'owner_phone'                               => ($request->onboarding == 'Tie Up') ? 'required|numeric|digits:10' : [],
          
-            'owner_pan'                                 => 'required|alpha_num|size:10|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/u',
-            'owner_aadhar'                              => 'required|size:12',
+            'owner_pan'                                 => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|size:10|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/u' : [],
+            'owner_aadhar'                              => ($request->onboarding == 'Tie Up') ? 'required|size:12' : [],
          
             'contact_person_firstname'                  => ($request->onboarding == 'Tie Up') ? 'required|min:1|max:15' : [],
             'contact_person_lastname'                  => ($request->onboarding == 'Tie Up') ? 'required|min:1|max:30' : [],

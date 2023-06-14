@@ -260,7 +260,7 @@
                                         <div class="col-md-12 mt-3">
                                             <label for="assign_to_claim_processing">Assign to <span
                                                     class="text-danger">*</span></label>
-                                            <select @if($claim->assign_to_claim_processing) disabled @endif class="form-select" id="assign_to_claim_processing"  name="assign_to_claim_processing">
+                                            <select @if($claim->assign_to_claim_processing) disabled @endif class="form-select select2" data-toggle="select2" id="assign_to_claim_processing"  name="assign_to_claim_processing">
                                                 <option value="">Please Select</option>
                                                 @foreach($admins as $admin)
                                                 <option {{ old('assign_to_claim_processing', $claim->assign_to_claim_processing) == $admin->id ? 'selected' : '' }} value="{{ $admin->id }}" >{{ $admin->employee_code.'['. $admin->name .']'  }} </option>
@@ -325,7 +325,7 @@
                                         <div class="col-md-12 mt-3">
                                             <label for="re_assign_to_claim_processing">Re-Assign to <span
                                                     class="text-danger">*</span></label>
-                                            <select @if(!$claim->assign_to_claim_processing) disabled @endif class="form-select" id="re_assign_to_claim_processing"  name="re_assign_to_claim_processing">
+                                            <select @if(!$claim->assign_to_claim_processing) disabled @endif class="form-select" id="re_assign_to_claim_processing" data-toggle="select2" name="re_assign_to_claim_processing">
                                                 <option value="">Please Select</option>
                                                 @foreach($admins as $admin)
                                                 <option {{ old('re_assign_to_claim_processing', $claim->re_assign_to_claim_processing) == $admin->id ? 'selected' : '' }} value="{{ $admin->id }}" >{{ $admin->employee_code.'['. $admin->name .']'  }} </option>

@@ -229,7 +229,7 @@
                                         <div class="col-md-12 mt-3">
                                             <label for="assign_to">Assign to <span
                                                     class="text-danger">*</span></label>
-                                            <select @if($claim->assign_to) disabled @endif class="form-select" id="assign_to"  name="assign_to">
+                                            <select @if($claim->assign_to) disabled @endif class="form-select select2" id="assign_to" data-toggle="select2" name="assign_to">
                                                 <option value="">Please Select</option>
                                                 @foreach($admins as $admin)
                                                 <option {{ old('assign_to', $claim->assign_to) == $admin->id ? 'selected' : '' }} value="{{ $admin->id }}" >{{ $admin->employee_code.'['. $admin->name .']'  }} </option>
@@ -292,7 +292,7 @@
                                         <div class="col-md-12 mt-3">
                                             <label for="re_assign_to">Re-Assign to <span
                                                     class="text-danger">*</span></label>
-                                            <select @if(!$claim->assign_to) disabled @endif  class="form-select" id="re_assign_to"  name="re_assign_to">
+                                            <select @if(!$claim->assign_to) disabled @endif  class="form-select select2" id="re_assign_to" data-toggle="select2" name="re_assign_to">
                                                 <option value="">Please Select</option>
                                                 @foreach($admins as $admin)
                                                 <option {{ old('re_assign_to', $claim->re_assign_to) == $admin->id ? 'selected' : '' }} value="{{ $admin->id }}" >{{ $admin->employee_code.'['. $admin->name .']'  }} </option>

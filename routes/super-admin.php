@@ -15,6 +15,7 @@ use App\Http\Controllers\SuperAdmin\Claims\ClaimController;
 use App\Http\Controllers\SuperAdmin\Claims\ClaimantController;
 use App\Http\Controllers\SuperAdmin\Claims\BorrowerController;
 use App\Http\Controllers\SuperAdmin\Claims\PatientController;
+use App\Http\Controllers\SuperAdmin\InsurerPlanDataDecodingController;
 use App\Http\Controllers\SuperAdmin\UtilityController;
 use App\Http\Controllers\SuperAdmin\BillEntryController;
 use App\Http\Controllers\SuperAdmin\Claims\AssessmentController;
@@ -36,6 +37,8 @@ use App\Http\Controllers\SuperAdmin\Authorizations\HospitalTieUpAuthorizationCon
 use App\Http\Controllers\SuperAdmin\Authorizations\HospitalEmanelmentStatusAuthorizationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuperAdmin\TpaCompanyController;
+use App\Http\Controllers\SuperAdmin\DocumentInwardOutwardTrackingController;
+use App\Http\Controllers\SuperAdmin\InterDepartmentDocumentTrackingController;
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -91,6 +94,7 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     */
 
     Route::resource('admins', AdminController::class);
+    Route::resource('insurer-plan-data-decoding', InsurerPlanDataDecodingController::class);
     Route::post('admin/change-pasword', [AdminController::class, 'changePassword'])->name('admins.change-password');
 
     /*
@@ -334,6 +338,9 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     |--------------------------------------------------------------------------
     */
     Route::resource('my-account', MyAccountController::class);
+    
+    Route::resource('document-inward-outward-tracking', DocumentInwardOutwardTrackingController::class);
+    Route::resource('inter-department-docs-tracking', InterDepartmentDocumentTrackingController::class);
 
     /*
     |--------------------------------------------------------------------------

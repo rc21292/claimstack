@@ -271,7 +271,7 @@ class HospitalController extends Controller
             'state'                                     => 'required',
             'pincode'                                   => 'required|numeric',
             'owner_pan'                                 => ($request->onboarding == 'Tie Up') ? 'required|alpha_num|size:10|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/u' : [],
-            'owner_aadhar'                              => 'required|size:12',
+            'owner_aadhar'                              => ($request->onboarding == 'Tie Up') ? 'required|size:12' : [],
             'phone'                                     => 'required|numeric|digits:10',
             'linked_associate_partner_id'               => ($request->by == 'Associate Partner') ? 'required' : [],
             'linked_associate_partner'                  => ($request->by == 'Associate Partner') ? 'required' : [],
