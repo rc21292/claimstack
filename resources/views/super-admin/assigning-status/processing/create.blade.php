@@ -358,7 +358,7 @@
                                                 class="text-danger"></span></label>
                                         <select disabled class="form-select final_assessment_status" id="final_assessment_status"
                                             name="final_assessment_status">
-                                            @if($claim->assign_to_claim_processing)
+                                            @if($claim->assign_to_claim_processing && $claim->assign_to_claim_processing)
                                             <option>{{ @$claim->claimProcessing->final_assessment_status }}</option>
                                             @else
                                             <option> Waiting for Assigning for Final-Assessment </option>
