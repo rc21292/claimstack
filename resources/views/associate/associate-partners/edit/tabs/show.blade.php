@@ -29,7 +29,7 @@
                                     <tbody>
                                         <tr>
                                             <td><a target="_blank" href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->panfile) }}" >Associate Partner Pan Number</a></td>
-                                            <td><a {{-- href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->panfile) }}" --}} download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                            <td><a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->panfile) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                         </tr>
 
@@ -37,7 +37,7 @@
                                                 @foreach($associate_files['panfile'] as $moufile1)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$moufile1->file_path) }}">Associate Partner Pan Number{{ $moufile1->file_id }}</a></td>
-                                                    <td><a {{-- href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$moufile1->file_path) }}" --}} download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$moufile1->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
@@ -45,7 +45,7 @@
                                                 
                                         <tr>
                                             <td><a target="_blank" href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->cancel_cheque_file) }}" >Cancel Cheque</a></td>
-                                            <td><a {{-- href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->cancel_cheque_file) }}" --}} download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                            <td><a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->cancel_cheque_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                         </tr> 
 
@@ -53,7 +53,7 @@
                                                 @foreach($associate_files['cancel_cheque_file'] as $moufile1)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$moufile1->file_path) }}">Cancel Cheque{{ $moufile1->file_id }}</a></td>
-                                                    <td><a {{-- href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$moufile1->file_path) }}" --}} download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$moufile1->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
@@ -67,7 +67,7 @@
                                     <tbody>
                                         <tr>
                                             <td><a target="_blank" href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->moufile) }}">MOU</a></td>
-                                            <td><a {{-- href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->moufile) }}" --}} download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                            <td><a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->moufile) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                         </tr>  
 
@@ -75,7 +75,7 @@
                                                 @foreach($associate_files['moufile'] as $moufile1)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$moufile1->file_path) }}">MOU{{ $moufile1->file_id }}</a></td>
-                                                    <td><a {{-- href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$moufile1->file_path) }}" --}} download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$moufile1->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach

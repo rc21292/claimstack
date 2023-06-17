@@ -57,7 +57,7 @@
                     <a href="{{ asset('storage/uploads/associate-partners/' . $associate->id . '/' . $associate->panfile) }}"
                         download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
                 @endisset
-                <input type="file" disabled name="panfile" hidden id="panfile" />
+                <input type="file" disabled name="panfile" hidden id="panfile"  />
                 <label for="panfile" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
             </div>
             @error('pan')
@@ -346,7 +346,7 @@
                     <a href="{{ asset('storage/uploads/associate-partners/' . $associate->id . '/' . $associate->moufile) }}"
                         download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
                 @endisset
-                <input type="file" name="moufile" hidden id="moufile" />
+                <input type="file" name="moufile" hidden id="moufile" onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
                 <label for="moufile" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
             </div>
             @error('mou')
@@ -446,7 +446,7 @@
                     <a href="{{ asset('storage/uploads/associate-partners/' . $associate->id . '/' . $associate->cancel_cheque_file) }}"
                         download="" class="btn btn-warning download-label"><i class="mdi mdi-download"></i></a>
                 @endisset
-                <input type="file" name="cancel_cheque_file" @if(old('cancel_cheque',$associate->cancel_cheque) == 'No') disabled @endif  id="cancel_cheque_file" hidden />
+                <input type="file" name="cancel_cheque_file" @if(old('cancel_cheque',$associate->cancel_cheque) == 'No') disabled @endif  id="cancel_cheque_file" hidden onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
 
                 <label for="cancel_cheque_file" class="btn btn-primary upload-label"><i class="mdi mdi-upload"></i></label>
             </div>

@@ -1,7 +1,7 @@
 <script>
 
     $(document).ready(function () {
-        changeConsulting()
+       /* changeConsulting()
         changeDealerDistributor()
         changeHospitalEmpanelmentAgent()
         changeSoftwareSales()
@@ -16,7 +16,7 @@
         doctorTeleConsultation()
         changeInsuranceTpa()
         medicalLendingBill()
-        medicalLendingPatient()
+        medicalLendingPatient()*/
     });
     function medicalLendingPatient() {
         var value = $('#medical_lending_patient').val();

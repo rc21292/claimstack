@@ -2184,4 +2184,20 @@ class HospitalController extends Controller
         }
         return redirect()->back()->with('success', 'Hospital Document updated successfully');
     }
+
+    public function changePassword(Request $request)
+    {
+        $id = $request->id;
+
+        $this->validate($request, [
+            'new_password' => 'required|min:8|confirmed',
+
+        ]);
+
+        $hospital = Hospital::find($id);
+        $hospital->password = Hash::make($request->new_password);
+        $hospital->save();
+
+        return redirect()->back()->with('success', 'Password changed successfully');
+    }
 }

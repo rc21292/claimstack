@@ -42,11 +42,10 @@
                                     </div>
 
                                 </div>
-                                <div class="d-flex flex-row align-items-center m-2 text-white">
+                                <div class="d-flex flex-row align-items-center m-2">
                                     <p class="mb-0 me-2"><br> Hospital Documents</p>
                                 </div>                        
                             </div>
-
                             <div class="col-12 nav nav-tabs custom-tab" id="myTab" style="font-size: 17px;">
                                 <a  class="px-1 active" href="#tab1" data-bs-toggle="tab">Hospital Documents</a> 
                                 <a  class="px-1" href="#tab2" data-bs-toggle="tab">Hospital Tariff</a> 

@@ -2214,4 +2214,20 @@ class HospitalController extends Controller
         return redirect()->route('admin.hospitals.edit',$id)->with('success', 'Company deleted successfully!');
     }
 
+    public function changePassword(Request $request)
+    {
+        $id = $request->id;
+
+        $this->validate($request, [
+            'new_password' => 'required|min:8|confirmed',
+
+        ]);
+
+        $hospital = Hospital::find($id);
+        $hospital->password = Hash::make($request->new_password);
+        $hospital->save();
+
+        return redirect()->back()->with('success', 'Password changed successfully');
+    }
+
 }
