@@ -100,7 +100,7 @@ class PatientController extends Controller
             'admitted_by'                       => 'required',
             'admitted_by_title'                 => $request->admitted_by == 'Self' ? '' : 'required',
             'admitted_by_firstname'             => $request->admitted_by == 'Self' ? '' : 'required|max:25',
-            'comments'                          => isset($request->comments) ? '' : 'max:250',
+            'comments'                          => isset($request->comments) ? '' : 'max:1000',
         ];
 
         $messages = [
@@ -273,7 +273,7 @@ class PatientController extends Controller
             'admitted_by'                       => 'required',
             'admitted_by_title'                 => $request->admitted_by == 'Self' ? '' : 'required',
             'admitted_by_firstname'             => $request->admitted_by == 'Self' ? '' : 'required|max:25',
-            'comments'                          => isset($request->comments) ? '' : 'max:250',
+            'comments'                          => isset($request->comments) ? '' : 'max:1000',
         ];
 
         $messages = [

@@ -545,6 +545,8 @@
                     </option>
                     <option value="Injury" {{ old('disease_category') == 'Injury' ? 'selected' : '' }}>Injury
                     </option>
+                    <option value="Cancer" {{ old('disease_category') == 'Cancer' ? 'selected' : '' }}>Cancer
+                    </option>
                     <option value="Other" {{ old('disease_category') == 'Other' ? 'selected' : '' }}>Other
                     </option>
                 </select>
@@ -698,7 +700,7 @@
             </div>
             <div class="col-md-12 mt-3">
                 <label for="comments">Claim Intimation Comment </label>
-                <textarea class="form-control" id="comments" name="comments" maxlength="250" placeholder="Comments"
+                <textarea class="form-control" id="comments" name="comments" maxlength="1000" placeholder="Comments"
                     rows="5">{{ old('comments') }}</textarea>
                 @error('comments')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>

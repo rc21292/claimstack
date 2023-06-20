@@ -1362,7 +1362,7 @@
 
                                         <div class="col-md-12 mt-3">
                                             <label for="final_assessment_comments">Final Assessment Comments </label>
-                                            <textarea disabled class="form-control" id="final_assessment_comments" name="final_assessment_comments" maxlength="250" placeholder="Enter Final Assessment Comments"  rows="5">{{ old('final_assessment_comments', isset($claim_processing) ? $claim_processing->final_assessment_comments : '') }}</textarea>
+                                            <textarea disabled class="form-control" id="final_assessment_comments" name="final_assessment_comments" maxlength="1000" placeholder="Enter Final Assessment Comments"  rows="5">{{ old('final_assessment_comments', isset($claim_processing) ? $claim_processing->final_assessment_comments : '') }}</textarea>
                                             @error('final_assessment_comments', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror

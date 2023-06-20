@@ -98,7 +98,7 @@ class ClaimController extends Controller
             'disease_name'              => 'required',
             'disease_type'              => 'required',
             'estimated_amount'          => 'required|max:8',
-            'comments'                  => isset($request->comments) ? 'max:250' : '',
+            'comments'                  => isset($request->comments) ? 'max:1000' : '',
         ];
 
         $messages =  [
@@ -431,7 +431,7 @@ class ClaimController extends Controller
             'disease_name'              => 'required',
             'disease_type'              => 'required',
             'estimated_amount'          => 'required|max:8',
-            'comments'                  => isset($request->comments) ? 'max:250' : '',
+            'comments'                  => isset($request->comments) ? 'max:1000' : '',
             'claim_intimation_done'         => $request->insurance_coverage == 'Yes' ? 'required' : '',
             'claim_intimation_number_mail'  => $request->claim_intimation_done == 'Yes' ? 'required' : '',
         ];

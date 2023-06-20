@@ -117,7 +117,7 @@ class DischargeStatusController extends Controller
             'time_of_discharge'                                     => 'required',
             'discharge_status'                                      => 'required',
             'death_summary'                                         => ($request->discharge_status == 'Deceased') ? 'required|alpha_num|max:100':[],
-            'discharge_status_comments'                             => 'max:250',
+            'discharge_status_comments'                             => 'max:1000',
             // 'death_summary_file'                                    => ($request->death_summary) ? 'required' :[]
 
         ];
@@ -220,7 +220,7 @@ class DischargeStatusController extends Controller
             'time_of_discharge'                                     => 'required',
             'discharge_status'                                      => 'required',
             'death_summary'                                         => ($request->discharge_status == 'Deceased' && $request->death_summary) ? 'required|alpha_num|max:100':[],
-            'discharge_status_comments'                             => 'max:250',
+            'discharge_status_comments'                             => 'max:1000',
             // 'death_summary_file'                                    => ($request->death_summary) ? 'required' :[]
 
         ];

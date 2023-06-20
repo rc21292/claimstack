@@ -469,7 +469,8 @@ class ClaimController extends Controller
             'middlename'                => isset($request->middlename) ? 'max:25' : '',
             'age'                       => 'required',
             'gender'                    => 'required',
-            'admission_date'            => 'required|before_or_equal:' . now()->format('Y-m-d'),
+            // 'admission_date'            => 'required|before_or_equal:' . now()->format('Y-m-d'),
+            'admission_date'            => 'required',
             'admission_time'            => 'required',
             'abha_id'                   => isset($request->abha_id) ? 'max:45' : '',
             'insurance_coverage'        => 'required',
@@ -489,7 +490,7 @@ class ClaimController extends Controller
             'disease_name'              => 'required',
             'disease_type'              => 'required',
             'estimated_amount'          => 'required|max:8',
-            'comments'                  => isset($request->comments) ? 'max:250' : '',
+            'comments'                  => isset($request->comments) ? 'max:1000' : '',
             'discharge_date'            => 'required|date|after_or_equal:admission_date',
             'days_in_hospital'          => 'required',
             'room_category'             => 'required',
@@ -680,14 +681,10 @@ class ClaimController extends Controller
 
     public function updateInsurancePolicy(Request $request, $id)
     {
-        /*echo "<pre>";
-            print_r($request->all());
-        echo "</pre>";
-        die();*/
         $rules = [
             'patient_id'                                => 'required',
             'claim_id'                                  => 'required',
-            'policy_no'                                 => 'required|max:16',
+            // 'policy_no'                                 => 'required|max:16',
             'insurance_company'                         => 'required',
             'policy_name'                               => $request->policy_type != 'Group' ? 'required' : '',
             'certificate_no'                            => 'required|max:16',
@@ -695,7 +692,7 @@ class ClaimController extends Controller
             'tpa_name'                                  => 'required|max:75',
             'policy_type'                               => 'required',
             'group_name'                                => $request->policy_type == 'Group' ? 'required|max:75' : '',
-            'previous_policy_no'                        => $request->policy_type == 'Retail' ? 'required|max:16' : '',
+            // 'previous_policy_no'                        => $request->policy_type == 'Retail' ? 'required|max:16' : '',
             'start_date'                                => 'required|before_or_equal:' . now()->format('Y-m-d'),
             'expiry_date'                               => 'required|after:start_date',
             'commencement_date'                         => 'required',
@@ -969,7 +966,7 @@ class ClaimController extends Controller
             'has_family_physician'      => $request->claim_category == 'Cashless' ? 'required' : '',
             'family_physician'          => $request->has_family_physician == 'Yes' ? 'required' : '',
             'family_physician_contact_no'=> $request->has_family_physician == 'Yes' ? 'required' : '',
-            'comments'                  => isset($request->comments) ? 'max:250' : '',
+            'comments'                  => isset($request->comments) ? 'max:1000' : '',
         ];
 
         $messages =  [

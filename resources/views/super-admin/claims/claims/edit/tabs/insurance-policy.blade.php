@@ -22,7 +22,7 @@
             </div>
             <div class="col-md-6 mb-3">
                 <label for="policy_no">Policy No. <span class="text-danger">*</span></label>
-                <input type="text" readonly class="form-control" id="policy_no" name="policy_no" maxlength="16"
+                <input type="text" readonly class="form-control" id="policy_no" name="policy_no"
                     placeholder="Enter Policy No." value="{{ old('policy_no', $claim->policy_no) }}">
                 @error('policy_no')
                     <span id="policy-id-error" class="error invalid-feedback">{{ $message }}</span>
@@ -119,7 +119,7 @@
 
             <div class="col-md-6 mb-3">
                 <label for="previous_policy_no">Previous Policy No. <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="previous_policy_no" name="previous_policy_no" maxlength="16"
+                <input type="text" class="form-control" id="previous_policy_no" name="previous_policy_no"
                     placeholder="Enter Policy No." value="{{ old('previous_policy_no', @$claim->policy->previous_policy_no) }}">
                 @error('previous_policy_no')
                     <span id="policy-id-error" class="error invalid-feedback">{{ $message }}</span>
@@ -443,7 +443,7 @@
 
             <div class="col-md-12 mb-3">
                 <label for="comments">Policy Detail Comments </label>
-                <textarea class="form-control" id="comments" name="comments" maxlength="250" placeholder="Comments"
+                <textarea class="form-control" id="comments" name="comments" maxlength="1000" placeholder="Comments"
                     rows="5">{{ old('comments', @$claim->policy->comments) }}</textarea>
                 @error('comments')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>

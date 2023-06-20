@@ -539,7 +539,7 @@
 
                                         <div class="col-md-12 mt-1">
                                             <label for="discharge_status_comments">Discharge Status Comments<span class="text-danger">*</span></label>
-                                            <textarea class="form-control" id="discharge_status_comments" name="discharge_status_comments" maxlength="250" placeholder="Enter Discharge Status Comments"
+                                            <textarea class="form-control" id="discharge_status_comments" name="discharge_status_comments" maxlength="1000" placeholder="Enter Discharge Status Comments"
                                             rows="5">{{ old('discharge_status_comments', isset($discharge_status) ? $discharge_status->discharge_status_comments : '') }}</textarea>
 
                                             @error('discharge_status_comments')
