@@ -336,7 +336,7 @@
 
                                                 @if($claim->assessmentStatus && $claim->assessmentStatus->pre_assessment_status && $claim->assign_to)
                                                 <option>{{ @$claim->assessmentStatus->pre_assessment_status }}</option>
-                                                @elseif(empty(@$claim->assessmentStatus->pre_assessment_status))
+                                                @elseif(empty(@$claim->assessmentStatus->pre_assessment_status) && $claim->assign_to)
                                                 <option> Waiting for Pre-Assessment </option>
                                                 @else
                                                 <option> Waiting for Assigning for Pre-Assessment </option>
