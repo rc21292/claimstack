@@ -511,6 +511,7 @@
      $(document).ready(function() {
             setStatus();
             setAssStsus();
+            updateHospitalId();
             setAssFinaStsus();
             setStatusFinal();
         });
@@ -558,9 +559,9 @@
             var status = $("#hospital_on_the_panel_of_insurance_co").val();
 
             if(status == 'Yes'){
-                $("#hospital_id_insurance_co").val(data);
+                $("#hospital_id_insurance_co").val(data).prop("readonly", true);
             }else{
-                $("#hospital_id_insurance_co").val('');
+                $("#hospital_id_insurance_co").val('').prop("readonly", false);
             }        
         }
 
