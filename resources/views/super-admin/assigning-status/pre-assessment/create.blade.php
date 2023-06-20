@@ -334,11 +334,7 @@
                                                     class="text-danger"></span></label>
                                             <select disabled class="form-select final_assessment_status"  id="final_assessment_status"
                                                 name="final_assessment_status">
-
-                                                {{ $claim->assessmentStatus }}
-                                                {{ $claim->assessmentStatus->pre_assessment_status }}
-                                                {{ $claim->assign_to}}
-                                                @if($claim->assessmentStatus && $claim->assessmentStatus->pre_assessment_status && $claim->assign_to)
+                                                @if($claim->assessmentStatus && $claim->assign_to)
                                                 <option>{{ @$claim->assessmentStatus->pre_assessment_status }}</option>
                                                 @else
                                                 <option> Waiting for Assigning for Pre-Assessment </option>
