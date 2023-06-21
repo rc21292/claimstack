@@ -14,7 +14,14 @@ class ExportAdmin implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        return Admin::latest('id')->select('id', 'firstname', 'lastname', 'email', 'employee_code', 'designation', 'department', 'phone',  DB::raw("(SELECT name from admins where admins.id = admins.linked_employee)"), 'linked_employee_id', 'kra', DB::raw("DATE_FORMAT(admins.created_at, '%d-%m-%Y %H:%i:%s')"))->get();
+        $admins =  Admin::latest('id')->select('id', 'firstname', 'lastname', 'email', 'employee_code', 'designation', 'department', 'phone', 'linked_employee', 'linked_employee_id', 'kra', DB::raw("DATE_FORMAT(admins.created_at, '%d-%m-%Y %H:%i:%s')"))->get();
+
+        foreach ($admins as $key => $admin) {
+            $admins[$key]->linked_employee = Admin::where('id', $admin->linked_employee)->value('firstname').' '.Admin::where('id', $admin->linked_employee)->value('lastname');
+        }
+
+        return $admins;
+
     }
 
     public function headings(): array

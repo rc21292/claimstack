@@ -20,7 +20,7 @@
                     </li>
                     @foreach ($permissions as $permission)
                     <li class="list-group-item">
-                        <input class="form-check-input me-1 float-end mcer" name="permission[]" type="checkbox" value="{{ $permission->name }}">
+                        <input class="form-check-input me-1 float-end mcer" {{ (collect(old('permission'))->contains($permission->name)) ? 'checked':'' }} name="permission[]" type="checkbox" value="{{ $permission->name }}">
                         {{ $permission->name }}
                     </li>
                     @if($loop->iteration == 10)
@@ -55,7 +55,7 @@
                         @continue
                     @endif
                     <li class="list-group-item">
-                        <input class="form-check-input me-1 float-end lcr" name="permission[]" type="checkbox" value="{{ $permission->name }}">
+                        <input class="form-check-input me-1 float-end lcr" {{ (collect(old('permission'))->contains($permission->name)) ? 'checked':'' }} name="permission[]" type="checkbox" value="{{ $permission->name }}">
                         {{ $permission->name }}
                     </li>
                     @if($loop->iteration == 20)
@@ -90,7 +90,7 @@
                         @continue
                     @endif
                     <li class="list-group-item">
-                        <input class="form-check-input me-1 float-end uer" name="permission[]" type="checkbox" value="{{ $permission->name }}">
+                        <input class="form-check-input me-1 float-end uer" {{ (collect(old('permission'))->contains($permission->name)) ? 'checked':'' }} name="permission[]" type="checkbox" value="{{ $permission->name }}">
                         {{ $permission->name }}
                     </li>
                     @if($loop->iteration == 36)
@@ -125,7 +125,7 @@
                         @continue
                     @endif
                     <li class="list-group-item">
-                        <input class="form-check-input me-1 float-end cr" name="permission[]" type="checkbox" value="{{ $permission->name }}">
+                        <input class="form-check-input me-1 float-end cr" {{ (collect(old('permission'))->contains($permission->name)) ? 'checked':'' }} name="permission[]" type="checkbox" value="{{ $permission->name }}">
                         {{ $permission->name }}
                     </li>
                     @if($loop->iteration == 40)
@@ -160,7 +160,7 @@
                         @continue
                     @endif
                     <li class="list-group-item">
-                        <input class="form-check-input me-1 float-end ar" name="permission[]" type="checkbox" value="{{ $permission->name }}">
+                        <input class="form-check-input me-1 float-end ar" {{ (collect(old('permission'))->contains($permission->name)) ? 'checked':'' }} name="permission[]" type="checkbox" value="{{ $permission->name }}">
                         {{ $permission->name }}
                     </li>
                     @if($loop->iteration == 51)
@@ -195,7 +195,7 @@
                         @continue
                     @endif
                     <li class="list-group-item">
-                        <input class="form-check-input me-1 float-end cvr" name="permission[]" type="checkbox" value="{{ $permission->name }}">
+                        <input class="form-check-input me-1 float-end cvr" {{ (collect(old('permission'))->contains($permission->name)) ? 'checked':'' }} name="permission[]" type="checkbox" value="{{ $permission->name }}">
                         {{ $permission->name }}
                     </li>
                     @if($loop->iteration == 54)
@@ -230,7 +230,7 @@
                         @continue
                     @endif
                     <li class="list-group-item">
-                        <input class="form-check-input me-1 float-end or" name="permission[]" type="checkbox" value="{{ $permission->name }}">
+                        <input class="form-check-input me-1 float-end or" {{ (collect(old('permission'))->contains($permission->name)) ? 'checked':'' }} name="permission[]" type="checkbox" value="{{ $permission->name }}">
                         {{ $permission->name }}
                     </li>
                     @if($loop->iteration == 64)
