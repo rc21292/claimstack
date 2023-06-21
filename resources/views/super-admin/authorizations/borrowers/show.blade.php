@@ -64,7 +64,7 @@
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $borrower->claim->claimant->uid }} </p>
+                                        <p class="card-text">: {{ @$borrower->claim->claimant->uid }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title"> 
