@@ -1058,10 +1058,10 @@
                     $('#borrower_mobile_no').val("");
                     $('#borrower_pan_no').val("");
                     $('#borrower_aadhar_no').val("");
-                    $("#borrower_bank_name").val();
-                    $("#borrower_bank_address").val();
-                    $("#borrower_ac_no").val();
-                    $("#borrower_ifs_code").val();
+                    $("#borrower_bank_name").val("");
+                    $("#borrower_bank_address").val("");
+                    $("#borrower_ac_no").val("");
+                    $("#borrower_ifs_code").val("");
                     break;
                 default:
                     $('#borrower_title').val("");
@@ -1078,10 +1078,10 @@
                     $('#borrower_mobile_no').val("");
                     $('#borrower_pan_no').val("");
                     $('#borrower_aadhar_no').val("");
-                    $("#borrower_bank_name").val();
-                    $("#borrower_bank_address").val();
-                    $("#borrower_ac_no").val();
-                    $("#borrower_ifs_code").val();
+                    $("#borrower_bank_name").val("");
+                    $("#borrower_bank_address").val("");
+                    $("#borrower_ac_no").val("");
+                    $("#borrower_ifs_code").val("");
                     break;
             }
         }
@@ -1096,6 +1096,7 @@
         });
 
         $( document ).ready(function() {
+            claimantBorrowerSameOptions();
             if($("#itr").val() == 'No'){
                 $("#itr_file").attr('disabled',true);
             }else{
