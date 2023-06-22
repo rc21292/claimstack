@@ -255,7 +255,7 @@
             <div class="col-md-6 mt-3">
                 <label for="policy_no">Policy No. <span class="text-danger">*</span></label>
                 <div class="input-group">
-                    <input type="text" maxlength="16" class="form-control" id="policy_no" name="policy_no"
+                    <input type="text" class="form-control" id="policy_no" name="policy_no"
                         placeholder="Policy No." value="{{ old('policy_no', $claim->policy_no) }}">
                     @isset($claim->policy_file)
                         <a href="{{ asset('storage/uploads/claims/' . $claim->id . '/policies' . '/' . $claim->policy_file) }}"
