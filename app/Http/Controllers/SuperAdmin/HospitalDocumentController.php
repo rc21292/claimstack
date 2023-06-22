@@ -49,10 +49,11 @@ class HospitalDocumentController extends Controller
      */
     public function show($id)
     {
-        $hospital_document          = HospitalDocument::where('hospital_id', $id)->first();
+        $hospital_document = HospitalDocument::where('hospital_id', $id)->first();
+
         if (!$hospital_document) {
             HospitalDocument::create(['hospital_id'=> $id]);
-            $hospital_document          = HospitalDocument::where('hospital_id', $id)->first();
+            $hospital_document = HospitalDocument::where('hospital_id', $id)->first();
         }
 
         $reimbursementdocument = HospitalDocument::where('hospital_id', $id)->exists();
@@ -68,9 +69,6 @@ class HospitalDocumentController extends Controller
         ->map(function ($pb) { return $pb->keyBy('file_id'); });
 
         return view('super-admin.hospitals.edit.tabs.view-hospital-documents',  compact('hospital_document', 'document_files', 'reimbursementdocument', 'id'));
-
-        
-
     }
 
     /**
