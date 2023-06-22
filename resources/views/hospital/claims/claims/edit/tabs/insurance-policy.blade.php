@@ -119,7 +119,7 @@
             </div>
 
             <div class="col-md-6 mb-3">
-                <label for="previous_policy_no">Previous Policy No. <span class="text-danger">*</span></label>
+                <label for="previous_policy_no">Previous Policy No. <span class="text-danger"></span></label>
                 <input type="text" class="form-control" id="previous_policy_no" name="previous_policy_no"
                     placeholder="Enter Policy No." value="{{ old('previous_policy_no', @$claim->policy->previous_policy_no) }}">
                 @error('previous_policy_no')
@@ -321,8 +321,7 @@
             <div class="col-md-6 mb-3">
                 <label for="policy_no_additional">Policy No. (Top Up / Additional) <span
                         class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="policy_no_additional" name="policy_no_additional"
-                    maxlength="16" placeholder="Enter Policy No. (Top Up / Additional)"
+                <input type="text" class="form-control" id="policy_no_additional" name="policy_no_additional" placeholder="Enter Policy No. (Top Up / Additional)"
                     value="{{ old('policy_no_additional', @$claim->policy->policy_no_additional) }}">
                 @error('policy_no_additional')
                     <span id="policy-id-error" class="error invalid-feedback">{{ $message }}</span>
@@ -383,7 +382,7 @@
             <div class="col-md-6 mb-3">
                 <label for="policy_no_other">Policy No. (Other Policy) <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="policy_no_other" name="policy_no_other"
-                    maxlength="16" placeholder="Enter Policy No. (Other Policy)"
+                     placeholder="Enter Policy No. (Other Policy)"
                     value="{{ old('policy_no_other', @$claim->policy->policy_no_other) }}">
                 @error('policy_no_other')
                     <span id="policy-id-error" class="error invalid-feedback">{{ $message }}</span>

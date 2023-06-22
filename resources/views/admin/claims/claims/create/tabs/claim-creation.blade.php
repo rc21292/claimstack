@@ -294,7 +294,7 @@
             <div class="col-md-6 mt-3">
                 <label for="policy_no">Policy No. <span class="text-danger">*</span></label>
                 <div class="input-group">
-                    <input type="text" maxlength="16" class="form-control" id="policy_no" name="policy_no"
+                    <input type="text" class="form-control" id="policy_no" name="policy_no"
                         placeholder="Policy No." value="{{ old('policy_no') }}">
                 </div>
                 @error('policy_no')
