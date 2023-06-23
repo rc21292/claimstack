@@ -401,7 +401,7 @@
 
                                         <div class="col-md-12 mt-3">
                                             <label for="ic_claim_status_comments">IC Claim Status Comments </label>
-                                            <textarea readonly class="form-control" id="ic_claim_status_comments" name="ic_claim_status_comments" maxlength="250"
+                                            <textarea readonly class="form-control" id="ic_claim_status_comments" name="ic_claim_status_comments" maxlength="1000"
                                                 placeholder="IC Claim Status Comments" rows="5">{{ old('ic_claim_status_comments', isset($icclaim_status) ? $icclaim_status->ic_claim_status_comments : '') }}</textarea>
                                             @error('ic_claim_status_comments')
                                                 <span id="name-error"

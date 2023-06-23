@@ -400,7 +400,7 @@
 
                                         <div class="col-md-12 mt-3" style="display:none;">
                                             <label for="loan_application_comments">Loan application Comments </label>
-                                            <textarea readonly class="form-control" id="loan_application_comments" name="loan_application_comments" maxlength="250"
+                                            <textarea readonly class="form-control" id="loan_application_comments" name="loan_application_comments" maxlength="1000"
                                                 placeholder="Loan application Comments" rows="5">{{ old('loan_application_comments', isset($lending_status) ? $lending_status->loan_application_comments : '') }}</textarea>
                                             @error('loan_application_comments')
                                                 <span id="name-error"

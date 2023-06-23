@@ -921,7 +921,7 @@
 
                                         <div class="col-md-12 mt-3">
                                             <label for="co_borrower_comments">Co-Borrower / Borrower Comments </label>
-                                            <textarea class="form-control" id="co_borrower_comments" name="co_borrower_comments" maxlength="250"
+                                            <textarea class="form-control" id="co_borrower_comments" name="co_borrower_comments" maxlength="1000"
                                                 placeholder="Co-Borrower / Borrower Comments" rows="5">{{ old('co_borrower_comments', @$borrower->co_borrower_comments) }}</textarea>
                                             @error('co_borrower_comments')
                                                 <span id="name-error"
