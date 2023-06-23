@@ -65,8 +65,8 @@
                                             <tbody>
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->patient_id_proof_file) }}" >Patient ID Proof</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->patient_id_proof_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->patient_id_proof_file) }}" @if(!isset($reimbursementdocument->patient_id_proof_file)) style="color:#333336;pointer-events: none" @endif >Patient ID Proof</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->patient_id_proof_file) }}" @if(!isset($reimbursementdocument->patient_id_proof_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -74,7 +74,7 @@
                                                 @foreach($document_files['patient_id_proof_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Patient ID Proof{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
@@ -82,8 +82,8 @@
 
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->doctor_prescriptions_or_consultation_papers_file) }}" >Doctor Prescriptions / Consultation Papers</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->doctor_prescriptions_or_consultation_papers_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->doctor_prescriptions_or_consultation_papers_file) }}" @if(!isset($reimbursementdocument->doctor_prescriptions_or_consultation_papers_file)) style="color:#333336;pointer-events: none" @endif >Doctor Prescriptions / Consultation Papers</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->doctor_prescriptions_or_consultation_papers_file) }}" @if(!isset($reimbursementdocument->doctor_prescriptions_or_consultation_papers_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -91,15 +91,15 @@
                                                 @foreach($document_files['doctor_prescriptions_or_consultation_papers_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Doctor Prescriptions / Consultation Papers{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif     
                                                 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->insurance_policy_copy_file) }}" >Insurance Policy Copy</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->insurance_policy_copy_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->insurance_policy_copy_file) }}" @if(!isset($reimbursementdocument->insurance_policy_copy_file)) style="color:#333336;pointer-events: none" @endif >Insurance Policy Copy</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->insurance_policy_copy_file) }}" @if(!isset($reimbursementdocument->insurance_policy_copy_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -107,15 +107,15 @@
                                                 @foreach($document_files['insurance_policy_copy_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Insurance Policy Copy{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif    
                                                 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->tpa_card_file) }}" >TPA Card</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->tpa_card_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->tpa_card_file) }}" @if(!isset($reimbursementdocument->tpa_card_file)) style="color:#333336;pointer-events: none" @endif >TPA Card</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->tpa_card_file) }}" @if(!isset($reimbursementdocument->tpa_card_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -124,15 +124,15 @@
                                                 @foreach($document_files['tpa_card_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">TPA Card{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif     
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->employee_or_member_id_group_file) }}" >Employee / Member ID (Group)</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->employee_or_member_id_group_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->employee_or_member_id_group_file) }}" @if(!isset($reimbursementdocument->employee_or_member_id_group_file)) style="color:#333336;pointer-events: none" @endif >Employee / Member ID (Group)</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->employee_or_member_id_group_file) }}" @if(!isset($reimbursementdocument->employee_or_member_id_group_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -141,7 +141,7 @@
                                                 @foreach($document_files['employee_or_member_id_group_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Employee / Member ID (Group){{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
@@ -149,8 +149,8 @@
                                                 
                                                 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->photograph_of_the_patient_file) }}" >Photograph of the Patient</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->photograph_of_the_patient_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->photograph_of_the_patient_file) }}" @if(!isset($reimbursementdocument->photograph_of_the_patient_file)) style="color:#333336;pointer-events: none" @endif >Photograph of the Patient</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->photograph_of_the_patient_file) }}" @if(!isset($reimbursementdocument->photograph_of_the_patient_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -159,7 +159,7 @@
                                                 @foreach($document_files['photograph_of_the_patient_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Photograph of the Patient{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
@@ -167,8 +167,8 @@
 
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->claim_intimation_documents) }}" >Claim Intimation Documents</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->claim_intimation_documents) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->claim_intimation_documents) }}" @if(!isset($reimbursementdocument->claim_intimation_documents)) style="color:#333336;pointer-events: none" @endif >Claim Intimation Documents</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->claim_intimation_documents) }}" @if(!isset($reimbursementdocument->claim_intimation_documents)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -177,7 +177,7 @@
                                                 @foreach($document_files['claim_intimation_documents'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Claim Intimation Documents{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
@@ -185,8 +185,8 @@
 
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->bhc_assessment_formsi_and_ii_signed_stamped_file) }}" >BHC Assessment Forms - I & II (Signed & Stamped)</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->bhc_assessment_formsi_and_ii_signed_stamped_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->bhc_assessment_formsi_and_ii_signed_stamped_file) }}" @if(!isset($reimbursementdocument->bhc_assessment_formsi_and_ii_signed_stamped_file)) style="color:#333336;pointer-events: none" @endif >BHC Assessment Forms - I & II (Signed & Stamped)</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->bhc_assessment_formsi_and_ii_signed_stamped_file) }}" @if(!isset($reimbursementdocument->bhc_assessment_formsi_and_ii_signed_stamped_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -195,15 +195,15 @@
                                                 @foreach($document_files['bhc_assessment_formsi_and_ii_signed_stamped_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">BHC Assessment Forms - I & II (Signed & Stamped){{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->claim_other_documents_file) }}" >Other Documents</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->claim_other_documents_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->claim_other_documents_file) }}" @if(!isset($reimbursementdocument->claim_other_documents_file)) style="color:#333336;pointer-events: none" @endif >Other Documents</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->claim_other_documents_file) }}" @if(!isset($reimbursementdocument->claim_other_documents_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -212,7 +212,7 @@
                                                 @foreach($document_files['claim_other_documents_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Other Documents{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
@@ -228,8 +228,8 @@
                                             <tbody>
                                                 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->indoor_care_paper_file) }}" >Indoor Care Paper</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->indoor_care_paper_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->indoor_care_paper_file) }}" @if(!isset($reimbursementdocument->indoor_care_paper_file)) style="color:#333336;pointer-events: none" @endif >Indoor Care Paper</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->indoor_care_paper_file) }}" @if(!isset($reimbursementdocument->indoor_care_paper_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -238,15 +238,15 @@
                                                 @foreach($document_files['indoor_care_paper_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Indoor Care Paper{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->ecg_report_file) }}" >ECG Report</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->ecg_report_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->ecg_report_file) }}" @if(!isset($reimbursementdocument->ecg_report_file)) style="color:#333336;pointer-events: none" @endif >ECG Report</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->ecg_report_file) }}" @if(!isset($reimbursementdocument->ecg_report_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -255,15 +255,15 @@
                                                 @foreach($document_files['ecg_report_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">ECG Report{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->ct_mri_usg_hpe_investigation_report_file) }}" >CT/MRI/USG/HPE investigation Report</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->ct_mri_usg_hpe_investigation_report_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->ct_mri_usg_hpe_investigation_report_file) }}" @if(!isset($reimbursementdocument->ct_mri_usg_hpe_investigation_report_file)) style="color:#333336;pointer-events: none" @endif >CT/MRI/USG/HPE investigation Report</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->ct_mri_usg_hpe_investigation_report_file) }}" @if(!isset($reimbursementdocument->ct_mri_usg_hpe_investigation_report_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -272,15 +272,15 @@
                                                 @foreach($document_files['ct_mri_usg_hpe_investigation_report_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">CT/MRI/USG/HPE investigation Report{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->diagnostic_or_investigation_reports_file) }}" >Diagnostic / Investigation Reports</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->diagnostic_or_investigation_reports_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->diagnostic_or_investigation_reports_file) }}" @if(!isset($reimbursementdocument->diagnostic_or_investigation_reports_file)) style="color:#333336;pointer-events: none" @endif >Diagnostic / Investigation Reports</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->diagnostic_or_investigation_reports_file) }}" @if(!isset($reimbursementdocument->diagnostic_or_investigation_reports_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -289,15 +289,15 @@
                                                 @foreach($document_files['diagnostic_or_investigation_reports_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Diagnostic / Investigation Reports{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->doctor’s_reference_slip_for_investigation_file) }}" >Doctor’s reference slip for Investigation</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->doctor’s_reference_slip_for_investigation_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->doctor’s_reference_slip_for_investigation_file) }}" @if(!isset($reimbursementdocument->doctor’s_reference_slip_for_investigation_file)) style="color:#333336;pointer-events: none" @endif >Doctor’s reference slip for Investigation</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->doctor’s_reference_slip_for_investigation_file) }}" @if(!isset($reimbursementdocument->doctor’s_reference_slip_for_investigation_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -306,15 +306,15 @@
                                                 @foreach($document_files['doctor’s_reference_slip_for_investigation_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Doctor’s reference slip for Investigation{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->operation_theatre_notes_file) }}" >Operation Theatre Notes</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->operation_theatre_notes_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->operation_theatre_notes_file) }}" @if(!isset($reimbursementdocument->operation_theatre_notes_file)) style="color:#333336;pointer-events: none" @endif >Operation Theatre Notes</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->operation_theatre_notes_file) }}" @if(!isset($reimbursementdocument->operation_theatre_notes_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -323,15 +323,15 @@
                                                 @foreach($document_files['operation_theatre_notes_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Operation Theatre Notes{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->pharmacy_bills_file) }}" >Pharmacy Bills</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->pharmacy_bills_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->pharmacy_bills_file) }}" @if(!isset($reimbursementdocument->pharmacy_bills_file)) style="color:#333336;pointer-events: none" @endif >Pharmacy Bills</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->pharmacy_bills_file) }}" @if(!isset($reimbursementdocument->pharmacy_bills_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -340,15 +340,15 @@
                                                 @foreach($document_files['pharmacy_bills_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Pharmacy Bills{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->implant_sticker_invoice_file) }}" >Implant Sticker Invoice</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->implant_sticker_invoice_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->implant_sticker_invoice_file) }}" @if(!isset($reimbursementdocument->implant_sticker_invoice_file)) style="color:#333336;pointer-events: none" @endif >Implant Sticker Invoice</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->implant_sticker_invoice_file) }}" @if(!isset($reimbursementdocument->implant_sticker_invoice_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -357,15 +357,15 @@
                                                 @foreach($document_files['implant_sticker_invoice_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Implant Sticker Invoice{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->hospital_break_up_bills_file) }}" >Hospital Break-up Bills</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->hospital_break_up_bills_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->hospital_break_up_bills_file) }}" @if(!isset($reimbursementdocument->hospital_break_up_bills_file)) style="color:#333336;pointer-events: none" @endif >Hospital Break-up Bills</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->hospital_break_up_bills_file) }}" @if(!isset($reimbursementdocument->hospital_break_up_bills_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -374,15 +374,15 @@
                                                 @foreach($document_files['hospital_break_up_bills_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Hospital Break-up Bills{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->hospital_main_final_bill_file) }}" >Hospital (Main) Final Bill</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->hospital_main_final_bill_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->hospital_main_final_bill_file) }}" @if(!isset($reimbursementdocument->hospital_main_final_bill_file)) style="color:#333336;pointer-events: none" @endif >Hospital (Main) Final Bill</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->hospital_main_final_bill_file) }}" @if(!isset($reimbursementdocument->hospital_main_final_bill_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -391,15 +391,15 @@
                                                 @foreach($document_files['hospital_main_final_bill_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Hospital (Main) Final Bill{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->discharge_or_day_care_summary_file) }}" >Discharge / Day-care Summary</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->discharge_or_day_care_summary_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->discharge_or_day_care_summary_file) }}" @if(!isset($reimbursementdocument->discharge_or_day_care_summary_file)) style="color:#333336;pointer-events: none" @endif >Discharge / Day-care Summary</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->discharge_or_day_care_summary_file) }}" @if(!isset($reimbursementdocument->discharge_or_day_care_summary_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -408,15 +408,15 @@
                                                 @foreach($document_files['discharge_or_day_care_summary_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Discharge / Day-care Summary{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->death_summary_from_hospital_where_applicable_file) }}" >Death summary from hospital where applicable</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->death_summary_from_hospital_where_applicable_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->death_summary_from_hospital_where_applicable_file) }}" @if(!isset($reimbursementdocument->death_summary_from_hospital_where_applicable_file)) style="color:#333336;pointer-events: none" @endif >Death summary from hospital where applicable</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->death_summary_from_hospital_where_applicable_file) }}" @if(!isset($reimbursementdocument->death_summary_from_hospital_where_applicable_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -425,15 +425,15 @@
                                                 @foreach($document_files['death_summary_from_hospital_where_applicable_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Death summary from hospital where applicable{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->payment_receipts_of_the_hospital_file) }}" >Payment Receipts of the Hospital</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->payment_receipts_of_the_hospital_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->payment_receipts_of_the_hospital_file) }}" @if(!isset($reimbursementdocument->payment_receipts_of_the_hospital_file)) style="color:#333336;pointer-events: none" @endif >Payment Receipts of the Hospital</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->payment_receipts_of_the_hospital_file) }}" @if(!isset($reimbursementdocument->payment_receipts_of_the_hospital_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -442,15 +442,15 @@
                                                 @foreach($document_files['payment_receipts_of_the_hospital_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Payment Receipts of the Hospital{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->other_documents_file) }}" >Other Documents</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->other_documents_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->other_documents_file) }}" @if(!isset($reimbursementdocument->other_documents_file)) style="color:#333336;pointer-events: none" @endif >Other Documents</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->other_documents_file) }}" @if(!isset($reimbursementdocument->other_documents_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -459,7 +459,7 @@
                                                 @foreach($document_files['other_documents_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Other Documents{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
@@ -476,8 +476,8 @@
                                               
                                                 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->claimant_pan_card_file) }}" >Claimant PAN Card</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->claimant_pan_card_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->claimant_pan_card_file) }}" @if(!isset($reimbursementdocument->claimant_pan_card_file)) style="color:#333336;pointer-events: none" @endif >Claimant PAN Card</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->claimant_pan_card_file) }}" @if(!isset($reimbursementdocument->claimant_pan_card_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -486,15 +486,15 @@
                                                 @foreach($document_files['claimant_pan_card_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Claimant PAN Card{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->claimant_aadhar_card_file) }}" >Claimant Aadhar Card</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->claimant_aadhar_card_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->claimant_aadhar_card_file) }}" @if(!isset($reimbursementdocument->claimant_aadhar_card_file)) style="color:#333336;pointer-events: none" @endif >Claimant Aadhar Card</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->claimant_aadhar_card_file) }}" @if(!isset($reimbursementdocument->claimant_aadhar_card_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -503,15 +503,15 @@
                                                 @foreach($document_files['claimant_aadhar_card_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Claimant Aadhar Card{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->claimant_current_address_proof_file) }}" >Claimant Current Address Proof</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->claimant_current_address_proof_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->claimant_current_address_proof_file) }}" @if(!isset($reimbursementdocument->claimant_current_address_proof_file)) style="color:#333336;pointer-events: none" @endif >Claimant Current Address Proof</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->claimant_current_address_proof_file) }}" @if(!isset($reimbursementdocument->claimant_current_address_proof_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -520,15 +520,15 @@
                                                 @foreach($document_files['claimant_current_address_proof_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Claimant Current Address Proof{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->claimant_cancel_cheque_file) }}" >Claimant Cancel Cheque / Pass Book</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->claimant_cancel_cheque_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->claimant_cancel_cheque_file) }}" @if(!isset($reimbursementdocument->claimant_cancel_cheque_file)) style="color:#333336;pointer-events: none" @endif >Claimant Cancel Cheque / Pass Book</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->claimant_cancel_cheque_file) }}" @if(!isset($reimbursementdocument->claimant_cancel_cheque_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -537,15 +537,15 @@
                                                 @foreach($document_files['claimant_cancel_cheque_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Claimant Cancel Cheque / Pass Book{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->abha_id_proof_file) }}" >ABHA ID Proof</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->abha_id_proof_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->abha_id_proof_file) }}" @if(!isset($reimbursementdocument->abha_id_proof_file)) style="color:#333336;pointer-events: none" @endif >ABHA ID Proof</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->abha_id_proof_file) }}" @if(!isset($reimbursementdocument->abha_id_proof_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -554,15 +554,15 @@
                                                 @foreach($document_files['abha_id_proof_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">ABHA ID Proof{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->mlc_report_and_police_fir_document_file) }}" >MLC Report & Police FIR Document</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->mlc_report_and_police_fir_document_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->mlc_report_and_police_fir_document_file) }}" @if(!isset($reimbursementdocument->mlc_report_and_police_fir_document_file)) style="color:#333336;pointer-events: none" @endif >MLC Report & Police FIR Document</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->mlc_report_and_police_fir_document_file) }}" @if(!isset($reimbursementdocument->mlc_report_and_police_fir_document_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -571,7 +571,7 @@
                                                 @foreach($document_files['mlc_report_and_police_fir_document_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">MLC Report & Police FIR Document{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
@@ -579,8 +579,8 @@
 
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->insurance_co_tpa_claim_form_signed_and_stamped_file) }}" >Insurance Co. TPA Claim Form (Signed & Stamped)</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->insurance_co_tpa_claim_form_signed_and_stamped_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->insurance_co_tpa_claim_form_signed_and_stamped_file) }}" @if(!isset($reimbursementdocument->insurance_co_tpa_claim_form_signed_and_stamped_file)) style="color:#333336;pointer-events: none" @endif >Insurance Co. TPA Claim Form (Signed & Stamped)</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->insurance_co_tpa_claim_form_signed_and_stamped_file) }}" @if(!isset($reimbursementdocument->insurance_co_tpa_claim_form_signed_and_stamped_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -589,7 +589,7 @@
                                                 @foreach($document_files['insurance_co_tpa_claim_form_signed_and_stamped_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Insurance Co. TPA Claim Form (Signed & Stamped){{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
@@ -603,8 +603,8 @@
                                         <table class="table">
                                             <tbody>
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->settllement_letter_file) }}" >Settllement Letter</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->settllement_letter_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->settllement_letter_file) }}" @if(!isset($reimbursementdocument->settllement_letter_file)) style="color:#333336;pointer-events: none" @endif >Settllement Letter</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->settllement_letter_file) }}" @if(!isset($reimbursementdocument->settllement_letter_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -613,15 +613,15 @@
                                                 @foreach($document_files['settllement_letter_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Settllement Letter{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif  
                                                 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->insurance_other_documents_file) }}" >Other Documents</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->insurance_other_documents_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->insurance_other_documents_file) }}" @if(!isset($reimbursementdocument->insurance_other_documents_file)) style="color:#333336;pointer-events: none" @endif >Other Documents</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->insurance_other_documents_file) }}" @if(!isset($reimbursementdocument->insurance_other_documents_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -630,7 +630,7 @@
                                                 @foreach($document_files['insurance_other_documents_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Other Documents{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
@@ -645,8 +645,8 @@
                                         <table class="table">
                                             <tbody>
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->borrower_current_address_proof_file) }}" >Borrower Current Address Proof</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->borrower_current_address_proof_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->borrower_current_address_proof_file) }}" @if(!isset($reimbursementdocument->borrower_current_address_proof_file)) style="color:#333336;pointer-events: none" @endif >Borrower Current Address Proof</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->borrower_current_address_proof_file) }}" @if(!isset($reimbursementdocument->borrower_current_address_proof_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -655,15 +655,15 @@
                                                 @foreach($document_files['borrower_current_address_proof_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Borrower Current Address Proof{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif  
                                                 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->borrower_pan_card_file) }}" >Borrower PAN Card</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->borrower_pan_card_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->borrower_pan_card_file) }}" @if(!isset($reimbursementdocument->borrower_pan_card_file)) style="color:#333336;pointer-events: none" @endif >Borrower PAN Card</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->borrower_pan_card_file) }}" @if(!isset($reimbursementdocument->borrower_pan_card_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -672,15 +672,15 @@
                                                 @foreach($document_files['borrower_pan_card_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Borrower PAN Card{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif 
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->borrower_aadhar_card_file) }}" >Borrower Aadhar Card</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->borrower_aadhar_card_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->borrower_aadhar_card_file) }}" @if(!isset($reimbursementdocument->borrower_aadhar_card_file)) style="color:#333336;pointer-events: none" @endif >Borrower Aadhar Card</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->borrower_aadhar_card_file) }}" @if(!isset($reimbursementdocument->borrower_aadhar_card_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -689,15 +689,15 @@
                                                 @foreach($document_files['borrower_aadhar_card_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Borrower Aadhar Card{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif 
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->borrower_bank_statement_3_months_file) }}" >Borrower Bank Statement (3 months)</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->borrower_bank_statement_3_months_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->borrower_bank_statement_3_months_file) }}" @if(!isset($reimbursementdocument->borrower_bank_statement_3_months_file)) style="color:#333336;pointer-events: none" @endif >Borrower Bank Statement (3 months)</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->borrower_bank_statement_3_months_file) }}" @if(!isset($reimbursementdocument->borrower_bank_statement_3_months_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -706,15 +706,15 @@
                                                 @foreach($document_files['borrower_bank_statement_3_months_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Borrower Bank Statement (3 months){{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif 
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->borrower_itr_income_tax_return_file) }}" >Borrower  ITR (Income Tax Return)</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->borrower_itr_income_tax_return_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->borrower_itr_income_tax_return_file) }}" @if(!isset($reimbursementdocument->borrower_itr_income_tax_return_file)) style="color:#333336;pointer-events: none" @endif >Borrower  ITR (Income Tax Return)</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->borrower_itr_income_tax_return_file) }}" @if(!isset($reimbursementdocument->borrower_itr_income_tax_return_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -723,15 +723,15 @@
                                                 @foreach($document_files['borrower_itr_income_tax_return_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Borrower  ITR (Income Tax Return){{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif 
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->borrower_cancel_cheque_file) }}" >Borrower Cancel Cheque / Pass Book</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->borrower_cancel_cheque_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->borrower_cancel_cheque_file) }}" @if(!isset($reimbursementdocument->borrower_cancel_cheque_file)) style="color:#333336;pointer-events: none" @endif >Borrower Cancel Cheque / Pass Book</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->borrower_cancel_cheque_file) }}" @if(!isset($reimbursementdocument->borrower_cancel_cheque_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -740,15 +740,15 @@
                                                 @foreach($document_files['borrower_cancel_cheque_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Borrower Cancel Cheque / Pass Book{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif 
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->borrower_other_documents_file) }}" >Borrower Other Documents</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->borrower_other_documents_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->borrower_other_documents_file) }}" @if(!isset($reimbursementdocument->borrower_other_documents_file)) style="color:#333336;pointer-events: none" @endif >Borrower Other Documents</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->borrower_other_documents_file) }}" @if(!isset($reimbursementdocument->borrower_other_documents_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -757,7 +757,7 @@
                                                 @foreach($document_files['borrower_other_documents_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Borrower Other Documents{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
@@ -771,8 +771,8 @@
                                         <table class="table">
                                             <tbody>
                                                  <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->co_borrower_current_address_proof_file) }}" >Co-Borrower  Current Address Proof</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->co_borrower_current_address_proof_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->co_borrower_current_address_proof_file) }}" @if(!isset($reimbursementdocument->co_borrower_current_address_proof_file)) style="color:#333336;pointer-events: none" @endif >Co-Borrower  Current Address Proof</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->co_borrower_current_address_proof_file) }}" @if(!isset($reimbursementdocument->co_borrower_current_address_proof_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -781,15 +781,15 @@
                                                 @foreach($document_files['co_borrower_current_address_proof_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Co-Borrower  Current Address Proof{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif  
                                                 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->co_borrower_pan_card_file) }}" >Co-Borrower PAN Card</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->co_borrower_pan_card_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->co_borrower_pan_card_file) }}" @if(!isset($reimbursementdocument->co_borrower_pan_card_file)) style="color:#333336;pointer-events: none" @endif >Co-Borrower PAN Card</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->co_borrower_pan_card_file) }}" @if(!isset($reimbursementdocument->co_borrower_pan_card_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -798,15 +798,15 @@
                                                 @foreach($document_files['co_borrower_pan_card_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Co-Borrower PAN Card{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif  
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->co_borrower_aadhar_card_file) }}" >Co-Borrower Aadhar Card</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->co_borrower_aadhar_card_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->co_borrower_aadhar_card_file) }}" @if(!isset($reimbursementdocument->co_borrower_aadhar_card_file)) style="color:#333336;pointer-events: none" @endif >Co-Borrower Aadhar Card</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->co_borrower_aadhar_card_file) }}" @if(!isset($reimbursementdocument->co_borrower_aadhar_card_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -815,15 +815,15 @@
                                                 @foreach($document_files['co_borrower_aadhar_card_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Co-Borrower Aadhar Card{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->co_borrower_bank_statement_3_months_file) }}" >Co-Borrower Bank Statement (3 months)</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->co_borrower_bank_statement_3_months_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->co_borrower_bank_statement_3_months_file) }}" @if(!isset($reimbursementdocument->co_borrower_bank_statement_3_months_file)) style="color:#333336;pointer-events: none" @endif >Co-Borrower Bank Statement (3 months)</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->co_borrower_bank_statement_3_months_file) }}" @if(!isset($reimbursementdocument->co_borrower_bank_statement_3_months_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -832,15 +832,15 @@
                                                 @foreach($document_files['co_borrower_bank_statement_3_months_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Co-Borrower Bank Statement (3 months){{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->co_borrower_itr_income_tax_return_file) }}" >Co-Borrower  ITR (Income Tax Return)</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->co_borrower_itr_income_tax_return_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->co_borrower_itr_income_tax_return_file) }}" @if(!isset($reimbursementdocument->co_borrower_itr_income_tax_return_file)) style="color:#333336;pointer-events: none" @endif >Co-Borrower  ITR (Income Tax Return)</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->co_borrower_itr_income_tax_return_file) }}" @if(!isset($reimbursementdocument->co_borrower_itr_income_tax_return_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -849,15 +849,15 @@
                                                 @foreach($document_files['co_borrower_itr_income_tax_return_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Co-Borrower  ITR (Income Tax Return){{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->co_borrower_cancel_cheque_file) }}" >Co-Borrower Cancel Cheque / Pass Book</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->co_borrower_cancel_cheque_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->co_borrower_cancel_cheque_file) }}" @if(!isset($reimbursementdocument->co_borrower_cancel_cheque_file)) style="color:#333336;pointer-events: none" @endif >Co-Borrower Cancel Cheque / Pass Book</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->co_borrower_cancel_cheque_file) }}" @if(!isset($reimbursementdocument->co_borrower_cancel_cheque_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -866,15 +866,15 @@
                                                 @foreach($document_files['co_borrower_cancel_cheque_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Co-Borrower Cancel Cheque / Pass Book{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->co_borrower_other_documents_file) }}" >Co-Borrower Other Documents</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->co_borrower_other_documents_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->co_borrower_other_documents_file) }}" @if(!isset($reimbursementdocument->co_borrower_other_documents_file)) style="color:#333336;pointer-events: none" @endif >Co-Borrower Other Documents</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->co_borrower_other_documents_file) }}" @if(!isset($reimbursementdocument->co_borrower_other_documents_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -883,7 +883,7 @@
                                                 @foreach($document_files['co_borrower_other_documents_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Co-Borrower Other Documents{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
@@ -898,8 +898,8 @@
                                         <table class="table">
                                             <tbody>
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->loan_approval_letter_file) }}" >Loan Approval Letter</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->loan_approval_letter_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->loan_approval_letter_file) }}" @if(!isset($reimbursementdocument->loan_approval_letter_file)) style="color:#333336;pointer-events: none" @endif >Loan Approval Letter</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->loan_approval_letter_file) }}" @if(!isset($reimbursementdocument->loan_approval_letter_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -908,15 +908,15 @@
                                                 @foreach($document_files['loan_approval_letter_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Loan Approval Letter{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif  
                                                 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->loan_disbursement_letter_file) }}" >Loan Disbursement Letter</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->loan_disbursement_letter_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->loan_disbursement_letter_file) }}" @if(!isset($reimbursementdocument->loan_disbursement_letter_file)) style="color:#333336;pointer-events: none" @endif >Loan Disbursement Letter</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$reimbursementdocument->loan_disbursement_letter_file) }}" @if(!isset($reimbursementdocument->loan_disbursement_letter_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
@@ -925,7 +925,7 @@
                                                 @foreach($document_files['loan_disbursement_letter_file'] as $document_file)
                                                 <tr>
                                                     <td><a target="_blank" href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}">Loan Disbursement Letter{{ $document_file->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a href="{{ asset('storage/uploads/reimbursement/documents/'.$reimbursementdocument->id.'/'.$document_file->file_path) }}" @if(!isset($document_file->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach

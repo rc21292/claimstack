@@ -434,7 +434,7 @@
                                             <label for="pre_assessment_status_comments">Pre-Assessment Status Comments
                                             </label>
                                             <textarea class="form-control" id="pre_assessment_status_comments" name="pre_assessment_status_comments"
-                                                maxlength="250" placeholder="Pre-Assessment Status Comments" rows="5">{{ old('pre_assessment_status_comments', isset($assessment_status) ? $assessment_status->pre_assessment_status_comments : '') }}</textarea>
+                                                maxlength="1000" placeholder="Pre-Assessment Status Comments" rows="5">{{ old('pre_assessment_status_comments', isset($assessment_status) ? $assessment_status->pre_assessment_status_comments : '') }}</textarea>
                                             @error('pre_assessment_status_comments')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
@@ -531,7 +531,7 @@
                                             <label for="final_assessment_status_comments">Final Assessment Status Comments
                                             </label>
                                             <textarea class="form-control" id="final_assessment_status_comments" name="final_assessment_status_comments"
-                                                maxlength="250" placeholder="Enter Final Assessment Status Comments" rows="5">{{ old('final_assessment_status_comments', isset($assessment_status) ? $assessment_status->final_assessment_status_comments : '') }}</textarea>
+                                                maxlength="1000" placeholder="Enter Final Assessment Status Comments" rows="5">{{ old('final_assessment_status_comments', isset($assessment_status) ? $assessment_status->final_assessment_status_comments : '') }}</textarea>
                                             @error('final_assessment_status_comments')
                                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
