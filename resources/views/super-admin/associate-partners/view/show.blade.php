@@ -9,8 +9,8 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ url('/') }}">Claim Stack</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('super-admin.dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ url('/') }}" >Claim Stack</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('super-admin.dashboard') }}" >Dashboard</a></li>
                             <li class="breadcrumb-item"><a href="javascript:void(0);">Associate Partner</a></li>
                             <li class="breadcrumb-item active">Create</li>
                         </ol>
@@ -53,32 +53,32 @@
                                         <table class="table">
                                             <tbody>
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->panfile) }}" >Associate Partner Pan Number</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->panfile) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->panfile) }}" @if(!isset($associate->panfile)) style="color:#333336;pointer-events: none" @endif >Associate Partner Pan Number</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->panfile) }}" @if(!isset($associate->panfile)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>
 
                                                 @if($associate_files && (count($associate_files) > 0) && isset($associate_files['panfile']) && $associate_files['panfile'])
                                                 @foreach($associate_files['panfile'] as $moufile1)
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$moufile1->file_path) }}">Associate Partner Pan Number{{ $moufile1->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$moufile1->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$moufile1->file_path) }}" @if(!isset($moufile1->file_path)) style="color:#333336;pointer-events: none" @endif >Associate Partner Pan Number{{ $moufile1->file_id }}</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$moufile1->file_path) }}" @if(!isset($moufile1->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
                                                 @endif
 
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->cancel_cheque_file) }}" >Cancel Cheque</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->cancel_cheque_file) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->cancel_cheque_file) }}" @if(!isset($associate->cancel_cheque_file)) style="color:#333336;pointer-events: none" @endif >Cancel Cheque</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->cancel_cheque_file) }}" @if(!isset($associate->cancel_cheque_file)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr>  
 
                                                 @if($associate_files && (count($associate_files) > 0) && isset($associate_files['cancel_cheque_file']) && $associate_files['cancel_cheque_file'])
                                                 @foreach($associate_files['cancel_cheque_file'] as $moufile1)
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$moufile1->file_path) }}">Cancel Cheque{{ $moufile1->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$moufile1->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$moufile1->file_path) }}" @if(!isset($moufile1->file_path)) style="color:#333336;pointer-events: none" @endif >Cancel Cheque{{ $moufile1->file_id }}</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$moufile1->file_path) }}" @if(!isset($moufile1->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
@@ -91,15 +91,15 @@
                                         <table class="table">
                                             <tbody>
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->moufile) }}">MOU</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->moufile) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->moufile) }}" @if(!isset($associate->moufile)) style="color:#333336;pointer-events: none" @endif >MOU</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$associate->moufile) }}" @if(!isset($associate->moufile)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @if($associate_files && (count($associate_files) > 0) && isset($associate_files['moufile']) && $associate_files['moufile'])
                                                 @foreach($associate_files['moufile'] as $moufile1)
                                                 <tr>
-                                                    <td><a target="_blank" href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$moufile1->file_path) }}">MOU{{ $moufile1->file_id }}</a></td>
-                                                    <td><a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$moufile1->file_path) }}" download class=" download-label"><i class="mdi mdi-download"></i></a></td>
+                                                    <td><a target="_blank" href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$moufile1->file_path) }}" @if(!isset($moufile1->file_path)) style="color:#333336;pointer-events: none" @endif >MOU{{ $moufile1->file_id }}</a></td>
+                                                    <td><a href="{{ asset('storage/uploads/associate-partners/'.$associate->id.'/'.$moufile1->file_path) }}" @if(!isset($moufile1->file_path)) style="pointer-events: none" @else style="color:blueviolet" @endif download class=" download-label"><i class="mdi mdi-download"></i></a></td>
 
                                                 </tr> 
                                                 @endforeach
