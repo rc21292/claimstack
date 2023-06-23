@@ -65,7 +65,7 @@ return new class extends Migration
             $table->enum('co_borrower_nominee_relation', ['Husband', 'Wife', 'Son', 'Daughter', 'Father', 'Mother', 'Other'])->nullable();
             $table->string('co_borrower_other_documents')->nullable();
             $table->string('borrower_estimated_amount')->nullable();
-            $table->string('co_borrower_comments')->nullable();
+            $table->longText('co_borrower_comments')->nullable();
             $table->tinyInteger('status')->unsigned()->default(1)->nullable();
             $table->timestamps();
         });
