@@ -25,12 +25,12 @@ return new class extends Migration
             $table->string('query_pre_assessment')->nullable();
             $table->string('pre_assessment_amount')->nullable();
             $table->enum('pre_assessment_suspected_fraud', ['Yes', 'No'])->nullable();
-            $table->string('pre_assessment_status_comments')->nullable();
+            $table->longText('pre_assessment_status_comments')->nullable();
             $table->enum('final_assessment_status', ['Waiting for Pre-Assessment', 'Query Raised by BHC Team', 'Non Admissible as per the Policy TC', 'Non Admissible as per the Treatment Received', 'Admissible'])->nullable();
             $table->string('query_final_assessment')->nullable();
             $table->string('final_assessment_amount')->nullable();
             $table->enum('final_assessment_suspected_fraud', ['Yes', 'No'])->nullable();
-            $table->string('final_assessment_status_comments')->nullable();
+            $table->longText('final_assessment_status_comments')->nullable();
             $table->tinyInteger('status')->unsigned()->default(1)->nullable();
             $table->timestamps();
         });
