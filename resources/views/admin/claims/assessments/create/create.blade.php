@@ -439,12 +439,8 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="query_final_assessment">Query - Final Assessment <span
-                                                    class="text-danger">*</span></label>
-                                            <input type="text" placeholder="Enter Query - Final Assessment" readonly
-                                                class="form-control query_final_assessment" id="query_final_assessment"
-                                                name="query_final_assessment"
-                                                value="{{ old('query_final_assessment', isset($assessment_status) ? $assessment_status->query_final_assessment : @$processing_query) }}">
+                                            <label for="query_final_assessment">Query - Final Assessment <span class="text-danger">*</span></label>
+                                            <textarea type="text" style="height:0px;" placeholder="Enter Query - Final Assessment" readonly class="form-control query_final_assessment" id="query_final_assessment" name="query_final_assessment" >{{ old('query_final_assessment', isset($assessment_status) ? $assessment_status->query_final_assessment : @$processing_query) }}</textarea>
                                             @error('query_final_assessment')
                                                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
