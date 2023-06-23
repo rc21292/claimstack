@@ -337,12 +337,8 @@
                                         </div>
 
                                         <div class="col-md-6 mt-3">
-                                            <label for="query_pre_assessment">Query - Pre-Assessment <span
-                                                    class="text-danger">*</span></label>
-                                            <input type="text" readonly placeholder="Enter Query - Pre-Assessment"
-                                                class="form-control query_pre_assessment" id="query_pre_assessment"
-                                                name="query_pre_assessment"
-                                                value="{{ old('query_pre_assessment', isset($assessment_status) ? $assessment_status->query_pre_assessment : '') }}">
+                                            <label for="query_pre_assessment">Query - Pre-Assessment <span class="text-danger">*</span></label>
+                                            <textarea style="height:0px;" readonly placeholder="Enter Query - Pre-Assessment"  class="form-control query_pre_assessment" id="query_pre_assessment"  name="query_pre_assessment">{{ old('query_pre_assessment', isset($assessment_status) ? $assessment_status->query_pre_assessment : '') }}</textarea>
                                             @error('query_pre_assessment')
                                                 <span id="name-error"
                                                     class="error invalid-feedback">{{ $message }}</span>
