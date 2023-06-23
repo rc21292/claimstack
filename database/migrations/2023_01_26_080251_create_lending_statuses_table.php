@@ -22,7 +22,7 @@ return new class extends Migration
             $table->enum('medical_lending_type', ['Bridge', 'Term', 'Both'])->nullable();
             $table->string('vendor_partner_name_nbfc_or_bank')->nullable();
             $table->string('vendor_partner_id')->nullable();
-            $table->string('loan_application_comments')->nullable();
+            $table->text('loan_application_comments')->nullable();
             $table->string('date_of_loan_application')->nullable();
             $table->time('time_of_loan_application')->nullable();
             $table->string('date_of_loan_re_application')->nullable();
