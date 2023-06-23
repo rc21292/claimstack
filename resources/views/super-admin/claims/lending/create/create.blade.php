@@ -606,7 +606,7 @@
 
                                         <div class="col-md-12 mt-3">
                                             <label for="loan_application_status_comments">Loan Application Status comments </label>
-                                            <textarea class="form-control" readonly id="loan_application_status_comments" name="loan_application_status_comments" maxlength="250" placeholder="Loan Application Status comments"
+                                            <textarea class="form-control" readonly id="loan_application_status_comments" name="loan_application_status_comments" maxlength="1000" placeholder="Loan Application Status comments"
                                             rows="5">{{ old('loan_application_status_comments', isset($lending_status) ? $lending_status->loan_application_status_comments : '') }}</textarea>
                                             @error('loan_application_status_comments')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>

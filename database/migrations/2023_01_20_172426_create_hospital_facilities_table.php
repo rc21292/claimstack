@@ -36,7 +36,7 @@ return new class extends Migration
             $table->enum('burn_unit', ['Yes', 'No'])->nullable();
             $table->enum('dialysis_unit', ['Yes', 'No'])->nullable();
             $table->enum('blood_bank', ['Yes', 'No'])->nullable();
-            $table->string('hospital_facility_comments')->nullable();
+            $table->longText('hospital_facility_comments')->nullable();
             $table->timestamps();
         });
     }
