@@ -1020,7 +1020,7 @@
 
                                         <div class="col-md-12 mt-3">
                                             <label for="co_morbidities_comments">Co-Morbidities - Comments </label>
-                                            <textarea class="form-control" id="co_morbidities_comments" name="co_morbidities_comments" maxlength="250" placeholder="Comments"  rows="5">{{ old('co_morbidities_comments', isset($claim_processing) ? $claim_processing->co_morbidities_comments : '') }}</textarea>
+                                            <textarea class="form-control" id="co_morbidities_comments" name="co_morbidities_comments" maxlength="1000" placeholder="Comments"  rows="5">{{ old('co_morbidities_comments', isset($claim_processing) ? $claim_processing->co_morbidities_comments : '') }}</textarea>
                                             @error('co_morbidities_comments', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror

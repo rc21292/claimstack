@@ -365,7 +365,7 @@
 
         <div class="col-md-12 mt-3">
             <label for="hospital_facility_comments">Hospital Facility Comments </label>
-            <textarea class="form-control" id="hospital_facility_comments" name="hospital_facility_comments" maxlength="250" placeholder="Comments" rows="4">{{ old('hospital_facility_comments', $hospital_facility->hospital_facility_comments??'') }}</textarea>
+            <textarea class="form-control" id="hospital_facility_comments" name="hospital_facility_comments" maxlength="1000" placeholder="Comments" rows="4">{{ old('hospital_facility_comments', $hospital_facility->hospital_facility_comments??'') }}</textarea>
             @error('hospital_facility_comments')
             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
             @enderror

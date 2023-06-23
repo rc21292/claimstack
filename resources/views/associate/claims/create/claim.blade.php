@@ -239,7 +239,7 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="patient_comments">Patient Comments </label>
-                                    <textarea class="form-control" id="patient_comments" name="patient_comments" maxlength="250" placeholder="Comments" rows="1">{{ old('patient_comments') }}</textarea>
+                                    <textarea class="form-control" id="patient_comments" name="patient_comments" maxlength="1000" placeholder="Comments" rows="1">{{ old('patient_comments') }}</textarea>
                                     @error('patient_comments')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -388,7 +388,7 @@
 
                                 <div class="col-md-12 mt-3">
                                     <label for="intimation_comments">Intimation Comments </label>
-                                    <textarea class="form-control" id="intimation_comments" name="intimation_comments" maxlength="250" placeholder="Comments" rows="4">{{ old('intimation_comments') }}</textarea>
+                                    <textarea class="form-control" id="intimation_comments" name="intimation_comments" maxlength="1000" placeholder="Comments" rows="4">{{ old('intimation_comments') }}</textarea>
                                     @error('intimation_comments')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror

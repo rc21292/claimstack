@@ -178,7 +178,7 @@
 
                 <div class="col-md-12 show-hide-empanelment mt-3">
                     <label for="hospital_empanelment_status_comments">Hospital Empanelment Status Comments </label>
-                    <textarea class="form-control" id="hospital_empanelment_status_comments" name="hospital_empanelment_status_comments" maxlength="250" placeholder="Comments" rows="4">{{ old('hospital_empanelment_status_comments', $empanelment_status->hospital_empanelment_status_comments??'') }}</textarea>
+                    <textarea class="form-control" id="hospital_empanelment_status_comments" name="hospital_empanelment_status_comments" maxlength="1000" placeholder="Comments" rows="4">{{ old('hospital_empanelment_status_comments', $empanelment_status->hospital_empanelment_status_comments??'') }}</textarea>
                     @error('hospital_empanelment_status_comments')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                     @enderror

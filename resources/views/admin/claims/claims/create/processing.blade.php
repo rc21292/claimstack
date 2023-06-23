@@ -837,7 +837,7 @@
 
                                 <div class="col-md-12 mt-3">
                                     <label for="co_morbidities_comments">Co-Morbidities - Comments </label>
-                                    <textarea class="form-control" id="co_morbidities_comments" name="co_morbidities_comments" maxlength="250" placeholder="Comments"  rows="5">{{ old('co_morbidities_comments') }}</textarea>
+                                    <textarea class="form-control" id="co_morbidities_comments" name="co_morbidities_comments" maxlength="1000" placeholder="Comments"  rows="5">{{ old('co_morbidities_comments') }}</textarea>
                                     @error('co_morbidities_comments')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -1136,7 +1136,7 @@
 
                                 <div class="col-md-12 mt-3">
                                     <label for="final_assessment_comments">Final Assessment Comments </label>
-                                    <textarea class="form-control" id="final_assessment_comments" name="final_assessment_comments" maxlength="250" placeholder="Comments"  rows="5">{{ old('final_assessment_comments') }}</textarea>
+                                    <textarea class="form-control" id="final_assessment_comments" name="final_assessment_comments" maxlength="1000" placeholder="Comments"  rows="5">{{ old('final_assessment_comments') }}</textarea>
                                     @error('final_assessment_comments')
                                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
