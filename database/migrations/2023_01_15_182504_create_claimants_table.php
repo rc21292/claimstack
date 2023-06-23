@@ -49,7 +49,7 @@ return new class extends Migration
             $table->string('bank_address')->nullable();           
             $table->string('ac_no')->nullable();           
             $table->string('ifs_code')->nullable();           
-            $table->string('comments')->nullable();  
+            $table->longText('comments')->nullable();  
             $table->tinyInteger('status')->unsigned()->default(1)->nullable();         
             $table->timestamps();
             $table->softDeletes();

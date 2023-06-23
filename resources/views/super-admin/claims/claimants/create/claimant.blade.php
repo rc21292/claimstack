@@ -544,7 +544,7 @@
 
                                         <div class="col-md-12 mt-3">
                                             <label for="comments">Claimant Comments </label>
-                                            <textarea class="form-control" id="comments" name="comments" maxlength="250" placeholder="Claimant Comments"
+                                            <textarea class="form-control" id="comments" name="comments" maxlength="1000" placeholder="Claimant Comments"
                                                 rows="5">{{ old('comments') }}</textarea>
                                             @error('comments')
                                                 <span id="name-error"

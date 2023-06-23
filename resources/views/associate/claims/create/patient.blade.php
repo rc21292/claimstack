@@ -293,7 +293,7 @@
 
                                 <div class="col-md-12 mt-3">
                                     <label for="comments">Comments </label>
-                                    <textarea class="form-control" id="comments" name="comments" maxlength="250" placeholder="Policy Details Comments" rows="4">{{ old('comments') }}</textarea>
+                                    <textarea class="form-control" id="comments" name="comments" maxlength="1000" placeholder="Policy Details Comments" rows="4">{{ old('comments') }}</textarea>
                                     @error('comments')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
