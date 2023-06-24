@@ -1341,7 +1341,7 @@
 
                                         <div class="col-md-12 mt-3">
                                             <label for="processing_query">Query <span class="text-danger">*</span></label>
-                                            <textarea readonly maxlength="250" class="form-control" id="processing_query" placeholder="Enter Query" name="processing_query">{{ old('processing_query', isset($claim_processing) ? $claim_processing->processing_query : '') }}</textarea>
+                                            <textarea readonly class="form-control" id="processing_query" placeholder="Enter Query" name="processing_query">{{ old('processing_query', isset($claim_processing) ? $claim_processing->processing_query : '') }}</textarea>
                                             @error('processing_query', 'claim-processing-form')
                                             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
