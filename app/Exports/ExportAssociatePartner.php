@@ -22,6 +22,9 @@ class ExportAssociatePartner implements FromCollection, WithHeadings
             if($admin->assigned_employee){
                 $admins[$key]->assigned_employee = Admin::where('id', $admin->assigned_employee)->value('firstname').' '.Admin::where('id', $admin->assigned_employee)->value('lastname');
             }
+            if($admin->linked_associate_partner){
+                $admins[$key]->linked_associate_partner = AssociatePartner::where('id', $admin->linked_associate_partner)->value('name');
+            }
             if($admin->linked_employee){
                 $admins[$key]->linked_employee = Admin::where('id', $admin->linked_employee)->value('firstname').' '.Admin::where('id', $admin->linked_employee)->value('lastname');
             }
