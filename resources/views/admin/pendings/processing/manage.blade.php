@@ -63,14 +63,14 @@ use Carbon\Carbon;
                                                         </button>
                                                         <ul class="dropdown-menu dropdown-menu-end">
                                                             
-                                                            <li><a class="dropdown-item" href="{{ route('super-admin.claim-processing.create', ['claim_id' => $claim->id]) }}">
+                                                            <li><a class="dropdown-item" href="{{ route('admin.claim-processing.create', ['claim_id' => $claim->id]) }}">
                                                                 <i class="mdi mdi-pencil"></i> Manage Claim Processing</a> 
                                                             </li>
-                                                            <li><a class="dropdown-item" href="{{ route('super-admin.view-claim-documents', $claim->patient->id) }}"><i class="mdi mdi-eye"></i>
+                                                            <li><a class="dropdown-item" href="{{ route('admin.view-claim-documents', $claim->patient->id) }}"><i class="mdi mdi-eye"></i>
                                                                 View Documents</a>
                                                             </li>
 
-                                                            <li><a class="dropdown-item" href="{{ route('super-admin.claims.edit', $claim->id) }}"><i class="mdi mdi-pencil"></i>
+                                                            <li><a class="dropdown-item" href="{{ route('admin.claims.edit', $claim->id) }}"><i class="mdi mdi-pencil"></i>
                                                                 Manage Claim</a>
                                                             </li>
 
