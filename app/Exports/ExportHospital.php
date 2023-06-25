@@ -3,6 +3,7 @@
 namespace App\Exports;
 use DB;
 use App\Models\Hospital;
+use App\Models\AssociatePartner;
 use App\Models\Admin;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
