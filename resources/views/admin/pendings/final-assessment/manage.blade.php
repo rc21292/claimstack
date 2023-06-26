@@ -53,11 +53,28 @@ use Carbon\Carbon;
                                                 $endDate = Carbon::parse(Carbon::now()->toDateTimeString());
                                                 @endphp
                                                 <td>{{ $startDate->diff($endDate)->format('%D : %H:%I'); }}</td>
-                                                <td>
-                                                    <div class="btn-group">
-                                                        <a href="{{ route('admin.assessment-status.create', ['claim_id' => $claim->id]) }}"
-                                                            class="btn btn-primary"><i class="mdi mdi-eye"></i></a>
 
+                                                <td class="text-center">
+                                                   <div class="input-group">
+                                                        <button type="button" class="btn btn-primary 
+                                                            dropdown-toggle" 
+                                                            data-bs-toggle="dropdown">
+                                                                Action &nbsp;
+                                                        </button>
+                                                        <ul class="dropdown-menu dropdown-menu-end">
+                                                            
+                                                            <li><a class="dropdown-item" href="{{ route('admin.assessment-status.create', ['claim_id' => $claim->id]) }}">
+                                                                <i class="mdi mdi-pencil"></i> mange Assessment Status</a> 
+                                                            </li>
+                                                            <li><a class="dropdown-item" href="{{ route('admin.view-claim-documents', $claim->patient->id) }}"><i class="mdi mdi-eye"></i>
+                                                                View Documents</a>
+                                                            </li>
+
+                                                            <li><a class="dropdown-item" href="{{ route('admin.claims.edit', $claim->id) }}"><i class="mdi mdi-pencil"></i>
+                                                                Manage Claim</a>
+                                                            </li>
+
+                                                        </ul>
                                                     </div>
                                                 </td>
                                             </tr>
