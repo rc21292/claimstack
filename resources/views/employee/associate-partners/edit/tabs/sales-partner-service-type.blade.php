@@ -202,7 +202,7 @@
         </div>
         <div class="col-md-12 mt-3">
             <label for="sales_partner_comments">Sales Partner Comments </label>
-            <textarea maxlength="250" class="form-control" id="sales_partner_comments" name="sales_partner_comments"
+            <textarea maxlength="1000" class="form-control" id="sales_partner_comments" name="sales_partner_comments"
                 placeholder="Comments" rows="4">{{ old('sales_partner_comments', isset($associate->service) ? $associate->service->sales_partner_comments : '') }}</textarea>
             @error('sales_partner_comments')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
