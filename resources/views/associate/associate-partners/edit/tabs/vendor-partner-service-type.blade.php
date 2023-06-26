@@ -491,7 +491,7 @@
         <div class="col-md-6 mt-1 div_others">
             <div class="input-group">
                 <label class="input-group-text" for="phone">Rs.</label>
-                <input type="number" onKeyPress="if(this.value.length==7) return false;" class="form-control" id="others_charge" name="others_charge"
+                <input type="number" onKeyPress="if(this.value.length==7) return false;" disabled class="form-control" id="others_charge" name="others_charge"
                 placeholder="Rs" value="{{ old('others_charge', isset($associate->service) ? $associate->service->others_charge : '') }}">
             </div>
             @error('others_charge')
