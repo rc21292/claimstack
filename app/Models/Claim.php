@@ -109,7 +109,7 @@ class Claim extends Model
 
     public function assignToClaimProcessing()
     {
-        if(isset($this->re_assign_to) && !empty($this->re_assign_to)){
+        if(isset($this->re_assign_to_claim_processing) && !empty($this->re_assign_to_claim_processing)){
             return $this->belongsTo(Admin::class, 're_assign_to_claim_processing');
         }else{
             return $this->belongsTo(Admin::class, 'assign_to_claim_processing');
@@ -119,7 +119,7 @@ class Claim extends Model
 
     public function assignToAssessment()
     {
-        if(isset($this->re_assign_to) && !empty($this->re_assign_to)){
+        if(isset($this->re_assign_to_assessment) && !empty($this->re_assign_to_assessment)){
             return $this->belongsTo(Admin::class, 're_assign_to_assessment');
         }else{
             return $this->belongsTo(Admin::class, 'assign_to_assessment');
