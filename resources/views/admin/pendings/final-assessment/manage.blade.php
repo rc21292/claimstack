@@ -45,7 +45,7 @@ use Carbon\Carbon;
                                                 <td>{{ $claim->patient->firstname }} {{ $claim->patient->lastname }} ({{ $claim->patient->uid }})</td>                  
                                                 <td>{{ $claim->hospital->name }} ({{ $claim->hospital->uid }})</td>
                                                 <td>{{ Carbon::parse($claim->assigned_at_assessment)->format('d-m-Y H:i:s'); }}</td>
-                                                <td>{{ $claim->assignToAssessment->firstname }} {{ $claim->assignToAssessment->lastname }}</td>
+                                                <td>{{ @$claim->assignToAssessment->firstname }} {{ @$claim->assignToAssessment->lastname }}</td>
                                                 <td>{{ @$claim->linked_employee_data->firstname }} {{ @$claim->linked_employee_data->lastname }}</td>
 
                                                 @php
@@ -64,7 +64,7 @@ use Carbon\Carbon;
                                                         <ul class="dropdown-menu dropdown-menu-end">
                                                             
                                                             <li><a class="dropdown-item" href="{{ route('admin.assessment-status.create', ['claim_id' => $claim->id]) }}">
-                                                                <i class="mdi mdi-pencil"></i> Manage Assessment Status</a> 
+                                                                <i class="mdi mdi-pencil"></i> mange Assessment Status</a> 
                                                             </li>
                                                             <li><a class="dropdown-item" href="{{ route('admin.view-claim-documents', $claim->patient->id) }}"><i class="mdi mdi-eye"></i>
                                                                 View Documents</a>
