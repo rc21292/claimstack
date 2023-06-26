@@ -245,28 +245,20 @@
                     $("#primary_insured_pincode").val("{{ $claim->patient->patient_current_pincode }}");
                     break;
                 case 'No':
+     
 
-                    $("#primary_insured_address").val('');
-                    $("#primary_insured_city").val('');
-                    $("#primary_insured_state").val('');
-                    $("#primary_insured_pincode").val('');
-
-                    $("#primary_insured_address").val({{ old('primary_insured_address') }});
-                    $("#primary_insured_city").val({{ old('primary_insured_city') }});
-                    $("#primary_insured_state").val({{ old('primary_insured_state') }});
-                    $("#primary_insured_pincode").val({{ old('primary_insured_pincode') }});
+                    $("#primary_insured_address").val("{{ old('primary_insured_address', @$claim->policy->primary_insured_address) }}");
+                    $("#primary_insured_city").val("{{ old('primary_insured_city', @$claim->policy->primary_insured_city) }}");
+                    $("#primary_insured_state").val("{{ old('primary_insured_state', @$claim->policy->primary_insured_state) }}");
+                    $("#primary_insured_pincode").val("{{ old('primary_insured_pincode', @$claim->policy->primary_insured_pincode) }}");
                     break;
                 default:
+  
 
-                    $("#primary_insured_address").val('');
-                    $("#primary_insured_city").val('');
-                    $("#primary_insured_state").val('');
-                    $("#primary_insured_pincode").val('');
-                    
-                    $("#primary_insured_address").val({{ old('primary_insured_address') }});
-                    $("#primary_insured_city").val({{ old('primary_insured_city') }});
-                    $("#primary_insured_state").val({{ old('primary_insured_state') }});
-                    $("#primary_insured_pincode").val({{ old('primary_insured_pincode') }});
+                    $("#primary_insured_address").val("{{ old('primary_insured_address', @$claim->policy->primary_insured_address) }}");
+                    $("#primary_insured_city").val("{{ old('primary_insured_city', @$claim->policy->primary_insured_city) }}");
+                    $("#primary_insured_state").val("{{ old('primary_insured_state', @$claim->policy->primary_insured_state) }}");
+                    $("#primary_insured_pincode").val("{{ old('primary_insured_pincode', @$claim->policy->primary_insured_pincode) }}");
                     break;
             }
         }
