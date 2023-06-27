@@ -64,7 +64,7 @@ use Carbon\Carbon;
                                                         <ul class="dropdown-menu dropdown-menu-end">
                                                             
                                                             <li><a class="dropdown-item" href="{{ route('admin.assessment-status.create', ['claim_id' => $claim->id]) }}">
-                                                                <i class="mdi mdi-pencil"></i> mange Assessment Status</a> 
+                                                                <i class="mdi mdi-pencil"></i> Manage Assessment Status</a> 
                                                             </li>
                                                             <li><a class="dropdown-item" href="{{ route('admin.view-claim-documents', $claim->patient->id) }}"><i class="mdi mdi-eye"></i>
                                                                 View Documents</a>
