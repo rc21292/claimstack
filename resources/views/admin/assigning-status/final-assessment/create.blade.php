@@ -376,9 +376,12 @@
                                                 name="final_assessment_status">
                                                 @if($claim->assessmentStatus && $claim->assign_to_assessment)
                                                 <option>{{ $claim->assessmentStatus->final_assessment_status }}</option>
+                                                @elseif(empty(@$claim->assessmentStatus->final_assessment_status) && $claim->assign_to_assessment)
+                                                <option></option>
                                                 @else
                                                 <option> Waiting for Assigning for Final-Assessment </option>
-                                                @endif                                                
+                                                @endif   
+                                                                                          
                                             </select>
                                         </div>                                       
                                     </div>
