@@ -35,39 +35,30 @@
                                 <table id="basics-datatable" class="table table-hover table-striped">
                                     <thead class="thead-grey">
                                         <tr>
-                                            <th scope="col">UID</th>
+                                            <th scope="col">AP ID</th>
+                                            <th scope="col">SUB AP ID</th>
+                                            <th scope="col">Hospital ID</th>
                                             <th scope="col">Hospital Name</th>
-                                            <th scope="col">City</th>
                                             <th scope="col">State</th>
+                                            <th scope="col">City</th>
+                                            <th scope="col">Pincode</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($hospitals as $hospital)
                                             <tr>
+                                                <th scope="row">{{ auth()->user()->associate_partner_id }}</th>
+                                                <th scope="row">{{ $hospital->linked_associate_partner_id ?? 'N/A' }}</th>
                                                 <th scope="row">{{ $hospital->uid }}</th>
                                                 <td>{!! $hospital->name !!}</td>
-                                                <td>{{ $hospital->city }}</td>
                                                 <td>{{ $hospital->state }}</td>                                               
+                                                <td>{{ $hospital->city }}</td>
+                                                <td>{{ $hospital->pincode }}</td>
                                                 <td>
                                                     <div class="btn-group">
                                                         <a href="{{ route('associate-partner.hospitals.edit', $hospital->id) }}"
-                                                            class="btn btn-primary"><i class="mdi mdi-pencil"></i></a>
-                                                        <button type="button" class="btn btn-danger"
-                                                            onclick="confirmDelete({{ $hospital->id }})"><i
-                                                                class="uil uil-trash-alt"></i></button>
-                                                        <form id='delete-form{{ $hospital->id }}'
-                                                            action='{{ route('associate-partner.hospitals.destroy', $hospital->id) }}'
-                                                            method='POST'>
-                                                            <input type='hidden' name='_token'
-                                                                value='{{ csrf_token() }}'>
-                                                            <input type='hidden' name='_method' value='DELETE'>
-                                                        </form>
-                                                        <button type="button" class="btn btn-warning change-password"
-                                                        data-bs-toggle="modal" data-bs-target="#modal-password" 
-                                                        data-uid="{{ $hospital->uid }}" 
-                                                        data-id="{{ $hospital->id }}"><i
-                                                            class="uil uil-ellipsis-v"></i></button>
+                                                            class="btn btn-primary"><i class="mdi mdi-eye"></i></a>
                                                     </div>
                                                 </td>
                                             </tr>

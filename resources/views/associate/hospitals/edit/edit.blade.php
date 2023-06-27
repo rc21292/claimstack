@@ -37,7 +37,7 @@
                                 </a>
                             </li>
 
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a href="#hospital_tie_up_details" data-bs-toggle="tab" aria-expanded="false"
                                     class="nav-link rounded-0 ">
                                     <i class="mdi mdi-home-variant d-md-none d-block"></i>
@@ -83,7 +83,7 @@
                                     <i class="mdi mdi-home-variant d-md-none d-block"></i>
                                     <span class="d-none d-md-block">Negative Listing</span>
                                 </a>
-                            </li>
+                            </li> -->
 
                         </ul>
 
@@ -91,7 +91,7 @@
                             <div class="tab-pane show active" id="hospital_details">
                                 @include('associate.hospitals.edit.tabs.hospital-details')
                             </div>
-                            <div class="tab-pane" id="hospital_tie_up_details">
+                           <!--  <div class="tab-pane" id="hospital_tie_up_details">
                                 @include('associate.hospitals.edit.tabs.hospital-tie-up-details')
                             </div>
                             <div class="tab-pane" id="hospital_facilities">
@@ -108,7 +108,7 @@
                             </div>
                             <div class="tab-pane" id="negative_isting">
                                 @include('associate.hospitals.edit.tabs.hospital-negative-listing-status')
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

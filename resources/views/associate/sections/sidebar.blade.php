@@ -96,7 +96,7 @@
                 </div>
             </li>
 
-            <li class="side-nav-item" style="display:none;">
+            <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#hospitalModule" aria-expanded="false" aria-controls="hospitalModule"
                     class="side-nav-link">
                     <i class="mdi mdi-hospital-building"></i>
@@ -106,14 +106,52 @@
                 <div class="collapse" id="hospitalModule">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="{{ route('associate-partner.hospitals.create') }}">Create Hospital ID</a>
+                            <a href="{{ route('associate-partner.hospitals.index') }}">Manage Hospital</a>
                         </li>
-                        <li>
-                            <a href="{{ route('associate-partner.hospitals.index') }}">Manage Hospital Profile</a>
+                    </ul>
+                </div>
+            </li>
+
+
+             <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarMultiLevel" aria-expanded="false" aria-controls="sidebarMultiLevel" class="side-nav-link">
+                    <i class="mdi mdi-doctor"></i>
+                    <span> Claims </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarMultiLevel" style="">
+                    <ul class="side-nav-second-level">
+
+                        <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#sidebarSecondLevel" aria-expanded="false" aria-controls="sidebarSecondLevel" class="">
+                                <span>  Patients  </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="sidebarSecondLevel" style="">
+                                <ul class="side-nav-third-level">
+                                    <li>
+                                        <a href="{{ route('associate-partner.patients.index') }}">Manage Patient</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </li>
-                        <li>
-                            <a href="{{ route('associate-partner.claims.index') }}">Claims</a>
+
+                        <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#sidebarThirdLevel" aria-expanded="false" aria-controls="sidebarThirdLevel" class="">
+                                <span> Claims </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="sidebarThirdLevel" style="">
+                                <ul class="side-nav-third-level">
+                                    <li>
+                                        <a href="{{ route('associate-partner.claims.index') }}">Manage Claims</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </li>
+
+                        
+
                     </ul>
                 </div>
             </li>
