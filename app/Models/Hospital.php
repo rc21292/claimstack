@@ -16,6 +16,7 @@ class Hospital extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles, SoftDeletes;
 
+
     protected $fillable = [
         'uid',
         'name',
@@ -107,6 +108,17 @@ class Hospital extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function assignedEmployeeData()
+    {
+            return $this->belongsTo(Admin::class, 'assigned_employee');
+    }
+
+    public function linkedEmployeeData()
+    {
+            return $this->belongsTo(Admin::class, 'linked_employee');
+    }
 
     public function sendPasswordResetNotification($token)
     {

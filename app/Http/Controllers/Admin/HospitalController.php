@@ -36,12 +36,31 @@ class HospitalController extends Controller
      */
     public function index(Request $request)
     {
+        DB::connection()->enableQueryLog();
+
         $filter_search = $request->search;
         $hospitals = Hospital::query();
         if($filter_search){
             $hospitals->where('name', 'like','%' . $filter_search . '%');
         }
-        $hospitals = $hospitals->orderBy('id', 'desc')->paginate(20);
+        // $hospitals = $hospitals->orderBy('id', 'desc')->paginate(20);
+
+
+        $user_id = auth()->user()->id;
+        $hospitals =  $hospitals->
+        where(function ($query) {
+            $query->where('linked_employee', auth()->user()->id)->orWhere('assigned_employee', auth()->user()->id);
+        })->orWhereHas('assignedEmployeeData',  function ($q) use ($user_id) {
+            $q->where('linked_employee', $user_id);
+        })->orWhereHas('linkedEmployeeData',  function ($q) use ($user_id) {
+            $q->where('linked_employee', $user_id);
+        })->orderBy('id', 'desc')->paginate(20);
+
+        $queries = DB::getQueryLog();
+
+        $last_query = end($queries);
+
+
         return view('admin.hospitals.manage',  compact('hospitals', 'filter_search'));
     }
 
