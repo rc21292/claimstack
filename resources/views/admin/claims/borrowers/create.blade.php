@@ -979,7 +979,7 @@
                     break;
                 case 'No':
                     $('#is_claimant_and_borrower_same').attr('disabled', false);
-                    $('#is_claimant_and_borrower_same').val("{{ old('is_claimant_and_borrower_same', $borrower->is_claimant_and_borrower_same) }}");
+                    $('#is_claimant_and_borrower_same').val("{{ old('is_claimant_and_borrower_same', @$borrower->is_claimant_and_borrower_same) }}");
                     $('#borrower_title').val("{{ old('borrower_title', @$borrower->borrower_title) }}");
                     $('#borrower_firstname').val("{{ old('borrower_firstname', @$borrower->borrower_firstname) }}");
                     $('#borrower_lastname').val("{{ old('borrower_lastname', @$borrower->borrower_lastname) }}");
