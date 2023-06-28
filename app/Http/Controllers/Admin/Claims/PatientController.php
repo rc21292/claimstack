@@ -30,7 +30,17 @@ class PatientController extends Controller
         if ($filter_search) {
             $patients->where('uid', 'like', '%' . $filter_search . '%');
         }
-        $patients = $patients->orderBy('id', 'desc')->paginate(20);
+
+        $user_id = auth()->user()->id;
+
+        $patients = $patients->whereHas('hospital', function ($q) use ($user_id) {
+            $q->where('linked_employee', auth()->user()->id)->orWhere('assigned_employee', auth()->user()->id);
+            $q->orWhereHas('assignedEmployeeData', function ($q) use ($user_id) {
+                $q->where('linked_employee', $user_id);
+            })->orWhereHas('linkedEmployeeData', function ($q) use ($user_id) {
+                $q->where('linked_employee', $user_id);
+            });
+        })->orderBy('id', 'desc')->paginate(20);
 
         return view('admin.claims.patients.manage',  compact('patients', 'filter_search'));
     }

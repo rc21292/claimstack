@@ -382,8 +382,7 @@ class ClaimController extends Controller
 
         $user_id = auth()->user()->id;
 
-        DB::connection()->enableQueryLog();/**/
-        $claims = Claim::whereHas('hospital', function ($q) use ($user_id) {
+        $claims = $claims->whereHas('hospital', function ($q) use ($user_id) {
             $q->where('linked_employee', auth()->user()->id)->orWhere('assigned_employee', auth()->user()->id);
             $q->orWhereHas('assignedEmployeeData', function ($q) use ($user_id) {
                 $q->where('linked_employee', $user_id);
@@ -391,14 +390,6 @@ class ClaimController extends Controller
                 $q->where('linked_employee', $user_id);
             });
         })->orderBy('id', 'desc')->paginate(20);
-
-        $queries = DB::getQueryLog();
-        $last_query = end($queries);
-
-              // echo '<pre>'; print_r($last_query); echo '</pre>'; exit();
-              
-
-        // $claims = $claims->orderBy('id', 'desc')->paginate(20);
 
         foreach ($claims as $key => $claim) {
             $claimant = Claimant::where('claim_id', $claim->id)->exists();

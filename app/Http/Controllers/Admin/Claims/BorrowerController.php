@@ -32,7 +32,17 @@ class BorrowerController extends Controller
             $borrowers->where('patient_id', 'like','%' . $filter_search . '%');
         }
 
-        $borrowers = $borrowers->orderBy('id', 'desc')->paginate(20);
+
+        $user_id = auth()->user()->id;
+
+        $borrowers = $borrowers->whereHas('hospital', function ($q) use ($user_id) {
+            $q->where('linked_employee', auth()->user()->id)->orWhere('assigned_employee', auth()->user()->id);
+            $q->orWhereHas('assignedEmployeeData', function ($q) use ($user_id) {
+                $q->where('linked_employee', $user_id);
+            })->orWhereHas('linkedEmployeeData', function ($q) use ($user_id) {
+                $q->where('linked_employee', $user_id);
+            });
+        })->orderBy('id', 'desc')->paginate(20);
 
         foreach ($borrowers as $key => $borrower) {
 

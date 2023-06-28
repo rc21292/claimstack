@@ -114,6 +114,10 @@ Route::group(['prefix' => 'associate-partner', 'as' => 'associate-partner.'], fu
     |--------------------------------------------------------------------------
     */
 
+     Route::get('hospitals/import-export',[HospitalController::class,'importExport'])->name('hospitals.import-export');
+    Route::post('hospitals/import',[HospitalController::class,'import'])->name('hospitals.import');
+    Route::get('hospitals/export',[HospitalController::class,'export'])->name('hospitals.export');
+
     Route::resource('hospitals', HospitalController::class); 
 
     Route::put('hospitals/tie-ups/{id}', [HospitalController::class, 'updateHospitalTieUps'])->name('hospitals.tie-ups');
@@ -142,9 +146,7 @@ Route::group(['prefix' => 'associate-partner', 'as' => 'associate-partner.'], fu
     Route::resource('borrowers', BorrowerController::class);
 
 
-    Route::get('hospitals/import-export',[HospitalController::class,'importExport'])->name('hospitals.import-export');
-    Route::post('hospitals/import',[HospitalController::class,'import'])->name('hospitals.import');
-    Route::get('hospitals/export',[HospitalController::class,'export'])->name('hospitals.export');
+   
     
 
     /*

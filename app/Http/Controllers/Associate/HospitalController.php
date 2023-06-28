@@ -1052,9 +1052,8 @@ class HospitalController extends Controller
 
 
     public function importExport(Request $request){
-              echo '<pre>'; print_r('ddd'); echo '</pre>'; exit();
-              
-        return view('associate-partner.hospitals.import-export');
+          
+        return view('associate.hospitals.import-export');
     }
 
     public function import(Request $request){
