@@ -119,6 +119,8 @@ class AssociatePartnerController extends Controller
             'phone'                    => $request->phone,
             'status'                   => $request->status,
             'reference'                => $request->reference,
+            'linked_associate_partner'      => $request->linked_associate_partner,
+            'linked_associate_partner_id'   => $request->linked_associate_partner_id,
             'assigned_employee'        => $request->assigned_employee,
             'assigned_employee_department'        => $request->assigned_employee_department,
             'linked_employee_department'        => $request->linked_employee_department,
@@ -187,7 +189,7 @@ class AssociatePartnerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    {              
         $associate_partner             = AssociatePartner::find($id);
 
         $rules = [
@@ -214,9 +216,6 @@ class AssociatePartnerController extends Controller
             'moufile'                  => ($request->mou == 'yes' && empty($associate_partner->moufile)) ? 'required' : [],
             'agreement_start_date'     => 'required',
             'agreement_end_date'       => 'required|after:agreement_start_date',
-            // 'contact_person'           => 'required',
-            // 'contact_person_phone'     => 'required',
-            // 'contact_person_email'     => 'required',
             'bank_name'                => 'required',
             'bank_address'             => 'required',
             'cancel_cheque'            => 'required',
@@ -275,7 +274,7 @@ class AssociatePartnerController extends Controller
             'phone'                    => $request->phone,
             'status'                   => $request->status,
             'reference'                => $request->reference,
-            'assigned_employee_department'        => $request->assigned_employee_department,
+            'assigned_employee_department'      => $request->assigned_employee_department,
             'linked_employee_department'        => $request->linked_employee_department,
             'assigned_employee'        => $request->assigned_employee,
             'assigned_employee_id'     => $request->assigned_employee_id,
@@ -284,9 +283,8 @@ class AssociatePartnerController extends Controller
             'mou'                      => $request->mou,
             'agreement_start_date'     => $request->agreement_start_date,
             'agreement_end_date'       => $request->agreement_end_date,
-            // 'contact_person'           => $request->contact_person,
-            // 'contact_person_phone'     => $request->contact_person_phone,
-            // 'contact_person_email'     => $request->contact_person_email,
+            'linked_associate_partner'      => $request->linked_associate_partner,
+            'linked_associate_partner_id'   => $request->linked_associate_partner_id,
             'bank_name'                => $request->bank_name,
             'bank_address'             => $request->bank_address,
             'cancel_cheque'            => $request->cancel_cheque,
