@@ -31,7 +31,11 @@ class PatientController extends Controller
         if ($filter_search) {
             $patients->where('uid', 'like', '%' . $filter_search . '%');
         }
-        $patients = $patients->orderBy('id', 'desc')->paginate(20);
+        
+        $patients = $patients->whereHas('hospital', function($q){
+            $q->where('linked_associate_partner_id', auth()->user()->associate_partner_id);
+        })->orderBy('id', 'desc')->paginate(20);
+
 
         return view('associate.claims.patients.manage',  compact('patients', 'filter_search'));
     }
