@@ -81,6 +81,11 @@ class AssociatePartner extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function associate()
+    {
+        return $this->hasOne(AssociatePartner::class, 'associate_partner_id', 'linked_associate_partner_id');
+    }
+
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token));

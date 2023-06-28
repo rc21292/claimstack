@@ -38,7 +38,18 @@ class HospitalController extends Controller
         if($filter_search){
             $hospitals->where('name', 'like','%' . $filter_search . '%');
         }
-        $hospitals = $hospitals->where('linked_associate_partner_id', auth()->user()->associate_partner_id)->orderBy('id', 'desc')->paginate(20);
+        // $hospitals = $hospitals->where('linked_associate_partner_id', auth()->user()->associate_partner_id)->orderBy('id', 'desc')->paginate(20);
+
+        $user_id = auth()->user()->associate_partner_id;
+
+        $hospitals =  $hospitals->where('linked_associate_partner_id', auth()->user()->associate_partner_id)
+        ->orWhereHas('associate',  function ($q) use ($user_id) {
+            $q->where('linked_associate_partner', $user_id)
+            ->orWhereHas('associate',  function ($q) use ($user_id) {
+                $q->where('linked_associate_partner', $user_id);
+            });
+        })->orderBy('id', 'desc')->paginate(20);
+
         return view('associate.hospitals.manage',  compact('hospitals', 'filter_search'));
     }
 
