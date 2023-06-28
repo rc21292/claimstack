@@ -141,6 +141,12 @@ Route::group(['prefix' => 'associate-partner', 'as' => 'associate-partner.'], fu
 
     Route::resource('borrowers', BorrowerController::class);
 
+
+    Route::get('hospitals/import-export',[HospitalController::class,'importExport'])->name('hospitals.import-export');
+    Route::post('hospitals/import',[HospitalController::class,'import'])->name('hospitals.import');
+    Route::get('hospitals/export',[HospitalController::class,'export'])->name('hospitals.export');
+    
+
     /*
     |--------------------------------------------------------------------------
     | Patients Route

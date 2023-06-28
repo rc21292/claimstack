@@ -32,54 +32,6 @@
                 </a>
             </li>
 
-            {{-- <li class="side-nav-item">
-                <a data-bs-toggle="collapse" href="#adminMenu" aria-expanded="false" aria-controls="adminMenu"
-                    class="side-nav-link">
-                    <i class="mdi mdi-shield-account"></i>
-                    <span> Admin </span>
-                    <span class="menu-arrow"></span>
-                </a>
-                <div class="collapse" id="adminMenu">
-                    <ul class="side-nav-second-level">
-
-                        <li>
-                            <a onclick="return false;" href="{{ route('associate-partner.admins.create') }}">Create Admin</a>
-                        </li>
-
-                        <li>
-                            <a onclick="return false;" href="{{ route('associate-partner.admins.index') }}">Manage Admin</a>
-                        </li>
-
-                        <li>
-                            <a onclick="return false;" href="{{ route('associate-partner.admins.import-export') }}">Import Export Admin</a>
-                        </li>
-
-                    </ul>
-                </div>
-            </li>
-
-            <li class="side-nav-item">
-                <a data-bs-toggle="collapse" href="#userMenu" aria-expanded="false" aria-controls="userMenu"
-                    class="side-nav-link">
-                    <i class="mdi mdi-account"></i>
-                    <span> User </span>
-                    <span class="menu-arrow"></span>
-                </a>
-                <div class="collapse" id="userMenu">
-                    <ul class="side-nav-second-level">
-                        <li>
-                            <a onclick="return false;" href="{{ route('associate-partner.users.create') }}">Create User</a>
-                        </li>
-                        <li>
-                            <a onclick="return false;" href="{{ route('associate-partner.users.index') }}">Manage User</a>
-                        </li>
-                        <li>
-                            <a onclick="return false;" href="{{ route('associate-partner.users.import-export') }}">Import Export Users</a>
-                        </li>
-                    </ul>
-                </div>
-            </li> --}}
-
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#associatePartner" aria-expanded="false"
                     aria-controls="associatePartner" class="side-nav-link">
@@ -152,6 +104,23 @@
 
                         
 
+                    </ul>
+                </div>
+            </li>
+
+
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#reports" aria-expanded="false" aria-controls="reports"
+                    class="side-nav-link">
+                    <i class="uil-graph-bar"></i>
+                    <span> Report Generation </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="reports">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="{{ route('associate-partner.hospitals.import-export') }}">Import Export Hospitals</a>
+                        </li>
                     </ul>
                 </div>
             </li>
