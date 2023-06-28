@@ -379,7 +379,18 @@ class ClaimController extends Controller
             });
         }
 
-        $claims = $claims->orderBy('id', 'desc')->paginate(20);
+        $user_id = auth()->user()->id;
+
+        $claims = $claims->whereHas('hospital', function ($q) use ($user_id) {
+            $q->where('linked_employee', auth()->user()->id)->orWhere('assigned_employee', auth()->user()->id);
+            $q->whereHas('assignedEmployeeData', function ($q) use ($user_id) {
+                $q->where('linked_employee', $user_id);
+            })->orWhereHas('linkedEmployeeData', function ($q) use ($user_id) {
+                $q->where('linked_employee', $user_id);
+            });
+        })->orderBy('id', 'desc')->paginate(20);
+
+        // $claims = $claims->orderBy('id', 'desc')->paginate(20);
 
         foreach ($claims as $key => $claim) {
             $claimant = Claimant::where('claim_id', $claim->id)->exists();
