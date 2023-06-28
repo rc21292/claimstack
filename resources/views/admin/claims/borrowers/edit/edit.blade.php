@@ -658,17 +658,17 @@
 
             }else{
 
-                $("#borrower_title").val('');
-                $("#borrower_firstname").val('');
-                $("#borrower_lastname").val('');
-                $("#borrower_middlename").val('');
-                $("#borrower_address").val('');
-                $("#borrower_city").val('');
-                $("#borrower_state").val('');
-                $("#borrower_pincode").val('');
-                $("#borrower_id_proof").val('');
-                $("#borrower_personal_email_id").val('');
-                $("#borrower_mobile_no").val('');
+                $("#borrower_title").val("{{ old('borrower_title', $borrower->borrower_title) }}");
+                $("#borrower_firstname").val("{{ old('borrower_firstname', $borrower->borrower_firstname) }}");
+                $("#borrower_lastname").val("{{ old('borrower_lastname', $borrower->borrower_lastname) }}");
+                $("#borrower_middlename").val("{{ old('borrower_middlename', $borrower->borrower_middlename) }}");
+                $("#borrower_address").val("{{ old('borrower_address', $borrower->borrower_address) }}");
+                $("#borrower_city").val("{{ old('borrower_city', $borrower->borrower_city) }}");
+                $("#borrower_state").val("{{ old('borrower_state', $borrower->borrower_state) }}");
+                $("#borrower_pincode").val("{{ old('borrower_pincode', $borrower->borrower_pincode) }}");
+                $("#borrower_id_proof").val("{{ old('borrower_id_proof', $borrower->borrower_id_proof) }}");
+                $("#borrower_personal_email_id").val("{{ old('borrower_personal_email_id', $borrower->borrower_personal_email_id) }}");
+                $("#borrower_mobile_no").val("{{ old('borrower_mobile_no', $borrower->borrower_mobile_no) }}");
                 $("#borrower_id_proof_file_download").css('display', 'none').attr('href', '');
 
                 $("#is_claimant_and_borrower_same").attr('disabled', false);
@@ -710,25 +710,25 @@
                     }
                 });
             }else{
-                $("#borrower_title").val('');
-                $("#borrower_firstname").val('');
-                $("#borrower_lastname").val('');
-                $("#borrower_middlename").val('');
-                $("#borrower_address").val('');
-                $("#borrower_city").val('');
-                $("#borrower_state").val('');
-                $("#borrower_pincode").val('');
-                $("#borrower_id_proof").val('');
-                $("#borrower_personal_email_id").val('');
-                $("#borrower_mobile_no").val('');
-                $("#borrower_pan_no").val('');
-                $("#borrower_aadhar_no").val('');
-                $("#borrower_bank_name").val('');
-                $("#borrower_bank_address").val('');
-                $("#borrower_ac_no").val('');
-                $("#borrower_ifs_code").val('');
-                $("#borrower_pan_no_file").val('');
-                $("#borrower_aadhar_no_file").val('');
+                $("#borrower_title").val("{{ old('borrower_title', $borrower->borrower_title }}");
+                $("#borrower_firstname").val("{{ old('borrower_firstname', $borrower->borrower_firstname }}");
+                $("#borrower_lastname").val("{{ old('borrower_lastname', $borrower->borrower_lastname }}");
+                $("#borrower_middlename").val("{{ old('borrower_middlename', $borrower->borrower_middlename }}");
+                $("#borrower_address").val("{{ old('borrower_address', $borrower->borrower_address }}");
+                $("#borrower_city").val("{{ old('borrower_city', $borrower->borrower_city }}");
+                $("#borrower_state").val("{{ old('borrower_state', $borrower->borrower_state }}");
+                $("#borrower_pincode").val("{{ old('borrower_pincode', $borrower->borrower_pincode }}");
+                $("#borrower_id_proof").val("{{ old('borrower_id_proof', $borrower->borrower_id_proof }}");
+                $("#borrower_personal_email_id").val("{{ old('borrower_personal_email_id', $borrower->borrower_personal_email_id }}");
+                $("#borrower_mobile_no").val("{{ old('borrower_mobile_no', $borrower->borrower_mobile_no }}");
+                $("#borrower_pan_no").val("{{ old('borrower_pan_no', $borrower->borrower_pan_no }}");
+                $("#borrower_aadhar_no").val("{{ old('borrower_aadhar_no', $borrower->borrower_aadhar_no }}");
+                $("#borrower_bank_name").val("{{ old('borrower_bank_name', $borrower->borrower_bank_name }}");
+                $("#borrower_bank_address").val("{{ old('borrower_bank_address', $borrower->borrower_bank_address }}");
+                $("#borrower_ac_no").val("{{ old('borrower_ac_no', $borrower->borrower_ac_no }}");
+                $("#borrower_ifs_code").val("{{ old('borrower_ifs_code', $borrower->borrower_ifs_code }}");
+                $("#borrower_pan_no_file").val("{{ old('borrower_pan_no_file', $borrower->borrower_pan_no_file }}");
+                $("#borrower_aadhar_no_file").val("{{ old('borrower_aadhar_no_file', $borrower->borrower_aadhar_no_file }}");
                 $("#borrower_id_proof_file_download").css('display', 'none').attr('href', '');
             }
 
