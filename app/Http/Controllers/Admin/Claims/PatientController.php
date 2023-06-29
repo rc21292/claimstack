@@ -2579,7 +2579,16 @@ class PatientController extends Controller
     {
         $hospital_id = $request->hospital_id;
         $associates = AssociatePartner::get();
-        $hospitals = Hospital::get();
+
+        $user_id = auth()->user()->id;
+        $hospitals =  Hospital::where(function ($query) {
+            $query->where('linked_employee', auth()->user()->id)->orWhere('assigned_employee', auth()->user()->id);
+        })->orWhereHas('assignedEmployeeData',  function ($q) use ($user_id) {
+            $q->where('linked_employee', $user_id);
+        })->orWhereHas('linkedEmployeeData',  function ($q) use ($user_id) {
+            $q->where('linked_employee', $user_id);
+        })->orderBy('id', 'desc')->paginate(20);
+
         $doctors = HospitalDepartment::get();
         foreach ($hospitals as $hospital) {
             if (isset($hospital->linked_associate_partner_id)) {
