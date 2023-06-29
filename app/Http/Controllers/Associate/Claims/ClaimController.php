@@ -382,8 +382,25 @@ class ClaimController extends Controller
 
         // $claims = $claims->orderBy('id', 'desc')->paginate(20);
 
-        $claims = $claims->whereHas('hospital', function($q){
+        /*$claims = $claims->whereHas('hospital', function($q){
             $q->where('linked_associate_partner_id', auth()->user()->associate_partner_id);
+        })->orderBy('id', 'desc')->paginate(20);*/
+
+        $user_id = auth()->user()->associate_partner_id;
+        $claims = $claims->whereHas('hospital', function($q) use ($user_id){
+            $q->where('linked_associate_partner_id', auth()->user()->associate_partner_id)
+        ->orWhereHas('associate', function($q) use ($user_id)
+        {
+            $q->where('linked_associate_partner_id', $user_id)
+            ->orWhereHas('associate', function($q) use ($user_id)
+            {
+                $q->where('linked_associate_partner_id', $user_id)
+                ->orWhereHas('associate', function($q) use ($user_id)
+                {
+                        $q->where('linked_associate_partner_id', $user_id);
+                });
+            });
+        });
         })->orderBy('id', 'desc')->paginate(20);
 
         foreach ($claims as $key => $claim) {

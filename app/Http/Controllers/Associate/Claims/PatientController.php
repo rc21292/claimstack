@@ -32,10 +32,26 @@ class PatientController extends Controller
             $patients->where('uid', 'like', '%' . $filter_search . '%');
         }
         
-        $patients = $patients->whereHas('hospital', function($q){
+       /* $patients = $patients->whereHas('hospital', function($q){
             $q->where('linked_associate_partner_id', auth()->user()->associate_partner_id);
-        })->orderBy('id', 'desc')->paginate(20);
+        })->orderBy('id', 'desc')->paginate(20);*/
 
+        $user_id = auth()->user()->associate_partner_id;
+        $patients = $patients->whereHas('hospital', function($q) use ($user_id){
+            $q->where('linked_associate_partner_id', auth()->user()->associate_partner_id)
+        ->orWhereHas('associate', function($q) use ($user_id)
+        {
+            $q->where('linked_associate_partner_id', $user_id)
+            ->orWhereHas('associate', function($q) use ($user_id)
+            {
+                $q->where('linked_associate_partner_id', $user_id)
+                ->orWhereHas('associate', function($q) use ($user_id)
+                {
+                        $q->where('linked_associate_partner_id', $user_id);
+                });
+            });
+        });
+        })->orderBy('id', 'desc')->paginate(20);
 
         return view('associate.claims.patients.manage',  compact('patients', 'filter_search'));
     }
