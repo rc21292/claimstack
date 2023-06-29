@@ -547,6 +547,6 @@ class AssociatePartnerController extends Controller
     }
 
     public function export(Request $request){
-        return Excel::download(new ExportAssociatePartner, 'associate-partners.xlsx');
+        return Excel::download(new ExportAssociatePartner('admin'), 'associate-partners.xlsx');
     }
 }

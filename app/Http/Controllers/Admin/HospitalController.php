@@ -43,8 +43,6 @@ class HospitalController extends Controller
         if($filter_search){
             $hospitals->where('name', 'like','%' . $filter_search . '%');
         }
-        // $hospitals = $hospitals->orderBy('id', 'desc')->paginate(20);
-
 
         $user_id = auth()->user()->id;
         $hospitals =  $hospitals->
@@ -2211,7 +2209,7 @@ class HospitalController extends Controller
     }
 
     public function export(Request $request){
-        return Excel::download(new ExportHospital, 'hospitals.xlsx');
+        return Excel::download(new ExportHospital('admin'), 'hospitals.xlsx');
     }
 
     public function destroy($id)
