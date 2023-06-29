@@ -245,7 +245,7 @@ class AdminController extends Controller
     }
 
     public function export(Request $request){
-        return Excel::download(new ExportAdmin, 'admins.xlsx');
+        return Excel::download(new ExportAdmin('admin'), 'admins.xlsx');
     }
 
     public function changePassword(Request $request)
