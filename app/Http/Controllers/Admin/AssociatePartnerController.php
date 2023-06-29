@@ -36,7 +36,20 @@ class AssociatePartnerController extends Controller
         if($filter_search){
             $associates->where('name', 'like','%' . $filter_search . '%');
         }
-        $associates = $associates->orderBy('id', 'desc')->paginate(20);
+
+
+        $user_id = auth()->user()->id;
+        
+        $associates =  $associates->
+        where(function ($query) {
+            $query->where('linked_employee', auth()->user()->id)->orWhere('assigned_employee', auth()->user()->id);
+        })->orWhereHas('assignedEmployeeData',  function ($q) use ($user_id) {
+            $q->where('linked_employee', $user_id);
+        })->orWhereHas('linkedEmployeeData',  function ($q) use ($user_id) {
+            $q->where('linked_employee', $user_id);
+        })->orderBy('id', 'desc')->paginate(20);
+
+        // $associates = $associates->orderBy('id', 'desc')->paginate(20);
         return view('admin.associate-partners.manage',  compact('associates', 'filter_search'));
     }
 
