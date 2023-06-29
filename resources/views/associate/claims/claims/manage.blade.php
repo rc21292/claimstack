@@ -123,16 +123,6 @@
                                                             </li>
                                                             @endif
 
-                                                            @if($claim->claim_processing && !empty($claim->claim_processing))
-                                                            <li><a class="dropdown-item" href="{{ route('associate-partner.claim-processing.create', ['claim_id' => $claim->id]) }}">
-                                                                <i class="mdi mdi-pencil"></i> Claim Processing</a>
-                                                            </li>
-                                                            @else
-                                                            <li><a class="dropdown-item" href="{{ route('associate-partner.claim-processing.create', ['claim_id' => $claim->id]) }}">
-                                                                <i class="mdi mdi-plus"></i> Claim Processing</a>
-                                                            </li>
-                                                            @endif
-
                                                         </ul>
                                                     </div>
                                                 </td>
