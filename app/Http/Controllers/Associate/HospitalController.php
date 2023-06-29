@@ -42,11 +42,19 @@ class HospitalController extends Controller
 
         $user_id = auth()->user()->associate_partner_id;
 
-        $hospitals =  $hospitals->where('linked_associate_partner_id', auth()->user()->associate_partner_id)
-        ->orWhereHas('associate',  function ($q) use ($user_id) {
-            $q->where('linked_associate_partner', $user_id)
-            ->orWhereHas('associate',  function ($q) use ($user_id) {
-                $q->where('linked_associate_partner', $user_id);
+
+        $hospitals = $hospitals
+        ->where('linked_associate_partner_id', auth()->user()->associate_partner_id)
+        ->orWhereHas('associate', function($q) use ($user_id)
+        {
+            $q->where('linked_associate_partner_id', $user_id)
+            ->orWhereHas('associate', function($q) use ($user_id)
+            {
+                $q->where('linked_associate_partner_id', $user_id)
+                ->orWhereHas('associate', function($q) use ($user_id)
+                {
+                        $q->where('linked_associate_partner_id', $user_id);
+                });
             });
         })->orderBy('id', 'desc')->paginate(20);
 
