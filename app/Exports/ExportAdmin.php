@@ -24,11 +24,7 @@ class ExportAdmin implements FromCollection, WithHeadings
         if ($this->type == 'admin') {
 
             $user_id = auth()->user()->id;
-            $admins =  Admin::where(function ($query) {
-                $query->where('linked_employee', auth()->user()->id);
-            })->select('id', 'firstname', 'lastname', 'email', 'employee_code', 'designation', 'department', 'phone', 'linked_employee', 'linked_employee_id', 'kra', DB::raw("DATE_FORMAT(admins.created_at, '%d-%m-%Y %H:%i:%s')"))->get();
-
-
+            $admins =  Admin::latest('id')->where('linked_employee', auth()->user()->id)->orWhere('id', auth()->user()->id)->select('id', 'firstname', 'lastname', 'email', 'employee_code', 'designation', 'department', 'phone', 'linked_employee', 'linked_employee_id', 'kra', DB::raw("DATE_FORMAT(admins.created_at, '%d-%m-%Y %H:%i:%s')"))->get();
         }else{
             $admins =  Admin::latest('id')->select('id', 'firstname', 'lastname', 'email', 'employee_code', 'designation', 'department', 'phone', 'linked_employee', 'linked_employee_id', 'kra', DB::raw("DATE_FORMAT(admins.created_at, '%d-%m-%Y %H:%i:%s')"))->get();
         }

@@ -29,6 +29,9 @@ class AdminController extends Controller
      */
     public function index(Request $request)
     {
+
+        DB::connection()->enableQueryLog();
+
         $filter_search = $request->search;
         $admins = Admin::query();
         if($filter_search){
@@ -36,10 +39,10 @@ class AdminController extends Controller
         }
 
         $user_id = auth()->user()->id;
-        $admins =  $admins->
-        where(function ($query) {
-            $query->where('linked_employee', auth()->user()->id);
-        })->orderBy('id', 'desc')->paginate(20);
+        $admins =  $admins->where('id', auth()->user()->id)->orWhere('linked_employee', auth()->user()->id)->orderBy('id', 'desc')->paginate(20);
+
+        $queries = DB::getQueryLog();
+        $last_query = end($queries);              
 
 
         return view('admin.admins.manage',  compact('admins', 'filter_search'));
