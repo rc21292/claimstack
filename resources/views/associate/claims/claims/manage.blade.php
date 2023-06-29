@@ -60,11 +60,11 @@
                                                         <button type="button" class="btn btn-primary 
                                                             dropdown-toggle" 
                                                             data-bs-toggle="dropdown">
-                                                                Action &nbsp;
+                                                                Claim Details &nbsp;
                                                         </button>
                                                         <ul class="dropdown-menu dropdown-menu-end">
                                                             <li><a class="dropdown-item" href="{{ route('associate-partner.claims.edit', @$claim->id) }}">
-                                                                <i class="mdi mdi-pencil"></i> Edit Claim</a>
+                                                                <i class="mdi mdi-pencil"></i> Claim Status </a>
                                                             </li>
                                                             @if($claim->claimant && !empty($claim->claimant))
                                                             <li><a class="dropdown-item" href="{{ route('associate-partner.claimants.edit', $claim->claimant) }}">

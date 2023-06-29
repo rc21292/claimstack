@@ -34,7 +34,14 @@ class AdminController extends Controller
         if($filter_search){
             $admins->where(DB::raw("concat(firstname, ' ', lastname)"), 'like','%' . $filter_search . '%');
         }
-        $admins = $admins->orderBy('id', 'desc')->paginate(20);
+
+        $user_id = auth()->user()->id;
+        $admins =  $admins->
+        where(function ($query) {
+            $query->where('linked_employee', auth()->user()->id);
+        })->orderBy('id', 'desc')->paginate(20);
+
+
         return view('admin.admins.manage',  compact('admins', 'filter_search'));
     }
 
