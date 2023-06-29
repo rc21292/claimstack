@@ -68,7 +68,7 @@
                                                             </li>
                                                             @if($claim->claimant && !empty($claim->claimant))
                                                             <li><a class="dropdown-item" href="{{ route('associate-partner.claimants.edit', $claim->claimant) }}">
-                                                                <i class="mdi mdi-pencil"></i> Claimant</a></li>
+                                                                <i class="mdi mdi-pencil"></i> Claimant Status</a></li>
 
                                                              @if(@$claim->claimant->icclaim_status && !empty(@$claim->claimant->icclaim_status))
                                                             <li><a class="dropdown-item" href="{{ route('associate-partner.icclaim-status.create', ['claimant_id' => $claim->claimant]) }}">
@@ -80,12 +80,12 @@
 
                                                             @else
                                                             <li><a class="dropdown-item" href="{{ route('associate-partner.claimants.create', ['claim_id' => $claim->id]) }}">
-                                                                 <i class="mdi mdi-plus"></i> Claimant</a></li>
+                                                                 <i class="mdi mdi-plus"></i> Claimant Status</a></li>
                                                             @endif
 
                                                             @if($claim->borrower && !empty($claim->borrower))
                                                             <li><a class="dropdown-item" href="{{ route('associate-partner.borrowers.edit', $claim->id) }}">
-                                                                <i class="mdi mdi-pencil"></i> Borrower</a>
+                                                                <i class="mdi mdi-pencil"></i> Borrower Status</a>
                                                             </li>
 
 
@@ -99,7 +99,7 @@
 
                                                             @else
                                                             <li><a class="dropdown-item" href="{{ route('associate-partner.borrowers.edit', $claim->id) }}">
-                                                                <i class="mdi mdi-plus"></i> Borrower</a>
+                                                                <i class="mdi mdi-plus"></i> Borrower Status</a>
                                                             </li>
                                                             @endif
 
