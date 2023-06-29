@@ -1087,7 +1087,7 @@ class HospitalController extends Controller
     }
 
     public function export(Request $request){
-        return Excel::download(new ExportHospital, 'hospitals.xlsx');
+        return Excel::download(new ExportHospital('associate'), 'hospitals.xlsx');
     }
 
     public function destroy($id)
