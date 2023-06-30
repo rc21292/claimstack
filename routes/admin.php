@@ -300,4 +300,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('get-employees-by-department/{department}', [UtilityController::class,'getEmployeesByDepartment'])->name('get.employees');
     
     Route::post('hospitals/doctor-delete/{id}',[HospitalController::class,'deleteDoctor'])->name('hospitals.doctor-delete');
+
+    /*Report Generation Routes */
+
+    Route::get('hospital-onboarding',[HospitalController::class,'onbardingReport'])->name('hospital-onboarding');
+    Route::get('hospital-onboarding-export',[HospitalController::class,'onbardingReportExport'])->name('hospital-onboarding-export');
 });

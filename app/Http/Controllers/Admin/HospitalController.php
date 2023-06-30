@@ -2247,4 +2247,13 @@ class HospitalController extends Controller
         return redirect()->back()->with('success', 'Password changed successfully');
     }
 
+    public function onbardingReport(){
+
+       return view('admin.reports.hospital-onboarding');
+    }
+
+    public function onbardingReportExport(){
+        dd('Export Here');
+    }
+
 }
