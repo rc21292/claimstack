@@ -418,8 +418,8 @@
             </div>
             <div class="col-md-6 mt-3">
                 <label for="disease_name">Disease Name. <span class="text-danger">*</span></label>
-                <input type="text" maxlength="45" class="form-control" id="disease_name" name="disease_name"
-                    value="{{ old('disease_name') }}" placeholder="Disease Name">
+                <textarea maxlength="1000" style="height:30px;" class="form-control" id="disease_name" name="disease_name"
+                     placeholder="Disease Name">{{ old('disease_name') }}</textarea>
                 @error('disease_name')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                 @enderror

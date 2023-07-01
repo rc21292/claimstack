@@ -393,7 +393,7 @@
             @enderror
         </div>
         <div class="col-md-12 text-end mt-3">
-            <button type="submit" class="btn btn-success" form="hospital-tie-up-form">Update
+            <button type="submit" disabled class="btn btn-success" form="hospital-tie-up-form">Update
                 Hospital Tie Ups</button>
         </div>
     </div>
