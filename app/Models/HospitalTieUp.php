@@ -21,6 +21,7 @@ class HospitalTieUp extends Model
         'referral_commission_offered', 
         'referral', 
         'agreed_for', 
+        'auto_adjudication',
         'claimstag_usage_services', 
         'claimstag_installation_charges', 
         'claimstag_usage_charges', 

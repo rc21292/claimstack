@@ -57,8 +57,8 @@ class AssociatePartnerHospitalOnboardingExport implements FromCollection, WithHe
             $hospital_array[$key]['AP Name'] = (@$hospital->associate->status == 'Main') ? @$hospital->associate->name  : '' ;
             $hospital_array[$key]['Sub AP Name'] = (@$hospital->associate->status == 'Sub AP') ? @$hospital->associate->name  : '';
             $hospital_array[$key]['Agency Name'] = (@$hospital->associate->status == 'Agency') ? @$hospital->associate->name  : '';
-            $hospital_array[$key]['Claim Stack 2.0 Installed'] = '--';
-            $hospital_array[$key]['Auto Adjudication Installed'] = '--';
+            $hospital_array[$key]['Claim Stack 2.0 Installed'] =  $hospital->tieup->agreed_for == 'ClaimStack2.O' || $hospital->tieup->agreed_for == 'Both' ? 'Yes' : 'No' ;
+            $hospital_array[$key]['Auto Adjudication Installed'] = $hospital->tieup->auto_adjudication;
             $hospital_array[$key]['Claims Reimbursement - Insured Services'] = $hospital->tieup->claims_reimbursement_insured_services;
             $hospital_array[$key]['Cashless Claims Management Services'] = $hospital->tieup->cashless_claims_management_services;
             $hospital_array[$key]['Finance Company Agreement'] = $hospital->tieup->lending_finance_company_agreement;

@@ -124,6 +124,19 @@
         </div>
 
         <div class="col-md-6 mt-3">
+            <label for="auto_adjudication">Auto Adjudication Installed <span class="text-danger">*</span></label>
+            <select class="form-select" onchange="setNameField();" id="auto_adjudication" name="auto_adjudication">
+                <option value="">Select</option>
+                <option value="Yes" {{ old('auto_adjudication', $hospital_tie_ups->auto_adjudication??'') == 'Yes' ? 'selected' : '' }}>Yes</option>
+                <option value="No"  {{ old('auto_adjudication', $hospital_tie_ups->auto_adjudication??'') == 'No' ? 'selected' : '' }}>No</option>
+            </select>
+            @error('auto_adjudication')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+
+        
+        <div class="col-md-6 mt-3">
             <label for="claimstag_usage_services">ClaimStack Usage Services <span class="text-danger">*</span></label>
             <select class="form-select" id="claimstag_usage_services" name="claimstag_usage_services">
                 <option value="">Select</option>

@@ -458,6 +458,7 @@ class HospitalController extends Controller
             'bhc_packages_for_surgical_procedures_accepted' => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
             'discount_on_medical_management_cases'          => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
             'agreed_for'                                    => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
+            'auto_adjudication'                             => ($hospital->onboarding == 'Tie Up') ? 'required' : [],
             'discount_on_final_bill'                        => ($hospital->onboarding == 'Tie Up' && $request->discount_on_medical_management_cases == 'Yes') ? 'required|numeric|digits_between:1,2' : [],
             'discount_on_room_rent'                         => ($hospital->onboarding == 'Tie Up' && $request->discount_on_medical_management_cases == 'Yes') ? 'required|numeric|digits_between:1,2' : [],
             'discount_on_medicines'                         => ($hospital->onboarding == 'Tie Up' && $request->discount_on_medical_management_cases == 'Yes') ? 'required|numeric|digits_between:1,2' : [],
@@ -534,6 +535,7 @@ class HospitalController extends Controller
                 'referral_commission_offered'                       => $request->referral_commission_offered,
                 'referral'                                          => $request->referral,
                 'agreed_for'                                        => $request->agreed_for,
+                'auto_adjudication'                                 => $request->auto_adjudication,
                 'claimstag_usage_services'                          => $request->claimstag_usage_services,
                 'claimstag_installation_charges'                    => $request->claimstag_installation_charges,
                 'claimstag_usage_charges'                           => $request->claimstag_usage_charges,
@@ -2252,7 +2254,7 @@ class HospitalController extends Controller
     public function onbardingReport(Request $request)
     {
         $filter_state = $request->state;
-        $filter_ap_id = $request->ap_id;
+        $filter_ap_id = $request->ap_name;
         $filter_date_from_to = $request->date_from_to;
 
         $hospitals = Hospital::query();

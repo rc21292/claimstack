@@ -11,7 +11,7 @@
                     <div class="page-title-right">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <a class="btn btn-primary" href="{{ route('admin.hospital-onboarding-export') }}">Export Data</a>
+                                <a class="btn btn-primary" href="{{ route('admin.hospital-onboarding-export', ['date_from_to' => request()->date_from_to, 'state' => request()->state, 'ap_name' => request()->ap_name ]) }}">Export Data</a>
                             </div>
                         </div>
                     </div>
@@ -96,8 +96,8 @@
                                                 <td>@if(@$hospital->associate->status == 'Main') {{ @$hospital->associate->name }} @else {{'--'}} @endif</td>                                               
                                                 <td>@if(@$hospital->associate->status == 'Sub AP') {{ @$hospital->associate->name }} @else {{'--'}} @endif</td>                                               
                                                 <td>@if(@$hospital->associate->status == 'Agency') {{ @$hospital->associate->name }} @else {{'--'}} @endif</td> 
-                                                <td>--</td>                                              
-                                                <td>--</td> 
+                                                <td>{{ $hospital->tieup->agreed_for == 'ClaimStack2.O' || $hospital->tieup->agreed_for == 'Both' ? 'Yes' : 'No' }}</td>                                              
+                                                <td>{{ $hospital->tieup->auto_adjudication }}</td> 
                                                 <td>{{ $hospital->tieup->claims_reimbursement_insured_services }}</td>
                                                 <td>{{ $hospital->tieup->cashless_claims_management_services }}</td>        
                                                 <td>{{ $hospital->tieup->lending_finance_company_agreement }}</td>

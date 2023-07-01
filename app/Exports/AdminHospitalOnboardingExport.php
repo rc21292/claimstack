@@ -6,6 +6,7 @@ use App\Models\Hospital;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use  Illuminate\Support\Carbon;
 
 class AdminHospitalOnboardingExport implements FromCollection, WithHeadings, ShouldAutoSize
 {
@@ -25,7 +26,7 @@ class AdminHospitalOnboardingExport implements FromCollection, WithHeadings, Sho
         $hospitals = Hospital::query();
         
         $filter_state = $this->data->state;
-        $filter_ap_id = $this->data->ap_id;
+        $filter_ap_id = $this->data->ap_name;
         $filter_date_from_to = $this->data->date_from_to;
 
         $hospitals = Hospital::query();
@@ -53,7 +54,7 @@ class AdminHospitalOnboardingExport implements FromCollection, WithHeadings, Sho
         })->orWhereHas('linkedEmployeeData',  function ($q) use ($user_id) {
             $q->where('linked_employee', $user_id);
         })->orderBy('name', 'asc')->get();
-
+    
         foreach ($hospitals as $key => $hospital) {
             $hospital_array[$key]['hospital_uid'] = $hospital->uid;
             $hospital_array[$key]['hospital_name'] = $hospital->name;
@@ -67,8 +68,8 @@ class AdminHospitalOnboardingExport implements FromCollection, WithHeadings, Sho
             $hospital_array[$key]['AP Name'] = (@$hospital->associate->status == 'Main') ? @$hospital->associate->name  : '' ;
             $hospital_array[$key]['Sub AP Name'] = (@$hospital->associate->status == 'Sub AP') ? @$hospital->associate->name  : '';
             $hospital_array[$key]['Agency Name'] = (@$hospital->associate->status == 'Agency') ? @$hospital->associate->name  : '';
-            $hospital_array[$key]['Claim Stack 2.0 Installed'] = '--';
-            $hospital_array[$key]['Auto Adjudication Installed'] = '--';
+            $hospital_array[$key]['Claim Stack 2.0 Installed'] = $hospital->tieup->agreed_for == 'ClaimStack2.O' || $hospital->tieup->agreed_for == 'Both' ? 'Yes' : 'No' ;
+            $hospital_array[$key]['Auto Adjudication Installed'] = $hospital->tieup->auto_adjudication;
             $hospital_array[$key]['Claims Reimbursement - Insured Services'] = $hospital->tieup->claims_reimbursement_insured_services;
             $hospital_array[$key]['Cashless Claims Management Services'] = $hospital->tieup->cashless_claims_management_services;
             $hospital_array[$key]['Finance Company Agreement'] = $hospital->tieup->lending_finance_company_agreement;
