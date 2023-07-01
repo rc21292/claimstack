@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.associate')
 @section('title', 'Hospital Onboarding report')
 @section('content')
     <!-- Start Content-->
@@ -11,7 +11,7 @@
                     <div class="page-title-right">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <a class="btn btn-primary" href="{{ route('admin.hospital-onboarding-export') }}">Export Data</a>
+                                <a class="btn btn-primary" href="{{ route('associate-partner.hospital-onboarding-export') }}">Export Data</a>
                             </div>
                         </div>
                     </div>
@@ -20,7 +20,7 @@
             </div>
 
             <div class="container">
-                <form action="{{ route('admin.hospital-onboarding') }}">
+                <form action="{{ route('associate-partner.hospital-onboarding') }}">
 
                     <div class="row pb-4">
 

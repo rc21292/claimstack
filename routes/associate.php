@@ -233,4 +233,8 @@ Route::group(['prefix' => 'associate-partner', 'as' => 'associate-partner.'], fu
     Route::post('change-password', [ChangePasswordController::class,'changePassword'])->name('change-password');
 
     Route::get('get-employees-by-department/{department}', [UtilityController::class,'getEmployeesByDepartment'])->name('get.employees');
+
+
+    Route::get('hospital-onboarding',[HospitalController::class,'onbardingReport'])->name('hospital-onboarding');
+    Route::get('hospital-onboarding-export',[HospitalController::class,'onbardingReportExport'])->name('hospital-onboarding-export');
 });

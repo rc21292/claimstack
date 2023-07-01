@@ -13,6 +13,7 @@ use App\Models\HospitalDepartment;
 use App\Models\HospitalTieUp;
 use App\Models\User;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\AdminHospitalOnboardingExport;
 use App\Imports\ImportHospital;
 use App\Exports\ExportHospital;
 use App\Models\HospitalDocument;
@@ -2247,13 +2248,31 @@ class HospitalController extends Controller
         return redirect()->back()->with('success', 'Password changed successfully');
     }
 
-    public function onbardingReport(){
+    public function onbardingReport(Request $request)
+    {
+        $filter_search = $request->search;
+        $hospitals = Hospital::query();
+        if($filter_search){
+            $hospitals->where('name', 'like','%' . $filter_search . '%');
+        }
 
-       return view('admin.reports.hospital-onboarding');
+        $user_id = auth()->user()->id;
+
+        $hospitals =  $hospitals->
+        where(function ($query) {
+            $query->where('linked_employee', auth()->user()->id)->orWhere('assigned_employee', auth()->user()->id);
+        })->orWhereHas('assignedEmployeeData',  function ($q) use ($user_id) {
+            $q->where('linked_employee', $user_id);
+        })->orWhereHas('linkedEmployeeData',  function ($q) use ($user_id) {
+            $q->where('linked_employee', $user_id);
+        })->orderBy('name', 'asc')->paginate(20);
+
+        return view('admin.reports.hospital-onboarding', compact('hospitals'));
     }
 
-    public function onbardingReportExport(){
-        dd('Export Here');
+    public function onbardingReportExport(Request $request)
+    {
+        return Excel::download(new AdminHospitalOnboardingExport($request), 'hospital-onboarding-report.xlsx');
     }
 
 }

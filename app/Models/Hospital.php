@@ -139,6 +139,12 @@ class Hospital extends Authenticatable
         return $this->hasOne(AssociatePartner::class, 'associate_partner_id', 'linked_associate_partner_id');
     }
 
+
+    public function tieup()
+    {
+        return $this->hasOne(HospitalTieUp::class, 'hospital_id', 'id');
+    }
+
     public function assignedEmployee()
     {
         $user_exists  = User::where('id', $this->assigned_employee)->exists();

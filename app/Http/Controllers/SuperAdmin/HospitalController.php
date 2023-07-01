@@ -18,6 +18,7 @@ use App\Models\User;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ImportHospital;
 use App\Exports\ExportHospital;
+use App\Exports\SuperAdminHospitalOnboardingExport;
 use App\Models\Tpa;
 use App\Notifications\Hospital\CredentialsGeneratedNotification;
 use Illuminate\Http\Request;
@@ -2199,5 +2200,22 @@ class HospitalController extends Controller
         $hospital->save();
 
         return redirect()->back()->with('success', 'Password changed successfully');
+    }
+
+    public function onbardingReport(Request $request)
+    {
+        $filter_search = $request->search;
+        $hospitals = Hospital::query();
+        if($filter_search){
+            $hospitals->where('name', 'like','%' . $filter_search . '%');
+        }
+        $hospitals = $hospitals->orderBy('name', 'asc')->paginate(20);
+
+        return view('super-admin.reports.hospital-onboarding', compact('hospitals'));
+    }
+
+    public function onbardingReportExport(Request $request)
+    {
+        return Excel::download(new SuperAdminHospitalOnboardingExport($request), 'hospital-onboarding-report.xlsx');
     }
 }

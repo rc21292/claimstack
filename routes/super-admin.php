@@ -366,4 +366,7 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
 
     Route::get('dataforselect2', [UtilityController::class,'getdataforselect2'])->name('dataforselect2');
 
+    Route::get('hospital-onboarding',[HospitalController::class,'onbardingReport'])->name('hospital-onboarding');
+    Route::get('hospital-onboarding-export',[HospitalController::class,'onbardingReportExport'])->name('hospital-onboarding-export');
+
 });

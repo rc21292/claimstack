@@ -15,6 +15,7 @@ use App\Models\User;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ImportHospital;
 use App\Exports\ExportHospital;
+use App\Exports\AssociatePartnerHospitalOnboardingExport;
 use App\Notifications\Hospital\CredentialsGeneratedNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -38,7 +39,6 @@ class HospitalController extends Controller
         if($filter_search){
             $hospitals->where('name', 'like','%' . $filter_search . '%');
         }
-        // $hospitals = $hospitals->where('linked_associate_partner_id', auth()->user()->associate_partner_id)->orderBy('id', 'desc')->paginate(20);
 
         $user_id = auth()->user()->associate_partner_id;
 
@@ -1094,5 +1094,39 @@ class HospitalController extends Controller
     {
         Hospital::find($id)->delete();
         return redirect()->back()->with('success', 'Hospital deleted successfully');
+    }
+
+    public function onbardingReport(Request $request)
+    {              
+        $filter_search = $request->search;
+        $hospitals = Hospital::query();
+        if($filter_search){
+            $hospitals->where('name', 'like','%' . $filter_search . '%');
+        }
+
+        $user_id = auth()->user()->associate_partner_id;
+
+
+        $hospitals = $hospitals
+        ->where('linked_associate_partner_id', auth()->user()->associate_partner_id)
+        ->orWhereHas('associate', function($q) use ($user_id)
+        {
+            $q->where('linked_associate_partner_id', $user_id)
+            ->orWhereHas('associate', function($q) use ($user_id)
+            {
+                $q->where('linked_associate_partner_id', $user_id)
+                ->orWhereHas('associate', function($q) use ($user_id)
+                {
+                        $q->where('linked_associate_partner_id', $user_id);
+                });
+            });
+        })->orderBy('name', 'asc')->paginate(20);
+
+        return view('associate.reports.hospital-onboarding', compact('hospitals', 'filter_search'));
+    }
+
+    public function onbardingReportExport(Request $request)
+    {
+        return Excel::download(new AssociatePartnerHospitalOnboardingExport($request), 'hospital-onboarding-report.xlsx');
     }
 }

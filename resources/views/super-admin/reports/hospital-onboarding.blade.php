@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.super-admin')
 @section('title', 'Hospital Onboarding report')
 @section('content')
     <!-- Start Content-->
@@ -11,7 +11,7 @@
                     <div class="page-title-right">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <a class="btn btn-primary" href="{{ route('admin.hospital-onboarding-export') }}">Export Data</a>
+                                <a class="btn btn-primary" href="{{ route('super-admin.hospital-onboarding-export') }}">Export Data</a>
                             </div>
                         </div>
                     </div>
@@ -20,7 +20,7 @@
             </div>
 
             <div class="container">
-                <form action="{{ route('admin.hospital-onboarding') }}">
+                <form action="{{ route('super-admin.hospital-onboarding') }}">
 
                     <div class="row pb-4">
 
@@ -46,7 +46,7 @@
             </div>
 
         </div>
-        @include('admin.sections.flash-message')
+        @include('super-admin.sections.flash-message')
         <!-- end page title -->
 
         <!-- start page content -->
@@ -120,9 +120,28 @@
     </div>
 @endsection
 @push('scripts')
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script>
-    $('#file_hospital_import').change(function() {
-      $('#submit-form1').submit();
-  });
+
+    $(function() {
+
+        $('input[name="date_from_to"]').daterangepicker({
+            autoUpdateInput: false,
+            locale: {
+                cancelLabel: 'Clear'
+            }
+        });
+
+        $('input[name="date_from_to"]').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+        });
+
+        $('input[name="date_from_to"]').on('cancel.daterangepicker', function(ev, picker) {
+            $(this).val('');
+        });
+
+    });
 </script>
 @endpush

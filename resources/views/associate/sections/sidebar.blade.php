@@ -121,6 +121,9 @@
                         <li>
                             <a href="{{ route('associate-partner.hospitals.import-export') }}">Import Export Hospitals</a>
                         </li>
+                        <li>
+                            <a href="{{ route('associate-partner.hospital-onboarding') }}">Hospital Onboarding Report</a>
+                        </li>
                     </ul>
                 </div>
             </li>

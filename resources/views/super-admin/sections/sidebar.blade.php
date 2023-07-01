@@ -459,11 +459,23 @@
                     </ul>
                 </div>
             </li>
+
             <li class="side-nav-item">
-                <a href="javascript:Void(0)" class="side-nav-link">
+                <a data-bs-toggle="collapse" href="#ReportGenMenu" aria-expanded="false" aria-controls="ReportGenMenu"
+                    class="side-nav-link">
                     <i class="uil-graph-bar"></i>
-                    <span> Report Generation </span>
+                    <span>Report Generation </span>
+                    <span class="menu-arrow"></span>
                 </a>
+                <div class="collapse" id="ReportGenMenu">
+                    <ul class="side-nav-second-level">
+                       
+                        <li>
+                            <a href="{{ route('super-admin.hospital-onboarding') }}">Hospital Onboarding Report</a>
+                        </li>
+                      
+                    </ul>
+                </div>
             </li>
 
             <li class="side-nav-item">
