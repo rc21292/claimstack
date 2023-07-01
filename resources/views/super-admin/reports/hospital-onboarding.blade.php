@@ -33,7 +33,7 @@
                         </div>
                         
                         <div class="col-sm-3">
-                            <input class="form-control" value="{{ @$filter_ap_name }}" name="ap_name" type="search" placeholder="Enter Associate Partner Name">
+                            <input class="form-control" value="{{ @$filter_ap_name }}" name="ap_name" type="search" placeholder="Enter Associate Partner UID">
                         </div> 
 
                         <div class="col-sm-2">
