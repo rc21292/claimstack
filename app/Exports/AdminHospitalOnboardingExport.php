@@ -58,8 +58,8 @@ class AdminHospitalOnboardingExport implements FromCollection, WithHeadings, Sho
         foreach ($hospitals as $key => $hospital) {
             $hospital_array[$key]['hospital_uid'] = $hospital->uid;
             $hospital_array[$key]['hospital_name'] = $hospital->name;
-            $hospital_array[$key]['Date of Onboarding'] = $hospital->onboarding;
-            $hospital_array[$key]['Onboarding Status'] = $hospital->status;
+            $hospital_array[$key]['Date of Onboarding'] = Carbon::parse($hospital->created_at)->format('d-m-Y');
+            $hospital_array[$key]['Onboarding Status'] = $hospital->onboarding;
             $hospital_array[$key]['Hospital Address'] = $hospital->address;
             $hospital_array[$key]['Hospital City'] = $hospital->city;
             $hospital_array[$key]['Hospital State'] = $hospital->state;
