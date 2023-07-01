@@ -28,17 +28,9 @@
                             <input type="text" name="date_from_to" placeholder="Select Date from to Date to" class="form-control" value="{{ @$filter_date_from_to}}"   >
                         </div>
 
-                        <div class="col-sm-3">
-                            <input class="form-control" value="{{ @$filter_state }}" name="state" type="search" placeholder="Enter State">
-                        </div>
-                        
-                        <div class="col-sm-3">
-                            <input class="form-control" value="{{ @$filter_ap_name }}" name="ap_name" type="search" placeholder="Enter Associate Partner Name">
-                        </div> 
-
                         <div class="col-sm-2">
                             <button class="btn btn-primary" type="submit">Filter</button>
-                            <a class="btn btn-warning" href='./document-inward-outward-tracking' >Reset</a>
+                            <a class="btn btn-warning" href='./hospital-onboarding' >Reset</a>
                         </div>
 
                     </div>
@@ -125,4 +117,30 @@
       $('#submit-form1').submit();
   });
 </script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script>
+
+    $(function() {
+
+        $('input[name="date_from_to"]').daterangepicker({
+            autoUpdateInput: false,
+            locale: {
+                cancelLabel: 'Clear'
+            }
+        });
+
+        $('input[name="date_from_to"]').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+        });
+
+        $('input[name="date_from_to"]').on('cancel.daterangepicker', function(ev, picker) {
+            $(this).val('');
+        });
+
+    });
+</script>
+
 @endpush

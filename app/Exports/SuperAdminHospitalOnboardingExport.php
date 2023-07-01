@@ -6,6 +6,7 @@ use App\Models\Hospital;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Carbon\Carbon;
 
 class SuperAdminHospitalOnboardingExport implements FromCollection, WithHeadings, ShouldAutoSize
 {
@@ -20,13 +21,31 @@ class SuperAdminHospitalOnboardingExport implements FromCollection, WithHeadings
     }
 
     public function collection()
-    {
+    {  
+
         $hospital_array = array();
-        $filter_search = $this->data->search;
         $hospitals = Hospital::query();
-        if($filter_search){
-            $hospitals->where('name', 'like','%' . $filter_search . '%');
+
+        $filter_state = $this->data->state;
+        $filter_ap_id = $this->data->ap_id;
+        $filter_date_from_to = $this->data->date_from_to;
+
+        $hospitals = Hospital::query();
+
+        if($filter_ap_id){
+            $hospitals->where('linked_associate_partner_id', 'like','%' . $filter_ap_id . '%');
         }
+
+        if($filter_state){
+            $hospitals->where('state', 'like','%' . $filter_state . '%');
+        }
+
+        if($filter_date_from_to){
+            $d = explode('-',$filter_date_from_to);
+            $hospitals->whereDate('created_at', '>=', Carbon::parse($d[0])->format('Y-m-d') );
+            $hospitals->whereDate('created_at','<=', Carbon::parse($d[1])->format('Y-m-d') );
+        }
+
         $hospitals = $hospitals->orderBy('name', 'asc')->get();
 
         foreach ($hospitals as $key => $hospital) {

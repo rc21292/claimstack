@@ -23,6 +23,7 @@ use App\Notifications\Hospital\CredentialsGeneratedNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 class HospitalController extends Controller
 {
@@ -2250,13 +2251,27 @@ class HospitalController extends Controller
 
     public function onbardingReport(Request $request)
     {
-        $filter_search = $request->search;
+        $filter_state = $request->state;
+        $filter_ap_id = $request->ap_id;
+        $filter_date_from_to = $request->date_from_to;
+
         $hospitals = Hospital::query();
-        if($filter_search){
-            $hospitals->where('name', 'like','%' . $filter_search . '%');
+
+        if($filter_ap_id){
+            $hospitals->where('linked_associate_partner_id', 'like','%' . $filter_ap_id . '%');
         }
 
-        $user_id = auth()->user()->id;
+        if($filter_state){
+            $hospitals->where('state', 'like','%' . $filter_state . '%');
+        }
+
+        if($filter_date_from_to){
+            $d = explode('-',$filter_date_from_to);
+            $hospitals->whereDate('created_at', '>=', Carbon::parse($d[0])->format('Y-m-d') );
+            $hospitals->whereDate('created_at','<=', Carbon::parse($d[1])->format('Y-m-d') );
+        }
+
+        $user_id = auth()->user()->id;              
 
         $hospitals =  $hospitals->
         where(function ($query) {
@@ -2267,7 +2282,7 @@ class HospitalController extends Controller
             $q->where('linked_employee', $user_id);
         })->orderBy('name', 'asc')->paginate(20);
 
-        return view('admin.reports.hospital-onboarding', compact('hospitals'));
+        return view('admin.reports.hospital-onboarding', compact('hospitals', 'filter_state', 'filter_ap_id', 'filter_date_from_to'));
     }
 
     public function onbardingReportExport(Request $request)
