@@ -554,7 +554,7 @@
 
 
                                         <div class="col-md-12 text-end mt-3">
-                                            <button type="submit" class="btn btn-success" form="claimant-id-form">Create
+                                            <button type="submit" disabled class="btn btn-success" form="claimant-id-form">Create
                                                 / Save Claimant ID</button>
                                         </div>
                                     </div>
