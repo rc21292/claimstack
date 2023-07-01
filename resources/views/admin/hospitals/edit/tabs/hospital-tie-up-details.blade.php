@@ -125,7 +125,7 @@
 
         <div class="col-md-6 mt-3">
             <label for="auto_adjudication">Auto Adjudication Installed <span class="text-danger">*</span></label>
-            <select class="form-select" onchange="setNameField();" id="auto_adjudication" name="auto_adjudication">
+            <select class="form-select" id="auto_adjudication" name="auto_adjudication">
                 <option value="">Select</option>
                 <option value="Yes" {{ old('auto_adjudication', $hospital_tie_ups->auto_adjudication??'') == 'Yes' ? 'selected' : '' }}>Yes</option>
                 <option value="No"  {{ old('auto_adjudication', $hospital_tie_ups->auto_adjudication??'') == 'No' ? 'selected' : '' }}>No</option>
