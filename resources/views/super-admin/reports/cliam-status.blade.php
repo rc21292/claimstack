@@ -70,7 +70,7 @@
                                             <th scope="col">Final Assessment / Authorization Status</th>
                                             <th scope="col">IC Claim Status</th>
                                             <th scope="col">Estimated Amount</th>
-                                            <th scope="col">Claimed Ampunt</th>
+                                            <th scope="col">Claimed Amount</th>
                                             <th scope="col">Loan Amount</th>
                                             <th scope="col">Settled Amount</th>
                                             <th scope="col">Date of Disbursement (By IC)</th>
@@ -101,32 +101,32 @@
                                                 <td>{{ $claim->patient->title }} {{ $claim->patient->firstname }} {{ $claim->patient->middlename }} {{ $claim->patient->lastname }}</td>
                                                 <td>{{ @$claim->claimant->title }} {{ @$claim->claimant->firstname }} {{ @$claim->claimant->middlename }} {{ @$claim->claimant->lastname }}</td>
                                                 <td>{{ @$claim->borrower->borrower_title }} {{ @$claim->borrower->borrower_firstname }} {{ @$claim->borrower->borrower_middlename }} {{ @$claim->borrower->borrower_lastname }}</td>
+                                                <td>{{ $claim->hospital->name }}</td>                                               
                                                 <td>{{ $claim->assessmentStatus->pre_assessment_status }}</td>
                                                 <td>{{ $claim->claim_processing_status }}</td>                                            
                                                 <td>{{ $claim->assessmentStatus->final_assessment_status }}</td>
                                                 <td>{{@$claim->icClaimStatus->ic_claim_status }}</td>
+                                                <td>{{ $claim->estimated_amount }}</td>                                               
+                                                <td>{{ $claim->hospital->address }}</td>                                               
+                                                <td>{{ $claim->hospital->state }}</td>                                               
+                                                <td>{{ $claim->policy->policy_no }}</td>     
+                                                <td>{{ $claim->policy->policy_type }}</td>     
+                                                <td>{{ $claim->policy->insurance_company }}</td>                                               
+                                                <td>{{ $claim->policy->tpa_name }}</td>                                               
+                                                <td>{{ $claim->hospital->address }}</td>                                               
+                                                <td>{{ $claim->hospital->city }}</td>                                               
+                                                <td>{{ $claim->hospital->state }}</td>                                               
+                                                <td>{{ $claim->hospital->pincode }}</td>     
+                                                <td>{{ $claim->hospital->address }}</td>                                               
+                                                <td>{{ $claim->hospital->city }}</td>                                               
+                                                <td>{{ $claim->hospital->state }}</td>                                               
                                                 <td>{{ $claim->claimant->uid }}</td>                                               
                                                 <td>{{ $claim->borrower->uid }}</td>                                               
-                                                <td>{{ $claim->hospital->uid }}</td>                                               
+                                                <td>{{ $claim->hospital->uid }}</td>     
                                                 <td>{{ $claim->hospital->address }}</td>                                               
                                                 <td>{{ $claim->hospital->city }}</td>                                               
                                                 <td>{{ $claim->hospital->state }}</td>                                               
-                                                <td>{{ $claim->hospital->pincode }}</td>     
-                                                <td>{{ $claim->hospital->address }}</td>                                               
-                                                <td>{{ $claim->hospital->city }}</td>                                               
-                                                <td>{{ $claim->hospital->state }}</td>                                               
-                                                <td>{{ $claim->hospital->pincode }}</td>     
-                                                <td>{{ $claim->hospital->address }}</td>                                               
-                                                <td>{{ $claim->hospital->city }}</td>                                               
-                                                <td>{{ $claim->hospital->state }}</td>                                               
-                                                <td>{{ $claim->hospital->pincode }}</td>     
-                                                <td>{{ $claim->hospital->address }}</td>                                               
-                                                <td>{{ $claim->hospital->city }}</td>                                               
-                                                <td>{{ $claim->hospital->state }}</td>                                               
-                                                <td>{{ $claim->hospital->pincode }}</td>     
-                                                <td>{{ $claim->hospital->address }}</td>                                               
-                                                <td>{{ $claim->hospital->city }}</td>                                               
-                                                <td>{{ $claim->hospital->state }}</td>                                               
+                                                <td>{{ $claim->hospital->pincode }}</td>                                               
                                                 <td>{{ $claim->hospital->pincode }}</td>                                               
                                             </tr>
                                         @endforeach
