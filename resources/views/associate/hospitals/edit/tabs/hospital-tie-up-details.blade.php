@@ -113,8 +113,38 @@
             @enderror
         </div>
 
+
         <div class="col-md-6 mt-3">
-            <label for="claimstag_usage_services">ClaimStag Usage Services <span class="text-danger">*</span></label>
+            <label for="agreed_for">Agreed for <span class="text-danger">*</span></label>
+            <select class="form-select" onchange="setNameField();" id="agreed_for" name="agreed_for">
+                <option value="">Select</option>
+                <option value="Claims Servicing" {{ old('agreed_for', $hospital_tie_ups->agreed_for??'') == 'Claims Servicing' ? 'selected' : '' }}>Claims Servicing
+                </option>
+                <option value="ClaimStack2.O"
+                    {{ old('agreed_for', $hospital_tie_ups->agreed_for??'') == 'ClaimStack2.O' ? 'selected' : '' }}>ClaimStack2.O
+                </option>
+                <option value="Both" {{ old('agreed_for', $hospital_tie_ups->agreed_for??'') == 'Both' ? 'selected' : '' }}>Both
+                </option>
+            </select>
+            @error('agreed_for')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div class="col-md-6 mt-3">
+            <label for="auto_adjudication">Auto Adjudication  <span class="text-danger">*</span></label>
+            <select class="form-select" id="auto_adjudication" name="auto_adjudication">
+                <option value="">Select</option>
+                <option value="Yes" {{ old('auto_adjudication', $hospital_tie_ups->auto_adjudication??'') == 'Yes' ? 'selected' : '' }}>Yes</option>
+                <option value="No"  {{ old('auto_adjudication', $hospital_tie_ups->auto_adjudication??'') == 'No' ? 'selected' : '' }}>No</option>
+            </select>
+            @error('auto_adjudication')
+                <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div class="col-md-6 mt-3">
+            <label for="claimstag_usage_services">Claimstack Usage Services <span class="text-danger">*</span></label>
             <select class="form-select" id="claimstag_usage_services" name="claimstag_usage_services">
                 <option value="">Select</option>
                 <option value="Monthly" {{ old('claimstag_usage_services', $hospital_tie_ups->claimstag_usage_services??'') == 'Monthly' ? 'selected' : '' }}>Monthly
@@ -137,12 +167,12 @@
         </div>
 
         <div class="col-md-6 mt-3">
-            <label for="claimstag_installation_charges">ClaimStag Installation Charges (One Time Payment) <span
+            <label for="claimstag_installation_charges">Claimstack Installation Charges (One Time Payment) <span
                     class="text-danger">*</span></label>
             <div class="input-group">
                 <label class="input-group-text" for="phone">Rs.</label>
                 <input type="number" class="form-control" id="claimstag_installation_charges" name="claimstag_installation_charges"
-                placeholder="Enter ClaimStag Installation Charges (One Time Payment) " value="{{ old('claimstag_installation_charges', $hospital_tie_ups->claimstag_installation_charges??'') }}">
+                placeholder="Enter Claimstack Installation Charges (One Time Payment) " value="{{ old('claimstag_installation_charges', $hospital_tie_ups->claimstag_installation_charges??'') }}">
             </div>
             @error('claimstag_installation_charges')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -150,12 +180,12 @@
         </div>
 
         <div class="col-md-6 mt-3">
-            <label for="claimstag_usage_charges">ClaimStag Usage Charges <span
+            <label for="claimstag_usage_charges">Claimstack Usage Charges <span
                     class="text-danger">*</span></label>
             <div class="input-group">
                 <label class="input-group-text" for="phone">Rs.</label>
                 <input type="number" class="form-control" id="claimstag_usage_charges" name="claimstag_usage_charges"
-                placeholder="Enter ClaimStag Usage Charges" value="{{ old('claimstag_usage_charges', $hospital_tie_ups->claimstag_usage_charges??'') }}">
+                placeholder="Enter Claimstack Usage Charges" value="{{ old('claimstag_usage_charges', $hospital_tie_ups->claimstag_usage_charges??'') }}">
             </div>
             @error('claimstag_usage_charges')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -163,7 +193,7 @@
         </div>
 
         <div class="col-md-6 mt-3">
-            <label for="claims_reimbursement_insured_services">ClaimStag Usage Services <span class="text-danger">*</span></label>
+            <label for="claims_reimbursement_insured_services">Claimstack Usage Services <span class="text-danger">*</span></label>
             <select class="form-select" id="claims_reimbursement_insured_services" name="claims_reimbursement_insured_services">
                 <option value="">Select</option>
                 <option value="Monthly" {{ old('claims_reimbursement_insured_services', $hospital_tie_ups->claims_reimbursement_insured_services??'') == 'Monthly' ? 'selected' : '' }}>Monthly
