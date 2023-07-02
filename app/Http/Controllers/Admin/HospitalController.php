@@ -219,6 +219,8 @@ class HospitalController extends Controller
         $insurers          = Insurer::all();
         $tpas              = Tpa::all();
         $associates = AssociatePartner::get(['name', 'city', 'state', 'id', 'associate_partner_id']);
+        $associates_nbfs = AssociatePartner::where('type', 'nbfc')->get(['name', 'id']);
+
         $hospital_tie_ups          = HospitalTieUp::where('hospital_id', $id)->first();
         if (!$hospital_tie_ups) {
             HospitalTieUp::create(['hospital_id'=> $id]);

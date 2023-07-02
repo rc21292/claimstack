@@ -194,6 +194,7 @@ class HospitalController extends Controller
         $tpas              = Tpa::all();
 
         $associates = AssociatePartner::get(['name', 'city', 'state', 'id', 'associate_partner_id']);
+        $associates_nbfs = AssociatePartner::where('type', 'nbfc')->get(['name', 'id']);
 
         $hospital_tie_ups          = HospitalTieUp::where('hospital_id', $id)->first();
         if (!$hospital_tie_ups) {
@@ -240,7 +241,7 @@ class HospitalController extends Controller
 
         $users              = User::get();
 
-        return view('super-admin.hospitals.edit.edit',  compact('hospital','tpas', 'associates', 'hospitals', 'hospital_facility', 'hospital_nfrastructure', 'hospital_department','hospital_doctor', 'hospital_tie_ups', 'users', 'insurers', 'hospital_document', 'empanelment_status','empanelments', 'id'));
+        return view('super-admin.hospitals.edit.edit',  compact('hospital','tpas', 'associates', 'hospitals', 'hospital_facility', 'hospital_nfrastructure', 'hospital_department','hospital_doctor', 'hospital_tie_ups', 'users', 'insurers', 'hospital_document', 'empanelment_status','empanelments', 'id', 'associates_nbfs'));
     }
 
     /**
