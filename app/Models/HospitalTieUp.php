@@ -51,4 +51,21 @@ class HospitalTieUp extends Model
     {
         return $this->belongsTo(Hospital::class, 'hospital_id');
     }
+
+
+
+    public function nbfc1()
+    {
+        return $this->belongsTo(AssociatePartner::class, 'nbfc_1');
+    }
+
+    public function nbfc2()
+    {
+        return $this->belongsTo(AssociatePartner::class, 'nbfc_2');
+    }
+
+    public function nbfc3()
+    {
+        return $this->belongsTo(AssociatePartner::class, 'nbfc_3');
+    }
 }

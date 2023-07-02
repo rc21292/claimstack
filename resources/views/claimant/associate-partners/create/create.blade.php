@@ -48,6 +48,7 @@
                                         </option>
                                         <option value="sales" {{ old('type') == 'sales' ? 'selected' : '' }}>Sales Partner
                                         </option>
+                                        <option value="nbfc" {{ old('type') == 'nbfc' ? 'selected' : '' }}>NBFC Partner</option>
                                     </select>
                                     @error('type')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
