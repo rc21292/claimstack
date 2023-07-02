@@ -21,6 +21,8 @@
                 <option value="sales" {{ old('type', $associate->type) == 'sales' ? 'selected' : 'disabled' }}>Sales
                     Partner
                 </option>
+                <option value="nbfc" {{ old('type', $associate->type) == 'nbfc' ? 'selected' : '' }}>NBFC Partner
+                </option>
             </select>
             @error('type')
                 <span id="name-error" class="error invalid-feedback">{{ $message }}</span>

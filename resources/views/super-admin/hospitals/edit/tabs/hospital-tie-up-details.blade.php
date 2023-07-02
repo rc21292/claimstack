@@ -410,6 +410,46 @@
             @enderror
         </div>
 
+        <div class="col-md-6 mt-3">
+            <label for="nbfc_1">NBFC-1 <span class="text-danger"></span></label>
+            <select class="form-select select2" id="nbfc_1" onchange="setNbfc2();" name="nbfc_1" data-toggle="select2">
+                <option value="">Please select</option>
+                @foreach ($associates as $associate)
+                <option  value="{{ $associate->id }}" {{ old('nbfc_1', $hospital_tie_ups->nbfc_1) == $associate->id ? 'selected' : '' }}>{{ $associate->name }}</option>
+                @endforeach
+            </select>
+            @error('nbfc_1')
+            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div class="col-md-6 mt-3">
+            <label for="nbfc_2">NBFC-2 <span class="text-danger"></span></label>
+            <select class="form-select select2" id="nbfc_2" @if(empty($hospital_tie_ups->nbfc_1)))  disabled @endif onchange="setNbfc3();" name="nbfc_2" data-toggle="select2">
+                <option value="">Please select</option>
+                @foreach ($associates as $associate)
+                <option  value="{{ $associate->id }}" data-id="{{ $associate->id }}" {{ old('nbfc_2', $hospital_tie_ups->nbfc_2) == $associate->id ? 'selected' : '' }}>{{ $associate->name }}</option>
+                @endforeach
+            </select>
+            @error('nbfc_2')
+            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+
+
+        <div class="col-md-6 mt-3">
+            <label for="nbfc_3">NBFC-3 <span class="text-danger"></span></label>
+            <select class="form-select select2" id="nbfc_3" @if(empty($hospital_tie_ups->nbfc_2)))  disabled @endif name="nbfc_3" data-toggle="select2">
+                <option value="">Please select</option>
+                @foreach ($associates as $associate)
+                <option  value="{{ $associate->id }}" {{ old('nbfc_3', $hospital_tie_ups->nbfc_3) == $associate->id ? 'selected' : '' }}>{{ $associate->name }}</option>
+                @endforeach
+            </select>
+            @error('nbfc_3')
+            <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+
         <div class="col-md-12 mt-3">
             <label for="comments">Comments </label>
             <textarea class="form-control" id="comments" name="comments" maxlength="1000" placeholder="Comments" rows="4">{{ old('comments', $hospital_tie_ups->comments??'') }}</textarea>
@@ -512,6 +552,15 @@ var field_hms = "{{ old('hospital_management_system_installation', $hospital_tie
             $(".show-hide-agrrement").show();
         }
     });
+
+
+    function setNbfc2() {
+        $('#nbfc_2').attr('disabled', false);
+    }
+
+    function setNbfc3() {
+        $('#nbfc_3').attr('disabled', false);
+    }
 </script>
 @endpush
 

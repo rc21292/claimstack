@@ -500,7 +500,7 @@ class HospitalController extends Controller
             'comments.required'                                         => 'Please Enter comments',
         ];
 
-        $this->validate($request, $rules, $messages);
+        $this->validate($request, $rules, $messages);              
 
           $hospitalT =  HospitalTieUp::updateOrCreate([
                 'hospital_id' => $id],
@@ -514,6 +514,9 @@ class HospitalController extends Controller
                 'discount_on_consumables'                           => $request->discount_on_consumables,
                 'referral_commission_offered'                       => $request->referral_commission_offered,
                 'referral'                                          => $request->referral,
+                'nbfc_1'                                          => $request->nbfc_1,
+                'nbfc_2'                                          => $request->nbfc_2,
+                'nbfc_3'                                          => $request->nbfc_3,
                 'agreed_for'                                        => $request->agreed_for,
                 'auto_adjudication'                                 => $request->auto_adjudication,
                 'claimstag_usage_services'                          => $request->claimstag_usage_services,

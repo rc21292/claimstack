@@ -40,6 +40,9 @@ class HospitalTieUp extends Model
         'hospital_management_system_installation', 
         'hms_charges', 
         'comments',
+        'nbfc_1',
+        'nbfc_2',
+        'nbfc_3',
         'status'
     ];
 
