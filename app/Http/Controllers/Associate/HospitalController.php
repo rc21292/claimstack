@@ -198,6 +198,7 @@ class HospitalController extends Controller
         $hospital          = Hospital::find($id);
         $insurers          = Insurer::all();
         $associates = AssociatePartner::get(['name', 'city', 'state', 'id', 'associate_partner_id']);
+        $associates_nbfs = AssociatePartner::where('type', 'nbfc')->get(['name', 'id']);
         $hospital_tie_ups          = HospitalTieUp::where('hospital_id', $id)->first();
         if (!$hospital_tie_ups) {
             HospitalTieUp::create(['hospital_id'=> $id]);
@@ -212,7 +213,7 @@ class HospitalController extends Controller
         $hospital_department          = HospitalDepartment::where('hospital_id', $id)->first();
         $hospitals         = Hospital::get();
         $users              = User::get();
-        return view('associate.hospitals.edit.edit',  compact('hospital', 'associates', 'hospitals', 'hospital_facility', 'hospital_nfrastructure', 'hospital_department', 'hospital_tie_ups', 'users', 'insurers'));
+        return view('associate.hospitals.edit.edit',  compact('hospital', 'associates', 'hospitals', 'hospital_facility', 'hospital_nfrastructure', 'hospital_department', 'hospital_tie_ups', 'users', 'insurers', 'associates_nbfs'));
     }
 
     /**

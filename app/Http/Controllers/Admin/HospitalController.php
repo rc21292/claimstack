@@ -259,7 +259,7 @@ class HospitalController extends Controller
         $hospitals         = Hospital::get();
         $users              = User::get();
 
-        return view('admin.hospitals.edit.edit',  compact('hospital', 'tpas','associates', 'hospitals', 'hospital_facility', 'hospital_nfrastructure', 'hospital_department', 'hospital_tie_ups', 'users', 'insurers', 'hospital_document', 'empanelment_status','empanelments', 'id', 'hospital_doctor'));
+        return view('admin.hospitals.edit.edit',  compact('hospital', 'tpas','associates', 'hospitals', 'hospital_facility', 'hospital_nfrastructure', 'hospital_department', 'hospital_tie_ups', 'users', 'insurers', 'hospital_document', 'empanelment_status','empanelments', 'id', 'hospital_doctor', 'associates_nbfs'));
     }
 
     /**

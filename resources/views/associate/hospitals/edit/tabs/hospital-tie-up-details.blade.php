@@ -389,7 +389,7 @@
             <label for="nbfc_1">NBFC-1 <span class="text-danger"></span></label>
             <select class="form-select select2" id="nbfc_1" onchange="setNbfc2();" name="nbfc_1" data-toggle="select2">
                 <option value="">Please select</option>
-                @foreach ($associates as $associate)
+                @foreach ($associates_nbfs as $associate)
                 <option  value="{{ $associate->id }}" {{ old('nbfc_1', $hospital_tie_ups->nbfc_1) == $associate->id ? 'selected' : '' }}>{{ $associate->name }}</option>
                 @endforeach
             </select>
@@ -402,7 +402,7 @@
             <label for="nbfc_2">NBFC-2 <span class="text-danger"></span></label>
             <select class="form-select select2" id="nbfc_2" @if(empty($hospital_tie_ups->nbfc_1)))  disabled @endif onchange="setNbfc3();" name="nbfc_2" data-toggle="select2">
                 <option value="">Please select</option>
-                @foreach ($associates as $associate)
+                @foreach ($associates_nbfs as $associate)
                 <option  value="{{ $associate->id }}" data-id="{{ $associate->id }}" {{ old('nbfc_2', $hospital_tie_ups->nbfc_2) == $associate->id ? 'selected' : '' }}>{{ $associate->name }}</option>
                 @endforeach
             </select>
@@ -416,7 +416,7 @@
             <label for="nbfc_3">NBFC-3 <span class="text-danger"></span></label>
             <select class="form-select select2" id="nbfc_3" @if(empty($hospital_tie_ups->nbfc_2)))  disabled @endif name="nbfc_3" data-toggle="select2">
                 <option value="">Please select</option>
-                @foreach ($associates as $associate)
+                @foreach ($associates_nbfs as $associate)
                 <option  value="{{ $associate->id }}" {{ old('nbfc_3', $hospital_tie_ups->nbfc_3) == $associate->id ? 'selected' : '' }}>{{ $associate->name }}</option>
                 @endforeach
             </select>
