@@ -75,9 +75,19 @@ class Claim extends Model
         return $this->hasOne(Claimant::class, 'id');
     }
 
+    public function borrower()
+    {
+        return $this->hasOne(Borrower::class, 'id');
+    }
+
     public function claimProcessing()
     {
         return $this->hasOne(ClaimProcessing::class, 'claim_id');
+    }
+
+    public function icClaimStatus()
+    {
+        return $this->hasOne(ICClaimStatus::class, 'claim_id');
     }
 
 

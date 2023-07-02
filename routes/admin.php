@@ -33,6 +33,7 @@ use App\Http\Controllers\Admin\Authorizations\HospitalEmanelmentStatusAuthorizat
 use App\Http\Controllers\Admin\Pending\PendingPreAssessmentController;
 use App\Http\Controllers\Admin\Pending\PendingClaimProcessingController;
 use App\Http\Controllers\Admin\Pending\PendingFinalAssessmentController;
+use App\Http\Controllers\Admin\ClaimReportController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -305,4 +306,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     Route::get('hospital-onboarding',[HospitalController::class,'onbardingReport'])->name('hospital-onboarding');
     Route::get('hospital-onboarding-export',[HospitalController::class,'onbardingReportExport'])->name('hospital-onboarding-export');
+
+
+    Route::get('claim-reports/export',[ClaimReportController::class,'claimReportExport'])->name('claim-reports-export');
+    Route::resource('claim-reports', ClaimReportController::class);
 });

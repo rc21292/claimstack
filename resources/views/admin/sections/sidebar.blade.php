@@ -450,7 +450,10 @@
                         <li>
                             <a href="{{ route('admin.hospital-onboarding') }}">Hospital Onboarding Report</a>
                         </li>
-                      
+                        
+                        <li>
+                            <a href="{{ route('admin.claim-reports.index') }}">Claim Status Report</a>
+                        </li>
                     </ul>
                 </div>
             </li>

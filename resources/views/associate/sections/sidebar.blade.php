@@ -124,6 +124,11 @@
                         <li>
                             <a href="{{ route('associate-partner.hospital-onboarding') }}">Hospital Onboarding Report</a>
                         </li>
+
+                        <li>
+                            <a href="{{ route('associate-partner.claim-reports.index') }}">Claim Status Report</a>
+                        </li>
+
                     </ul>
                 </div>
             </li>

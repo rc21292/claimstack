@@ -2238,7 +2238,6 @@ class HospitalController extends Controller
 
     public function onbardingReportExport(Request $request)
     {
-        // $data = ['date_from_to' => $request->date_from_to, 'state' => $request->state, 'ap_name' => $request->ap_name];              
 
         return Excel::download(new SuperAdminHospitalOnboardingExport($request), 'hospital-onboarding-report.xlsx');
     }

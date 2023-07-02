@@ -39,6 +39,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuperAdmin\TpaCompanyController;
 use App\Http\Controllers\SuperAdmin\DocumentInwardOutwardTrackingController;
 use App\Http\Controllers\SuperAdmin\InterDepartmentDocumentTrackingController;
+use App\Http\Controllers\SuperAdmin\ClaimReportController;
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -369,4 +370,6 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     Route::get('hospital-onboarding',[HospitalController::class,'onbardingReport'])->name('hospital-onboarding');
     Route::get('hospital-onboarding-export',[HospitalController::class,'onbardingReportExport'])->name('hospital-onboarding-export');
 
+    Route::get('claim-reports/export',[ClaimReportController::class,'claimReportExport'])->name('claim-reports-export');
+    Route::resource('claim-reports', ClaimReportController::class);
 });

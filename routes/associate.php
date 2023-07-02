@@ -19,6 +19,7 @@ use App\Http\Controllers\Associate\Claims\ClaimantController;
 use App\Http\Controllers\Associate\Claims\BorrowerController;
 use App\Http\Controllers\Associate\Claims\PatientController;
 use App\Http\Controllers\Associate\AssociatePartnerController;
+use App\Http\Controllers\Associate\ClaimReportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -237,4 +238,8 @@ Route::group(['prefix' => 'associate-partner', 'as' => 'associate-partner.'], fu
 
     Route::get('hospital-onboarding',[HospitalController::class,'onbardingReport'])->name('hospital-onboarding');
     Route::get('hospital-onboarding-export',[HospitalController::class,'onbardingReportExport'])->name('hospital-onboarding-export');
+
+
+    Route::get('claim-reports/export',[ClaimReportController::class,'claimReportExport'])->name('claim-reports-export');
+    Route::resource('claim-reports', ClaimReportController::class);
 });

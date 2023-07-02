@@ -473,6 +473,10 @@
                         <li>
                             <a href="{{ route('super-admin.hospital-onboarding') }}">Hospital Onboarding Report</a>
                         </li>
+
+                        <li>
+                            <a href="{{ route('super-admin.claim-reports.index') }}">Claim Status Report</a>
+                        </li>
                       
                     </ul>
                 </div>
