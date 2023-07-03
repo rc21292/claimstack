@@ -448,20 +448,7 @@
                     <ul class="side-nav-second-level">
                        
                         <li>
-                            <a href="{{ route('admin.hospital-onboarding') }}"><div class="col-md-6">
-                                    <label for="type">Associate Partner Type <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="type" name="type">
-                                        <option value="">Select Type</option>
-                                        <option value="vendor" {{ old('type') == 'vendor' ? 'selected' : '' }}>Vendor Partner
-                                        </option>
-                                        <option value="sales" {{ old('type') == 'sales' ? 'selected' : '' }}>Sales Partner
-                                        </option>
-                                        <option value="nbfc" {{ old('type') == 'nbfc' ? 'selected' : '' }}>NBFC Partner</option>
-                                    </select>
-                                    @error('type')
-                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                    @enderror
-                                </div></a>
+                            <a href="{{ route('admin.hospital-onboarding') }}">Hospital Onboarding Report</a>
                         </li>
                         
                         <li>
