@@ -60,7 +60,7 @@ class SuperAdminClaimReportExport implements FromCollection, WithHeadings, Shoul
             $claim_array[$key]['IC Claim Status'] = @$claim->icClaimStatus->ic_claim_status;
             $claim_array[$key]['Estimated Amount'] = $claim->estimated_amount;
             $claim_array[$key]['Claimed Ampunt'] = $claim->claimant->estimated_amount;
-            $claim_array[$key]['Loan Amount'] = $claim->lendingStatus->loan_disbursed_amount;
+            $claim_array[$key]['Loan Amount'] = @$claim->lendingStatus->loan_disbursed_amount;
             $claim_array[$key]['Settled Amount'] = $claim->icClaimStatus->settled_amount;
             $claim_array[$key]['Date of Disbursement (By IC)'] = @$claim->icClaimStatus->date_disbursement;
             $claim_array[$key]['DOA'] = $claim->admission_date;
