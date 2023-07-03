@@ -113,20 +113,20 @@
                                                 <td>{{ @$claim->icClaimStatus->date_disbursement }}</td>
                                                 <td>{{ '---' }}</td>                                               
                                                 <td>{{ '---' }}</td>                                               
-                                                <td>{{ $claim->policy->policy_no }}</td>     
-                                                <td>{{ $claim->policy->insurer->name }}</td>                                               
-                                                <td>{{ $claim->policy->tpa_name }}</td>                                               
-                                                <td>{{ $claim->policy->policy_type }}</td>     
+                                                <td>{{ @$claim->policy->policy_no }}</td>     
+                                                <td>{{ @$claim->policy->insurer->name }}</td>                                               
+                                                <td>{{ @$claim->policy->tpa_name }}</td>                                               
+                                                <td>{{ @$claim->policy->policy_type }}</td>     
                                                 <td>{{ '---' }}</td>                                               
                                                 <td>{{ '---' }}</td>     
                                                 <td>{{ '---' }}</td>                                               
-                                                <td>{{ $claim->claimant->uid }}</td>                                               
-                                                <td>{{ $claim->borrower->uid }}</td>                                               
-                                                <td>{{ $claim->hospital->uid }}</td>     
-                                                <td>{{ $claim->hospital->address }}</td>                                               
-                                                <td>{{ $claim->hospital->city }}</td>                                               
-                                                <td>{{ $claim->hospital->state }}</td>                                               
-                                                <td>{{ $claim->hospital->pincode }}</td>                                               
+                                                <td>{{ @$claim->claimant->uid }}</td>                                               
+                                                <td>{{ @$claim->borrower->uid }}</td>                                               
+                                                <td>{{ @$claim->hospital->uid }}</td>     
+                                                <td>{{ @$claim->hospital->address }}</td>                                               
+                                                <td>{{ @$claim->hospital->city }}</td>                                               
+                                                <td>{{ @$claim->hospital->state }}</td>                                               
+                                                <td>{{ @$claim->hospital->pincode }}</td>                                               
                                                 <td>{{ '---' }}</td>                                               
                                             </tr>
                                         @endforeach
