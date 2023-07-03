@@ -74,4 +74,12 @@ class InsurancePolicy extends Model
     {
         return $this->belongsTo(Claim::class);
     }
+
+
+    public function insurer()
+    {
+        return $this->belongsTo(Insurer::class, 'insurer_id');
+    }
+
+
 }
