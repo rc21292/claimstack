@@ -101,6 +101,12 @@ class Claim extends Model
         return $this->hasOne(DischargeStatus::class, 'claim_id');
     }
 
+
+     public function lendingStatus()
+    {
+        return $this->hasOne(lendingStatus::class, 'claim_id');
+    }
+
     public function hospital()
     {
         return $this->belongsTo(Hospital::class, 'hospital_id');
