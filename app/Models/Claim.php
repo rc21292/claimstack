@@ -104,7 +104,7 @@ class Claim extends Model
 
      public function lendingStatusData()
     {
-        return $this->hasOne(lendingStatus::class, 'id', 'claim_id');
+        return $this->hasOne(LendingStatus::class, 'claim_id');
     }
 
     public function hospital()
