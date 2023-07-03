@@ -107,7 +107,7 @@
                                                 <td>{{ @$claim->icClaimStatus->ic_claim_status }}</td>
                                                 <td>{{ $claim->estimated_amount }}</td>                                               
                                                 <td>{{ @$claim->claimant->estimated_amount }}</td>                                               
-                                                <td>{{ @$claim->lendingStatus->loan_disbursed_amount }}</td>                                               
+                                                <td>{{ @$claim->lendingStatusData->loan_disbursed_amount }}</td>                                               
                                                 <td>{{ @$claim->icClaimStatus->settled_amount }}</td>                                               
                                                 <td>{{ @$claim->icClaimStatus->date_disbursement }}</td>
                                                 <td>{{ $claim->admission_date }}</td>                                               
