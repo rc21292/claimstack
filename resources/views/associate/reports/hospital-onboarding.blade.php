@@ -84,7 +84,7 @@
                                                 <td>{{ $hospital->city }}</td>                                               
                                                 <td>{{ $hospital->state }}</td>                                               
                                                 <td>{{ $hospital->pincode }}</td>                                               
-                                                <td>{{ $hospital->hospital_by }}</td>                                               
+                                                <td>{{ $hospital->by }}</td>                                               
                                                 <td>@if(@$hospital->associate->status == 'Main') {{ @$hospital->associate->name }} @else {{'--'}} @endif</td>                                               
                                                 <td>@if(@$hospital->associate->status == 'Sub AP') {{ @$hospital->associate->name }} @else {{'--'}} @endif</td>                                               
                                                 <td>@if(@$hospital->associate->status == 'Agency') {{ @$hospital->associate->name }} @else {{'--'}} @endif</td> 

@@ -54,7 +54,7 @@ class AssociatePartnerHospitalOnboardingExport implements FromCollection, WithHe
             $hospital_array[$key]['Hospital City'] = $hospital->city;
             $hospital_array[$key]['Hospital State'] = $hospital->state;
             $hospital_array[$key]['Hospital PIN'] = $hospital->pincode;
-            $hospital_array[$key]['Hospital By'] = $hospital->hospital_by;
+            $hospital_array[$key]['Hospital By'] = $hospital->by;
             $hospital_array[$key]['AP Name'] = (@$hospital->associate->status == 'Main') ? @$hospital->associate->name  : '' ;
             $hospital_array[$key]['Sub AP Name'] = (@$hospital->associate->status == 'Sub AP') ? @$hospital->associate->name  : '';
             $hospital_array[$key]['Agency Name'] = (@$hospital->associate->status == 'Agency') ? @$hospital->associate->name  : '';

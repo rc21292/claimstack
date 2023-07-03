@@ -50,36 +50,35 @@ class SuperAdminClaimReportExport implements FromCollection, WithHeadings, Shoul
         foreach ($claims as $key => $claim) {
             $claim_array[$key]['Patient ID'] = $claim->uid;
             $claim_array[$key]['Claim ID'] = $claim->uid;
-            $claim_array[$key]['Patient Name'] = $claim->uid;
-            $claim_array[$key]['Claimant Name'] = $claim->uid;
-            $claim_array[$key]['Borrower Name'] = $claim->uid;
-            $claim_array[$key]['Hospital Name'] = $claim->uid;
-            $claim_array[$key]['Pre-Assessment Status'] = $claim->uid;
-            $claim_array[$key]['Claim Processing Status'] = $claim->uid;
-            $claim_array[$key]['Final Assessment / Authorization Status'] = $claim->uid;
-            $claim_array[$key]['IC Claim Status'] = $claim->uid;
-            $claim_array[$key]['Estimated Amount'] = $claim->uid;
-            $claim_array[$key]['Claimed Ampunt'] = $claim->uid;
-            $claim_array[$key]['Loan Amount'] = $claim->uid;
-            $claim_array[$key]['Settled Amount'] = $claim->name;
-            $claim_array[$key]['Date of Disbursement (By IC)'] = Carbon::parse($claim->created_at)->format('d-m-Y');
-            $claim_array[$key]['DOA'] = $claim->onboarding;
-            $claim_array[$key]['DOD'] = $claim->address;
-            $claim_array[$key]['Policy No.'] = $claim->city;
-            $claim_array[$key]['Insurance Co.'] = $claim->state;
-            $claim_array[$key]['TPA Name'] = $claim->pincode;
-            $claim_array[$key]['Policy Type'] = $claim->claim_by;
-            $claim_array[$key]['Disease Category'] = (@$claim->associate->status == 'Main') ? @$claim->associate->name  : '' ;
-            $claim_array[$key]['Disease Name'] = (@$claim->associate->status == 'Sub AP') ? @$claim->associate->name  : '';
-            $claim_array[$key]['Disease Type'] = (@$claim->associate->status == 'Agency') ? @$claim->associate->name  : '';
-            $claim_array[$key]['Claimant ID'] =  '' ;
-            $claim_array[$key]['Borrower ID'] = @$claim->tieup->auto_adjudication;
-            $claim_array[$key]['Hospital ID'] = @$claim->tieup->claims_reimbursement_insured_services;
-            $claim_array[$key]['Hospital Address'] = @$claim->tieup->cashless_claims_management_services;
-            $claim_array[$key]['Hospital City'] = @$claim->tieup->lending_finance_company_agreement;
-            $claim_array[$key]['Hospital State'] = '--';
-            $claim_array[$key]['Hospital PIN'] = @$claim->tieup->medical_lending_for_patients;
-            $claim_array[$key]['Key Points '] = @$claim->tieup->medical_lending_for_bill_invoice_discounting;
+            $claim_array[$key]['Patient Name'] = $claim->patient->title. ' ' .$claim->patient->firstname. ' ' .$claim->patient->middlename. ' ' .$claim->patient->lastname;
+            $claim_array[$key]['Claimant Name'] = @$claim->claimant->title. ' ' .@$claim->claimant->firstname. ' '.@$claim->claimant->middlename.' '.@$claim->claimant->lastname;
+            $claim_array[$key]['Borrower Name'] = @$claim->borrower->borrower_title. ' ' .@$claim->borrower->borrower_firstname. ' '.@$claim->borrower->borrower_middlename . ' '.@$claim->borrower->borrower_lastname;
+            $claim_array[$key]['Hospital Name'] = $claim->hospital->name;
+            $claim_array[$key]['Pre-Assessment Status'] = @$claim->assessmentStatus->pre_assessment_status;
+            $claim_array[$key]['Claim Processing Status'] = @$claim->claim_processing_status ;
+            $claim_array[$key]['Final Assessment / Authorization Status'] = @$claim->assessmentStatus->final_assessment_status;
+            $claim_array[$key]['IC Claim Status'] = @$claim->icClaimStatus->ic_claim_status;
+            $claim_array[$key]['Estimated Amount'] = $claim->estimated_amount;
+            $claim_array[$key]['Claimed Ampunt'] = $claim->estimated_amount;
+            $claim_array[$key]['Loan Amount'] = $claim->estimated_amount;
+            $claim_array[$key]['Settled Amount'] = $claim->estimated_amount;
+            $claim_array[$key]['Date of Disbursement (By IC)'] = @$claim->icClaimStatus->date_disbursement;
+            $claim_array[$key]['DOA'] = '---';
+            $claim_array[$key]['DOD'] = '---';
+            $claim_array[$key]['Policy No.'] = @$claim->policy->policy_no;
+            $claim_array[$key]['Insurance Co.'] = @$claim->policy->insurer->name;
+            $claim_array[$key]['TPA Name'] = @$claim->policy->tpa_name;
+            $claim_array[$key]['Policy Type'] = @$claim->policy->policy_type;
+            $claim_array[$key]['Disease Category'] = '---';
+            $claim_array[$key]['Disease Name'] = '---';
+            $claim_array[$key]['Disease Type'] = '---';
+            $claim_array[$key]['Claimant ID'] =  @$claim->claimant->uid;
+            $claim_array[$key]['Borrower ID'] = @$claim->borrower->uid;
+            $claim_array[$key]['Hospital ID'] = @$claim->hospital->uid;
+            $claim_array[$key]['Hospital Address'] = @$claim->hospital->address;
+            $claim_array[$key]['Hospital City'] = @$claim->hospital->city;
+            $claim_array[$key]['Hospital State'] = @$claim->hospital->state;
+            $claim_array[$key]['Hospital PIN'] = @$claim->hospital->pincode;
         }
 
         return collect($claim_array);}
@@ -118,7 +117,6 @@ class SuperAdminClaimReportExport implements FromCollection, WithHeadings, Shoul
             'Hospital City',
             'Hospital State',
             'Hospital PIN',
-            'Key Points ',
         ];
     }
 }
