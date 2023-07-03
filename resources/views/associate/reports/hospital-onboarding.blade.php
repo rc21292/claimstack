@@ -15,7 +15,7 @@
                             </div>
                         </div>
                     </div>
-                    <h4 class="page-title">Hospital Onboarding report Export</h4>
+                    <h4 class="page-title">Hospital Onboarding Report</h4>
                 </div>
             </div>
 
