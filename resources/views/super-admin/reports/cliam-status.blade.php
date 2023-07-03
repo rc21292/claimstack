@@ -102,9 +102,9 @@
                                                 <td>{{ @$claim->claimant->title }} {{ @$claim->claimant->firstname }} {{ @$claim->claimant->middlename }} {{ @$claim->claimant->lastname }}</td>
                                                 <td>{{ @$claim->borrower->borrower_title }} {{ @$claim->borrower->borrower_firstname }} {{ @$claim->borrower->borrower_middlename }} {{ @$claim->borrower->borrower_lastname }}</td>
                                                 <td>{{ $claim->hospital->name }}</td>                                               
-                                                <td>{{ $claim->assessmentStatus->pre_assessment_status }}</td>
-                                                <td>{{ $claim->claim_processing_status }}</td>                                            
-                                                <td>{{ $claim->assessmentStatus->final_assessment_status }}</td>
+                                                <td>{{ @$claim->assessmentStatus->pre_assessment_status }}</td>
+                                                <td>{{ @$claim->claim_processing_status }}</td>                                            
+                                                <td>{{ @$claim->assessmentStatus->final_assessment_status }}</td>
                                                 <td>{{ @$claim->icClaimStatus->ic_claim_status }}</td>
                                                 <td>{{ $claim->estimated_amount }}</td>                                               
                                                 <td>{{ $claim->estimated_amount }}</td>                                               
