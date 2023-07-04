@@ -23,12 +23,15 @@ class AdminHospitalOnboardingExport implements FromCollection, WithHeadings, Sho
     public function collection()
     {
         $hospital_array = array();
-        $hospitals = Hospital::query();
-        
-        $filter_state = $this->data->state;
+
+         $filter_state = $this->data->state;
         $filter_ap_id = $this->data->ap_name;
         $filter_date_from_to = $this->data->date_from_to;
+        
+        $hospitals = Hospital::query();
+       
 
+        /*$hospitals = Hospital::query();
         $hospitals = Hospital::query();
 
         if($filter_ap_id){
@@ -53,7 +56,35 @@ class AdminHospitalOnboardingExport implements FromCollection, WithHeadings, Sho
             $q->where('linked_employee', $user_id);
         })->orWhereHas('linkedEmployeeData',  function ($q) use ($user_id) {
             $q->where('linked_employee', $user_id);
-        })->orderBy('name', 'asc')->get();
+        })->orderBy('name', 'asc')->get();*/
+
+
+
+        $hospitals = Hospital::query();
+
+        $user_id = auth()->user()->id; 
+
+        if($filter_state){
+            $hospitals->where('state', 'like','%' . $filter_state . '%');
+        }else if($filter_date_from_to){
+            $d = explode('-',$filter_date_from_to);
+            $hospitals->whereDate('created_at', '>=', Carbon::parse($d[0])->format('Y-m-d') );
+            $hospitals->whereDate('created_at','<=', Carbon::parse($d[1])->format('Y-m-d') );
+        }else if($filter_ap_id){
+            $hospitals->where('linked_associate_partner_id', $filter_ap_id);
+        }else{             
+
+            $hospitals =  $hospitals->
+            where(function ($query) {
+                $query->where('linked_employee', auth()->user()->id)->orWhere('assigned_employee', auth()->user()->id);
+            })->orWhereHas('assignedEmployeeData',  function ($q) use ($user_id) {
+                $q->where('linked_employee', $user_id);
+            })->orWhereHas('linkedEmployeeData',  function ($q) use ($user_id) {
+                $q->where('linked_employee', $user_id);
+            });
+        }
+
+        $hospitals = $hospitals->orderBy('name', 'asc')->paginate(20);
     
         foreach ($hospitals as $key => $hospital) {
             $hospital_array[$key]['hospital_uid'] = $hospital->uid;
