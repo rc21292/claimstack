@@ -27,7 +27,7 @@ class SuperAdminHospitalOnboardingExport implements FromCollection, WithHeadings
         $hospitals = Hospital::query();
 
         $filter_state = $this->data->state;
-        $filter_ap_id = $this->data->ap_id;
+        $filter_ap_id = $this->data->ap_name;
         $filter_date_from_to = $this->data->date_from_to;
 
         $hospitals = Hospital::query();

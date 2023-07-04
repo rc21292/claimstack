@@ -2212,7 +2212,7 @@ class HospitalController extends Controller
     public function onbardingReport(Request $request)
     {
         $filter_state = $request->state;
-        $filter_ap_id = $request->ap_id;
+        $filter_ap_id = $request->ap_name;
         $filter_date_from_to = $request->date_from_to;
 
         $hospitals = Hospital::query();
@@ -2233,7 +2233,9 @@ class HospitalController extends Controller
 
         $hospitals = $hospitals->orderBy('name', 'asc')->paginate(20);
 
-        return view('super-admin.reports.hospital-onboarding', compact('hospitals', 'filter_state', 'filter_ap_id', 'filter_date_from_to'));
+        $associates = AssociatePartner::get(['name', 'associate_partner_id']);
+
+        return view('super-admin.reports.hospital-onboarding', compact('hospitals', 'filter_state', 'filter_ap_id', 'filter_date_from_to', 'associates'));
     }
 
     public function onbardingReportExport(Request $request)

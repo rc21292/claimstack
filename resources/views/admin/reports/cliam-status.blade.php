@@ -94,6 +94,7 @@
                                             <th scope="col">Hospital Address</th>
                                             <th scope="col">Hospital City</th>
                                             <th scope="col">Hospital State</th>
+                                            <th scope="col">Hospital Pincode</th>
                                         </tr>
                                     </thead>
                                     <tbody>

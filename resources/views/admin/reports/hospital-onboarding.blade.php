@@ -33,8 +33,15 @@
                         </div>
                         
                         <div class="col-sm-3">
-                            <input class="form-control" value="{{ @$filter_ap_name }}" name="ap_name" type="search" placeholder="Enter Associate Partner UID">
-                        </div> 
+
+                            <select class="form-control select2" name="ap_name" data-toggle="select2" >
+                            <option value="">Select Associate Partner</option>
+                            @foreach ($associates as $associate)
+                            <option value="{{ $associate->associate_partner_id }}"
+                                {{ @$filter_ap_id == $associate->associate_partner_id ? 'selected' : '' }} >{{ $associate->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
                         <div class="col-sm-2">
                             <button class="btn btn-primary" type="submit">Filter</button>
