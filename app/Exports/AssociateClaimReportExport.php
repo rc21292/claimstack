@@ -5,6 +5,7 @@ namespace App\Exports;
 use App\Models\Claim;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
 class AssociateClaimReportExport implements FromCollection, WithHeadings, ShouldAutoSize

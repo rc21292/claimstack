@@ -94,7 +94,6 @@
                                             <th scope="col">Hospital Address</th>
                                             <th scope="col">Hospital City</th>
                                             <th scope="col">Hospital State</th>
-                                            <th scope="col">Key Points </th>
                                         </tr>
                                     </thead>
                                     <tbody>

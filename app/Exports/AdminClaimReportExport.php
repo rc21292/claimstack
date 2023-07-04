@@ -6,6 +6,7 @@ use App\Models\Claim;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Carbon\Carbon;
 
 class AdminClaimReportExport implements FromCollection, WithHeadings, ShouldAutoSize
 {

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Exports\AssociateClaimReportExport;
 use App\Models\Claim;
 use Maatwebsite\Excel\Facades\Excel;
+use Carbon\Carbon;
 
 class ClaimReportController extends Controller
 {
@@ -24,6 +25,7 @@ class ClaimReportController extends Controller
 
         if($filter_date_from_to){
             $d = explode('-',$filter_date_from_to);
+                  
             $claims->whereDate('created_at', '>=', Carbon::parse($d[0])->format('Y-m-d') );
             $claims->whereDate('created_at','<=', Carbon::parse($d[1])->format('Y-m-d') );
         }
