@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Exports\SuperAdminClaimReportExport;
 use App\Models\Claim;
+use App\Models\Hospital;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ClaimReportController extends Controller
@@ -17,19 +18,34 @@ class ClaimReportController extends Controller
      */
     public function index(Request $request)
     {
-        $filter_search = $request->search;
-        $claims = Claim::with('patient');
-        if ($filter_search) {
-            $claims->whereHas('patient', function ($q) use ($filter_search) {
-                $q->where(function ($q) use ($filter_search) {
-                    $q->where('uid', 'like', '%' . $filter_search . '%');
-                });
+        $claims = Claim::query();
+
+        $filter_state = $request->state;
+        $filter_hospital = $request->filter_hospital;
+        $filter_date_from_to = $request->date_from_to;
+
+        if($filter_hospital){
+            $claims->where('hospital_id', 'like','%' . $filter_hospital . '%');
+        }
+
+        if($filter_state){
+
+            $claims->whereHas('hospital',  function ($q) use ($filter_state) {
+                $q->where('state', 'like','%' . $filter_state . '%');
             });
+        }
+
+        if($filter_date_from_to){
+            $d = explode('-',$filter_date_from_to);
+            $claims->whereDate('created_at', '>=', Carbon::parse($d[0])->format('Y-m-d') );
+            $claims->whereDate('created_at','<=', Carbon::parse($d[1])->format('Y-m-d') );
         }
 
         $claims = $claims->orderBy('id', 'desc')->paginate(20);
 
-        return view('super-admin.reports.cliam-status',  compact('claims', 'filter_search'));
+        $hospitals = Hospital::pluck('name','id');              
+
+        return view('super-admin.reports.cliam-status',  compact('claims', 'filter_hospital', 'filter_state', 'filter_date_from_to', 'hospitals'));
     }
 
 

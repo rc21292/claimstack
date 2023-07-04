@@ -11,7 +11,7 @@
                     <div class="page-title-right">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <a class="btn btn-primary" href="{{ route('super-admin.claim-reports-export', ['date_from_to' => request()->date_from_to, 'state' => request()->state, 'ap_name' => request()->ap_name ]) }}">Export Data</a>
+                                <a class="btn btn-primary" href="{{ route('super-admin.claim-reports-export', ['date_from_to' => request()->date_from_to, 'state' => request()->state, 'filter_hospital' => request()->filter_hospital ]) }}">Export Data</a>
                             </div>
                         </div>
                     </div>
@@ -31,10 +31,17 @@
                         <div class="col-sm-3">
                             <input class="form-control" value="{{ @$filter_state }}" name="state" type="search" placeholder="Enter State">
                         </div>
-                        
+
+
                         <div class="col-sm-3">
-                            <input class="form-control" value="{{ @$filter_ap_name }}" name="ap_name" type="search" placeholder="Enter Associate Partner UID">
-                        </div> 
+                            <select class="form-control select2" id="filter_hospital" name="filter_hospital" data-toggle="select2">
+                                <option value="">Select Hospital</option>
+                                @foreach ($hospitals as $hospital_id => $hospital)
+                                <option value="{{ $hospital_id }}"  {{ old('filter_hospital', @$filter_hospital) == $hospital_id ? 'selected' : '' }} >{{ $hospital }}  </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        
 
                         <div class="col-sm-2">
                             <button class="btn btn-primary" type="submit">Filter</button>
