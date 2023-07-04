@@ -25,17 +25,18 @@ class AdminClaimReportExport implements FromCollection, WithHeadings, ShouldAuto
         $claims = Claim::query();
 
         $filter_state = $this->data->state;
-        $filter_ap_id = $this->data->ap_id;
+        $filter_hospital = $this->data->filter_hospital;
         $filter_date_from_to = $this->data->date_from_to;
 
-        $claims = Claim::query();
-
-        if($filter_ap_id){
-            $claims->where('linked_associate_partner_id', 'like','%' . $filter_ap_id . '%');
+        if($filter_hospital){
+            $claims->where('hospital_id', 'like','%' . $filter_hospital . '%');
         }
 
         if($filter_state){
-            $claims->where('state', 'like','%' . $filter_state . '%');
+
+            $claims->whereHas('hospital',  function ($q) use ($filter_state) {
+                $q->where('state', 'like','%' . $filter_state . '%');
+            });
         }
 
         if($filter_date_from_to){
@@ -43,11 +44,20 @@ class AdminClaimReportExport implements FromCollection, WithHeadings, ShouldAuto
             $claims->whereDate('created_at', '>=', Carbon::parse($d[0])->format('Y-m-d') );
             $claims->whereDate('created_at','<=', Carbon::parse($d[1])->format('Y-m-d') );
         }
+        
+        $user_id = auth('admin')->user()->id;
 
-        $claims = $claims->orderBy('id', 'asc')->get();
+        $claims = $claims->whereHas('hospital', function ($q) use ($user_id) {
+            $q->where('linked_employee', auth('admin')->user()->id)->orWhere('assigned_employee', auth('admin')->user()->id);
+            $q->orWhereHas('assignedEmployeeData', function ($q) use ($user_id) {
+                $q->where('linked_employee', $user_id);
+            })->orWhereHas('linkedEmployeeData', function ($q) use ($user_id) {
+                $q->where('linked_employee', $user_id);
+            });
+        })->orderBy('id', 'desc')->paginate(20);
 
         foreach ($claims as $key => $claim) {
-            $claim_array[$key]['Patient ID'] = $claim->uid;
+            $claim_array[$key]['Patient ID'] = $claim->patient->uid;
             $claim_array[$key]['Claim ID'] = $claim->uid;
             $claim_array[$key]['Patient Name'] = $claim->patient->title. ' ' .$claim->patient->firstname. ' ' .$claim->patient->middlename. ' ' .$claim->patient->lastname;
             $claim_array[$key]['Claimant Name'] = @$claim->claimant->title. ' ' .@$claim->claimant->firstname. ' '.@$claim->claimant->middlename.' '.@$claim->claimant->lastname;
@@ -60,7 +70,7 @@ class AdminClaimReportExport implements FromCollection, WithHeadings, ShouldAuto
             $claim_array[$key]['Estimated Amount'] = $claim->estimated_amount;
             $claim_array[$key]['Claimed Ampunt'] = $claim->claimant->estimated_amount;
             $claim_array[$key]['Loan Amount'] = @$claim->lendingStatusData->loan_disbursed_amount;
-            $claim_array[$key]['Settled Amount'] = $claim->icClaimStatus->settled_amount;
+            $claim_array[$key]['Settled Amount'] = @$claim->icClaimStatus->settled_amount;
             $claim_array[$key]['Date of Disbursement (By IC)'] = @$claim->icClaimStatus->date_disbursement;
             $claim_array[$key]['DOA'] = $claim->admission_date;
             $claim_array[$key]['DOD'] = $claim->discharge_date;
@@ -80,7 +90,8 @@ class AdminClaimReportExport implements FromCollection, WithHeadings, ShouldAuto
             $claim_array[$key]['Hospital PIN'] = @$claim->hospital->pincode;
         }
 
-        return collect($claim_array);}
+        return collect($claim_array);
+    }
 
     public function headings(): array
     {

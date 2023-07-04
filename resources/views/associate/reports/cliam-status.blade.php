@@ -28,14 +28,6 @@
                             <input type="text" name="date_from_to" placeholder="Select Date from to Date to" class="form-control" value="{{ @$filter_date_from_to}}"   >
                         </div>
 
-                        <div class="col-sm-3">
-                            <input class="form-control" value="{{ @$filter_state }}" name="state" type="search" placeholder="Enter State">
-                        </div>
-                        
-                        <div class="col-sm-3">
-                            <input class="form-control" value="{{ @$filter_ap_name }}" name="ap_name" type="search" placeholder="Enter Associate Partner UID">
-                        </div> 
-
                         <div class="col-sm-2">
                             <button class="btn btn-primary" type="submit">Filter</button>
                             <a class="btn btn-warning" href="{{ route('associate-partner.claim-reports.index') }}" >Reset</a>

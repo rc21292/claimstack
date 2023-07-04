@@ -25,17 +25,18 @@ class AssociateClaimReportExport implements FromCollection, WithHeadings, Should
         $claims = Claim::query();
 
         $filter_state = $this->data->state;
-        $filter_ap_id = $this->data->ap_id;
+        $filter_hospital = $this->data->filter_hospital;
         $filter_date_from_to = $this->data->date_from_to;
 
-        $claims = Claim::query();
-
-        if($filter_ap_id){
-            $claims->where('linked_associate_partner_id', 'like','%' . $filter_ap_id . '%');
+        if($filter_hospital){
+            $claims->where('hospital_id', 'like','%' . $filter_hospital . '%');
         }
 
         if($filter_state){
-            $claims->where('state', 'like','%' . $filter_state . '%');
+
+            $claims->whereHas('hospital',  function ($q) use ($filter_state) {
+                $q->where('state', 'like','%' . $filter_state . '%');
+            });
         }
 
         if($filter_date_from_to){

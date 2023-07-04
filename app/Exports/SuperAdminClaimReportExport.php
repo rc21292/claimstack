@@ -25,9 +25,6 @@ class SuperAdminClaimReportExport implements FromCollection, WithHeadings, Shoul
         $claim_array = array();
         $claims = Claim::query();
 
-
-        $claims = Claim::query();
-
         $filter_state = $this->data->state;
         $filter_hospital = $this->data->filter_hospital;
         $filter_date_from_to = $this->data->date_from_to;

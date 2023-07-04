@@ -18,19 +18,34 @@ class ClaimReportController extends Controller
 
     public function index(Request $request)
     {
-        $filter_search = $request->search;
-        $claims = Claim::with('patient');
-        if ($filter_search) {
-            $claims->whereHas('patient', function ($q) use ($filter_search) {
-                $q->where(function ($q) use ($filter_search) {
-                    $q->where('uid', 'like', '%' . $filter_search . '%');
-                });
-            });
+        $claims = Claim::query();
+
+        $filter_date_from_to = $request->date_from_to;
+
+        if($filter_date_from_to){
+            $d = explode('-',$filter_date_from_to);
+            $claims->whereDate('created_at', '>=', Carbon::parse($d[0])->format('Y-m-d') );
+            $claims->whereDate('created_at','<=', Carbon::parse($d[1])->format('Y-m-d') );
         }
 
-        $claims = $claims->orderBy('id', 'desc')->paginate(20);
+        $user_id = auth('associate')->user()->associate_partner_id;
+        $claims = $claims->whereHas('hospital', function($q) use ($user_id){
+            $q->where('linked_associate_partner_id', auth('associate')->user()->associate_partner_id)
+        ->orWhereHas('associate', function($q) use ($user_id)
+        {
+            $q->where('linked_associate_partner_id', $user_id)
+            ->orWhereHas('associate', function($q) use ($user_id)
+            {
+                $q->where('linked_associate_partner_id', $user_id)
+                ->orWhereHas('associate', function($q) use ($user_id)
+                {
+                        $q->where('linked_associate_partner_id', $user_id);
+                });
+            });
+        });
+        })->orderBy('id', 'desc')->paginate(20);
 
-        return view('associate.reports.cliam-status',  compact('claims', 'filter_search'));
+        return view('associate.reports.cliam-status',  compact('claims'));
     }
 
 
