@@ -128,7 +128,6 @@ class AdminClaimReportExport implements FromCollection, WithHeadings, ShouldAuto
             'Hospital City',
             'Hospital State',
             'Hospital PIN',
-            'Key Points ',
         ];
     }
 }

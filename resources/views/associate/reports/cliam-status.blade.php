@@ -11,7 +11,7 @@
                     <div class="page-title-right">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <a class="btn btn-primary" href="{{ route('associate-partner.claim-reports-export', ['date_from_to' => request()->date_from_to, 'state' => request()->state, 'ap_name' => request()->ap_name ]) }}">Export Data</a>
+                                <a class="btn btn-primary" href="{{ route('associate-partner.claim-reports-export', ['date_from_to' => request()->date_from_to]) }}">Export Data</a>
                             </div>
                         </div>
                     </div>

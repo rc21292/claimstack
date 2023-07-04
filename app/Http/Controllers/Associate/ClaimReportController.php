@@ -25,7 +25,7 @@ class ClaimReportController extends Controller
 
         if($filter_date_from_to){
             $d = explode('-',$filter_date_from_to);
-                  
+
             $claims->whereDate('created_at', '>=', Carbon::parse($d[0])->format('Y-m-d') );
             $claims->whereDate('created_at','<=', Carbon::parse($d[1])->format('Y-m-d') );
         }
@@ -47,7 +47,7 @@ class ClaimReportController extends Controller
         });
         })->orderBy('id', 'desc')->paginate(20);
 
-        return view('associate.reports.cliam-status',  compact('claims'));
+        return view('associate.reports.cliam-status',  compact('claims', 'filter_date_from_to'));
     }
 
 

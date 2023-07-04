@@ -49,7 +49,7 @@ class AssociateClaimReportExport implements FromCollection, WithHeadings, Should
         $claims = $claims->orderBy('id', 'asc')->get();
 
         foreach ($claims as $key => $claim) {
-            $claim_array[$key]['Patient ID'] = $claim->uid;
+            $claim_array[$key]['Patient ID'] = $claim->patient->uid;
             $claim_array[$key]['Claim ID'] = $claim->uid;
             $claim_array[$key]['Patient Name'] = $claim->patient->title. ' ' .$claim->patient->firstname. ' ' .$claim->patient->middlename. ' ' .$claim->patient->lastname;
             $claim_array[$key]['Claimant Name'] = @$claim->claimant->title. ' ' .@$claim->claimant->firstname. ' '.@$claim->claimant->middlename.' '.@$claim->claimant->lastname;
@@ -62,7 +62,7 @@ class AssociateClaimReportExport implements FromCollection, WithHeadings, Should
             $claim_array[$key]['Estimated Amount'] = $claim->estimated_amount;
             $claim_array[$key]['Claimed Ampunt'] = $claim->claimant->estimated_amount;
             $claim_array[$key]['Loan Amount'] = @$claim->lendingStatusData->loan_disbursed_amount;
-            $claim_array[$key]['Settled Amount'] = $claim->icClaimStatus->settled_amount;
+            $claim_array[$key]['Settled Amount'] = @$claim->icClaimStatus->settled_amount;
             $claim_array[$key]['Date of Disbursement (By IC)'] = @$claim->icClaimStatus->date_disbursement;
             $claim_array[$key]['DOA'] = $claim->admission_date;
             $claim_array[$key]['DOD'] = $claim->discharge_date;
@@ -119,7 +119,6 @@ class AssociateClaimReportExport implements FromCollection, WithHeadings, Should
             'Hospital City',
             'Hospital State',
             'Hospital PIN',
-            'Key Points ',
         ];
     }
 }
