@@ -87,6 +87,17 @@ class AdminHospitalOnboardingExport implements FromCollection, WithHeadings, Sho
         $hospitals = $hospitals->orderBy('name', 'asc')->paginate(20);
     
         foreach ($hospitals as $key => $hospital) {
+
+            $nbfc = @$hospital->tieup->nbfc1->name;
+
+            if (isset($hospital->tieup->nbfc_2)) {
+               $nbfc .= ', '.@$hospital->tieup->nbfc2->name;
+            }
+
+            if (isset($hospital->tieup->nbfc_3)) {
+               $nbfc .= ', '.@$hospital->tieup->nbfc3->name;
+            }
+
             $hospital_array[$key]['hospital_uid'] = $hospital->uid;
             $hospital_array[$key]['hospital_name'] = $hospital->name;
             $hospital_array[$key]['Date of Onboarding'] = Carbon::parse($hospital->created_at)->format('d-m-Y');
@@ -104,7 +115,7 @@ class AdminHospitalOnboardingExport implements FromCollection, WithHeadings, Sho
             $hospital_array[$key]['Claims Reimbursement - Insured Services'] = $hospital->tieup->claims_reimbursement_insured_services;
             $hospital_array[$key]['Cashless Claims Management Services'] = $hospital->tieup->cashless_claims_management_services;
             $hospital_array[$key]['Finance Company Agreement'] = $hospital->tieup->lending_finance_company_agreement;
-            $hospital_array[$key]['Name of the Finance Company'] = @$hospital->tieup->nbfc1->name; ((@$hospital->tieup->nbfc_2) ? ',' : '');  @$hospital->tieup->nbfc2->name; ((@$hospital->tieup->nbfc_3) ? ',' : ''); @$hospital->tieup->nbfc3->name;
+            $hospital_array[$key]['Name of the Finance Company'] = @$nbfc;
             $hospital_array[$key]['Medical Lending for Patients'] = $hospital->tieup->medical_lending_for_patients;
             $hospital_array[$key]['Medical Lending for Bill/ Invoice Discounting'] = $hospital->tieup->medical_lending_for_bill_invoice_discounting;
         }
