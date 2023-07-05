@@ -94,7 +94,7 @@
                                             <tr>
                                                 <th scope="row">{{ $hospital->uid }}</th>
                                                 <td>{!! $hospital->name !!}</td>
-                                                <td>{{ Carbon\Carbon::parse($hospital->created_at)->format('d-m-Y') }}</td>
+                                                <td>{{ Carbon\Carbon::parse($hospital->created_at)->format('m-d-Y') }}</td>
                                                 <td>{{ $hospital->onboarding }}</td>                                            
                                                 <td>{{ $hospital->address }}</td>                                               
                                                 <td>{{ $hospital->city }}</td>                                               
