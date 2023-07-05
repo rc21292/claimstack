@@ -15,7 +15,7 @@
                             </div>
                         </div>
                     </div>
-                    <h4 class="page-title">Claim Status report Export</h4>
+                    <h4 class="page-title">Claim Status Report</h4>
                 </div>
             </div>
 
