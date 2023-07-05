@@ -48,7 +48,7 @@ class AssociateClaimReportExport implements FromCollection, WithHeadings, Should
 
         $user_id = auth('associate')->user()->associate_partner_id;
         $claims = $claims->whereHas('hospital', function($q) use ($user_id){
-            $q->where('linked_associate_partner_id', auth()->user()->associate_partner_id)
+            $q->where('linked_associate_partner_id', auth('associate')->user()->associate_partner_id)
         ->orWhereHas('associate', function($q) use ($user_id)
         {
             $q->where('linked_associate_partner_id', $user_id)
