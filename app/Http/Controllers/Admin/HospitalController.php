@@ -2267,17 +2267,18 @@ class HospitalController extends Controller
         $user_id = auth()->user()->id; 
 
         if($filter_state){
-            $hospitals->where('state', 'like','%' . $filter_state . '%');
-        }else if($filter_date_from_to){
+            $hospitals->where('state', 'like','%' . $filter_state . '%')->where('linked_employee', auth()->user()->id)->orWhere('assigned_employee', auth()->user()->id)->orWhereHas('assignedEmployeeData',  function ($q) use ($user_id, $filter_state) {
+                $q->where('linked_employee', $user_id)->orWhere('status', 'like','%' . $filter_state . '%');
+            })->orWhereHas('linkedEmployeeData',  function ($q) use ($user_id, $filter_state) {
+                $q->where('linked_employee', $user_id)->orWhere('status', 'like','%' . $filter_state . '%');
+            });
+        }
+
+        if($filter_date_from_to){
             $d = explode('-',$filter_date_from_to);
             $hospitals->whereDate('created_at', '>=', Carbon::parse($d[0])->format('Y-m-d') );
             $hospitals->whereDate('created_at','<=', Carbon::parse($d[1])->format('Y-m-d') );
-        }else if($filter_ap_id){
-            $hospitals->where('linked_associate_partner_id', $filter_ap_id);
-        }else{             
-
-            $hospitals =  $hospitals->
-            where(function ($query) {
+            $hospitals =  $hospitals->where(function ($query) {
                 $query->where('linked_employee', auth()->user()->id)->orWhere('assigned_employee', auth()->user()->id);
             })->orWhereHas('assignedEmployeeData',  function ($q) use ($user_id) {
                 $q->where('linked_employee', $user_id);
@@ -2285,6 +2286,30 @@ class HospitalController extends Controller
                 $q->where('linked_employee', $user_id);
             });
         }
+
+        if($filter_ap_id){
+
+            $hospitals =  $hospitals->where(function ($query) use($filter_ap_id) {
+                $query->where('linked_associate_partner_id', $filter_ap_id)->where('linked_employee', auth()->user()->id)->where('assigned_employee', auth()->user()->id);
+            })->orWhereHas('assignedEmployeeData',  function ($q) use ($user_id, $filter_ap_id) {
+                $q->where('linked_associate_partner_id', $filter_ap_id)->where('linked_employee', $user_id);
+            })->orWhereHas('linkedEmployeeData',  function ($q) use ($user_id, $filter_ap_id) {
+                $q->where('linked_associate_partner_id', $filter_ap_id)->where('linked_employee', $user_id);
+            });
+
+        }    
+
+        if (!isset($filter_date_from_to) && !isset($filter_state) && !isset($filter_ap_id)) {
+            $hospitals =  $hospitals->where(function ($query) {
+                $query->where('linked_employee', auth()->user()->id)->orWhere('assigned_employee', auth()->user()->id);
+            })->orWhereHas('assignedEmployeeData',  function ($q) use ($user_id) {
+                $q->where('linked_employee', $user_id);
+            })->orWhereHas('linkedEmployeeData',  function ($q) use ($user_id) {
+                $q->where('linked_employee', $user_id);
+            });
+        }   
+
+        
 
         $hospitals = $hospitals->orderBy('name', 'asc')->paginate(20);
 
