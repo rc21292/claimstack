@@ -2258,6 +2258,7 @@ class HospitalController extends Controller
 
     public function onbardingReport(Request $request)
     {
+        DB::connection()->enableQueryLog();
         $filter_state = $request->state;
         $filter_ap_id = $request->ap_name;
         $filter_date_from_to = $request->date_from_to;
@@ -2267,23 +2268,25 @@ class HospitalController extends Controller
         $user_id = auth()->user()->id; 
 
         if($filter_state){
-            $hospitals->where('state', 'like','%' . $filter_state . '%')->where('linked_employee', auth()->user()->id)->orWhere('assigned_employee', auth()->user()->id)->orWhereHas('assignedEmployeeData',  function ($q) use ($user_id, $filter_state) {
-                $q->where('linked_employee', $user_id)->orWhere('status', 'like','%' . $filter_state . '%');
+            $hospitals->where('state', 'like','%' . $filter_state . '%')->where('linked_employee', auth()->user()->id)->where('assigned_employee', auth()->user()->id)->orWhereHas('assignedEmployeeData',  function ($q) use ($user_id, $filter_state) {
+                $q->where('linked_employee', $user_id)->where('state', 'like','%' . $filter_state . '%');
             })->orWhereHas('linkedEmployeeData',  function ($q) use ($user_id, $filter_state) {
-                $q->where('linked_employee', $user_id)->orWhere('status', 'like','%' . $filter_state . '%');
+                $q->where('linked_employee', $user_id)->where('state', 'like','%' . $filter_state . '%');
             });
         }
 
         if($filter_date_from_to){
             $d = explode('-',$filter_date_from_to);
-            $hospitals->whereDate('created_at', '>=', Carbon::parse($d[0])->format('Y-m-d') );
-            $hospitals->whereDate('created_at','<=', Carbon::parse($d[1])->format('Y-m-d') );
-            $hospitals =  $hospitals->where(function ($query) {
-                $query->where('linked_employee', auth()->user()->id)->orWhere('assigned_employee', auth()->user()->id);
-            })->orWhereHas('assignedEmployeeData',  function ($q) use ($user_id) {
-                $q->where('linked_employee', $user_id);
-            })->orWhereHas('linkedEmployeeData',  function ($q) use ($user_id) {
-                $q->where('linked_employee', $user_id);
+            $date_from = Carbon::parse($d[0])->format('Y-m-d');
+            $date_to = Carbon::parse($d[1])->format('Y-m-d');
+
+
+            $hospitals =  $hospitals->where(function ($query) use($date_from, $date_to) {
+                $query->whereDate('created_at', '>=', $date_from)->whereDate('created_at','<=', $date_to)->orWhere('linked_employee', auth()->user()->id)->where('assigned_employee', auth()->user()->id);
+            })->orWhereHas('assignedEmployeeData',  function ($q) use ($user_id, $date_from, $date_to) {
+                $q->where('linked_employee', $user_id)->whereDate('created_at', '>=', $date_from)->whereDate('created_at','<=', $date_to);
+            })->orWhereHas('linkedEmployeeData',  function ($q) use ($user_id, $date_from, $date_to) {
+                $q->where('linked_employee', $user_id)->whereDate('created_at', '>=', $date_from)->whereDate('created_at','<=', $date_to);
             });
         }
 
@@ -2312,6 +2315,14 @@ class HospitalController extends Controller
         
 
         $hospitals = $hospitals->orderBy('name', 'asc')->paginate(20);
+
+
+        $queries = DB::getQueryLog();
+
+        $last_query = end($queries);
+
+              // echo '<pre>'; print_r($last_query); echo '</pre>'; exit();
+              
 
         $associates = AssociatePartner::get(['name', 'associate_partner_id']);
 
