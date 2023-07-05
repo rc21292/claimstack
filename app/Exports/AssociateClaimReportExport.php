@@ -46,7 +46,7 @@ class AssociateClaimReportExport implements FromCollection, WithHeadings, Should
             $claims->whereDate('created_at','<=', Carbon::parse($d[1])->format('Y-m-d') );
         }
 
-        $user_id = auth()->user()->associate_partner_id;
+        $user_id = auth('associate')->user()->associate_partner_id;
         $claims = $claims->whereHas('hospital', function($q) use ($user_id){
             $q->where('linked_associate_partner_id', auth()->user()->associate_partner_id)
         ->orWhereHas('associate', function($q) use ($user_id)
