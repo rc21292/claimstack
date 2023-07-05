@@ -55,7 +55,7 @@ class AdminClaimReportExport implements FromCollection, WithHeadings, ShouldAuto
             })->orWhereHas('linkedEmployeeData', function ($q) use ($user_id) {
                 $q->where('linked_employee', $user_id);
             });
-        })->orderBy('id', 'desc')->paginate(20);
+        })->orderBy('name', 'asc')->paginate(20);
 
         foreach ($claims as $key => $claim) {
             $claim_array[$key]['Patient ID'] = $claim->patient->uid;

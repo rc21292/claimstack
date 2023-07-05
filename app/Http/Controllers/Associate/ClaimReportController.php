@@ -45,7 +45,7 @@ class ClaimReportController extends Controller
                 });
             });
         });
-        })->orderBy('id', 'desc')->paginate(20);
+        })->orderBy('name', 'asc')->paginate(20);
 
         return view('associate.reports.cliam-status',  compact('claims', 'filter_date_from_to'));
     }
