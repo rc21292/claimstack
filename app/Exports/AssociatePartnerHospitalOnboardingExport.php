@@ -22,6 +22,7 @@ class AssociatePartnerHospitalOnboardingExport implements FromCollection, WithHe
 
     public function collection()
     {
+        $hospital_array = [];
         $filter_search = $this->data->search;
         $hospitals = Hospital::query();
         if($filter_search){
