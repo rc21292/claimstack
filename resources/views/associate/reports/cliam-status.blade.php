@@ -104,7 +104,7 @@
                                                 <td>{{ @$claim->icClaimStatus->date_disbursement }}</td>
                                                 <td>{{ $claim->admission_date }}</td>                                               
                                                 <td>{{ $claim->discharge_date }}</td>                                               
-                                                <td>{{ @$claim->policy->policy_no }}</td>     
+                                                <td>{{ @$claim->policy_no }}</td>     
                                                 <td>{{ @$claim->policy->insurer->name }}</td>                                               
                                                 <td>{{ @$claim->policy->tpa_name }}</td>                                               
                                                 <td>{{ @$claim->policy->policy_type }}</td>     

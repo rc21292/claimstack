@@ -75,7 +75,7 @@ class AdminClaimReportExport implements FromCollection, WithHeadings, ShouldAuto
             $claim_array[$key]['Date of Disbursement (By IC)'] = @$claim->icClaimStatus->date_disbursement;
             $claim_array[$key]['DOA'] = $claim->admission_date;
             $claim_array[$key]['DOD'] = $claim->discharge_date;
-            $claim_array[$key]['Policy No.'] = @$claim->policy->policy_no;
+            $claim_array[$key]['Policy No.'] = @$claim->policy_no;
             $claim_array[$key]['Insurance Co.'] = @$claim->policy->insurer->name;
             $claim_array[$key]['TPA Name'] = @$claim->policy->tpa_name;
             $claim_array[$key]['Policy Type'] = @$claim->policy->policy_type;
