@@ -51,7 +51,7 @@ class ClaimReportController extends Controller
             })->orWhereHas('linkedEmployeeData', function ($q) use ($user_id) {
                 $q->where('linked_employee', $user_id);
             });
-        })->orderBy('name', 'asc')->paginate(20);
+        })->orderBy('id', 'desc')->paginate(20);
 
         $hospitals = Hospital::pluck('name','id');    
 

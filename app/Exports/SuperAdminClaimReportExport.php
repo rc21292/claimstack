@@ -46,7 +46,7 @@ class SuperAdminClaimReportExport implements FromCollection, WithHeadings, Shoul
             $claims->whereDate('created_at','<=', Carbon::parse($d[1])->format('Y-m-d') );
         }
 
-        $claims = $claims->orderBy('name', 'asc')->get();
+        $claims = $claims->orderBy('id', 'asc')->get();
 
         foreach ($claims as $key => $claim) {
             $claim_array[$key]['Patient ID'] = $claim->patient->uid;

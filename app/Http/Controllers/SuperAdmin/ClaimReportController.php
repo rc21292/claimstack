@@ -42,7 +42,7 @@ class ClaimReportController extends Controller
             $claims->whereDate('created_at','<=', Carbon::parse($d[1])->format('Y-m-d') );
         }
 
-        $claims = $claims->orderBy('name', 'asc')->paginate(20);
+        $claims = $claims->orderBy('id', 'desc')->paginate(20);
 
         $hospitals = Hospital::pluck('name','id');              
 
