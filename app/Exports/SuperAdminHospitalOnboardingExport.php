@@ -60,6 +60,14 @@ class SuperAdminHospitalOnboardingExport implements FromCollection, WithHeadings
                $nbfc .= ', '.@$hospital->tieup->nbfc3->name;
             }
 
+            if ((isset($hospital->tieup->agreed_for)) && ($hospital->tieup->agreed_for == 'ClaimStack2.O' || $hospital->tieup->agreed_for == 'Both')) {
+                $agreed_for = 'Yes';
+            }else if((isset($hospital->tieup->agreed_for)) && ($hospital->tieup->agreed_for == 'Claims Servicing')){
+                $agreed_for = 'No';
+            }else{
+                $agreed_for = '';
+            }
+
             $hospital_array[$key]['hospital_uid'] = $hospital->uid;
             $hospital_array[$key]['hospital_name'] = $hospital->name;
             $hospital_array[$key]['Date of Onboarding'] = Carbon::parse($hospital->created_at)->format('m-d-Y');
@@ -72,7 +80,7 @@ class SuperAdminHospitalOnboardingExport implements FromCollection, WithHeadings
             $hospital_array[$key]['AP Name'] = (@$hospital->associate->status == 'Main') ? @$hospital->associate->name  : '' ;
             $hospital_array[$key]['Sub AP Name'] = (@$hospital->associate->status == 'Sub AP') ? @$hospital->associate->name  : '';
             $hospital_array[$key]['Agency Name'] = (@$hospital->associate->status == 'Agency') ? @$hospital->associate->name  : '';
-            $hospital_array[$key]['Claim Stack 2.0 Installed'] =  @$hospital->tieup->agreed_for == 'ClaimStack2.O' || @$hospital->tieup->agreed_for == 'Both' ? 'Yes' : 'No' ;
+            $hospital_array[$key]['Claim Stack 2.0 Installed'] =  @$agreed_for;
             $hospital_array[$key]['Auto Adjudication Installed'] = @$hospital->tieup->auto_adjudication;
             $hospital_array[$key]['Claims Reimbursement - Insured Services'] = @$hospital->tieup->claims_reimbursement_insured_services;
             $hospital_array[$key]['Cashless Claims Management Services'] = @$hospital->tieup->cashless_claims_management_services;

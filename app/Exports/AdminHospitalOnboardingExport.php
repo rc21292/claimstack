@@ -98,6 +98,14 @@ class AdminHospitalOnboardingExport implements FromCollection, WithHeadings, Sho
                $nbfc .= ', '.@$hospital->tieup->nbfc3->name;
             }
 
+            if ((isset($hospital->tieup->agreed_for)) && ($hospital->tieup->agreed_for == 'ClaimStack2.O' || $hospital->tieup->agreed_for == 'Both')) {
+                $agreed_for = 'Yes';
+            }else if((isset($hospital->tieup->agreed_for)) && ($hospital->tieup->agreed_for == 'Claims Servicing')){
+                $agreed_for = 'No';
+            }else{
+                $agreed_for = '';
+            }
+
             $hospital_array[$key]['hospital_uid'] = $hospital->uid;
             $hospital_array[$key]['hospital_name'] = $hospital->name;
             $hospital_array[$key]['Date of Onboarding'] = Carbon::parse($hospital->created_at)->format('m-d-Y');

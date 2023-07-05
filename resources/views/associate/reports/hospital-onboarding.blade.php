@@ -75,6 +75,17 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($hospitals as $hospital)
+
+                                        @php
+                                        if ((isset($hospital->tieup->agreed_for)) && ($hospital->tieup->agreed_for == 'ClaimStack2.O' || $hospital->tieup->agreed_for == 'Both')) {
+                                            $agreed_for = 'Yes';
+                                        }else if((isset($hospital->tieup->agreed_for)) && ($hospital->tieup->agreed_for == 'Claims Servicing')){
+                                            $agreed_for = 'No';
+                                        }else{
+                                            $agreed_for = '';
+                                        }
+                                        @endphp
+
                                             <tr>
                                                 <th scope="row">{{ $hospital->uid }}</th>
                                                 <td>{!! $hospital->name !!}</td>
@@ -88,7 +99,7 @@
                                                 <td>@if(@$hospital->associate->status == 'Main') {{ @$hospital->associate->name }}  @endif</td>                                               
                                                 <td>@if(@$hospital->associate->status == 'Sub AP') {{ @$hospital->associate->name }}  @endif</td>                                               
                                                 <td>@if(@$hospital->associate->status == 'Agency') {{ @$hospital->associate->name }}  @endif</td> 
-                                                <td>{{ $hospital->tieup->agreed_for == 'ClaimStack2.O' || $hospital->tieup->agreed_for == 'Both' ? 'Yes' : @$hospital->tieup->agreed_for }}</td>                                              
+                                                <td>{{ @$agreed_for }}</td>                                              
                                                 <td>{{ $hospital->tieup->auto_adjudication }}</td>  
                                                 <td>{{ $hospital->tieup->claims_reimbursement_insured_services }}</td>
                                                 <td>{{ $hospital->tieup->cashless_claims_management_services }}</td>        
