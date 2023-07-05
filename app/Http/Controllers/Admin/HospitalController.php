@@ -60,7 +60,6 @@ class HospitalController extends Controller
 
         $last_query = end($queries);
 
-
         return view('admin.hospitals.manage',  compact('hospitals', 'filter_search'));
     }
 
@@ -2281,9 +2280,8 @@ class HospitalController extends Controller
             $date_to = Carbon::parse($d[1])->format('Y-m-d');
 
 
-            $hospitals =  $hospitals->where(function ($query) use($date_from, $date_to) {
-                $query->whereDate('created_at', '>=', $date_from)->whereDate('created_at','<=', $date_to)->orWhere('linked_employee', auth()->user()->id)->where('assigned_employee', auth()->user()->id);
-            })->orWhereHas('assignedEmployeeData',  function ($q) use ($user_id, $date_from, $date_to) {
+            $hospitals =  $hospitals->whereDate('created_at', '>=', $date_from)->whereDate('created_at','<=', $date_to)->where('linked_employee', auth()->user()->id)->where('assigned_employee', auth()->user()->id)
+            ->orWhereHas('assignedEmployeeData',  function ($q) use ($user_id, $date_from, $date_to) {
                 $q->where('linked_employee', $user_id)->whereDate('created_at', '>=', $date_from)->whereDate('created_at','<=', $date_to);
             })->orWhereHas('linkedEmployeeData',  function ($q) use ($user_id, $date_from, $date_to) {
                 $q->where('linked_employee', $user_id)->whereDate('created_at', '>=', $date_from)->whereDate('created_at','<=', $date_to);
