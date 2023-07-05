@@ -60,7 +60,7 @@ class AssociateClaimReportExport implements FromCollection, WithHeadings, Should
             $claim_array[$key]['Final Assessment / Authorization Status'] = @$claim->assessmentStatus->final_assessment_status;
             $claim_array[$key]['IC Claim Status'] = @$claim->icClaimStatus->ic_claim_status;
             $claim_array[$key]['Estimated Amount'] = $claim->estimated_amount;
-            $claim_array[$key]['Claimed Ampunt'] = $claim->claimant->estimated_amount;
+            $claim_array[$key]['Claimed Ampunt'] = @$claim->claimant->estimated_amount;
             $claim_array[$key]['Loan Amount'] = @$claim->lendingStatusData->loan_disbursed_amount;
             $claim_array[$key]['Settled Amount'] = @$claim->icClaimStatus->settled_amount;
             $claim_array[$key]['Date of Disbursement (By IC)'] = @$claim->icClaimStatus->date_disbursement;
