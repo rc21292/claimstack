@@ -93,13 +93,13 @@
                                             $sub_ap = '';
                                             $agency = '';
                                         }else if(isset($hospital->associate) && $hospital->associate->status == 'Sub AP'){
-                                            $main_ap = $hospital->associate->name;
-                                            $sub_ap = $hospital->associate->associate->name;
+                                            $main_ap = $hospital->associate->associate->name;
+                                            $sub_ap = $hospital->associate->name;
                                             $agency = '';
                                         }else if( isset($hospital->associate) && $hospital->associate->status == 'Agency'){
-                                            $main_ap = $hospital->associate->name;
+                                            $main_ap = isset($hospital->associate->associate->associate) ? $hospital->associate->associate->associate->name : '';
                                             $sub_ap = $hospital->associate->associate->name;
-                                            $agency = isset($hospital->associate->associate->associate) ? $hospital->associate->associate->associate->name : '';
+                                            $agency = $hospital->associate->name;
                                         }else{
                                             $main_ap = '';
                                             $sub_ap = '';
