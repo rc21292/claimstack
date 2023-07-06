@@ -119,13 +119,13 @@ class AdminHospitalOnboardingExport implements FromCollection, WithHeadings, Sho
             $hospital_array[$key]['Sub AP Name'] = (@$hospital->associate->status == 'Sub AP') ? @$hospital->associate->name  : '';
             $hospital_array[$key]['Agency Name'] = (@$hospital->associate->status == 'Agency') ? @$hospital->associate->name  : '';
             $hospital_array[$key]['Claim Stack 2.0 Installed'] = @$hospital->tieup->agreed_for == 'ClaimStack2.O' || @$hospital->tieup->agreed_for == 'Both' ? 'Yes' :  @$hospital->tieup->agreed_for;
-            $hospital_array[$key]['Auto Adjudication Installed'] = $hospital->tieup->auto_adjudication;
-            $hospital_array[$key]['Claims Reimbursement - Insured Services'] = $hospital->tieup->claims_reimbursement_insured_services;
-            $hospital_array[$key]['Cashless Claims Management Services'] = $hospital->tieup->cashless_claims_management_services;
-            $hospital_array[$key]['Finance Company Agreement'] = $hospital->tieup->lending_finance_company_agreement;
+            $hospital_array[$key]['Auto Adjudication Installed'] = @$hospital->tieup->auto_adjudication;
+            $hospital_array[$key]['Claims Reimbursement - Insured Services'] = @$hospital->tieup->claims_reimbursement_insured_services;
+            $hospital_array[$key]['Cashless Claims Management Services'] = @$hospital->tieup->cashless_claims_management_services;
+            $hospital_array[$key]['Finance Company Agreement'] = @$hospital->tieup->lending_finance_company_agreement;
             $hospital_array[$key]['Name of the Finance Company'] = @$nbfc;
-            $hospital_array[$key]['Medical Lending for Patients'] = $hospital->tieup->medical_lending_for_patients;
-            $hospital_array[$key]['Medical Lending for Bill/ Invoice Discounting'] = $hospital->tieup->medical_lending_for_bill_invoice_discounting;
+            $hospital_array[$key]['Medical Lending for Patients'] = @$hospital->tieup->medical_lending_for_patients;
+            $hospital_array[$key]['Medical Lending for Bill/ Invoice Discounting'] = @$hospital->tieup->medical_lending_for_bill_invoice_discounting;
         }
 
         return collect($hospital_array);
