@@ -114,13 +114,13 @@
                                                 <td>@if(@$hospital->associate->status == 'Sub AP') {{ @$hospital->associate->name }} @endif</td>                                               
                                                 <td>@if(@$hospital->associate->status == 'Agency') {{ @$hospital->associate->name }} @endif</td> 
                                                 <td>{{ @$agreed_for }}</td>                                              
-                                                <td>{{ $hospital->tieup->auto_adjudication }}</td> 
-                                                <td>{{ $hospital->tieup->claims_reimbursement_insured_services }}</td>
-                                                <td>{{ $hospital->tieup->cashless_claims_management_services }}</td>        
-                                                <td>{{ $hospital->tieup->lending_finance_company_agreement }}</td>
-                                                <td>{{ @$hospital->tieup->nbfc1->name }} @if($hospital->tieup->nbfc_2) , @endif  {{ @$hospital->tieup->nbfc2->name }} @if($hospital->tieup->nbfc_3) , @endif {{ @$hospital->tieup->nbfc3->name }}</td>
-                                                <td>{{ $hospital->tieup->medical_lending_for_patients }}</td>
-                                                <td>{{ $hospital->tieup->medical_lending_for_bill_invoice_discounting }}</td>
+                                                <td>{{ @$hospital->tieup->auto_adjudication }}</td> 
+                                                <td>{{ @$hospital->tieup->claims_reimbursement_insured_services }}</td>
+                                                <td>{{ @$hospital->tieup->cashless_claims_management_services }}</td>        
+                                                <td>{{ @$hospital->tieup->lending_finance_company_agreement }}</td>
+                                                <td>{{ @$hospital->tieup->nbfc1->name }} @if(@$hospital->tieup->nbfc_2) , @endif  {{ @$hospital->tieup->nbfc2->name }} @if(@$hospital->tieup->nbfc_3) , @endif {{ @$hospital->tieup->nbfc3->name }}</td>
+                                                <td>{{ @$hospital->tieup->medical_lending_for_patients }}</td>
+                                                <td>{{ @$hospital->tieup->medical_lending_for_bill_invoice_discounting }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
