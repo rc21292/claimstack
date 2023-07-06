@@ -134,6 +134,7 @@
                                                 <td>{{ @$main_ap }}</td>                                               
                                                 <td>{{ @$sub_ap }}</td>                                               
                                                 <td>{{ @$agency }}</td>                                              
+                                                <td>{{ @$agreed_for }}</td>                                              
                                                 <td>{{ @$hospital->tieup->auto_adjudication ?? 'No' }}</td> 
                                                 <td>{{ @$hospital->tieup->claims_reimbursement_insured_services ?? 'No' }}</td>
                                                 <td>{{ @$hospital->tieup->cashless_claims_management_services ?? 'No' }}</td>        
