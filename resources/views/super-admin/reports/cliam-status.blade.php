@@ -98,7 +98,7 @@
                                             <th scope="col">Hospital State</th>
                                             <th scope="col">Hospital PIN</th>
                                             <th scope="col">Hospital Linked Employee</th>
-                                            <th scope="col">Hospital Assigned Employee</th>s
+                                            <th scope="col">Hospital Assigned Employee</th>
                                         </tr>
                                     </thead>
                                     <tbody>

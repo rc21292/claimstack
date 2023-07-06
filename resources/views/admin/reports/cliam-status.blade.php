@@ -133,8 +133,8 @@
                                                 <td>{{ @$claim->hospital->city }}</td>                                               
                                                 <td>{{ @$claim->hospital->state }}</td>                                               
                                                 <td>{{ @$claim->hospital->pincode }}</td>       
-                                                <td>{{ @$hospital->linkedEmployeeData->firstname }} {{ @$hospital->linkedEmployeeData->lastname }} </td>    
-                                                <td>{{ @$hospital->assignedEmployeeData->firstname }} {{ @$hospital->assignedEmployeeData->lastname }} </td>
+                                                <td>{{ @$claim->hospital->linkedEmployeeData->firstname }} {{ @$claim->hospital->linkedEmployeeData->lastname }} </td>    
+                                                <td>{{ @$claim->hospital->assignedEmployeeData->firstname }} {{ @$claim->hospital->assignedEmployeeData->lastname }} </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
