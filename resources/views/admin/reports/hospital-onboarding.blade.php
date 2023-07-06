@@ -86,6 +86,8 @@
                                             <th scope="col">Name of the Finance Company</th>
                                             <th scope="col">Medical Lending for Patients</th>
                                             <th scope="col">Medical Lending for Bill/ Invoice Discounting</th>
+                                            <th scope="col">Hospital Linked Employee</th>
+                                            <th scope="col">Hospital Assigned Employee</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -114,13 +116,15 @@
                                                 <td>@if(@$hospital->associate->status == 'Sub AP') {{ @$hospital->associate->name }} @endif</td>                                               
                                                 <td>@if(@$hospital->associate->status == 'Agency') {{ @$hospital->associate->name }} @endif</td> 
                                                 <td>{{ @$agreed_for }}</td>                                              
-                                                <td>{{ @$hospital->tieup->auto_adjudication }}</td> 
-                                                <td>{{ @$hospital->tieup->claims_reimbursement_insured_services }}</td>
-                                                <td>{{ @$hospital->tieup->cashless_claims_management_services }}</td>        
-                                                <td>{{ @$hospital->tieup->lending_finance_company_agreement }}</td>
+                                                <td>{{ @$hospital->tieup->auto_adjudication ?? 'No' }}</td> 
+                                                <td>{{ @$hospital->tieup->claims_reimbursement_insured_services ?? 'No' }}</td>
+                                                <td>{{ @$hospital->tieup->cashless_claims_management_services ?? 'No' }}</td>        
+                                                <td>{{ @$hospital->tieup->lending_finance_company_agreement ?? 'No' }}</td>
                                                 <td>{{ @$hospital->tieup->nbfc1->name }} @if(@$hospital->tieup->nbfc_2) , @endif  {{ @$hospital->tieup->nbfc2->name }} @if(@$hospital->tieup->nbfc_3) , @endif {{ @$hospital->tieup->nbfc3->name }}</td>
-                                                <td>{{ @$hospital->tieup->medical_lending_for_patients }}</td>
-                                                <td>{{ @$hospital->tieup->medical_lending_for_bill_invoice_discounting }}</td>
+                                                <td>{{ @$hospital->tieup->medical_lending_for_patients ?? 'No' }}</td>
+                                                <td>{{ @$hospital->tieup->medical_lending_for_bill_invoice_discounting ?? 'No' }}</td>
+                                                <td>{{ @$hospital->linkedEmployeeData->firstname }} {{ @$hospital->linkedEmployeeData->lastname }} </td>    
+                                                <td>{{ @$hospital->assignedEmployeeData->firstname }} {{ @$hospital->assignedEmployeeData->lastname }} </td>    
                                             </tr>
                                         @endforeach
                                     </tbody>

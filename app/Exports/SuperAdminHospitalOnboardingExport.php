@@ -65,7 +65,7 @@ class SuperAdminHospitalOnboardingExport implements FromCollection, WithHeadings
             }else if((isset($hospital->tieup->agreed_for)) && ($hospital->tieup->agreed_for == 'Claims Servicing')){
                 $agreed_for = 'No';
             }else{
-                $agreed_for = '';
+                $agreed_for = 'No';
             }
 
             $hospital_array[$key]['hospital_uid'] = $hospital->uid;
@@ -80,14 +80,16 @@ class SuperAdminHospitalOnboardingExport implements FromCollection, WithHeadings
             $hospital_array[$key]['AP Name'] = (@$hospital->associate->status == 'Main') ? @$hospital->associate->name  : '' ;
             $hospital_array[$key]['Sub AP Name'] = (@$hospital->associate->status == 'Sub AP') ? @$hospital->associate->name  : '';
             $hospital_array[$key]['Agency Name'] = (@$hospital->associate->status == 'Agency') ? @$hospital->associate->name  : '';
-            $hospital_array[$key]['Claim Stack 2.0 Installed'] =  @$agreed_for;
-            $hospital_array[$key]['Auto Adjudication Installed'] = @$hospital->tieup->auto_adjudication;
-            $hospital_array[$key]['Claims Reimbursement - Insured Services'] = @$hospital->tieup->claims_reimbursement_insured_services;
-            $hospital_array[$key]['Cashless Claims Management Services'] = @$hospital->tieup->cashless_claims_management_services;
-            $hospital_array[$key]['Finance Company Agreement'] = @$hospital->tieup->lending_finance_company_agreement;
+            $hospital_array[$key]['Claim Stack 2.0 Installed'] =  @$agreed_for ;
+            $hospital_array[$key]['Auto Adjudication Installed'] = @$hospital->tieup->auto_adjudication ?? 'No';
+            $hospital_array[$key]['Claims Reimbursement - Insured Services'] = @$hospital->tieup->claims_reimbursement_insured_services ?? 'No';
+            $hospital_array[$key]['Cashless Claims Management Services'] = @$hospital->tieup->cashless_claims_management_services ?? 'No';
+            $hospital_array[$key]['Finance Company Agreement'] = @$hospital->tieup->lending_finance_company_agreement ?? 'No';
             $hospital_array[$key]['Name of the Finance Company'] = @$nbfc;
-            $hospital_array[$key]['Medical Lending for Patients'] = @$hospital->tieup->medical_lending_for_patients;
-            $hospital_array[$key]['Medical Lending for Bill/ Invoice Discounting'] = @$hospital->tieup->medical_lending_for_bill_invoice_discounting;
+            $hospital_array[$key]['Medical Lending for Patients'] = @$hospital->tieup->medical_lending_for_patients ?? 'No';
+            $hospital_array[$key]['Medical Lending for Bill/ Invoice Discounting'] = @$hospital->tieup->medical_lending_for_bill_invoice_discounting ?? 'No';
+            $hospital_array[$key]['Hospital Linked Employee'] = @$hospital->linkedEmployeeData->firstname.' '.@$hospital->linkedEmployeeData->lastname;
+            $hospital_array[$key]['Hospital Assigned Employee'] = @$hospital->assignedEmployeeData->firstname.' '.@$hospital->assignedEmployeeData->lastname;
         }
 
         return collect($hospital_array);
@@ -116,6 +118,8 @@ class SuperAdminHospitalOnboardingExport implements FromCollection, WithHeadings
             'Name of the Finance Company',
             'Medical Lending for Patients',
             'Medical Lending for Bill/ Invoice Discounting',
+            'Hospital Linked Employee',
+            'Hospital Assigned Employee'
         ];
     }
 }
