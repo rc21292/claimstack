@@ -101,6 +101,25 @@
                                         }else{
                                             $agreed_for = '';
                                         }
+
+                                        if(isset($hospital->associate) && $hospital->associate->status == 'Main'){
+                                            $main_ap = $hospital->associate->name;
+                                            $sub_ap = '';
+                                            $agency = '';
+                                        }else if(isset($hospital->associate) && $hospital->associate->status == 'Sub AP'){
+                                            $main_ap = $hospital->associate->name;
+                                            $sub_ap = $hospital->associate->associate->name;
+                                            $agency = '';
+                                        }else if( isset($hospital->associate) && $hospital->associate->status == 'Agency'){
+                                            $main_ap = $hospital->associate->name;
+                                            $sub_ap = $hospital->associate->associate->name;
+                                            $agency = isset($hospital->associate->associate->associate) ? $hospital->associate->associate->associate->name : '';
+                                        }else{
+                                            $main_ap = '';
+                                            $sub_ap = '';
+                                            $agency = '';
+                                        }
+                                        
                                         @endphp
                                             <tr>
                                                 <th scope="row">{{ $hospital->uid }}</th>
@@ -112,9 +131,9 @@
                                                 <td>{{ $hospital->state }}</td>                                               
                                                 <td>{{ $hospital->pincode }}</td>                                               
                                                 <td>{{ $hospital->by }}</td>                                               
-                                                <td>@if(@$hospital->associate->status == 'Main') {{ @$hospital->associate->name }} @endif</td>                                               
-                                                <td>@if(@$hospital->associate->status == 'Sub AP') {{ @$hospital->associate->name }} @endif</td>                                               
-                                                <td>@if(@$hospital->associate->status == 'Agency') {{ @$hospital->associate->name }} @endif</td> 
+                                                <td>{{ @$main_ap }} </td>                                               
+                                                <td>{{ @$sub_ap }} </td>                                               
+                                                <td>{{ @$agency }} </td> 
                                                 <td>{{ @$agreed_for }}</td>                                              
                                                 <td>{{ @$hospital->tieup->auto_adjudication ?? 'No' }}</td> 
                                                 <td>{{ @$hospital->tieup->claims_reimbursement_insured_services ?? 'No' }}</td>

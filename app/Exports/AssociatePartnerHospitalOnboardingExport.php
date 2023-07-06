@@ -66,6 +66,24 @@ class AssociatePartnerHospitalOnboardingExport implements FromCollection, WithHe
                 $agreed_for = 'No';
             }
 
+            if(isset($hospital->associate) && $hospital->associate->status == 'Main'){
+                $main_ap = $hospital->associate->name;
+                $sub_ap = '';
+                $agency = '';
+            }else if(isset($hospital->associate) && $hospital->associate->status == 'Sub AP'){
+                $main_ap = $hospital->associate->name;
+                $sub_ap = $hospital->associate->associate->name;
+                $agency = '';
+            }else if( isset($hospital->associate) && $hospital->associate->status == 'Agency'){
+                $main_ap = $hospital->associate->name;
+                $sub_ap = $hospital->associate->associate->name;
+                $agency = isset($hospital->associate->associate->associate) ? $hospital->associate->associate->associate->name : '';
+            }else{
+                $main_ap = '';
+                $sub_ap = '';
+                $agency = '';
+            }
+
             $hospital_array[$key]['hospital_uid'] = $hospital->uid;
             $hospital_array[$key]['hospital_name'] = $hospital->name;
             $hospital_array[$key]['Date of Onboarding'] = Carbon::parse($hospital->created_at)->format('m-d-Y');
@@ -75,9 +93,9 @@ class AssociatePartnerHospitalOnboardingExport implements FromCollection, WithHe
             $hospital_array[$key]['Hospital State'] = $hospital->state;
             $hospital_array[$key]['Hospital PIN'] = $hospital->pincode;
             $hospital_array[$key]['Hospital By'] = $hospital->by;
-            $hospital_array[$key]['AP Name'] = (@$hospital->associate->status == 'Main') ? @$hospital->associate->name  : '' ;
-            $hospital_array[$key]['Sub AP Name'] = (@$hospital->associate->status == 'Sub AP') ? @$hospital->associate->name  : '';
-            $hospital_array[$key]['Agency Name'] = (@$hospital->associate->status == 'Agency') ? @$hospital->associate->name  : '';
+            $hospital_array[$key]['AP Name'] = @$main_ap;
+            $hospital_array[$key]['Sub AP Name'] = @$sub_ap;
+            $hospital_array[$key]['Agency Name'] = @$agency;
             $hospital_array[$key]['Claim Stack 2.0 Installed'] =  @$agreed_for;
             $hospital_array[$key]['Auto Adjudication Installed'] = @$hospital->tieup->auto_adjudication ?? 'No';
             $hospital_array[$key]['Claims Reimbursement - Insured Services'] = @$hospital->tieup->claims_reimbursement_insured_services ?? 'No';
