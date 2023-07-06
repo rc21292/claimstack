@@ -99,7 +99,7 @@
                                         }else if((isset($hospital->tieup->agreed_for)) && ($hospital->tieup->agreed_for == 'Claims Servicing')){
                                             $agreed_for = 'No';
                                         }else{
-                                            $agreed_for = '';
+                                            $agreed_for = 'No';
                                         }
 
                                         if(isset($hospital->associate) && $hospital->associate->status == 'Main'){
@@ -119,7 +119,7 @@
                                             $sub_ap = '';
                                             $agency = '';
                                         }
-                                        
+
                                         @endphp
                                             <tr>
                                                 <th scope="row">{{ $hospital->uid }}</th>
