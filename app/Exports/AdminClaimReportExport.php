@@ -89,6 +89,8 @@ class AdminClaimReportExport implements FromCollection, WithHeadings, ShouldAuto
             $claim_array[$key]['Hospital City'] = @$claim->hospital->city;
             $claim_array[$key]['Hospital State'] = @$claim->hospital->state;
             $claim_array[$key]['Hospital PIN'] = @$claim->hospital->pincode;
+            $claim_array[$key]['Hospital Linked Employee'] = @$claim->hospital->linkedEmployeeData->firstname.' '.@$claim->hospital->linkedEmployeeData->lastname;
+            $claim_array[$key]['Hospital Assigned Employee'] = @$claim->hospital->assignedEmployeeData->firstname.' '.@$claim->hospital->assignedEmployeeData->lastname;
         }
 
         return collect($claim_array);
@@ -128,6 +130,8 @@ class AdminClaimReportExport implements FromCollection, WithHeadings, ShouldAuto
             'Hospital City',
             'Hospital State',
             'Hospital PIN',
+            'Hospital Linked Employee',
+            'Hospital Assigned Employee'
         ];
     }
 }

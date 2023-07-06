@@ -95,6 +95,8 @@
                                             <th scope="col">Hospital City</th>
                                             <th scope="col">Hospital State</th>
                                             <th scope="col">Hospital Pincode</th>
+                                            <th scope="col">Hospital Linked Employee</th>
+                                            <th scope="col">Hospital Assigned Employee</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -130,7 +132,9 @@
                                                 <td>{{ @$claim->hospital->address }}</td>                                               
                                                 <td>{{ @$claim->hospital->city }}</td>                                               
                                                 <td>{{ @$claim->hospital->state }}</td>                                               
-                                                <td>{{ @$claim->hospital->pincode }}</td>                                                
+                                                <td>{{ @$claim->hospital->pincode }}</td>       
+                                                <td>{{ @$hospital->linkedEmployeeData->firstname }} {{ @$hospital->linkedEmployeeData->lastname }} </td>    
+                                                <td>{{ @$hospital->assignedEmployeeData->firstname }} {{ @$hospital->assignedEmployeeData->lastname }} </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
