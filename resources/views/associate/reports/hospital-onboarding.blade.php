@@ -84,7 +84,7 @@
                                         }else if((isset($hospital->tieup->agreed_for)) && ($hospital->tieup->agreed_for == 'Claims Servicing')){
                                             $agreed_for = 'No';
                                         }else{
-                                            $agreed_for = '';
+                                            $agreed_for = 'No';
                                         }
 
 
@@ -97,9 +97,20 @@
                                             $sub_ap = $hospital->associate->name;
                                             $agency = '';
                                         }else if( isset($hospital->associate) && $hospital->associate->status == 'Agency'){
-                                            $main_ap = isset($hospital->associate->associate->associate) ? $hospital->associate->associate->associate->name : '';
-                                            $sub_ap = $hospital->associate->associate->name;
-                                            $agency = $hospital->associate->name;
+
+                                            if($hospital->associate->associate->status == 'Main'){
+                                                $main_ap = $hospital->associate->associate->name;
+                                                $sub_ap = '';
+                                                $agency = $hospital->associate->name;
+                                            }else if($hospital->associate->associate->status == 'Sub AP'){
+                                                $main_ap = isset($hospital->associate->associate->associate) ? $hospital->associate->associate->associate->name : '';
+                                                $sub_ap = $hospital->associate->associate->name;
+                                                $agency = $hospital->associate->name;
+                                            }else{
+                                                $main_ap = isset($hospital->associate->associate->associate) ? $hospital->associate->associate->associate->name : '';
+                                                $sub_ap = $hospital->associate->associate->name;
+                                                $agency = $hospital->associate->name;
+                                            }
                                         }else{
                                             $main_ap = '';
                                             $sub_ap = '';
