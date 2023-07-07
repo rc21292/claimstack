@@ -35,7 +35,7 @@ class InterDepartmentDocumentTracking extends Model
     
     public function associatePartner()
     {
-        return $this->belongsTo(associatePartner::class, 'ap_name');
+        return $this->belongsTo(AssociatePartner::class, 'ap_name');
     }
 
 
