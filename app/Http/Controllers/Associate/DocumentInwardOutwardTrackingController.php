@@ -1,20 +1,25 @@
 <?php
 
-namespace App\Http\Controllers\SuperAdmin;
+namespace App\Http\Controllers\Associate;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\InterDepartmentDocumentTracking;
+use App\Models\DocumentInwardOutwardTracking;
 use App\Models\Patient;
 use App\Models\Claim;
 use App\Models\Hospital;
-use App\Models\Admin;
 use App\Models\AssociatePartner;
 use Auth;
 use Carbon\Carbon;
 
-class InterDepartmentDocumentTrackingController extends Controller
+
+class DocumentInwardOutwardTrackingController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:associate');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +27,7 @@ class InterDepartmentDocumentTrackingController extends Controller
      */
     public function index(Request $request)
     {
-        $inter_department_document_trackings = InterDepartmentDocumentTracking::query();
+        $document_inward_outward_trackings = DocumentInwardOutwardTracking::query();
 
         $filter_claim_id = $request->claim_id;
         $filter_patient_id = $request->patient_id;
@@ -30,23 +35,22 @@ class InterDepartmentDocumentTrackingController extends Controller
 
 
         if($filter_claim_id){
-            $inter_department_document_trackings->where('claim_id', '=',  $filter_claim_id );
+            $document_inward_outward_trackings->where('claim_id', '=',  $filter_claim_id );
         }
 
         if($filter_patient_id){
-            $inter_department_document_trackings->where('patient_id', '=',  $filter_patient_id );
+            $document_inward_outward_trackings->where('patient_id', '=',  $filter_patient_id );
         }
 
         if($filter_date_from_to){
 
             $d = explode('-',$filter_date_from_to);
-            $inter_department_document_trackings->whereDate('date_of_transaction', '>=',  Carbon::parse($d[0])->format('Y-m-d') );
-            $inter_department_document_trackings->whereDate('date_of_transaction','<=',Carbon::parse($d[1])->format('Y-m-d') );
+            $document_inward_outward_trackings->whereDate('date_of_transaction', '>=',  Carbon::parse($d[0])->format('Y-m-d') );
+            $document_inward_outward_trackings->whereDate('date_of_transaction','<=',Carbon::parse($d[1])->format('Y-m-d') );
         }
 
-
-        $inter_department_document_trackings = $inter_department_document_trackings->orderBy('id', 'desc')->paginate(20);
-        return view('super-admin.inter_department_document_trackings.manage',  compact('inter_department_document_trackings', 'filter_claim_id', 'filter_patient_id', 'filter_date_from_to'));
+        $document_inward_outward_trackings = $document_inward_outward_trackings->orderBy('id', 'desc')->paginate(20);
+        return view('associate.document_inward_outward_trackings.manage',  compact('document_inward_outward_trackings', 'filter_claim_id', 'filter_patient_id', 'filter_date_from_to'));
     }
 
     /**
@@ -57,13 +61,12 @@ class InterDepartmentDocumentTrackingController extends Controller
     public function create()
     {
         
-        $user = Auth::guard('super-admin')->user();              
+        $user = Auth::guard('associate')->user();              
         $claims = Claim::orderBy('id', 'desc')->with('patient','hospital')->get();
-        $employees = Admin::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'uid', 'employee_code', 'department']);
         $patients = Patient::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'uid']);
         $associate_partners = AssociatePartner::orderBy('id', 'desc')->get(['id', 'name', 'associate_partner_id']);
         $hospitals = Hospital::orderBy('id', 'desc')->get(['id', 'name', 'uid']);
-        return view('super-admin.inter_department_document_trackings.create.create',  compact('claims', 'associate_partners', 'patients', 'hospitals', 'user', 'employees'));
+        return view('associate.document_inward_outward_trackings.create.create',  compact('claims', 'associate_partners', 'patients', 'hospitals', 'user'));
     
     }
 
@@ -79,6 +82,11 @@ class InterDepartmentDocumentTrackingController extends Controller
             'date_of_transaction'                  => 'required',
             'document_type'                        => 'required',
             'other'                                => (($request->claim_id == '') || ($request->hospital_id == '') || ($request->patient_id == '') || ($request->ap_id == '') ) ? 'required' :'',
+            'transaction_type'                     => 'required',
+            'from_to'                              => 'required',
+            'name_of_the_organization_person'      => 'required',
+            'mode_of_transaction'                  => 'required',
+            'courier_person_name'                  => 'required',
             'document_comments'                    => $request->document_type == 'Other' ? 'required' : '',
         ];
 
@@ -88,7 +96,7 @@ class InterDepartmentDocumentTrackingController extends Controller
 
         $this->validate($request, $rules, $messages);
 
-        $documentinwardoutwardtracking   =   InterDepartmentDocumentTracking::create([
+        $documentinwardoutwardtracking   =   DocumentInwardOutwardTracking::create([
             'user_id'                           => $request->user_id,
             'date_of_transaction'               => Carbon::parse($request->date_of_transaction)->format('Y-m-d'),
             'document_type'                     => $request->document_type,
@@ -100,13 +108,27 @@ class InterDepartmentDocumentTrackingController extends Controller
             'hospital_name'                     => $request->hospital_name,
             'hospital_id'                       => $request->hospital_id,
             'other'                             => $request->other,
-            'employee_name'                     => $request->employee_name,
-            'employee_id'                       => $request->employee_id,
-            'department'                        => $request->department,
+            'transaction_type'                  => $request->transaction_type,
+            'from_to'                           => $request->from_to,
+            'name_of_the_organization_person'   => $request->name_of_the_organization_person,
+            'mode_of_transaction'               => $request->mode_of_transaction,
+            'courier_person_name'               => $request->courier_person_name,
+            'pod_other_number'                  => $request->pod_other_number,
             'document_comments'                 => $request->document_comments,
         ]);
 
-        return redirect()->route('super-admin.inter-department-docs-tracking.index')->with('success', 'Inter Department Document Tracking created successfully');          
+        
+
+        if ($request->hasfile('pod_other_number_file')) {
+            $pod_other_number_file                    = $request->file('pod_other_number_file');
+            $name                       = $pod_other_number_file->getClientOriginalName();
+            $pod_other_number_file->storeAs('uploads/document-inward-outward-tracking/' . $documentinwardoutwardtracking->id . '/', $name, 'public');
+            DocumentInwardOutwardTracking::where('id', $documentinwardoutwardtracking->id)->update([
+                'pod_other_number_file'               =>  $name
+            ]);
+        }
+
+        return redirect()->route('associate-partner.document-inward-outward-tracking.index')->with('success', 'Document Inward Outward Tracking created successfully');          
     }
 
     /**
@@ -117,8 +139,8 @@ class InterDepartmentDocumentTrackingController extends Controller
      */
     public function show($id)
     {
-        $document_inward_outward_tracking = InterDepartmentDocumentTracking::find($id);
-        return view('super-admin.inter_department_document_trackings.show',  compact('document_inward_outward_tracking'));
+        $document_inward_outward_tracking = DocumentInwardOutwardTracking::find($id);
+        return view('associate.document_inward_outward_trackings.show',  compact('document_inward_outward_tracking'));
     }
 
     /**
@@ -129,15 +151,14 @@ class InterDepartmentDocumentTrackingController extends Controller
      */
     public function edit($id)
     {
-        $document_inward_outward_tracking = InterDepartmentDocumentTracking::find($id);
+        $document_inward_outward_tracking = DocumentInwardOutwardTracking::find($id);
         $document_inward_outward_tracking->date_of_transaction = Carbon::parse($document_inward_outward_tracking->date_of_transaction)->format('d-m-Y');
-        $user = Auth::guard('super-admin')->user();              
+        $user = Auth::guard('associate')->user();              
         $claims = Claim::orderBy('id', 'desc')->with('patient','hospital')->get();
-        $employees = Admin::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'uid', 'employee_code', 'department']);
         $patients = Patient::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'uid']);
         $associate_partners = AssociatePartner::orderBy('id', 'desc')->get(['id', 'name', 'associate_partner_id']);
         $hospitals = Hospital::orderBy('id', 'desc')->get(['id', 'name', 'uid']);
-        return view('super-admin.inter_department_document_trackings.edit.edit',  compact('claims', 'associate_partners', 'patients', 'hospitals', 'user', 'employees', 'document_inward_outward_tracking'));
+        return view('associate.document_inward_outward_trackings.edit.edit',  compact('claims', 'associate_partners', 'patients', 'hospitals', 'user', 'document_inward_outward_tracking'));
     }
 
     /**
@@ -149,11 +170,25 @@ class InterDepartmentDocumentTrackingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
+        if ($request->hasfile('pod_other_number_file')) {
+            $pod_other_number_file                    = $request->file('pod_other_number_file');
+            $name                       = $pod_other_number_file->getClientOriginalName();
+            $pod_other_number_file->storeAs('uploads/document-inward-outward-tracking/' . $id . '/', $name, 'public');
+            DocumentInwardOutwardTracking::where('id', $id)->update([
+                'pod_other_number_file'               =>  $name
+            ]);
+        }
+
         $rules = [
             'date_of_transaction'                  => 'required',
             'document_type'                        => 'required',
             'other'                                => (($request->claim_id == '') || ($request->hospital_id == '') || ($request->patient_id == '') || ($request->ap_id == '') ) ? 'required' :'',
+            'transaction_type'                     => 'required',
+            'from_to'                              => 'required',
+            'name_of_the_organization_person'      => 'required',
+            'mode_of_transaction'                  => 'required',
+            'courier_person_name'                  => 'required',
             'document_comments'                    => $request->document_type == 'Other' ? 'required' : '',
         ];
 
@@ -163,7 +198,7 @@ class InterDepartmentDocumentTrackingController extends Controller
 
         $this->validate($request, $rules, $messages);
 
-        $documentinwardoutwardtracking   =   InterDepartmentDocumentTracking::where('id',$id)->update([
+        $documentinwardoutwardtracking   =   DocumentInwardOutwardTracking::where('id',$id)->update([
             'user_id'                           => $request->user_id,
             'date_of_transaction'               => Carbon::parse($request->date_of_transaction)->format('Y-m-d'),
             'document_type'                     => $request->document_type,
@@ -175,14 +210,16 @@ class InterDepartmentDocumentTrackingController extends Controller
             'hospital_name'                     => $request->hospital_name,
             'hospital_id'                       => $request->hospital_id,
             'other'                             => $request->other,
-            'employee_name'                     => $request->employee_name,
-            'employee_id'                       => $request->employee_id,
-            'department'                        => $request->department,
+            'transaction_type'                  => $request->transaction_type,
+            'from_to'                           => $request->from_to,
+            'name_of_the_organization_person'   => $request->name_of_the_organization_person,
+            'mode_of_transaction'               => $request->mode_of_transaction,
+            'courier_person_name'               => $request->courier_person_name,
+            'pod_other_number'                  => $request->pod_other_number,
             'document_comments'                 => $request->document_comments,
         ]);
 
-        return redirect()->route('super-admin.inter-department-docs-tracking.index')->with('success', 'Inter Department Document Tracking updated successfully');          
-    
+        return redirect()->route('associate-partner.document-inward-outward-tracking.index')->with('success', 'Document Inward Outward Tracking updated successfully');          
     }
 
     /**

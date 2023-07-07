@@ -287,8 +287,7 @@
 
 
                                 <div class="col-md-12 text-end mt-3">
-                                    <button type="submit" class="btn btn-success" form="DocumentIOTrackingForm">Create
-                                        Admin</button>
+                                    <button type="submit" class="btn btn-success" form="DocumentIOTrackingForm">Update</button>
                                 </div>
                             </div>
                         </form>

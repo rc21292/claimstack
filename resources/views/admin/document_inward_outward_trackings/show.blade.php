@@ -1,4 +1,4 @@
-@extends('layouts.super-admin')
+@extends('layouts.admin')
 @section('title', 'Edit Borrowers')
 @section('content')
     <!-- Start Content-->
@@ -11,15 +11,15 @@
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Claim Stack</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('super-admin.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item active"> Inter Department Document Tracking </li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Document Inward / Outward Trackings </li>
                         </ol>
                     </div>
-                    <h4 class="page-title"> Inter Department Document Tracking</h4>
+                    <h4 class="page-title">Document Inward / Outward Trackings</h4>
                 </div>
             </div>
         </div>
-        @include('super-admin.sections.flash-message')
+        @include('admin.sections.flash-message')
 
 
         <!-- end page title -->
@@ -111,27 +111,57 @@
                                         <p class="card-text">: {{ $document_inward_outward_tracking->other }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
-                                        <h5 class="card-title">  Employee Name
+                                        <h5 class="card-title">  Transaction Type
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ @$document_inward_outward_tracking->employee->firstname }} {{ @$document_inward_outward_tracking->employee->middlename }} {{ @$document_inward_outward_tracking->employee->lastname }} </p>
+                                        <p class="card-text">: {{ $document_inward_outward_tracking->transaction_type }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
-                                        <h5 class="card-title">  Employee id
+                                        <h5 class="card-title">  From / To 
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $document_inward_outward_tracking->employee_id }} </p>
+                                        <p class="card-text">: {{ $document_inward_outward_tracking->from_to }} </p>
                                     </dd>
                                     <dt class="col-sm-4">
-                                        <h5 class="card-title">  Employee Name
+                                        <h5 class="card-title">  Name of the Organization / Person
                                         </h5>
                                     </dt>
                                     <dd class="col-sm-8">
-                                        <p class="card-text">: {{ $document_inward_outward_tracking->department }} </p>
+                                        <p class="card-text">: {{ $document_inward_outward_tracking->name_of_the_organization_person }} </p>
                                     </dd>
-
+                                    <dt class="col-sm-4">
+                                        <h5 class="card-title">  Mode of Transaction
+                                        </h5>
+                                    </dt>
+                                    <dd class="col-sm-8">
+                                        <p class="card-text">: {{ $document_inward_outward_tracking->mode_of_transaction }} </p>
+                                    </dd>
+                                    <dt class="col-sm-4">
+                                        <h5 class="card-title">  Courier / Person Name
+                                        </h5>
+                                    </dt>
+                                    <dd class="col-sm-8">
+                                        <p class="card-text">: {{ $document_inward_outward_tracking->courier_person_name }} </p>
+                                    </dd>
+                                    <dt class="col-sm-4">
+                                        <h5 class="card-title">  POD / Other Number
+                                        </h5>
+                                    </dt>
+                                    <dd class="col-sm-8">
+                                        <p class="card-text">: {{ $document_inward_outward_tracking->pod_other_number }} </p>
+                                        @isset($document_inward_outward_tracking->pod_other_number_file)
+                                            <a href="{{ asset('storage/uploads/document-inward-outward-tracking/' . $document_inward_outward_tracking->id . '/' . $document_inward_outward_tracking->pod_other_number_file) }}"
+                                                target="_blank" class="btn btn-info download-label"><i
+                                                    class="mdi mdi-eye"></i></a>
+                                        @endisset
+                                        @isset($document_inward_outward_tracking->pod_other_number_file)
+                                            <a href="{{ asset('storage/uploads/document-inward-outward-tracking/' . $document_inward_outward_tracking->id . '/' . $document_inward_outward_tracking->pod_other_number_file) }}"
+                                                download="" class="btn btn-warning download-label"><i
+                                                    class="mdi mdi-download"></i></a>
+                                        @endisset
+                                    </dd>
                                     <dt class="col-sm-4">
                                         <h5 class="card-title">  Document Comments
                                         </h5>

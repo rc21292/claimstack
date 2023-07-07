@@ -1,4 +1,4 @@
-@extends('layouts.super-admin')
+@extends('layouts.associate')
 @section('title', 'Edit Borrowers')
 @section('content')
     <!-- Start Content-->
@@ -11,7 +11,7 @@
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Claim Stack</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('super-admin.dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('associate-partner.dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active"> Inter Department Document Tracking </li>
                         </ol>
                     </div>
@@ -19,7 +19,7 @@
                 </div>
             </div>
         </div>
-        @include('super-admin.sections.flash-message')
+        @include('admin.sections.flash-message')
 
 
         <!-- end page title -->

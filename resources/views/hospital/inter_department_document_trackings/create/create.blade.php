@@ -1,4 +1,4 @@
-@extends('layouts.super-admin')
+@extends('layouts.hospital')
 @section('title', 'Create Admin')
 @section('content')
     <!-- Start Content-->
@@ -11,7 +11,7 @@
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Claim Stack</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('super-admin.dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('hospital.dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">Inter Department Document Update Create</li>
                         </ol>
                     </div>
@@ -19,7 +19,7 @@
                 </div>
             </div>
         </div>
-        @include('super-admin.sections.flash-message')
+        @include('hospital.sections.flash-message')
         <!-- end page title -->
 
         <!-- start page content -->
@@ -27,7 +27,7 @@
             <div class="col-12">
                 <div class="card no-shadow">
                     <div class="card-body">
-                        <form action="{{ route('super-admin.inter-department-docs-tracking.store') }}" method="post" id="DocumentIDepTrackingForm"
+                        <form action="{{ route('hospital.inter-department-docs-tracking.store') }}" method="post" id="DocumentIDepTrackingForm"
                             enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">

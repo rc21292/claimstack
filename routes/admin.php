@@ -33,6 +33,8 @@ use App\Http\Controllers\Admin\Authorizations\HospitalEmanelmentStatusAuthorizat
 use App\Http\Controllers\Admin\Pending\PendingPreAssessmentController;
 use App\Http\Controllers\Admin\Pending\PendingClaimProcessingController;
 use App\Http\Controllers\Admin\Pending\PendingFinalAssessmentController;
+use App\Http\Controllers\Admin\DocumentInwardOutwardTrackingController;
+use App\Http\Controllers\Admin\InterDepartmentDocumentTrackingController;
 use App\Http\Controllers\Admin\ClaimReportController;
 
 use Illuminate\Support\Facades\Route;
@@ -292,6 +294,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::resource('pending-claim-processing', PendingClaimProcessingController::class);
     Route::resource('pending-final-assessment', PendingFinalAssessmentController::class);
     
+    Route::resource('document-inward-outward-tracking', DocumentInwardOutwardTrackingController::class);
+    Route::resource('inter-department-docs-tracking', InterDepartmentDocumentTrackingController::class);
 
     /*
     |--------------------------------------------------------------------------

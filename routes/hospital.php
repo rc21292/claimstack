@@ -22,6 +22,8 @@ use App\Http\Controllers\Hospital\Claims\DocumentReimbursementController;
 use App\Http\Controllers\Hospital\Claims\LendingStatusController;
 use App\Http\Controllers\Hospital\UtilityController;
 use App\Http\Controllers\Hospital\Claims\ICClaimStatusController;
+use App\Http\Controllers\Hospital\DocumentInwardOutwardTrackingController;
+use App\Http\Controllers\Hospital\InterDepartmentDocumentTrackingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -159,6 +161,10 @@ Route::group(['prefix' => 'hospital', 'as' => 'hospital.'], function () {
     Route::put('update-assessment-status/{id}', [AssessmentController::class, 'updateAssessmentStatus'])->name('assessment-status.update-assessment-status');
     
     Route::resource('assessment-status', AssessmentController::class);
+
+    Route::resource('document-inward-outward-tracking', DocumentInwardOutwardTrackingController::class);
+    Route::resource('inter-department-docs-tracking', InterDepartmentDocumentTrackingController::class);
+    
 
     /*
     |--------------------------------------------------------------------------

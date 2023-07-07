@@ -1,4 +1,4 @@
-@extends('layouts.super-admin')
+@extends('layouts.associate')
 @section('title', 'Create Admin')
 @section('content')
     <!-- Start Content-->
@@ -11,15 +11,15 @@
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Claim Stack</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('super-admin.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Inter Department Document Update Create</li>
+                            <li class="breadcrumb-item"><a href="{{ route('associate-partner.dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Document Inward / Outward Trackings Create</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">Inter Department Document Update     </h4>
+                    <h4 class="page-title">Document Inward / Outward Update     </h4>
                 </div>
             </div>
         </div>
-        @include('super-admin.sections.flash-message')
+        @include('admin.sections.flash-message')
         <!-- end page title -->
 
         <!-- start page content -->
@@ -27,7 +27,7 @@
             <div class="col-12">
                 <div class="card no-shadow">
                     <div class="card-body">
-                        <form action="{{ route('super-admin.inter-department-docs-tracking.store') }}" method="post" id="DocumentIDepTrackingForm"
+                        <form action="{{ route('associate-partner.document-inward-outward-tracking.store') }}" method="post" id="DocumentIOTrackingForm"
                             enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
@@ -193,81 +193,6 @@
                                 </div>
 
                                 <div class="col-md-6 mt-3">
-                                    <label for="employee_name">Employee Name <span
-                                            class="text-danger">*</span></label>
-                                    <select class="form-control select2" id="employee_name" data-toggle="select2"
-                                        name="employee_name" onchange="setEmployeeId()">
-                                        <option value="">Select Employee Name</option>
-                                        @foreach ($employees as $employee)
-                                            <option value="{{ $employee->id }}"
-                                                {{ old('employee_name') == $employee->id ? 'selected' : '' }}
-                                                data-employee-uid="{{ $employee->employee_code }}"
-                                                data-employee-department="{{ $employee->department }}"
-                                                >
-                                                [<strong>Name: </strong>{{ $employee->firstname }} {{ $employee->lastname }}]</option>
-                                        @endforeach
-                                    </select>
-                                    @error('employee_name')
-                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-6 mt-3">
-                                    <label for="employee_id">Employee Id <span
-                                            class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="employee_id" name="employee_id"
-                                        placeholder="Enter Employee Id" value="{{ old('employee_id') }}">
-                                    @error('employee_id')
-                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-6 mt-3">
-                                    <label for="department">Department <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="department" name="department">
-                                        <option value="">Select Department</option>
-                                        <option value="Operations"
-                                            {{ old('department') == 'Operations' ? 'selected' : '' }}>Operations
-                                        </option>
-                                        <option value="Sales" {{ old('department') == 'Sales' ? 'selected' : '' }}>Sales
-                                        </option>
-                                        <option value="Accounts" {{ old('department') == 'Accounts' ? 'selected' : '' }}>
-                                            Accounts
-                                        </option>
-                                        <option value="Analytics & MIS"
-                                            {{ old('department') == 'Analytics & MIS' ? 'selected' : '' }}>Analytics & MIS
-                                        </option>
-                                        <option value="IT" {{ old('department') == 'IT' ? 'selected' : '' }}>IT
-                                        </option>
-                                        <option value="Product Management"
-                                            {{ old('department') == 'Product Management' ? 'selected' : '' }}>Product
-                                            Management
-                                        </option>
-                                        <option value="Provider management"
-                                            {{ old('department') == 'Provider management' ? 'selected' : '' }}>Provider
-                                            management
-                                        </option>
-                                        <option value="Insurance"
-                                            {{ old('department') == 'Insurance' ? 'selected' : '' }}>Insurance
-                                        </option>
-                                        <option value="Claims Processing"
-                                            {{ old('department') == 'Claims Processing' ? 'selected' : '' }}>Claims
-                                            Processing
-                                        </option>
-                                        <option value="Cashless" {{ old('department') == 'Cashless' ? 'selected' : '' }}>
-                                            Cashless
-                                        </option>
-                                        <option value="Lending" {{ old('department') == 'Lending' ? 'selected' : '' }}>
-                                            Lending
-                                        </option>
-                                    </select>
-                                    @error('department')
-                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-
-                                <div class="col-md-6 mt-3">
                                     <label for="other">Other <span class="text-danger">*</span></label>
                                     <input type="text"  class="form-control" id="other" name="other"
                                          placeholder="Enter Other" maxlength="60" value="{{ old('other') }}">
@@ -275,7 +200,95 @@
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
-                            
+                               
+                                <div class="col-md-6 mt-3">
+                                    <label for="transaction_type">Transaction Type <span class="text-danger">*</span></label>
+                                    <select class="form-select" id="transaction_type" name="transaction_type" onchange="setFormTo()">
+                                        <option value="">Select Transaction Type</option>
+                                        <option value="Inward"
+                                            {{ old('transaction_type') == 'Inward' ? 'selected' : '' }}>Inward
+                                        </option>
+                                        <option value="Outward" {{ old('transaction_type') == 'Outward' ? 'selected' : '' }}>Outward
+                                        </option>
+                                    </select>
+                                    @error('transaction_type')
+                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6 mt-3">
+                                    <label for="from_to">From / To  <span class="text-danger">*</span></label>
+                                    <select class="form-select" id="from_to" name="from_to">
+                                        <option value="">Select From / To </option>
+                                        <option value="From"
+                                            {{ old('from_to') == 'From' ? 'selected' : '' }}>From
+                                        </option>
+                                        <option value="To" {{ old('from_to') == 'To' ? 'selected' : '' }}>To
+                                        </option>
+                                    </select>
+                                    @error('from_to')
+                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6 mt-3">
+                                    <label for="name_of_the_organization_person">Name of the Organization / Person <span class="text-danger">*</span></label>
+                                    <input type="text"   maxlength="60" class="form-control" id="name_of_the_organization_person" name="name_of_the_organization_person"
+                                         placeholder="Enter Name of the Organization / Person" value="{{ old('name_of_the_organization_person') }}">
+                                    @error('name_of_the_organization_person')
+                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6 mt-3">
+                                    <label for="mode_of_transaction">Mode of Transaction <span class="text-danger">*</span></label>
+                                    <select class="form-select" id="mode_of_transaction" name="mode_of_transaction">
+                                        <option value="">Select Mode of Transaction</option>
+                                        <option value="By Hand"
+                                            {{ old('mode_of_transaction') == 'By Hand' ? 'selected' : '' }}>By Hand
+                                        </option>
+                                        <option value="Courier" {{ old('mode_of_transaction') == 'Courier' ? 'selected' : '' }}>Courier
+                                        </option>
+                                        <option value="Speed Post"
+                                            {{ old('mode_of_transaction') == 'Speed Post' ? 'selected' : '' }}>Speed Post
+                                        </option>
+                                        <option value="Other" {{ old('mode_of_transaction') == 'Other' ? 'selected' : '' }}>Other
+                                        </option>
+                                    </select>
+                                    @error('mode_of_transaction')
+                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6 mt-3">
+                                    <label for="courier_person_name">Courier / Person Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="courier_person_name" name="courier_person_name" maxlength="50"
+                                        placeholder="Enter Courier / Person Name" value="{{ old('courier_person_name') }}">
+                                    @error('courier_person_name')
+                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6 mt-3">
+                                    <label for="pod_other_number">POD / Other Number <span class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                    <input type="text" class="form-control" id="pod_other_number" name="pod_other_number" maxlength="20" 
+                                            placeholder="Enter POD / Other Number" value="{{ old('pod_other_number') }}">
+                                    <input type="file" name="pod_other_number_file"
+                                        id="pod_other_number_file" hidden
+                                                    onchange="$('label[for=' + $(this).attr('id') + ']').removeClass('btn-primary');$('label[for=' + $(this).attr('id') + ']').addClass('btn-warning');" />
+                                        <label for="pod_other_number_file"
+                                            class="btn btn-primary upload-label"><i
+                                                class="mdi mdi-upload"></i></label>
+                                    </div>
+                                    @error('pod_other_number_file')
+                                        <span id="name-error"
+                                            class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                    @error('pod_other_number')
+                                        <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
                                 <div class="col-md-12 mt-3">
                                     <label for="document_comments">Document Comments </label>
                                     <textarea class="form-control" id="document_comments" name="document_comments" maxlength="60" placeholder="Document Comments"
@@ -287,7 +300,7 @@
 
 
                                 <div class="col-md-12 text-end mt-3">
-                                    <button type="submit" class="btn btn-success" form="DocumentIDepTrackingForm">Save</button>
+                                    <button type="submit" class="btn btn-success" form="DocumentIOTrackingForm">Save</button>
                                 </div>
                             </div>
                         </form>
@@ -304,18 +317,8 @@
         setPatienId();
         setAPId();
         setHospitalId();
-        setEmployeeId();
         setFormTo();
     });
-
-    function setEmployeeId() {                               
-
-        var hospital_uid          = $("#employee_name").select2().find(":selected").data("employee-uid");
-        var hospital_department          = $("#employee_name").select2().find(":selected").data("employee-department");
-
-        $('#employee_id').val(hospital_uid);
-        $('#department').val(hospital_department);
-    }
 
     function setPatienId() {                               
 

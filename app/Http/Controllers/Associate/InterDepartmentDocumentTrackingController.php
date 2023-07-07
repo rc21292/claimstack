@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\SuperAdmin;
+namespace App\Http\Controllers\Associate;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -8,13 +8,18 @@ use App\Models\InterDepartmentDocumentTracking;
 use App\Models\Patient;
 use App\Models\Claim;
 use App\Models\Hospital;
-use App\Models\Admin;
+use App\Models\Associate;
 use App\Models\AssociatePartner;
 use Auth;
 use Carbon\Carbon;
 
 class InterDepartmentDocumentTrackingController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:associate');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -46,7 +51,7 @@ class InterDepartmentDocumentTrackingController extends Controller
 
 
         $inter_department_document_trackings = $inter_department_document_trackings->orderBy('id', 'desc')->paginate(20);
-        return view('super-admin.inter_department_document_trackings.manage',  compact('inter_department_document_trackings', 'filter_claim_id', 'filter_patient_id', 'filter_date_from_to'));
+        return view('associate.inter_department_document_trackings.manage',  compact('inter_department_document_trackings', 'filter_claim_id', 'filter_patient_id', 'filter_date_from_to'));
     }
 
     /**
@@ -57,13 +62,13 @@ class InterDepartmentDocumentTrackingController extends Controller
     public function create()
     {
         
-        $user = Auth::guard('super-admin')->user();              
+        $user = Auth::guard('associate')->user();              
         $claims = Claim::orderBy('id', 'desc')->with('patient','hospital')->get();
-        $employees = Admin::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'uid', 'employee_code', 'department']);
+        $employees = Associate::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'uid', 'employee_code', 'department']);
         $patients = Patient::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'uid']);
         $associate_partners = AssociatePartner::orderBy('id', 'desc')->get(['id', 'name', 'associate_partner_id']);
         $hospitals = Hospital::orderBy('id', 'desc')->get(['id', 'name', 'uid']);
-        return view('super-admin.inter_department_document_trackings.create.create',  compact('claims', 'associate_partners', 'patients', 'hospitals', 'user', 'employees'));
+        return view('associate.inter_department_document_trackings.create.create',  compact('claims', 'associate_partners', 'patients', 'hospitals', 'user', 'employees'));
     
     }
 
@@ -106,7 +111,7 @@ class InterDepartmentDocumentTrackingController extends Controller
             'document_comments'                 => $request->document_comments,
         ]);
 
-        return redirect()->route('super-admin.inter-department-docs-tracking.index')->with('success', 'Inter Department Document Tracking created successfully');          
+        return redirect()->route('associate-partner.inter-department-docs-tracking.index')->with('success', 'Inter Department Document Tracking created successfully');          
     }
 
     /**
@@ -118,7 +123,7 @@ class InterDepartmentDocumentTrackingController extends Controller
     public function show($id)
     {
         $document_inward_outward_tracking = InterDepartmentDocumentTracking::find($id);
-        return view('super-admin.inter_department_document_trackings.show',  compact('document_inward_outward_tracking'));
+        return view('associate.inter_department_document_trackings.show',  compact('document_inward_outward_tracking'));
     }
 
     /**
@@ -131,13 +136,13 @@ class InterDepartmentDocumentTrackingController extends Controller
     {
         $document_inward_outward_tracking = InterDepartmentDocumentTracking::find($id);
         $document_inward_outward_tracking->date_of_transaction = Carbon::parse($document_inward_outward_tracking->date_of_transaction)->format('d-m-Y');
-        $user = Auth::guard('super-admin')->user();              
+        $user = Auth::guard('associate')->user();              
         $claims = Claim::orderBy('id', 'desc')->with('patient','hospital')->get();
-        $employees = Admin::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'uid', 'employee_code', 'department']);
+        $employees = Associate::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'uid', 'employee_code', 'department']);
         $patients = Patient::orderBy('id', 'desc')->get(['id', 'firstname', 'lastname', 'uid']);
         $associate_partners = AssociatePartner::orderBy('id', 'desc')->get(['id', 'name', 'associate_partner_id']);
         $hospitals = Hospital::orderBy('id', 'desc')->get(['id', 'name', 'uid']);
-        return view('super-admin.inter_department_document_trackings.edit.edit',  compact('claims', 'associate_partners', 'patients', 'hospitals', 'user', 'employees', 'document_inward_outward_tracking'));
+        return view('associate.inter_department_document_trackings.edit.edit',  compact('claims', 'associate_partners', 'patients', 'hospitals', 'user', 'employees', 'document_inward_outward_tracking'));
     }
 
     /**
@@ -181,7 +186,7 @@ class InterDepartmentDocumentTrackingController extends Controller
             'document_comments'                 => $request->document_comments,
         ]);
 
-        return redirect()->route('super-admin.inter-department-docs-tracking.index')->with('success', 'Inter Department Document Tracking updated successfully');          
+        return redirect()->route('associate-partner.inter-department-docs-tracking.index')->with('success', 'Inter Department Document Tracking updated successfully');          
     
     }
 

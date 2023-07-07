@@ -1,4 +1,4 @@
-@extends('layouts.super-admin')
+@extends('layouts.associate')
 @section('title', 'Admins')
 @section('content')
     <!-- Start Content-->
@@ -11,7 +11,7 @@
                     <div class="page-title-right">
                             <div class="input-group">
                                 <div class="input-group-append">
-                                    <a class="btn btn-primary" href="{{ route('super-admin.document-inward-outward-tracking.create') }}">Add Trcking</a>
+                                    <a class="btn btn-primary" href="{{ route('associate-partner.document-inward-outward-tracking.create') }}">Add Trcking</a>
                                 </div>
                             </div>
                     </div>
@@ -20,7 +20,7 @@
             </div>
 
             <div class="container">
-                <form action="{{ route('super-admin.document-inward-outward-tracking.index') }}">
+                <form action="{{ route('associate-partner.document-inward-outward-tracking.index') }}">
 
                     <div class="row pb-4">
 
@@ -44,7 +44,7 @@
             </div>
 
         </div>
-        @include('super-admin.sections.flash-message')
+        @include('admin.sections.flash-message')
         <!-- end page title -->
 
         <!-- start page content -->
@@ -79,9 +79,9 @@
                                                 <td>{{ $document_inward_outward_tracking->patient_id }}</td>
                                                 <td>
                                                     <div class="btn-group">
-                                                        <a href="{{ route('super-admin.document-inward-outward-tracking.edit', $document_inward_outward_tracking->id) }}"
+                                                        <a href="{{ route('associate-partner.document-inward-outward-tracking.edit', $document_inward_outward_tracking->id) }}"
                                                             class="btn btn-secondary"><i class="mdi mdi-pencil"></i></a>
-                                                    <a href="{{ route('super-admin.document-inward-outward-tracking.show', $document_inward_outward_tracking->id) }}"
+                                                    <a href="{{ route('associate-partner.document-inward-outward-tracking.show', $document_inward_outward_tracking->id) }}"
                                                             class="btn btn-primary"><i class="mdi mdi-eye"></i></a>
                                                     </div>
                                                 </td>

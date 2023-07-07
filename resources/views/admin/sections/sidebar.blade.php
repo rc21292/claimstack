@@ -428,10 +428,37 @@
             </li>
             @if(auth()->check() && auth()->user()->hasDirectPermission('File Management Module Creation/Editing Rights'))
             <li class="side-nav-item">
-                <a href="javascript:Void(0)" class="side-nav-link">
+                <a data-bs-toggle="collapse" href="#file-management" aria-expanded="false"
+                    aria-controls="file-management" class="side-nav-link">
                     <i class="uil-folder-medical"></i>
                     <span> File Management </span>
+                    <span class="menu-arrow"></span>
                 </a>
+                <div class="collapse" id="file-management">
+
+                    <ul class="side-nav-second-level">
+                        <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#file-management-tracking" aria-expanded="true" aria-controls="file-management-tracking" class="">
+                                <span> Trackings </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse show" id="file-management-tracking" style="">
+                                <ul class="side-nav-third-level">
+
+                                    <li>
+                                        <a href="{{ route('admin.document-inward-outward-tracking.index') }}">Document Inward / Outward Tracking</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="{{ route('admin.inter-department-docs-tracking.index') }}">Inter Department Document Tracking</a>
+                                    </li>                                     
+
+                                </ul>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
             </li>
             @endif
 

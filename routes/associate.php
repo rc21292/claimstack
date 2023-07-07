@@ -20,6 +20,8 @@ use App\Http\Controllers\Associate\Claims\BorrowerController;
 use App\Http\Controllers\Associate\Claims\PatientController;
 use App\Http\Controllers\Associate\AssociatePartnerController;
 use App\Http\Controllers\Associate\ClaimReportController;
+use App\Http\Controllers\Associate\DocumentInwardOutwardTrackingController;
+use App\Http\Controllers\Associate\InterDepartmentDocumentTrackingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -223,6 +225,10 @@ Route::group(['prefix' => 'associate-partner', 'as' => 'associate-partner.'], fu
 
     Route::resource('icclaim-status', ICClaimStatusController::class);
 
+    Route::resource('document-inward-outward-tracking', DocumentInwardOutwardTrackingController::class);
+    Route::resource('inter-department-docs-tracking', InterDepartmentDocumentTrackingController::class);
+
+    
     /*
 
     |--------------------------------------------------------------------------
