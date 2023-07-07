@@ -81,8 +81,9 @@
                                 </div>
 
                                 <div class="col-md-6 mt-3">
+                                    <input type="hidden" value="{{ old('claim_id', $document_inward_outward_tracking->claim_id) }}" name="claim_id">
                                     <label for="claim_id">Claim ID <span class="text-danger">*</span></label>
-                                    <select class="form-control select2" id="claim_id" name="claim_id"
+                                    <select class="form-control select2" id="claim_id" disabled name="claim_id"
                                         data-toggle="select2" onchange="setPatient()">
                                         <option value="">Search Claim ID</option>
                                         @foreach ($claims as $row)
@@ -112,7 +113,8 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="patient_name">Patient Name <span class="text-danger">*</span></label>
-                                    <select class="form-control select2" @if(isset($patient) && !empty($patient)) disabled @endif id="patient_name" name="patient_name" data-toggle="select2" onchange="setPatienId()" >
+                                    <input type="hidden" name="patient_name" value="{{ old('patient_name', isset($patient) ? $patient->id : '') }}">
+                                    <select disabled class="form-control select2" @if(isset($patient) && !empty($patient)) disabled @endif id="patient_name" name="patient_name" data-toggle="select2" onchange="setPatienId()" >
                                         <option value="">Enter Patient ID</option>
                                         @foreach ($patients as $row)
                                             <option value="{{ $row->id }}"
@@ -129,7 +131,7 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="patient_id">Patient ID <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="patient_id" name="patient_id"  placeholder="Patient Id" value="{{ old('patient_id', $document_inward_outward_tracking->patient_id) }}">
+                                    <input readonly type="text" class="form-control" id="patient_id" name="patient_id"  placeholder="Patient Id" value="{{ old('patient_id', $document_inward_outward_tracking->patient_id) }}">
                                     @error('patient_id')
                                         <span id="patient-id-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -138,12 +140,13 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="ap_name">Associate Partner Name <span
                                             class="text-danger">*</span></label>
-                                    <select class="form-control select2" id="ap_name" name="ap_name"
+                                            <input type="hidden" name="ap_name" value="{{ old('ap_name', $document_inward_outward_tracking->ap_name) }}">
+                                    <select disabled class="form-control select2" id="ap_name" name="ap_name"
                                         data-toggle="select2" onchange="setAPId()">
                                         <option value="">Select Associate Partner</option>
                                         @foreach ($associate_partners as $associate)
                                             <option value="{{ $associate->id }}"
-                                                {{ old('ap_name') == $associate->name ? 'selected' : '' }}
+                                                {{ old('ap_name', $document_inward_outward_tracking->ap_name ) == $associate->name ? 'selected' : '' }}
                                                 data-ap-uid="{{ $associate->associate_partner_id }}"
                                                 data-id="{{ $associate->associate_partner_id }}">
                                                 [<strong>Name: </strong>{{ $associate->name }}]</option>
@@ -156,7 +159,7 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="ap_id">Associate Partner ID <span class="text-danger"></span></label>
-                                    <input type="text" class="form-control" id="ap_id" name="ap_id"
+                                    <input type="text" readonly class="form-control" id="ap_id" name="ap_id"
                                         placeholder="Associate Partner ID" value="{{ old('ap_id', $document_inward_outward_tracking->ap_id) }}"
                                         @isset($patient) readonly @endisset>
                                     @error('ap_id')
@@ -166,12 +169,13 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="hospital_name">Hospital Name <span class="text-danger">*</span></label>
-                                    <select class="form-control select2" id="hospital_name" name="hospital_name"
+                                    <input type="hidden" name="hospital_name" value="{{ old('hospital_name',$document_inward_outward_tracking->hospital_name) }}">
+                                    <select disabled class="form-control select2" id="hospital_name" name="hospital_name"
                                         data-toggle="select2" onchange="setHospitalId()">
                                         <option value="">Search Hospital ID</option>
                                         @foreach ($hospitals as $hospital)
                                             <option value="{{ $hospital->id }}"
-                                                {{ old('hospital_name') == $hospital->id ? 'selected' : '' }}
+                                                {{ old('hospital_name',$document_inward_outward_tracking->hospital_name) == $hospital->id ? 'selected' : '' }}
                                                 data-hospital-uid="{{ $hospital->uid }}"
                                                 >
                                                 {{ $hospital->uid }}
@@ -186,7 +190,7 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="hospital_id">Hospital Id <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="hospital_id" name="hospital_id"
+                                    <input readonly type="text" class="form-control" id="hospital_id" name="hospital_id"
                                         placeholder="Enter Hospital Name" value="{{ old('hospital_id', $document_inward_outward_tracking->hospital_id) }}">
                                     @error('hospital_id')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -195,7 +199,7 @@
 
                                 <div class="col-md-6 mt-3">
                                     <label for="other">Other <span class="text-danger">*</span></label>
-                                    <input type="text"  class="form-control" id="other" name="other"
+                                    <input readonly type="text"  class="form-control" id="other" name="other"
                                          placeholder="Enter Other" maxlength="60" value="{{ old('other', $document_inward_outward_tracking->other) }}">
                                     @error('other')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>

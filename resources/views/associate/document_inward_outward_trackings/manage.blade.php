@@ -11,7 +11,7 @@
                     <div class="page-title-right">
                             <div class="input-group">
                                 <div class="input-group-append">
-                                    <a class="btn btn-primary" href="{{ route('associate-partner.document-inward-outward-tracking.create') }}">Add Trcking</a>
+                                    <!-- <a class="btn btn-primary" href="{{ route('associate-partner.document-inward-outward-tracking.create') }}">Add Trcking</a> -->
                                 </div>
                             </div>
                     </div>
