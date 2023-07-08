@@ -24,11 +24,37 @@ class AdminHospitalOnboardingExport implements FromCollection, WithHeadings, Sho
     {
         $hospital_array = array();
 
-         $filter_state = $this->data->state;
+        $filter_state = $this->data->state;
         $filter_ap_id = $this->data->ap_name;
         $filter_date_from_to = $this->data->date_from_to;
+
+        $user_id = auth()->user()->id;
+
+
+        $hospitals = Hospital::where(function ($q) use($user_id) {
+            return $q->where('linked_employee', $user_id)->orWhere('assigned_employee', $user_id);
+        })
+        ->when($filter_state != null, function ($q) use($filter_state) {
+                return $q->where('state', 'like',"%$filter_state%");
+        })
+        ->when($filter_date_from_to != null, function ($q) use($filter_date_from_to) {
+                $d = explode('-',$filter_date_from_to);
+                $date_from = Carbon::parse($d[0])->format('Y-m-d');
+                $date_to = Carbon::parse($d[1])->format('Y-m-d');
+                return $q->whereDate('created_at', '>=', $date_from)->whereDate('created_at','<=', $date_to);
+        })
+        ->when($filter_ap_id != null, function ($q) use($filter_ap_id) {
+                return $q->where('linked_associate_partner_id', $filter_ap_id);
+        })
+        ->with(['assignedEmployeeData' => function ($q) use ($user_id) {
+            return $q->where('linked_employee', $user_id);
+        }])
+        ->with(['linkedEmployeeData' =>  function ($q) use ($user_id) {
+            return $q->where('linked_employee', $user_id);
+        }])
+        ->orderBy('name', 'asc')->paginate(20);
         
-        $hospitals = Hospital::query();
+        // $hospitals = Hospital::query();
        
 
         /*$hospitals = Hospital::query();
@@ -59,7 +85,7 @@ class AdminHospitalOnboardingExport implements FromCollection, WithHeadings, Sho
         })->orderBy('name', 'asc')->get();*/
 
 
-
+/*
         $hospitals = Hospital::query();
 
         $user_id = auth()->user()->id; 
@@ -84,7 +110,7 @@ class AdminHospitalOnboardingExport implements FromCollection, WithHeadings, Sho
             });
         }
 
-        $hospitals = $hospitals->orderBy('name', 'asc')->paginate(20);
+        $hospitals = $hospitals->orderBy('name', 'asc')->paginate(20);*/
     
         foreach ($hospitals as $key => $hospital) {
 
