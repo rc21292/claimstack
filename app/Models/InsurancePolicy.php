@@ -78,7 +78,7 @@ class InsurancePolicy extends Model
 
     public function tpa()
     {
-        return $this->hasOne(Tpa::class);
+        return $this->hasOne(Tpa::class, 'id', 'tpa_name');
     }
 
 
