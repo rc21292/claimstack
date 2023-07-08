@@ -1159,7 +1159,7 @@ class HospitalController extends Controller
                     });
                 });
             });
-        })->orderBy('name', 'asc')->toSql();
+        })->orderBy('name', 'asc')->paginate('20');
 
         return view('associate.reports.hospital-onboarding', compact('hospitals', 'filter_date_from_to'));
     }

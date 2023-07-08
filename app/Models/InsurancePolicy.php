@@ -76,6 +76,12 @@ class InsurancePolicy extends Model
     }
 
 
+    public function tpa()
+    {
+        return $this->hasOne(Tpa::class);
+    }
+
+
     public function insurer()
     {
         return $this->belongsTo(Insurer::class, 'insurer_id');
