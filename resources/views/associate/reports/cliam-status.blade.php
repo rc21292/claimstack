@@ -127,7 +127,7 @@
                                     </tbody>
                                 </table>
                             @else
-                                <p class="text-center">No Hospital found.</p>
+                                <p class="text-center">No Claim Found.</p>
                             @endif
                         </div>
                         {{ $claims->withQueryString()->links('pagination::bootstrap-4') }}
