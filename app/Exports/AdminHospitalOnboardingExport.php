@@ -7,6 +7,7 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use  Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 
 class AdminHospitalOnboardingExport implements FromCollection, WithHeadings, ShouldAutoSize
 {
@@ -55,7 +56,7 @@ class AdminHospitalOnboardingExport implements FromCollection, WithHeadings, Sho
                 return $q3->where('linked_employee', $user_id);
             });
         })
-        ->orderBy('name', 'asc')->paginate(20); 
+        ->orderBy('name', 'asc')->get(); 
 
     
         foreach ($hospitals as $key => $hospital) {

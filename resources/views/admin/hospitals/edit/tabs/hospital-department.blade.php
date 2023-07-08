@@ -26,6 +26,16 @@
                 <option value="Cardiac"          {{ old('specialization',isset($hospital_doctor->specialization) ? $hospital_doctor->specialization : '')  == 'Cardiac' ? 'selected' : '' }}>Cardiac</option>
                 <option value="Oncology"         {{ old('specialization',isset($hospital_doctor->specialization) ? $hospital_doctor->specialization : '')  == 'Oncology' ? 'selected' : '' }}>Oncology</option>
                 <option value="Gastroenterolog"  {{ old('specialization',isset($hospital_doctor->specialization) ? $hospital_doctor->specialization : '')  == 'Gastroenterolog' ? 'selected' : '' }}>Gastroenterolog</option>
+                <option value="Endocrinology"  {{ old('specialization',isset($hospital_doctor->specialization) ? $hospital_doctor->specialization : '')  == 'Endocrinology' ? 'selected' : '' }}>Endocrinology</option>
+                <option value="Pulmonology"  {{ old('specialization',isset($hospital_doctor->specialization) ? $hospital_doctor->specialization : '')  == 'Pulmonology' ? 'selected' : '' }}>Pulmonology</option>
+                <option value="Rheumatology"  {{ old('specialization',isset($hospital_doctor->specialization) ? $hospital_doctor->specialization : '')  == 'Rheumatology' ? 'selected' : '' }}>Rheumatology</option>
+                <option value="General Medicine"  {{ old('specialization',isset($hospital_doctor->specialization) ? $hospital_doctor->specialization : '')  == 'General Medicine' ? 'selected' : '' }}>General Medicine</option>
+                <option value="General Surgery"  {{ old('specialization',isset($hospital_doctor->specialization) ? $hospital_doctor->specialization : '')  == 'General Surgery' ? 'selected' : '' }}>General Surgery</option>
+                <option value="General Physician"  {{ old('specialization',isset($hospital_doctor->specialization) ? $hospital_doctor->specialization : '')  == 'General Physician' ? 'selected' : '' }}>General Physician</option>
+                <option value="Ayurveda"  {{ old('specialization',isset($hospital_doctor->specialization) ? $hospital_doctor->specialization : '')  == 'Ayurveda' ? 'selected' : '' }}>Ayurveda</option>
+                <option value="Homeopathy"  {{ old('specialization',isset($hospital_doctor->specialization) ? $hospital_doctor->specialization : '')  == 'Homeopathy' ? 'selected' : '' }}>Homeopathy</option>
+                <option value="Unani"  {{ old('specialization',isset($hospital_doctor->specialization) ? $hospital_doctor->specialization : '')  == 'Unani' ? 'selected' : '' }}>Unani</option>
+                <option value="Ayush"  {{ old('specialization',isset($hospital_doctor->specialization) ? $hospital_doctor->specialization : '')  == 'Ayush' ? 'selected' : '' }}>Ayush</option>
             </select>
             @error('specialization')
             <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
