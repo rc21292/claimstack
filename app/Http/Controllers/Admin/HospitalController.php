@@ -2257,15 +2257,16 @@ class HospitalController extends Controller
 
     public function onbardingReport(Request $request)
     {
+
         DB::connection()->enableQueryLog();
 
         $filter_state = $request->state;
         $filter_ap_id = $request->ap_name;
         $filter_date_from_to = $request->date_from_to;
 
-        $user_id = auth()->user()->id; 
+        $user_id = auth()->user()->id;
 
-        $hospitals = Hospital::where(function ($query) {
+        /*$hospitals = Hospital::where(function ($query) {
             $query->where('linked_employee', auth()->user()->id)->orWhere('assigned_employee', auth()->user()->id);
         });
 
@@ -2300,10 +2301,44 @@ class HospitalController extends Controller
             $q->where('linked_employee', $user_id);
         })->orWhereHas('linkedEmployeeData',  function ($q) use ($user_id) {
             $q->where('linked_employee', $user_id);
-        });              
+        });
 
 
-        $hospitals = $hospitals->orderBy('name', 'asc')->paginate(20);
+        $hospitals = $hospitals->orderBy('name', 'asc')->paginate(20);*/
+
+
+
+        $hospitals = Hospital::where(function ($q) use($user_id) {
+            return $q->where('linked_employee', $user_id)->orWhere('assigned_employee', $user_id);
+        })
+        ->when($filter_state != null, function ($q) use($filter_state) {
+                return $q->where('state', 'like',"%$filter_state%");
+        })
+        ->when($filter_date_from_to != null, function ($q) use($filter_date_from_to) {
+                $d = explode('-',$filter_date_from_to);
+                $date_from = Carbon::parse($d[0])->format('Y-m-d');
+                $date_to = Carbon::parse($d[1])->format('Y-m-d');
+                return $q->whereDate('created_at', '>=', $date_from)->whereDate('created_at','<=', $date_to);
+        })
+        ->when($filter_ap_id != null, function ($q) use($filter_ap_id) {
+                return $q->where('linked_associate_partner_id', $filter_ap_id);
+        })
+        ->with(['assignedEmployeeData' => function ($q) use ($user_id) {
+            return $q->where('linked_employee', $user_id);
+        }])
+        ->with(['linkedEmployeeData' =>  function ($q) use ($user_id) {
+            return $q->where('linked_employee', $user_id);
+        }])
+        ->orderBy('name', 'asc')->paginate(20);
+
+
+
+              // echo '<pre>'; print_r($hospitals); echo '</pre>'; exit();
+              
+
+
+        // die();
+
 
         $queries = DB::getQueryLog();
 
