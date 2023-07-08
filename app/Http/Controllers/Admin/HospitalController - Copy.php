@@ -2258,23 +2258,20 @@ class HospitalController extends Controller
     public function onbardingReport(Request $request)
     {
         DB::connection()->enableQueryLog();
-
         $filter_state = $request->state;
         $filter_ap_id = $request->ap_name;
         $filter_date_from_to = $request->date_from_to;
 
+        $hospitals = Hospital::query();
+
         $user_id = auth()->user()->id; 
 
-        $hospitals = Hospital::where(function ($query) {
-            $query->where('linked_employee', auth()->user()->id)->orWhere('assigned_employee', auth()->user()->id);
-        });
-
-
         if($filter_state){
-            $hospitals =  $hospitals->where(function ($query) use($filter_state) {
-                $query->where('state', 'like','%' . $filter_state . '%');
+            $hospitals->where('state', 'like','%' . $filter_state . '%')->where('linked_employee', auth()->user()->id)->where('assigned_employee', auth()->user()->id)->orWhereHas('assignedEmployeeData',  function ($q) use ($user_id, $filter_state) {
+                $q->where('linked_employee', $user_id)->orWhere('state', 'like','%' . $filter_state . '%');
+            })->orWhereHas('linkedEmployeeData',  function ($q) use ($user_id, $filter_state) {
+                $q->where('linked_employee', $user_id)->orWhere('state', 'like','%' . $filter_state . '%');
             });
-
         }
 
         if($filter_date_from_to){
@@ -2282,33 +2279,48 @@ class HospitalController extends Controller
             $date_from = Carbon::parse($d[0])->format('Y-m-d');
             $date_to = Carbon::parse($d[1])->format('Y-m-d');
 
-            $hospitals =  $hospitals->where(function ($query) use($date_from, $date_to ) {
-                $query->whereDate('created_at', '>=', $date_from)->whereDate('created_at','<=', $date_to)->where('linked_employee', auth()->user()->id);
-            });
 
+            $hospitals =  $hospitals->whereDate('created_at', '>=', $date_from)->whereDate('created_at','<=', $date_to)->where('linked_employee', auth()->user()->id)->where('assigned_employee', auth()->user()->id)
+            ->orWhereHas('assignedEmployeeData',  function ($q) use ($user_id, $date_from, $date_to) {
+                $q->where('linked_employee', $user_id)->whereDate('created_at', '>=', $date_from)->whereDate('created_at','<=', $date_to);
+            })->orWhereHas('linkedEmployeeData',  function ($q) use ($user_id, $date_from, $date_to) {
+                $q->where('linked_employee', $user_id)->whereDate('created_at', '>=', $date_from)->whereDate('created_at','<=', $date_to);
+            });
         }
 
         if($filter_ap_id){
 
             $hospitals =  $hospitals->where(function ($query) use($filter_ap_id) {
-                $query->where('linked_associate_partner_id', $filter_ap_id);
+                $query->where('linked_associate_partner_id', $filter_ap_id)->where('linked_employee', auth()->user()->id)->where('assigned_employee', auth()->user()->id);
+            })->orWhereHas('assignedEmployeeData',  function ($q) use ($user_id, $filter_ap_id) {
+                $q->where('linked_associate_partner_id', $filter_ap_id)->where('linked_employee', $user_id);
+            })->orWhereHas('linkedEmployeeData',  function ($q) use ($user_id, $filter_ap_id) {
+                $q->where('linked_associate_partner_id', $filter_ap_id)->where('linked_employee', $user_id);
             });
-        }
-              
 
-        $hospitals =  $hospitals->orWhereHas('assignedEmployeeData',  function ($q) use ($user_id) {
-            $q->where('linked_employee', $user_id);
-        })->orWhereHas('linkedEmployeeData',  function ($q) use ($user_id) {
-            $q->where('linked_employee', $user_id);
-        });              
+        }    
 
+        if (!isset($filter_date_from_to) && !isset($filter_state) && !isset($filter_ap_id)) {
+            $hospitals =  $hospitals->where(function ($query) {
+                $query->where('linked_employee', auth()->user()->id)->orWhere('assigned_employee', auth()->user()->id);
+            })->orWhereHas('assignedEmployeeData',  function ($q) use ($user_id) {
+                $q->where('linked_employee', $user_id);
+            })->orWhereHas('linkedEmployeeData',  function ($q) use ($user_id) {
+                $q->where('linked_employee', $user_id);
+            });
+        }   
+
+        
 
         $hospitals = $hospitals->orderBy('name', 'asc')->paginate(20);
+
 
         $queries = DB::getQueryLog();
 
         $last_query = end($queries);
 
+              // echo '<pre>'; print_r($last_query); echo '</pre>'; exit();
+              
 
         $associates = AssociatePartner::get(['name', 'associate_partner_id']);
 
