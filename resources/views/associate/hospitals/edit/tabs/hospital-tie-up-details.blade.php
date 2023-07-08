@@ -193,7 +193,7 @@
         </div>
 
         <div class="col-md-6 mt-3">
-            <label for="claims_reimbursement_insured_services">claims Reimbursement Insured Services <span class="text-danger">*</span></label>
+            <label for="claims_reimbursement_insured_services">Claims Reimbursement Insured Services <span class="text-danger">*</span></label>
             <select class="form-select" id="claims_reimbursement_insured_services" name="claims_reimbursement_insured_services">
                 <option value="">Select</option>
                 <option value="Monthly" {{ old('claims_reimbursement_insured_services', $hospital_tie_ups->claims_reimbursement_insured_services??'') == 'Monthly' ? 'selected' : '' }}>Monthly
@@ -253,7 +253,7 @@
         </div>
 
         <div class="col-md-6 mt-3">
-            <label for="cashless_claims_management_services_charges">cashless Claims Management Services Charges <span
+            <label for="cashless_claims_management_services_charges">Cashless Claims Management Services Charges <span
                     class="text-danger">*</span></label>
             <div class="input-group">
                 <label class="input-group-text" for="phone">Rs.</label>
