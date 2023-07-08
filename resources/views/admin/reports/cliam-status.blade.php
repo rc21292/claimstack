@@ -121,7 +121,7 @@
                                                 <td>{{ $claim->discharge_date }}</td>                                               
                                                 <td>{{ @$claim->policy_no }}</td>     
                                                 <td>{{ @$claim->policy->insurer->name }}</td>                                               
-                                                <td>{{ @$claim->policy->tpa_name }}</td>                                               
+                                                <td>{{ @$claim->policy->tpa->company }}</td>                                               
                                                 <td>{{ @$claim->policy->policy_type }}</td>     
                                                 <td>{{ $claim->disease_category }}</td>                                               
                                                 <td>{{ $claim->disease_name }}</td>     
