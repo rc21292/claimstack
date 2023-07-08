@@ -2268,9 +2268,9 @@ class HospitalController extends Controller
 
         if($filter_state){
             $hospitals->where('state', 'like','%' . $filter_state . '%')->where('linked_employee', auth()->user()->id)->where('assigned_employee', auth()->user()->id)->orWhereHas('assignedEmployeeData',  function ($q) use ($user_id, $filter_state) {
-                $q->where('linked_employee', $user_id)->where('state', 'like','%' . $filter_state . '%');
+                $q->where('linked_employee', $user_id)->orWhere('state', 'like','%' . $filter_state . '%');
             })->orWhereHas('linkedEmployeeData',  function ($q) use ($user_id, $filter_state) {
-                $q->where('linked_employee', $user_id)->where('state', 'like','%' . $filter_state . '%');
+                $q->where('linked_employee', $user_id)->orWhere('state', 'like','%' . $filter_state . '%');
             });
         }
 
