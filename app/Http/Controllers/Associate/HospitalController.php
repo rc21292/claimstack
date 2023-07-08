@@ -21,6 +21,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 
 class HospitalController extends Controller
 {
@@ -42,6 +43,7 @@ class HospitalController extends Controller
         }
 
         $user_id = auth()->user()->associate_partner_id;
+
 
         $hospitals = $hospitals
         ->where('linked_associate_partner_id', auth()->user()->associate_partner_id)
@@ -1101,11 +1103,7 @@ class HospitalController extends Controller
     }
 
     public function onbardingReport(Request $request)
-    {              
-        $hospitals = Hospital::query();
-        
-        $filter_state = $request->state;
-        $filter_ap_id = $request->ap_id;
+    {
         $filter_date_from_to = $request->date_from_to;
 
         $hospitals = Hospital::query();
@@ -1128,10 +1126,40 @@ class HospitalController extends Controller
                 $q->where('linked_associate_partner_id', $user_id)
                 ->orWhereHas('associate', function($q) use ($user_id)
                 {
-                        $q->where('linked_associate_partner_id', $user_id);
+                    $q->where('linked_associate_partner_id', $user_id);
                 });
             });
         })->orderBy('name', 'asc')->paginate(20);
+
+
+        $user_id = auth()->user()->associate_partner_id;
+        $hospitals = Hospital::where(function (Builder $q) use($filter_date_from_to) {
+            return $q->when($filter_date_from_to != null, function ($q) use($filter_date_from_to) {
+                $d = explode('-',$filter_date_from_to);
+                $date_from = Carbon::parse($d[0])->format('Y-m-d');
+                $date_to = Carbon::parse($d[1])->format('Y-m-d');
+                return $q->whereDate('created_at', '>=', $date_from)->whereDate('created_at','<=', $date_to);
+            });
+        })
+        ->with('associate')
+        ->where(function(Builder $q1) use($user_id){
+            return $q1->where('linked_associate_partner_id', $user_id)
+            ->with('associate')
+            ->orWhereHas('associate', function(Builder $q2) use ($user_id)
+            {
+                return $q2->where('linked_associate_partner_id', $user_id)
+                ->with('associate')
+                ->orWhereHas('associate', function($q3) use ($user_id)
+                {
+                    return $q3->where('linked_associate_partner_id', $user_id)
+                    ->with('associate')
+                    ->orWhereHas('associate', function($q4) use ($user_id)
+                    {
+                            return $q4->where('linked_associate_partner_id', $user_id);
+                    });
+                });
+            });
+        })->orderBy('name', 'asc')->toSql();
 
         return view('associate.reports.hospital-onboarding', compact('hospitals', 'filter_date_from_to'));
     }
