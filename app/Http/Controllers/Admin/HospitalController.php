@@ -39,6 +39,15 @@ class HospitalController extends Controller
      */
     public function index(Request $request)
     {
+
+        /*$hospitals = Hospital::get();
+
+        foreach ($hospitals as $key => $hospital) {
+           echo $hospital->assignedEmployeeData;
+           echo "<br>";
+           die();
+        }*/
+
         DB::connection()->enableQueryLog();
 
         $filter_search = $request->search;
