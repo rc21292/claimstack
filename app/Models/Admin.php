@@ -47,6 +47,11 @@ class Admin extends Authenticatable
         'remember_token',
     ];
 
+    public function linkedEmployee()
+    {
+        return $this->belongsTo(Admin::class, 'linked_employee');
+    }
+
     /**
      * The attributes that should be cast.
      *

@@ -40,13 +40,14 @@ class HospitalController extends Controller
     public function index(Request $request)
     {
 
-        /*$hospitals = Hospital::get();
+        $hospitals = Hospital::get();
 
         foreach ($hospitals as $key => $hospital) {
-           echo $hospital->assignedEmployeeData;
+            // echo $hospital->id;
+           echo $hospital->assignedEmployeeData->linkedEmployee->linkedEmployee;
            echo "<br>";
            die();
-        }*/
+        }
 
         DB::connection()->enableQueryLog();
 

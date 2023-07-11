@@ -193,4 +193,11 @@ class Hospital extends Authenticatable
         }
     }
 
+
+     public function admins()
+    {
+       return $this->hasMany(HospitalAdmin::class, 'hospital_id');
+   }
+
+
 }
