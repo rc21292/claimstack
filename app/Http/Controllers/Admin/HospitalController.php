@@ -51,10 +51,8 @@ class HospitalController extends Controller
         $hospitals =  $hospitals->
         where(function ($query) {
             $query->where('linked_employee', auth()->user()->id)->orWhere('assigned_employee', auth()->user()->id);
-        })->orWhereHas('assignedEmployeeData',  function ($q) use ($user_id) {
-            $q->where('linked_employee', $user_id);
-        })->orWhereHas('linkedEmployeeData',  function ($q) use ($user_id) {
-            $q->where('linked_employee', $user_id);
+        })->orWhereHas('admins',  function ($q) use ($user_id) {
+            $q->where('admin_id', $user_id);
         })->orderBy('id', 'desc')->paginate(20);
 
         $queries = DB::getQueryLog();
