@@ -48,6 +48,16 @@ class HospitalController extends Controller
         }
 
         $user_id = auth()->user()->id;
+        
+        /*$hospitals =  $hospitals->
+        where(function ($query) {
+            $query->where('linked_employee', auth()->user()->id)->orWhere('assigned_employee', auth()->user()->id);
+        })->orWhereHas('assignedEmployeeData',  function ($q) use ($user_id) {
+            $q->where('linked_employee', $user_id);
+        })->orWhereHas('linkedEmployeeData',  function ($q) use ($user_id) {
+            $q->where('linked_employee', $user_id);
+        })->orderBy('id', 'desc')->paginate(20);*/
+
         $hospitals =  $hospitals->
         where(function ($query) {
             $query->where('linked_employee', auth()->user()->id)->orWhere('assigned_employee', auth()->user()->id);
