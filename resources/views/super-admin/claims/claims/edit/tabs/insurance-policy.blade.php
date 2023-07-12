@@ -76,7 +76,7 @@
             </div>
             <div class="col-md-6 mb-3">
                 <label for="certificate_no">SI No. / Certificate No. <span class="text-danger">*</span></label>
-                <input type="text" maxlength="16" class="form-control" id="certificate_no"
+                <input type="text"  class="form-control" id="certificate_no"
                     placeholder="SI No. / Certificate No." name="certificate_no" value="{{ old('certificate_no', @$claim->policy->certificate_no) }}">
                 @error('certificate_no')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -84,7 +84,7 @@
             </div>
             <div class="col-md-6 mb-3">
                 <label for="company_tpa_id_card_no">Company / TPA ID Card No. <span class="text-danger">*</span></label>
-                <input type="text" readonly maxlength="16" class="form-control" id="company_tpa_id_card_no"
+                <input type="text" readonly  class="form-control" id="company_tpa_id_card_no"
                     placeholder="Company / TPA ID Card No." name="company_tpa_id_card_no"
                     value="{{ old('company_tpa_id_card_no', $claim->company_tpa_id_card_no) }}">
                 @error('company_tpa_id_card_no')
@@ -279,7 +279,7 @@
 
             <div class="col-md-6 mb-3">
                 <label for="agent_broker_code">Agent / Broker Code <span class="text-danger"></span></label>
-                <input type="text" maxlength="10" class="form-control" id="agent_broker_code"
+                <input type="text"  class="form-control" id="agent_broker_code"
                     name="agent_broker_code" placeholder="Agent/Broker Code" value="{{ old('agent_broker_code', @$claim->policy->agent_broker_code) }}">
                 @error('agent_broker_code')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>

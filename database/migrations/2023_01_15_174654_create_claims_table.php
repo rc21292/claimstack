@@ -24,7 +24,7 @@ return new class extends Migration
            $table->string('abha_id')->nullable();
            $table->enum('insurance_coverage', ['Yes', 'No'])->default('No');
            $table->string('policy_no')->nullable();
-           $table->string('company_tpa_id_card_no')->nullable();
+           $table->longText('company_tpa_id_card_no')->nullable();
            $table->enum('lending_required', ['Yes', 'No'])->default('No');
            $table->string('hospitalization_due_to')->nullable();
            $table->string('date_of_delivery')->nullable();
@@ -46,8 +46,8 @@ return new class extends Migration
            $table->string('days_in_hospital')->nullable();
            $table->string('room_category')->nullable();
            $table->string('consultation_date')->nullable();
-           $table->string('nature_of_illness')->nullable();
-           $table->string('clinical_finding')->nullable();
+           $table->longText('nature_of_illness')->nullable();
+           $table->longText('clinical_finding')->nullable();
            $table->text('chronic_illness')->nullable();
            $table->text('ailment_details')->nullable();
            $table->string('has_family_physician')->nullable();

@@ -98,7 +98,7 @@ class AssignHospitalController extends Controller
             }
         }
 
-        return redirect()->back()->with('success', 'Hospital Document updated successfully');
+        return redirect()->back()->with('success', 'Hospital assigned successfully');
     }
 
     /**
