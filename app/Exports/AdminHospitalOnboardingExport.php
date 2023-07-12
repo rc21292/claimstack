@@ -31,6 +31,8 @@ class AdminHospitalOnboardingExport implements FromCollection, WithHeadings, Sho
 
         $user_id = auth()->user()->id;
 
+        $user_id = auth()->user()->id;
+
         $hospitals = Hospital::where(function (Builder $q) use($user_id, $filter_state, $filter_date_from_to, $filter_ap_id) {
             return $q->when($filter_state != null, function ($q) use($filter_state) {
                 return $q->where('state', 'like',"%$filter_state%");
@@ -45,18 +47,14 @@ class AdminHospitalOnboardingExport implements FromCollection, WithHeadings, Sho
                 return $q->where('linked_associate_partner_id', $filter_ap_id);
             });
         })
-        ->with('assignedEmployeeData')
-        ->with('linkedEmployeeData')
+        ->with('admins')
         ->where(function(Builder $q1) use($user_id){
             return $q1->where('linked_employee', $user_id)->orWhere('assigned_employee', $user_id)
-            ->orWhereHas('assignedEmployeeData', function (Builder $q2) use ($user_id) {
-                return $q2->where('linked_employee', $user_id);
-            })
-            ->orWhereHas('linkedEmployeeData', function (Builder $q3) use ($user_id) {
-                return $q3->where('linked_employee', $user_id);
+            ->orWhereHas('admins', function (Builder $q2) use ($user_id) {
+                return $q2->where('admin_id', $user_id);
             });
         })
-        ->orderBy('name', 'asc')->get(); 
+        ->orderBy('name', 'asc')->paginate(20);  
 
     
         foreach ($hospitals as $key => $hospital) {

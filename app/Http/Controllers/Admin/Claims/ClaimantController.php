@@ -36,12 +36,19 @@ class ClaimantController extends Controller
 
         $user_id = auth()->user()->id;
 
-        $claimants = $claimants->whereHas('hospital', function ($q) use ($user_id) {
+        /*$claimants = $claimants->whereHas('hospital', function ($q) use ($user_id) {
             $q->where('linked_employee', auth()->user()->id)->orWhere('assigned_employee', auth()->user()->id);
             $q->orWhereHas('assignedEmployeeData', function ($q) use ($user_id) {
                 $q->where('linked_employee', $user_id);
             })->orWhereHas('linkedEmployeeData', function ($q) use ($user_id) {
                 $q->where('linked_employee', $user_id);
+            });
+        })->orderBy('id', 'desc')->paginate(20);*/
+
+
+        $claimants = $claimants->whereHas('hospital', function ($q) use ($user_id) {
+            $q->where('linked_employee', auth()->user()->id)->orWhere('assigned_employee', auth()->user()->id)->orWhereHas('admins',  function ($q) use ($user_id) {
+                $q->where('admin_id', $user_id);
             });
         })->orderBy('id', 'desc')->paginate(20);
 

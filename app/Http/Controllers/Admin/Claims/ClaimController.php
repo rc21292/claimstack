@@ -392,8 +392,7 @@ class ClaimController extends Controller
         })->orderBy('id', 'desc')->paginate(20);*/
 
         $claims = $claims->whereHas('hospital', function ($q) use ($user_id) {
-            $q->where('linked_employee', auth()->user()->id)->orWhere('assigned_employee', auth()->user()->id);
-            $q->orWhereHas('admins',  function ($q) use ($user_id) {
+            $q->where('linked_employee', auth()->user()->id)->orWhere('assigned_employee', auth()->user()->id)->orWhereHas('admins',  function ($q) use ($user_id) {
                 $q->where('admin_id', $user_id);
             });
         })->orderBy('id', 'desc')->paginate(20);
