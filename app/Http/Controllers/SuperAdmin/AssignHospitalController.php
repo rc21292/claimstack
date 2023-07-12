@@ -85,23 +85,17 @@ class AssignHospitalController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {              
-        $rules = [
-            'assigned_linked_employees'                                      => 'required|array',
-        ];
-
-        $messages = [
-            'assigned_linked_employees.required'                                     => 'Please Select atleast one Employee',
-        ];
-
-        $this->validate($request, $rules, $messages);
+    {
 
         HospitalAdmin::where(['hospital_id' => $id])->delete();
-        foreach ($request->assigned_linked_employees as $key => $assigned_linked_employee) {
-            if (empty($assigned_linked_employee)) {
-                continue;
+
+        if ($request->assigned_linked_employees && count($request->assigned_linked_employees)) {
+            foreach ($request->assigned_linked_employees as $key => $assigned_linked_employee) {
+                if (empty($assigned_linked_employee)) {
+                    continue;
+                }
+                HospitalAdmin::create(['hospital_id' => $id, 'admin_id' =>$assigned_linked_employee]);
             }
-            HospitalAdmin::create(['hospital_id' => $id, 'admin_id' =>$assigned_linked_employee]);
         }
 
         return redirect()->back()->with('success', 'Hospital Document updated successfully');
