@@ -18,7 +18,7 @@
                             </div>
                         </form>  
                     </div>
-                    <h4 class="page-title">Manage Hospital</h4>
+                    <h4 class="page-title">Manage Assign Hospital</h4>
                 </div>
             </div>
         </div>

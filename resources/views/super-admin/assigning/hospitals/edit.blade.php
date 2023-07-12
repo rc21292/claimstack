@@ -13,10 +13,10 @@
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Claim Stack</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('super-admin.dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item"><a href="javascript:void(0);">Hospital</a></li>
-                            <li class="breadcrumb-item active">Edit</li>
+                            <li class="breadcrumb-item active">Assigning</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">Edit Hospital</h4>
+                    <h4 class="page-title">Assigning Hospital</h4>
                 </div>
             </div>
         </div>
@@ -36,6 +36,9 @@
                             <div class="form-group row">
 
                             <div class="col-md-12 mt-3">
+                                <strong>Hospital Name</strong> : {{ $hospital->name }}
+                            </div>
+                            <div class="col-md-12 mt-3">
 
                                 <label for="assigned_linked_employees">Select Assigned/Linked To Employee Name <span
                                     class="text-danger">*</span></label>
@@ -54,9 +57,7 @@
                                 </div>
 
 
-                                <div class="col-md-12 text-end mt-3 show-hide">
-            <button type="submit" class="btn btn-success" form="hospital-form">Save/Update Hospital</button>
-        </div>
+                                <div class="col-md-12 text-end mt-3 show-hide"> <button type="submit" class="btn btn-success" form="hospital-form">Assign Hospital</button> </div>
 
                             </div>
                         </form>

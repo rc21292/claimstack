@@ -86,6 +86,16 @@ class AssignHospitalController extends Controller
      */
     public function update(Request $request, $id)
     {              
+        $rules = [
+            'assigned_linked_employees'                                      => 'required|array',
+        ];
+
+        $messages = [
+            'assigned_linked_employees.required'                                     => 'Please Select atleast one Employee',
+        ];
+
+        $this->validate($request, $rules, $messages);
+
         HospitalAdmin::where(['hospital_id' => $id])->delete();
         foreach ($request->assigned_linked_employees as $key => $assigned_linked_employee) {
             if (empty($assigned_linked_employee)) {
