@@ -80,6 +80,9 @@
             setMedicineOption();
             setPhysicinOptions();
             ailnessOptions();
+            updatePrimeryInsuredRelation();
+            pdatePrimeryBasicSum();
+            updatePrimeryCumulativeBonus();
             setAdditionalPolicy();
             setHospitalizedOption();
             setCurrentlyCovered();
@@ -243,6 +246,17 @@
                     $("#primary_insured_city").val("{{ $claim->patient->patient_current_city }}");
                     $("#primary_insured_state").val("{{ $claim->patient->patient_current_state }}");
                     $("#primary_insured_pincode").val("{{ $claim->patient->patient_current_pincode }}");
+
+                    $("#proposer_lastname").val("{{ $claim->patient->lastname }}");
+                    $("#proposer_firstname").val("{{ $claim->patient->firstname }}");
+                    $("#proposer_middlename").val("{{ $claim->patient->middlename }}");
+                    $("#proposer_title").val("{{ $claim->patient->title }}").trigger('change');
+
+                    $("#primary_insured_firstname").val("{{ $claim->patient->firstname }}");
+                    $("#primary_insured_lastname").val("{{ $claim->patient->middlename }} {{ $claim->patient->lastname }}");
+                    $("#primary_insured_age").val("{{ $claim->patient->age }}");
+                    $("#primary_insured_gender").val("{{ $claim->patient->title == 'Ms.' ? 'Female' : 'Male'  }}").trigger('change');
+
                     break;
                 case 'No':
      
@@ -251,6 +265,17 @@
                     $("#primary_insured_city").val("{{ old('primary_insured_city', @$claim->policy->primary_insured_city) }}");
                     $("#primary_insured_state").val("{{ old('primary_insured_state', @$claim->policy->primary_insured_state) }}");
                     $("#primary_insured_pincode").val("{{ old('primary_insured_pincode', @$claim->policy->primary_insured_pincode) }}");
+
+                    $("#proposer_lastname").val("{{ old('proposer_lastname', @$claim->policy->lastname) }}");
+                    $("#proposer_firstname").val("{{ old('proposer_firstname', @$claim->policy->firstname) }}");
+                    $("#proposer_middlename").val("{{ old('proposer_middlename', @$claim->policy->middlename) }}");
+                    $("#proposer_title").val("{{ old('proposer_title', @$claim->policy->title) }}").trigger('change');
+
+                    $("#primary_insured_firstname").val("{{ old('primary_insured_firstname',@$claim->policy->primary_insured_firstname) }}");
+                    $("#primary_insured_lastname").val("{{ old('primary_insured_lastname',@$claim->policy->primary_insured_lastname) }}");
+                    $("#primary_insured_age").val("{{ old('primary_insured_age',@$claim->policy->primary_insured_age) }}");
+                    $("#primary_insured_gender").val("{{ old('primary_insured_gender',@$claim->policy->primary_insured_gender) }}").trigger('change');
+
                     break;
                 default:
   
@@ -259,6 +284,17 @@
                     $("#primary_insured_city").val("{{ old('primary_insured_city', @$claim->policy->primary_insured_city) }}");
                     $("#primary_insured_state").val("{{ old('primary_insured_state', @$claim->policy->primary_insured_state) }}");
                     $("#primary_insured_pincode").val("{{ old('primary_insured_pincode', @$claim->policy->primary_insured_pincode) }}");
+
+                    $("#proposer_lastname").val("{{ old('proposer_lastname', @$claim->policy->lastname) }}");
+                    $("#proposer_firstname").val("{{ old('proposer_firstname', @$claim->policy->firstname) }}");
+                    $("#proposer_middlename").val("{{ old('proposer_middlename', @$claim->policy->middlename) }}");
+                    $("#proposer_title").val("{{ old('proposer_title', @$claim->policy->title) }}").trigger('change');
+
+                    $("#primary_insured_firstname").val("{{ old('primary_insured_firstname',@$claim->policy->primary_insured_firstname) }}");
+                    $("#primary_insured_lastname").val("{{ old('primary_insured_lastname',@$claim->policy->primary_insured_lastname) }}");
+                    $("#primary_insured_age").val("{{ old('primary_insured_age',@$claim->policy->primary_insured_age) }}");
+                    $("#primary_insured_gender").val("{{ old('primary_insured_gender',@$claim->policy->primary_insured_gender) }}").trigger('change');
+                    
                     break;
             }
         }
@@ -383,6 +419,44 @@
                     break;
             }
     }
+
+    $("#no_of_person_insured").on('blur', function() {
+        updatePrimeryInsuredRelation();
+    });
+
+    $("#basic_sum_insured").on('blur', function() {
+        updatePrimeryBasicSum();
+    });
+
+    $("#cumulative_bonus_cv").on('blur', function() {
+        updatePrimeryCumulativeBonus();
+    });
+
+
+    function updatePrimeryBasicSum(){
+        var basic_sum_insured = $('#basic_sum_insured').val();
+        var primary_insured_sum_insured = $('#primary_insured_sum_insured').val();
+        if (primary_insured_sum_insured == '') {
+            $("#primary_insured_sum_insured").val(basic_sum_insured);
+        }
+    }
+
+    function updatePrimeryCumulativeBonus(){
+        var cumulative_bonus_cv = $('#cumulative_bonus_cv').val();
+        var primary_insured_cumulative_bonus = $('#primary_insured_cumulative_bonus').val();
+        if (primary_insured_cumulative_bonus == '') {
+            $("#primary_insured_cumulative_bonus").val(cumulative_bonus_cv);
+        }
+    }
+
+    function updatePrimeryInsuredRelation(){
+        var no_of_person_insured = $('#no_of_person_insured').val();
+        if (no_of_person_insured == 1) {
+            $("#primary_insured_relation").val("Self").trigger('change');
+        }else{
+           $("#primary_insured_relation").val("{{ old('primary_insured_relation', @$claim->policy->primary_insured_relation) }}").trigger('change');
+       }
+   }
 </script>
 <script>
     $(function(){
