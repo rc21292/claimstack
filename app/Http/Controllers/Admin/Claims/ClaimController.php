@@ -15,6 +15,7 @@ use App\Models\ClaimProcessing;
 use App\Models\InsurancePolicy;
 use App\Models\Insurer;
 use App\Models\AssessmentStatus;
+use App\Models\DependentInsured;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -866,6 +867,26 @@ class ClaimController extends Controller
             'dependent_insured_comment'                 => $request->dependent_insured_comment,
         ]);
 
+
+        $request->validate([
+            'dependent_insured.*.firstname' => 'required',
+            'dependent_insured.*.gender' => 'required',
+            'dependent_insured.*.age' => 'required',
+            'dependent_insured.*.relation' => 'required',
+            'dependent_insured.*.sum_insured' => 'required',
+            'dependent_insured.*.cumulative_bonus' => 'required',
+            'dependent_insured.*.balance_sum_insured' => 'required',
+        ]);
+    
+        if ($request->dependent_insured) {
+            DependentInsured::where('insurance_policy_id', $id)->delete();
+            foreach ($request->dependent_insured as $key => $value) {
+                $input = $value;
+                $input['insurance_policy_id'] = $id;
+                DependentInsured::create($input);
+            }
+        }
+
         return redirect()->route('admin.claims.index')->with('success', 'Claim updated successfully');
 
     }
@@ -893,8 +914,9 @@ class ClaimController extends Controller
         $insurers       = Insurer::get();
         $tpas            = Tpa::get();
         $claim          = Claim::with('patient')->find($id);
+        $dependent_insured = DependentInsured::where('insurance_policy_id',$id)->get();
         $patients       = Patient::get();
-        return view('admin.claims.claims.edit.edit',  compact('hospitals', 'claim', 'patients', 'insurers', 'tpas'));
+        return view('admin.claims.claims.edit.edit',  compact('hospitals', 'claim', 'patients', 'insurers', 'tpas', 'dependent_insured'));
     }
 
     /**

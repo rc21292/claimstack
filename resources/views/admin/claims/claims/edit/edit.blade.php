@@ -81,7 +81,7 @@
             setPhysicinOptions();
             ailnessOptions();
             updatePrimeryInsuredRelation();
-            pdatePrimeryBasicSum();
+            updatePrimeryBasicSum();
             updatePrimeryCumulativeBonus();
             setAdditionalPolicy();
             setHospitalizedOption();
@@ -294,7 +294,7 @@
                     $("#primary_insured_lastname").val("{{ old('primary_insured_lastname',@$claim->policy->primary_insured_lastname) }}");
                     $("#primary_insured_age").val("{{ old('primary_insured_age',@$claim->policy->primary_insured_age) }}");
                     $("#primary_insured_gender").val("{{ old('primary_insured_gender',@$claim->policy->primary_insured_gender) }}").trigger('change');
-                    
+
                     break;
             }
         }

@@ -769,15 +769,15 @@
 
 <div id="dynamicAddRemove" style="margin-top:30px;">
 
-@if ($errors->any())
-            <div class="alert alert-danger" role="alert">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            @endif
+    <!-- @if ($errors->any())
+    <div class="alert alert-danger" role="alert">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif -->
     @foreach($dependent_insured as $key =>$dinsured)
 
      <div class="card-body bg-white mb-4">

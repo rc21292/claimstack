@@ -81,7 +81,7 @@
             setPhysicinOptions();
             ailnessOptions();
             updatePrimeryInsuredRelation();
-            pdatePrimeryBasicSum();
+            updatePrimeryBasicSum();
             updatePrimeryCumulativeBonus();
             setAdditionalPolicy();
             setHospitalizedOption();
