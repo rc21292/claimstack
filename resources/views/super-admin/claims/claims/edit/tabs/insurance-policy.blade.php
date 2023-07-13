@@ -610,7 +610,7 @@
     </div>
 
     {{-- Dependent Insured --}}
-    <div class="card-body bg-white mb-4 addInsured" @if(old('primary_insured_firstname', @$claim->policy->primary_insured_firstname)) style="display:block" @else style="display:none" @endif>
+    <!-- <div class="card-body bg-white mb-4 addInsured" @if(old('primary_insured_firstname', @$claim->policy->primary_insured_firstname)) style="display:block" @else style="display:none" @endif>
         <div class="form-group row">
             <h4>Dependent Insured</h4>
             <div class="form-group row">
@@ -762,14 +762,14 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     
 
 
 <div id="dynamicAddRemove" style="margin-top:30px;">
 
-    <!-- @if ($errors->any())
+    @if ($errors->any())
     <div class="alert alert-danger" role="alert">
         <ul>
             @foreach ($errors->all() as $error)
@@ -777,7 +777,7 @@
             @endforeach
         </ul>
     </div>
-    @endif -->
+    @endif
     @foreach($dependent_insured as $key =>$dinsured)
 
      <div class="card-body bg-white mb-4">

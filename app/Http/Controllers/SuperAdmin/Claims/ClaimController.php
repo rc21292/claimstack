@@ -725,13 +725,13 @@ class ClaimController extends Controller
             'primary_insured_sum_insured'               => 'required|max:8',
             'primary_insured_cumulative_bonus'          => 'required|max:8',
             'primary_insured_balance_sum_insured'       => 'required|max:8',
-            'dependent_insured_firstname'               => 'required|max:15',
+            /*'dependent_insured_firstname'               => 'required|max:15',
             'dependent_insured_gender'                  => 'required',
             'dependent_insured_age'                     => 'required|max:3',
             'dependent_insured_relation'                => 'required',
             'dependent_insured_sum_insured'             => 'required|max:8',
             'dependent_insured_cumulative_bonus'        => 'required|max:8',
-            'dependent_insured_balance_sum_insured'     => 'required|max:8',
+            'dependent_insured_balance_sum_insured'     => 'required|max:8',*/
         ];
 
         $messages = [
@@ -778,13 +778,13 @@ class ClaimController extends Controller
             'primary_insured_sum_insured.required'               => 'Please enter sum insured',
             'primary_insured_cumulative_bonus.required'          => 'Please enter cumulative bonus',
             'primary_insured_balance_sum_insured.required'       => 'Please enter balance sum insured',
-            'dependent_insured_firstname.required'               => 'Please enter First name',
+            /*'dependent_insured_firstname.required'               => 'Please enter First name',
             'dependent_insured_gender.required'                  => 'Please select Gender',
             'dependent_insured_age.required'                     => 'Please enter age',
             'dependent_insured_relation.required'                => 'Please select Relation',
             'dependent_insured_sum_insured.required'             => 'Please enter sum insured',
             'dependent_insured_cumulative_bonus.required'        => 'Please enter cumulative bonus',
-            'dependent_insured_balance_sum_insured.required'     => 'Please enter balance sum insured',
+            'dependent_insured_balance_sum_insured.required'     => 'Please enter balance sum insured',*/
 
         ];
 
@@ -841,7 +841,7 @@ class ClaimController extends Controller
             'primary_insured_cumulative_bonus'          => $request->primary_insured_cumulative_bonus,
             'primary_insured_balance_sum_insured'       => $request->primary_insured_balance_sum_insured,
             'primary_insured_comment'                   => $request->primary_insured_comment,
-            'dependent_insured_firstname'               => $request->dependent_insured_firstname,
+            /*'dependent_insured_firstname'               => $request->dependent_insured_firstname,
             'dependent_insured_lastname'                => $request->dependent_insured_lastname,
             'dependent_insured_gender'                  => $request->dependent_insured_gender,
             'dependent_insured_age'                     => $request->dependent_insured_age,
@@ -849,7 +849,7 @@ class ClaimController extends Controller
             'dependent_insured_sum_insured'             => $request->dependent_insured_sum_insured,
             'dependent_insured_cumulative_bonus'        => $request->dependent_insured_cumulative_bonus,
             'dependent_insured_balance_sum_insured'     => $request->dependent_insured_balance_sum_insured,
-            'dependent_insured_comment'                 => $request->dependent_insured_comment,
+            'dependent_insured_comment'                 => $request->dependent_insured_comment,*/
         ]);
 
 
