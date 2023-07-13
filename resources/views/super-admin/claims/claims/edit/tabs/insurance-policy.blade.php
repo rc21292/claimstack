@@ -268,9 +268,9 @@
             </div>
 
             <div class="col-md-6 mb-3">
-                <label for="cumulative_bonus_cv">Cumulative Bonus (CV) <span class="text-danger">*</span></label>
+                <label for="cumulative_bonus_cv">Cumulative Bonus (CB) <span class="text-danger">*</span></label>
                 <input type="text" maxlength="8" onkeypress="return isNumberKey(event)" class="form-control"
-                    id="cumulative_bonus_cv" name="cumulative_bonus_cv" placeholder="Cumulative Bonus (CV)"
+                    id="cumulative_bonus_cv" name="cumulative_bonus_cv" placeholder="Cumulative Bonus (CB)"
                     value="{{ old('cumulative_bonus_cv', @$claim->policy->cumulative_bonus_cv) }}">
                 @error('cumulative_bonus_cv')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
