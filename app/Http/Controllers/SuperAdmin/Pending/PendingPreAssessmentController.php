@@ -29,7 +29,7 @@ class PendingPreAssessmentController extends Controller
 
            $claims[$key]->linked_employee_data = $employee;
 
-           Claim::where('id', $claim->id)->update(['linked_admin' => $employee->id]);
+           Claim::where('id', @$claim->id)->update(['linked_admin' => @$employee->id]);
         }
 
         $filter_search = '';

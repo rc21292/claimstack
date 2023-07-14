@@ -6,14 +6,16 @@
 
         <!-- start page title -->
         <div class="row">
+
             <div class="col-12">
                 <div class="page-title-box">
                     <div class="page-title-right">
-                        <form action="{{ route('super-admin.hospitals.index') }}">
+                        <form action="{{ route('super-admin.assign-hospitals.index') }}">
                             <div class="input-group">
                                 <input class="form-control" name="search" type="search"placeholder="Type here to Search">
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="submit">Search</button>
+                                    <!-- <a class="btn btn-primary" href="{{ route('super-admin.assign-hospitals.create') }}">Assgn Hospitals to Emaployees</a> -->
                                 </div>
                             </div>
                         </form>  

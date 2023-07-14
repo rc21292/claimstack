@@ -33,7 +33,21 @@ class AssignHospitalController extends Controller
      */
     public function create()
     {
-        //
+        $hospitals = Hospital::get(['name', 'id', 'uid']);
+        $admins = Admin::get(['firstname', 'lastname', 'id', 'uid', 'employee_code']);
+
+        $selected_admins = [];
+        foreach ($hospital->admins as $key => $admin) {
+            array_push($selected_admins, $admin->admin_id);
+        }
+
+
+        $selected_hospitals = [];
+        foreach ($hospital->admins as $key => $admin) {
+            array_push($selected_hospitals, $admin->hospital_id);
+        }
+
+        return view('super-admin.assigning.hospitals.create',  compact('hospital', 'admins', 'selected_admins', 'hospitals', 'selected_hospitals'));
     }
 
     /**
