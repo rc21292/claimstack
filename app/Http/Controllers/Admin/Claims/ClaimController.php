@@ -740,13 +740,13 @@ class ClaimController extends Controller
             'primary_insured_sum_insured'               => 'required|max:8',
             'primary_insured_cumulative_bonus'          => 'required|max:8',
             'primary_insured_balance_sum_insured'       => 'required|max:8',
-            'dependent_insured_firstname'               => 'required|max:15',
+            /*'dependent_insured_firstname'               => 'required|max:15',
             'dependent_insured_gender'                  => 'required',
             'dependent_insured_age'                     => 'required|max:3',
             'dependent_insured_relation'                => 'required',
             'dependent_insured_sum_insured'             => 'required|max:8',
             'dependent_insured_cumulative_bonus'        => 'required|max:8',
-            'dependent_insured_balance_sum_insured'     => 'required|max:8',
+            'dependent_insured_balance_sum_insured'     => 'required|max:8',*/
         ];
 
         $messages = [
