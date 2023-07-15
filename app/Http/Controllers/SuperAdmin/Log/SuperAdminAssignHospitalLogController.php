@@ -49,7 +49,12 @@ class SuperAdminAssignHospitalLogController extends Controller
      */
     public function show($id)
     {
-        //
+        $system_log = SystemLogs::where(['id' => $id])->first();
+
+        $system_log->old_value = json_decode($system_log->old_value);
+        $system_log->new_value = json_decode($system_log->new_value);      
+
+        return view('super-admin.logs.assign-hospital.show',  compact('system_log'));
     }
 
     /**

@@ -58,6 +58,8 @@
                                                 <td>{{ $log->action }}</td>
                                                 <td>{{ date('d-m-Y H:i:s', strtotime($log->created_at)) }}</td>
                                                 <td>
+                                                    <a href="{{ route('super-admin.assign-hospital-logs.show', $log->id) }}"
+                                                            class="btn btn-primary"><i class="mdi mdi-eye"></i></a>
                                                     <button type="button" class="btn btn-danger"
                                                     onclick="confirmDelete({{ $log->id }})"><i
                                                     class="uil uil-trash-alt"></i></button>
