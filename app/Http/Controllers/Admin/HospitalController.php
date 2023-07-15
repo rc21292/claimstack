@@ -68,7 +68,7 @@ class HospitalController extends Controller
         $hospitals = Hospital::where(function (Builder $q) use($user_id, $filter_search, $filter_date_from_to, $filter_ap_id) {
             return $q->when($filter_search != null, function ($q) use($filter_search) {
                 return $q->where('name', 'like',"%$filter_search%");
-            })
+            });
         })
         ->with('admins')
         ->where(function(Builder $q1) use($user_id){
