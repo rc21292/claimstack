@@ -2271,6 +2271,10 @@ class HospitalController extends Controller
             $query->where('linked_employee', auth()->user()->id)->orWhere('assigned_employee', auth()->user()->id);
         });
 
+        // echo "<pre>";
+        // print_r($hospitals->get());
+        // die;
+
 
         if($filter_state){
             $hospitals =  $hospitals->where(function ($query) use($filter_state) {
@@ -2339,7 +2343,9 @@ class HospitalController extends Controller
 
         $last_query = end($queries);
 
+
         $associates = AssociatePartner::get(['name', 'associate_partner_id']);
+        
 
         return view('admin.reports.hospital-onboarding', compact('hospitals', 'filter_state', 'filter_ap_id', 'filter_date_from_to', 'associates'));
     }

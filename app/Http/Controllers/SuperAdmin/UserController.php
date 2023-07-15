@@ -180,20 +180,37 @@ class UserController extends Controller
 
         $this->validate($request, $rules, $messages);
 
-        $user                    =   User::where('id', $id)->update([
-            'firstname'           =>  $request->firstname,
-            'lastname'            =>  $request->lastname,
-            'uid'                 =>  $request->uid,
-            'employee_code'       =>  'EMP'.$request->uid,
-            'designation'         =>  $request->designation,
-            'email'               =>  $request->email,
-            'phone'               =>  $request->phone,
-            'department'          =>  $request->department,
-            'linked_with_superadmin' => $request->linked_with_superadmin,
-            'kra'                 =>  $request->kra,
-            'linked_employee'     =>  $request->linked_employee,
-            'linked_employee_id'  =>  $request->linked_employee_id
-        ]);
+          $user = User::find($id);
+ 
+            $user->firstname = $request->firstname;
+            $user->lastname            =  $request->lastname;
+            $user->uid                 =  $request->uid;
+            $user->employee_code       =  'EMP'.$request->uid;
+            $user->designation         =  $request->designation;
+            $user->email               =  $request->email;
+            $user->phone               =  $request->phone;
+            $user->department          =  $request->department;
+            $user->linked_with_superadmin = $request->linked_with_superadmin;
+            $user->kra                 =  $request->kra;
+            $user->linked_employee     =  $request->linked_employee;
+            $user->linked_employee_id  =  $request->linked_employee_i;
+            $user->save();
+
+
+        // $user                    =   User::where('id', $id)->update([
+        //     'firstname'           =>  $request->firstname,
+        //     'lastname'            =>  $request->lastname,
+        //     'uid'                 =>  $request->uid,
+        //     'employee_code'       =>  'EMP'.$request->uid,
+        //     'designation'         =>  $request->designation,
+        //     'email'               =>  $request->email,
+        //     'phone'               =>  $request->phone,
+        //     'department'          =>  $request->department,
+        //     'linked_with_superadmin' => $request->linked_with_superadmin,
+        //     'kra'                 =>  $request->kra,
+        //     'linked_employee'     =>  $request->linked_employee,
+        //     'linked_employee_id'  =>  $request->linked_employee_id
+        // ]);
 
         $perm_user = User::find($id);
         $perm_user->syncPermissions($request->permission);

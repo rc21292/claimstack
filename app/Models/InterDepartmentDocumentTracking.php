@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\ModelLog;
+
 
 class InterDepartmentDocumentTracking extends Model
 {
-    use HasFactory;
+    use HasFactory, ModelLog;
 
     protected $fillable = [
         'user_id',

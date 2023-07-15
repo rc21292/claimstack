@@ -198,26 +198,51 @@ class DocumentInwardOutwardTrackingController extends Controller
 
         $this->validate($request, $rules, $messages);
 
-        $documentinwardoutwardtracking   =   DocumentInwardOutwardTracking::where('id',$id)->update([
-            'user_id'                           => $request->user_id,
-            'date_of_transaction'               => Carbon::parse($request->date_of_transaction)->format('Y-m-d'),
-            'document_type'                     => $request->document_type,
-            'claim_id'                          => $request->claim_id,
-            'patient_name'                      => $request->patient_name,
-            'patient_id'                        => $request->patient_id,
-            'ap_name'                           => $request->ap_name,
-            'ap_id'                             => $request->ap_id,
-            'hospital_name'                     => $request->hospital_name,
-            'hospital_id'                       => $request->hospital_id,
-            'other'                             => $request->other,
-            'transaction_type'                  => $request->transaction_type,
-            'from_to'                           => $request->from_to,
-            'name_of_the_organization_person'   => $request->name_of_the_organization_person,
-            'mode_of_transaction'               => $request->mode_of_transaction,
-            'courier_person_name'               => $request->courier_person_name,
-            'pod_other_number'                  => $request->pod_other_number,
-            'document_comments'                 => $request->document_comments,
-        ]);
+
+        $docu = DocumentInwardOutwardTracking::find($id);
+ 
+            $docu->user_id = $request->user_id;
+            $docu->date_of_transaction = Carbon::parse($request->date_of_transaction)->format('Y-m-d'),
+             $docu->document_type                     = $request->document_type;
+             $docu->claim_id                          = $request->claim_id;
+             $docu->patient_name                      = $request->patient_name;
+             $docu->patient_id                        = $request->patient_id;
+             $docu->ap_name                           = $request->ap_name;
+             $docu->ap_id                             = $request->ap_id;
+             $docu->hospital_name                     = $request->hospital_name;
+             $docu->hospital_id                       = $request->hospital_id;
+             $docu->other                             = $request->other;
+             $docu->transaction_type                  = $request->transaction_type;
+             $docu->from_to                           = $request->from_to;
+             $docu->name_of_the_organization_person   = $request->name_of_the_organization_person;
+             $docu->mode_of_transaction               = $request->mode_of_transaction;
+             $docu->courier_person_name               = $request->courier_person_name;
+             $docu->pod_other_number                  = $request->pod_other_number;
+             $docu->document_comments                 = $request->document_comments;
+            $docu->save();
+
+
+
+        // $documentinwardoutwardtracking   =   DocumentInwardOutwardTracking::where('id',$id)->update([
+        //     'user_id'                           => $request->user_id,
+        //     'date_of_transaction'               => Carbon::parse($request->date_of_transaction)->format('Y-m-d'),
+        //     'document_type'                     => $request->document_type,
+        //     'claim_id'                          => $request->claim_id,
+        //     'patient_name'                      => $request->patient_name,
+        //     'patient_id'                        => $request->patient_id,
+        //     'ap_name'                           => $request->ap_name,
+        //     'ap_id'                             => $request->ap_id,
+        //     'hospital_name'                     => $request->hospital_name,
+        //     'hospital_id'                       => $request->hospital_id,
+        //     'other'                             => $request->other,
+        //     'transaction_type'                  => $request->transaction_type,
+        //     'from_to'                           => $request->from_to,
+        //     'name_of_the_organization_person'   => $request->name_of_the_organization_person,
+        //     'mode_of_transaction'               => $request->mode_of_transaction,
+        //     'courier_person_name'               => $request->courier_person_name,
+        //     'pod_other_number'                  => $request->pod_other_number,
+        //     'document_comments'                 => $request->document_comments,
+        // ]);
 
         return redirect()->route('hospital.document-inward-outward-tracking.index')->with('success', 'Document Inward Outward Tracking updated successfully');          
     }
