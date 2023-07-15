@@ -520,6 +520,9 @@
                         <li>
                             <a href="{{ route('super-admin.assign-hospital-logs.index') }}">Assign Hospital</a>
                         </li>
+                        <li>
+                            <a href="{{ route('super-admin.login-logs.index') }}">Logins</a>
+                        </li>
                     </ul>
                 </div>
             </li>

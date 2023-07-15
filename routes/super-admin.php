@@ -34,6 +34,7 @@ use App\Http\Controllers\SuperAdmin\AssigningStatus\AssigningStatusPreAssessment
 use App\Http\Controllers\SuperAdmin\AssigningStatus\AssigningStatusClaimProcessingController;
 use App\Http\Controllers\SuperAdmin\AssigningStatus\AssigningStatusFinalAssessmentController;
 use App\Http\Controllers\SuperAdmin\Log\SuperAdminAssignHospitalLogController;
+use App\Http\Controllers\SuperAdmin\Log\LoginLogController;
 use App\Http\Controllers\SuperAdmin\Authorizations\HospitalTieUpAuthorizationController;
 use App\Http\Controllers\SuperAdmin\Authorizations\HospitalEmanelmentStatusAuthorizationController;
 use Illuminate\Support\Facades\Route;
@@ -364,6 +365,7 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     */
 
     Route::resource('assign-hospital-logs', SuperAdminAssignHospitalLogController::class);
+    Route::resource('login-logs', LoginLogController::class);
     
 
     Route::put('lending-status-update/{id}', [LendingStatusController::class, 'updateLendingStatus'])->name('lending-status.lending-status-update');
