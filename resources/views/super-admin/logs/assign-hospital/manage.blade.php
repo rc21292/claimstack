@@ -53,7 +53,7 @@
                                                 <th scope="row">{{ $log->id }}</th>
                                                 <th scope="row">{{ $log->ip_address }}</th>
                                                 <td>{{ @$log->hospital->name }} #{{ @$log->hospital->uid }} <!-- {{ $log->system_logable_id }} --></td>
-                                                <td>{{ $log->user_id }}</td>
+                                                <td>{{ $log->user_name }}</td>
                                                 <td>{{ $log->guard_name == 'super-admin' ? 'Super Admin': 'Admin' }}</td>
                                                 <td>{{ $log->action }}</td>
                                                 <td>{{ date('d-m-Y H:i:s', strtotime($log->created_at)) }}</td>

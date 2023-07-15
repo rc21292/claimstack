@@ -50,7 +50,7 @@
                                             <tr>
                                                 <th scope="row">{{ $login_log->id }}</th>
                                                 <th scope="row">{{ $login_log->ip_address }}</th>
-                                                <td>{{ $login_log->user_id }}</td>
+                                                <td>{{ @$login_log->user_name}}</td>
                                                 <td>{{ $login_log->user_guard == 'super-admin' ? 'Super Admin': ucfirst($login_log->user_guard) }}</td>
                                                 <td>{{ date('d-m-Y H:i:s', strtotime($login_log->created_at)) }}</td>
                                                 <td>
