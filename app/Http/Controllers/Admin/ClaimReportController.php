@@ -50,12 +50,19 @@ class ClaimReportController extends Controller
 
         $user_id = auth('admin')->user()->id;
 
-        $claims = $claims->whereHas('hospital', function ($q) use ($user_id) {
+        /*$claims = $claims->whereHas('hospital', function ($q) use ($user_id) {
             $q->where('linked_employee', auth('admin')->user()->id)->orWhere('assigned_employee', auth('admin')->user()->id);
             $q->orWhereHas('assignedEmployeeData', function ($q) use ($user_id) {
                 $q->where('linked_employee', $user_id);
             })->orWhereHas('linkedEmployeeData', function ($q) use ($user_id) {
                 $q->where('linked_employee', $user_id);
+            });
+        })->orderBy('id', 'desc')->paginate(20);*/
+
+
+        $claims = $claims->whereHas('hospital', function ($q) use ($user_id) {
+            $q->where('linked_employee', auth()->user()->id)->orWhere('assigned_employee', auth()->user()->id)->orWhereHas('admins',  function ($q) use ($user_id) {
+                $q->where('admin_id', $user_id);
             });
         })->orderBy('id', 'desc')->paginate(20);
 

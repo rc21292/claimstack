@@ -15,6 +15,7 @@ use App\Models\ClaimProcessing;
 use App\Models\InsurancePolicy;
 use App\Models\Insurer;
 use App\Models\AssessmentStatus;
+use App\Models\DependentInsured;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -479,7 +480,7 @@ class ClaimController extends Controller
             'abha_id'                   => isset($request->abha_id) ? 'max:45' : '',
             'insurance_coverage'        => 'required',
             'policy_no'                 => $request->insurance_coverage == 'Yes' ? 'required' : '',
-            'company_tpa_id_card_no'    => $request->insurance_coverage == 'Yes' ? 'required|max:16' : '',
+            'company_tpa_id_card_no'    => $request->insurance_coverage == 'Yes' ? 'required' : '',
             'lending_required'          => 'required',
             'hospitalization_due_to'    => 'required',
             'date_of_delivery'          => 'required|before_or_equal:' . now()->format('Y-m-d'),
@@ -689,8 +690,8 @@ class ClaimController extends Controller
             'policy_no'                                 => 'required',
             'insurance_company'                         => 'required',
             'policy_name'                               => $request->policy_type != 'Group' ? 'required' : '',
-            'certificate_no'                            => 'required|max:16',
-            'company_tpa_id_card_no'                    => 'required|max:16',
+            'certificate_no'                            => 'required',
+            'company_tpa_id_card_no'                    => 'required',
             'tpa_name'                                  => 'required|max:75',
             'policy_type'                               => 'required',
             'group_name'                                => $request->policy_type == 'Group' ? 'required|max:75' : '',
@@ -709,7 +710,6 @@ class ClaimController extends Controller
             'no_of_person_insured'                      => 'required|max:2',
             'basic_sum_insured'                         => 'required|max:8',
             'cumulative_bonus_cv'                       => 'required|max:8',
-            'agent_broker_code'                         => isset($request->agent_broker_code) ? 'max:10' : '',
             'agent_broker_name'                         => isset($request->agent_broker_name) ? 'max:60' : '',
             'additional_policy'                         => 'required',
             'policy_no_additional'                      => $request->additional_policy == 'Yes' ? 'required' : '',
@@ -728,13 +728,13 @@ class ClaimController extends Controller
             'primary_insured_sum_insured'               => 'required|max:8',
             'primary_insured_cumulative_bonus'          => 'required|max:8',
             'primary_insured_balance_sum_insured'       => 'required|max:8',
-            'dependent_insured_firstname'               => 'required|max:15',
+            /*'dependent_insured_firstname'               => 'required|max:15',
             'dependent_insured_gender'                  => 'required',
             'dependent_insured_age'                     => 'required|max:3',
             'dependent_insured_relation'                => 'required',
             'dependent_insured_sum_insured'             => 'required|max:8',
             'dependent_insured_cumulative_bonus'        => 'required|max:8',
-            'dependent_insured_balance_sum_insured'     => 'required|max:8',
+            'dependent_insured_balance_sum_insured'     => 'required|max:8',*/
         ];
 
         $messages = [
@@ -855,6 +855,25 @@ class ClaimController extends Controller
             'dependent_insured_comment'                 => $request->dependent_insured_comment,
         ]);
 
+        $request->validate([
+            'dependent_insured.*.firstname' => 'required',
+            'dependent_insured.*.gender' => 'required',
+            'dependent_insured.*.age' => 'required',
+            'dependent_insured.*.relation' => 'required',
+            'dependent_insured.*.sum_insured' => 'required',
+            'dependent_insured.*.cumulative_bonus' => 'required',
+            'dependent_insured.*.balance_sum_insured' => 'required',
+        ]);
+
+        if ($request->dependent_insured) {
+            DependentInsured::where('insurance_policy_id', $id)->delete();
+            foreach ($request->dependent_insured as $key => $value) {
+                $input = $value;
+                $input['insurance_policy_id'] = $id;
+                DependentInsured::create($input);
+            }
+        }
+
         return redirect()->route('hospital.claims.index')->with('success', 'Claim updated successfully');
 
     }
@@ -882,8 +901,9 @@ class ClaimController extends Controller
         $insurers       = Insurer::get();
         $tpas            = Tpa::get();
         $claim          = Claim::with('patient')->find($id);
+        $dependent_insured = DependentInsured::where('insurance_policy_id',$id)->get();
         $patients       = Patient::get();
-        return view('hospital.claims.claims.edit.edit',  compact('hospitals', 'claim', 'patients', 'insurers', 'tpas'));
+        return view('hospital.claims.claims.edit.edit',  compact('hospitals', 'claim', 'patients', 'insurers', 'tpas', 'dependent_insured'));
     }
 
     /**
@@ -920,7 +940,7 @@ class ClaimController extends Controller
             'abha_id'                   => isset($request->abha_id) ? 'max:45' : '',
             'insurance_coverage'        => 'required',
             'policy_no'                 => $request->insurance_coverage == 'Yes' ? 'required' : '',
-            'company_tpa_id_card_no'    => $request->insurance_coverage == 'Yes' ? 'required|max:16' : '',
+            'company_tpa_id_card_no'    => $request->insurance_coverage == 'Yes' ? 'required' : '',
             'lending_required'          => 'required',
             'hospitalization_due_to'    => 'required',
             'date_of_delivery'          => 'required|before_or_equal:' . now()->format('Y-m-d'),

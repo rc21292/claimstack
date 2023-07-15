@@ -40,6 +40,7 @@ use App\Http\Controllers\SuperAdmin\TpaCompanyController;
 use App\Http\Controllers\SuperAdmin\DocumentInwardOutwardTrackingController;
 use App\Http\Controllers\SuperAdmin\InterDepartmentDocumentTrackingController;
 use App\Http\Controllers\SuperAdmin\ClaimReportController;
+use App\Http\Controllers\SuperAdmin\AssignHospitalController;
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -139,6 +140,9 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
     Route::get('hospitals/export',[HospitalController::class,'export'])->name('hospitals.export');
 
     Route::resource('hospitals', HospitalController::class);
+
+    Route::resource('assign-hospitals', AssignHospitalController::class);
+    
     Route::resource('hospital-documents', HospitalDocumentController::class);
     Route::delete('hospitals/hospital-delete/{id}/{eid}', [HospitalController::class, 'destroyCompany'])->name('hospitals.hospital-delete');
 

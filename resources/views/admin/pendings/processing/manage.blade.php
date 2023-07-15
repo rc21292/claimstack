@@ -47,7 +47,7 @@ use Carbon\Carbon;
                                                 <td>{{ $claim->hospital->name }} ({{ $claim->hospital->uid }})</td>
                                                 <td>{{ Carbon::parse($claim->assigned_at_claim_processing)->format('d-m-Y H:i:s'); }}</td>
                                                 <td>{{ @$claim->assignToClaimProcessing->firstname }} {{ @$claim->assignToClaimProcessing->lastname }}</td>
-                                                <td>{{ $claim->linked_employee_data->firstname }} {{ $claim->linked_employee_data->lastname }}</td>
+                                                <td>{{ @$claim->linked_employee_data->firstname }} {{ @$claim->linked_employee_data->lastname }}</td>
 
                                                 @php
                                                 $startDate = Carbon::parse($claim->created_at);

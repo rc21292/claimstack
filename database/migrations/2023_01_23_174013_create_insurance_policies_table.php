@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('policy_no')->nullable();
             $table->string('insurer_id')->nullable();
             $table->string('policy_id')->nullable();
-            $table->string('certificate_no')->nullable();
-            $table->string('company_tpa_id_card_no')->nullable();
+            $table->longText('certificate_no')->nullable();
+            $table->longText('company_tpa_id_card_no')->nullable();
             $table->string('tpa_name')->nullable();
             $table->enum('policy_type',['Group','Retail'])->nullable();
             $table->string('group_name')->nullable();
@@ -41,7 +41,7 @@ return new class extends Migration
             $table->integer('no_of_person_insured')->nullable();
             $table->integer('basic_sum_insured')->nullable();
             $table->integer('cumulative_bonus_cv')->nullable();
-            $table->string('agent_broker_code')->nullable();
+            $table->longText('agent_broker_code')->nullable();
             $table->string('agent_broker_name')->nullable();
             $table->string('additional_policy')->nullable();
             $table->string('policy_no_additional')->nullable();

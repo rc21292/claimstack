@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('hospital_departments', function (Blueprint $table) {
             $table->id();
             $table->integer('hospital_id')->unsigned()->nullable();
-            $table->enum('specialization', ['ENT', 'Dental', 'Ophthalmology', 'Orthopaedic', 'Gyne', 'Paediatric', 'Neonatology', 'Perinatology', 'Nephrology', 'Hepatology', 'Neurology', 'Cardiac', 'Oncology', 'Gastroenterolog'])->default('Gastroenterolog');
+            $table->enum('specialization', ['ENT', 'Dental', 'Ophthalmology', 'Orthopaedic', 'Gyne', 'Paediatric', 'Neonatology', 'Perinatology', 'Nephrology', 'Hepatology', 'Neurology', 'Cardiac', 'Oncology', 'Gastroenterolog', 'Endocrinology', 'Pulmonology', 'Rheumatology', 'General Medicine', 'General Surgery', 'General Physician', 'Ayurveda', 'Homeopathy', 'Unani', 'Ayush'])->default('Gastroenterolog');
             $table->string('doctors_firstname')->nullable();
             $table->string('doctors_lastname')->nullable();
             $table->string('registration_no')->nullable();

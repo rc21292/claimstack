@@ -7,6 +7,7 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use  Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 
 class AdminHospitalOnboardingExport implements FromCollection, WithHeadings, ShouldAutoSize
 {
@@ -30,87 +31,7 @@ class AdminHospitalOnboardingExport implements FromCollection, WithHeadings, Sho
 
         $user_id = auth()->user()->id;
 
-
-        /*$hospitals = Hospital::where(function ($q) use($user_id) {
-            return $q->where('linked_employee', $user_id)->orWhere('assigned_employee', $user_id);
-        })
-        ->when($filter_state != null, function ($q) use($filter_state) {
-                return $q->where('state', 'like',"%$filter_state%");
-        })
-        ->when($filter_date_from_to != null, function ($q) use($filter_date_from_to) {
-                $d = explode('-',$filter_date_from_to);
-                $date_from = Carbon::parse($d[0])->format('Y-m-d');
-                $date_to = Carbon::parse($d[1])->format('Y-m-d');
-                return $q->whereDate('created_at', '>=', $date_from)->whereDate('created_at','<=', $date_to);
-        })
-        ->when($filter_ap_id != null, function ($q) use($filter_ap_id) {
-                return $q->where('linked_associate_partner_id', $filter_ap_id);
-        })
-        ->with(['assignedEmployeeData' => function ($q) use ($user_id) {
-            return $q->where('linked_employee', $user_id);
-        }])
-        ->with(['linkedEmployeeData' =>  function ($q) use ($user_id) {
-            return $q->where('linked_employee', $user_id);
-        }])
-        ->orderBy('name', 'asc')->paginate(20);*/
-        
-        // $hospitals = Hospital::query();
-       
-
-        /*$hospitals = Hospital::query();
-        $hospitals = Hospital::query();
-
-        if($filter_ap_id){
-            $hospitals->where('linked_associate_partner_id', 'like','%' . $filter_ap_id . '%');
-        }
-
-        if($filter_state){
-            $hospitals->where('state', 'like','%' . $filter_state . '%');
-        }
-
-        if($filter_date_from_to){
-            $d = explode('-',$filter_date_from_to);
-            $hospitals->whereDate('created_at', '>=', Carbon::parse($d[0])->format('Y-m-d') );
-            $hospitals->whereDate('created_at','<=', Carbon::parse($d[1])->format('Y-m-d') );
-        }
-
         $user_id = auth()->user()->id;
-        $hospitals =  $hospitals->
-        where(function ($query) {
-            $query->where('linked_employee', auth()->user()->id)->orWhere('assigned_employee', auth()->user()->id);
-        })->orWhereHas('assignedEmployeeData',  function ($q) use ($user_id) {
-            $q->where('linked_employee', $user_id);
-        })->orWhereHas('linkedEmployeeData',  function ($q) use ($user_id) {
-            $q->where('linked_employee', $user_id);
-        })->orderBy('name', 'asc')->get();*/
-
-
-/*
-        $hospitals = Hospital::query();
-
-        $user_id = auth()->user()->id; 
-
-        if($filter_state){
-            $hospitals->where('state', 'like','%' . $filter_state . '%');
-        }else if($filter_date_from_to){
-            $d = explode('-',$filter_date_from_to);
-            $hospitals->whereDate('created_at', '>=', Carbon::parse($d[0])->format('Y-m-d') );
-            $hospitals->whereDate('created_at','<=', Carbon::parse($d[1])->format('Y-m-d') );
-        }else if($filter_ap_id){
-            $hospitals->where('linked_associate_partner_id', $filter_ap_id);
-        }else{             
-
-            $hospitals =  $hospitals->
-            where(function ($query) {
-                $query->where('linked_employee', auth()->user()->id)->orWhere('assigned_employee', auth()->user()->id);
-            })->orWhereHas('assignedEmployeeData',  function ($q) use ($user_id) {
-                $q->where('linked_employee', $user_id);
-            })->orWhereHas('linkedEmployeeData',  function ($q) use ($user_id) {
-                $q->where('linked_employee', $user_id);
-            });
-        }
-
-        $hospitals = $hospitals->orderBy('name', 'asc')->paginate(20);*/
 
         $hospitals = Hospital::where(function (Builder $q) use($user_id, $filter_state, $filter_date_from_to, $filter_ap_id) {
             return $q->when($filter_state != null, function ($q) use($filter_state) {
@@ -126,19 +47,15 @@ class AdminHospitalOnboardingExport implements FromCollection, WithHeadings, Sho
                 return $q->where('linked_associate_partner_id', $filter_ap_id);
             });
         })
-        ->with('assignedEmployeeData')
-        ->with('linkedEmployeeData')
+        ->with('admins')
         ->where(function(Builder $q1) use($user_id){
             return $q1->where('linked_employee', $user_id)->orWhere('assigned_employee', $user_id)
-            ->orWhereHas('assignedEmployeeData', function (Builder $q2) use ($user_id) {
-                return $q2->where('linked_employee', $user_id);
-            })
-            ->orWhereHas('linkedEmployeeData', function (Builder $q3) use ($user_id) {
-                return $q3->where('linked_employee', $user_id);
+            ->orWhereHas('admins', function (Builder $q2) use ($user_id) {
+                return $q2->where('admin_id', $user_id);
             });
         })
-        ->orderBy('name', 'asc')->paginate(20); 
-        
+        ->orderBy('name', 'asc')->paginate(20);  
+
     
         foreach ($hospitals as $key => $hospital) {
 

@@ -483,6 +483,13 @@
             </li>
 
             <li class="side-nav-item">
+                <a href="{{ route('super-admin.assign-hospitals.index') }}" class="side-nav-link">
+                    <i class="uil-home-alt"></i>
+                    <span> Assign Hospital </span>
+                </a>
+            </li>
+
+            <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#settings" aria-expanded="false" aria-controls="settings"
                     class="side-nav-link">
                     <i class="dripicons-gear"></i>

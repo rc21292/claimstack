@@ -461,8 +461,6 @@
                 </div>
             </li>
             @endif
-
-            @if(auth()->check() && auth()->user()->hasDirectPermission('Bill Generation Module Creation/Editing Rights'))
            
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#ReportGenMenu" aria-expanded="false" aria-controls="ReportGenMenu"
@@ -484,7 +482,6 @@
                     </ul>
                 </div>
             </li>
-            @endif
 
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#settings" aria-expanded="false" aria-controls="settings"

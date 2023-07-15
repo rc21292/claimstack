@@ -33,12 +33,19 @@ class PatientController extends Controller
 
         $user_id = auth()->user()->id;
 
-        $patients = $patients->whereHas('hospital', function ($q) use ($user_id) {
+        /*$patients = $patients->whereHas('hospital', function ($q) use ($user_id) {
             $q->where('linked_employee', auth()->user()->id)->orWhere('assigned_employee', auth()->user()->id);
             $q->orWhereHas('assignedEmployeeData', function ($q) use ($user_id) {
                 $q->where('linked_employee', $user_id);
             })->orWhereHas('linkedEmployeeData', function ($q) use ($user_id) {
                 $q->where('linked_employee', $user_id);
+            });
+        })->orderBy('id', 'desc')->paginate(20);*/
+
+
+        $patients = $patients->whereHas('hospital', function ($q) use ($user_id) {
+            $q->where('linked_employee', auth()->user()->id)->orWhere('assigned_employee', auth()->user()->id)->orWhereHas('admins',  function ($q) use ($user_id) {
+                $q->where('admin_id', $user_id);
             });
         })->orderBy('id', 'desc')->paginate(20);
 
@@ -2647,7 +2654,7 @@ class PatientController extends Controller
             'email'                             => 'required|email|min:1|max:45|unique:patients,email',
             'phone'                             => 'required|numeric|digits:10',
             'referred_by'                       => 'required',
-            'referral_name'                     => 'required|max:45',
+            'referral_name'                     => 'required',
             'admitted_by'                       => 'required',
             'admitted_by_title'                 => $request->admitted_by == 'Self' ? '' : 'required',
             'admitted_by_firstname'             => $request->admitted_by == 'Self' ? '' : 'required|max:25',
@@ -2825,7 +2832,7 @@ class PatientController extends Controller
             'email'                             => 'required|email|min:1|max:45|unique:patients,email,'.$id,
             'phone'                             => 'required|numeric|digits:10',
             'referred_by'                       => 'required',
-            'referral_name'                     => 'required|max:45',
+            'referral_name'                     => 'required',
             'admitted_by'                       => 'required',
             'admitted_by_title'                 => $request->admitted_by == 'Self' ? '' : 'required',
             'admitted_by_firstname'             => $request->admitted_by == 'Self' ? '' : 'required|max:25',

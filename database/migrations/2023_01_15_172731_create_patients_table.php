@@ -50,7 +50,7 @@ return new class extends Migration
             $table->string('code')->nullable();
             $table->string('landline')->nullable();
             $table->string('referred_by')->nullable();
-            $table->string('referral_name')->nullable();
+            $table->text('referral_name')->nullable();
             $table->string('admitted_by')->nullable();
             $table->string('admitted_by_title')->nullable();
             $table->string('admitted_by_firstname')->nullable();

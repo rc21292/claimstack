@@ -50,10 +50,8 @@ class AdminClaimReportExport implements FromCollection, WithHeadings, ShouldAuto
 
         $claims = $claims->whereHas('hospital', function ($q) use ($user_id) {
             $q->where('linked_employee', auth('admin')->user()->id)->orWhere('assigned_employee', auth('admin')->user()->id);
-            $q->orWhereHas('assignedEmployeeData', function ($q) use ($user_id) {
-                $q->where('linked_employee', $user_id);
-            })->orWhereHas('linkedEmployeeData', function ($q) use ($user_id) {
-                $q->where('linked_employee', $user_id);
+            $q->orWhereHas('admins', function ($q) use ($user_id) {
+                $q->where('admin_id', $user_id);
             });
         })->orderBy('id', 'desc')->paginate(20);
 
@@ -77,7 +75,7 @@ class AdminClaimReportExport implements FromCollection, WithHeadings, ShouldAuto
             $claim_array[$key]['DOD'] = $claim->discharge_date;
             $claim_array[$key]['Policy No.'] = @$claim->policy_no;
             $claim_array[$key]['Insurance Co.'] = @$claim->policy->insurer->name;
-            $claim_array[$key]['TPA Name'] = @$claim->policy->tpa_name;
+            $claim_array[$key]['TPA Name'] = @$claim->policy->tpa->company;
             $claim_array[$key]['Policy Type'] = @$claim->policy->policy_type;
             $claim_array[$key]['Disease Category'] = $claim->disease_category;
             $claim_array[$key]['Disease Name'] = $claim->disease_name;

@@ -268,7 +268,7 @@
                 <label for="company_tpa_id_card_no">Company / TPA ID Card No. <span
                         class="text-danger">*</span></label>
                 <div class="input-group">
-                    <input type="text" maxlength="16" class="form-control" id="company_tpa_id_card_no"
+                    <input type="text" class="form-control" id="company_tpa_id_card_no"
                         placeholder="Company / TPA ID Card No." name="company_tpa_id_card_no"
                         value="{{ old('company_tpa_id_card_no', $claim->company_tpa_id_card_no) }}">
                     @isset($claim->company_tpa_id_card_file)
@@ -573,7 +573,7 @@
             <div class="col-md-6 mt-3">
                 <label for="nature_of_illness">Nature of Illness / Disease with presenting complaints <span
                         class="text-danger">*</span></label>
-                <input type="text" maxlength="100" class="form-control" id="nature_of_illness"
+                <input type="text"  class="form-control" id="nature_of_illness"
                     name="nature_of_illness" value="{{ old('nature_of_illness', $claim->nature_of_illness) }}"
                     placeholder="Nature of Illness / Disease with presenting complaints">
                 @error('nature_of_illness')
@@ -582,7 +582,7 @@
             </div>
             <div class="col-md-6 mt-3">
                 <label for="clinical_finding">Relevant Clinical Findings <span class="text-danger">*</span></label>
-                <input type="text" maxlength="45" class="form-control" id="clinical_finding"
+                <input type="text"  class="form-control" id="clinical_finding"
                     name="clinical_finding" value="{{ old('clinical_finding', $claim->clinical_finding) }}"
                     placeholder="Relevant Clinical Findings">
                 @error('clinical_finding')

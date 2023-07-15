@@ -475,7 +475,7 @@
                                 <div class="col-md-6 mt-3">
                                     <label for="referral_name">Referral Name <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="referral_name" name="referral_name"
-                                        maxlength="45" placeholder="Referral Name" value="{{ old('referral_name', $patient->referral_name) }}">
+                                        placeholder="Referral Name" value="{{ old('referral_name', $patient->referral_name) }}">
                                     @error('referral_name')
                                         <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
                                     @enderror

@@ -76,7 +76,7 @@
             </div>
             <div class="col-md-6 mb-3">
                 <label for="certificate_no">SI No. / Certificate No. <span class="text-danger">*</span></label>
-                <input type="text" maxlength="16" class="form-control" id="certificate_no"
+                <input type="text"  class="form-control" id="certificate_no"
                     placeholder="SI No. / Certificate No." name="certificate_no" value="{{ old('certificate_no', @$claim->policy->certificate_no) }}">
                 @error('certificate_no')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -84,7 +84,7 @@
             </div>
             <div class="col-md-6 mb-3">
                 <label for="company_tpa_id_card_no">Company / TPA ID Card No. <span class="text-danger">*</span></label>
-                <input type="text" readonly maxlength="16" class="form-control" id="company_tpa_id_card_no"
+                <input type="text" readonly  class="form-control" id="company_tpa_id_card_no"
                     placeholder="Company / TPA ID Card No." name="company_tpa_id_card_no"
                     value="{{ old('company_tpa_id_card_no', $claim->company_tpa_id_card_no) }}">
                 @error('company_tpa_id_card_no')
@@ -268,9 +268,9 @@
             </div>
 
             <div class="col-md-6 mb-3">
-                <label for="cumulative_bonus_cv">Cumulative Bonus (CV) <span class="text-danger">*</span></label>
+                <label for="cumulative_bonus_cv">Cumulative Bonus (CB) <span class="text-danger">*</span></label>
                 <input type="text" maxlength="8" onkeypress="return isNumberKey(event)" class="form-control"
-                    id="cumulative_bonus_cv" name="cumulative_bonus_cv" placeholder="Cumulative Bonus (CV)"
+                    id="cumulative_bonus_cv" name="cumulative_bonus_cv" placeholder="Cumulative Bonus (CB)"
                     value="{{ old('cumulative_bonus_cv', @$claim->policy->cumulative_bonus_cv) }}">
                 @error('cumulative_bonus_cv')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -279,7 +279,7 @@
 
             <div class="col-md-6 mb-3">
                 <label for="agent_broker_code">Agent / Broker Code <span class="text-danger"></span></label>
-                <input type="text" maxlength="10" class="form-control" id="agent_broker_code"
+                <input type="text"  class="form-control" id="agent_broker_code"
                     name="agent_broker_code" placeholder="Agent/Broker Code" value="{{ old('agent_broker_code', @$claim->policy->agent_broker_code) }}">
                 @error('agent_broker_code')
                     <span id="name-error" class="error invalid-feedback">{{ $message }}</span>
@@ -610,7 +610,7 @@
     </div>
 
     {{-- Dependent Insured --}}
-    <div class="card-body bg-white mb-4 addInsured" @if(old('primary_insured_firstname', @$claim->policy->primary_insured_firstname)) style="display:block" @else style="display:none" @endif>
+    <!-- <div class="card-body bg-white mb-4 addInsured" @if(old('primary_insured_firstname', @$claim->policy->primary_insured_firstname)) style="display:block" @else style="display:none" @endif>
         <div class="form-group row">
             <h4>Dependent Insured</h4>
             <div class="form-group row">
@@ -762,22 +762,27 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     
 
 
 <div id="dynamicAddRemove" style="margin-top:30px;">
 
-@if ($errors->any())
-            <div class="alert alert-danger" role="alert">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            @endif
+    @if ($errors->any())
+    <div class="alert alert-danger" role="alert">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+
+
+
+
+
     @foreach($dependent_insured as $key =>$dinsured)
 
      <div class="card-body bg-white mb-4">
@@ -915,6 +920,149 @@
     </div>
 
     @endforeach
+
+
+    @if(old('dependent_insured'))
+    @foreach(old('dependent_insured') as $key => $dinsured)
+
+
+     <div class="card-body bg-white mb-4">
+        <div class="form-group row">
+            <h4>Dependent Insured</h4>
+            <div class="form-group row">
+                <div class="col-md-4 mb-2">
+                    <label>Name <span class="text-danger">*</span></label>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <input type="text" required class="form-control" placeholder="First name"
+                                name="dependent_insured[{{ $key }}][firstname]" id="dependent_insured_firstname" maxlength="15"
+                                value="{{ $dinsured['firstname']}}" />
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" placeholder="Last name"
+                                name="dependent_insured[{{ $key }}][lastname]" id="dependent_insured_lastname" maxlength="30"
+                                value="{{ $dinsured['lastname'] }}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2">
+                    <label>Gender <span class="text-danger">*</span></label>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <select required class="form-control" name="dependent_insured[{{ $key }}][gender]"
+                                id="dependent_insured_gender">
+                                <option value="">Select</option>
+                                <option value="Male"
+                                    {{ $dinsured['gender'] == 'Male' ? 'selected' : '' }}>Male
+                                </option>
+                                <option value="Female"
+                                    {{ $dinsured['gender'] == 'Female' ? 'selected' : '' }}>Female
+                                </option>
+                                <option value="Other"
+                                    {{ $dinsured['gender'] == 'Other' ? 'selected' : '' }}>Other
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2">
+                    <label>Age <span class="text-danger">*</span></label>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input required type="text" class="form-control" placeholder="Age"
+                                name="dependent_insured[{{ $key }}][age]" id="dependent_insured_age" maxlength="3"
+                                onkeypress="return isNumberKey(event)" value="{{ $dinsured['age'] }}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-2">
+                    <label>Relation <span class="text-danger">*</span></label>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <select required class="form-control" name="dependent_insured[{{ $key }}][relation]"
+                                id="dependent_insured_relation">
+                                <option value="">Select</option>
+                                <option value="Self"
+                                    {{ $dinsured['relation'] == 'Self' ? 'selected' : '' }}>Self
+                                </option>
+                                <option value="Husband"
+                                    {{ $dinsured['relation'] == 'Husband' ? 'selected' : '' }}>Husband
+                                </option>
+                                <option value="Wife"
+                                    {{ $dinsured['relation'] == 'Wife' ? 'selected' : '' }}>Wife
+                                </option>
+                                <option value="Son"
+                                    {{ $dinsured['relation'] == 'Son' ? 'selected' : '' }}>Son
+                                </option>
+                                <option value="Daughter"
+                                    {{ $dinsured['relation'] == 'Daughter' ? 'selected' : '' }}>Daughter
+                                </option>
+                                <option value="Father"
+                                    {{ $dinsured['relation'] == 'Father' ? 'selected' : '' }}>Father
+                                </option>
+                                <option value="Mother"
+                                    {{ $dinsured['relation'] == 'Mother' ? 'selected' : '' }}>Mother
+                                </option>
+                                <option value="Other"
+                                    {{ $dinsured['relation'] == 'Other' ? 'selected' : '' }}>Other
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-2">
+                    <label>Sum Insured <span class="text-danger">*</span></label>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input required type="text" class="form-control" placeholder="Sum Insured"
+                                name="dependent_insured[{{ $key }}][sum_insured]" id="dependent_insured_sum_insured"
+                                maxlength="8" onkeypress="return isNumberKey(event)"
+                                value="{{ $dinsured['sum_insured'] }}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2">
+                    <label>Cumulative Bonus <span class="text-danger">*</span></label>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input required type="text" class="form-control" placeholder="Cumulative Bonus"
+                                name="dependent_insured[{{ $key }}][cumulative_bonus]" id="dependent_insured_cumulative_bonus"
+                                maxlength="8" onkeypress="return isNumberKey(event)"
+                                value="{{ $dinsured['cumulative_bonus'] }}" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-3 mb-2">
+                    <label>Balance Sum Insured <span class="text-danger">*</span></label>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input required type="text" class="form-control" placeholder="Balance Sum Insured"
+                                name="dependent_insured[{{ $key }}][balance_sum_insured]"
+                                id="dependent_insured_balance_sum_insured" maxlength="8"
+                                onkeypress="return isNumberKey(event)"
+                                value="{{ $dinsured['balance_sum_insured'] }}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-2">
+                    <label>Comment <span class="text-danger"></span></label>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input type="text" maxlength="250" class="form-control"
+                                name="dependent_insured[{{ $key }}][comment]" id="dependent_insured_comment"
+                                placeholder="Enter Comment" value="{{ $dinsured['comment'] }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @endforeach
+    @endif
+
 </div>
 
 

@@ -1108,30 +1108,6 @@ class HospitalController extends Controller
 
         $hospitals = Hospital::query();
 
-        if($filter_date_from_to){
-            $d = explode('-',$filter_date_from_to);
-            $hospitals->whereDate('created_at', '>=', Carbon::parse($d[0])->format('Y-m-d') );
-            $hospitals->whereDate('created_at','<=', Carbon::parse($d[1])->format('Y-m-d') );
-        }
-
-        $user_id = auth()->user()->associate_partner_id;
-
-        $hospitals = $hospitals
-        ->where('linked_associate_partner_id', auth()->user()->associate_partner_id)
-        ->orWhereHas('associate', function($q) use ($user_id)
-        {
-            $q->where('linked_associate_partner_id', $user_id)
-            ->orWhereHas('associate', function($q) use ($user_id)
-            {
-                $q->where('linked_associate_partner_id', $user_id)
-                ->orWhereHas('associate', function($q) use ($user_id)
-                {
-                    $q->where('linked_associate_partner_id', $user_id);
-                });
-            });
-        })->orderBy('name', 'asc')->paginate(20);
-
-
         $user_id = auth()->user()->associate_partner_id;
         $hospitals = Hospital::where(function (Builder $q) use($filter_date_from_to) {
             return $q->when($filter_date_from_to != null, function ($q) use($filter_date_from_to) {

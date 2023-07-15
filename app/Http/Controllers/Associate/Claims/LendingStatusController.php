@@ -38,7 +38,7 @@ class LendingStatusController extends Controller
     public function create(Request $request)
     {
         $borrower           = Borrower::with(['claimant', 'claim', 'patient', 'hospital'])->find($request->borrower_id);
-        if ($borrower->claim) {
+        if (isset($borrower) && $borrower->claim) {
             $assessment         = AssessmentStatus::where('claim_id', $borrower->claim->id)->first();
         }else{
             $assessment         = null;
