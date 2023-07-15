@@ -507,6 +507,23 @@
                     </ul>
                 </div>
             </li>
+
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#logs" aria-expanded="false" aria-controls="logs"
+                    class="side-nav-link">
+                    <i class="dripicons-gear"></i>
+                    <span> Logs </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="logs">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="{{ route('super-admin.assign-hospital-logs.index') }}">Assign Hospital</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
         </ul>
 
         <!-- Help Box -->

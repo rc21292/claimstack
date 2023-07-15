@@ -29,4 +29,9 @@ class SystemLogs extends Model
         'new_value',
         'ip_address'
     ];
+
+    public function hospital()
+    {
+        return $this->belongsTo('App\Models\Hospital', 'system_logable_id', 'id');
+    }
 }

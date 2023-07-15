@@ -15,19 +15,14 @@ use App\Traits\ModelLog;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles, ModelLog;
+    
     protected $guard_name = "web";
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-
-    // public static function boot()
-    // {
-    //     parent::boot();
-    //     User::observe(new \App\Observers\UserActionsObserver);
-    // }
-
 
     protected $fillable = [
         'firstname',

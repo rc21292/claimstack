@@ -33,6 +33,7 @@ use App\Http\Controllers\SuperAdmin\Authorizations\BorrowerAuthorizationControll
 use App\Http\Controllers\SuperAdmin\AssigningStatus\AssigningStatusPreAssessmentController;
 use App\Http\Controllers\SuperAdmin\AssigningStatus\AssigningStatusClaimProcessingController;
 use App\Http\Controllers\SuperAdmin\AssigningStatus\AssigningStatusFinalAssessmentController;
+use App\Http\Controllers\SuperAdmin\Log\SuperAdminAssignHospitalLogController;
 use App\Http\Controllers\SuperAdmin\Authorizations\HospitalTieUpAuthorizationController;
 use App\Http\Controllers\SuperAdmin\Authorizations\HospitalEmanelmentStatusAuthorizationController;
 use Illuminate\Support\Facades\Route;
@@ -358,9 +359,23 @@ Route::group(['prefix' => 'super-admin', 'as' => 'super-admin.'], function () {
 
     /*
     |--------------------------------------------------------------------------
+    | Lending Status Controller Route
+    |--------------------------------------------------------------------------
+    */
+
+    Route::resource('assign-hospital-logs', SuperAdminAssignHospitalLogController::class);
+    
+
+    Route::put('lending-status-update/{id}', [LendingStatusController::class, 'updateLendingStatus'])->name('lending-status.lending-status-update');
+
+
+    /*
+    |--------------------------------------------------------------------------
     | Utility Route
     |--------------------------------------------------------------------------
     */
+
+
     Route::get('get-employees-by-department/{department}', [UtilityController::class,'getEmployeesByDepartment'])->name('get.employees');
 
     Route::get('get.hospital-doctors/{id}', [UtilityController::class,'getHospitalDoctors'])->name('get.hospital-doctors');

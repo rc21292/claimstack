@@ -18,22 +18,6 @@ class Hospital extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles, SoftDeletes, ModelLog;
 
-
-   /* parent::boot();
-
-        self::created(function($model){
-            // ... code here
-        });
-
-        self::updated(function($model){
-            // ... code here
-        });
-
-        self::deleted(function($model){
-            // ... code here
-        });
-*/
-
     protected $fillable = [
         'uid',
         'name',
