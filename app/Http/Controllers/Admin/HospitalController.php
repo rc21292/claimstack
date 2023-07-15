@@ -65,7 +65,7 @@ class HospitalController extends Controller
         })->orderBy('id', 'desc')->paginate(20);*/
 
 
-        $hospitals = Hospital::where(function (Builder $q) use($user_id, $filter_search, $filter_date_from_to, $filter_ap_id) {
+        $hospitals = Hospital::where(function (Builder $q) use($user_id, $filter_search) {
             return $q->when($filter_search != null, function ($q) use($filter_search) {
                 return $q->where('name', 'like',"%$filter_search%");
             });
