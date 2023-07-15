@@ -57,12 +57,27 @@ class HospitalController extends Controller
             $q->where('linked_employee', $user_id);
         })->orderBy('id', 'desc')->paginate(20);*/
 
-        $hospitals =  $hospitals->
+        /*$hospitals =  $hospitals->
         where(function ($query) {
             $query->where('linked_employee', auth()->user()->id)->orWhere('assigned_employee', auth()->user()->id);
         })->orWhereHas('admins',  function ($q) use ($user_id) {
             $q->where('admin_id', $user_id);
-        })->orderBy('id', 'desc')->paginate(20);
+        })->orderBy('id', 'desc')->paginate(20);*/
+
+
+        $hospitals = Hospital::where(function (Builder $q) use($user_id, $filter_search, $filter_date_from_to, $filter_ap_id) {
+            return $q->when($filter_search != null, function ($q) use($filter_search) {
+                return $q->where('name', 'like',"%$filter_search%");
+            })
+        })
+        ->with('admins')
+        ->where(function(Builder $q1) use($user_id){
+            return $q1->where('linked_employee', $user_id)->orWhere('assigned_employee', $user_id)
+            ->orWhereHas('admins', function (Builder $q2) use ($user_id) {
+                return $q2->where('admin_id', $user_id);
+            });
+        })
+        ->orderBy('name', 'asc')->paginate(20);
 
         $queries = DB::getQueryLog();
 
