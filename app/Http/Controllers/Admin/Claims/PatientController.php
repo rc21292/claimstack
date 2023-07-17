@@ -9,6 +9,7 @@ use App\Models\Claimant;
 use App\Models\HospitalDepartment;
 use App\Models\Patient;
 use App\Models\ReimbursementDocument;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -2588,13 +2589,16 @@ class PatientController extends Controller
         $associates = AssociatePartner::get();
 
         $user_id = auth()->user()->id;
-        $hospitals =  Hospital::where(function ($query) {
-            $query->where('linked_employee', auth()->user()->id)->orWhere('assigned_employee', auth()->user()->id);
-        })->orWhereHas('assignedEmployeeData',  function ($q) use ($user_id) {
-            $q->where('linked_employee', $user_id);
-        })->orWhereHas('linkedEmployeeData',  function ($q) use ($user_id) {
-            $q->where('linked_employee', $user_id);
-        })->orderBy('id', 'desc')->paginate(20);
+        
+        $hospitals = Hospital::with('admins')
+        ->where(function(Builder $q1) use($user_id){
+            return $q1->where('linked_employee', $user_id)->orWhere('assigned_employee', $user_id)
+            ->orWhereHas('admins', function (Builder $q2) use ($user_id) {
+                return $q2->where('admin_id', $user_id);
+            });
+        })
+        ->latest()->get();
+
 
         $doctors = HospitalDepartment::get();
         foreach ($hospitals as $hospital) {

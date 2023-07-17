@@ -61,7 +61,7 @@ class AssociateClaimReportExport implements FromCollection, WithHeadings, Should
                 });
             });
         });
-        })->orderBy('id', 'desc')->paginate(20);
+        })->orderBy('id', 'desc')->get();
 
         foreach ($claims as $key => $claim) {
             $claim_array[$key]['Patient ID'] = $claim->patient->uid;

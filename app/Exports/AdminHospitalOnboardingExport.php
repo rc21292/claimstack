@@ -54,7 +54,7 @@ class AdminHospitalOnboardingExport implements FromCollection, WithHeadings, Sho
                 return $q2->where('admin_id', $user_id);
             });
         })
-        ->orderBy('name', 'asc')->paginate(20);  
+        ->orderBy('name', 'asc')->get();  
 
     
         foreach ($hospitals as $key => $hospital) {
